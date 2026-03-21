@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Исследование — ONTO NOTHING</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/nav.css">
+  <style>
+    /* ================== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ================== */
+    :root {
+      --color-bg: #080810;
+      --color-gold: #C8A96E;
+      --color-blue: #5B8DEF;
+      --color-purple: #9B7EDE;
+      --color-red: #E05C5C;
+      --color-green: #4EC994;
+      --color-orange: #E09444;
+      --text-primary: rgba(255, 255, 255, 0.92);
+      --text-secondary: rgba(255, 255, 255, 0.65);
+      --glass-bg: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #000;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    /* Отступ под фиксированный nav */
+    .presentation-wrap {
+      padding-top: 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      align-items: center;
+      padding-bottom: 60px;
+    }
+
+    /* СТРОГИЙ КОНТЕЙНЕР 1200x675 */
+    .slide {
+      position: relative;
+      width: 1200px;
+      height: 675px;
+      flex-shrink: 0;
+      background-color: var(--color-bg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+    }
+    .slide-1 { background-image: radial-gradient(circle at 10% 90%, rgba(200, 169, 110, 0.15), transparent 50%), radial-gradient(circle at 90% 10%, rgba(91, 141, 239, 0.15), transparent 50%), radial-gradient(circle at 50% 50%, rgba(155, 126, 222, 0.08), transparent 60%); }
+    .slide-2 { background-image: radial-gradient(circle at 80% 80%, rgba(155, 126, 222, 0.12), transparent 50%), radial-gradient(circle at 20% 20%, rgba(78, 201, 148, 0.08), transparent 50%), radial-gradient(circle at 50% -10%, rgba(200, 169, 110, 0.1), transparent 60%); }
+    .slide-3 { background-image: radial-gradient(circle at 10% 20%, rgba(224, 92, 92, 0.1), transparent 50%), radial-gradient(circle at 90% 80%, rgba(155, 126, 222, 0.08), transparent 50%); justify-content: flex-start; padding-top: 80px; }
+    .slide-4 { background-image: radial-gradient(circle at 50% 10%, rgba(91, 141, 239, 0.1), transparent 60%), radial-gradient(circle at 10% 80%, rgba(224, 92, 92, 0.05), transparent 50%), radial-gradient(circle at 90% 80%, rgba(200, 169, 110, 0.05), transparent 50%); justify-content: flex-start; padding-top: 80px; }
+    .slide-5 { background-image: radial-gradient(circle at 80% 50%, rgba(200, 169, 110, 0.12), transparent 50%), radial-gradient(circle at 20% 80%, rgba(155, 126, 222, 0.08), transparent 50%); justify-content: flex-start; padding-top: 80px; }
+    .slide-6 { background-image: radial-gradient(circle at 20% 40%, rgba(91, 141, 239, 0.15), transparent 50%), radial-gradient(circle at 80% 80%, rgba(78, 201, 148, 0.08), transparent 50%); justify-content: flex-start; padding-top: 80px; }
+    .slide-7 { background-image: radial-gradient(circle at 15% 30%, rgba(155, 126, 222, 0.15), transparent 60%), radial-gradient(circle at 85% 70%, rgba(78, 201, 148, 0.1), transparent 60%); justify-content: flex-start; padding-top: 80px; }
+    .slide-8 { background-image: radial-gradient(circle at 20% 20%, rgba(91, 141, 239, 0.1), transparent 60%), radial-gradient(circle at 80% 80%, rgba(155, 126, 222, 0.1), transparent 60%); justify-content: flex-start; padding-top: 80px; }
+    .slide-9 { background-image: radial-gradient(circle at 50% 50%, rgba(200, 169, 110, 0.08), transparent 50%), radial-gradient(circle at 50% 50%, rgba(155, 126, 222, 0.15), transparent 70%); background-color: #05040a; justify-content: flex-start; padding-top: 50px; }
+    .slide-10 { background-image: radial-gradient(circle at 80% 80%, rgba(78, 201, 148, 0.12), transparent 60%), radial-gradient(circle at 20% 50%, rgba(200, 169, 110, 0.1), transparent 60%); justify-content: flex-start; padding-top: 50px; }
+    .slide-11 { background-image: radial-gradient(circle at 50% -20%, rgba(91, 141, 239, 0.15), transparent 60%); background-color: #030305; justify-content: flex-start; padding-top: 50px; }
+    .slide-12 { background-image: radial-gradient(circle at 50% 50%, rgba(224, 148, 68, 0.08), transparent 60%), radial-gradient(circle at 90% 20%, rgba(200, 169, 110, 0.12), transparent 50%); justify-content: flex-start; padding-top: 80px; }
+    .slide-13 { background-image: radial-gradient(circle at 10% 50%, rgba(78, 201, 148, 0.1), transparent 50%), radial-gradient(circle at 80% 20%, rgba(200, 169, 110, 0.08), transparent 60%); justify-content: flex-start; padding-top: 50px; }
+    .slide-14 { background-image: radial-gradient(circle at 50% 10%, rgba(200, 169, 110, 0.15), transparent 50%), radial-gradient(circle at 10% 90%, rgba(91, 141, 239, 0.1), transparent 50%), radial-gradient(circle at 90% 90%, rgba(78, 201, 148, 0.1), transparent 50%); justify-content: flex-start; padding-top: 80px; }
+    .slide-15 { background-image: radial-gradient(circle at 80% 20%, rgba(200, 169, 110, 0.12), transparent 50%), radial-gradient(circle at 20% 80%, rgba(78, 201, 148, 0.1), transparent 50%), radial-gradient(circle at 50% 50%, rgba(155, 126, 222, 0.05), transparent 60%); justify-content: flex-start; padding-top: 60px; }
+    .slide-16 { background-image: radial-gradient(circle at 30% 20%, rgba(78, 201, 148, 0.12), transparent 50%), radial-gradient(circle at 70% 80%, rgba(91, 141, 239, 0.1), transparent 50%); justify-content: flex-start; padding-top: 60px; }
+    .slide-17 { background-image: radial-gradient(circle at 50% 50%, rgba(200, 169, 110, 0.08), transparent 60%), radial-gradient(circle at 90% 90%, rgba(155, 126, 222, 0.1), transparent 50%), radial-gradient(circle at 10% 10%, rgba(91, 141, 239, 0.08), transparent 50%); }
+    .slide-neiry-metrics { background-image: radial-gradient(circle at 80% 20%, rgba(91, 141, 239, 0.1), transparent 60%), radial-gradient(circle at 20% 80%, rgba(155, 126, 222, 0.08), transparent 50%); justify-content: flex-start; padding-top: 40px; }
+    .eeg-wave { position: absolute; top: 40px; right: 50px; opacity: 0.06; pointer-events: none; }
+    .eeg-wave-alt { position: absolute; bottom: 40px; left: 50px; opacity: 0.04; transform: scaleX(-1); pointer-events: none; }
+    .content-wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1040px; z-index: 10; position: relative; }
+    .content-left { align-items: flex-start; text-align: left; }
+    .pill { padding: 6px 16px; border-radius: 100px; background: var(--glass-bg); border: 1px solid var(--glass-border); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-primary); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); font-weight: 600; white-space: nowrap; }
+    .top-pill { margin-bottom: 24px; }
+    .pill-red { border-color: rgba(224, 92, 92, 0.4); color: var(--color-red); background: rgba(224, 92, 92, 0.05); }
+    .pill-blue { border-color: rgba(91, 141, 239, 0.4); color: var(--color-blue); background: rgba(91, 141, 239, 0.05); }
+    .pill-gold { border-color: rgba(200, 169, 110, 0.4); color: var(--color-gold); background: rgba(200, 169, 110, 0.05); }
+    .pill-green { border-color: rgba(78, 201, 148, 0.4); color: var(--color-green); background: rgba(78, 201, 148, 0.05); }
+    .pill-purple { border-color: rgba(155, 126, 222, 0.4); color: var(--color-purple); background: rgba(155, 126, 222, 0.05); }
+    .pill-white { border-color: rgba(255, 255, 255, 0.4); color: var(--text-primary); background: rgba(255, 255, 255, 0.05); }
+    h1 { font-size: 68px; font-weight: 700; letter-spacing: -0.03em; text-align: center; line-height: 1.1; margin: 0 0 24px 0; text-shadow: 0 4px 24px rgba(0,0,0,0.5); }
+    h2 { font-size: 22px; font-weight: 400; color: var(--color-gold); text-align: center; line-height: 1.4; margin: 0; }
+    .question-text { font-size: 42px; font-weight: 600; letter-spacing: -0.02em; text-align: center; line-height: 1.2; margin: 0 0 48px 0; max-width: 900px; text-shadow: 0 4px 24px rgba(0,0,0,0.5); }
+    .accent-word { color: var(--color-gold); }
+    .slide-title-32 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 12px 0; line-height: 1.2; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+    .slide-title-28 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 32px 0; line-height: 1.2; }
+    .slide-subtitle-16 { font-size: 16px; color: var(--text-secondary); margin: 0 0 40px 0; line-height: 1.5; }
+    .status-bar { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px 0; text-align: center; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; backdrop-filter: blur(12px); z-index: 20; }
+    .status-bar-red { background: rgba(224, 92, 92, 0.1); border-top: 1px solid rgba(224, 92, 92, 0.2); color: var(--color-red); }
+    .status-bar-green { background: rgba(78, 201, 148, 0.08); border-top: 1px solid rgba(78, 201, 148, 0.2); color: var(--color-green); }
+    .status-bar-gold { background: rgba(200, 169, 110, 0.1); border-top: 1px solid rgba(200, 169, 110, 0.2); color: var(--text-primary); font-weight: 400; }
+    .status-bar-neutral { background: rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255,255,255,0.1); color: var(--text-primary); font-weight: 400; }
+    .divider { border: none; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); margin: 48px 0; }
+    .divider-small { width: 400px; margin: 40px 0; }
+    .badges-row { display: flex; gap: 16px; justify-content: center; margin-top: 56px; }
+    .footer-line { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); margin-bottom: 24px; }
+    .footer-italic { font-size: 15px; font-style: italic; color: var(--text-secondary); text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.5; }
+    .split-layout { display: flex; width: 100%; gap: 60px; align-items: stretch; justify-content: space-between; }
+    .split-col { flex: 1; display: flex; flex-direction: column; }
+    .subtitle-small { font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); margin-bottom: 24px; }
+    .glass-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+    .glass-card { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06); padding: 24px 32px; text-align: center; font-size: 18px; color: var(--text-primary); font-weight: 600; letter-spacing: 0.02em; }
+    .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; width: 100%; }
+    .problem-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-left: 3px solid var(--color-red); border-radius: 16px; padding: 24px 32px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 32px rgba(0, 0, 0, 0.2); }
+    .card-role { font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); font-weight: 600; }
+    .card-text { font-size: 16px; color: var(--text-primary); line-height: 1.5; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; margin-bottom: 32px; }
+    .metric-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; backdrop-filter: blur(20px); }
+    .hypotheses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; margin-bottom: 24px; }
+    .hyp-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px; height: 190px; }
+    .unboxing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; margin-bottom: 40px; }
+    .border-blue { border-left: 3px solid var(--color-blue); } .border-gold { border-left: 3px solid var(--color-gold); } .border-green { border-left: 3px solid var(--color-green); } .border-purple { border-left: 3px solid var(--color-purple); } .border-orange { border-left: 3px solid var(--color-orange); } .border-red { border-left: 3px solid var(--color-red); }
+    .top-blue { border-top: 3px solid var(--color-blue); } .top-gold { border-top: 3px solid var(--color-gold); } .top-green { border-top: 3px solid var(--color-green); } .top-red { border-top: 3px solid var(--color-red); } .top-purple { border-top: 3px solid var(--color-purple); } .top-orange { border-top: 3px solid var(--color-orange); }
+    .flow-container { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 16px; margin-bottom: 48px; }
+    .node-card { border-radius: 16px; padding: 24px; width: 280px; height: 250px; display: flex; flex-direction: column; box-shadow: 0 12px 32px rgba(0,0,0,0.6); border: 1px solid rgba(255, 255, 255, 0.05); }
+    .node-red { background: #1A1318; border-color: rgba(224, 92, 92, 0.15); }
+    .node-gold { background: #1A1810; border-color: rgba(200, 169, 110, 0.15); }
+    .node-blue { background: #101520; border-color: rgba(91, 141, 239, 0.15); }
+    .node-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); margin-bottom: 20px; position: relative; display: flex; align-items: center; justify-content: center; }
+    .icon-chaos::before, .icon-chaos::after, .icon-chaos span { content: ''; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--color-red); }
+    .icon-chaos::before { top: 10px; left: 12px; } .icon-chaos::after { bottom: 12px; right: 10px; }
+    .icon-chaos span:nth-child(1) { top: 20px; left: 22px; } .icon-chaos span:nth-child(2) { top: 12px; right: 14px; } .icon-chaos span:nth-child(3) { bottom: 10px; left: 18px; }
+    .icon-order { flex-direction: column; gap: 4px; } .icon-order span { display: block; height: 2px; background: var(--color-gold); border-radius: 2px; }
+    .icon-order span:nth-child(1) { width: 12px; } .icon-order span:nth-child(2) { width: 20px; } .icon-order span:nth-child(3) { width: 12px; }
+    .icon-radar { border: 1px solid rgba(91, 141, 239, 0.3); } .icon-radar::before { content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(91, 141, 239, 0.5); }
+    .icon-radar::after { content: ''; position: absolute; width: 100%; height: 1px; background: rgba(91, 141, 239, 0.3); transform: rotate(45deg); } .icon-radar span { position: absolute; width: 100%; height: 1px; background: rgba(91, 141, 239, 0.3); transform: rotate(-45deg); }
+    .onion-container { position: relative; width: 420px; height: 420px; display: flex; justify-content: center; align-items: center; }
+    .onion-ring { position: absolute; border-radius: 50%; box-sizing: border-box; pointer-events: none; }
+    .onion-ring-5 { width: 420px; height: 420px; border: 2px dashed rgba(255,255,255,0.15); }
+    .onion-ring-4 { width: 330px; height: 330px; border: 1px solid rgba(91, 141, 239, 0.3); background: rgba(91, 141, 239, 0.02); }
+    .onion-ring-3 { width: 240px; height: 240px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.03); }
+    .onion-ring-2 { width: 160px; height: 160px; border: 1px solid rgba(200, 169, 110, 0.3); background: rgba(200, 169, 110, 0.05); }
+    .onion-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; background: var(--color-gold); border-radius: 50%; box-shadow: 0 0 30px rgba(200, 169, 110, 0.6); display: flex; justify-content: center; align-items: center; color: #000; z-index: 10; font-weight: 800; font-size: 14px; }
+    .onion-label { position: absolute; text-align: center; width: 130px; background: rgba(8, 8, 16, 0.7); padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(8px); transform: translate(-50%, -50%); z-index: 20; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .compass-container { position: relative; width: 460px; height: 460px; display: flex; justify-content: center; align-items: center; }
+    .compass-label { position: absolute; text-align: center; width: 120px; font-size: 12px; color: var(--text-primary); background: rgba(8, 8, 16, 0.6); padding: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(8px); transform: translate(-50%, -50%); }
+    .compass-axis-label { position: absolute; font-size: 11px; font-weight: 700; color: var(--color-gold); text-transform: uppercase; background: var(--color-bg); padding: 2px 6px; }
+    .calendar-container { position: relative; width: 420px; height: 420px; display: flex; justify-content: center; align-items: center; }
+    .cal-label { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; width: 140px; }
+    .cal-r { text-align: left; } .cal-l { text-align: right; } .cal-c { text-align: center; }
+    .radar-visual-area { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 1; pointer-events: none; }
+    .ring { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .ring-1 { width: 140px; height: 140px; background: var(--color-gold); z-index: 15; box-shadow: 0 0 40px rgba(200, 169, 110, 0.4); flex-direction: column; }
+    .ring-2 { width: 340px; height: 340px; border: 2px solid rgba(91, 141, 239, 0.5); background: rgba(91, 141, 239, 0.03); z-index: 14; }
+    .ring-3 { width: 560px; height: 560px; border: 2px solid rgba(78, 201, 148, 0.4); z-index: 13; }
+    .ring-4 { width: 800px; height: 800px; border: 2px solid rgba(155, 126, 222, 0.4); z-index: 12; }
+    .ring-5 { width: 1100px; height: 1100px; border: 2px dashed rgba(255, 255, 255, 0.2); z-index: 11; }
+    .schema-label { position: absolute; width: max-content; background: rgba(13, 13, 20, 0.8); backdrop-filter: blur(12px); padding: 12px 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 8px 32px rgba(0,0,0,0.6); z-index: 20; top: 50%; left: 50%; pointer-events: auto; }
+    .lbl-2 { transform: translate(70px, -110px); }
+    .lbl-3 { transform: translate(-280px, 70px); }
+    .lbl-4 { transform: translate(-380px, -70px); }
+    .lbl-5 { transform: translate(260px, 0px); background: none; border: none; box-shadow: none; backdrop-filter: none; padding: 0; }
+    .goal-footer-bar { position: absolute; bottom: 40px; width: 1040px; display: flex; justify-content: space-between; align-items: flex-end; z-index: 30; }
+
+    /* Подвал — перекрасим под тёмную тему страницы */
+    .site-footer {
+      background: rgba(5, 5, 10, 0.98) !important;
+      border-top: 1px solid rgba(255,255,255,0.08) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="presentation-wrap">
+
+    <!-- Глобальные SVG ресурсы -->
+    <svg style="display:none;" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="eeg-path" d="M 0 60 L 40 60 L 55 30 L 70 100 L 85 10 L 100 80 L 115 60 L 150 60 L 165 45 L 180 70 L 195 60 L 350 60" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="flow-arrow" d="M0 6H58M58 6L53 1M58 6L53 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </defs>
+    </svg>
+
+    <!-- ================= СЛАЙД 1 ================= -->
+    <div class="slide slide-1">
+      <svg class="eeg-wave" width="350" height="120" viewBox="0 0 350 120"><use href="#eeg-path"/></svg>
+      <div class="content-wrapper">
+        <div class="pill top-pill">ONTO NOTHING × РИТМЫ ЖИЗНИ × NEIRY</div>
+        <h1>Исследование ритмов жизни<br>и произвольной нейропластичности</h1>
+        <h2>для установления мирового стандарта<br>верификации практик, меняющих состояние</h2>
+        <div class="badges-row">
+          <div class="pill">🔬 Научное исследование</div>
+          <div class="pill">◎ 10 000 участников</div>
+          <div class="pill">🌍 Мировой стандарт</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= СЛАЙД 2 ================= -->
+    <div class="slide slide-2">
+      <svg class="eeg-wave-alt" width="350" height="120" viewBox="0 0 350 120"><use href="#eeg-path"/></svg>
+      <div class="content-wrapper">
+        <div class="pill top-pill">СУТЬ ИССЛЕДОВАНИЯ</div>
+        <div class="question-text">Способен ли человек намеренно<br>управлять своими <span class="accent-word">состояниями</span><br>быстро, глубоко и устойчиво?</div>
+        <div class="divider divider-small"></div>
+        <div class="subtitle-small">Форматы практик, которые мы верифицируем:</div>
+        <div class="glass-grid">
+          <div class="glass-card">Медитация</div>
+          <div class="glass-card">Дыхание</div>
+          <div class="glass-card">Йога</div>
+          <div class="glass-card">Психология</div>
+          <div class="glass-card">Коучинг</div>
+          <div class="glass-card">Студийные форматы</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= СЛАЙД 3 ================= -->
+    <div class="slide slide-3">
+      <div class="content-wrapper content-left">
+        <div class="pill pill-red top-pill">⚠ ПРОБЛЕМА РЫНКА</div>
+        <h3 class="slide-title-32">Эффект практики остаётся субъективным</h3>
+        <p class="slide-subtitle-16">Методы реально меняют состояние. Но это изменение живёт в личном опыте — не в данных.</p>
+        <div class="problem-grid">
+          <div class="problem-card border-red"><div class="card-role">Для мастера</div><div class="card-text">Знаю: метод работает. Доказать цифрами — нечем.</div></div>
+          <div class="problem-card border-red"><div class="card-role">Для клиента</div><div class="card-text">Был мощный опыт. Через месяц — откат. Непонятно почему.</div></div>
+          <div class="problem-card border-red"><div class="card-role">Для рынка</div><div class="card-text">Конкуренция идёт по маркетингу и упаковке, а не по результатам.</div></div>
+          <div class="problem-card border-red"><div class="card-role">Для развития метода</div><div class="card-text">Без обратной связи в данных — метод сложно усиливать.</div></div>
+        </div>
+      </div>
+      <div class="status-bar status-bar-red">Рынок работает на веру. Не на данные.</div>
+    </div>
+
+    <!-- ================= СЛАЙД 4 ================= -->
+    <div class="slide slide-4">
+      <div class="content-wrapper content-left">
+        <div class="pill pill-blue top-pill">📋 ПРЕДМЕТ ИССЛЕДОВАНИЯ</div>
+        <h3 class="slide-title-28">Нейропластичность — в реальных условиях жизни</h3>
+        <div class="flow-container">
+          <div class="node-card node-red">
+            <div class="node-icon icon-chaos"><span></span><span></span><span></span></div>
+            <div style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">DMN</div><div style="font-size: 13px; color: var(--text-secondary);">Режим по умолчанию</div>
+            <div style="font-size: 36px; font-weight: 700; color: var(--color-red); margin: auto 0 4px 0; line-height: 1;">70–80%</div><div style="font-size: 12px; color: var(--text-secondary);">бодрствующего времени</div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;">
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--color-gold); font-weight: 600;">Можно ли выйти?</div>
+            <svg viewBox="0 0 60 12" fill="none" style="width: 60px; color: var(--color-gold);"><use href="#flow-arrow"/></svg>
+          </div>
+          <div class="node-card node-gold">
+            <div class="node-icon icon-order"><span></span><span></span><span></span></div>
+            <div style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">Нейропластичность</div><div style="font-size: 13px; color: var(--text-secondary);">Намеренная саморегуляция</div>
+            <ul style="margin: auto 0 0 0; padding: 0; list-style: none; font-size: 13px; line-height: 1.6;"><li><span style="color: var(--color-gold); font-weight: bold; margin-right: 6px;">·</span>Быстро переключиться</li><li><span style="color: var(--color-gold); font-weight: bold; margin-right: 6px;">·</span>Войти глубоко</li><li><span style="color: var(--color-gold); font-weight: bold; margin-right: 6px;">·</span>Удержать под нагрузкой</li></ul>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;">
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-secondary); font-weight: 600;">Как измерить?</div>
+            <svg viewBox="0 0 60 12" fill="none" style="width: 60px; color: var(--text-secondary);"><use href="#flow-arrow"/></svg>
+          </div>
+          <div class="node-card node-blue">
+            <div class="node-icon icon-radar"><span></span></div>
+            <div style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">MNPI</div><div style="font-size: 13px; color: var(--text-secondary);">Первый инструмент измерения</div>
+            <div style="margin: auto 0 0 0; font-size: 13px; color: var(--color-green); font-weight: 600;">В реальных условиях жизни</div>
+          </div>
+        </div>
+        <div style="width: 100%;">
+          <div class="footer-line"></div>
+          <div class="footer-italic">Не в лаборатории. Не в статике. В жизни — пока ты работаешь, общаешься, принимаешь решения.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= СЛАЙД 5 ================= -->
+    <div class="slide slide-5">
+      <div class="content-wrapper content-left">
+        <div class="pill pill-gold top-pill">⚙ МЕТРИКА ИССЛЕДОВАНИЯ</div>
+        <h3 class="slide-title-28" style="margin-bottom: 8px;">MNPI — Multidimensional Neuroplasticity Index</h3>
+        <p class="slide-subtitle-16" style="margin-bottom: 24px;">Многомерный индекс нейропластичности</p>
+        <div class="split-layout">
+          <div class="split-col">
+            <div style="background: #13131A; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 16px 20px; font-family: 'Courier New', monospace; color: var(--color-gold); font-size: 16px; font-weight: 600; margin-bottom: 20px; text-align: center;">MNPI = (SI × 0.30) + (DI × 0.35) + (RI × 0.20) + (PI × 0.15)</div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div class="border-blue" style="display: flex; flex-direction: column; gap: 6px; background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 12px;"><div style="display: flex; align-items: center; font-size: 14px;"><span style="font-weight: 700; color: var(--color-blue); margin-right: 12px; width: 24px;">SI</span><span style="font-weight: 700;">Switching Index</span><span style="color: var(--text-secondary); margin-left: auto; font-size: 12px;">· скорость переключения</span></div><div style="font-size: 11px; color: var(--text-secondary); line-height: 1.4; padding-left: 36px;">Способность быстро выходить из DMN и входить в целевое состояние по команде.</div></div>
+              <div class="border-gold" style="display: flex; flex-direction: column; gap: 6px; background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 12px;"><div style="display: flex; align-items: center; font-size: 14px;"><span style="font-weight: 700; color: var(--color-gold); margin-right: 12px; width: 24px;">DI</span><span style="font-weight: 700;">Depth Index</span><span style="color: var(--text-secondary); margin-left: auto; font-size: 12px;">· глубина от Точки А</span></div><div style="font-size: 11px; color: var(--text-secondary); line-height: 1.4; padding-left: 36px;">Степень отличия достигнутого состояния от базовой линии.</div></div>
+              <div class="border-green" style="display: flex; flex-direction: column; gap: 6px; background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 12px;"><div style="display: flex; align-items: center; font-size: 14px;"><span style="font-weight: 700; color: var(--color-green); margin-right: 12px; width: 24px;">RI</span><span style="font-weight: 700;">Resilience Index</span><span style="color: var(--text-secondary); margin-left: auto; font-size: 12px;">· устойчивость</span></div><div style="font-size: 11px; color: var(--text-secondary); line-height: 1.4; padding-left: 36px;">Способность удерживать состояние при столкновении с триггерами.</div></div>
+              <div class="border-purple" style="display: flex; flex-direction: column; gap: 6px; background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 12px;"><div style="display: flex; align-items: center; font-size: 14px;"><span style="font-weight: 700; color: var(--color-purple); margin-right: 12px; width: 24px;">PI</span><span style="font-weight: 700;">Phenomenology Index</span><span style="color: var(--text-secondary); margin-left: auto; font-size: 12px;">· язык = состояние</span></div><div style="font-size: 11px; color: var(--text-secondary); line-height: 1.4; padding-left: 36px;">Корреляция субъективного отчёта и объективных данных.</div></div>
+            </div>
+          </div>
+          <div class="split-col">
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; backdrop-filter: blur(10px);">
+              <div style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 24px;">Пример профиля участника</div>
+              <div style="position: relative; width: 280px; height: 280px;">
+                <svg width="100%" height="100%" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                  <g stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="none"><polygon points="100,20 180,100 100,180 20,100"/><polygon points="100,40 160,100 100,160 40,100"/><polygon points="100,60 140,100 100,140 60,100"/><polygon points="100,80 120,100 100,120 80,100"/></g>
+                  <g stroke="rgba(255,255,255,0.15)" stroke-width="1"><line x1="100" y1="20" x2="100" y2="180"/><line x1="20" y1="100" x2="180" y2="100"/></g>
+                  <g fill="var(--text-secondary)" font-size="12" font-family="Inter, sans-serif" font-weight="600" text-anchor="middle"><text x="100" y="12" fill="var(--color-blue)">SI</text><text x="192" y="104" fill="var(--color-gold)">DI</text><text x="100" y="196" fill="var(--color-green)">RI</text><text x="8" y="104" fill="var(--color-purple)">PI</text></g>
+                  <polygon points="100,60 130,100 100,135 65,100" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" stroke-linejoin="round"/>
+                  <polygon points="100,28 170,100 100,150 40,100" fill="rgba(200, 169, 110, 0.2)" stroke="var(--color-gold)" stroke-width="2" stroke-linejoin="round"/>
+                  <circle cx="100" cy="28" r="3" fill="var(--color-gold)"/><circle cx="170" cy="100" r="3" fill="var(--color-gold)"/><circle cx="100" cy="150" r="3" fill="var(--color-gold)"/><circle cx="40" cy="100" r="3" fill="var(--color-gold)"/>
+                </svg>
+              </div>
+              <div style="margin-top: 32px; font-size: 14px; color: var(--text-secondary); display: flex; gap: 24px;"><span><span style="color: rgba(255,255,255,0.4);">○</span> Точка А</span><span><span style="color: var(--color-gold);">●</span> После 3 мес.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= СЛАЙД 6 ================= -->
+    <div class="slide slide-6">
+      <div class="content-wrapper content-left">
+        <div class="pill pill-blue top-pill">📡 ТЕХНОЛОГИЯ ИССЛЕДОВАНИЯ</div>
+        <h3 class="slide-title-28" style="margin-bottom: 8px;">Neiry MindTracker + Трекер</h3>
+        <p class="slide-subtitle-16" style="margin-bottom: 30px;">32 показателя · Bluetooth · Беспроводной · В движении</p>
+        <div class="split-layout">
+          <div class="split-col" style="gap: 16px;">
+            <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 8px;"><div style="width: 70px; height: 35px; border: 4px solid var(--color-blue); border-bottom: none; border-radius: 40px 40px 0 0; position: relative;"><div style="position: absolute; bottom: -4px; left: -6px; width: 12px; height: 8px; background: var(--color-blue); border-radius: 4px;"></div><div style="position: absolute; bottom: -4px; right: -6px; width: 12px; height: 8px; background: var(--color-blue); border-radius: 4px;"></div></div><div class="pill" style="margin-top: 16px;">Bluetooth ◉ Беспроводной</div></div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12); border-left: 3px solid var(--color-blue); border-radius: 12px; padding: 16px 20px;"><div style="font-size: 13px; text-transform: uppercase; color: var(--color-blue); font-weight: 600; margin-bottom: 8px;">ЭЭГ-волны</div><div style="font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;"><div style="display: flex;"><span style="width: 50px; font-weight: 600;">Delta</span><span style="color: var(--color-blue); width: 80px;">0.5–4 Гц</span><span style="color: var(--text-secondary);">· глубокий сон</span></div><div style="display: flex;"><span style="width: 50px; font-weight: 600;">Theta</span><span style="color: var(--color-blue); width: 80px;">4–7 Гц</span><span style="color: var(--text-secondary);">· медитация, творчество</span></div><div style="display: flex;"><span style="width: 50px; font-weight: 600;">Alpha</span><span style="color: var(--color-blue); width: 80px;">8–13 Гц</span><span style="color: var(--text-secondary);">· расслабленное присутствие</span></div><div style="display: flex;"><span style="width: 50px; font-weight: 600;">SMR</span><span style="color: var(--color-blue); width: 80px;">12–15 Гц</span><span style="color: var(--text-secondary);">· спокойная концентрация</span></div><div style="display: flex;"><span style="width: 50px; font-weight: 600;">Beta</span><span style="color: var(--color-blue); width: 80px;">13–30 Гц</span><span style="color: var(--text-secondary);">· активное мышление</span></div></div></div>
+            <div style="background: rgba(91, 141, 239, 0.05); border: 1px solid rgba(91, 141, 239, 0.2); border-left: 4px solid var(--color-blue); padding: 16px 20px; border-radius: 12px; width: 100%; box-sizing: border-box;"><p style="margin: 0; font-size: 13px; line-height: 1.5;"><strong>Технология Neiry впервые позволяет видеть изменения состояния объективно</strong> — это инструмент, который превращает «я чувствую» в «я вижу».</p></div>
+          </div>
+          <div class="split-col">
+            <div style="background: #13131A; border: 1px solid rgba(200, 169, 110, 0.25); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; box-shadow: 0 0 40px rgba(200, 169, 110, 0.08);">
+              <div style="font-size: 72px; font-weight: 700; color: var(--color-gold); font-family: 'Courier New', monospace; line-height: 1; margin-bottom: 4px;">32</div>
+              <div style="color: var(--text-secondary); font-size: 15px;">показателя за одну сессию</div>
+              <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: 24px;">
+                <div style="display: flex; align-items: center; background: rgba(255,255,255,0.03); padding: 10px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);"><span style="font-size: 20px; margin-right: 12px;">🧠</span><div><span style="font-weight: 600; font-size: 14px; display: block;">ЭЭГ</span><span style="color: var(--text-secondary); font-size: 12px;">5 частотных диапазонов</span></div></div>
+                <div style="display: flex; align-items: center; background: rgba(255,255,255,0.03); padding: 10px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);"><span style="font-size: 20px; margin-right: 12px;">💓</span><div><span style="font-weight: 600; font-size: 14px; display: block;">Кардио</span><span style="color: var(--text-secondary); font-size: 12px;">HRV, ЧСС, стресс</span></div></div>
+                <div style="display: flex; align-items: center; background: rgba(255,255,255,0.03); padding: 10px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);"><span style="font-size: 20px; margin-right: 12px;">📊</span><div><span style="font-weight: 600; font-size: 14px; display: block;">Когнитив</span><span style="color: var(--text-secondary); font-size: 12px;">концентрация, контроль, усталость</span></div></div>
+              </div>
+              <div class="pill pill-green" style="margin-top: 24px; font-size: 10px;">Приложение Capsula · iOS + Android · Живой дашборд</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= СЛАЙД 7 ================= -->
+    <div class="slide slide-7">
+      <div class="content-wrapper content-left">
+        <div class="pill pill-purple top-pill">📊 ПОЛНЫЙ ПРОФИЛЬ ДАННЫХ</div>
+        <h3 class="slide-title-32" style="margin-bottom: 8px;">Детализация: 30+ метрик состояния</h3>
+        <p class="slide-subtitle-16" style="margin-bottom: 40px;">Вы увидите самые тонкие градиенты своего состояния</p>
+        <div class="metrics-grid">
+          <div class="metric-card top-blue"><h4 style="margin: 0 0 16px 0; font-size: 14px; font-weight: 600; text-transform: uppercase;">Ритмы и частоты</h4><ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.8;"><li>IAPF & IAF</li><li>Theta, Alpha, Beta</li><li>Theta Peak Freq.</li><li>Alpha Peak Freq.</li><li>Beta Peak Freq.</li><li>Alpha Gravity</li></ul></div>
+          <div class="metric-card top-gold"><h4 style="margin: 0 0 16px 0; font-size: 14px; font-weight: 600; text-transform: uppercase;">Когнитивные индексы</h4><ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.8;"><li>Concentration Index</li><li>Cognitive Load</li><li>Attention</li><li>Cognitive Control</li></ul></div>
+          <div class="metric-card top-green"><h4 style="margin: 0 0 16px 0; font-size: 14px; font-weight: 600; text-transform: uppercase;">Релакс и Кардио</h4><ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.8;"><li>Relaxation Index</li><li>Relaxation (Realtime)</li><li>Heart Rate (ЧСС)</li><li>Stress Index</li><li>Kaplan Index</li></ul></div>
+          <div class="metric-card top-red"><h4 style="margin: 0 0 16px 0; font-size: 14px; font-weight: 600; text-transform: uppercase;">Усталость и Ресурс</h4><ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.8;"><li>Fatigue Score</li><li>Reverse Fatigue</li><li>Accumulated Fatigue</li></ul></div>
+        </div>
+        <div style="background: #0d0d14; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px 24px; width: 100%; font-family: 'Courier New', monospace; font-size: 12px; color: rgba(78, 201, 148, 0.85); line-height: 1.6; box-sizing: border-box;">
+          <div style="display: flex; justify-content: space-between; color: var(--text-secondary); font-size: 10px; margin-bottom: 12px; text-transform: uppercase; font-family: 'Inter', sans-serif;"><span>> raw_session_data_export.csv</span><span>● Recording (Live)</span></div>
+          <span style="color: var(--text-secondary);">Session start time, 18:36:53</span><br>
+          Mark, Minutes, Seconds, IAPF, IAF, Baseline Fatigue Score, Fatigue Score, Alpha Gravity...<br><br>
+          1, 59m, 3540s, 10, 9.72858, 1.3437, 0.939617, 0.758706, 0.991018, 1.28599...
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= СЛАЙД МЕТРИКИ NEIRY ================= -->
+    <div class="slide slide-neiry-metrics">
+      <div class="content-wrapper content-left">
+        <div class="pill pill-blue top-pill" style="margin-bottom: 16px;">🧠 МЕТРИКИ NEIRY</div>
+        <h3 class="slide-title-32" style="margin-bottom: 4px;">Топ-5 показателей для практик</h3>
+        <p class="slide-subtitle-16" style="margin-bottom: 20px;">Как сырые данные переводятся в язык управления состоянием</p>
+        <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid var(--color-blue); border-radius: 12px; padding: 14px 20px; display: flex; align-items: center; gap: 20px;"><div style="width: 190px; font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700; color: var(--color-blue);">Alpha Gravity</div><div style="width: 1px; height: 36px; background: rgba(255,255,255,0.1);"></div><div style="flex: 1;"><div style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">Глубина погружения и присутствия</div><div style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">Доминирование альфа-ритма (8–13 Гц). Успешный выход из DMN в состояние ясного наблюдения.</div></div></div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid var(--color-purple); border-radius: 12px; padding: 14px 20px; display: flex; align-items: center; gap: 20px;"><div style="width: 190px; font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700; color: var(--color-purple);">Theta</div><div style="width: 1px; height: 36px; background: rgba(255,255,255,0.1);"></div><div style="flex: 1;"><div style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">Доступ к бессознательному</div><div style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">Мощность тета-волн (4–7 Гц). Маркер глубоких трансовых состояний и медитации.</div></div></div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid var(--color-gold); border-radius: 12px; padding: 14px 20px; display: flex; align-items: center; gap: 20px;"><div style="width: 190px; font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700; color: var(--color-gold);">Concentration Index</div><div style="width: 1px; height: 36px; background: rgba(255,255,255,0.1);"></div><div style="flex: 1;"><div style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">Удержание фокуса внимания</div><div style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">Способность направлять внимание на один объект — показывает, как практика тренирует фокус.</div></div></div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid var(--color-green); border-radius: 12px; padding: 14px 20px; display: flex; align-items: center; gap: 20px;"><div style="width: 190px; font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700; color: var(--color-green);">Relaxation Index</div><div style="width: 1px; height: 36px; background: rgba(255,255,255,0.1);"></div><div style="flex: 1;"><div style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">Тотальное расслабление мозга</div><div style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">Сводный индекс нейрофизиологического покоя. Насколько метод снимает ментальное напряжение.</div></div></div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid var(--color-red); border-radius: 12px; padding: 14px 20px; display: flex; align-items: center; gap: 20px;"><div style="width: 190px; font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700; color: var(--color-red);">Stress Index</div><div style="width: 1px; height: 36px; background: rgba(255,255,255,0.1);"></div><div style="flex: 1;"><div style="font-size: 15px; font-weight: 700; margin-bottom: 2px;">Сброс физиологического напряжения</div><div style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">Уровень стресса на основе HRV. Доказывает, что практика успокаивает тело на соматическом уровне.</div></div></div>
+        </div>
+      </div>
+      <div class="status-bar" style="background: rgba(91, 141, 239, 0.08); border-top: 1px solid rgba(91, 141, 239, 0.2); color: var(--color-blue);">Эти метрики позволяют оцифровать «я чувствую» в объективные микровольты и миллисекунды.</div>
+    </div>
+
+    <!-- ================= СЛАЙД 17: ГЛОБАЛЬНАЯ ЦЕЛЬ ================= -->
+    <div class="slide slide-17">
+      <div class="content-wrapper" style="position: absolute; top: 60px; z-index: 10; align-items: center;">
+        <div class="pill pill-white top-pill">🌍 ГЛОБАЛЬНАЯ ЦЕЛЬ</div>
+        <h3 class="slide-title-32" style="font-size: 34px; max-width: 900px; text-align: center;">10 000 подтверждений управления состоянием — мировой прецедент</h3>
+      </div>
+      <div class="radar-visual-area">
+        <div class="ring ring-5"></div>
+        <div class="ring ring-4"></div>
+        <div class="ring ring-3"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-1"><div style="font-size: 16px; font-weight: 700;">ТЫ</div><div style="color: rgba(255,255,255,0.7); font-size: 11px;">1 профиль</div></div>
+        <div class="schema-label lbl-2"><div style="font-size: 15px; font-weight: 700; color: var(--color-blue); margin-bottom: 4px;">Твои клиенты</div><div style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">Твой метод + MNPI<br>10–50 человек</div></div>
+        <div class="schema-label lbl-3"><div style="font-size: 15px; font-weight: 700; color: var(--color-green); margin-bottom: 4px;">Сообщество исследователей</div><div style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">Open Lab · Нормативная база</div></div>
+        <div class="schema-label lbl-4"><div style="font-size: 15px; font-weight: 700; color: var(--color-purple); margin-bottom: 4px;">Рынок практик</div><div style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">Конкуренция на результатах<br>Первый стандарт верификации</div></div>
+        <div class="schema-label lbl-5"><div style="font-size: 64px; font-weight: 700; color: rgba(255,255,255,0.9); font-family: 'Courier New', monospace; letter-spacing: -0.05em; line-height: 1; margin-bottom: 4px;">10 000</div><div style="font-size: 13px; color: var(--text-secondary);">исследователей</div></div>
+      </div>
+      <div class="goal-footer-bar">
+        <div style="max-width: 700px;">
+          <div style="font-size: 15px; font-style: italic; color: var(--color-gold); line-height: 1.6; margin-bottom: 12px;">«Перевести субъективный опыт тишины, присутствия и саморегуляции в понятный, измеримый и воспроизводимый стандарт.»</div>
+          <div style="width: 50px; height: 2px; background: var(--color-gold); margin-bottom: 12px; opacity: 0.5;"></div>
+          <div style="font-size: 14px; color: var(--text-primary); line-height: 1.6;">Первая в мире нормативная база произвольной нейропластичности.<br>Мы создаём её с нуля. Каждый участник — соавтор.</div>
+        </div>
+        <div style="background: var(--color-gold); color: #000; font-size: 15px; font-weight: 700; padding: 14px 28px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 8px 32px rgba(200, 169, 110, 0.4); cursor: pointer;">→ Стать участником</div>
+      </div>
+    </div>
+
+  </div><!-- /presentation-wrap -->
+
+<script src="../components/nav.js"></script>
+<script src="../components/footer.js"></script>
+</body>
+</html>

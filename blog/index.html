@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блог — ONTO NOTHING</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <style>
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .post-card {
+      background: var(--glass-b);
+      border-radius: 16px;
+      box-shadow: var(--glass-s);
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+    }
+    .post-date {
+      font-family: var(--fm);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+    .post-title {
+      font-family: var(--fh);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .post-excerpt {
+      font-size: 0.9rem;
+      color: var(--body-c);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-orbs">
+  <span></span>
+  <span></span>
+</div>
+
+<main>
+  <section class="page-hero s">
+    <div class="s-inner">
+      <span class="tag">контент</span>
+      <h1>Блог</h1>
+      <p>Статьи, заметки и размышления о практике, нейронауке и технологиях изменения состояний сознания.</p>
+    </div>
+  </section>
+
+  <section class="s">
+    <div class="s-inner">
+      <div class="posts-grid">
+        <a href="./post-1/index.html" class="post-card">
+          <div class="post-date">2026-03-15</div>
+          <div class="post-title">Как ЭЭГ меняет понимание медитации</div>
+          <p class="post-excerpt">Что происходит в мозге во время глубокой практики — и почему это важно для каждого.</p>
+        </a>
+        <a href="./post-2/index.html" class="post-card">
+          <div class="post-date">2026-03-08</div>
+          <div class="post-title">Альфа, тета, дельта: навигатор по волнам</div>
+          <p class="post-excerpt">Простой гид по мозговым ритмам и их связи с состояниями осознанности.</p>
+        </a>
+        <a href="./post-3/index.html" class="post-card">
+          <div class="post-date">2026-02-28</div>
+          <div class="post-title">Ритмы сна и пики продуктивности</div>
+          <p class="post-excerpt">Как синхронизировать практику с биологическими циклами для максимального эффекта.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="../components/nav.js"></script>
+<script src="../components/footer.js"></script>
+</body>
+</html>

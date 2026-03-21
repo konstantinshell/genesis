@@ -1,0 +1,178 @@
+/* ══════════════════════════════════
+   DESIGN TOKENS — ONTO NOTHING
+══════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap');
+
+:root {
+  --bg:       #ECEEF2;
+  --text:     #16161A;
+  --muted:    #888896;
+  --body-c:   #444450;
+  --accent:   #5F5FFF;
+  --acc-soft: rgba(95,95,255,0.10);
+  --blue:     #0A84FF;
+  --glass:    rgba(255,255,255,0.48);
+  --glass-b:  rgba(255,255,255,0.88);
+  --glass-s:  0 20px 60px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,1);
+  --fh: "Oswald", sans-serif;
+  --fb: "Jost", sans-serif;
+  --fm: "Courier Prime", monospace;
+  --ft: "VT323", monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  font-family: var(--fb);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; }
+
+/* ══════════════════════════════════
+   SECTIONS
+══════════════════════════════════ */
+.s {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 20px;
+  z-index: 2;
+}
+.s-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════
+   TYPOGRAPHY
+══════════════════════════════════ */
+h1, h2, h3 {
+  font-family: var(--fh);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+h1 { font-size: clamp(2.4rem, 6vw, 4rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
+
+p {
+  font-family: var(--fb);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--body-c);
+}
+
+.mono { font-family: var(--fm); }
+.tag {
+  font-family: var(--fm);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ══════════════════════════════════
+   GLASS CARD
+══════════════════════════════════ */
+.card {
+  background: var(--glass-b);
+  border-radius: 16px;
+  box-shadow: var(--glass-s);
+  border: 1px solid rgba(255,255,255,0.7);
+  padding: 32px;
+}
+
+/* ══════════════════════════════════
+   BUTTONS
+══════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: var(--fb);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #4a4ae8;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(95,95,255,0.3);
+}
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+}
+.btn-outline:hover {
+  background: var(--acc-soft);
+}
+
+/* ══════════════════════════════════
+   PAGE HERO
+══════════════════════════════════ */
+.page-hero {
+  padding: 120px 20px 80px;
+  text-align: center;
+}
+.page-hero .tag { margin-bottom: 16px; display: block; }
+.page-hero h1 { margin-bottom: 20px; }
+.page-hero p {
+  max-width: 580px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* ══════════════════════════════════
+   GLOBAL ORBS (background)
+══════════════════════════════════ */
+.page-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.page-orbs span {
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+}
+.page-orbs span:nth-child(1) {
+  width: 60vw; height: 60vw;
+  top: -10%; left: -10%;
+  background: radial-gradient(circle, rgba(95,95,255,0.4) 0%, transparent 70%);
+}
+.page-orbs span:nth-child(2) {
+  width: 50vw; height: 50vw;
+  bottom: -10%; right: -10%;
+  background: radial-gradient(circle, rgba(10,132,255,0.3) 0%, transparent 70%);
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 768px) {
+  .s { padding: 60px 16px; }
+  .page-hero { padding: 100px 16px 60px; }
+  .card { padding: 24px; }
+}
