@@ -6,6 +6,7 @@ ONTO NOTHING — Telegram Bot
 
 import os
 import json
+import subprocess
 from datetime import datetime
 from pathlib import Path
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
@@ -112,31 +113,50 @@ def get_user_folder_by_id(user_id: int) -> Path:
     return None
 
 
+def generate_profile_now(safe_name: str):
+    """Генерирует реальный профиль сразу при регистрации"""
+    try:
+        print(f"🧠 Генерируем профиль сразу для: {safe_name}")
+
+        # Запускаем генератор профилей
+        generator_script = Path("/Users/konstantin/Documents/genesis/profile-generator/generate_profiles.py")
+        python_path = "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3"
+
+        result = subprocess.run(
+            [python_path, str(generator_script)],
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
+
+        if result.returncode == 0:
+            print(f"✅ Профиль успешно сгенерирован!")
+            print(result.stdout)
+        else:
+            print(f"⚠️ Ошибка при генерации: {result.stderr}")
+
+    except subprocess.TimeoutExpired:
+        print(f"⏱️ Генерация заняла слишком много времени")
+    except Exception as e:
+        print(f"❌ ERROR in generate_profile_now: {str(e)}")
+
+
 def create_profile_placeholder(safe_name: str):
-    """Создаёт папку профиля с загрузочным шаблоном"""
+    """Создаёт папку профиля с загрузочным шаблоном (fallback если генерация не сработает)"""
     try:
         print(f"🔵 create_profile_placeholder called for: {safe_name}")
-        print(f"🔵 LOADING_TEMPLATE size: {len(LOADING_TEMPLATE)}")
-        print(f"🔵 PROFILE_BASE: {PROFILE_BASE}")
-        print(f"🔵 PROFILE_BASE type: {type(PROFILE_BASE)}")
 
         if not LOADING_TEMPLATE:
             print(f"❌ LOADING_TEMPLATE is empty!")
             return
 
         profile_dir = PROFILE_BASE / safe_name
-        print(f"🔵 Creating dir: {profile_dir}")
-        print(f"🔵 Dir exists before mkdir: {profile_dir.exists()}")
         profile_dir.mkdir(parents=True, exist_ok=True)
-        print(f"🔵 Dir exists after mkdir: {profile_dir.exists()}")
-        print(f"🔵 Dir is accessible: {profile_dir.is_dir()}")
 
         profile_file = profile_dir / "index.html"
-        print(f"🔵 Writing to: {profile_file}")
         with open(profile_file, 'w', encoding='utf-8') as f:
-            bytes_written = f.write(LOADING_TEMPLATE)
-        print(f"✅ Wrote {bytes_written} bytes")
-        print(f"✅ File exists: {profile_file.exists()}")
+            f.write(LOADING_TEMPLATE)
+
         print(f"✅ Создан плейсхолдер: /profile/{safe_name}/index.html")
     except Exception as e:
         import traceback
@@ -291,10 +311,10 @@ async def receive_research_history(update: Update, context: ContextTypes.DEFAULT
     save_user_data(user_folder, user_data)
     context.user_data['user_folder'] = str(user_folder)
 
-    # Генерируем ссылку на профиль и создаём плейсхолдер
+    # Генерируем ссылку на профиль и создаём реальный профиль сразу!
     safe_name = get_user_folder(user_id, name, surname).name
     profile_url = generate_profile_url(name, surname, phone)
-    create_profile_placeholder(safe_name)  # ← СОЗДАЁМ ПЛЕЙСХОЛДЕР СРАЗУ!
+    generate_profile_now(safe_name)  # ← ГЕНЕРИРУЕМ РЕАЛЬНЫЙ ПРОФИЛЬ СРАЗУ!
 
     keyboard = [
         [InlineKeyboardButton("📊 Мой профиль", url=profile_url)],
@@ -303,15 +323,15 @@ async def receive_research_history(update: Update, context: ContextTypes.DEFAULT
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     await update.message.reply_text(
-        f"✅ Профиль создан!\n\n"
+        f"✅ Профиль создан и опубликован!\n\n"
         f"👤 {name} {surname}\n"
         f"📱 {phone}\n"
         f"📍 {city}\n"
         f"🎂 {age} лет\n"
         f"📚 Опыт в исследованиях: {'Да' if research_history else 'Нет'}\n\n"
         f"🔗 *Ссылка на профиль:*\n`{profile_url}`\n\n"
-        f"⏳ *Важно:* Страница будет готова к открытию в течение 5-30 минут\n"
-        f"(обновляется автоматически, просто подожди и обнови страницу)\n\n"
+        f"⏰ *Готово к открытию!* Страница появится в течение 1-2 минут\n"
+        f"(после обновления страницы в браузере Cmd+Shift+R)\n\n"
         f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
         f"Как это работает:\n"
         f"1️⃣ Выбери тип данных для загрузки\n"
