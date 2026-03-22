@@ -15,10 +15,19 @@ from telegram.constants import ParseMode
 # НАСТРОЙКИ
 TELEGRAM_BOT_TOKEN = "8656261306:AAHQ3U9ByFvkfyCY4Xp0GP9tBCekK9kip_Q"
 OBSIDIAN_VAULT = Path("/Users/konstantin/Documents/Obsidian Vault/Данные участников")
+PROFILE_BASE = Path("/Users/konstantin/Documents/genesis/profile")
 WEBSITE_URL = "https://konstantinshell.github.io/genesis"
 
-# Создаём папку если её нет
+# Создаём папки если их нет
 OBSIDIAN_VAULT.mkdir(parents=True, exist_ok=True)
+PROFILE_BASE.mkdir(parents=True, exist_ok=True)
+
+# Шаблон загрузочной страницы (загружается один раз при старте)
+LOADING_TEMPLATE_PATH = PROFILE_BASE / "index.html"
+LOADING_TEMPLATE = ""
+if LOADING_TEMPLATE_PATH.exists():
+    with open(LOADING_TEMPLATE_PATH, 'r', encoding='utf-8') as f:
+        LOADING_TEMPLATE = f.read()
 
 # Состояния для ConversationHandler (регистрация)
 WAITING_FOR_NAME, WAITING_FOR_SURNAME, WAITING_FOR_AGE, WAITING_FOR_PHONE, WAITING_FOR_CITY, WAITING_FOR_RESEARCH_HISTORY = range(6)
@@ -101,6 +110,21 @@ def get_user_folder_by_id(user_id: int) -> Path:
                     except:
                         pass
     return None
+
+
+def create_profile_placeholder(safe_name: str):
+    """Создаёт папку профиля с загрузочным шаблоном"""
+    if not LOADING_TEMPLATE:
+        return  # Если нет шаблона, просто пропускаем
+
+    profile_dir = PROFILE_BASE / safe_name
+    profile_dir.mkdir(parents=True, exist_ok=True)
+
+    profile_file = profile_dir / "index.html"
+    with open(profile_file, 'w', encoding='utf-8') as f:
+        f.write(LOADING_TEMPLATE)
+
+    print(f"🧠 Создан плейсхолдер: /profile/{safe_name}/index.html")
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -250,8 +274,10 @@ async def receive_research_history(update: Update, context: ContextTypes.DEFAULT
     save_user_data(user_folder, user_data)
     context.user_data['user_folder'] = str(user_folder)
 
-    # Генерируем ссылку на профиль
+    # Генерируем ссылку на профиль и создаём плейсхолдер
+    safe_name = get_user_folder(user_id, name, surname).name
     profile_url = generate_profile_url(name, surname, phone)
+    create_profile_placeholder(safe_name)  # ← СОЗДАЁМ ПЛЕЙСХОЛДЕР СРАЗУ!
 
     keyboard = [
         [InlineKeyboardButton("📊 Мой профиль", url=profile_url)],
