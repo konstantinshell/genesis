@@ -219,7 +219,7 @@
         <p class="upload-intro">Заполни форму и загрузи результаты сессии</p>
 
         <div class="info-box">
-            ℹ️ <strong>Важно:</strong> Убедитесь, что на компьютере запущен локальный сервер (receiver.py). Сервер должен быть доступен на <strong>http://localhost:5000</strong>
+            ✅ <strong>Все готово!</strong> Данные будут автоматически сохранены в твою папку Obsidian. Убедись, что сервер запущен на компьютере.
         </div>
 
         <form id="uploadForm">
@@ -271,6 +271,7 @@
 <script>
     const form = document.getElementById('uploadForm');
     const messageDiv = document.getElementById('message');
+    const BACKEND_URL = 'http://localhost:5000';
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -287,19 +288,22 @@
             return;
         }
 
-        const csvText = await csvFile.text();
-
-        const data = {
-            name,
-            phone,
-            session: parseInt(session),
-            text,
-            csv: csvText,
-            csv_filename: csvFile.name
-        };
+        messageDiv.className = 'message';
+        messageDiv.textContent = '⏳ Сохраняю данные в Obsidian...';
 
         try {
-            const response = await fetch('http://localhost:5000/webhook', {
+            const csvText = await csvFile.text();
+
+            const data = {
+                name: name,
+                phone: phone,
+                session: session,
+                text: text,
+                csv: csvText,
+                csv_filename: csvFile.name
+            };
+
+            const response = await fetch(`${BACKEND_URL}/upload`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -320,11 +324,11 @@
                 }, 5000);
             } else {
                 messageDiv.className = 'message error';
-                messageDiv.textContent = '❌ ' + result.message;
+                messageDiv.textContent = '❌ ' + (result.error || 'Ошибка при сохранении');
             }
         } catch (error) {
             messageDiv.className = 'message error';
-            messageDiv.textContent = '❌ Ошибка соединения с сервером. Запустите receiver.py';
+            messageDiv.textContent = '❌ Ошибка соединения. Убедитесь, что сервер запущен на http://localhost:5000';
             console.error('Upload error:', error);
         }
     });
