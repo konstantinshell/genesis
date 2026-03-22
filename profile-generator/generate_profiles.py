@@ -21,10 +21,27 @@ with open(TEMPLATE_PATH, 'r', encoding='utf-8') as f:
     TEMPLATE = f.read()
 
 
+def transliterate(text: str) -> str:
+    """Транслитерирует русский текст в латиницу"""
+    trans_table = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh',
+        'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
+        'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'ts',
+        'ч': 'ch', 'ш': 'sh', 'щ': 'sch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu',
+        'я': 'ya'
+    }
+    result = []
+    for char in text.lower():
+        result.append(trans_table.get(char, char))
+    return ''.join(result)
+
+
 def sanitize_name(name: str) -> str:
     """Преобразует имя в безопасное имя папки для URL"""
+    # Сначала транслитерируем
+    safe = transliterate(name.lower())
     # Убираем спецсимволы, заменяем пробелы на дефисы
-    safe = re.sub(r'[^\w\s-]', '', name.lower())
+    safe = re.sub(r'[^\w\s-]', '', safe)
     safe = re.sub(r'[-\s]+', '-', safe)
     return safe.strip('-')
 

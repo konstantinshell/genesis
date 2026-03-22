@@ -32,15 +32,31 @@ def sanitize_filename(filename: str) -> str:
     return filename.strip()
 
 
+def transliterate(text: str) -> str:
+    """Транслитерирует русский текст в латиницу"""
+    trans_table = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh',
+        'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
+        'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'ts',
+        'ч': 'ch', 'ш': 'sh', 'щ': 'sch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu',
+        'я': 'ya'
+    }
+    result = []
+    for char in text.lower():
+        result.append(trans_table.get(char, char))
+    return ''.join(result)
+
+
 def generate_profile_url(name: str, surname: str, phone: str) -> str:
     """Генерирует URL профиля на основе имени, фамилии и последних 4 цифр телефона"""
+    # Транслитерируем и создаём URL-safe часть
+    full_name = f"{name} {surname}".lower()
+    safe_name = transliterate(full_name)
+    safe_name = sanitize_filename(safe_name).replace('_', '-')
+
     # Извлекаем последние 4 цифры из номера
     phone_digits = ''.join(filter(str.isdigit, phone))
     last_4_digits = phone_digits[-4:] if len(phone_digits) >= 4 else phone_digits
-
-    # Создаём URL-friendly часть
-    full_name = f"{name} {surname}".lower()
-    safe_name = sanitize_filename(full_name).replace('_', '-')
 
     # Генерируем имя папки
     if last_4_digits:
