@@ -68,9 +68,11 @@ def generate_profile_url(name: str, surname: str, phone: str) -> str:
 
 
 def get_user_folder(user_id: int, name: str, surname: str) -> Path:
-    """Получает или создаёт папку пользователя"""
+    """Получает или создаёт папку пользователя с транслитерированным названием"""
     full_name = f"{name} {surname}".strip()
-    safe_name = sanitize_filename(full_name)
+    # Транслитерируем для имени папки
+    transliterated = transliterate(full_name)
+    safe_name = sanitize_filename(transliterated)
     user_folder = OBSIDIAN_VAULT / safe_name
     user_folder.mkdir(parents=True, exist_ok=True)
     return user_folder

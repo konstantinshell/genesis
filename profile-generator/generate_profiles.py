@@ -118,6 +118,9 @@ def generate_profile(participant_folder: Path) -> bool:
         first_name = name_parts[0]
         last_name = name_parts[1] if len(name_parts) > 1 else ''
 
+        # Используем ИМЯ ПАПКИ как основу для URL (оно уже транслитерировано)
+        safe_name = participant_name
+
         # Вычисляем возраст если есть birthdate
         age = 0
         if 'birthdate' in profile_data:
@@ -178,8 +181,7 @@ def generate_profile(participant_folder: Path) -> bool:
         for placeholder, value in replacements.items():
             html = html.replace(placeholder, value)
 
-        # Создаём папку для профиля
-        safe_name = sanitize_name(first_name + ' ' + last_name)
+        # Создаём папку для профиля (используем имя папки участника - оно уже правильное)
         output_dir = OUTPUT_BASE / safe_name
         output_dir.mkdir(parents=True, exist_ok=True)
 
