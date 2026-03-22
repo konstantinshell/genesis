@@ -21,7 +21,7 @@ WEBSITE_URL = "https://konstantinshell.github.io/genesis"
 OBSIDIAN_VAULT.mkdir(parents=True, exist_ok=True)
 
 # Состояния для ConversationHandler
-WAITING_FOR_NAME, WAITING_FOR_PHONE, WAITING_FOR_SESSION = range(3)
+WAITING_FOR_NAME, WAITING_FOR_SURNAME, WAITING_FOR_AGE, WAITING_FOR_PHONE, WAITING_FOR_CITY, WAITING_FOR_RESEARCH_HISTORY = range(6)
 
 # Хранилище данных сессии пользователя
 user_sessions = {}
@@ -35,9 +35,10 @@ def sanitize_filename(filename: str) -> str:
     return filename.strip()
 
 
-def get_user_folder(user_id: int, name: str) -> Path:
+def get_user_folder(user_id: int, name: str, surname: str) -> Path:
     """Получает или создаёт папку пользователя"""
-    safe_name = sanitize_filename(name)
+    full_name = f"{name} {surname}".strip()
+    safe_name = sanitize_filename(full_name)
     user_folder = OBSIDIAN_VAULT / safe_name
     user_folder.mkdir(parents=True, exist_ok=True)
     return user_folder
@@ -62,15 +63,13 @@ def save_user_data(user_folder: Path, data: dict):
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Начало диалога с пользователем"""
     user_id = update.effective_user.id
-
-    # Проверяем есть ли уже папка
-    user_data = context.user_data
+    context.user_data['user_id'] = user_id
 
     await update.message.reply_text(
-        "🧠 *Добро пожаловать в ONTO NOTHING!*\n\n"
+        "🧠 Добро пожаловать в ONTO NOTHING!\n\n"
         "Я помогу тебе отслеживать прогресс твоих сессий.\n\n"
-        "Сначала представься — как тебя зовут?",
-        parse_mode=ParseMode.MARKDOWN
+        "Давайте начнём с регистрации.\n\n"
+        "❓ Ваше имя?"
     )
 
     return WAITING_FOR_NAME
@@ -79,35 +78,114 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 async def receive_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Получаем имя пользователя"""
     name = update.message.text.strip()
-    user_id = update.effective_user.id
-
-    # Сохраняем в контекст
     context.user_data['name'] = name
-    context.user_data['user_id'] = user_id
-
-    # Создаём папку
-    user_folder = get_user_folder(user_id, name)
-    context.user_data['user_folder'] = str(user_folder)
 
     await update.message.reply_text(
-        f"👤 Спасибо, {name}!\n\n"
-        "Теперь твой номер телефона (например: +7 (999) 123-45-67)",
-        parse_mode=ParseMode.MARKDOWN
+        f"✅ Спасибо, {name}!\n\n"
+        "❓ Ваша фамилия?"
+    )
+
+    return WAITING_FOR_SURNAME
+
+
+async def receive_surname(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    """Получаем фамилию пользователя"""
+    surname = update.message.text.strip()
+    context.user_data['surname'] = surname
+
+    await update.message.reply_text(
+        f"✅ Хорошо!\n\n"
+        "❓ Ваш возраст? (введите число, например: 28)"
+    )
+
+    return WAITING_FOR_AGE
+
+
+async def receive_age(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    """Получаем возраст пользователя"""
+    age_text = update.message.text.strip()
+
+    try:
+        age = int(age_text)
+        if age < 18 or age > 100:
+            await update.message.reply_text(
+                "❌ Возраст должен быть от 18 до 100 лет. Попробуйте снова:"
+            )
+            return WAITING_FOR_AGE
+        context.user_data['age'] = age
+    except ValueError:
+        await update.message.reply_text(
+            "❌ Пожалуйста, введите число (например: 28)"
+        )
+        return WAITING_FOR_AGE
+
+    await update.message.reply_text(
+        f"✅ Вам {age} лет!\n\n"
+        "❓ Ваш номер телефона? (например: +7 (999) 123-45-67)"
     )
 
     return WAITING_FOR_PHONE
 
 
 async def receive_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    """Получаем телефон пользователя"""
+    """Получаем номер телефона пользователя"""
     phone = update.message.text.strip()
+    context.user_data['phone'] = phone
+
+    await update.message.reply_text(
+        f"✅ Спасибо!\n\n"
+        "❓ Ваш город?"
+    )
+
+    return WAITING_FOR_CITY
+
+
+async def receive_city(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    """Получаем город пользователя"""
+    city = update.message.text.strip()
+    context.user_data['city'] = city
+
+    await update.message.reply_text(
+        f"✅ {city} — чудесно!\n\n"
+        "❓ Вы уже принимали участие в исследованиях? (Да/Нет)"
+    )
+
+    return WAITING_FOR_RESEARCH_HISTORY
+
+
+async def receive_research_history(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    """Получаем информацию об опыте исследований"""
+    response = update.message.text.strip().lower()
+
+    if response in ['да', 'yes', 'y']:
+        context.user_data['research_history'] = True
+    elif response in ['нет', 'no', 'n']:
+        context.user_data['research_history'] = False
+    else:
+        await update.message.reply_text(
+            "❌ Пожалуйста, ответьте 'Да' или 'Нет'"
+        )
+        return WAITING_FOR_RESEARCH_HISTORY
+
+    # Сохраняем профиль
     name = context.user_data['name']
-    user_folder = Path(context.user_data['user_folder'])
+    surname = context.user_data['surname']
+    age = context.user_data['age']
+    phone = context.user_data['phone']
+    city = context.user_data['city']
+    research_history = context.user_data['research_history']
+    user_id = context.user_data['user_id']
+
+    user_folder = get_user_folder(user_id, name, surname)
 
     # Загружаем или создаём профиль
     user_data = load_user_data(user_folder)
-    user_data['name'] = name
+    user_data['name'] = f"{name} {surname}"
+    user_data['age'] = age
     user_data['phone'] = phone
+    user_data['city'] = city
+    user_data['research_history'] = "Да" if research_history else "Нет"
+    user_data['user_id'] = user_id
     user_data['created_at'] = datetime.now().isoformat()
     user_data['sessions'] = user_data.get('sessions', [])
 
@@ -116,7 +194,8 @@ async def receive_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
     context.user_data['user_data'] = user_data
 
     # Создаём ссылку на профиль
-    profile_url = f"{WEBSITE_URL}/profile/{name.replace(' ', '-')}"
+    safe_name = sanitize_filename(f"{name} {surname}")
+    profile_url = f"{WEBSITE_URL}/profile/{safe_name}"
 
     keyboard = [
         [InlineKeyboardButton("📊 Мой профиль", url=profile_url)],
@@ -125,16 +204,21 @@ async def receive_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     await update.message.reply_text(
-        f"✅ *Профиль создан!*\n\n"
-        f"📊 Твой профиль: {profile_url}\n\n"
+        f"✅ Профиль создан!\n\n"
+        f"👤 {name} {surname}\n"
+        f"📱 {phone}\n"
+        f"📍 {city}\n"
+        f"🎂 {age} лет\n"
+        f"📚 Опыт в исследованиях: {'Да' if research_history else 'Нет'}\n\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
         f"*Как это работает:*\n"
-        f"1. Отправь мне CSV файл с метриками\n"
-        f"2. Или опиши результаты текстом\n"
-        f"3. Я сохраню всё в твоей папке\n"
-        f"4. Профиль обновится автоматически\n\n"
-        f"*Начни с отправки данных сессии:*",
-        parse_mode=ParseMode.MARKDOWN,
-        reply_markup=reply_markup
+        f"1️⃣ Отправь мне CSV файл с метриками\n"
+        f"2️⃣ Или опиши результаты текстом\n"
+        f"3️⃣ Я сохраню всё в твоей папке\n"
+        f"4️⃣ Профиль обновится автоматически\n\n"
+        f"Начни с отправки данных сессии:",
+        reply_markup=reply_markup,
+        parse_mode=ParseMode.MARKDOWN
     )
 
     return ConversationHandler.END
@@ -151,9 +235,9 @@ async def receive_file(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         if folder.is_dir():
             profile_file = folder / "profile.json"
             if profile_file.exists():
-                with open(profile_file, 'r') as f:
+                with open(profile_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
-                    if data.get('user_id') == user_id or not data.get('user_id'):
+                    if data.get('user_id') == user_id:
                         user_folder = folder
                         break
 
@@ -184,7 +268,7 @@ async def receive_file(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         save_user_data(user_folder, user_data)
 
         await message.reply_text(
-            f"✅ *Файл сохранён!*\n\n"
+            f"✅ Файл сохранён!\n\n"
             f"📁 Файл: {filename}\n"
             f"📊 Сессия: {session_num}\n"
             f"🕐 Дата: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
@@ -209,13 +293,9 @@ async def receive_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
                 with open(profile_file, 'r', encoding='utf-8') as f:
                     try:
                         data = json.load(f)
-                        # Проверяем есть ли user_id
                         if data.get('user_id') == user_id:
                             user_folder = folder
                             break
-                        # Если нет user_id, берём первую попавшуюся папку (для отладки)
-                        if not user_folder and not data.get('user_id'):
-                            user_folder = folder
                     except:
                         pass
 
@@ -260,7 +340,7 @@ async def receive_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     save_user_data(user_folder, user_data)
 
     await update.message.reply_text(
-        f"✅ *Отчёт сохранён!*\n\n"
+        f"✅ Отчёт сохранён!\n\n"
         f"📊 Сессия: {session_num}\n"
         f"📝 Файл: {md_filename}\n"
         f"🕐 Дата: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
@@ -276,7 +356,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         "/start — начать, создать профиль\n"
         "/help — эта справка\n\n"
         "*Как использовать:*\n"
-        "1. /start — создаёшь профиль\n"
+        "1. /start — отвечаешь на вопросы\n"
         "2. Отправляешь CSV файл или текст\n"
         "3. Бот сохраняет в Obsidian\n"
         "4. Профиль обновляется автоматически\n\n"
@@ -298,12 +378,16 @@ def main():
 
     app = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 
-    # ConversationHandler для /start
+    # ConversationHandler для /start с новыми состояниями
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
         states={
             WAITING_FOR_NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_name)],
+            WAITING_FOR_SURNAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_surname)],
+            WAITING_FOR_AGE: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_age)],
             WAITING_FOR_PHONE: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_phone)],
+            WAITING_FOR_CITY: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_city)],
+            WAITING_FOR_RESEARCH_HISTORY: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_research_history)],
         },
         fallbacks=[CommandHandler("start", start)],
     )
