@@ -326,6 +326,7 @@ async def choose_session_callback(update: Update, context: ContextTypes.DEFAULT_
          InlineKeyboardButton("Сессия 5️⃣", callback_data="session_5"),
          InlineKeyboardButton("Сессия 6️⃣", callback_data="session_6")],
         [InlineKeyboardButton("Сессия 7️⃣", callback_data="session_7")],
+        [InlineKeyboardButton("🔙 Назад", callback_data="upload_menu")],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -343,6 +344,11 @@ async def session_selected_callback(update: Update, context: ContextTypes.DEFAUL
     session_num = query.data.split('_')[1]
     context.user_data['current_session'] = session_num
 
+    keyboard = [
+        [InlineKeyboardButton("🔙 Назад к меню", callback_data="upload_menu")]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
     await query.edit_message_text(
         f"✅ Сессия {session_num} выбрана!\n\n"
         f"📤 Теперь отправь в чат:\n"
@@ -350,7 +356,8 @@ async def session_selected_callback(update: Update, context: ContextTypes.DEFAUL
         f"• Или текстовое описание\n"
         f"• Или аудиозапись\n\n"
         f"💡 *Совет:* Аудиозапись ты сможешь увидеть в своем профиле!",
-        parse_mode=ParseMode.MARKDOWN
+        parse_mode=ParseMode.MARKDOWN,
+        reply_markup=reply_markup
     )
 
 
@@ -464,12 +471,26 @@ async def receive_session_data(update: Update, context: ContextTypes.DEFAULT_TYP
         )
 
 
+async def menu_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Открыть главное меню"""
+    keyboard = [
+        [InlineKeyboardButton("📤 Загрузить данные", callback_data="upload_menu")],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    await update.message.reply_text(
+        "📋 Главное меню:",
+        reply_markup=reply_markup
+    )
+
+
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Справка по командам"""
     await update.message.reply_text(
         "🧠 *ONTO NOTHING Bot*\n\n"
         "*Команды:*\n"
         "/start — создать профиль\n"
+        "/menu — главное меню\n"
         "/help — эта справка\n\n"
         "*Как использовать:*\n"
         "1. /start — отвечаешь на вопросы\n"
@@ -514,6 +535,7 @@ def main():
 
     # 2. Команды
     app.add_handler(CommandHandler("help", help_command))
+    app.add_handler(CommandHandler("menu", menu_command))
 
     # 3. Callback обработчики для кнопок
     app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^upload_menu$"))
