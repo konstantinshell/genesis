@@ -114,17 +114,34 @@ def get_user_folder_by_id(user_id: int) -> Path:
 
 def create_profile_placeholder(safe_name: str):
     """Создаёт папку профиля с загрузочным шаблоном"""
-    if not LOADING_TEMPLATE:
-        return  # Если нет шаблона, просто пропускаем
+    try:
+        print(f"🔵 create_profile_placeholder called for: {safe_name}")
+        print(f"🔵 LOADING_TEMPLATE size: {len(LOADING_TEMPLATE)}")
+        print(f"🔵 PROFILE_BASE: {PROFILE_BASE}")
+        print(f"🔵 PROFILE_BASE type: {type(PROFILE_BASE)}")
 
-    profile_dir = PROFILE_BASE / safe_name
-    profile_dir.mkdir(parents=True, exist_ok=True)
+        if not LOADING_TEMPLATE:
+            print(f"❌ LOADING_TEMPLATE is empty!")
+            return
 
-    profile_file = profile_dir / "index.html"
-    with open(profile_file, 'w', encoding='utf-8') as f:
-        f.write(LOADING_TEMPLATE)
+        profile_dir = PROFILE_BASE / safe_name
+        print(f"🔵 Creating dir: {profile_dir}")
+        print(f"🔵 Dir exists before mkdir: {profile_dir.exists()}")
+        profile_dir.mkdir(parents=True, exist_ok=True)
+        print(f"🔵 Dir exists after mkdir: {profile_dir.exists()}")
+        print(f"🔵 Dir is accessible: {profile_dir.is_dir()}")
 
-    print(f"🧠 Создан плейсхолдер: /profile/{safe_name}/index.html")
+        profile_file = profile_dir / "index.html"
+        print(f"🔵 Writing to: {profile_file}")
+        with open(profile_file, 'w', encoding='utf-8') as f:
+            bytes_written = f.write(LOADING_TEMPLATE)
+        print(f"✅ Wrote {bytes_written} bytes")
+        print(f"✅ File exists: {profile_file.exists()}")
+        print(f"✅ Создан плейсхолдер: /profile/{safe_name}/index.html")
+    except Exception as e:
+        import traceback
+        print(f"❌ ERROR in create_profile_placeholder: {str(e)}")
+        traceback.print_exc()
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
