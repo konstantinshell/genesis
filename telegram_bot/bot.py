@@ -26,10 +26,10 @@ WAITING_FOR_NAME, WAITING_FOR_SURNAME, WAITING_FOR_AGE, WAITING_FOR_PHONE, WAITI
 
 def sanitize_filename(filename: str) -> str:
     """Очищает имя файла от недопустимых символов"""
-    invalid_chars = ['/', '\\', ':', '*', '?', '"', '<', '>', '|']
+    invalid_chars = ['/', '\\', ':', '*', '?', '"', '<', '>', '|', ' ']
     for char in invalid_chars:
-        filename = filename.replace(char, '_')
-    return filename.strip()
+        filename = filename.replace(char, '-')
+    return filename.strip('-')
 
 
 def transliterate(text: str) -> str:
@@ -48,29 +48,22 @@ def transliterate(text: str) -> str:
 
 
 def generate_profile_url(name: str, surname: str, phone: str) -> str:
-    """Генерирует URL профиля на основе имени, фамилии и последних 4 цифр телефона"""
-    # Транслитерируем и создаём URL-safe часть
-    full_name = f"{name} {surname}".lower()
-    safe_name = transliterate(full_name)
-    safe_name = sanitize_filename(safe_name).replace('_', '-')
+    """Генерирует URL профиля на основе имени, фамилии"""
+    # Транслитерируем и создаём URL-safe часть - используем ТУ ЖЕ логику, что в get_user_folder
+    full_name = f"{name} {surname}"
+    transliterated = transliterate(full_name)
+    safe_name = sanitize_filename(transliterated)
 
-    # Извлекаем последние 4 цифры из номера
-    phone_digits = ''.join(filter(str.isdigit, phone))
-    last_4_digits = phone_digits[-4:] if len(phone_digits) >= 4 else phone_digits
-
-    # Генерируем имя папки
-    if last_4_digits:
-        folder_name = f"{safe_name}-{last_4_digits}"
-    else:
-        folder_name = safe_name
+    # Генерируем имя папки (БЕЗ телефона - просто папка с именем)
+    folder_name = safe_name
 
     return f"{WEBSITE_URL}/profile/{folder_name}"
 
 
 def get_user_folder(user_id: int, name: str, surname: str) -> Path:
     """Получает или создаёт папку пользователя с транслитерированным названием"""
-    full_name = f"{name} {surname}".strip()
-    # Транслитерируем для имени папки
+    full_name = f"{name} {surname}"
+    # Транслитерируем для имени папки - ТА ЖЕ логика, что в generate_profile_url
     transliterated = transliterate(full_name)
     safe_name = sanitize_filename(transliterated)
     user_folder = OBSIDIAN_VAULT / safe_name
