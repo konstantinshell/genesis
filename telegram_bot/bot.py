@@ -23,12 +23,6 @@ OBSIDIAN_VAULT.mkdir(parents=True, exist_ok=True)
 # Состояния для ConversationHandler (регистрация)
 WAITING_FOR_NAME, WAITING_FOR_SURNAME, WAITING_FOR_AGE, WAITING_FOR_PHONE, WAITING_FOR_CITY, WAITING_FOR_RESEARCH_HISTORY = range(6)
 
-# Состояния для работы с данными
-CHOOSING_ACTION, CHOOSING_SESSION, WAITING_FOR_SESSION_DATA = range(3)
-
-# Хранилище данных сессии пользователя
-user_sessions = {}
-
 
 def sanitize_filename(filename: str) -> str:
     """Очищает имя файла от недопустимых символов"""
@@ -82,6 +76,22 @@ def save_user_data(user_folder: Path, data: dict):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
+def get_user_folder_by_id(user_id: int) -> Path:
+    """Находит папку пользователя по user_id"""
+    for folder in OBSIDIAN_VAULT.iterdir():
+        if folder.is_dir():
+            profile_file = folder / "profile.json"
+            if profile_file.exists():
+                with open(profile_file, 'r', encoding='utf-8') as f:
+                    try:
+                        data = json.load(f)
+                        if data.get('user_id') == user_id:
+                            return folder
+                    except:
+                        pass
+    return None
+
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Начало диалога с пользователем"""
     user_id = update.effective_user.id
@@ -90,7 +100,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     await update.message.reply_text(
         "🧠 Добро пожаловать в ONTO NOTHING!\n\n"
         "Я помогу тебе отслеживать прогресс твоих сессий.\n\n"
-        "Давайте начнём с регистрации. Как тебя зовут? (Только имя)"
+        "Давайте начнём с регистрации.\n\n"
+        "❓ Как тебя зовут? (Только имя)"
     )
 
     return WAITING_FOR_NAME
@@ -212,15 +223,14 @@ async def receive_research_history(update: Update, context: ContextTypes.DEFAULT
 
     # Сохраняем профиль
     save_user_data(user_folder, user_data)
-    context.user_data['user_data'] = user_data
+    context.user_data['user_folder'] = str(user_folder)
 
-    # Генерируем ссылку на профиль (имя-фамилия-последние 4 цифры)
+    # Генерируем ссылку на профиль
     profile_url = generate_profile_url(name, surname, phone)
 
     keyboard = [
         [InlineKeyboardButton("📊 Мой профиль", url=profile_url)],
-        [InlineKeyboardButton("📤 Загрузить данные", callback_data="start_upload")],
-        [InlineKeyboardButton("ℹ️ Справка", callback_data="help_info")]
+        [InlineKeyboardButton("📤 Загрузить данные", callback_data="upload_menu")],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -231,7 +241,7 @@ async def receive_research_history(update: Update, context: ContextTypes.DEFAULT
         f"📍 {city}\n"
         f"🎂 {age} лет\n"
         f"📚 Опыт в исследованиях: {'Да' if research_history else 'Нет'}\n\n"
-        f"🔗 *Твой профиль:* `{profile_url}`\n\n"
+        f"🔗 *Ссылка на профиль:*\n`{profile_url}`\n\n"
         f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
         f"Как это работает:\n"
         f"1️⃣ Выбери тип данных для загрузки\n"
@@ -245,18 +255,17 @@ async def receive_research_history(update: Update, context: ContextTypes.DEFAULT
     return ConversationHandler.END
 
 
-async def start_upload(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    """Начало процесса загрузки данных"""
+async def upload_menu_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Меню выбора типа загрузки"""
     query = update.callback_query
     await query.answer()
 
     keyboard = [
-        [InlineKeyboardButton("📋 Пройти сессию (1-7)", callback_data="session_start")],
+        [InlineKeyboardButton("📋 Пройти сессию (1-7)", callback_data="choose_session")],
         [InlineKeyboardButton("📅 План на день", callback_data="plan_day")],
         [InlineKeyboardButton("📊 Выгрузка за день", callback_data="export_day")],
         [InlineKeyboardButton("📅 План на неделю", callback_data="plan_week")],
         [InlineKeyboardButton("📊 Выгрузка за неделю", callback_data="export_week")],
-        [InlineKeyboardButton("🔙 Назад", callback_data="main_menu")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -270,10 +279,8 @@ async def start_upload(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
         reply_markup=reply_markup
     )
 
-    return CHOOSING_ACTION
 
-
-async def session_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+async def choose_session_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Выбор номера сессии"""
     query = update.callback_query
     await query.answer()
@@ -286,7 +293,6 @@ async def session_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
          InlineKeyboardButton("Сессия 5️⃣", callback_data="session_5"),
          InlineKeyboardButton("Сессия 6️⃣", callback_data="session_6")],
         [InlineKeyboardButton("Сессия 7️⃣", callback_data="session_7")],
-        [InlineKeyboardButton("🔙 Назад", callback_data="start_upload")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -295,67 +301,39 @@ async def session_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
         reply_markup=reply_markup
     )
 
-    return CHOOSING_SESSION
 
-
-async def handle_session_choice(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обработка выбора сессии"""
+async def session_selected_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Сессия выбрана, готовимся к загрузке"""
     query = update.callback_query
     await query.answer()
 
-    # Извлекаем номер сессии из callback_data
     session_num = query.data.split('_')[1]
     context.user_data['current_session'] = session_num
 
-    keyboard = [
-        [InlineKeyboardButton("🔙 Назад", callback_data="session_start")]
-    ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-
     await query.edit_message_text(
         f"✅ Сессия {session_num} выбрана!\n\n"
-        f"📤 Теперь отправь:\n"
+        f"📤 Теперь отправь в чат:\n"
         f"• CSV файл с метриками\n"
         f"• Или текстовое описание\n"
         f"• Или аудиозапись\n\n"
-        f"💡 *Совет:* Аудиозапись ты сможешь увидеть в своем профиле!\n\n"
-        f"Отправляй в этот чат:",
-        parse_mode=ParseMode.MARKDOWN,
-        reply_markup=reply_markup
+        f"💡 *Совет:* Аудиозапись ты сможешь увидеть в своем профиле!",
+        parse_mode=ParseMode.MARKDOWN
     )
 
-    # Ждём файл или текст
-    return WAITING_FOR_SESSION_DATA
 
-
-async def handle_data_upload(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Обработка загрузки данных (файл или текст)"""
-    user_id = update.effective_user.id
+async def receive_file(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Получаем файлы от пользователя"""
+    user_id = update.effective_user.user_id
     message = update.message
 
     # Ищем папку пользователя
-    user_folder = None
-    for folder in OBSIDIAN_VAULT.iterdir():
-        if folder.is_dir():
-            profile_file = folder / "profile.json"
-            if profile_file.exists():
-                with open(profile_file, 'r', encoding='utf-8') as f:
-                    try:
-                        data = json.load(f)
-                        if data.get('user_id') == user_id:
-                            user_folder = folder
-                            break
-                    except:
-                        pass
+    user_folder = get_user_folder_by_id(user_id)
 
     if not user_folder:
         await message.reply_text("❌ Папка не найдена. Начни с /start")
         return
 
-    current_session = context.user_data.get('current_session', '1')
-    user_data = load_user_data(user_folder)
-
-    # ФАЙЛ
+    # Работаем с файлом
     if message.document:
         file = await message.document.get_file()
         filename = sanitize_filename(message.document.file_name)
@@ -364,8 +342,11 @@ async def handle_data_upload(update: Update, context: ContextTypes.DEFAULT_TYPE)
         await file.download_to_drive(filepath)
 
         # Обновляем профиль
+        user_data = load_user_data(user_folder)
+        session_num = context.user_data.get('current_session', '1')
+
         user_data['sessions'].append({
-            'number': int(current_session),
+            'number': int(session_num),
             'date': datetime.now().isoformat(),
             'file': filename
         })
@@ -374,7 +355,7 @@ async def handle_data_upload(update: Update, context: ContextTypes.DEFAULT_TYPE)
         await message.reply_text(
             f"✅ Файл сохранён!\n\n"
             f"📁 {filename}\n"
-            f"📊 Сессия: {current_session}\n"
+            f"📊 Сессия: {session_num}\n"
             f"🕐 {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
             f"Данные синхронизируются в Obsidian..."
         )
@@ -382,9 +363,10 @@ async def handle_data_upload(update: Update, context: ContextTypes.DEFAULT_TYPE)
     # ТЕКСТ
     elif message.text and not message.text.startswith('/'):
         text = message.text.strip()
-        session_num = len(user_data.get('sessions', [])) + 1
+        session_num = context.user_data.get('current_session', '1')
+        user_data = load_user_data(user_folder)
 
-        md_content = f"""# Сессия {current_session}
+        md_content = f"""# Сессия {session_num}
 
 **Дата:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 **Участник:** {user_data.get('name', 'Unknown')}
@@ -398,14 +380,14 @@ async def handle_data_upload(update: Update, context: ContextTypes.DEFAULT_TYPE)
 *Создано через Telegram бот ONTO NOTHING*
 """
 
-        md_filename = f"Session_{current_session}.md"
+        md_filename = f"Session_{session_num}.md"
         md_filepath = user_folder / md_filename
 
         with open(md_filepath, 'w', encoding='utf-8') as f:
             f.write(md_content)
 
         user_data['sessions'].append({
-            'number': int(current_session),
+            'number': int(session_num),
             'date': datetime.now().isoformat(),
             'file': md_filename
         })
@@ -414,7 +396,7 @@ async def handle_data_upload(update: Update, context: ContextTypes.DEFAULT_TYPE)
         await message.reply_text(
             f"✅ Отчёт сохранён!\n\n"
             f"📝 {md_filename}\n"
-            f"📊 Сессия: {current_session}\n"
+            f"📊 Сессия: {session_num}\n"
             f"🕐 {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
             f"Данные синхронизируются в Obsidian..."
         )
@@ -424,15 +406,16 @@ async def handle_data_upload(update: Update, context: ContextTypes.DEFAULT_TYPE)
         file_obj = message.audio or message.voice
         file = await file_obj.get_file()
 
-        # Генерируем имя файла
+        session_num = context.user_data.get('current_session', '1')
         file_ext = 'mp3' if message.audio else 'ogg'
-        filename = f"session_{current_session}_audio.{file_ext}"
+        filename = f"session_{session_num}_audio.{file_ext}"
         filepath = user_folder / filename
 
         await file.download_to_drive(filepath)
 
+        user_data = load_user_data(user_folder)
         user_data['sessions'].append({
-            'number': int(current_session),
+            'number': int(session_num),
             'date': datetime.now().isoformat(),
             'file': filename,
             'type': 'audio'
@@ -442,7 +425,7 @@ async def handle_data_upload(update: Update, context: ContextTypes.DEFAULT_TYPE)
         await message.reply_text(
             f"✅ Аудиозапись сохранена!\n\n"
             f"🎙️ {filename}\n"
-            f"📊 Сессия: {current_session}\n"
+            f"📊 Сессия: {session_num}\n"
             f"🕐 {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
             f"💡 Ты сможешь послушать её в своём профиле!"
         )
@@ -460,8 +443,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         "2. Нажимаешь 'Загрузить данные'\n"
         "3. Выбираешь тип (сессия, план, выгрузка)\n"
         "4. Отправляешь данные\n"
-        "5. Всё сохраняется в Obsidian\n"
-        "6. Профиль обновляется автоматически",
+        "5. Всё сохраняется в Obsidian",
         parse_mode=ParseMode.MARKDOWN
     )
 
@@ -469,7 +451,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 def main():
     """Запуск бота"""
     print("=" * 60)
-    print("🧠 ONTO NOTHING — Telegram Bot v2.0")
+    print("🧠 ONTO NOTHING — Telegram Bot v2.1")
     print("=" * 60)
     print(f"📁 Obsidian Vault: {OBSIDIAN_VAULT}")
     print(f"🤖 Bot Token: {TELEGRAM_BOT_TOKEN[:20]}...")
@@ -479,7 +461,7 @@ def main():
 
     app = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 
-    # ConversationHandler для регистрации
+    # ConversationHandler ТОЛЬКО для регистрации
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
         states={
@@ -489,35 +471,27 @@ def main():
             WAITING_FOR_PHONE: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_phone)],
             WAITING_FOR_CITY: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_city)],
             WAITING_FOR_RESEARCH_HISTORY: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_research_history)],
-            CHOOSING_ACTION: [
-                CallbackQueryHandler(session_start, pattern="^session_start$"),
-                CallbackQueryHandler(session_start, pattern="^plan_day$"),
-                CallbackQueryHandler(session_start, pattern="^export_day$"),
-                CallbackQueryHandler(session_start, pattern="^plan_week$"),
-                CallbackQueryHandler(session_start, pattern="^export_week$"),
-            ],
-            CHOOSING_SESSION: [
-                CallbackQueryHandler(handle_session_choice, pattern="^session_[1-7]$"),
-                CallbackQueryHandler(start_upload, pattern="^start_upload$"),
-            ],
-            WAITING_FOR_SESSION_DATA: [
-                MessageHandler(filters.Document.ALL, handle_data_upload),
-                MessageHandler(filters.TEXT & ~filters.COMMAND, handle_data_upload),
-                MessageHandler(filters.AUDIO | filters.VOICE, handle_data_upload),
-                CallbackQueryHandler(session_start, pattern="^session_start$"),
-            ],
         },
-        fallbacks=[
-            CommandHandler("start", start),
-            CommandHandler("help", help_command),
-            CallbackQueryHandler(start_upload, pattern="^start_upload$"),
-            CallbackQueryHandler(session_start, pattern="^session_start$"),
-        ],
+        fallbacks=[CommandHandler("start", start)],
     )
 
     # Обработчики
     app.add_handler(conv_handler)
     app.add_handler(CommandHandler("help", help_command))
+
+    # Callback обработчики для кнопок (ВНЕ ConversationHandler)
+    app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^upload_menu$"))
+    app.add_handler(CallbackQueryHandler(choose_session_callback, pattern="^choose_session$"))
+    app.add_handler(CallbackQueryHandler(session_selected_callback, pattern="^session_[1-7]$"))
+    app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^plan_day$"))
+    app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^export_day$"))
+    app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^plan_week$"))
+    app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^export_week$"))
+
+    # Загрузка файлов и текста
+    app.add_handler(MessageHandler(filters.Document.ALL, receive_file))
+    app.add_handler(MessageHandler(filters.AUDIO | filters.VOICE, receive_file))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, receive_file))
 
     # Запускаем бота
     app.run_polling(allowed_updates=Update.ALL_TYPES)
