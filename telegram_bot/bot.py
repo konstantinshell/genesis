@@ -94,6 +94,7 @@ def get_user_folder_by_id(user_id: int) -> Path:
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Начало диалога с пользователем"""
+    print(f"🔵 START called for user {update.effective_user.id}")
     user_id = update.effective_user.id
     context.user_data['user_id'] = user_id
 
@@ -109,33 +110,38 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 async def receive_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Получаем имя пользователя"""
-    name = update.message.text.strip()
-    context.user_data['name'] = name
+    text = update.message.text.strip()
+    print(f"🔵 RECEIVE_NAME: got '{text}'")
+    context.user_data['name'] = text
 
     await update.message.reply_text(
-        f"✅ Спасибо, {name}!\n\n"
+        f"✅ Спасибо, {text}!\n\n"
         "❓ Ваша фамилия?"
     )
 
+    print(f"🔵 Returning WAITING_FOR_SURNAME")
     return WAITING_FOR_SURNAME
 
 
 async def receive_surname(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Получаем фамилию пользователя"""
-    surname = update.message.text.strip()
-    context.user_data['surname'] = surname
+    text = update.message.text.strip()
+    print(f"🔵 RECEIVE_SURNAME: got '{text}'")
+    context.user_data['surname'] = text
 
     await update.message.reply_text(
         f"✅ Хорошо!\n\n"
         "❓ Ваш возраст? (введите число, например: 28)"
     )
 
+    print(f"🔵 Returning WAITING_FOR_AGE")
     return WAITING_FOR_AGE
 
 
 async def receive_age(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Получаем возраст пользователя"""
     age_text = update.message.text.strip()
+    print(f"🔵 RECEIVE_AGE: got '{age_text}'")
 
     try:
         age = int(age_text)
@@ -156,12 +162,14 @@ async def receive_age(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         "❓ Ваш номер телефона? (например: +7 (999) 123-45-67)"
     )
 
+    print(f"🔵 Returning WAITING_FOR_PHONE")
     return WAITING_FOR_PHONE
 
 
 async def receive_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Получаем номер телефона пользователя"""
     phone = update.message.text.strip()
+    print(f"🔵 RECEIVE_PHONE: got '{phone}'")
     context.user_data['phone'] = phone
 
     await update.message.reply_text(
@@ -169,12 +177,14 @@ async def receive_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
         "❓ Ваш город?"
     )
 
+    print(f"🔵 Returning WAITING_FOR_CITY")
     return WAITING_FOR_CITY
 
 
 async def receive_city(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Получаем город пользователя"""
     city = update.message.text.strip()
+    print(f"🔵 RECEIVE_CITY: got '{city}'")
     context.user_data['city'] = city
 
     await update.message.reply_text(
@@ -182,12 +192,14 @@ async def receive_city(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
         "❓ Вы уже принимали участие в исследованиях? (Да/Нет)"
     )
 
+    print(f"🔵 Returning WAITING_FOR_RESEARCH_HISTORY")
     return WAITING_FOR_RESEARCH_HISTORY
 
 
 async def receive_research_history(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Получаем информацию об опыте исследований"""
     response = update.message.text.strip().lower()
+    print(f"🔵 RECEIVE_RESEARCH_HISTORY: got '{response}'")
 
     if response in ['да', 'yes', 'y']:
         context.user_data['research_history'] = True
@@ -207,6 +219,8 @@ async def receive_research_history(update: Update, context: ContextTypes.DEFAULT
     city = context.user_data['city']
     research_history = context.user_data['research_history']
     user_id = context.user_data['user_id']
+
+    print(f"🔵 Saving profile for {name} {surname}")
 
     user_folder = get_user_folder(user_id, name, surname)
 
@@ -252,6 +266,7 @@ async def receive_research_history(update: Update, context: ContextTypes.DEFAULT
         reply_markup=reply_markup
     )
 
+    print(f"🔵 Registration complete, returning END")
     return ConversationHandler.END
 
 
@@ -321,10 +336,12 @@ async def session_selected_callback(update: Update, context: ContextTypes.DEFAUL
     )
 
 
-async def receive_file(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Получаем файлы от пользователя"""
-    user_id = update.effective_user.user_id
+async def receive_session_data(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Получаем данные сессии (файлы, текст, аудио)"""
+    user_id = update.effective_user.id
     message = update.message
+
+    print(f"🔵 RECEIVE_DATA from user {user_id}")
 
     # Ищем папку пользователя
     user_folder = get_user_folder_by_id(user_id)
@@ -333,17 +350,17 @@ async def receive_file(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         await message.reply_text("❌ Папка не найдена. Начни с /start")
         return
 
-    # Работаем с файлом
+    user_data = load_user_data(user_folder)
+    session_num = context.user_data.get('current_session', '1')
+
+    # ФАЙЛ
     if message.document:
+        print(f"🔵 Received DOCUMENT")
         file = await message.document.get_file()
         filename = sanitize_filename(message.document.file_name)
         filepath = user_folder / filename
 
         await file.download_to_drive(filepath)
-
-        # Обновляем профиль
-        user_data = load_user_data(user_folder)
-        session_num = context.user_data.get('current_session', '1')
 
         user_data['sessions'].append({
             'number': int(session_num),
@@ -362,9 +379,8 @@ async def receive_file(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 
     # ТЕКСТ
     elif message.text and not message.text.startswith('/'):
+        print(f"🔵 Received TEXT")
         text = message.text.strip()
-        session_num = context.user_data.get('current_session', '1')
-        user_data = load_user_data(user_folder)
 
         md_content = f"""# Сессия {session_num}
 
@@ -403,17 +419,16 @@ async def receive_file(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 
     # АУДИО
     elif message.audio or message.voice:
+        print(f"🔵 Received AUDIO")
         file_obj = message.audio or message.voice
         file = await file_obj.get_file()
 
-        session_num = context.user_data.get('current_session', '1')
         file_ext = 'mp3' if message.audio else 'ogg'
         filename = f"session_{session_num}_audio.{file_ext}"
         filepath = user_folder / filename
 
         await file.download_to_drive(filepath)
 
-        user_data = load_user_data(user_folder)
         user_data['sessions'].append({
             'number': int(session_num),
             'date': datetime.now().isoformat(),
@@ -451,7 +466,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 def main():
     """Запуск бота"""
     print("=" * 60)
-    print("🧠 ONTO NOTHING — Telegram Bot v2.1")
+    print("🧠 ONTO NOTHING — Telegram Bot v2.2")
     print("=" * 60)
     print(f"📁 Obsidian Vault: {OBSIDIAN_VAULT}")
     print(f"🤖 Bot Token: {TELEGRAM_BOT_TOKEN[:20]}...")
@@ -475,23 +490,23 @@ def main():
         fallbacks=[CommandHandler("start", start)],
     )
 
-    # Обработчики
+    # Обработчики - ПОРЯДОК ВАЖЕН!
+    # 1. ConversationHandler для регистрации (ПЕРВЫЙ!)
     app.add_handler(conv_handler)
+
+    # 2. Команды
     app.add_handler(CommandHandler("help", help_command))
 
-    # Callback обработчики для кнопок (ВНЕ ConversationHandler)
+    # 3. Callback обработчики для кнопок
     app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^upload_menu$"))
     app.add_handler(CallbackQueryHandler(choose_session_callback, pattern="^choose_session$"))
     app.add_handler(CallbackQueryHandler(session_selected_callback, pattern="^session_[1-7]$"))
-    app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^plan_day$"))
-    app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^export_day$"))
-    app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^plan_week$"))
-    app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^export_week$"))
+    app.add_handler(CallbackQueryHandler(upload_menu_callback, pattern="^plan_day$|^export_day$|^plan_week$|^export_week$"))
 
-    # Загрузка файлов и текста
-    app.add_handler(MessageHandler(filters.Document.ALL, receive_file))
-    app.add_handler(MessageHandler(filters.AUDIO | filters.VOICE, receive_file))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, receive_file))
+    # 4. Загрузка данных сессии (ПОСЛЕДНИЙ!)
+    app.add_handler(MessageHandler(filters.Document.ALL, receive_session_data))
+    app.add_handler(MessageHandler(filters.AUDIO | filters.VOICE, receive_session_data))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, receive_session_data))
 
     # Запускаем бота
     app.run_polling(allowed_updates=Update.ALL_TYPES)
