@@ -1,108 +1,118 @@
 """
-ONTO NOTHING — Автоматический бэкенд для загрузки данных в Obsidian
-Получает данные из формы сайта и создаёт файлы прямо в папке Obsidian
+ONTO NOTHING — Автоматический бэкенд для загрузки данных
+Получает данные из формы сайта и отправляет в Telegram
 """
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from pathlib import Path
-import json
+import requests
 from datetime import datetime
-import os
+import json
 
 app = Flask(__name__)
 CORS(app)  # Разрешаем запросы с сайта
 
-# ПУТИ
-OBSIDIAN_VAULT = Path("/Users/konstantin/Documents/Obsidian Vault/Данные участников")
-
-# Создаём папку если её нет
-OBSIDIAN_VAULT.mkdir(parents=True, exist_ok=True)
-
-
-def sanitize_filename(filename):
-    """Очищает имя файла от недопустимых символов"""
-    invalid_chars = ['/', '\\', ':', '*', '?', '"', '<', '>', '|']
-    for char in invalid_chars:
-        filename = filename.replace(char, '_')
-    return filename
+# TELEGRAM SETTINGS
+TELEGRAM_BOT_TOKEN = "8656261306:AAHQ3U9ByFvkfyCY4Xp0GP9tBCekK9kip_Q"
+TELEGRAM_CHAT_ID = "41537154"
+TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
 
 
-def create_session_file(name, phone, session, report_text, csv_filename, csv_content):
+def send_to_telegram(name, phone, session, report_text, csv_filename, csv_content):
     """
-    Создаёт папку участника и сохраняет файлы сессии
-
-    Структура:
-    /Данные участников/
-    ├── Константин Шель/
-    │   ├── Session_1.md
-    │   └── Session_1_metrics.csv
-    └── ...
+    Отправляет данные в Telegram в виде красивых сообщений
     """
-
-    # Чистим имя для использования в пути
-    safe_name = sanitize_filename(name)
-    person_folder = OBSIDIAN_VAULT / safe_name
-    person_folder.mkdir(parents=True, exist_ok=True)
-
-    # Создаём Markdown файл с информацией о сессии
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    md_content = f"""# Сессия {session} — {name}
+    # Первое сообщение — основная информация
+    main_message = f"""🧠 *ONTO NOTHING — Новые данные сессии*
 
-**Дата загрузки:** {timestamp}
-**Имя:** {name}
-**Телефон:** {phone}
-**Номер сессии:** {session}
+👤 *Участник:* {name}
+📱 *Телефон:* {phone}
+📊 *Сессия:* {session}
+🕐 *Дата:* {timestamp}
 
-## Отчёт участника
-
+*📝 Отчёт:*
+```
 {report_text}
+```
 
----
-
-**Файл с метриками:** `{csv_filename}`
-
-## Метаданные
-
-- Статус: ✅ Получено
-- Источник: ONTO NOTHING Research Platform
-- Ссылка на CSV: [[{csv_filename}]]
+*📋 Файл с метриками:* `{csv_filename}`
 """
 
-    # Сохраняем markdown файл
-    md_filename = f"Session_{session}.md"
-    md_filepath = person_folder / md_filename
+    try:
+        # Отправляем основное сообщение
+        response1 = requests.post(
+            TELEGRAM_API_URL,
+            json={
+                "chat_id": TELEGRAM_CHAT_ID,
+                "text": main_message,
+                "parse_mode": "Markdown"
+            },
+            timeout=10
+        )
 
-    with open(md_filepath, 'w', encoding='utf-8') as f:
-        f.write(md_content)
+        if not response1.ok:
+            return {
+                "success": False,
+                "error": f"Ошибка Telegram (основное сообщение): {response1.status_code}"
+            }
 
-    # Сохраняем CSV файл
-    csv_safename = sanitize_filename(csv_filename)
-    csv_filepath = person_folder / csv_safename
+        # Второе сообщение — CSV данные
+        csv_preview = csv_content[:3000]  # Первые 3000 символов
+        if len(csv_content) > 3000:
+            csv_preview += "\n...\n[данные обрезаны]"
 
-    with open(csv_filepath, 'w', encoding='utf-8') as f:
-        f.write(csv_content)
+        csv_message = f"""📊 *CSV данные для {name} (Session {session})*
 
-    return {
-        "success": True,
-        "person_folder": str(person_folder),
-        "md_file": md_filename,
-        "csv_file": csv_safename,
-        "message": f"✅ Данные для {name} (Session {session}) сохранены в Obsidian"
-    }
+```
+{csv_preview}
+```
+"""
+
+        response2 = requests.post(
+            TELEGRAM_API_URL,
+            json={
+                "chat_id": TELEGRAM_CHAT_ID,
+                "text": csv_message,
+                "parse_mode": "Markdown"
+            },
+            timeout=10
+        )
+
+        if response2.ok:
+            return {
+                "success": True,
+                "message": f"✅ Данные отправлены в Telegram! Проверь сообщения."
+            }
+        else:
+            return {
+                "success": True,
+                "message": f"✅ Основное сообщение отправлено (CSV передача имела проблемы)"
+            }
+
+    except Exception as e:
+        return {
+            "success": False,
+            "error": f"Ошибка подключения к Telegram: {str(e)}"
+        }
 
 
 @app.route('/health', methods=['GET'])
 def health():
     """Проверка что сервер живой"""
-    return jsonify({"status": "ok", "vault": str(OBSIDIAN_VAULT)})
+    return jsonify({
+        "status": "ok",
+        "service": "ONTO NOTHING Research Backend",
+        "integration": "Telegram",
+        "chat_id": TELEGRAM_CHAT_ID
+    })
 
 
 @app.route('/upload', methods=['POST'])
 def upload():
     """
-    Основной эндпоинт для загрузки данных
+    Основной эндпоинт для загрузки данных и отправки в Telegram
 
     POST /upload
     {
@@ -127,8 +137,8 @@ def upload():
                     "error": f"Отсутствует поле: {field}"
                 }), 400
 
-        # Создаём файлы в Obsidian
-        result = create_session_file(
+        # Отправляем в Telegram
+        result = send_to_telegram(
             name=data['name'],
             phone=data['phone'],
             session=data['session'],
@@ -137,7 +147,8 @@ def upload():
             csv_content=data['csv']
         )
 
-        return jsonify(result), 200
+        status_code = 200 if result['success'] else 400
+        return jsonify(result), status_code
 
     except Exception as e:
         return jsonify({
@@ -146,46 +157,18 @@ def upload():
         }), 500
 
 
-@app.route('/list-participants', methods=['GET'])
-def list_participants():
-    """Список всех участников и их сессий"""
-    try:
-        participants = {}
-
-        for person_folder in OBSIDIAN_VAULT.iterdir():
-            if person_folder.is_dir():
-                sessions = []
-                for file in person_folder.iterdir():
-                    if file.suffix == '.md':
-                        sessions.append(file.name)
-
-                participants[person_folder.name] = {
-                    "sessions": sorted(sessions),
-                    "count": len(sessions)
-                }
-
-        return jsonify({
-            "success": True,
-            "vault_path": str(OBSIDIAN_VAULT),
-            "participants": participants,
-            "total_participants": len(participants)
-        }), 200
-
-    except Exception as e:
-        return jsonify({
-            "success": False,
-            "error": str(e)
-        }), 500
 
 
 if __name__ == '__main__':
     print("=" * 60)
     print("🧠 ONTO NOTHING — Research Data Backend")
     print("=" * 60)
-    print(f"📁 Obsidian Vault: {OBSIDIAN_VAULT}")
-    print(f"🌐 Server running on: http://localhost:5000")
-    print(f"✅ Health check: http://localhost:5000/health")
-    print(f"📋 List participants: http://localhost:5000/list-participants")
+    print(f"📱 Telegram Integration: ✅ ACTIVE")
+    print(f"🤖 Chat ID: {TELEGRAM_CHAT_ID}")
+    print(f"🌐 Server running on: http://localhost:3000")
+    print(f"✅ Health check: http://localhost:3000/health")
+    print("=" * 60)
+    print("Готов к приёму данных!")
     print("=" * 60)
 
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=3000, use_reloader=False)

@@ -271,7 +271,7 @@
 <script>
     const form = document.getElementById('uploadForm');
     const messageDiv = document.getElementById('message');
-    const BACKEND_URL = 'http://localhost:5000';
+    const BACKEND_URL = 'http://localhost:3000';
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -328,7 +328,7 @@
             }
         } catch (error) {
             messageDiv.className = 'message error';
-            messageDiv.textContent = '❌ Ошибка соединения. Убедитесь, что сервер запущен на http://localhost:5000';
+            messageDiv.textContent = '❌ Ошибка соединения. Убедитесь, что сервер запущен на http://localhost:3000';
             console.error('Upload error:', error);
         }
     });
