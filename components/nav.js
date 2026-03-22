@@ -27,6 +27,7 @@
     { label: 'MNIP',            href: root + 'mnip/index.html',         match: /\/mnip\// },
     { label: 'Neiry',           href: root + 'neiry/index.html',        match: /\/neiry\// },
     { label: 'Блог',            href: root + 'blog/index.html',         match: /\/blog\// },
+    { label: 'Загрузка данных',  href: root + 'research-upload/index.html', match: /\/research-upload\// },
     { label: 'Записаться',      href: root + 'zapisatsya/index.html',   match: /\/zapisatsya\// },
   ];
 
