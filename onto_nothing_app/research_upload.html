@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONTO NOTHING - Upload</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(95, 95, 255, 0.3);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #6366f1;
+            margin-bottom: 30px;
+            font-size: 28px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #e0e0e0;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="tel"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(95, 95, 255, 0.3);
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #6366f1 0%, #5f5fff 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .message {
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .message.success {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+            display: block;
+        }
+        
+        .message.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            display: block;
+        }
+
+        .info {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 3px solid #6366f1;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 ONTO NOTHING</h1>
+        
+        <div class="info">
+            ℹ️ Убедитесь, что на компе запущен сервер (receiver.py)<br>
+            Сервер должен быть доступен: http://localhost:5000
+        </div>
+        
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="name">Имя *</label>
+                <input type="text" id="name" name="name" required placeholder="Константин Шель">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Телефон *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+84123456789">
+            </div>
+            
+            <div class="form-group">
+                <label for="session">Сессия *</label>
+                <select id="session" name="session" required>
+                    <option value="">Выберите сессию</option>
+                    <option value="1">Сессия 1</option>
+                    <option value="2">Сессия 2</option>
+                    <option value="3">Сессия 3</option>
+                    <option value="4">Сессия 4</option>
+                    <option value="5">Сессия 5</option>
+                    <option value="6">Сессия 6</option>
+                    <option value="7">Сессия 7</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="text">Текст отчета *</label>
+                <textarea id="text" name="text" required placeholder="Вставьте текст отчета..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="csv">CSV файл метрик *</label>
+                <input type="file" id="csv" name="csv" accept=".csv" required>
+            </div>
+            
+            <button type="submit">📤 Отправить</button>
+            <div id="message" class="message"></div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const messageDiv = document.getElementById('message');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const session = document.getElementById('session').value;
+            const text = document.getElementById('text').value;
+            const csvFile = document.getElementById('csv').files[0];
+            
+            if (!csvFile) {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '❌ Выберите CSV файл';
+                return;
+            }
+            
+            const csvText = await csvFile.text();
+            
+            const data = {
+                name,
+                phone,
+                session: parseInt(session),
+                text,
+                csv: csvText,
+                csv_filename: csvFile.name
+            };
+            
+            try {
+                const response = await fetch('http://localhost:5000/webhook', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    messageDiv.className = 'message success';
+                    messageDiv.textContent = '✅ ' + result.message;
+                    form.reset();
+                    
+                    setTimeout(() => {
+                        messageDiv.textContent = '';
+                    }, 3000);
+                } else {
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = '❌ ' + result.message;
+                }
+            } catch (error) {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '❌ Ошибка соединения с сервером. Запустите receiver.py';
+            }
+        });
+    </script>
+</body>
+</html>
