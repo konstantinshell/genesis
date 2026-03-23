@@ -148,11 +148,195 @@
       100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
     }
 
+    /* ════════════════════════════════════
+       ВТОРОЙ ЭКРАН — ДЛЯ КОГО
+    ════════════════════════════════════ */
+    .for-whom {
+      position: relative;
+      padding: 100px 40px;
+      background: #080810;
+      overflow: hidden;
+    }
+
+    /* Glow blobs */
+    .for-whom::before,
+    .for-whom::after {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(120px);
+    }
+    .for-whom::before {
+      width: 500px;
+      height: 500px;
+      left: 5%;
+      top: 30%;
+      background: radial-gradient(circle, rgba(91,141,239,0.1) 0%, transparent 70%);
+    }
+    .for-whom::after {
+      width: 450px;
+      height: 450px;
+      right: 5%;
+      top: 60%;
+      background: radial-gradient(circle, rgba(200,169,110,0.09) 0%, transparent 70%);
+      filter: blur(100px);
+    }
+
+    .for-whom .s-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+    }
+
+    /* Метка секции */
+    .for-whom .section-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    /* Заголовок */
+    .for-whom h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: #F0EDE8;
+      text-align: center;
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+
+    /* Вводный блок */
+    .for-whom .intro {
+      max-width: 680px;
+      margin: 0 auto 64px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+    .for-whom .intro p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+    }
+    .for-whom .intro p:last-child {
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+    }
+
+    /* Карточки */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 64px;
+    }
+
+    .card-who {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 32px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+    .card-who:nth-child(1) { animation-delay: 0.4s; }
+    .card-who:nth-child(2) { animation-delay: 0.5s; }
+    .card-who:nth-child(3) { animation-delay: 0.6s; }
+    .card-who:nth-child(4) { animation-delay: 0.7s; }
+
+    .card-who:hover {
+      border-color: rgba(255,255,255,0.14);
+      transform: translateY(-3px);
+    }
+
+    .card-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+    .card-who:nth-child(1) .card-dot { background: rgba(200,169,110,0.8); }
+    .card-who:nth-child(2) .card-dot { background: rgba(91,141,239,0.8); }
+    .card-who:nth-child(3) .card-dot { background: rgba(78,201,148,0.8); }
+    .card-who:nth-child(4) .card-dot { background: rgba(155,126,222,0.8); }
+
+    .card-who h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #F0EDE8;
+      margin-bottom: 12px;
+    }
+
+    .card-who p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Объединяющий абзац */
+    .uniting-para {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      background: rgba(200,169,110,0.05);
+      border: 1px solid rgba(200,169,110,0.15);
+      border-radius: 16px;
+      padding: 32px 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease 0.8s forwards;
+    }
+
+    .uniting-para p {
+      font-size: 17px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.75;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .prog-hero { padding: 100px 16px 60px; }
       .essence-card { padding: 28px 24px; }
       .cta-block { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+      .for-whom {
+        padding: 70px 20px;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .uniting-para {
+        padding: 24px 22px;
+      }
     }
   </style>
 </head>
@@ -216,6 +400,57 @@
             Набор первых 50 амбассадоров
           </span>
         </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ВТОРОЙ ЭКРАН: ДЛЯ КОГО -->
+  <section class="for-whom">
+    <div class="s-inner">
+
+      <!-- Метка -->
+      <div class="section-label">Для кого эта программа</div>
+
+      <!-- Заголовок -->
+      <h2>Для тех, кто работает с состоянием человека и хочет говорить языком результата</h2>
+
+      <!-- Вводный блок -->
+      <div class="intro">
+        <p>Если вы ведёте практики, сессии или программы — вы наверняка замечали: клиент уходит воодушевлённым, говорит что изменилось что-то важное, и вы верите ему. Но через месяц он возвращается примерно таким же, каким пришёл. Или не возвращается совсем. И вы не знаете — что именно произошло и почему не закрепилось.</p>
+        <p>Это не вопрос качества вашей работы. Это вопрос отсутствия инструмента, который бы это показал.</p>
+      </div>
+
+      <!-- Четыре карточки -->
+      <div class="cards-grid">
+        <div class="card-who">
+          <div class="card-dot"></div>
+          <h3>Практик или мастер</h3>
+          <p>Вы ведёте занятия — йогу, медитацию, дыхательные практики, телесную работу. Вы видите как меняются люди. Но у вас нет способа показать это новому клиенту, который приходит со скепсисом и спрашивает: а как я пойму что мне это поможет?</p>
+        </div>
+
+        <div class="card-who">
+          <div class="card-dot"></div>
+          <h3>Психолог или коуч</h3>
+          <p>Вы работаете с состоянием через разговор, через методологию, через инструменты. Вы знаете что ваш подход работает. Но рынок устроен так, что клиент выбирает по отзывам и харизме, а не по измеримому результату. Вы конкурируете там, где не хотите конкурировать.</p>
+        </div>
+
+        <div class="card-who">
+          <div class="card-dot"></div>
+          <h3>Исследователь или биохакер</h3>
+          <p>Вы уже отслеживаете данные — HRV, сон, показатели восстановления. Вы знаете что за каждым состоянием стоит физиология. И вам интересно что именно происходит в мозге и теле во время практик, которые вы применяете или изучаете.</p>
+        </div>
+
+        <div class="card-who">
+          <div class="card-dot"></div>
+          <h3>Владелец студии или методолог</h3>
+          <p>Вы строите систему — программу, курс, формат. Вам важно понимать что в вашей системе реально работает, что усиливать, а что убирать. Данные о состоянии участников — это обратная связь, которой у вас пока нет.</p>
+        </div>
+      </div>
+
+      <!-- Объединяющий абзац -->
+      <div class="uniting-para">
+        <p>Всех вас объединяет одно: вы работаете с чем-то реальным — с изменением состояния человека — но у вас нет общего языка для описания этого изменения. Языка, который был бы понятен и клиенту, и коллеге, и скептику. Эта программа строит такой язык.</p>
       </div>
 
     </div>
