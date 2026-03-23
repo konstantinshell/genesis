@@ -200,7 +200,98 @@
       margin-bottom: 20px;
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeUp 0.6s ease 0.1s forwards;
+      animation: fadeUp 0.6s ease 0.1s forwards, glitch 3s ease-in-out 1.2s infinite;
+      position: relative;
+    }
+
+    /* Глитч эффект */
+    .for-whom .section-label::before,
+    .for-whom .section-label::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    .for-whom .section-label::before {
+      animation: glitch-before 3s ease-in-out 1.2s infinite;
+      color: rgba(91,141,239,0.5);
+      z-index: -1;
+      clip-path: polygon(0 0, 100% 0, 100% 35%, 0 100%);
+    }
+
+    .for-whom .section-label::after {
+      animation: glitch-after 3s ease-in-out 1.2s infinite;
+      color: rgba(200,169,110,0.5);
+      z-index: -2;
+      clip-path: polygon(0 65%, 100% 0, 100% 100%, 0 100%);
+    }
+
+    @keyframes glitch {
+      0%, 100% {
+        transform: translate(0);
+      }
+      20% {
+        transform: translate(-2px, 2px);
+      }
+      40% {
+        transform: translate(-2px, -2px);
+      }
+      60% {
+        transform: translate(2px, 2px);
+      }
+      80% {
+        transform: translate(2px, -2px);
+      }
+    }
+
+    @keyframes glitch-before {
+      0%, 100% {
+        clip-path: polygon(0 0, 100% 0, 100% 35%, 0 100%);
+        transform: translate(0);
+      }
+      20% {
+        clip-path: polygon(0 10%, 100% 0, 100% 40%, 0 90%);
+        transform: translate(-3px, -2px);
+      }
+      40% {
+        clip-path: polygon(0 0, 100% 10%, 100% 35%, 0 100%);
+        transform: translate(3px, 2px);
+      }
+      60% {
+        clip-path: polygon(0 15%, 100% 0, 100% 50%, 0 85%);
+        transform: translate(-2px, 3px);
+      }
+      80% {
+        clip-path: polygon(0 0, 100% 5%, 100% 35%, 0 100%);
+        transform: translate(2px, -3px);
+      }
+    }
+
+    @keyframes glitch-after {
+      0%, 100% {
+        clip-path: polygon(0 65%, 100% 0, 100% 100%, 0 100%);
+        transform: translate(0);
+      }
+      20% {
+        clip-path: polygon(0 60%, 100% 5%, 100% 100%, 0 95%);
+        transform: translate(3px, 2px);
+      }
+      40% {
+        clip-path: polygon(0 65%, 100% 15%, 100% 100%, 0 90%);
+        transform: translate(-3px, -2px);
+      }
+      60% {
+        clip-path: polygon(0 50%, 100% 10%, 100% 100%, 0 100%);
+        transform: translate(2px, -3px);
+      }
+      80% {
+        clip-path: polygon(0 60%, 100% 0, 100% 100%, 0 95%);
+        transform: translate(-2px, 3px);
+      }
     }
 
     /* Заголовок */
@@ -322,6 +413,185 @@
       }
     }
 
+    /* ════════════════════════════════════
+       ТРЕТИЙ ЭКРАН — ПРОБЛЕМА РЫНКА
+    ════════════════════════════════════ */
+    .problem-market {
+      position: relative;
+      padding: 100px 40px;
+      background: #080810;
+      overflow: hidden;
+    }
+
+    /* Glow blobs */
+    .problem-market::before,
+    .problem-market::after {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+    }
+    .problem-market::before {
+      width: 600px;
+      height: 600px;
+      left: 50%;
+      top: 20%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(224,92,92,0.08) 0%, transparent 70%);
+      filter: blur(130px);
+    }
+    .problem-market::after {
+      width: 400px;
+      height: 400px;
+      right: 10%;
+      bottom: 20%;
+      background: radial-gradient(circle, rgba(155,126,222,0.07) 0%, transparent 70%);
+      filter: blur(110px);
+    }
+
+    .problem-market .s-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+    }
+
+    /* Метка */
+    .problem-market .section-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(224,92,92,0.7);
+      text-align: center;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.65s ease 0.1s forwards;
+    }
+
+    /* Заголовок */
+    .problem-market h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: #F0EDE8;
+      text-align: center;
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.65s ease 0.2s forwards;
+    }
+
+    /* Вводный абзац */
+    .problem-market .intro {
+      max-width: 680px;
+      margin: 0 auto 56px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.65s ease 0.3s forwards;
+    }
+    .problem-market .intro p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 16px;
+    }
+    .problem-market .intro p:last-child {
+      font-size: 17px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* Текстовый блок */
+    .problem-market .text-block {
+      max-width: 760px;
+      margin: 0 auto 64px;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 36px 44px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.65s ease 0.4s forwards;
+    }
+    .problem-market .text-block p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+    }
+    .problem-market .text-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Карточки болей */
+    .pain-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+
+    .pain-card {
+      background: rgba(224,92,92,0.04);
+      border: 1px solid rgba(224,92,92,0.12);
+      border-radius: 14px;
+      padding: 22px 24px;
+      transition: border-color 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.65s ease forwards;
+    }
+    .pain-card:nth-child(1) { animation-delay: 0.5s; }
+    .pain-card:nth-child(2) { animation-delay: 0.58s; }
+    .pain-card:nth-child(3) { animation-delay: 0.66s; }
+    .pain-card:nth-child(4) { animation-delay: 0.74s; }
+    .pain-card:nth-child(5) { animation-delay: 0.82s; }
+    .pain-card:nth-child(6) { animation-delay: 0.9s; }
+
+    .pain-card:hover {
+      border-color: rgba(224,92,92,0.25);
+    }
+
+    .pain-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(224,92,92,0.6);
+      margin-bottom: 14px;
+    }
+
+    .pain-card p {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Закрывающий абзац */
+    .closing-para {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      background: rgba(224,92,92,0.05);
+      border: 1px solid rgba(224,92,92,0.18);
+      border-radius: 14px;
+      padding: 24px 36px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.65s ease 0.95s forwards;
+    }
+
+    .closing-para p {
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .prog-hero { padding: 100px 16px 60px; }
@@ -336,6 +606,19 @@
       }
       .uniting-para {
         padding: 24px 22px;
+      }
+
+      .problem-market {
+        padding: 70px 20px;
+      }
+      .problem-market .text-block {
+        padding: 24px 22px;
+      }
+      .pain-points {
+        grid-template-columns: 1fr;
+      }
+      .closing-para {
+        padding: 20px 22px;
       }
     }
   </style>
@@ -410,7 +693,7 @@
     <div class="s-inner">
 
       <!-- Метка -->
-      <div class="section-label">Для кого эта программа</div>
+      <div class="section-label" data-text="ДЛЯ КОГО ЭТА ПРОГРАММА">ДЛЯ КОГО ЭТА ПРОГРАММА</div>
 
       <!-- Заголовок -->
       <h2>Для тех, кто работает с состоянием человека и хочет говорить языком результата</h2>
@@ -451,6 +734,65 @@
       <!-- Объединяющий абзац -->
       <div class="uniting-para">
         <p>Всех вас объединяет одно: вы работаете с чем-то реальным — с изменением состояния человека — но у вас нет общего языка для описания этого изменения. Языка, который был бы понятен и клиенту, и коллеге, и скептику. Эта программа строит такой язык.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ТРЕТИЙ ЭКРАН: ПРОБЛЕМА РЫНКА -->
+  <section class="problem-market">
+    <div class="s-inner">
+
+      <!-- Метка -->
+      <div class="section-label">ПРОБЛЕМА РЫНКА</div>
+
+      <!-- Заголовок -->
+      <h2>Рынок практик работает на доверии. Не на данных.</h2>
+
+      <!-- Вводный абзац -->
+      <div class="intro">
+        <p>Индустрия практик управления состоянием огромна. Медитация, дыхание, йога, телесные методы, психология, коучинг — миллиарды людей по всему миру ищут способ чувствовать себя лучше, работать яснее, восстанавливаться быстрее. И многие из них находят — приходят к вам, к вашим коллегам, к тем кто действительно умеет работать с состоянием.</p>
+        <p>Но есть одна вещь, которую эта индустрия так и не решила за всё время своего существования. Она не научилась доказывать результат.</p>
+      </div>
+
+      <!-- Текстовый блок -->
+      <div class="text-block">
+        <p>Всё что у практика есть на руках — это отзывы. Клиент говорит что стало лучше. Клиент говорит что жизнь изменилась. Это ценно, и это правда — но это не доказательство, которое можно предъявить скептику, новому клиенту или партнёру. Это не данные, по которым можно понять что именно сработало и почему.</p>
+        <p>В результате рынок конкурирует не методами — он конкурирует маркетингом. Побеждает тот, кто красивее упакован, кто громче говорит, кто собрал больше подписчиков. Настоящий мастер с глубокой методологией проигрывает тому, у кого лучше воронка продаж. Это несправедливо — и это вредно для всего рынка, потому что клиенты не могут отличить одно от другого.</p>
+        <p>Есть и другая сторона этой проблемы. Когда нет измерений — нет и обратной связи. Практик не знает что именно в его методе даёт результат, а что нет. Не знает для кого его подход работает лучше всего. Не видит где клиент застревает и почему. Метод не развивается — он просто воспроизводится.</p>
+      </div>
+
+      <!-- Шесть карточек болей -->
+      <div class="pain-points">
+        <div class="pain-card">
+          <div class="pain-dot"></div>
+          <p>Эффект есть — но его невозможно показать</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-dot"></div>
+          <p>Изменения происходят — но не фиксируются</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-dot"></div>
+          <p>Метод работает — но неизвестно что именно в нём работает</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-dot"></div>
+          <p>Клиент уходит воодушевлённым — и откатывается через месяц</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-dot"></div>
+          <p>Рынок выбирает по упаковке — а не по результату</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-dot"></div>
+          <p>Развитие метода идёт вслепую — без данных обратной связи</p>
+        </div>
+      </div>
+
+      <!-- Закрывающий абзац -->
+      <div class="closing-para">
+        <p>Это не слабость конкретного практика. Это системная проблема всего рынка. Не было инструмента, который бы это решил. До сих пор.</p>
       </div>
 
     </div>
