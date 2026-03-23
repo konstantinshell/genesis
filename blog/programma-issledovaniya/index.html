@@ -423,29 +423,33 @@
       overflow: hidden;
     }
 
+    /* SVG grid pattern */
+    .pm-grid-pattern {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0.025;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     /* Glow blobs */
-    .problem-market::before,
-    .problem-market::after {
-      content: '';
+    .pm-blob {
       position: absolute;
       pointer-events: none;
       z-index: 0;
       border-radius: 50%;
     }
-    .problem-market::before {
-      width: 600px;
-      height: 600px;
-      left: 50%;
-      top: 20%;
+    .pm-blob-1 {
+      width: 700px; height: 700px;
+      left: 50%; top: 20%;
       transform: translateX(-50%);
-      background: radial-gradient(circle, rgba(224,92,92,0.08) 0%, transparent 70%);
-      filter: blur(130px);
+      background: radial-gradient(circle, rgba(224,92,92,0.1) 0%, transparent 70%);
+      filter: blur(140px);
     }
-    .problem-market::after {
-      width: 400px;
-      height: 400px;
-      right: 10%;
-      bottom: 20%;
+    .pm-blob-2 {
+      width: 400px; height: 400px;
+      right: 5%; bottom: 0%;
       background: radial-gradient(circle, rgba(155,126,222,0.07) 0%, transparent 70%);
       filter: blur(110px);
     }
@@ -457,16 +461,13 @@
     }
 
     /* Метка */
-    .problem-market .section-label {
+    .problem-market .pm-label {
       font-size: 11px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(224,92,92,0.7);
+      color: rgba(224,92,92,0.75);
       text-align: center;
-      margin-bottom: 20px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.65s ease 0.1s forwards;
+      margin-bottom: 16px;
     }
 
     /* Заголовок */
@@ -477,57 +478,90 @@
       line-height: 1.2;
       color: #F0EDE8;
       text-align: center;
-      margin-bottom: 32px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.65s ease 0.2s forwards;
+      margin-bottom: 28px;
     }
 
     /* Вводный абзац */
-    .problem-market .intro {
-      max-width: 680px;
-      margin: 0 auto 56px;
+    .problem-market .pm-intro {
+      max-width: 660px;
+      margin: 0 auto 72px;
       text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.65s ease 0.3s forwards;
     }
-    .problem-market .intro p {
+    .problem-market .pm-intro p {
       font-size: 16px;
       line-height: 1.8;
       color: rgba(255,255,255,0.55);
       margin-bottom: 16px;
     }
-    .problem-market .intro p:last-child {
-      font-size: 17px;
+    .problem-market .pm-intro p:last-child {
       font-weight: 500;
       color: rgba(255,255,255,0.85);
+      margin-bottom: 0;
     }
 
-    /* Текстовый блок */
-    .problem-market .text-block {
+    /* ── SVG СХЕМА ── */
+    .pm-diagram {
+      width: 100%;
+      height: 280px;
+      position: relative;
+      margin-bottom: 72px;
+    }
+    .pm-diagram svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* Анимация пунктира */
+    .pm-dash-line {
+      stroke-dasharray: 6 4;
+      animation: dash-move 2s linear infinite;
+    }
+    @keyframes dash-move {
+      from { stroke-dashoffset: 100; }
+      to   { stroke-dashoffset: 0; }
+    }
+
+    /* Подпись под схемой */
+    .pm-diagram-note {
+      text-align: center;
+      margin-top: -8px;
+    }
+    .pm-diagram-note hr {
+      width: 60%;
+      margin: 0 auto 16px;
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(224,92,92,0.4), transparent);
+    }
+    .pm-diagram-note span {
+      font-size: 12px;
+      color: rgba(224,92,92,0.6);
+    }
+
+    /* ── ТЕКСТОВЫЙ БЛОК ── */
+    .pm-text-block {
       max-width: 760px;
       margin: 0 auto 64px;
-      background: rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.025);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.07);
       border-radius: 18px;
       padding: 36px 44px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.65s ease 0.4s forwards;
     }
-    .problem-market .text-block p {
+    .pm-text-block .pm-para {
+      border-left: 2px solid rgba(224,92,92,0.25);
+      padding-left: 20px;
+      margin-bottom: 28px;
       font-size: 15px;
       line-height: 1.85;
       color: rgba(255,255,255,0.6);
-      margin-bottom: 20px;
     }
-    .problem-market .text-block p:last-child {
+    .pm-text-block .pm-para:last-child {
       margin-bottom: 0;
     }
 
-    /* Карточки болей */
+    /* ── КАРТОЧКИ БОЛЕЙ ── */
     .pain-points {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -536,60 +570,91 @@
     }
 
     .pain-card {
-      background: rgba(224,92,92,0.04);
-      border: 1px solid rgba(224,92,92,0.12);
+      background: rgba(224,92,92,0.03);
+      border: 1px solid rgba(224,92,92,0.1);
       border-radius: 14px;
-      padding: 22px 24px;
-      transition: border-color 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.65s ease forwards;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease;
     }
-    .pain-card:nth-child(1) { animation-delay: 0.5s; }
-    .pain-card:nth-child(2) { animation-delay: 0.58s; }
-    .pain-card:nth-child(3) { animation-delay: 0.66s; }
-    .pain-card:nth-child(4) { animation-delay: 0.74s; }
-    .pain-card:nth-child(5) { animation-delay: 0.82s; }
-    .pain-card:nth-child(6) { animation-delay: 0.9s; }
-
     .pain-card:hover {
-      border-color: rgba(224,92,92,0.25);
+      border-color: rgba(224,92,92,0.28);
+      transform: translateY(-4px);
     }
-
+    .pain-card .pc-bg-circle {
+      position: absolute;
+      right: -20px; bottom: -20px;
+      width: 120px; height: 120px;
+      pointer-events: none;
+    }
     .pain-dot {
-      width: 6px;
-      height: 6px;
+      width: 8px; height: 8px;
       border-radius: 50%;
-      background: rgba(224,92,92,0.6);
-      margin-bottom: 14px;
+      background: rgba(224,92,92,0.7);
+      box-shadow: 0 0 12px rgba(224,92,92,0.4);
+      margin-bottom: 16px;
     }
-
     .pain-card p {
       font-size: 14px;
       font-weight: 500;
       line-height: 1.6;
       color: rgba(255,255,255,0.7);
+      position: relative;
+      z-index: 1;
     }
 
-    /* Закрывающий абзац */
-    .closing-para {
+    /* ── ЗАКРЫВАЮЩИЙ БЛОК ── */
+    .pm-closing {
       max-width: 640px;
       margin: 0 auto;
       text-align: center;
-      background: rgba(224,92,92,0.05);
-      border: 1px solid rgba(224,92,92,0.18);
-      border-radius: 14px;
-      padding: 24px 36px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.65s ease 0.95s forwards;
     }
-
-    .closing-para p {
-      font-size: 17px;
+    .pm-closing-deco {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 20px;
+    }
+    .pm-closing-deco line-el {
+      display: block;
+      width: 80px; height: 1px;
+      background: rgba(224,92,92,0.3);
+    }
+    .pm-pulse-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(224,92,92,0.6);
+      margin: 0 8px;
+      animation: pm-pulse 2s ease-in-out infinite;
+    }
+    @keyframes pm-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50%       { transform: scale(1.4); opacity: 1; }
+    }
+    .pm-closing-card {
+      background: rgba(224,92,92,0.05);
+      border: 1px solid rgba(224,92,92,0.2);
+      border-radius: 14px;
+      padding: 28px 40px;
+    }
+    .pm-closing-card p {
+      font-size: 18px;
       font-weight: 500;
       line-height: 1.7;
-      color: rgba(255,255,255,0.85);
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* fadeUp для IntersectionObserver */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* ── RESPONSIVE ── */
@@ -598,28 +663,18 @@
       .essence-card { padding: 28px 24px; }
       .cta-block { flex-direction: column; align-items: flex-start; gap: 12px; }
 
-      .for-whom {
-        padding: 70px 20px;
-      }
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
-      .uniting-para {
-        padding: 24px 22px;
-      }
+      .for-whom { padding: 70px 20px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .uniting-para { padding: 24px 22px; }
 
-      .problem-market {
-        padding: 70px 20px;
-      }
-      .problem-market .text-block {
-        padding: 24px 22px;
-      }
-      .pain-points {
-        grid-template-columns: 1fr;
-      }
-      .closing-para {
-        padding: 20px 22px;
-      }
+      .problem-market { padding: 70px 20px; }
+      .pm-text-block { padding: 24px 20px; }
+      .pain-points { grid-template-columns: 1fr; }
+      .pm-closing-card { padding: 20px 22px; }
+      .pm-diagram { height: 200px; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .pain-points { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -741,58 +796,129 @@
 
   <!-- ТРЕТИЙ ЭКРАН: ПРОБЛЕМА РЫНКА -->
   <section class="problem-market">
+
+    <!-- SVG grid pattern -->
+    <svg class="pm-grid-pattern" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+
+    <!-- Glow blobs -->
+    <div class="pm-blob pm-blob-1"></div>
+    <div class="pm-blob pm-blob-2"></div>
+
     <div class="s-inner">
 
       <!-- Метка -->
-      <div class="section-label">ПРОБЛЕМА РЫНКА</div>
+      <div class="pm-label fade-up">ПРОБЛЕМА РЫНКА</div>
 
       <!-- Заголовок -->
-      <h2>Рынок практик работает на доверии. Не на данных.</h2>
+      <h2 class="fade-up">Рынок практик работает на доверии. Не на данных.</h2>
 
       <!-- Вводный абзац -->
-      <div class="intro">
-        <p>Индустрия практик управления состоянием огромна. Медитация, дыхание, йога, телесные методы, психология, коучинг — миллиарды людей по всему миру ищут способ чувствовать себя лучше, работать яснее, восстанавливаться быстрее. И многие из них находят — приходят к вам, к вашим коллегам, к тем кто действительно умеет работать с состоянием.</p>
-        <p>Но есть одна вещь, которую эта индустрия так и не решила за всё время своего существования. Она не научилась доказывать результат.</p>
+      <div class="pm-intro fade-up">
+        <p>Индустрия практик управления состоянием огромна. Медитация, дыхание, йога, телесные методы, психология, коучинг — миллиарды людей ищут способ чувствовать себя лучше, работать яснее, восстанавливаться быстрее. И многие находят — приходят к вам, к тем кто действительно умеет работать с состоянием.</p>
+        <p>Но есть одна вещь, которую эта индустрия так и не решила. Она не научилась доказывать результат.</p>
+      </div>
+
+      <!-- Центральная схема -->
+      <div class="pm-diagram fade-up">
+        <svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+
+          <!-- Линия 1→2 -->
+          <line class="pm-dash-line" x1="212" y1="140" x2="386" y2="140"
+            stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+          <!-- Метка над линией 1→2 -->
+          <text x="299" y="118" text-anchor="middle" font-size="11"
+            fill="rgba(224,92,92,0.7)" font-family="Jost, sans-serif">отзывы и маркетинг</text>
+
+          <!-- Линия 2→3 -->
+          <line class="pm-dash-line" x1="514" y1="140" x2="688" y2="140"
+            stroke="rgba(255,255,255,0.15)" stroke-width="1.5" style="animation-delay:0.5s"/>
+          <!-- Метка над линией 2→3 -->
+          <text x="601" y="118" text-anchor="middle" font-size="11"
+            fill="rgba(224,92,92,0.7)" font-family="Jost, sans-serif">без измерений</text>
+
+          <!-- Узел 1 — Практик -->
+          <circle cx="160" cy="140" r="52" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+          <text x="160" y="144" text-anchor="middle" font-size="13" fill="#F0EDE8" font-family="Jost, sans-serif" font-weight="500">Практик</text>
+          <text x="160" y="212" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.45)" font-family="Jost, sans-serif">метод работает</text>
+
+          <!-- Узел 2 — Рынок (центр) -->
+          <circle cx="450" cy="140" r="64" fill="rgba(224,92,92,0.06)" stroke="rgba(224,92,92,0.4)" stroke-width="1.5"/>
+          <text x="450" y="153" text-anchor="middle" font-size="32" fill="rgba(224,92,92,0.8)" font-family="Jost, sans-serif">?</text>
+          <text x="450" y="226" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.45)" font-family="Jost, sans-serif">клиент не знает что выбрать</text>
+
+          <!-- Узел 3 — Клиент -->
+          <circle cx="740" cy="140" r="52" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+          <text x="740" y="144" text-anchor="middle" font-size="13" fill="#F0EDE8" font-family="Jost, sans-serif" font-weight="500">Клиент</text>
+          <text x="740" y="212" text-anchor="middle" font-size="11" fill="rgba(224,92,92,0.6)" font-family="Jost, sans-serif">откат через месяц</text>
+
+        </svg>
+
+        <div class="pm-diagram-note">
+          <hr>
+          <span>данных нет — разрыв невидим</span>
+        </div>
       </div>
 
       <!-- Текстовый блок -->
-      <div class="text-block">
-        <p>Всё что у практика есть на руках — это отзывы. Клиент говорит что стало лучше. Клиент говорит что жизнь изменилась. Это ценно, и это правда — но это не доказательство, которое можно предъявить скептику, новому клиенту или партнёру. Это не данные, по которым можно понять что именно сработало и почему.</p>
-        <p>В результате рынок конкурирует не методами — он конкурирует маркетингом. Побеждает тот, кто красивее упакован, кто громче говорит, кто собрал больше подписчиков. Настоящий мастер с глубокой методологией проигрывает тому, у кого лучше воронка продаж. Это несправедливо — и это вредно для всего рынка, потому что клиенты не могут отличить одно от другого.</p>
-        <p>Есть и другая сторона этой проблемы. Когда нет измерений — нет и обратной связи. Практик не знает что именно в его методе даёт результат, а что нет. Не знает для кого его подход работает лучше всего. Не видит где клиент застревает и почему. Метод не развивается — он просто воспроизводится.</p>
+      <div class="pm-text-block fade-up">
+        <p class="pm-para">Всё что у практика есть на руках — это отзывы. Клиент говорит что стало лучше. Клиент говорит что жизнь изменилась. Это ценно, и это правда — но это не доказательство, которое можно предъявить скептику, новому клиенту или партнёру. Это не данные, по которым можно понять что именно сработало и почему.</p>
+        <p class="pm-para">В результате рынок конкурирует не методами — он конкурирует маркетингом. Побеждает тот, кто красивее упакован, кто громче говорит, кто собрал больше подписчиков. Настоящий мастер с глубокой методологией проигрывает тому, у кого лучше воронка продаж. Это несправедливо — и это вредно для всего рынка, потому что клиенты не могут отличить одно от другого.</p>
+        <p class="pm-para">Когда нет измерений — нет и обратной связи. Практик не знает что именно в его методе даёт результат, а что нет. Не знает для кого его подход работает лучше всего. Метод не развивается — он просто воспроизводится.</p>
       </div>
 
       <!-- Шесть карточек болей -->
       <div class="pain-points">
-        <div class="pain-card">
+        <div class="pain-card fade-up">
+          <svg class="pc-bg-circle" viewBox="0 0 120 120"><circle cx="100" cy="100" r="60" fill="rgba(224,92,92,0.04)"/></svg>
           <div class="pain-dot"></div>
           <p>Эффект есть — но его невозможно показать</p>
         </div>
-        <div class="pain-card">
+        <div class="pain-card fade-up">
+          <svg class="pc-bg-circle" viewBox="0 0 120 120"><circle cx="100" cy="100" r="60" fill="rgba(224,92,92,0.04)"/></svg>
           <div class="pain-dot"></div>
           <p>Изменения происходят — но не фиксируются</p>
         </div>
-        <div class="pain-card">
+        <div class="pain-card fade-up">
+          <svg class="pc-bg-circle" viewBox="0 0 120 120"><circle cx="100" cy="100" r="60" fill="rgba(224,92,92,0.04)"/></svg>
           <div class="pain-dot"></div>
           <p>Метод работает — но неизвестно что именно в нём работает</p>
         </div>
-        <div class="pain-card">
+        <div class="pain-card fade-up">
+          <svg class="pc-bg-circle" viewBox="0 0 120 120"><circle cx="100" cy="100" r="60" fill="rgba(224,92,92,0.04)"/></svg>
           <div class="pain-dot"></div>
           <p>Клиент уходит воодушевлённым — и откатывается через месяц</p>
         </div>
-        <div class="pain-card">
+        <div class="pain-card fade-up">
+          <svg class="pc-bg-circle" viewBox="0 0 120 120"><circle cx="100" cy="100" r="60" fill="rgba(224,92,92,0.04)"/></svg>
           <div class="pain-dot"></div>
           <p>Рынок выбирает по упаковке — а не по результату</p>
         </div>
-        <div class="pain-card">
+        <div class="pain-card fade-up">
+          <svg class="pc-bg-circle" viewBox="0 0 120 120"><circle cx="100" cy="100" r="60" fill="rgba(224,92,92,0.04)"/></svg>
           <div class="pain-dot"></div>
           <p>Развитие метода идёт вслепую — без данных обратной связи</p>
         </div>
       </div>
 
-      <!-- Закрывающий абзац -->
-      <div class="closing-para">
-        <p>Это не слабость конкретного практика. Это системная проблема всего рынка. Не было инструмента, который бы это решил. До сих пор.</p>
+      <!-- Закрывающий блок -->
+      <div class="pm-closing fade-up">
+        <div class="pm-closing-deco">
+          <svg width="196" height="12" viewBox="0 0 196 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="6" x2="88" y2="6" stroke="rgba(224,92,92,0.3)" stroke-width="1"/>
+            <circle cx="98" cy="6" r="4" fill="rgba(224,92,92,0.6)" class="pm-pulse-circle"/>
+            <line x1="108" y1="6" x2="196" y2="6" stroke="rgba(224,92,92,0.3)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="pm-closing-card">
+          <p>Это не слабость конкретного практика. Это системная проблема всего рынка. Не было инструмента, который бы это решил. До сих пор.</p>
+        </div>
       </div>
 
     </div>
@@ -801,5 +927,33 @@
 
 <script src="../../components/nav.js"></script>
 <script src="../../components/footer.js"></script>
+<script>
+  // IntersectionObserver для fadeUp
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.dataset.delay || 0;
+        setTimeout(() => el.classList.add('visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    // Для карточек добавляем stagger delay
+    if (el.closest('.pain-points')) {
+      const idx = Array.from(el.parentElement.children).indexOf(el);
+      el.dataset.delay = idx * 80;
+    }
+    observer.observe(el);
+  });
+
+  // Пульс SVG круга
+  const pulseCircle = document.querySelector('.pm-pulse-circle');
+  if (pulseCircle) {
+    pulseCircle.style.animation = 'pm-pulse 2s ease-in-out infinite';
+  }
+</script>
 </body>
 </html>
