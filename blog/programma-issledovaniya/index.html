@@ -2024,6 +2024,768 @@
     @media (min-width: 769px) and (max-width: 1024px) {
       .pain-points { grid-template-columns: repeat(2, 1fr); }
     }
+
+    /* ══════════════════════════════
+       ВОСЬМОЙ ЭКРАН — РИТМЫ КАК БАЗИС
+    ══════════════════════════════ */
+    .rb-section {
+      position: relative;
+      padding: 100px 40px 80px;
+      background: #060810;
+      overflow: hidden;
+    }
+    .rb-blob {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(140px);
+    }
+    .rb-blob-1 {
+      width: 600px; height: 600px; top: 0; left: -8%;
+      background: radial-gradient(circle, rgba(95,95,255,0.08) 0%, transparent 70%);
+    }
+    .rb-blob-2 {
+      width: 500px; height: 500px; bottom: 8%; right: -6%;
+      background: radial-gradient(circle, rgba(200,169,110,0.07) 0%, transparent 70%);
+    }
+    .rb-inner {
+      position: relative; z-index: 1; max-width: 960px; margin: 0 auto;
+    }
+    .rb-label {
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(200,169,110,0.7);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .rb-title {
+      font-family: var(--fh);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: #F0EDE8;
+      text-align: center;
+      line-height: 1.15;
+      max-width: 720px;
+      margin: 0 auto 32px;
+    }
+    .rb-intro {
+      max-width: 740px; margin: 0 auto 56px;
+    }
+    .rb-intro p {
+      font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px;
+    }
+    .rb-intro p:last-child { margin-bottom: 0; }
+
+    /* ── Waves ── */
+    .rb-waves-block {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .rb-waves-header {
+      padding: 18px 28px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+    .rb-wave-row {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      height: 54px;
+    }
+    .rb-wave-row:last-child { border-bottom: none; }
+    .rb-wave-meta {
+      width: 210px;
+      min-width: 210px;
+      padding: 0 16px 0 28px;
+      flex-shrink: 0;
+    }
+    .rb-wave-name {
+      display: block;
+      font-family: var(--fb);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2px;
+    }
+    .rb-wave-freq {
+      display: block;
+      font-family: var(--fm);
+      font-size: 0.57rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.25);
+    }
+    .rb-wave-svg-wrap {
+      flex: 1;
+      height: 50px;
+      overflow: hidden;
+      position: relative;
+    }
+    .rb-wave-svg-wrap svg {
+      width: 200%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0; left: 0;
+    }
+    @keyframes rb-wave-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .rb-w1 svg { color: #3B9EFF; animation: rb-wave-scroll 2.5s linear infinite; }
+    .rb-w2 svg { color: #50D890; animation: rb-wave-scroll 4.5s linear infinite; }
+    .rb-w3 svg { color: #C8A96E; animation: rb-wave-scroll 9s linear infinite; }
+    .rb-w4 svg { color: #9B7EDE; animation: rb-wave-scroll 16s linear infinite; }
+    .rb-w5 svg { color: rgba(255,255,255,0.45); animation: rb-wave-scroll 26s linear infinite; }
+    .rb-waves-caption {
+      padding: 16px 28px;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      font-family: var(--fm);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.65;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* ── Text block ── */
+    .rb-text-block {
+      max-width: 740px;
+      margin: 0 auto 72px;
+    }
+    .rb-text-block p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 20px;
+    }
+    .rb-text-block p:last-child { margin-bottom: 0; }
+    .rb-text-highlight {
+      color: rgba(200,169,110,0.85);
+      font-style: italic;
+    }
+
+    /* ── Rings ── */
+    .rb-rings-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .rb-rings-container {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin-bottom: 28px;
+      flex-shrink: 0;
+    }
+    .rb-ring-anchor {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rb-ring {
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .rb-ring-outer {
+      width: 300px; height: 300px;
+      border: 1px dashed rgba(255,255,255,0.22);
+    }
+    .rb-ring-mid {
+      width: 200px; height: 200px;
+      border: 1.5px solid rgba(80,216,144,0.38);
+      box-shadow: 0 0 30px rgba(80,216,144,0.05) inset;
+    }
+    .rb-ring-inner {
+      width: 116px; height: 116px;
+      border: 1.5px solid rgba(200,169,110,0.5);
+      box-shadow: 0 0 20px rgba(200,169,110,0.08) inset;
+    }
+    .rb-ring-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 5;
+    }
+    .rb-ring-center-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #C8A96E 30%, rgba(200,169,110,0.2) 100%);
+      box-shadow: 0 0 18px rgba(200,169,110,0.6), 0 0 44px rgba(200,169,110,0.2);
+    }
+    .rb-ring-center-text {
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(200,169,110,0.65);
+      white-space: nowrap;
+    }
+    .rb-rings-active .rb-ring-outer { animation: rb-ring-spin 35s linear infinite reverse; }
+    .rb-rings-active .rb-ring-mid  { animation: rb-ring-spin 22s linear infinite; }
+    .rb-rings-active .rb-ring-inner { animation: rb-ring-spin 14s linear infinite reverse; }
+    @keyframes rb-ring-spin { to { transform: rotate(360deg); } }
+
+    /* Ring legend */
+    .rb-rings-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      width: 100%;
+    }
+    .rb-rings-legend-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-family: var(--fb);
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.5);
+    }
+    .rb-rings-legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .rb-rings-legend-dot.outer { background: rgba(255,255,255,0.25); border: 1px dashed rgba(255,255,255,0.5); }
+    .rb-rings-legend-dot.mid { background: rgba(80,216,144,0.6); }
+    .rb-rings-legend-dot.inner { background: rgba(200,169,110,0.7); }
+    .rb-rings-legend-dot.center { background: #C8A96E; box-shadow: 0 0 8px rgba(200,169,110,0.5); }
+    .rb-rings-legend-name {
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+    }
+    .rb-rings-legend-desc {
+      display: block;
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.28);
+      margin-top: 2px;
+    }
+
+    /* Rings caption */
+    .rb-rings-caption {
+      max-width: 600px;
+      margin: 0 auto 72px;
+      text-align: center;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.35);
+      font-family: var(--fm);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Transition ── */
+    .rb-transition {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 64px;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .rb-transition-label {
+      font-family: var(--fm);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(200,169,110,0.5);
+      margin-bottom: 20px;
+    }
+    .rb-transition h3 {
+      font-family: var(--fh);
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      color: #F0EDE8;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .rb-transition p {
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 36px;
+    }
+    .rb-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(200,169,110,0.08);
+      border: 1px solid rgba(200,169,110,0.3);
+      color: #C8A96E;
+      font-family: var(--fm);
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .rb-cta:hover {
+      background: rgba(200,169,110,0.16);
+      border-color: rgba(200,169,110,0.5);
+      box-shadow: 0 0 24px rgba(200,169,110,0.12);
+    }
+
+    @media (max-width: 640px) {
+      .rb-section { padding: 70px 20px 60px; }
+      .rb-wave-meta { width: 130px; min-width: 130px; padding: 0 10px 0 16px; }
+      .rb-wave-name { font-size: 0.68rem; }
+      .rb-rings-container { width: 260px; height: 260px; }
+      .rb-ring-outer { width: 242px; height: 242px; }
+      .rb-ring-mid { width: 162px; height: 162px; }
+      .rb-ring-inner { width: 92px; height: 92px; }
+    }
+
+    /* ══════════════════════════════
+       ДЕВЯТЫЙ ЭКРАН — РИТМЫ ЖИЗНИ
+    ══════════════════════════════ */
+    .rl-section {
+      position: relative;
+      padding: 100px 40px 80px;
+      background: #07080f;
+      overflow: hidden;
+    }
+    .rl-blob {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(140px);
+    }
+    .rl-blob-1 {
+      width: 700px; height: 700px; top: -5%; right: -10%;
+      background: radial-gradient(circle, rgba(200,169,110,0.07) 0%, transparent 70%);
+    }
+    .rl-blob-2 {
+      width: 500px; height: 500px; bottom: 20%; left: -8%;
+      background: radial-gradient(circle, rgba(95,95,255,0.06) 0%, transparent 70%);
+    }
+    .rl-inner {
+      position: relative; z-index: 1; max-width: 960px; margin: 0 auto;
+    }
+    .rl-label {
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(200,169,110,0.7);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .rl-title {
+      font-family: var(--fh);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: #F0EDE8;
+      text-align: center;
+      line-height: 1.15;
+      max-width: 740px;
+      margin: 0 auto 16px;
+    }
+    .rl-author {
+      text-align: center;
+      font-family: var(--fm);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 36px;
+    }
+    .rl-intro {
+      max-width: 740px; margin: 0 auto 64px;
+    }
+    .rl-intro p {
+      font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px;
+    }
+    .rl-intro p:last-child { margin-bottom: 0; }
+
+    /* Sub-level divider */
+    .rl-sublevel {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 64px;
+      margin-bottom: 64px;
+    }
+    .rl-sublevel-label {
+      font-family: var(--fm);
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(200,169,110,0.5);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .rl-sublevel-title {
+      font-family: var(--fh);
+      font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+      color: #F0EDE8;
+      text-align: center;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    .rl-sublevel-text {
+      max-width: 680px; margin: 0 auto 40px;
+    }
+    .rl-sublevel-text p {
+      font-size: 0.92rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px;
+    }
+    .rl-sublevel-text p:last-child { margin-bottom: 0; }
+    .rl-text-after {
+      max-width: 680px; margin: 32px auto 0;
+    }
+    .rl-text-after p {
+      font-size: 0.88rem; line-height: 1.85; color: rgba(255,255,255,0.5); margin-bottom: 12px;
+    }
+    .rl-text-after p:last-child { margin-bottom: 0; }
+    .rl-link-note {
+      display: block; margin-top: 16px;
+      font-family: var(--fm); font-size: 0.78rem; letter-spacing: 0.06em;
+      color: rgba(200,169,110,0.65); font-style: italic;
+    }
+
+    /* ── Sub 1: Seven Worlds axis ── */
+    .rl-worlds-container {
+      position: relative;
+      max-width: 560px;
+      margin: 0 auto 16px;
+    }
+    .rl-world-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 0;
+      opacity: 0;
+      transform: translateY(-12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .rl-world-item.rl-visible { opacity: 1; transform: translateY(0); }
+    .rl-world-line {
+      width: 3px;
+      flex-shrink: 0;
+      border-radius: 2px;
+      align-self: stretch;
+      min-height: 48px;
+    }
+    .rl-world-content { flex: 1; }
+    .rl-world-num {
+      font-family: var(--fm);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 2px;
+    }
+    .rl-world-name {
+      font-family: var(--fh);
+      font-size: 1rem;
+      color: #F0EDE8;
+      margin-bottom: 2px;
+    }
+    .rl-world-tag {
+      font-family: var(--fm);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.35);
+    }
+    .rl-world-desc {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.4);
+      margin-top: 2px;
+    }
+    .rl-worlds-core {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px 0 8px;
+      opacity: 0;
+      transition: opacity 0.6s ease 0.1s;
+    }
+    .rl-worlds-core.rl-visible { opacity: 1; }
+    .rl-core-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #C8A96E 30%, rgba(200,169,110,0.2));
+      box-shadow: 0 0 20px rgba(200,169,110,0.6), 0 0 50px rgba(200,169,110,0.2);
+    }
+    .rl-core-text {
+      font-family: var(--fm);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200,169,110,0.7);
+    }
+
+    /* World line colors — gradient from spirit (blue) to clarity (gold) */
+    .rl-wl-1 { background: rgba(120,140,255,0.7); }
+    .rl-wl-2 { background: rgba(155,126,222,0.7); }
+    .rl-wl-3 { background: rgba(80,180,240,0.7); }
+    .rl-wl-4 { background: rgba(80,216,144,0.7); }
+    .rl-wl-5 { background: rgba(200,169,110,0.5); }
+    .rl-wl-6 { background: rgba(200,169,110,0.65); }
+    .rl-wl-7 { background: rgba(200,169,110,0.85); }
+
+    /* ── Sub 2: Eight Spheres wheel ── */
+    .rl-wheel-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .rl-wheel-svg-container {
+      width: 340px; height: 340px;
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .rl-wheel-svg-container svg { width: 100%; height: 100%; }
+
+    /* SVG wheel elements — controlled by JS opacity */
+    .rl-sphere-sector { opacity: 0; transition: opacity 0.4s ease; }
+    .rl-sphere-sector.rl-vis { opacity: 1; }
+    .rl-wheel-center { opacity: 0; transition: opacity 0.5s ease; }
+    .rl-wheel-center.rl-vis { opacity: 1; }
+
+    /* ── Sub 3: Annual calendar ── */
+    .rl-calendar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .rl-calendar-svg {
+      width: 320px; height: 320px;
+      margin-bottom: 24px;
+    }
+    .rl-cal-arc { opacity: 0; transition: stroke-dashoffset 0.6s ease, opacity 0.4s ease; }
+    .rl-cal-point { opacity: 0; transition: opacity 0.4s ease; }
+    .rl-cal-point.rl-vis { opacity: 1; }
+    .rl-cal-arc.rl-vis { opacity: 1; }
+
+    /* Daily planner cards */
+    .rl-planner-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 700px;
+      margin: 32px auto 0;
+    }
+    .rl-planner-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 18px 16px;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.55);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .rl-planner-card.rl-vis { opacity: 1; transform: translateY(0); }
+    .rl-planner-num {
+      display: block;
+      font-family: var(--fm);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: rgba(200,169,110,0.5);
+      margin-bottom: 6px;
+    }
+    .rl-planner-caption {
+      max-width: 600px;
+      margin: 20px auto 0;
+      text-align: center;
+      font-family: var(--fm);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.28);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* Closing quote card */
+    .rl-quote-card {
+      background: rgba(200,169,110,0.05);
+      border: 1px solid rgba(200,169,110,0.18);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+      margin-top: 72px;
+      backdrop-filter: blur(20px);
+    }
+    .rl-quote-text {
+      font-family: var(--fh);
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      color: rgba(200,169,110,0.9);
+      font-style: italic;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .rl-quote-author {
+      font-family: var(--fm);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 32px;
+    }
+    .rl-quote-body {
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 0.88rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 640px) {
+      .rl-section { padding: 70px 20px 60px; }
+      .rl-wheel-svg-container { width: 280px; height: 280px; }
+      .rl-calendar-svg { width: 260px; height: 260px; }
+      .rl-planner-grid { grid-template-columns: repeat(2, 1fr); }
+      .rl-quote-card { padding: 32px 20px; }
+    }
+
+    /* ══════════════════════════════
+       ДЕСЯТЫЙ ЭКРАН — ПРЕДИКТИВНАЯ МОДЕЛЬ
+    ══════════════════════════════ */
+    .prd-section {
+      position: relative;
+      padding: 100px 40px 100px;
+      background: #040509;
+      overflow: hidden;
+    }
+    .prd-glow {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(160px);
+    }
+    .prd-glow-1 {
+      width: 700px; height: 700px; top: -10%; left: -10%;
+      background: radial-gradient(circle, rgba(91,141,239,0.08) 0%, transparent 70%);
+    }
+    .prd-glow-2 {
+      width: 600px; height: 600px; bottom: 0; right: -8%;
+      background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
+    }
+    .prd-inner {
+      position: relative; z-index: 1; max-width: 960px; margin: 0 auto;
+    }
+    .prd-label {
+      font-family: var(--fm); font-size: 0.72rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: rgba(200,169,110,0.7);
+      margin-bottom: 24px; text-align: center;
+    }
+    .prd-title {
+      font-family: var(--fh);
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      color: #F0EDE8; text-align: center; line-height: 1.1;
+      max-width: 760px; margin: 0 auto 32px;
+    }
+    .prd-intro { max-width: 740px; margin: 0 auto 56px; }
+    .prd-intro p {
+      font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px;
+    }
+    .prd-intro p:last-child { margin-bottom: 0; }
+
+    /* Edu card */
+    .prd-edu-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 36px 40px; margin-bottom: 64px;
+    }
+    .prd-edu-h {
+      font-family: var(--fh); font-size: 1.15rem;
+      color: rgba(200,169,110,0.9); margin-bottom: 16px;
+    }
+    .prd-edu-body { font-size: 0.9rem; line-height: 1.85; color: rgba(255,255,255,0.5); }
+    .prd-edu-body p { margin-bottom: 12px; }
+    .prd-edu-body p:last-child { margin-bottom: 0; }
+
+    /* Streams SVG */
+    .prd-streams-wrap { margin-bottom: 64px; overflow-x: auto; }
+    .prd-streams-svg {
+      width: 100%; max-width: 800px; display: block; margin: 0 auto; min-width: 320px;
+    }
+    @keyframes prd-pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .prd-mnpi-pulse { animation: prd-pulse 2.5s ease-in-out infinite; }
+
+    /* Section title */
+    .prd-sec-title {
+      font-family: var(--fh); font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+      color: #F0EDE8; text-align: center; margin-bottom: 32px; line-height: 1.2;
+    }
+
+    /* Pattern cards */
+    .prd-patterns {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-bottom: 64px;
+    }
+    .prd-pat {
+      background: rgba(255,255,255,0.02); border-radius: 12px; padding: 22px 18px;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .prd-pat.prd-vis { opacity: 1; transform: translateY(0); }
+    .prd-pat-icon { font-size: 1.4rem; margin-bottom: 10px; line-height: 1; }
+    .prd-pat-name { font-family: var(--fh); font-size: 0.95rem; margin-bottom: 10px; line-height: 1.2; }
+    .prd-pat-text { font-size: 0.76rem; line-height: 1.65; color: rgba(255,255,255,0.42); }
+    .prd-pat-g { border: 1px solid rgba(80,216,144,0.2); }
+    .prd-pat-g .prd-pat-name { color: #50D890; }
+    .prd-pat-r { border: 1px solid rgba(224,92,92,0.2); }
+    .prd-pat-r .prd-pat-name { color: #E05C5C; }
+    .prd-pat-b { border: 1px solid rgba(59,158,255,0.2); }
+    .prd-pat-b .prd-pat-name { color: #3B9EFF; }
+    .prd-pat-o { border: 1px solid rgba(240,140,60,0.2); }
+    .prd-pat-o .prd-pat-name { color: #F08C3C; }
+
+    /* Practitioner text */
+    .prd-for-prac { max-width: 740px; margin: 0 auto 64px; }
+    .prd-for-prac p {
+      font-size: 0.92rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px;
+    }
+    .prd-for-prac p:last-child { margin-bottom: 0; }
+
+    /* Timeline */
+    .prd-tl-wrap { margin-bottom: 64px; overflow-x: auto; }
+    .prd-tl-svg {
+      width: 100%; max-width: 860px; display: block; margin: 0 auto; min-width: 320px;
+    }
+    .prd-tl-pt { opacity: 0; transition: opacity 0.4s ease; }
+    .prd-tl-pt.prd-vis { opacity: 1; }
+
+    /* Closing */
+    .prd-closing {
+      max-width: 740px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.07); padding-top: 56px;
+    }
+    .prd-closing p {
+      font-size: 0.92rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px;
+    }
+    .prd-closing p:last-child { margin-bottom: 0; }
+    .prd-closing-card {
+      margin-top: 36px; padding: 26px 32px;
+      background: rgba(200,169,110,0.06);
+      border: 1px solid rgba(200,169,110,0.22);
+      border-radius: 12px; text-align: center;
+      font-family: var(--fm); font-size: 0.82rem;
+      letter-spacing: 0.04em; line-height: 1.75;
+      color: rgba(200,169,110,0.8);
+    }
+
+    @media (max-width: 768px) {
+      .prd-patterns { grid-template-columns: repeat(2, 1fr); }
+      .prd-edu-card { padding: 24px 20px; }
+    }
+    @media (max-width: 480px) {
+      .prd-section { padding: 70px 20px 70px; }
+      .prd-patterns { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -3143,6 +3905,527 @@
     </div>
   </section>
 
+  <!-- ВОСЬМОЙ ЭКРАН: РИТМЫ КАК БАЗИС -->
+  <section class="rb-section">
+    <div class="rb-blob rb-blob-1"></div>
+    <div class="rb-blob rb-blob-2"></div>
+    <div class="s-inner rb-inner">
+
+      <div class="rb-label fade-up">РИТМЫ — ОСНОВА ВСЕГО</div>
+
+      <h2 class="rb-title fade-up">Режимы сознания — это не упражнения. Это ритмы.</h2>
+
+      <div class="rb-intro fade-up">
+        <p>Когда мы говорим о семи режимах — легко воспринять это как набор техник. Научился входить в Pure Nothing — хорошо. Освоил Quantum Genesis — отлично. Но это неверное понимание, которое приводит к тому же результату что и без всякой системы: человек практикует, получает опыт, и через месяц всё возвращается на место.</p>
+        <p>Режимы — это не техники. Это ритмы работы мозга. И как любой ритм, они существуют не в отдельные моменты практики, а в непрерывном потоке жизни. Сердце не бьётся только когда вы думаете о сердцебиении. Мозг не работает в альфа только когда вы на коврике для медитации.</p>
+        <p>Вся разница между человеком который изменился и человеком который просто прошёл курс — в том, стали ли эти ритмы частью его обычной жизни. Или остались отдельной практикой в отдельное время.</p>
+      </div>
+
+      <!-- Параллельные анимированные волны -->
+      <div class="rb-waves-block fade-up">
+        <div class="rb-waves-header">← Время &nbsp;·&nbsp; параллельные ритмы разного масштаба</div>
+
+        <div class="rb-wave-row">
+          <div class="rb-wave-meta">
+            <span class="rb-wave-name">Сердечный ритм</span>
+            <span class="rb-wave-freq">ультрадианный · секунды</span>
+          </div>
+          <div class="rb-wave-svg-wrap rb-w1">
+            <svg viewBox="0 0 2400 50" preserveAspectRatio="none">
+              <path id="rbWavePath1" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="rb-wave-row">
+          <div class="rb-wave-meta">
+            <span class="rb-wave-name">ЭЭГ-ритмы мозга</span>
+            <span class="rb-wave-freq">минуты</span>
+          </div>
+          <div class="rb-wave-svg-wrap rb-w2">
+            <svg viewBox="0 0 2400 50" preserveAspectRatio="none">
+              <path id="rbWavePath2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="rb-wave-row">
+          <div class="rb-wave-meta">
+            <span class="rb-wave-name">Циркадный ритм</span>
+            <span class="rb-wave-freq">24 часа · сон и бодрствование</span>
+          </div>
+          <div class="rb-wave-svg-wrap rb-w3">
+            <svg viewBox="0 0 2400 50" preserveAspectRatio="none">
+              <path id="rbWavePath3" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="rb-wave-row">
+          <div class="rb-wave-meta">
+            <span class="rb-wave-name">Недельный цикл</span>
+            <span class="rb-wave-freq">энергия и восстановление</span>
+          </div>
+          <div class="rb-wave-svg-wrap rb-w4">
+            <svg viewBox="0 0 2400 50" preserveAspectRatio="none">
+              <path id="rbWavePath4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="rb-wave-row">
+          <div class="rb-wave-meta">
+            <span class="rb-wave-name">Годовой цикл</span>
+            <span class="rb-wave-freq">сезоны · природные ритмы</span>
+          </div>
+          <div class="rb-wave-svg-wrap rb-w5">
+            <svg viewBox="0 0 2400 50" preserveAspectRatio="none">
+              <path id="rbWavePath5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 4"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="rb-waves-caption">Ритм есть у всего. У планеты, у тела, у мозга. Вопрос только в том — живёт ли человек в согласии с этими ритмами или против них.</div>
+      </div>
+
+      <!-- Текстовый блок -->
+      <div class="rb-text-block fade-up">
+        <p>Биология давно это знает. Циркадные ритмы — суточные циклы сна и бодрствования — управляют гормональным фоном, температурой тела, иммунитетом и способностью к обучению. Когда человек работает против своего циркадного ритма — ложится в три ночи, встаёт по будильнику, пьёт кофе вместо сна — его мозг физически не способен на глубокую нейропластичность. <span class="rb-text-highlight">Какую бы практику вы ему ни давали.</span></p>
+        <p>Инфрадианные ритмы — более длинные циклы — управляют восстановлением, гормональными волнами, сезонными изменениями энергии. Зимой метаболизм замедляется, нужно больше восстановления. Весной энергия растёт, это время для интенсивной работы. Эти циклы существуют независимо от того знает о них человек или нет. Но когда он начинает их видеть — он перестаёт воевать с собой.</p>
+        <p>И есть третий уровень — внутренние ритмы конкретного человека. Его личный хронотип. Его индивидуальные циклы подъёма и восстановления. Его паттерны энергии в течение недели. Эти ритмы уникальны — и именно поэтому данные трекера так важны. <span class="rb-text-highlight">Они показывают не среднестатистического человека, а этого конкретного.</span></p>
+      </div>
+
+      <!-- Три концентрических кольца -->
+      <div class="rb-rings-section fade-up">
+        <div class="rb-rings-container" id="rbRings">
+          <div class="rb-ring-anchor">
+            <div class="rb-ring rb-ring-outer"></div>
+          </div>
+          <div class="rb-ring-anchor">
+            <div class="rb-ring rb-ring-mid"></div>
+          </div>
+          <div class="rb-ring-anchor">
+            <div class="rb-ring rb-ring-inner"></div>
+          </div>
+          <div class="rb-ring-center">
+            <div class="rb-ring-center-dot"></div>
+            <div class="rb-ring-center-text">Человек</div>
+          </div>
+        </div>
+
+        <div class="rb-rings-legend">
+          <div class="rb-rings-legend-item">
+            <div class="rb-rings-legend-dot outer"></div>
+            <div>
+              <span class="rb-rings-legend-name">Природные ритмы</span>
+              <span class="rb-rings-legend-desc">Годовой цикл · сезоны · солнцестояния · равноденствия</span>
+            </div>
+          </div>
+          <div class="rb-rings-legend-item">
+            <div class="rb-rings-legend-dot mid"></div>
+            <div>
+              <span class="rb-rings-legend-name">Физиологические ритмы</span>
+              <span class="rb-rings-legend-desc">Циркадный · инфрадианный · сон · HRV · гормоны</span>
+            </div>
+          </div>
+          <div class="rb-rings-legend-item">
+            <div class="rb-rings-legend-dot inner"></div>
+            <div>
+              <span class="rb-rings-legend-name">Ритмы мозга и состояний</span>
+              <span class="rb-rings-legend-desc">ЭЭГ-паттерны · режимы · DMN · альфа · тета</span>
+            </div>
+          </div>
+          <div class="rb-rings-legend-item">
+            <div class="rb-rings-legend-dot center"></div>
+            <div>
+              <span class="rb-rings-legend-name">Человек</span>
+              <span class="rb-rings-legend-desc">В центре всех ритмов одновременно</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rb-rings-caption fade-up">Когда все три уровня синхронизированы — практика работает в полную силу.<br>Когда они рассинхронизированы — никакая техника не поможет.</div>
+
+      <!-- Переходный блок -->
+      <div class="rb-transition fade-up">
+        <div class="rb-transition-label">Следующий уровень</div>
+        <h3>Именно здесь начинается система Ритмы Жизни</h3>
+        <p>Натали Морозова строила свою систему именно вокруг этого понимания. Не как набор инструментов планирования — а как способ привести человека в синхронизацию с его собственными ритмами. На всех трёх уровнях одновременно. И именно поэтому Ритмы Жизни стали четвёртым потоком данных в MNPI — потому что контекст жизни объясняет всё что происходит в мозге.</p>
+        <a href="../../ritmy/" class="rb-cta">Система Ритмы Жизни →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ДЕВЯТЫЙ ЭКРАН: РИТМЫ ЖИЗНИ -->
+  <section class="rl-section">
+    <div class="rl-blob rl-blob-1"></div>
+    <div class="rl-blob rl-blob-2"></div>
+    <div class="s-inner rl-inner">
+
+      <div class="rl-label fade-up">СИСТЕМА РИТМЫ ЖИЗНИ</div>
+      <h2 class="rl-title fade-up">Методология возвращения человека к себе — и встраивания состояний в жизнь</h2>
+      <div class="rl-author fade-up">Наталья Морозова · создатель системы Ритмы Жизни</div>
+
+      <div class="rl-intro fade-up">
+        <p>Большинство систем планирования и саморазвития работают снаружи внутрь. Они дают человеку структуру — цели, задачи, привычки — и предполагают что если следовать структуре достаточно дисциплинированно, внутреннее состояние изменится само. Иногда это работает. Чаще — нет. Потому что структура без контакта с собой это просто ещё один источник напряжения.</p>
+        <p>Ритмы Жизни устроены иначе. Система движется изнутри наружу. Сначала — контакт с собой, с Ядром, с тем что есть до всех ролей и задач. И только из этой точки — разворачивание в жизнь. В сферы. Во время. В действие.</p>
+        <p>Это три уровня — и каждый следующий строится на предыдущем.</p>
+      </div>
+
+      <!-- ── Подуровень 1: Ядро — Структура Я ── -->
+      <div class="rl-sublevel fade-up">
+        <div class="rl-sublevel-label">Уровень первый</div>
+        <h3 class="rl-sublevel-title">Кто я — до всех ролей</h3>
+        <div class="rl-sublevel-text">
+          <p>В центре системы — не планер и не техника. Человек. Его Ядро. То что остаётся когда убрать все роли, все ожидания, все задачи. В системе Ритмы Жизни это называется истинное Я — и это не абстракция, а конкретная точка отсчёта. Точка А.</p>
+          <p>Система описывает семь Миров как слои вокруг этого Ядра. Каждый Мир — это уровень реальности, в котором человек существует одновременно. И каждый Мир имеет свой способ проектирования и реализации.</p>
+        </div>
+
+        <!-- Вертикальная ось Миров -->
+        <div class="rl-worlds-container" id="rlWorlds">
+          <div class="rl-world-item" data-world="1">
+            <div class="rl-world-line rl-wl-1"></div>
+            <div class="rl-world-content">
+              <div class="rl-world-num">01</div>
+              <div class="rl-world-name">Мир Духа</div>
+              <div class="rl-world-tag">I am · Я есть</div>
+              <div class="rl-world-desc">Пространство смыслов и намерений. Вектор замыслов которые развернутся в материи.</div>
+            </div>
+          </div>
+          <div class="rl-world-item" data-world="2">
+            <div class="rl-world-line rl-wl-2"></div>
+            <div class="rl-world-content">
+              <div class="rl-world-num">02</div>
+              <div class="rl-world-name">Мир Души</div>
+              <div class="rl-world-tag">I wish · Я желаю</div>
+              <div class="rl-world-desc">Пространство энергии, желаний и целей. Создание образа результата.</div>
+            </div>
+          </div>
+          <div class="rl-world-item" data-world="3">
+            <div class="rl-world-line rl-wl-3"></div>
+            <div class="rl-world-content">
+              <div class="rl-world-num">03</div>
+              <div class="rl-world-name">Мир Ума</div>
+              <div class="rl-world-tag">I can · Я проявляю</div>
+              <div class="rl-world-desc">Пространство убеждений, нейронных связей и логики поступков.</div>
+            </div>
+          </div>
+          <div class="rl-world-item" data-world="4">
+            <div class="rl-world-line rl-wl-4"></div>
+            <div class="rl-world-content">
+              <div class="rl-world-num">04</div>
+              <div class="rl-world-name">Мир Материи и Тела</div>
+              <div class="rl-world-tag">I have · Я имею</div>
+              <div class="rl-world-desc">Пространство действий и проявленности во всех сферах жизни.</div>
+            </div>
+          </div>
+          <div class="rl-world-item" data-world="5">
+            <div class="rl-world-line rl-wl-5"></div>
+            <div class="rl-world-content">
+              <div class="rl-world-num">05</div>
+              <div class="rl-world-name">Мир Законов</div>
+              <div class="rl-world-tag">I allow · Я разрешаю</div>
+              <div class="rl-world-desc">Пространство правил и границ — внутренних и внешних.</div>
+            </div>
+          </div>
+          <div class="rl-world-item" data-world="6">
+            <div class="rl-world-line rl-wl-6"></div>
+            <div class="rl-world-content">
+              <div class="rl-world-num">06</div>
+              <div class="rl-world-name">Мир Осознаний</div>
+              <div class="rl-world-tag">I think · Я анализирую</div>
+              <div class="rl-world-desc">Пространство рефлексии, обратной связи и интеграции опыта.</div>
+            </div>
+          </div>
+          <div class="rl-world-item" data-world="7">
+            <div class="rl-world-line rl-wl-7"></div>
+            <div class="rl-world-content">
+              <div class="rl-world-num">07</div>
+              <div class="rl-world-name">Мир Ясности</div>
+              <div class="rl-world-tag">I know · Я знаю · Я чувствую</div>
+              <div class="rl-world-desc">Единство всех уровней. Яснознание и Ясночувствование.</div>
+            </div>
+          </div>
+          <div class="rl-worlds-core" id="rlWorldsCore">
+            <div class="rl-core-dot"></div>
+            <div class="rl-core-text">Истинное Я · Ядро · Точка А</div>
+          </div>
+        </div>
+
+        <div class="rl-text-after fade-up">
+          <p>Квантовые переходы между Мирами — это то что происходит когда человек теряет себя и возвращается к себе. Когда он застрял в Мире Ума — в бесконечном анализе — и не может почувствовать тело. Когда он живёт только в Мире Материи — в действиях и результатах — и потерял контакт со смыслами.</p>
+          <p><span class="rl-link-note">Связь с MNPI: Точка А в индексе — это многомерный портрет человека через все семь Миров одновременно. ЭЭГ показывает что происходит в мозге. Ритмы Жизни показывают в каком Мире живёт его внимание. Вместе — полная картина.</span></p>
+        </div>
+      </div>
+
+      <!-- ── Подуровень 2: Я изнутри наружу — 8 сфер ── -->
+      <div class="rl-sublevel fade-up">
+        <div class="rl-sublevel-label">Уровень второй</div>
+        <h3 class="rl-sublevel-title">Как Ядро разворачивается в жизнь</h3>
+        <div class="rl-sublevel-text">
+          <p>Ядро — это центр. Но жизнь разворачивается во внешнем мире. В восьми сферах. И задача системы — помочь человеку не потерять себя двигаясь наружу. Удерживать ось. Оставаться в контакте с Ядром — даже когда жизнь требует действия, общения, решений.</p>
+        </div>
+
+        <!-- Колесо восьми сфер -->
+        <div class="rl-wheel-wrap">
+          <div class="rl-wheel-svg-container">
+            <svg id="rlWheelSvg" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Rendered by JS -->
+            </svg>
+          </div>
+        </div>
+
+        <div class="rl-text-after fade-up">
+          <p>Принцип управления из центра — это не про контроль. Это про фокус внимания. Когда человек фокусируется на оценках и задачах — он теряет ось. Когда фокусируется на ощущениях и ценностях — удерживает её. Разница между этими двумя режимами измеримая — это именно то что фиксирует RI в MNPI.</p>
+          <p>Путь который строит система: <strong style="color:rgba(255,255,255,0.7)">Точка А</strong> — где я сейчас. <strong style="color:rgba(255,255,255,0.7)">Точка Б</strong> — куда я иду. <strong style="color:rgba(255,255,255,0.7)">Точка G</strong> — большая цель, которая задаёт направление всему.</p>
+          <p><span class="rl-link-note">Связь с предиктивной моделью: восемь сфер — это база для понимания контекста жизни. Когда данные трекера показывают истощение — система помогает увидеть в какой сфере человек перегружен. Когда ЭЭГ показывает трудный вход в состояние — данные планера объясняют почему.</span></p>
+        </div>
+      </div>
+
+      <!-- ── Подуровень 3: Ритмы Времени ── -->
+      <div class="rl-sublevel fade-up">
+        <div class="rl-sublevel-label">Уровень третий</div>
+        <h3 class="rl-sublevel-title">Жизнь в синхронизации с природными циклами</h3>
+        <div class="rl-sublevel-text">
+          <p>Третий уровень — время. Человек не существует вне времени. И его биоритмы — физиологические, психологические, энергетические — синхронизированы с природными циклами гораздо глубже чем принято думать. Система Ритмы Жизни строит планирование на основе понимания в какой точке природного цикла человек находится прямо сейчас.</p>
+        </div>
+
+        <!-- Годовой круговой календарь -->
+        <div class="rl-calendar-wrap">
+          <svg class="rl-calendar-svg" id="rlCalSvg" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Rendered by JS -->
+          </svg>
+        </div>
+
+        <div class="rl-text-after fade-up">
+          <p>Четыре главные точки — солнцестояния и равноденствия — это вехи рефлексии и перепросмотра. В эти моменты система предлагает остановиться и задать себе вопросы: где я нахожусь, куда иду, что нужно отпустить, что взять с собой. Это не ритуал и не эзотерика — это структурированная рефлексия привязанная к естественным точкам смены цикла.</p>
+          <p>Ежедневный планер работает на том же принципе но в масштабе дня. Каждое утро — шесть вопросов которые возвращают человека к себе перед тем как он войдёт в поток задач.</p>
+        </div>
+
+        <!-- Шесть вопросов -->
+        <div class="rl-planner-grid" id="rlPlannerGrid">
+          <div class="rl-planner-card">
+            <span class="rl-planner-num">01</span>
+            Каков образ и настрой моего дня?
+          </div>
+          <div class="rl-planner-card">
+            <span class="rl-planner-num">02</span>
+            Что мне необходимо сделать — по всем сферам жизни?
+          </div>
+          <div class="rl-planner-card">
+            <span class="rl-planner-num">03</span>
+            Что я могу сделать сам?
+          </div>
+          <div class="rl-planner-card">
+            <span class="rl-planner-num">04</span>
+            Что я могу поручить или попросить других?
+          </div>
+          <div class="rl-planner-card">
+            <span class="rl-planner-num">05</span>
+            Какое убеждение мне нужно проработать сегодня?
+          </div>
+          <div class="rl-planner-card">
+            <span class="rl-planner-num">06</span>
+            Какую новую привычку включить в этот день?
+          </div>
+        </div>
+        <div class="rl-planner-caption">Это не список задач. Это ежедневное возвращение к себе — перед тем как начать действовать.</div>
+
+        <div class="rl-text-after fade-up">
+          <p>Планер Ритмы Жизни — это четвёртый поток данных MNPI. Ежедневные записи по сферам, отметки о состоянии, качество сна, уровень энергии — всё это накапливается и создаёт контекст жизни. Без этого контекста данные ЭЭГ и трекера — это цифры без объяснения. С ним — они становятся картой.</p>
+        </div>
+      </div>
+
+      <!-- Закрывающая карточка с цитатой -->
+      <div class="rl-quote-card fade-up">
+        <div class="rl-quote-text">«Настрой свой ритм жизни на волну гармонии, любви и изобилия.»</div>
+        <div class="rl-quote-author">Наталья Морозова</div>
+        <div class="rl-quote-body">Три уровня системы — Ядро, Сферы, Ритмы — это не отдельные инструменты. Это единая карта человека. И именно эта карта становится основой для предиктивной модели. Когда мы знаем кто этот человек в своей глубине, как разворачивается его внимание в жизни и в каком природном цикле он находится — мы можем предсказывать его состояние. Видеть когда он готов к глубокой работе и когда ему нужно восстановление.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ДЕСЯТЫЙ ЭКРАН: ПРЕДИКТИВНАЯ МОДЕЛЬ -->
+  <section class="prd-section">
+    <div class="prd-glow prd-glow-1"></div>
+    <div class="prd-glow prd-glow-2"></div>
+    <div class="s-inner prd-inner">
+
+      <div class="prd-label fade-up">ПРЕДИКТИВНАЯ МОДЕЛЬ</div>
+      <h2 class="prd-title fade-up">Когда данные накапливаются — появляется нечто большее чем измерение</h2>
+
+      <div class="prd-intro fade-up">
+        <p>До сих пор мы говорили об измерении состояний в моменте. ЭЭГ показывает что сейчас. Трекер показывает как восстанавливается тело. Планер показывает контекст жизни. Голосовой нарратив показывает как человек описывает своё состояние.</p>
+        <p>Но когда все эти потоки накапливаются месяцами — происходит качественный скачок. Система перестаёт просто фиксировать и начинает предсказывать. Не в смысле гадания — а в смысле статистических паттернов которые становятся видны только на длинном горизонте данных.</p>
+        <p>Это и есть предиктивная модель. И это — одна из самых важных тем ближайшего десятилетия в персональной медицине и нейронауке.</p>
+      </div>
+
+      <!-- Образовательная карточка -->
+      <div class="prd-edu-card fade-up">
+        <div class="prd-edu-h">Почему это тема будущего</div>
+        <div class="prd-edu-body">
+          <p>Крупнейшие IT-компании мира — Apple, Google, Amazon, Samsung — уже несколько лет двигаются в сторону одного и того же: создания систем которые отслеживают здоровье и состояние человека из множества источников данных и на основе этого дают персональные рекомендации. Apple Watch меряет ЭКГ. Oura Ring строит индекс готовности. Whoop даёт рекомендации по тренировкам на основе восстановления.</p>
+          <p>Но все эти системы работают только с физиологией тела. Никто из них не интегрирует данные мозга, данные языка и данные контекста жизни в одну модель. Именно этот пробел закрывает MNPI-трек. Четыре потока данных — нейрофизиология, физиология тела, феноменология и контекст жизни — это принципиально другой уровень понимания человека.</p>
+        </div>
+      </div>
+
+      <!-- Четыре потока сходятся -->
+      <div class="prd-streams-wrap fade-up">
+        <svg id="prdStreamsSvg" class="prd-streams-svg" viewBox="0 0 760 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="prd-a1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6Z" fill="rgba(59,158,255,0.7)"/>
+            </marker>
+            <marker id="prd-a2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6Z" fill="rgba(80,216,144,0.7)"/>
+            </marker>
+            <marker id="prd-a3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6Z" fill="rgba(200,169,110,0.7)"/>
+            </marker>
+            <marker id="prd-a4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6Z" fill="rgba(155,126,222,0.7)"/>
+            </marker>
+            <marker id="prd-a5" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6Z" fill="rgba(200,169,110,0.9)"/>
+            </marker>
+          </defs>
+
+          <!-- Source 1: EEG / Neiry (blue) -->
+          <rect x="1" y="10" width="170" height="55" rx="8" fill="rgba(59,158,255,0.06)" stroke="rgba(59,158,255,0.3)" stroke-width="1"/>
+          <text x="12" y="30" font-family="Courier Prime,monospace" font-size="7" letter-spacing="1.5" fill="rgba(59,158,255,0.6)">НЕЙРОФИЗИОЛОГИЯ</text>
+          <text x="12" y="46" font-family="Oswald,sans-serif" font-size="12" fill="rgba(59,158,255,0.9)">ЭЭГ · режимы · переходы</text>
+          <text x="12" y="59" font-family="Jost,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">Neiry</text>
+
+          <!-- Source 2: Body / Garmin (green) -->
+          <rect x="1" y="75" width="170" height="55" rx="8" fill="rgba(80,216,144,0.06)" stroke="rgba(80,216,144,0.3)" stroke-width="1"/>
+          <text x="12" y="95" font-family="Courier Prime,monospace" font-size="7" letter-spacing="1.5" fill="rgba(80,216,144,0.6)">ФИЗИОЛОГИЯ ТЕЛА</text>
+          <text x="12" y="111" font-family="Oswald,sans-serif" font-size="12" fill="rgba(80,216,144,0.9)">HRV · сон · восстановление</text>
+          <text x="12" y="124" font-family="Jost,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">Garmin</text>
+
+          <!-- Source 3: Voice / Claude (gold) -->
+          <rect x="1" y="140" width="170" height="55" rx="8" fill="rgba(200,169,110,0.06)" stroke="rgba(200,169,110,0.3)" stroke-width="1"/>
+          <text x="12" y="160" font-family="Courier Prime,monospace" font-size="7" letter-spacing="1.5" fill="rgba(200,169,110,0.6)">ФЕНОМЕНОЛОГИЯ</text>
+          <text x="12" y="176" font-family="Oswald,sans-serif" font-size="12" fill="rgba(200,169,110,0.9)">Голос · нарратив · ИИ</text>
+          <text x="12" y="189" font-family="Jost,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">Диктофон + Claude API</text>
+
+          <!-- Source 4: Context / Ritmy (violet) -->
+          <rect x="1" y="205" width="170" height="55" rx="8" fill="rgba(155,126,222,0.06)" stroke="rgba(155,126,222,0.3)" stroke-width="1"/>
+          <text x="12" y="225" font-family="Courier Prime,monospace" font-size="7" letter-spacing="1.5" fill="rgba(155,126,222,0.6)">КОНТЕКСТ ЖИЗНИ</text>
+          <text x="12" y="241" font-family="Oswald,sans-serif" font-size="12" fill="rgba(155,126,222,0.9)">Сферы · планер · события</text>
+          <text x="12" y="254" font-family="Jost,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">Ритмы Жизни</text>
+
+          <!-- Paths to center (animated by JS) -->
+          <path id="prdPath1" d="M171,37 C240,37 240,132 308,132" stroke="rgba(59,158,255,0.6)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#prd-a1)"/>
+          <path id="prdPath2" d="M171,102 C240,102 240,132 308,132" stroke="rgba(80,216,144,0.6)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#prd-a2)"/>
+          <path id="prdPath3" d="M171,167 C240,167 240,132 308,132" stroke="rgba(200,169,110,0.6)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#prd-a3)"/>
+          <path id="prdPath4" d="M171,232 C240,232 240,132 308,132" stroke="rgba(155,126,222,0.6)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#prd-a4)"/>
+
+          <!-- Center MNPI block -->
+          <rect id="prdMnpiBlock" x="308" y="104" width="144" height="56" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(200,169,110,0.55)" stroke-width="1.5" opacity="0"/>
+          <rect id="prdMnpiGlow" x="308" y="104" width="144" height="56" rx="10" fill="none" stroke="rgba(200,169,110,0.25)" stroke-width="4" opacity="0" class="prd-mnpi-pulse"/>
+          <text id="prdMnpiT1" x="380" y="124" text-anchor="middle" font-family="Courier Prime,monospace" font-size="7" letter-spacing="2" fill="rgba(200,169,110,0.65)" opacity="0">MNPI-ТРЕК</text>
+          <text id="prdMnpiT2" x="380" y="142" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" fill="rgba(255,255,255,0.85)" opacity="0">12 месяцев данных</text>
+
+          <!-- Arrow center → prediction -->
+          <path id="prdPathFinal" d="M452,132 L558,132" stroke="rgba(200,169,110,0.75)" stroke-width="2" stroke-linecap="round" marker-end="url(#prd-a5)" opacity="0"/>
+
+          <!-- Predictive model block -->
+          <rect id="prdPredBlock" x="560" y="104" width="196" height="56" rx="10" fill="rgba(200,169,110,0.1)" stroke="rgba(200,169,110,0.55)" stroke-width="1.5" opacity="0"/>
+          <text id="prdPredT1" x="658" y="124" text-anchor="middle" font-family="Courier Prime,monospace" font-size="7" letter-spacing="2" fill="rgba(200,169,110,0.65)" opacity="0">ПРЕДИКТИВНАЯ</text>
+          <text id="prdPredT2" x="658" y="140" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" fill="rgba(200,169,110,0.95)" opacity="0">Паттерны · прогнозы</text>
+          <text id="prdPredT3" x="658" y="154" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(200,169,110,0.55)" opacity="0">персональная карта</text>
+        </svg>
+      </div>
+
+      <!-- Паттерны -->
+      <h3 class="prd-sec-title fade-up">Что становится видно через шесть месяцев данных</h3>
+      <div class="prd-patterns" id="prdPatterns">
+        <div class="prd-pat prd-pat-g">
+          <div class="prd-pat-icon">↑</div>
+          <div class="prd-pat-name">Окно роста</div>
+          <div class="prd-pat-text">Когда HRV стабильно высокий пять и более дней подряд, качество сна хорошее и ЭЭГ-сессии показывают быстрые переходы — это момент для углублённой работы. Мозг в режиме максимальной пластичности.</div>
+        </div>
+        <div class="prd-pat prd-pat-r">
+          <div class="prd-pat-icon">↓</div>
+          <div class="prd-pat-name">Сигнал восстановления</div>
+          <div class="prd-pat-text">Когда HRV падает три и более дня подряд, сон ухудшился, накопленная усталость растёт — система сигнализирует: не начинать интенсивных практик, не форсировать новые циклы.</div>
+        </div>
+        <div class="prd-pat prd-pat-b">
+          <div class="prd-pat-icon">∿</div>
+          <div class="prd-pat-name">Личные циклы</div>
+          <div class="prd-pat-text">У каждого человека есть собственные физиологические ритмы. Через шесть месяцев они становятся видны: когда случается спад, в какое время суток мозг наиболее пластичен, какие события влияют больше всего.</div>
+        </div>
+        <div class="prd-pat prd-pat-o">
+          <div class="prd-pat-icon">⚡</div>
+          <div class="prd-pat-name">Разрыв ум-тело</div>
+          <div class="prd-pat-text">Когда планер показывает высокую активность, а физиология говорит об истощении — красный флаг. Человек живёт в голове, оторвавшись от тела. MNPI-трек фиксирует этот разрыв раньше чем человек его почувствует.</div>
+        </div>
+      </div>
+
+      <!-- Для практика -->
+      <h3 class="prd-sec-title fade-up">Что это даёт практику и его клиентам</h3>
+      <div class="prd-for-prac fade-up">
+        <p>Представьте что вы знаете — до того как клиент пришёл на сессию — в каком физиологическом состоянии он находится. Его HRV утром. Качество его сна последние три ночи. Его уровень накопленной усталости. И на основе этого вы можете не просто провести стандартную сессию — а адаптировать её под реальное состояние человека прямо сейчас.</p>
+        <p>Это не фантастика. Это то что становится возможным когда данные накапливаются достаточно долго чтобы система научилась распознавать паттерны конкретного человека.</p>
+        <p>Для исследования это означает следующее: мы сможем не просто сравнить состояния до и после практики, но и понять при каких условиях жизни человека практика работает лучше всего. Это и есть глубокая верификация метода — не просто показывает ли он результат, а при каких условиях и для кого он показывает результат.</p>
+      </div>
+
+      <!-- Временная ось -->
+      <h3 class="prd-sec-title fade-up">Временная ось накопления данных</h3>
+      <div class="prd-tl-wrap fade-up">
+        <svg id="prdTimeline" class="prd-tl-svg" viewBox="0 0 820 215" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line id="prdTlTrack" x1="40" y1="130" x2="780" y2="130" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+          <!-- End cap -->
+          <circle cx="780" cy="130" r="3" fill="rgba(255,255,255,0.2)" class="prd-tl-pt" data-tl="0"/>
+          <!-- Point 1 -->
+          <g class="prd-tl-pt" data-tl="1">
+            <circle cx="110" cy="130" r="6" fill="rgba(59,158,255,0.85)" stroke="rgba(59,158,255,0.3)" stroke-width="5"/>
+            <text x="110" y="116" text-anchor="middle" font-family="Courier Prime,monospace" font-size="8" letter-spacing="1" fill="rgba(59,158,255,0.7)">МЕСЯЦ 0–1</text>
+            <text x="110" y="105" text-anchor="middle" font-family="Oswald,sans-serif" font-size="10" fill="rgba(255,255,255,0.65)">Точка А</text>
+            <text x="110" y="150" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">Нейропрофиль · 6 сессий</text>
+          </g>
+          <!-- Point 2 -->
+          <g class="prd-tl-pt" data-tl="2">
+            <circle cx="290" cy="130" r="6" fill="rgba(80,216,144,0.85)" stroke="rgba(80,216,144,0.3)" stroke-width="5"/>
+            <text x="290" y="116" text-anchor="middle" font-family="Courier Prime,monospace" font-size="8" letter-spacing="1" fill="rgba(80,216,144,0.7)">МЕСЯЦ 1–3</text>
+            <text x="290" y="105" text-anchor="middle" font-family="Oswald,sans-serif" font-size="10" fill="rgba(255,255,255,0.65)">Кривая данных</text>
+            <text x="290" y="150" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">Трекер + планер · паттерны</text>
+          </g>
+          <!-- Point 3 -->
+          <g class="prd-tl-pt" data-tl="3">
+            <circle cx="490" cy="130" r="6" fill="rgba(200,169,110,0.85)" stroke="rgba(200,169,110,0.3)" stroke-width="5"/>
+            <text x="490" y="116" text-anchor="middle" font-family="Courier Prime,monospace" font-size="8" letter-spacing="1" fill="rgba(200,169,110,0.7)">МЕСЯЦ 3–6</text>
+            <text x="490" y="105" text-anchor="middle" font-family="Oswald,sans-serif" font-size="10" fill="rgba(255,255,255,0.65)">Корреляции</text>
+            <text x="490" y="150" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">Что повышает пластичность</text>
+          </g>
+          <!-- Point 4 — highlighted -->
+          <g class="prd-tl-pt" data-tl="4">
+            <circle cx="700" cy="130" r="9" fill="rgba(200,169,110,0.95)" stroke="rgba(200,169,110,0.35)" stroke-width="7"/>
+            <text x="700" y="116" text-anchor="middle" font-family="Courier Prime,monospace" font-size="8" letter-spacing="1" fill="rgba(200,169,110,0.8)">МЕСЯЦ 6–12</text>
+            <text x="700" y="105" text-anchor="middle" font-family="Oswald,sans-serif" font-size="11" fill="rgba(255,255,255,0.9)">Предиктивная модель</text>
+            <text x="700" y="152" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(255,255,255,0.4)">Индивидуальная карта</text>
+            <text x="700" y="164" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(255,255,255,0.4)">нейропластичности</text>
+            <rect x="574" y="30" width="252" height="44" rx="8" fill="rgba(200,169,110,0.07)" stroke="rgba(200,169,110,0.28)" stroke-width="1"/>
+            <text x="700" y="49" text-anchor="middle" font-family="Jost,sans-serif" font-size="9.5" fill="rgba(200,169,110,0.75)">Это уже не просто данные.</text>
+            <text x="700" y="65" text-anchor="middle" font-family="Jost,sans-serif" font-size="9.5" fill="rgba(200,169,110,0.75)">Это живой портрет человека во времени.</text>
+            <line x1="700" y1="74" x2="700" y2="121" stroke="rgba(200,169,110,0.2)" stroke-width="1" stroke-dasharray="3 2"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Closing -->
+      <div class="prd-closing fade-up">
+        <p>Именно поэтому это исследование рассчитано на год — а не на один замер. Разовый замер даёт точку А. Это ценно. Но настоящее понимание начинается когда появляется динамика. Когда видно не где человек сейчас — а куда он движется, с какой скоростью и что на это влияет.</p>
+        <p>Участники которые проходят полный годовой трек получают не просто отчёт о состоянии. Они получают карту — персональную, живую, основанную на данных их конкретного мозга и тела. И эта карта продолжает работать после окончания исследования.</p>
+        <div class="prd-closing-card">Персональная карта нейропластичности · основана на данных конкретного мозга и тела · продолжает работать после окончания исследования</div>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
 <script src="../../components/nav.js"></script>
@@ -3209,6 +4492,405 @@
   if (pulseCircle) {
     pulseCircle.style.animation = 'pm-pulse 2s ease-in-out infinite';
   }
+
+  // Экран 8 — генерация синусоидальных волн
+  (function() {
+    function makeSinePath(width, height, cycles, amplitude) {
+      var cx = height / 2;
+      var pts = [];
+      var steps = Math.round(width / 2);
+      for (var i = 0; i <= steps; i++) {
+        var x = (i / steps) * width;
+        var y = cx + amplitude * Math.sin((i / steps) * cycles * 2 * Math.PI);
+        pts.push((i === 0 ? 'M' : 'L') + x.toFixed(1) + ' ' + y.toFixed(1));
+      }
+      return pts.join(' ');
+    }
+
+    var waves = [
+      { id: 'rbWavePath1', cycles: 16, amplitude: 12 },
+      { id: 'rbWavePath2', cycles: 10, amplitude: 16 },
+      { id: 'rbWavePath3', cycles: 4,  amplitude: 20 },
+      { id: 'rbWavePath4', cycles: 2,  amplitude: 14 },
+      { id: 'rbWavePath5', cycles: 1,  amplitude: 9  }
+    ];
+
+    waves.forEach(function(w) {
+      var el = document.getElementById(w.id);
+      if (el) el.setAttribute('d', makeSinePath(2400, 50, w.cycles, w.amplitude));
+    });
+
+    // Кольца — запуск вращения при появлении в viewport
+    var rbRings = document.getElementById('rbRings');
+    if (rbRings) {
+      var rbObs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) {
+          rbRings.classList.add('rb-rings-active');
+          rbObs.unobserve(rbRings);
+        }
+      }, { threshold: 0.3 });
+      rbObs.observe(rbRings);
+    }
+  })();
+
+  // ── Экран 9: Ритмы Жизни ──
+  (function() {
+    // ── 1. Семь Миров — последовательное появление при скролле ──
+    var worldsEl = document.getElementById('rlWorlds');
+    if (worldsEl) {
+      var worldsObs = new IntersectionObserver(function(entries) {
+        if (!entries[0].isIntersecting) return;
+        var items = worldsEl.querySelectorAll('.rl-world-item');
+        items.forEach(function(item, i) {
+          setTimeout(function() { item.classList.add('rl-visible'); }, i * 120);
+        });
+        setTimeout(function() {
+          var core = document.getElementById('rlWorldsCore');
+          if (core) core.classList.add('rl-visible');
+        }, items.length * 120 + 100);
+        worldsObs.unobserve(worldsEl);
+      }, { threshold: 0.15 });
+      worldsObs.observe(worldsEl);
+    }
+
+    // ── 2. Колесо восьми сфер — SVG генерация ──
+    var wheelSvg = document.getElementById('rlWheelSvg');
+    if (wheelSvg) {
+      var cx = 170, cy = 170, r = 130, rInner = 38;
+      var spheres = [
+        { name: 'Профессия\nПризвание',    color: '#7080FF', yang: true  },
+        { name: 'Общение\nСвязи',          color: '#9B7EDE', yang: true  },
+        { name: 'Знания\nРост',            color: '#50B4F0', yang: true  },
+        { name: 'Изобилие\nРесурс',        color: '#50D890', yang: true  },
+        { name: 'Отношения\nЛюбовь',       color: '#C8A96E', yang: false },
+        { name: 'Творчество\nСамовыражение', color: '#E08060', yang: false },
+        { name: 'ЗОЖ · Тело\nЭнергия',    color: '#D080A0', yang: false },
+        { name: 'Осознанность\nСмыслы',    color: '#A090D0', yang: false },
+      ];
+      var total = spheres.length;
+      var angleStep = (2 * Math.PI) / total;
+      var startAngle = -Math.PI / 2; // start at top
+
+      // Axes
+      var axes = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      function makeLine(x1, y1, x2, y2, stroke, opacity) {
+        var l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+        l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+        l.setAttribute('stroke', stroke); l.setAttribute('stroke-opacity', opacity);
+        l.setAttribute('stroke-width', '0.5'); l.setAttribute('stroke-dasharray', '3 3');
+        l.classList.add('rl-wheel-center', 'rl-vis');
+        return l;
+      }
+      wheelSvg.appendChild(makeLine(cx, cy - r + 10, cx, cy + r - 10, '#ffffff', '0.12'));
+      wheelSvg.appendChild(makeLine(cx - r + 10, cy, cx + r - 10, cy, '#ffffff', '0.12'));
+
+      // Outer ring
+      var outerRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      outerRing.setAttribute('cx', cx); outerRing.setAttribute('cy', cy); outerRing.setAttribute('r', r);
+      outerRing.setAttribute('stroke', 'rgba(255,255,255,0.08)'); outerRing.setAttribute('stroke-width', '1');
+      outerRing.classList.add('rl-wheel-center');
+      wheelSvg.appendChild(outerRing);
+
+      // Center circle
+      var centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      centerCircle.setAttribute('cx', cx); centerCircle.setAttribute('cy', cy); centerCircle.setAttribute('r', rInner);
+      centerCircle.setAttribute('fill', 'rgba(200,169,110,0.08)');
+      centerCircle.setAttribute('stroke', 'rgba(200,169,110,0.35)'); centerCircle.setAttribute('stroke-width', '1');
+      centerCircle.classList.add('rl-wheel-center');
+      wheelSvg.appendChild(centerCircle);
+
+      var centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      centerText.setAttribute('x', cx); centerText.setAttribute('y', cy + 4);
+      centerText.setAttribute('text-anchor', 'middle'); centerText.setAttribute('font-size', '9');
+      centerText.setAttribute('font-family', 'Courier Prime, monospace');
+      centerText.setAttribute('letter-spacing', '1'); centerText.setAttribute('fill', 'rgba(200,169,110,0.7)');
+      centerText.textContent = 'ЯДРО';
+      centerText.classList.add('rl-wheel-center');
+      wheelSvg.appendChild(centerText);
+
+      // Sectors and labels
+      spheres.forEach(function(s, i) {
+        var a1 = startAngle + i * angleStep;
+        var a2 = startAngle + (i + 1) * angleStep;
+        var aMid = (a1 + a2) / 2;
+
+        // Sector path (from inner to outer ring)
+        var x1o = cx + r * Math.cos(a1), y1o = cy + r * Math.sin(a1);
+        var x2o = cx + r * Math.cos(a2), y2o = cy + r * Math.sin(a2);
+        var x1i = cx + rInner * Math.cos(a1), y1i = cy + rInner * Math.sin(a1);
+        var x2i = cx + rInner * Math.cos(a2), y2i = cy + rInner * Math.sin(a2);
+
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        var d = 'M ' + x1i + ' ' + y1i
+              + ' L ' + x1o + ' ' + y1o
+              + ' A ' + r + ' ' + r + ' 0 0 1 ' + x2o + ' ' + y2o
+              + ' L ' + x2i + ' ' + y2i
+              + ' A ' + rInner + ' ' + rInner + ' 0 0 0 ' + x1i + ' ' + y1i + ' Z';
+        path.setAttribute('d', d);
+        path.setAttribute('fill', s.color);
+        path.setAttribute('fill-opacity', '0.08');
+        path.setAttribute('stroke', s.color);
+        path.setAttribute('stroke-opacity', '0.3');
+        path.setAttribute('stroke-width', '0.8');
+        path.classList.add('rl-sphere-sector');
+        path.dataset.idx = i;
+        wheelSvg.appendChild(path);
+
+        // Label
+        var labelR = r + 18;
+        var lx = cx + labelR * Math.cos(aMid);
+        var ly = cy + labelR * Math.sin(aMid);
+        var lines = s.name.split('\n');
+        var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.classList.add('rl-sphere-sector');
+        g.dataset.idx = i;
+        lines.forEach(function(line, li) {
+          var t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          t.setAttribute('x', lx);
+          t.setAttribute('y', ly + (li - (lines.length - 1) / 2) * 11);
+          t.setAttribute('text-anchor', 'middle');
+          t.setAttribute('font-size', '7.5');
+          t.setAttribute('font-family', 'Jost, sans-serif');
+          t.setAttribute('fill', s.color);
+          t.setAttribute('fill-opacity', '0.85');
+          t.textContent = line;
+          g.appendChild(t);
+        });
+        wheelSvg.appendChild(g);
+      });
+
+      // Animate wheel on scroll
+      var wheelObs = new IntersectionObserver(function(entries) {
+        if (!entries[0].isIntersecting) return;
+        // Center first
+        wheelSvg.querySelectorAll('.rl-wheel-center').forEach(function(el) {
+          el.classList.add('rl-vis');
+        });
+        // Then sectors clockwise
+        var sectors = wheelSvg.querySelectorAll('.rl-sphere-sector');
+        // Group by idx (path + label share same idx)
+        var byIdx = {};
+        sectors.forEach(function(el) {
+          var idx = el.dataset.idx;
+          if (!byIdx[idx]) byIdx[idx] = [];
+          byIdx[idx].push(el);
+        });
+        Object.keys(byIdx).sort(function(a,b){return a-b;}).forEach(function(idx, i) {
+          setTimeout(function() {
+            byIdx[idx].forEach(function(el) { el.classList.add('rl-vis'); });
+          }, 200 + i * 150);
+        });
+        wheelObs.unobserve(wheelSvg);
+      }, { threshold: 0.2 });
+      wheelObs.observe(wheelSvg);
+    }
+
+    // ── 3. Годовой календарь — SVG генерация ──
+    var calSvg = document.getElementById('rlCalSvg');
+    if (calSvg) {
+      var ccx = 160, ccy = 160, calR = 120;
+      var calPoints = [
+        { label: '20.03', name: 'Весеннее\nравноденствие', color: '#50D890', major: true  },
+        { label: '30.04', name: 'Белтейн',                  color: '#80E0A0', major: false },
+        { label: '22.06', name: 'Летнее\nсолнцестояние',   color: '#FFD060', major: true  },
+        { label: '01.08', name: 'Лугнасад',                 color: '#E09050', major: false },
+        { label: '22.09', name: 'Осеннее\nравноденствие',  color: '#C8A96E', major: true  },
+        { label: '31.10', name: 'Самайн',                   color: '#9B7EDE', major: false },
+        { label: '22.12', name: 'Зимнее\nсолнцестояние',   color: '#5B8DEF', major: true  },
+        { label: '02.02', name: 'Имболк',                   color: '#80B0FF', major: false },
+      ];
+      var calN = calPoints.length;
+      var calStep = (2 * Math.PI) / calN;
+      var calStart = -Math.PI / 2;
+
+      // Outer ring
+      var calRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      calRing.setAttribute('cx', ccx); calRing.setAttribute('cy', ccy); calRing.setAttribute('r', calR);
+      calRing.setAttribute('stroke', 'rgba(255,255,255,0.08)'); calRing.setAttribute('stroke-width', '1');
+      calRing.setAttribute('fill', 'none');
+      calRing.classList.add('rl-cal-arc', 'rl-vis');
+      calSvg.appendChild(calRing);
+
+      // Center dot
+      var calCenter = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      calCenter.setAttribute('cx', ccx); calCenter.setAttribute('cy', ccy); calCenter.setAttribute('r', '6');
+      calCenter.setAttribute('fill', 'rgba(200,169,110,0.8)');
+      calCenter.setAttribute('filter', 'url(#rlGlow)');
+      calCenter.classList.add('rl-cal-point');
+      calSvg.appendChild(calCenter);
+
+      // Points and labels
+      calPoints.forEach(function(p, i) {
+        var angle = calStart + i * calStep;
+        var px = ccx + calR * Math.cos(angle);
+        var py = ccy + calR * Math.sin(angle);
+        var dotR = p.major ? 5 : 3.5;
+
+        // Dot
+        var dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', px); dot.setAttribute('cy', py); dot.setAttribute('r', dotR);
+        dot.setAttribute('fill', p.color);
+        if (p.major) dot.setAttribute('filter', 'url(#rlGlowPoint)');
+        dot.classList.add('rl-cal-point');
+        dot.dataset.calIdx = i;
+        calSvg.appendChild(dot);
+
+        // Spoke
+        var spoke = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        spoke.setAttribute('x1', ccx + 8 * Math.cos(angle));
+        spoke.setAttribute('y1', ccy + 8 * Math.sin(angle));
+        spoke.setAttribute('x2', px - dotR * Math.cos(angle));
+        spoke.setAttribute('y2', py - dotR * Math.sin(angle));
+        spoke.setAttribute('stroke', p.color); spoke.setAttribute('stroke-opacity', '0.2');
+        spoke.setAttribute('stroke-width', '0.8');
+        spoke.classList.add('rl-cal-point');
+        spoke.dataset.calIdx = i;
+        calSvg.appendChild(spoke);
+
+        // Label
+        var labelR2 = calR + (p.major ? 26 : 20);
+        var lx2 = ccx + labelR2 * Math.cos(angle);
+        var ly2 = ccy + labelR2 * Math.sin(angle);
+        var lines2 = (p.label + '\n' + p.name).split('\n');
+        var lg = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        lg.classList.add('rl-cal-point');
+        lg.dataset.calIdx = i;
+        lines2.forEach(function(line, li) {
+          var t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          t.setAttribute('x', lx2);
+          t.setAttribute('y', ly2 + (li - (lines2.length - 1) / 2) * 9);
+          t.setAttribute('text-anchor', 'middle');
+          t.setAttribute('font-size', li === 0 ? '6.5' : '6');
+          t.setAttribute('font-family', li === 0 ? 'Courier Prime, monospace' : 'Jost, sans-serif');
+          t.setAttribute('fill', p.color);
+          t.setAttribute('fill-opacity', li === 0 ? '0.7' : '0.5');
+          t.textContent = line;
+          lg.appendChild(t);
+        });
+        calSvg.appendChild(lg);
+      });
+
+      // Animate calendar on scroll
+      var calObs = new IntersectionObserver(function(entries) {
+        if (!entries[0].isIntersecting) return;
+        var allPoints = calSvg.querySelectorAll('.rl-cal-point');
+        // Group by calIdx
+        var calByIdx = { center: [] };
+        allPoints.forEach(function(el) {
+          var idx = el.dataset.calIdx;
+          if (idx === undefined) { calByIdx.center.push(el); }
+          else {
+            if (!calByIdx[idx]) calByIdx[idx] = [];
+            calByIdx[idx].push(el);
+          }
+        });
+        // Center first
+        setTimeout(function() {
+          calByIdx.center.forEach(function(el) { el.classList.add('rl-vis'); });
+        }, 0);
+        // Points by index
+        for (var i = 0; i < calN; i++) {
+          (function(ii) {
+            setTimeout(function() {
+              if (calByIdx[ii]) calByIdx[ii].forEach(function(el) { el.classList.add('rl-vis'); });
+            }, 200 + ii * 180);
+          })(i);
+        }
+        calObs.unobserve(calSvg);
+      }, { threshold: 0.2 });
+      calObs.observe(calSvg);
+    }
+
+    // ── 4. Карточки планера — stagger появление ──
+    var plannerGrid = document.getElementById('rlPlannerGrid');
+    if (plannerGrid) {
+      var plannerObs = new IntersectionObserver(function(entries) {
+        if (!entries[0].isIntersecting) return;
+        plannerGrid.querySelectorAll('.rl-planner-card').forEach(function(card, i) {
+          setTimeout(function() { card.classList.add('rl-vis'); }, i * 100);
+        });
+        plannerObs.unobserve(plannerGrid);
+      }, { threshold: 0.2 });
+      plannerObs.observe(plannerGrid);
+    }
+  })();
+
+  // ── Экран 10: Предиктивная модель ──
+  (function() {
+    // Helper: animate SVG path draw-in
+    function animatePath(el, duration, delay) {
+      if (!el) return;
+      var len = el.getTotalLength ? el.getTotalLength() : 400;
+      el.style.strokeDasharray = len;
+      el.style.strokeDashoffset = len;
+      el.getBoundingClientRect(); // force reflow
+      el.style.transition = 'stroke-dashoffset ' + (duration || 0.7) + 's ease ' + (delay || 0) + 's';
+      el.style.strokeDashoffset = '0';
+    }
+    function fadeIn(id, delay) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.style.transition = 'opacity 0.5s ease ' + (delay || 0) + 's';
+      el.style.opacity = '1';
+    }
+
+    // Streams diagram
+    var streamsSvg = document.getElementById('prdStreamsSvg');
+    if (streamsSvg) {
+      var sObs = new IntersectionObserver(function(entries) {
+        if (!entries[0].isIntersecting) return;
+        // Step 1: 4 paths simultaneously
+        ['prdPath1','prdPath2','prdPath3','prdPath4'].forEach(function(id) {
+          animatePath(document.getElementById(id), 0.7, 0);
+        });
+        // Step 2: MNPI block (t=850ms)
+        setTimeout(function() {
+          fadeIn('prdMnpiBlock', 0); fadeIn('prdMnpiGlow', 0);
+          fadeIn('prdMnpiT1', 0.1); fadeIn('prdMnpiT2', 0.15);
+        }, 850);
+        // Step 3: final arrow + pred block (t=1400ms)
+        setTimeout(function() {
+          var fp = document.getElementById('prdPathFinal');
+          if (fp) { fp.style.opacity = '1'; animatePath(fp, 0.5, 0); }
+          fadeIn('prdPredBlock', 0.4); fadeIn('prdPredT1', 0.5);
+          fadeIn('prdPredT2', 0.55); fadeIn('prdPredT3', 0.6);
+        }, 1400);
+        sObs.unobserve(streamsSvg);
+      }, { threshold: 0.2 });
+      sObs.observe(streamsSvg);
+    }
+
+    // Pattern cards stagger
+    var prdPats = document.getElementById('prdPatterns');
+    if (prdPats) {
+      var pObs = new IntersectionObserver(function(entries) {
+        if (!entries[0].isIntersecting) return;
+        prdPats.querySelectorAll('.prd-pat').forEach(function(c, i) {
+          setTimeout(function() { c.classList.add('prd-vis'); }, i * 120);
+        });
+        pObs.unobserve(prdPats);
+      }, { threshold: 0.2 });
+      pObs.observe(prdPats);
+    }
+
+    // Timeline animation
+    var tlSvg = document.getElementById('prdTimeline');
+    if (tlSvg) {
+      var tlObs = new IntersectionObserver(function(entries) {
+        if (!entries[0].isIntersecting) return;
+        // Draw track line
+        animatePath(document.getElementById('prdTlTrack'), 1.2, 0);
+        // Points sequentially
+        tlSvg.querySelectorAll('.prd-tl-pt').forEach(function(pt) {
+          var delay = 300 + parseInt(pt.dataset.tl || 0) * 260;
+          setTimeout(function() { pt.classList.add('prd-vis'); }, delay);
+        });
+        tlObs.unobserve(tlSvg);
+      }, { threshold: 0.3 });
+      tlObs.observe(tlSvg);
+    }
+  })();
 </script>
 </body>
 </html>
