@@ -2786,6 +2786,440 @@
       .prd-section { padding: 70px 20px 70px; }
       .prd-patterns { grid-template-columns: 1fr; }
     }
+
+    /* ══════════════════════════════
+       ОДИННАДЦАТЫЙ ЭКРАН — NEIRY
+    ══════════════════════════════ */
+    .nr-section {
+      position: relative;
+      padding: 100px 40px 100px;
+      background: #050810;
+      overflow: hidden;
+    }
+    .nr-blob {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(150px);
+    }
+    .nr-blob-1 {
+      width: 600px; height: 600px; top: 0; left: -8%;
+      background: radial-gradient(circle, rgba(59,158,255,0.07) 0%, transparent 70%);
+    }
+    .nr-blob-2 {
+      width: 500px; height: 500px; bottom: 5%; right: -6%;
+      background: radial-gradient(circle, rgba(155,126,222,0.07) 0%, transparent 70%);
+    }
+    .nr-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; }
+    .nr-label {
+      font-family: var(--fm); font-size: 0.72rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: rgba(59,158,255,0.7);
+      margin-bottom: 24px; text-align: center;
+    }
+    .nr-title {
+      font-family: var(--fh); font-size: clamp(1.5rem, 3vw, 2.3rem);
+      color: #F0EDE8; text-align: center; line-height: 1.15;
+      max-width: 720px; margin: 0 auto 32px;
+    }
+    .nr-intro { max-width: 720px; margin: 0 auto 56px; }
+    .nr-intro p {
+      font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px;
+    }
+    .nr-intro p:last-child { margin-bottom: 0; }
+
+    /* Head diagram */
+    .nr-head-block {
+      display: grid;
+      grid-template-columns: 1fr 210px 1fr;
+      gap: 0 20px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .nr-hemi-left { display: flex; justify-content: flex-end; }
+    .nr-hemi-right { display: flex; justify-content: flex-start; }
+    .nr-hemi-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px; padding: 16px 18px; max-width: 210px;
+    }
+    .nr-hemi-left .nr-hemi-card { border: 1px solid rgba(155,126,222,0.3); }
+    .nr-hemi-right .nr-hemi-card { border: 1px solid rgba(80,216,144,0.3); }
+    .nr-hemi-zone {
+      font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.2em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .nr-hemi-left .nr-hemi-zone { color: rgba(155,126,222,0.7); }
+    .nr-hemi-right .nr-hemi-zone { color: rgba(80,216,144,0.7); }
+    .nr-hemi-title { font-family: var(--fh); font-size: 1rem; color: #F0EDE8; margin-bottom: 5px; }
+    .nr-hemi-desc { font-size: 0.74rem; line-height: 1.5; color: rgba(255,255,255,0.4); }
+    .nr-head-svg-wrap { display: flex; justify-content: center; }
+    .nr-head-svg { width: 200px; height: 265px; display: block; }
+    .nr-asym-card {
+      grid-column: 1 / -1;
+      display: flex; flex-direction: column; align-items: center;
+      margin: 8px auto 0; padding: 16px 28px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(200,169,110,0.18);
+      border-radius: 10px; text-align: center;
+      max-width: 420px;
+    }
+    .nr-asym-title { font-family: var(--fh); font-size: 0.9rem; color: rgba(200,169,110,0.85); margin-bottom: 5px; }
+    .nr-asym-desc { font-size: 0.75rem; line-height: 1.5; color: rgba(255,255,255,0.38); }
+
+    /* EEG waves */
+    .nr-eeg-block { margin-bottom: 64px; }
+    .nr-eeg-wrap {
+      max-width: 620px; margin: 0 auto;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden;
+    }
+    .nr-eeg-label {
+      padding: 10px 20px 6px; display: flex; justify-content: space-between;
+      font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.2);
+    }
+    .nr-eeg-row { display: flex; align-items: center; height: 42px; overflow: hidden; }
+    .nr-eeg-tag {
+      width: 90px; min-width: 90px; padding: 0 12px 0 16px;
+      font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.25); flex-shrink: 0;
+    }
+    .nr-eeg-wave-wrap { flex: 1; height: 42px; overflow: hidden; position: relative; }
+    .nr-eeg-wave-wrap svg { width: 200%; height: 100%; position: absolute; top: 0; left: 0; display: block; }
+    .nr-w-left svg  { color: rgba(155,126,222,0.7); animation: rb-wave-scroll 2.8s linear infinite; }
+    .nr-w-right svg { color: rgba(80,216,144,0.7);  animation: rb-wave-scroll 3.3s linear infinite; }
+
+    /* Freq scale */
+    .nr-sec-title {
+      font-family: var(--fh); font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+      color: #F0EDE8; text-align: center; margin-bottom: 28px; line-height: 1.2;
+    }
+    .nr-freq-block { margin-bottom: 64px; }
+    .nr-freq-axis {
+      display: flex; justify-content: space-between;
+      max-width: 760px; margin: 0 auto 6px;
+      font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.2);
+    }
+    .nr-freq-bar {
+      display: flex; max-width: 760px; margin: 0 auto 20px;
+      border-radius: 8px; overflow: hidden; height: 12px; gap: 2px;
+    }
+    .nr-freq-seg {
+      height: 100%; border-radius: 3px;
+      opacity: 0; transform: scaleY(0); transform-origin: bottom;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .nr-freq-seg.nr-vis { opacity: 1; transform: scaleY(1); }
+    .nr-fs-delta { background: rgba(50,70,180,0.85); flex: 1; }
+    .nr-fs-theta { background: rgba(130,80,220,0.85); flex: 0.9; }
+    .nr-fs-alpha { background: rgba(200,169,110,0.9);  flex: 1.4; }
+    .nr-fs-smr   { background: rgba(60,180,100,0.85); flex: 0.7; }
+    .nr-fs-beta  { background: rgba(210,80,80,0.85);  flex: 4.5; }
+    .nr-freq-cards {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 10px; max-width: 760px; margin: 0 auto;
+    }
+    .nr-fc {
+      background: rgba(255,255,255,0.02); border-radius: 10px; padding: 14px 12px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .nr-fc.nr-vis { opacity: 1; transform: translateY(0); }
+    .nr-fc-name  { font-family: var(--fh); font-size: 0.85rem; margin-bottom: 3px; }
+    .nr-fc-range { font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.28); margin-bottom: 7px; }
+    .nr-fc-text  { font-size: 0.71rem; line-height: 1.55; color: rgba(255,255,255,0.4); }
+    .nr-fc-delta { border: 1px solid rgba(50,70,180,0.35); } .nr-fc-delta .nr-fc-name { color: #6070D0; }
+    .nr-fc-theta { border: 1px solid rgba(130,80,220,0.35); } .nr-fc-theta .nr-fc-name { color: #9B7EDE; }
+    .nr-fc-alpha { border: 1px solid rgba(200,169,110,0.35); } .nr-fc-alpha .nr-fc-name { color: #C8A96E; }
+    .nr-fc-smr   { border: 1px solid rgba(60,180,100,0.35); } .nr-fc-smr   .nr-fc-name { color: #50D890; }
+    .nr-fc-beta  { border: 1px solid rgba(210,80,80,0.35); }  .nr-fc-beta  .nr-fc-name { color: #E06060; }
+
+    /* 32 metrics */
+    .nr-metrics-block {
+      margin-bottom: 64px; padding: 36px 40px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 16px;
+    }
+    .nr-metrics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-bottom: 28px; }
+    .nr-metric-group-title {
+      font-family: var(--fm); font-size: 0.63rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 14px;
+    }
+    .nr-metric-item {
+      font-size: 0.8rem; line-height: 1.5; color: rgba(255,255,255,0.42);
+      padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .nr-metric-item:last-child { border-bottom: none; }
+    .nr-metrics-count {
+      text-align: center; font-family: var(--fh); font-size: 5rem;
+      color: rgba(200,169,110,0.12); letter-spacing: -0.02em; line-height: 1;
+    }
+    .nr-metrics-label {
+      text-align: center; font-family: var(--fm); font-size: 0.65rem;
+      letter-spacing: 0.2em; color: rgba(255,255,255,0.22); margin-top: -4px;
+    }
+
+    /* Top-5 */
+    .nr-top5-sub {
+      max-width: 540px; margin: -18px auto 28px; text-align: center;
+      font-family: var(--fm); font-size: 0.7rem; letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.28);
+    }
+    .nr-top5 { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+    .nr-top-card {
+      display: flex; align-items: flex-start; gap: 18px;
+      background: rgba(255,255,255,0.02); border-radius: 12px; padding: 20px 22px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .nr-top-card.nr-vis { opacity: 1; transform: translateY(0); }
+    .nr-top-accent { width: 4px; border-radius: 2px; align-self: stretch; min-height: 40px; flex-shrink: 0; }
+    .nr-top-name { font-family: var(--fh); font-size: 1rem; margin-bottom: 6px; }
+    .nr-top-text { font-size: 0.82rem; line-height: 1.65; color: rgba(255,255,255,0.44); }
+    .nr-tc-gold  .nr-top-accent { background: rgba(200,169,110,0.8); } .nr-tc-gold  .nr-top-name { color: #C8A96E; }
+    .nr-tc-violet .nr-top-accent { background: rgba(155,126,222,0.8); } .nr-tc-violet .nr-top-name { color: #9B7EDE; }
+    .nr-tc-blue  .nr-top-accent { background: rgba(59,158,255,0.8); }  .nr-tc-blue  .nr-top-name { color: #3B9EFF; }
+    .nr-tc-green .nr-top-accent { background: rgba(80,216,144,0.8); }  .nr-tc-green .nr-top-name { color: #50D890; }
+    .nr-tc-red   .nr-top-accent { background: rgba(180,80,80,0.75); }  .nr-tc-red   .nr-top-name { color: #D06060; }
+    .nr-top5-note {
+      text-align: center; font-family: var(--fm); font-size: 0.7rem;
+      letter-spacing: 0.04em; color: rgba(255,255,255,0.27);
+      font-style: italic; margin-bottom: 64px;
+    }
+
+    /* Capsula */
+    .nr-capsula { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 56px; }
+    .nr-cap-block {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 26px 22px;
+    }
+    .nr-cap-title { font-family: var(--fh); font-size: 0.95rem; color: rgba(59,158,255,0.85); margin-bottom: 14px; }
+    .nr-cap-list { list-style: none; padding: 0; margin: 0; }
+    .nr-cap-list li {
+      font-size: 0.82rem; line-height: 1.6; color: rgba(255,255,255,0.44);
+      padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .nr-cap-list li:last-child { border-bottom: none; }
+    .nr-cap-list li::before { content: '—'; color: rgba(59,158,255,0.4); flex-shrink: 0; }
+    .nr-cap-tagline {
+      grid-column: 1 / -1; text-align: center;
+      font-family: var(--fm); font-size: 0.72rem; letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.28); font-style: italic; margin-top: 4px;
+    }
+
+    /* Closing */
+    .nr-closing {
+      max-width: 680px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.07); padding-top: 48px;
+    }
+    .nr-closing-title {
+      font-family: var(--fh); font-size: clamp(1rem, 2vw, 1.4rem);
+      color: rgba(59,158,255,0.9); margin-bottom: 14px; line-height: 1.2;
+    }
+    .nr-closing-text { font-size: 0.92rem; line-height: 1.85; color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 768px) {
+      .nr-head-block { grid-template-columns: 1fr 180px 1fr; }
+      .nr-hemi-card { max-width: 160px; padding: 12px 13px; }
+      .nr-freq-cards { grid-template-columns: repeat(3, 1fr); }
+      .nr-metrics-grid { grid-template-columns: 1fr; gap: 20px; }
+      .nr-capsula { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .nr-section { padding: 70px 20px 60px; }
+      .nr-head-block { grid-template-columns: 1fr; gap: 16px; }
+      .nr-hemi-left, .nr-hemi-right { justify-content: center; }
+      .nr-hemi-card { max-width: 100%; }
+      .nr-freq-cards { grid-template-columns: repeat(2, 1fr); }
+      .nr-metrics-block { padding: 20px 16px; }
+    }
+
+    /* ══════════════════════════════
+       ДВЕНАДЦАТЫЙ ЭКРАН — GARMIN
+    ══════════════════════════════ */
+    .gr-section {
+      position: relative; padding: 100px 40px 100px; background: #060a0a; overflow: hidden;
+    }
+    .gr-blob {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(150px);
+    }
+    .gr-blob-1 {
+      width: 600px; height: 600px; top: -5%; right: -8%;
+      background: radial-gradient(circle, rgba(80,216,144,0.07) 0%, transparent 70%);
+    }
+    .gr-blob-2 {
+      width: 500px; height: 500px; bottom: 5%; left: -6%;
+      background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 70%);
+    }
+    .gr-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; }
+    .gr-label {
+      font-family: var(--fm); font-size: 0.72rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: rgba(80,216,144,0.7);
+      margin-bottom: 24px; text-align: center;
+    }
+    .gr-title {
+      font-family: var(--fh); font-size: clamp(1.5rem, 3vw, 2.3rem);
+      color: #F0EDE8; text-align: center; line-height: 1.15; max-width: 680px; margin: 0 auto 32px;
+    }
+    .gr-intro { max-width: 720px; margin: 0 auto 56px; }
+    .gr-intro p { font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
+    .gr-intro p:last-child { margin-bottom: 0; }
+
+    /* Scenarios */
+    .gr-scenarios { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+    .gr-scenario {
+      border-radius: 12px; padding: 24px 22px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .gr-scenario.gr-vis { opacity: 1; transform: translateY(0); }
+    .gr-sc-green { background: rgba(80,216,144,0.05); border: 1px solid rgba(80,216,144,0.25); }
+    .gr-sc-red   { background: rgba(224,92,92,0.05);  border: 1px solid rgba(224,92,92,0.25); }
+    .gr-sc-title { font-family: var(--fh); font-size: 0.95rem; margin-bottom: 14px; }
+    .gr-sc-green .gr-sc-title { color: #50D890; }
+    .gr-sc-red   .gr-sc-title { color: #E05C5C; }
+    .gr-sc-row { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.8rem; }
+    .gr-sc-row:last-of-type { border-bottom: none; }
+    .gr-sc-key { color: rgba(255,255,255,0.35); }
+    .gr-sc-val { font-family: var(--fm); font-size: 0.78rem; letter-spacing: 0.04em; text-align: right; }
+    .gr-sc-green .gr-sc-val { color: rgba(80,216,144,0.8); }
+    .gr-sc-red   .gr-sc-val { color: rgba(224,92,92,0.75); }
+    .gr-sc-conclusion { margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.78rem; line-height: 1.5; }
+    .gr-sc-green .gr-sc-conclusion { background: rgba(80,216,144,0.08); color: rgba(80,216,144,0.85); }
+    .gr-sc-red   .gr-sc-conclusion { background: rgba(224,92,92,0.08); color: rgba(224,92,92,0.85); }
+    .gr-scenarios-note {
+      grid-column: 1 / -1; text-align: center; font-family: var(--fm);
+      font-size: 0.7rem; letter-spacing: 0.05em; color: rgba(255,255,255,0.28);
+      font-style: italic; margin-top: 4px;
+    }
+
+    /* Body diagram */
+    .gr-body-block {
+      display: grid; grid-template-columns: 1fr 160px 1fr;
+      gap: 0 16px; align-items: center; margin-bottom: 64px;
+    }
+    .gr-body-left  { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+    .gr-body-right { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+    .gr-body-svg-wrap { display: flex; justify-content: center; }
+    .gr-body-svg { width: 160px; height: 300px; display: block; }
+    .gr-body-card {
+      border-radius: 10px; padding: 12px 14px; max-width: 220px;
+      opacity: 0; transform: translateX(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .gr-body-card.gr-vis { opacity: 1; }
+    .gr-body-left .gr-body-card  { transform: translateX(10px); }
+    .gr-body-right .gr-body-card { transform: translateX(-10px); }
+    .gr-body-left .gr-body-card.gr-vis  { transform: translateX(0); }
+    .gr-body-right .gr-body-card.gr-vis { transform: translateX(0); }
+    .gr-bc-green  { background: rgba(80,216,144,0.05);  border: 1px solid rgba(80,216,144,0.25); }
+    .gr-bc-red    { background: rgba(224,92,92,0.05);   border: 1px solid rgba(224,92,92,0.2); }
+    .gr-bc-blue   { background: rgba(59,158,255,0.05);  border: 1px solid rgba(59,158,255,0.22); }
+    .gr-bc-gold   { background: rgba(200,169,110,0.05); border: 1px solid rgba(200,169,110,0.25); }
+    .gr-bc-violet { background: rgba(155,126,222,0.05); border: 1px solid rgba(155,126,222,0.22); }
+    .gr-bc-cyan   { background: rgba(60,190,210,0.05);  border: 1px solid rgba(60,190,210,0.22); }
+    .gr-bc-name { font-family: var(--fh); font-size: 0.85rem; margin-bottom: 4px; }
+    .gr-bc-green .gr-bc-name  { color: #50D890; }
+    .gr-bc-red .gr-bc-name    { color: #E05C5C; }
+    .gr-bc-blue .gr-bc-name   { color: #3B9EFF; }
+    .gr-bc-gold .gr-bc-name   { color: #C8A96E; }
+    .gr-bc-violet .gr-bc-name { color: #9B7EDE; }
+    .gr-bc-cyan .gr-bc-name   { color: #3CBECE; }
+    .gr-bc-text { font-size: 0.72rem; line-height: 1.5; color: rgba(255,255,255,0.38); }
+
+    /* Why Garmin checklist */
+    .gr-sec-title {
+      font-family: var(--fh); font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+      color: #F0EDE8; text-align: center; margin-bottom: 24px; line-height: 1.2;
+    }
+    .gr-why-block {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 32px 36px; margin-bottom: 16px;
+    }
+    .gr-why-intro { font-size: 0.88rem; line-height: 1.75; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+    .gr-check-list { display: flex; flex-direction: column; gap: 0; }
+    .gr-check-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.85rem; line-height: 1.6; color: rgba(255,255,255,0.5);
+      opacity: 0; transform: translateX(-8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .gr-check-item:last-child { border-bottom: none; }
+    .gr-check-item.gr-vis { opacity: 1; transform: translateX(0); }
+    .gr-check-icon { color: #50D890; flex-shrink: 0; font-size: 1rem; line-height: 1.6; }
+    .gr-check-strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+    .gr-why-note {
+      font-size: 0.75rem; line-height: 1.6; color: rgba(255,255,255,0.28);
+      margin-top: 20px; font-style: italic; text-align: center;
+    }
+
+    /* Neiry + Garmin combo */
+    .gr-combo-block { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; margin-bottom: 20px; }
+    .gr-combo-card {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 22px 20px; text-align: center;
+    }
+    .gr-combo-label { font-family: var(--fm); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
+    .gr-combo-name { font-family: var(--fh); font-size: 1.1rem; color: #F0EDE8; margin-bottom: 6px; }
+    .gr-combo-sub { font-size: 0.75rem; line-height: 1.5; color: rgba(255,255,255,0.38); }
+    .gr-combo-plus { font-family: var(--fh); font-size: 2rem; color: rgba(200,169,110,0.5); text-align: center; }
+    .gr-combo-result {
+      grid-column: 1 / -1; margin: 4px auto 0;
+      background: rgba(200,169,110,0.07); border: 1px solid rgba(200,169,110,0.28);
+      border-radius: 12px; padding: 24px 28px; text-align: center; max-width: 600px;
+    }
+    .gr-combo-result-title { font-family: var(--fh); font-size: 1.1rem; color: rgba(200,169,110,0.9); margin-bottom: 10px; }
+    .gr-combo-result-text { font-size: 0.82rem; line-height: 1.7; color: rgba(255,255,255,0.45); }
+    .gr-combo-note {
+      text-align: center; font-family: var(--fm); font-size: 0.7rem;
+      letter-spacing: 0.04em; color: rgba(255,255,255,0.28);
+      font-style: italic; margin-bottom: 64px; margin-top: 12px;
+    }
+
+    /* Purchase order */
+    .gr-purchase { display: grid; grid-template-columns: 3fr 2fr; gap: 14px; margin-bottom: 16px; }
+    .gr-pur-card { border-radius: 14px; padding: 28px 24px; }
+    .gr-pur-1 { background: rgba(200,169,110,0.07); border: 1.5px solid rgba(200,169,110,0.35); }
+    .gr-pur-2 { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); }
+    .gr-pur-badge {
+      display: inline-block; font-family: var(--fm); font-size: 0.6rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 4px; margin-bottom: 14px;
+    }
+    .gr-pur-1 .gr-pur-badge { background: rgba(200,169,110,0.2); color: rgba(200,169,110,0.9); }
+    .gr-pur-2 .gr-pur-badge { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.35); }
+    .gr-pur-order { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); margin-bottom: 6px; }
+    .gr-pur-name { font-family: var(--fh); font-size: 1.2rem; margin-bottom: 10px; }
+    .gr-pur-1 .gr-pur-name { color: #C8A96E; }
+    .gr-pur-2 .gr-pur-name { color: rgba(255,255,255,0.7); }
+    .gr-pur-desc { font-size: 0.8rem; line-height: 1.6; color: rgba(255,255,255,0.42); }
+    .gr-purchase-note {
+      grid-column: 1 / -1; text-align: center; font-family: var(--fm);
+      font-size: 0.68rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.25);
+      margin-top: 4px;
+    }
+
+    /* Closing */
+    .gr-closing {
+      max-width: 720px; margin: 64px auto 0;
+      border-top: 1px solid rgba(255,255,255,0.07); padding-top: 48px;
+    }
+    .gr-closing p { font-size: 0.92rem; line-height: 1.85; color: rgba(255,255,255,0.5); margin-bottom: 14px; }
+    .gr-closing p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 768px) {
+      .gr-scenarios { grid-template-columns: 1fr; }
+      .gr-body-block { grid-template-columns: 1fr 140px 1fr; }
+      .gr-body-card { max-width: 180px; }
+      .gr-combo-block { grid-template-columns: 1fr; text-align: center; }
+      .gr-combo-plus { font-size: 1.5rem; }
+      .gr-purchase { grid-template-columns: 1fr; }
+      .gr-why-block { padding: 24px 20px; }
+    }
+    @media (max-width: 520px) {
+      .gr-section { padding: 70px 20px 60px; }
+      .gr-body-block { grid-template-columns: 1fr; gap: 20px; }
+      .gr-body-left, .gr-body-right { align-items: center; }
+      .gr-body-card { max-width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -4426,6 +4860,257 @@
     </div>
   </section>
 
+  <!-- ОДИННАДЦАТЫЙ ЭКРАН: NEIRY -->
+  <section class="nr-section">
+    <div class="nr-blob nr-blob-1"></div>
+    <div class="nr-blob nr-blob-2"></div>
+    <div class="s-inner nr-inner">
+
+      <div class="nr-label fade-up">ТЕХНОЛОГИЯ ИССЛЕДОВАНИЯ · МОЗГ</div>
+      <h2 class="nr-title fade-up">Neiry MindTracker — первая покупка для исследователя</h2>
+
+      <div class="nr-intro fade-up">
+        <p>Всё что мы описывали до этого — режимы, MNPI, предиктивная модель — требует одного конкретного инструмента для измерения мозга. Нейробанд Neiry — это портативный ЭЭГ-трекер который носится как обруч на голове. Беспроводной, Bluetooth, работает в движении. Данные идут в приложение на телефоне в реальном времени.</p>
+        <p>Это не медицинское оборудование за миллион рублей. И это не игрушка. Это потребительское устройство с точностью которой достаточно для исследования состояний в реальных условиях жизни — именно там где лабораторное оборудование никогда не работало.</p>
+      </div>
+
+      <!-- Схема головы с нейробандом -->
+      <div class="nr-head-block fade-up">
+        <div class="nr-hemi-left">
+          <div class="nr-hemi-card">
+            <div class="nr-hemi-zone">O1 · T3</div>
+            <div class="nr-hemi-title">Левое полушарие</div>
+            <div class="nr-hemi-desc">Речь · аналитика · последовательная обработка</div>
+          </div>
+        </div>
+
+        <div class="nr-head-svg-wrap">
+          <svg class="nr-head-svg" viewBox="0 0 200 265" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Head outline -->
+            <ellipse cx="100" cy="118" rx="72" ry="88" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+            <!-- Neck -->
+            <path d="M84,204 L84,238 Q84,248 100,248 Q116,248 116,238 L116,204" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+            <!-- Ears -->
+            <path d="M28,110 Q18,118 18,128 Q18,138 28,145" stroke="rgba(255,255,255,0.13)" stroke-width="1.5" fill="none"/>
+            <path d="M172,110 Q182,118 182,128 Q182,138 172,145" stroke="rgba(255,255,255,0.13)" stroke-width="1.5" fill="none"/>
+            <!-- Neurobrand arc -->
+            <path d="M40,75 Q100,22 160,75" stroke="rgba(59,158,255,0.65)" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <path d="M42,86 Q100,35 158,86"  stroke="rgba(59,158,255,0.22)" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <circle cx="40" cy="75" r="4" fill="rgba(59,158,255,0.85)"/>
+            <circle cx="160" cy="75" r="4" fill="rgba(59,158,255,0.85)"/>
+            <!-- Label inside head -->
+            <text x="100" y="116" text-anchor="middle" font-family="Courier Prime,monospace" font-size="7" letter-spacing="2" fill="rgba(255,255,255,0.15)">NEIRY</text>
+            <text x="100" y="130" text-anchor="middle" font-family="Courier Prime,monospace" font-size="7" letter-spacing="1" fill="rgba(59,158,255,0.45)">MINDTRACKER</text>
+            <!-- Electrode O1 left occipital -->
+            <circle cx="52" cy="170" r="5" fill="rgba(155,126,222,0.85)" stroke="rgba(155,126,222,0.35)" stroke-width="4"/>
+            <text x="61" y="174" font-family="Courier Prime,monospace" font-size="7" fill="rgba(155,126,222,0.55)">O1</text>
+            <!-- Electrode T3 left temporal -->
+            <circle cx="30" cy="128" r="5" fill="rgba(155,126,222,0.85)" stroke="rgba(155,126,222,0.35)" stroke-width="4"/>
+            <text x="39" y="132" font-family="Courier Prime,monospace" font-size="7" fill="rgba(155,126,222,0.55)">T3</text>
+            <!-- Lines left → edge -->
+            <line x1="25" y1="128" x2="0" y2="142" stroke="rgba(155,126,222,0.35)" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="47" y1="170" x2="0" y2="158" stroke="rgba(155,126,222,0.35)" stroke-width="1" stroke-dasharray="3 2"/>
+            <!-- Electrode O2 right occipital -->
+            <circle cx="148" cy="170" r="5" fill="rgba(80,216,144,0.85)" stroke="rgba(80,216,144,0.35)" stroke-width="4"/>
+            <text x="120" y="174" font-family="Courier Prime,monospace" font-size="7" fill="rgba(80,216,144,0.55)">O2</text>
+            <!-- Electrode T4 right temporal -->
+            <circle cx="170" cy="128" r="5" fill="rgba(80,216,144,0.85)" stroke="rgba(80,216,144,0.35)" stroke-width="4"/>
+            <text x="142" y="132" font-family="Courier Prime,monospace" font-size="7" fill="rgba(80,216,144,0.55)">T4</text>
+            <!-- Lines right → edge -->
+            <line x1="175" y1="128" x2="200" y2="142" stroke="rgba(80,216,144,0.35)" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="153" y1="170" x2="200" y2="158" stroke="rgba(80,216,144,0.35)" stroke-width="1" stroke-dasharray="3 2"/>
+          </svg>
+        </div>
+
+        <div class="nr-hemi-right">
+          <div class="nr-hemi-card">
+            <div class="nr-hemi-zone">O2 · T4</div>
+            <div class="nr-hemi-title">Правое полушарие</div>
+            <div class="nr-hemi-desc">Пространство · эмоции · целостное восприятие</div>
+          </div>
+        </div>
+
+        <div class="nr-asym-card">
+          <div class="nr-asym-title">Межполушарная асимметрия</div>
+          <div class="nr-asym-desc">Разница между полушариями — сама по себе диагностический сигнал</div>
+        </div>
+      </div>
+
+      <!-- Параллельные ЭЭГ-волны -->
+      <div class="nr-eeg-block fade-up">
+        <div class="nr-eeg-wrap">
+          <div class="nr-eeg-label">
+            <span>← Время</span>
+            <span>Параллельные волны двух полушарий</span>
+          </div>
+          <div class="nr-eeg-row">
+            <div class="nr-eeg-tag">Левое</div>
+            <div class="nr-eeg-wave-wrap nr-w-left">
+              <svg viewBox="0 0 2400 42" preserveAspectRatio="none">
+                <path id="nrWaveLeft" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="nr-eeg-row">
+            <div class="nr-eeg-tag">Правое</div>
+            <div class="nr-eeg-wave-wrap nr-w-right">
+              <svg viewBox="0 0 2400 42" preserveAspectRatio="none">
+                <path id="nrWaveRight" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Шкала частот -->
+      <h3 class="nr-sec-title fade-up">Пять диапазонов — пять состояний</h3>
+      <div class="nr-freq-block" id="nrFreqBlock">
+        <div class="nr-freq-axis">
+          <span>0 Гц</span><span>Delta</span><span>Theta</span><span>Alpha</span><span>SMR</span><span>Beta</span><span>30 Гц</span>
+        </div>
+        <div class="nr-freq-bar">
+          <div class="nr-freq-seg nr-fs-delta" data-fi="0"></div>
+          <div class="nr-freq-seg nr-fs-theta" data-fi="1"></div>
+          <div class="nr-freq-seg nr-fs-alpha" data-fi="2"></div>
+          <div class="nr-freq-seg nr-fs-smr"   data-fi="3"></div>
+          <div class="nr-freq-seg nr-fs-beta"  data-fi="4"></div>
+        </div>
+        <div class="nr-freq-cards">
+          <div class="nr-fc nr-fc-delta">
+            <div class="nr-fc-name">Delta</div>
+            <div class="nr-fc-range">0.5–4 Гц</div>
+            <div class="nr-fc-text">Глубокий сон · клеточное восстановление. В практиках — маркер очень глубоких трансовых состояний.</div>
+          </div>
+          <div class="nr-fc nr-fc-theta">
+            <div class="nr-fc-name">Theta</div>
+            <div class="nr-fc-range">4–7 Гц</div>
+            <div class="nr-fc-text">Медитация · творчество · обучение. В Quantum Genesis — доминирующий ритм. Окно нейропластичности.</div>
+          </div>
+          <div class="nr-fc nr-fc-alpha">
+            <div class="nr-fc-name">Alpha</div>
+            <div class="nr-fc-range">8–13 Гц</div>
+            <div class="nr-fc-text">Расслабленное бодрствование · присутствие. Растёт при деактивации DMN. Основной маркер Pure Nothing.</div>
+          </div>
+          <div class="nr-fc nr-fc-smr">
+            <div class="nr-fc-name">SMR</div>
+            <div class="nr-fc-range">12–15 Гц</div>
+            <div class="nr-fc-text">Спокойная концентрация. Тело спокойно, ум ясен. Подавление лишней моторной активности.</div>
+          </div>
+          <div class="nr-fc nr-fc-beta">
+            <div class="nr-fc-name">Beta</div>
+            <div class="nr-fc-range">13–30 Гц</div>
+            <div class="nr-fc-text">Активное мышление · тревога · DMN. Высокий бета без задачи — гиперактивный внутренний диалог.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 32 показателя -->
+      <div class="nr-metrics-block fade-up">
+        <div class="nr-metrics-grid">
+          <div>
+            <div class="nr-metric-group-title">Ритмы и частоты</div>
+            <div class="nr-metric-item">IAPF — индивидуальный альфа-пик</div>
+            <div class="nr-metric-item">Alpha Gravity</div>
+            <div class="nr-metric-item">Alpha Peak Frequency</div>
+            <div class="nr-metric-item">Theta Peak Frequency</div>
+            <div class="nr-metric-item">Beta Peak Frequency</div>
+          </div>
+          <div>
+            <div class="nr-metric-group-title">Когнитивные индексы</div>
+            <div class="nr-metric-item">Concentration Index</div>
+            <div class="nr-metric-item">Relaxation Index</div>
+            <div class="nr-metric-item">Cognitive Control</div>
+            <div class="nr-metric-item">Cognitive Load</div>
+            <div class="nr-metric-item">Self-Control</div>
+          </div>
+          <div>
+            <div class="nr-metric-group-title">Усталость и ресурс</div>
+            <div class="nr-metric-item">Fatigue Score</div>
+            <div class="nr-metric-item">Reverse Fatigue</div>
+            <div class="nr-metric-item">Accumulated Fatigue</div>
+            <div class="nr-metric-item">Stress Index</div>
+            <div class="nr-metric-item">Kaplan Index</div>
+          </div>
+        </div>
+        <div class="nr-metrics-count">32</div>
+        <div class="nr-metrics-label">показателя за одну сессию</div>
+      </div>
+
+      <!-- Топ-5 -->
+      <h3 class="nr-sec-title fade-up">Пять показателей которые важны больше всего</h3>
+      <div class="nr-top5-sub fade-up">Как сырые данные переводятся в язык управления состоянием</div>
+      <div class="nr-top5" id="nrTop5">
+        <div class="nr-top-card nr-tc-gold">
+          <div class="nr-top-accent"></div>
+          <div class="nr-top-body">
+            <div class="nr-top-name">Alpha Gravity · Глубина погружения</div>
+            <div class="nr-top-text">Доминирование альфа-ритма. В практике означает успешный выход из DMN в состояние ясного спокойного наблюдения. Растёт когда клиент действительно вошёл в состояние — а не просто лежит с закрытыми глазами.</div>
+          </div>
+        </div>
+        <div class="nr-top-card nr-tc-violet">
+          <div class="nr-top-accent"></div>
+          <div class="nr-top-body">
+            <div class="nr-top-name">Theta · Доступ к бессознательному</div>
+            <div class="nr-top-text">Маркер глубоких трансовых состояний, интуитивных озарений, глубокой медитации. Растёт в Quantum Genesis. Если ваша практика работает с глубинными паттернами — именно здесь видно происходит ли это.</div>
+          </div>
+        </div>
+        <div class="nr-top-card nr-tc-blue">
+          <div class="nr-top-accent"></div>
+          <div class="nr-top-body">
+            <div class="nr-top-name">Concentration Index · Удержание фокуса</div>
+            <div class="nr-top-text">Способность направлять внимание на один объект. Показывает насколько практика тренирует навык активного фокуса. Важен для дыхательных практик, медитации с объектом, осознанного движения.</div>
+          </div>
+        </div>
+        <div class="nr-top-card nr-tc-green">
+          <div class="nr-top-accent"></div>
+          <div class="nr-top-body">
+            <div class="nr-top-name">Relaxation Index · Нейрофизиологический покой</div>
+            <div class="nr-top-text">Сводный индекс покоя нервной системы. Показывает насколько эффективно метод снимает ментальное напряжение. Один из главных показателей для верификации восстановительных практик.</div>
+          </div>
+        </div>
+        <div class="nr-top-card nr-tc-red">
+          <div class="nr-top-accent"></div>
+          <div class="nr-top-body">
+            <div class="nr-top-name">Stress Index · Состояние нервной системы</div>
+            <div class="nr-top-text">Уровень стресса на основе HRV. Доказывает что практика успокаивает тело на соматическом уровне — не только на уровне субъективного ощущения. До и после сессии — самое показательное сравнение.</div>
+          </div>
+        </div>
+      </div>
+      <div class="nr-top5-note fade-up">Эти пять показателей позволяют оцифровать «я чувствую» в объективные микровольты и миллисекунды.</div>
+
+      <!-- Приложение Capsula -->
+      <div class="nr-capsula fade-up">
+        <div class="nr-cap-block">
+          <div class="nr-cap-title">Во время сессии</div>
+          <ul class="nr-cap-list">
+            <li>Живой дашборд волн</li>
+            <li>Качество сигнала электродов</li>
+            <li>Текущие значения всех индексов</li>
+            <li>Маркировка событий во время записи</li>
+            <li>Экспорт CSV с временными метками</li>
+          </ul>
+        </div>
+        <div class="nr-cap-block">
+          <div class="nr-cap-title">Что происходит с данными</div>
+          <ul class="nr-cap-list">
+            <li>Данные хранятся на серверах Neiry</li>
+            <li>Экспорт в CSV — анализировать самостоятельно</li>
+            <li>Синхронизация с MNPI-треком</li>
+            <li>iOS и Android</li>
+          </ul>
+        </div>
+        <div class="nr-cap-tagline">Технология Neiry впервые позволяет видеть изменения состояния объективно. Инструмент который превращает «я чувствую» в «я вижу».</div>
+      </div>
+
+      <!-- Closing -->
+      <div class="nr-closing fade-up">
+        <div class="nr-closing-title">Почему Neiry — первая покупка</div>
+        <div class="nr-closing-text">Потому что именно нейробанд показывает вашу практику здесь и сейчас — в момент сессии, в момент перехода, в момент когда клиент входит в состояние или не входит. Это данные о самом важном — о том что происходит в мозге во время работы. Всё остальное — трекер, планер, нарратив — это контекст. Но без мозга контекст неполный.</div>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
 <script src="../../components/nav.js"></script>
@@ -4889,6 +5574,50 @@
         tlObs.unobserve(tlSvg);
       }, { threshold: 0.3 });
       tlObs.observe(tlSvg);
+    }
+  })();
+
+  // ── Экран 11: Neiry ──
+  (function() {
+    function makeSinePath(w, h, cycles, amp, phase) {
+      var cx = h / 2, pts = [], steps = Math.round(w / 2);
+      for (var i = 0; i <= steps; i++) {
+        var x = (i / steps) * w;
+        var y = cx + amp * Math.sin((i / steps) * cycles * 2 * Math.PI + (phase || 0));
+        pts.push((i === 0 ? 'M' : 'L') + x.toFixed(1) + ' ' + y.toFixed(1));
+      }
+      return pts.join(' ');
+    }
+    var wL = document.getElementById('nrWaveLeft');
+    var wR = document.getElementById('nrWaveRight');
+    if (wL) wL.setAttribute('d', makeSinePath(2400, 42, 10, 14, 0));
+    if (wR) wR.setAttribute('d', makeSinePath(2400, 42, 10, 14, 0.7));
+
+    var freqBlock = document.getElementById('nrFreqBlock');
+    if (freqBlock) {
+      var fObs = new IntersectionObserver(function(entries) {
+        if (!entries[0].isIntersecting) return;
+        freqBlock.querySelectorAll('.nr-freq-seg').forEach(function(s, i) {
+          setTimeout(function() { s.classList.add('nr-vis'); }, i * 110);
+        });
+        freqBlock.querySelectorAll('.nr-fc').forEach(function(c, i) {
+          setTimeout(function() { c.classList.add('nr-vis'); }, 600 + i * 110);
+        });
+        fObs.unobserve(freqBlock);
+      }, { threshold: 0.2 });
+      fObs.observe(freqBlock);
+    }
+
+    var top5 = document.getElementById('nrTop5');
+    if (top5) {
+      var t5Obs = new IntersectionObserver(function(entries) {
+        if (!entries[0].isIntersecting) return;
+        top5.querySelectorAll('.nr-top-card').forEach(function(c, i) {
+          setTimeout(function() { c.classList.add('nr-vis'); }, i * 110);
+        });
+        t5Obs.unobserve(top5);
+      }, { threshold: 0.1 });
+      t5Obs.observe(top5);
     }
   })();
 </script>
