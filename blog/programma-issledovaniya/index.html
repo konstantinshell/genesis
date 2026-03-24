@@ -3220,6 +3220,581 @@
       .gr-body-left, .gr-body-right { align-items: center; }
       .gr-body-card { max-width: 100%; }
     }
+
+    /* ── Screen 14: Second Stage + Ambassador + Conditions ── */
+    .se-section {
+      position: relative; padding: 100px 40px 100px; background: #060a12; overflow: hidden;
+    }
+    .se-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(150px); }
+    .se-blob-1 {
+      width: 650px; height: 650px; top: -5%; right: -8%;
+      background: radial-gradient(circle, rgba(200,169,110,0.07) 0%, transparent 70%);
+    }
+    .se-blob-2 {
+      width: 500px; height: 500px; bottom: 5%; left: -6%;
+      background: radial-gradient(circle, rgba(59,158,255,0.05) 0%, transparent 70%);
+    }
+    .se-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; }
+    .se-label {
+      font-family: var(--fm); font-size: 0.72rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: rgba(200,169,110,0.7);
+      margin-bottom: 24px; text-align: center;
+    }
+    .se-title {
+      font-family: var(--fh); font-size: clamp(1.5rem, 3vw, 2.3rem);
+      color: #F0EDE8; text-align: center; line-height: 1.15; max-width: 700px; margin: 0 auto 32px;
+    }
+    .se-intro { max-width: 740px; margin: 0 auto 56px; }
+    .se-intro p { font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
+    .se-intro p:last-child { margin-bottom: 0; }
+
+    /* Transition diagram */
+    .se-transition {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: 0 24px; align-items: center; margin-bottom: 72px;
+    }
+    .se-stage {
+      border-radius: 14px; padding: 28px 24px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .se-stage.se-vis { opacity: 1; transform: translateY(0); }
+    .se-stage-badge {
+      display: inline-block; font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.15em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 4px; margin-bottom: 14px;
+    }
+    .se-stage-role { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.4; margin-bottom: 6px; }
+    .se-stage-title { font-family: var(--fh); font-size: 1.15rem; margin-bottom: 14px; }
+    .se-stage-list { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 7px; }
+    .se-stage-list li { font-size: 0.78rem; line-height: 1.5; color: rgba(255,255,255,0.48); padding-left: 16px; position: relative; }
+    .se-stage-list li::before { content: '—'; position: absolute; left: 0; opacity: 0.3; }
+    .se-stage-dur {
+      font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.12em;
+      padding: 4px 10px; border-radius: 4px; display: inline-block;
+    }
+    .se-st-blue { background: rgba(59,158,255,0.05); border: 1px solid rgba(59,158,255,0.22); }
+    .se-st-blue .se-stage-title { color: #3B9EFF; }
+    .se-st-blue .se-stage-badge { background: rgba(59,158,255,0.14); color: rgba(59,158,255,0.85); }
+    .se-st-blue .se-stage-dur { background: rgba(59,158,255,0.1); color: rgba(59,158,255,0.7); }
+    .se-st-gold { background: rgba(200,169,110,0.06); border: 1.5px solid rgba(200,169,110,0.32); }
+    .se-st-gold .se-stage-title { color: #C8A96E; }
+    .se-st-gold .se-stage-badge { background: rgba(200,169,110,0.16); color: rgba(200,169,110,0.85); }
+    .se-st-gold .se-stage-dur { background: rgba(200,169,110,0.1); color: rgba(200,169,110,0.7); }
+    .se-transition-arrow {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      opacity: 0; transition: opacity 0.5s ease 0.55s;
+    }
+    .se-transition-arrow.se-vis { opacity: 1; }
+    .se-arr-line { font-size: 1.8rem; color: rgba(255,255,255,0.18); line-height: 1; }
+    .se-arr-label { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.28); text-align: center; line-height: 1.6; }
+
+    /* Three directions */
+    .se-sec-title { font-family: var(--fh); font-size: clamp(1.1rem, 2.2vw, 1.6rem); color: #F0EDE8; text-align: center; margin-bottom: 32px; line-height: 1.2; }
+    .se-directions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 72px; }
+    .se-dir-card {
+      border-radius: 12px; padding: 24px 20px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .se-dir-card.se-vis { opacity: 1; transform: translateY(0); }
+    .se-dir-num { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.2em; opacity: 0.35; margin-bottom: 8px; }
+    .se-dir-name { font-family: var(--fh); font-size: 0.95rem; margin-bottom: 10px; line-height: 1.2; }
+    .se-dir-text { font-size: 0.78rem; line-height: 1.65; color: rgba(255,255,255,0.45); }
+    .se-d-blue   { background: rgba(59,158,255,0.04);  border: 1px solid rgba(59,158,255,0.18); }
+    .se-d-blue   .se-dir-name { color: #3B9EFF; }
+    .se-d-green  { background: rgba(80,216,144,0.04);  border: 1px solid rgba(80,216,144,0.18); }
+    .se-d-green  .se-dir-name { color: #50D890; }
+    .se-d-violet { background: rgba(155,126,222,0.04); border: 1px solid rgba(155,126,222,0.18); }
+    .se-d-violet .se-dir-name { color: #9B7EDE; }
+
+    /* Ambassador */
+    .se-ambass-label {
+      font-family: var(--fm); font-size: 0.68rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: rgba(224,92,92,0.7);
+      margin-bottom: 16px; text-align: center;
+    }
+    .se-ambass-text { max-width: 720px; margin: 0 auto 40px; }
+    .se-ambass-text p { font-size: 0.92rem; line-height: 1.85; color: rgba(255,255,255,0.52); }
+    .se-steps {
+      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1.3fr;
+      gap: 0 8px; align-items: start; margin-bottom: 20px;
+    }
+    .se-step {
+      border-radius: 12px; padding: 22px 18px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .se-step.se-vis { opacity: 1; transform: translateY(0); }
+    .se-step-4 { padding: 26px 22px; }
+    .se-step-arrow {
+      align-self: center; color: rgba(255,255,255,0.18); font-size: 1.2rem;
+      padding-top: 8px; opacity: 0; transition: opacity 0.4s ease 0.7s;
+    }
+    .se-step-arrow.se-vis { opacity: 1; }
+    .se-step-num { font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.2em; opacity: 0.35; margin-bottom: 8px; }
+    .se-step-name { font-family: var(--fh); font-size: 0.95rem; margin-bottom: 8px; }
+    .se-step-desc { font-size: 0.72rem; line-height: 1.55; color: rgba(255,255,255,0.42); margin-bottom: 10px; }
+    .se-step-result {
+      font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.08em;
+      padding: 4px 8px; border-radius: 4px; display: inline-block;
+    }
+    .se-step-income { font-family: var(--fh); font-size: 1.6rem; margin: 10px 0 4px; }
+    .se-step-incomenote { font-size: 0.68rem; line-height: 1.55; color: rgba(255,255,255,0.35); }
+    .se-s-blue   { background: rgba(59,158,255,0.05);  border: 1px solid rgba(59,158,255,0.2); }
+    .se-s-blue   .se-step-name { color: #3B9EFF; }
+    .se-s-blue   .se-step-result { background: rgba(59,158,255,0.12); color: rgba(59,158,255,0.8); }
+    .se-s-gold   { background: rgba(200,169,110,0.05); border: 1px solid rgba(200,169,110,0.22); }
+    .se-s-gold   .se-step-name { color: #C8A96E; }
+    .se-s-gold   .se-step-result { background: rgba(200,169,110,0.12); color: rgba(200,169,110,0.8); }
+    .se-s-green  { background: rgba(80,216,144,0.05);  border: 1px solid rgba(80,216,144,0.2); }
+    .se-s-green  .se-step-name { color: #50D890; }
+    .se-s-green  .se-step-result { background: rgba(80,216,144,0.12); color: rgba(80,216,144,0.8); }
+    .se-s-violet { background: rgba(155,126,222,0.07); border: 1.5px solid rgba(155,126,222,0.35); }
+    .se-s-violet .se-step-name { color: #9B7EDE; }
+    .se-s-violet .se-step-income { color: #9B7EDE; }
+    .se-ambass-note {
+      text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.45);
+      margin-bottom: 14px; line-height: 1.6;
+    }
+    .se-ambass-badge {
+      text-align: center; font-family: var(--fm); font-size: 0.7rem; letter-spacing: 0.15em;
+      color: rgba(224,92,92,0.7); margin-bottom: 72px;
+    }
+    .se-red-dot { color: rgba(224,92,92,0.8); margin-right: 6px; }
+
+    /* Pricing table */
+    .se-pricing-table {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 28px 32px; margin-bottom: 20px;
+    }
+    .se-price-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .se-price-row:last-of-type { border-bottom: none; }
+    .se-price-name { flex: 1; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+    .se-price-old {
+      font-family: var(--fm); font-size: 0.78rem;
+      text-decoration: line-through; color: rgba(255,255,255,0.2);
+    }
+    .se-price-new { font-family: var(--fm); font-size: 0.85rem; color: rgba(80,216,144,0.85); letter-spacing: 0.04em; }
+    .se-price-incl { font-family: var(--fm); font-size: 0.78rem; color: rgba(80,216,144,0.7); }
+    .se-pricing-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 4px 0 16px; }
+    .se-pricing-total {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 4px;
+    }
+    .se-total-label { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+    .se-total-note { font-size: 0.72rem; color: rgba(255,255,255,0.28); font-style: italic; line-height: 1.5; max-width: 360px; }
+    .se-total-right { text-align: right; flex-shrink: 0; }
+    .se-total-old {
+      font-family: var(--fm); font-size: 0.85rem;
+      text-decoration: line-through; color: rgba(255,255,255,0.22); display: block; margin-bottom: 4px;
+    }
+    .se-total-sub { font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.12em; color: rgba(200,169,110,0.5); margin-bottom: 2px; text-transform: uppercase; }
+    .se-total-new { font-family: var(--fh); font-size: 1.9rem; color: #C8A96E; line-height: 1; }
+
+    /* Tariff cards */
+    .se-tariffs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 72px; }
+    .se-tariff {
+      border-radius: 14px; padding: 28px 22px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .se-tariff.se-vis { opacity: 1; transform: translateY(0); }
+    .se-tariff-badge {
+      display: inline-block; font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.15em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 4px; margin-bottom: 12px;
+    }
+    .se-tariff-sub { font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.32; margin-bottom: 6px; line-height: 1.5; }
+    .se-tariff-name { font-family: var(--fh); font-size: 1.15rem; margin-bottom: 16px; }
+    .se-tariff-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+    .se-tariff-list li { font-size: 0.78rem; line-height: 1.5; color: rgba(255,255,255,0.45); padding-left: 14px; position: relative; }
+    .se-tariff-list li::before { content: '·'; position: absolute; left: 3px; opacity: 0.5; }
+    .se-t-featured { background: rgba(200,169,110,0.08); border: 1.5px solid rgba(200,169,110,0.42); }
+    .se-t-featured .se-tariff-name { color: #C8A96E; }
+    .se-t-featured .se-tariff-badge { background: rgba(224,92,92,0.2); color: rgba(224,92,92,0.9); }
+    .se-t-plain { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); }
+    .se-t-plain .se-tariff-name { color: rgba(255,255,255,0.65); }
+    .se-t-plain .se-tariff-badge { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.35); }
+    .se-t-violet { background: rgba(155,126,222,0.05); border: 1px solid rgba(155,126,222,0.2); }
+    .se-t-violet .se-tariff-name { color: #9B7EDE; }
+    .se-t-violet .se-tariff-badge { background: rgba(155,126,222,0.15); color: rgba(155,126,222,0.85); }
+
+    /* Results grid */
+    .se-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+    .se-res-card {
+      border-radius: 12px; padding: 20px 18px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .se-res-card.se-vis { opacity: 1; transform: translateY(0); }
+    .se-res-name { font-family: var(--fh); font-size: 0.9rem; margin-bottom: 7px; }
+    .se-res-text { font-size: 0.73rem; line-height: 1.6; color: rgba(255,255,255,0.38); }
+    .se-r-blue   { background: rgba(59,158,255,0.04);  border: 1px solid rgba(59,158,255,0.15); }
+    .se-r-blue   .se-res-name { color: #3B9EFF; }
+    .se-r-gold   { background: rgba(200,169,110,0.04); border: 1px solid rgba(200,169,110,0.18); }
+    .se-r-gold   .se-res-name { color: #C8A96E; }
+    .se-r-violet { background: rgba(155,126,222,0.04); border: 1px solid rgba(155,126,222,0.15); }
+    .se-r-violet .se-res-name { color: #9B7EDE; }
+    .se-r-green  { background: rgba(80,216,144,0.04);  border: 1px solid rgba(80,216,144,0.15); }
+    .se-r-green  .se-res-name { color: #50D890; }
+    .se-r-cyan   { background: rgba(60,190,210,0.04);  border: 1px solid rgba(60,190,210,0.15); }
+    .se-r-cyan   .se-res-name { color: #3CBECE; }
+    .se-r-orange { background: rgba(255,142,60,0.04);  border: 1px solid rgba(255,142,60,0.15); }
+    .se-r-orange .se-res-name { color: #FF8E3C; }
+    .se-results-note {
+      text-align: center; font-size: 0.8rem; line-height: 1.65; color: rgba(255,255,255,0.35);
+      max-width: 600px; margin: 0 auto; font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .se-transition { grid-template-columns: 1fr; gap: 16px; }
+      .se-transition-arrow { flex-direction: row; justify-content: center; }
+      .se-directions { grid-template-columns: 1fr; }
+      .se-steps { grid-template-columns: 1fr; gap: 12px; }
+      .se-step-arrow { display: none; }
+      .se-tariffs { grid-template-columns: 1fr; }
+      .se-results { grid-template-columns: 1fr 1fr; }
+      .se-pricing-total { flex-direction: column; align-items: flex-start; }
+      .se-total-right { text-align: left; }
+    }
+    @media (max-width: 520px) {
+      .se-section { padding: 70px 20px 60px; }
+      .se-results { grid-template-columns: 1fr; }
+      .se-pricing-table { padding: 20px 18px; }
+    }
+
+    /* ── Screen 13: First Stage ── */
+    .fs-section {
+      position: relative; padding: 100px 40px 100px; background: #07090f; overflow: hidden;
+    }
+    .fs-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(150px); }
+    .fs-blob-1 {
+      width: 700px; height: 700px; top: -5%; left: -10%;
+      background: radial-gradient(circle, rgba(59,158,255,0.06) 0%, transparent 70%);
+    }
+    .fs-blob-2 {
+      width: 500px; height: 500px; bottom: 10%; right: -5%;
+      background: radial-gradient(circle, rgba(200,169,110,0.05) 0%, transparent 70%);
+    }
+    .fs-inner { position: relative; z-index: 1; max-width: 1020px; margin: 0 auto; }
+    .fs-label {
+      font-family: var(--fm); font-size: 0.72rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: rgba(59,158,255,0.7);
+      margin-bottom: 24px; text-align: center;
+    }
+    .fs-title {
+      font-family: var(--fh); font-size: clamp(1.5rem, 3vw, 2.3rem);
+      color: #F0EDE8; text-align: center; line-height: 1.15; max-width: 700px; margin: 0 auto 32px;
+    }
+    .fs-intro { max-width: 760px; margin: 0 auto 64px; }
+    .fs-intro p { font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
+    .fs-intro p:last-child { margin-bottom: 0; }
+
+    /* Sessions tape */
+    .fs-tape-wrap { overflow-x: auto; padding-bottom: 12px; margin-bottom: 16px; scrollbar-width: none; }
+    .fs-tape-wrap::-webkit-scrollbar { display: none; }
+    .fs-tape { display: flex; gap: 10px; min-width: max-content; padding: 4px 2px; }
+    .fs-card {
+      border-radius: 14px; padding: 22px 18px; width: 148px; flex-shrink: 0;
+      position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .fs-card.fs-vis { opacity: 1; transform: translateY(0); }
+    .fs-card-3 { width: 170px; padding: 26px 20px; }
+    .fs-card-num { font-family: var(--fh); font-size: 2rem; line-height: 1; margin-bottom: 10px; opacity: 0.22; }
+    .fs-card-name { font-family: var(--fh); font-size: 1rem; line-height: 1.2; margin-bottom: 6px; }
+    .fs-card-mode { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; opacity: 0.55; }
+    .fs-card-desc { font-size: 0.7rem; line-height: 1.55; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+    .fs-card-dur { font-family: var(--fm); font-size: 0.62rem; letter-spacing: 0.08em; opacity: 0.32; }
+    .fs-badge {
+      display: inline-block; font-family: var(--fm); font-size: 0.54rem; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 3px; margin-bottom: 10px;
+    }
+    .fs-c-blue   { background: rgba(59,158,255,0.05);  border: 1px solid rgba(59,158,255,0.22); }
+    .fs-c-blue   .fs-card-num, .fs-c-blue   .fs-card-name { color: #3B9EFF; }
+    .fs-c-blue   .fs-card-mode { color: rgba(59,158,255,0.7); }
+    .fs-c-red    { background: rgba(224,92,92,0.05);   border: 1px solid rgba(224,92,92,0.22); }
+    .fs-c-red    .fs-card-num, .fs-c-red    .fs-card-name { color: #E05C5C; }
+    .fs-c-red    .fs-card-mode { color: rgba(224,92,92,0.7); }
+    .fs-c-violet { background: rgba(155,126,222,0.07); border: 1.5px solid rgba(155,126,222,0.38); }
+    .fs-c-violet .fs-card-num, .fs-c-violet .fs-card-name { color: #9B7EDE; }
+    .fs-c-violet .fs-card-mode { color: rgba(155,126,222,0.7); }
+    .fs-c-violet .fs-badge { background: rgba(155,126,222,0.2); color: rgba(155,126,222,0.9); }
+    .fs-c-cyan   { background: rgba(60,190,210,0.05);  border: 1px solid rgba(60,190,210,0.22); }
+    .fs-c-cyan   .fs-card-num, .fs-c-cyan   .fs-card-name { color: #3CBECE; }
+    .fs-c-cyan   .fs-card-mode { color: rgba(60,190,210,0.7); }
+    .fs-c-green  { background: rgba(80,216,144,0.05);  border: 1px solid rgba(80,216,144,0.22); }
+    .fs-c-green  .fs-card-num, .fs-c-green  .fs-card-name { color: #50D890; }
+    .fs-c-green  .fs-card-mode { color: rgba(80,216,144,0.7); }
+    .fs-c-gold   { background: rgba(200,169,110,0.05); border: 1px solid rgba(200,169,110,0.25); }
+    .fs-c-gold   .fs-card-num, .fs-c-gold   .fs-card-name { color: #C8A96E; }
+    .fs-c-gold   .fs-card-mode { color: rgba(200,169,110,0.7); }
+    .fs-c-white  { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12); }
+    .fs-c-white  .fs-card-num, .fs-c-white  .fs-card-name { color: rgba(255,255,255,0.7); }
+    .fs-c-white  .fs-card-mode { color: rgba(255,255,255,0.4); }
+    .fs-tape-meta {
+      text-align: center; font-family: var(--fm); font-size: 0.7rem; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.28); margin-bottom: 72px; font-style: italic;
+    }
+
+    /* Three phases */
+    .fs-sec-title {
+      font-family: var(--fh); font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+      color: #F0EDE8; text-align: center; margin-bottom: 32px; line-height: 1.2;
+    }
+    .fs-phases {
+      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0 10px; align-items: start; margin-bottom: 20px;
+    }
+    .fs-phase {
+      border-radius: 12px; padding: 24px 20px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fs-phase.fs-vis { opacity: 1; transform: translateY(0); }
+    .fs-phase-arrow {
+      align-self: center; color: rgba(255,255,255,0.2); font-size: 1.3rem;
+      padding-top: 20px; text-align: center;
+      opacity: 0; transition: opacity 0.4s ease 0.7s;
+    }
+    .fs-phase-arrow.fs-vis { opacity: 1; }
+    .fs-ph-step { font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.2em; opacity: 0.38; margin-bottom: 8px; }
+    .fs-ph-name { font-family: var(--fh); font-size: 1.05rem; margin-bottom: 10px; }
+    .fs-ph-desc { font-size: 0.77rem; line-height: 1.65; color: rgba(255,255,255,0.45); margin-bottom: 14px; }
+    .fs-ph-eeg { font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.1em; padding: 5px 10px; border-radius: 4px; display: inline-block; }
+    .fs-ph-blue  { background: rgba(59,158,255,0.05);  border: 1px solid rgba(59,158,255,0.22); }
+    .fs-ph-blue  .fs-ph-name { color: #3B9EFF; }
+    .fs-ph-blue  .fs-ph-eeg  { background: rgba(59,158,255,0.1); color: rgba(59,158,255,0.8); }
+    .fs-ph-gold  { background: rgba(200,169,110,0.05); border: 1px solid rgba(200,169,110,0.25); }
+    .fs-ph-gold  .fs-ph-name { color: #C8A96E; }
+    .fs-ph-gold  .fs-ph-eeg  { background: rgba(200,169,110,0.1); color: rgba(200,169,110,0.8); }
+    .fs-ph-green { background: rgba(80,216,144,0.05);  border: 1px solid rgba(80,216,144,0.22); }
+    .fs-ph-green .fs-ph-name { color: #50D890; }
+    .fs-ph-green .fs-ph-eeg  { background: rgba(80,216,144,0.1); color: rgba(80,216,144,0.8); }
+    .fs-phases-note {
+      text-align: center; font-size: 0.82rem; line-height: 1.7; color: rgba(255,255,255,0.38);
+      margin: 0 auto 72px; max-width: 640px;
+    }
+
+    /* Results grid */
+    .fs-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 72px; }
+    .fs-res-card {
+      border-radius: 12px; padding: 22px 20px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .fs-res-card.fs-vis { opacity: 1; transform: translateY(0); }
+    .fs-res-name { font-family: var(--fh); font-size: 0.95rem; margin-bottom: 8px; }
+    .fs-res-text { font-size: 0.76rem; line-height: 1.6; color: rgba(255,255,255,0.4); }
+    .fs-r-blue   { background: rgba(59,158,255,0.04);  border: 1px solid rgba(59,158,255,0.18); }
+    .fs-r-blue   .fs-res-name { color: #3B9EFF; }
+    .fs-r-gold   { background: rgba(200,169,110,0.04); border: 1px solid rgba(200,169,110,0.2); }
+    .fs-r-gold   .fs-res-name { color: #C8A96E; }
+    .fs-r-violet { background: rgba(155,126,222,0.04); border: 1px solid rgba(155,126,222,0.18); }
+    .fs-r-violet .fs-res-name { color: #9B7EDE; }
+    .fs-r-green  { background: rgba(80,216,144,0.04);  border: 1px solid rgba(80,216,144,0.18); }
+    .fs-r-green  .fs-res-name { color: #50D890; }
+    .fs-r-cyan   { background: rgba(60,190,210,0.04);  border: 1px solid rgba(60,190,210,0.18); }
+    .fs-r-cyan   .fs-res-name { color: #3CBECE; }
+    .fs-r-orange { background: rgba(255,142,60,0.04);  border: 1px solid rgba(255,142,60,0.18); }
+    .fs-r-orange .fs-res-name { color: #FF8E3C; }
+
+    /* Quote card */
+    .fs-quote {
+      background: rgba(200,169,110,0.06); border: 1px solid rgba(200,169,110,0.22);
+      border-radius: 16px; padding: 40px 44px; margin-bottom: 72px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+    }
+    .fs-quote.fs-vis { opacity: 1; transform: translateY(0); }
+    .fs-quote-main {
+      font-family: var(--fh); font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: rgba(200,169,110,0.9); line-height: 1.45; margin-bottom: 20px;
+    }
+    .fs-quote-body { font-size: 0.88rem; line-height: 1.85; color: rgba(255,255,255,0.5); }
+
+    /* Logistics */
+    .fs-logistics {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 32px 36px; margin-bottom: 72px;
+    }
+    .fs-log-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.85rem; line-height: 1.6; color: rgba(255,255,255,0.5);
+      opacity: 0; transform: translateX(-8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .fs-log-item:last-child { border-bottom: none; }
+    .fs-log-item.fs-vis { opacity: 1; transform: translateX(0); }
+    .fs-log-icon { color: rgba(59,158,255,0.7); flex-shrink: 0; font-size: 0.95rem; line-height: 1.6; }
+    .fs-log-strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+    /* Closing */
+    .fs-closing {
+      max-width: 720px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.07); padding-top: 48px;
+    }
+    .fs-closing p { font-size: 0.92rem; line-height: 1.85; color: rgba(255,255,255,0.5); margin-bottom: 14px; }
+    .fs-closing p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 768px) {
+      .fs-phases { grid-template-columns: 1fr; gap: 12px; }
+      .fs-phase-arrow { display: none; }
+      .fs-results { grid-template-columns: 1fr 1fr; }
+      .fs-quote { padding: 28px 24px; }
+      .fs-logistics { padding: 24px 20px; }
+    }
+    @media (max-width: 520px) {
+      .fs-section { padding: 70px 20px 60px; }
+      .fs-results { grid-template-columns: 1fr; }
+    }
+
+    /* ── Screen 15: Future ── */
+    .fw-section { position: relative; padding: 100px 40px 120px; background: #040810; overflow: hidden; }
+    .fw-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(200px); }
+    .fw-blob-1 { width: 900px; height: 900px; top: 10%; left: 50%; transform: translateX(-50%); background: radial-gradient(circle, rgba(200,169,110,0.045) 0%, transparent 70%); }
+    .fw-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; }
+    .fw-label { font-family: var(--fm); font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(200,169,110,0.7); margin-bottom: 24px; text-align: center; }
+    .fw-title { font-family: var(--fh); font-size: clamp(1.5rem, 3.2vw, 2.6rem); color: #F0EDE8; text-align: center; line-height: 1.12; max-width: 740px; margin: 0 auto 32px; }
+    .fw-intro { max-width: 760px; margin: 0 auto 64px; }
+    .fw-intro p { font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
+    .fw-intro p:last-child { margin-bottom: 0; }
+
+    /* Two worlds */
+    .fw-worlds { display: grid; grid-template-columns: 1fr 6px 1fr; gap: 0; margin-bottom: 64px; }
+    .fw-world { padding: 32px 28px; }
+    .fw-world-divider { background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0.1) 70%, transparent); }
+    .fw-world-now {
+      background: rgba(80,20,20,0.18); border: 1px solid rgba(180,60,60,0.15); border-right: none;
+      border-radius: 16px 0 0 16px;
+      opacity: 0; transform: translateX(-10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fw-world-future {
+      background: rgba(200,169,110,0.03); border: 1px solid rgba(200,169,110,0.12); border-left: none;
+      border-radius: 0 16px 16px 0;
+      opacity: 0; transform: translateX(10px);
+      transition: opacity 0.7s ease, transform 0.7s ease, background 1s ease, border-color 1s ease, box-shadow 1s ease;
+    }
+    .fw-world-now.fw-vis { opacity: 1; transform: translateX(0); }
+    .fw-world-future.fw-vis {
+      opacity: 1; transform: translateX(0);
+      background: rgba(200,169,110,0.08); border-color: rgba(200,169,110,0.28);
+      box-shadow: 0 0 80px rgba(200,169,110,0.07), inset 0 0 40px rgba(200,169,110,0.03);
+    }
+    .fw-world-head { font-family: var(--fh); font-size: 1.25rem; margin-bottom: 22px; }
+    .fw-world-now .fw-world-head { color: rgba(200,100,100,0.65); }
+    .fw-world-future .fw-world-head { color: rgba(200,169,110,0.88); }
+    .fw-world-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 11px; }
+    .fw-world-list li { font-size: 0.82rem; line-height: 1.55; padding-left: 20px; position: relative; }
+    .fw-world-now .fw-world-list li { color: rgba(255,255,255,0.38); }
+    .fw-world-future .fw-world-list li { color: rgba(255,255,255,0.55); }
+    .fw-mark-bad { position: absolute; left: 0; color: rgba(224,92,92,0.55); font-size: 0.9rem; }
+    .fw-mark-good { position: absolute; left: 0; color: rgba(80,216,144,0.65); font-size: 0.9rem; }
+
+    /* Wide glass card */
+    .fw-glass { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 36px 40px; margin-bottom: 72px; }
+    .fw-glass p { font-size: 0.92rem; line-height: 1.85; color: rgba(255,255,255,0.52); margin-bottom: 14px; }
+    .fw-glass p:last-child { margin-bottom: 0; }
+
+    /* Practitioner profiles */
+    .fw-sec-title { font-family: var(--fh); font-size: clamp(1.1rem, 2.2vw, 1.7rem); color: #F0EDE8; text-align: center; margin-bottom: 32px; line-height: 1.2; }
+    .fw-profiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+    .fw-profile {
+      border-radius: 14px; padding: 22px 20px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .fw-profile.fw-vis { opacity: 1; transform: translateY(0); }
+    .fw-profile-plain { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); }
+    .fw-profile-feat { background: rgba(200,169,110,0.07); border: 1.5px solid rgba(200,169,110,0.35); }
+    .fw-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fh); font-size: 0.85rem; margin-bottom: 12px;
+    }
+    .fw-avatar-a { background: rgba(59,158,255,0.15); color: rgba(59,158,255,0.8); }
+    .fw-avatar-b { background: rgba(200,169,110,0.2); color: rgba(200,169,110,0.9); }
+    .fw-avatar-c { background: rgba(80,216,144,0.15); color: rgba(80,216,144,0.8); }
+    .fw-prof-name { font-family: var(--fh); font-size: 0.9rem; margin-bottom: 3px; color: rgba(255,255,255,0.8); }
+    .fw-prof-method { font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 14px; }
+    .fw-metric-row { display: flex; justify-content: space-between; gap: 8px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.68rem; }
+    .fw-metric-row:last-of-type { border-bottom: none; }
+    .fw-metric-key { color: rgba(255,255,255,0.3); flex: 1; }
+    .fw-metric-val { font-family: var(--fm); font-size: 0.65rem; letter-spacing: 0.04em; text-align: right; }
+    .fw-profile-plain .fw-metric-val { color: rgba(59,158,255,0.7); }
+    .fw-profile-feat .fw-metric-val { color: rgba(200,169,110,0.8); }
+    .fw-metric-val-g { color: rgba(80,216,144,0.75) !important; }
+    .fw-stars { display: flex; gap: 2px; margin-top: 12px; align-items: center; }
+    .fw-star { color: rgba(200,169,110,0.65); font-size: 0.7rem; }
+    .fw-star-note { font-family: var(--fm); font-size: 0.52rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.2); margin-left: 6px; line-height: 1.35; }
+    .fw-profiles-note { text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-bottom: 72px; line-height: 1.6; font-style: italic; }
+
+    /* Consequences */
+    .fw-conseq { display: flex; flex-direction: column; margin-bottom: 72px; }
+    .fw-conseq-item {
+      display: flex; align-items: flex-start; gap: 18px;
+      padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      opacity: 0; transform: translateX(-10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .fw-conseq-item:last-child { border-bottom: none; }
+    .fw-conseq-item.fw-vis { opacity: 1; transform: translateX(0); }
+    .fw-conseq-num { font-family: var(--fm); font-size: 0.68rem; letter-spacing: 0.15em; color: rgba(200,169,110,0.5); flex-shrink: 0; padding-top: 2px; }
+    .fw-conseq-text { font-size: 0.9rem; line-height: 1.65; color: rgba(255,255,255,0.52); }
+    .fw-conseq-text strong { color: rgba(255,255,255,0.82); font-weight: 500; }
+
+    /* Mysticism block */
+    .fw-mystik { background: rgba(155,126,222,0.05); border: 1px solid rgba(155,126,222,0.18); border-radius: 16px; padding: 36px 40px; margin-bottom: 72px; }
+    .fw-mystik-title { font-family: var(--fh); font-size: clamp(1rem, 2vw, 1.3rem); color: rgba(155,126,222,0.85); margin-bottom: 18px; line-height: 1.3; }
+    .fw-mystik p { font-size: 0.9rem; line-height: 1.85; color: rgba(255,255,255,0.52); margin-bottom: 14px; }
+    .fw-mystik p:last-child { margin-bottom: 0; }
+    .fw-mystik strong { color: rgba(155,126,222,0.85); font-weight: 500; }
+
+    /* Concentric rings */
+    .fw-rings-grid { display: grid; grid-template-columns: 340px 1fr; gap: 40px; align-items: center; margin-bottom: 48px; }
+    .fw-rings-svg-wrap { display: flex; justify-content: center; }
+    .fw-rings-svg { width: 320px; height: 320px; display: block; }
+    .fw-ring { opacity: 0; transition: opacity 0.5s ease; }
+    .fw-ring.fw-ring-vis { opacity: 1; }
+    @keyframes fw-center-pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+    .fw-center-glow { animation: fw-center-pulse 2.5s ease-in-out infinite; }
+    .fw-ring-labels { display: flex; flex-direction: column; gap: 16px; }
+    .fw-ring-label { display: flex; align-items: flex-start; gap: 12px; opacity: 0; transition: opacity 0.4s ease; }
+    .fw-ring-label.fw-ring-vis { opacity: 1; }
+    .fw-ring-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .fw-ring-label-name { font-family: var(--fh); font-size: 0.92rem; margin-bottom: 2px; }
+    .fw-ring-label-sub { font-size: 0.72rem; line-height: 1.4; color: rgba(255,255,255,0.32); }
+    .fw-ring-10k { font-family: var(--fh); font-size: 2.2rem; line-height: 1; color: rgba(255,255,255,0.75); }
+
+    /* Quote */
+    .fw-quote-block {
+      max-width: 740px; margin: 0 auto;
+      border-top: 1px solid rgba(200,169,110,0.2); padding-top: 52px;
+      text-align: center;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fw-quote-block.fw-vis { opacity: 1; transform: translateY(0); }
+    .fw-quote-text { font-family: var(--fh); font-size: clamp(1rem, 1.8vw, 1.3rem); color: rgba(200,169,110,0.75); line-height: 1.6; font-style: italic; margin-bottom: 22px; }
+    .fw-quote-sign { font-family: var(--fm); font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+
+    @media (max-width: 768px) {
+      .fw-worlds { grid-template-columns: 1fr; gap: 12px; }
+      .fw-world-divider { display: none; }
+      .fw-world-now, .fw-world-future { border-radius: 12px; border: 1px solid rgba(160,60,60,0.15); }
+      .fw-world-future { border-color: rgba(200,169,110,0.25); }
+      .fw-profiles { grid-template-columns: 1fr; }
+      .fw-rings-grid { grid-template-columns: 1fr; }
+      .fw-mystik { padding: 26px 22px; }
+      .fw-glass { padding: 26px 22px; }
+    }
+    @media (max-width: 520px) {
+      .fw-section { padding: 70px 20px 80px; }
+    }
   </style>
 </head>
 <body>
@@ -5111,6 +5686,736 @@
     </div>
   </section>
 
+  <!-- SCREEN 13: FIRST STAGE -->
+  <section class="fs-section" id="fs-section">
+    <div class="fs-blob fs-blob-1"></div>
+    <div class="fs-blob fs-blob-2"></div>
+    <div class="fs-inner">
+
+      <div class="fs-label fade-up">Первый этап исследования</div>
+      <h2 class="fs-title fade-up">Точка А — семь сессий которые создают вашу карту</h2>
+      <div class="fs-intro fade-up">
+        <p>Всё что мы описывали до этого — режимы, MNPI, предиктивная модель, два гаджета — это теория и инструменты. Теперь о том как это выглядит на практике. Что именно происходит когда вы входите в исследование.</p>
+        <p>Первый этап называется Точка А. Это отправная точка — базовая линия от которой будет считаться весь дальнейший рост. Семь структурированных сессий, каждая от тридцати минут до часа. Нейробанд на голове, трекер на запястье, диктофон рядом. И аудиопрограмма которая ведёт вас через процесс.</p>
+        <p>Важно понять: вы проходите этот путь сами — не как исследователь наблюдающий со стороны, а как участник. Потому что только пройдя его лично, вы сможете потом проводить через него своих клиентов. Сапожник должен быть в сапогах.</p>
+      </div>
+
+      <!-- Sessions tape -->
+      <div class="fs-tape-wrap" id="fs-tape-wrap">
+        <div class="fs-tape" id="fs-tape">
+          <div class="fs-card fs-c-blue">
+            <div class="fs-card-num">01</div>
+            <div class="fs-card-name">Кто Ты</div>
+            <div class="fs-card-mode">Pure Nothing</div>
+            <div class="fs-card-desc">Первый вход в тишину после нарратива. Базовый нейропрофиль. Ваш мозг впервые видит себя в данных.</div>
+            <div class="fs-card-dur">~48 мин</div>
+          </div>
+          <div class="fs-card fs-c-red">
+            <div class="fs-card-num">02</div>
+            <div class="fs-card-name">Тень и Зов</div>
+            <div class="fs-card-mode">Visceral Mind</div>
+            <div class="fs-card-desc">Соматическая нагрузка. Работа с имплицитным. Здесь измеряется Resilience Index.</div>
+            <div class="fs-card-dur">~50 мин</div>
+          </div>
+          <div class="fs-card fs-c-violet fs-card-3">
+            <div class="fs-badge">Ключевая сессия</div>
+            <div class="fs-card-num">03</div>
+            <div class="fs-card-name">Откуда Ты</div>
+            <div class="fs-card-mode">Quantum Genesis</div>
+            <div class="fs-card-desc">Самая важная сессия. Тета-глубина 25+ минут. Ключевой нейроснимок. Здесь паттерны переписываются.</div>
+            <div class="fs-card-dur">~62 мин</div>
+          </div>
+          <div class="fs-card fs-c-cyan">
+            <div class="fs-card-num">04</div>
+            <div class="fs-card-name">Порог</div>
+            <div class="fs-card-mode">Active Presence</div>
+            <div class="fs-card-desc">Переход через порог. Открытые глаза. Тишина при контакте с миром.</div>
+            <div class="fs-card-dur">~50 мин</div>
+          </div>
+          <div class="fs-card fs-c-green">
+            <div class="fs-card-num">05</div>
+            <div class="fs-card-name">Новый Мир</div>
+            <div class="fs-card-mode">Embodied Flow</div>
+            <div class="fs-card-desc">Воплощённое действие. Интеграция в жизненный контекст. Проверка навыка в реальной ситуации.</div>
+            <div class="fs-card-dur">~50 мин</div>
+          </div>
+          <div class="fs-card fs-c-gold">
+            <div class="fs-card-num">06</div>
+            <div class="fs-card-name">Эликсир</div>
+            <div class="fs-card-mode">Transcendent Download</div>
+            <div class="fs-card-desc">Высшая точка серии. Закрепление. Синтез всего что было пройдено.</div>
+            <div class="fs-card-dur">~56 мин</div>
+          </div>
+          <div class="fs-card fs-c-white">
+            <div class="fs-card-num">07</div>
+            <div class="fs-card-name">Интеграция</div>
+            <div class="fs-card-mode">Все режимы</div>
+            <div class="fs-card-desc">Финальная сессия. Сборка данных. Голосовой нарратив по всем сферам жизни. Основа для Книги.</div>
+            <div class="fs-card-dur">~60 мин</div>
+          </div>
+        </div>
+      </div>
+      <div class="fs-tape-meta fade-up">Одна неделя · ~7 часов чистого времени · нейробанд + трекер + диктофон</div>
+
+      <!-- Three phases -->
+      <h3 class="fs-sec-title fade-up">Структура одной сессии</h3>
+      <div class="fs-phases" id="fs-phases">
+        <div class="fs-phase fs-ph-blue">
+          <div class="fs-ph-step">// Фаза 01</div>
+          <div class="fs-ph-name">Нарратив</div>
+          <div class="fs-ph-desc">Аудиопрограмма ведёт через сцены жизни. Вы говорите вслух — в диктофон. Мозг работает в DMN и начинает разогреваться.</div>
+          <div class="fs-ph-eeg">ЭЭГ: активный бета, DMN</div>
+        </div>
+        <div class="fs-phase-arrow">→</div>
+        <div class="fs-phase fs-ph-gold">
+          <div class="fs-ph-step">// Фаза 02</div>
+          <div class="fs-ph-name">Переключение</div>
+          <div class="fs-ph-desc">Остановка внутреннего диалога. Вход в целевой режим. Тишина. Это сердце каждой сессии — здесь происходит главное.</div>
+          <div class="fs-ph-eeg">ЭЭГ: альфа или тета нарастают</div>
+        </div>
+        <div class="fs-phase-arrow">→</div>
+        <div class="fs-phase fs-ph-green">
+          <div class="fs-ph-step">// Фаза 03</div>
+          <div class="fs-ph-name">Возврат и закрепление</div>
+          <div class="fs-ph-desc">Выход из состояния. Голосовой нарратив о пережитом. Здесь формируется PI — феноменологический индекс.</div>
+          <div class="fs-ph-eeg">ЭЭГ: фиксация перехода</div>
+        </div>
+      </div>
+      <div class="fs-phases-note fade-up">Три фазы повторяются в каждой из семи сессий. Но содержание нарратива и целевой режим — разные. Так собирается полный нейропрофиль.</div>
+
+      <!-- Results grid -->
+      <h3 class="fs-sec-title fade-up">По итогам семи сессий</h3>
+      <div class="fs-results" id="fs-results">
+        <div class="fs-res-card fs-r-blue">
+          <div class="fs-res-name">MNPI-профиль</div>
+          <div class="fs-res-text">Радарная карта SI, DI, RI, PI. Ваша многомерная нейрокарта. Точка А от которой считается весь дальнейший рост.</div>
+        </div>
+        <div class="fs-res-card fs-r-gold">
+          <div class="fs-res-name">6 выгрузок данных</div>
+          <div class="fs-res-text">CSV-файлы каждой сессии с временными метками. ИИ-анализ каждой выгрузки. Данные в ваших руках навсегда.</div>
+        </div>
+        <div class="fs-res-card fs-r-violet">
+          <div class="fs-res-name">Книга — Кто Ты</div>
+          <div class="fs-res-text">Персональный документ созданный на основе ваших нарративов и данных мозга. Портрет вашей личности через семь Миров.</div>
+        </div>
+        <div class="fs-res-card fs-r-green">
+          <div class="fs-res-name">Книга — Анализ сфер</div>
+          <div class="fs-res-text">Что происходит в вашем мозге когда вы говорите о работе, теле, отношениях, смыслах. Где энергия есть — и где её нет.</div>
+        </div>
+        <div class="fs-res-card fs-r-cyan">
+          <div class="fs-res-name">Пульт управления</div>
+          <div class="fs-res-text">Навык входа в шесть функциональных режимов. Верифицирован на ЭЭГ. Теперь вы знаете как это ощущается в вашем теле.</div>
+        </div>
+        <div class="fs-res-card fs-r-orange">
+          <div class="fs-res-name">Подготовка к этапу 2</div>
+          <div class="fs-res-text">Вы видели как собираются данные изнутри. Знаете протокол. Готовы проводить через него своих клиентов.</div>
+        </div>
+      </div>
+
+      <!-- Quote card -->
+      <div class="fs-quote" id="fs-quote">
+        <div class="fs-quote-main">Самое важное что происходит в первом этапе — это не данные которые вы получаете. Это понимание как эти данные собираются.</div>
+        <div class="fs-quote-body">Вы проходите протокол на себе. Вы чувствуете каждый переход. Видите на экране как меняется ваш мозг. Слышите собственный голосовой нарратив после состояния. И понимаете изнутри что значит быть участником этого исследования.<br><br>Именно поэтому вы сможете потом проводить через это своих клиентов — не как инструктор который объясняет по инструкции, а как человек который знает это по собственному опыту.</div>
+      </div>
+
+      <!-- Logistics -->
+      <h3 class="fs-sec-title fade-up">Как это организовано</h3>
+      <div class="fs-logistics" id="fs-logistics">
+        <div class="fs-log-item" data-fs-delay="0">
+          <span class="fs-log-icon">◉</span>
+          <span><span class="fs-log-strong">Онлайн</span> · сессии проходят дистанционно в удобное для вас время</span>
+        </div>
+        <div class="fs-log-item" data-fs-delay="100">
+          <span class="fs-log-icon">◉</span>
+          <span><span class="fs-log-strong">Аудиопрограмма</span> · вы получаете готовую программу которая ведёт через каждую сессию</span>
+        </div>
+        <div class="fs-log-item" data-fs-delay="200">
+          <span class="fs-log-icon">◉</span>
+          <span><span class="fs-log-strong">Одна неделя</span> · все семь сессий рекомендуется пройти в течение одной недели</span>
+        </div>
+        <div class="fs-log-item" data-fs-delay="300">
+          <span class="fs-log-icon">◉</span>
+          <span><span class="fs-log-strong">Поддержка</span> · групповые встречи по выходным для разбора данных и вопросов</span>
+        </div>
+      </div>
+
+      <!-- Closing -->
+      <div class="fs-closing fade-up">
+        <p>После завершения первого этапа начинается второй — и здесь уже вы выходите в роль исследователя. С данными о себе. С пониманием протокола. С навыком который верифицирован. И с картой которая показывает откуда вы начали.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCREEN 14: SECOND STAGE + AMBASSADOR + CONDITIONS -->
+  <section class="se-section" id="se-section">
+    <div class="se-blob se-blob-1"></div>
+    <div class="se-blob se-blob-2"></div>
+    <div class="se-inner">
+
+      <div class="se-label fade-up">Второй этап исследования</div>
+      <h2 class="se-title fade-up">После Точки А — вы становитесь исследователем</h2>
+      <div class="se-intro fade-up">
+        <p>Первый этап — это погружение в себя. Вы прошли протокол, получили данные, увидели как это работает изнутри. Второй этап принципиально другой. Здесь вы выходите из роли участника и входите в роль исследователя. Ваш метод. Ваши клиенты. Ваши гипотезы. И те же инструменты — теперь в ваших руках.</p>
+      </div>
+
+      <!-- Transition diagram -->
+      <div class="se-transition" id="se-transition">
+        <div class="se-stage se-st-blue">
+          <span class="se-stage-badge">Этап 1 · Точка А</span>
+          <div class="se-stage-role">Вы — участник</div>
+          <div class="se-stage-title">Погружение в себя</div>
+          <ul class="se-stage-list">
+            <li>Проходите протокол на себе</li>
+            <li>Получаете MNPI-профиль</li>
+            <li>Видите как собираются данные</li>
+            <li>Осваиваете навык управления состоянием</li>
+          </ul>
+          <span class="se-stage-dur">~1 неделя</span>
+        </div>
+        <div class="se-transition-arrow">
+          <div class="se-arr-line">→</div>
+          <div class="se-arr-label">Вы прошли путь клиента<br>Теперь знаете его изнутри</div>
+        </div>
+        <div class="se-stage se-st-gold">
+          <span class="se-stage-badge">Этап 2 · Исследование метода</span>
+          <div class="se-stage-role">Вы — исследователь</div>
+          <div class="se-stage-title">Ваша практика в данных</div>
+          <ul class="se-stage-list">
+            <li>Ваши клиенты проходят протокол</li>
+            <li>Вы собираете их данные</li>
+            <li>Проверяете свои гипотезы</li>
+            <li>Верифицируете свой метод</li>
+          </ul>
+          <span class="se-stage-dur">6–12 месяцев</span>
+        </div>
+      </div>
+
+      <!-- Three directions -->
+      <h3 class="se-sec-title fade-up">Три направления второго этапа</h3>
+      <div class="se-directions" id="se-directions">
+        <div class="se-dir-card se-d-blue">
+          <div class="se-dir-num">// 01</div>
+          <div class="se-dir-name">Верификация функциональных состояний</div>
+          <div class="se-dir-text">Вы проводите клиентов через протокол и смотрите — какие из семи режимов ваш метод активирует. В какой режим человек входит на вашей сессии. Насколько глубоко. Насколько быстро. Это нейрофизиологическая карта вашей практики.</div>
+        </div>
+        <div class="se-dir-card se-d-green">
+          <div class="se-dir-num">// 02</div>
+          <div class="se-dir-name">Калибровка практики</div>
+          <div class="se-dir-text">На основе данных первых десяти-пятнадцати клиентов вы начинаете видеть паттерны. Кому ваш метод даёт наибольший результат. При каких условиях. Что в протоколе работает лучше всего. Это обратная связь которой у вас никогда не было.</div>
+        </div>
+        <div class="se-dir-card se-d-violet">
+          <div class="se-dir-num">// 03</div>
+          <div class="se-dir-name">Создание предиктивной модели</div>
+          <div class="se-dir-text">Через шесть месяцев данных по когорте клиентов система начинает предсказывать результат. Вы видите не просто средний эффект — вы видите для кого, при каких обстоятельствах и как быстро ваш метод работает.</div>
+        </div>
+      </div>
+
+      <!-- Ambassador program -->
+      <div class="se-ambass-label fade-up">Программа амбассадоров · Первые 50</div>
+      <h3 class="se-sec-title fade-up">Если у вас есть свой метод — войдите как амбассадор</h3>
+      <div class="se-ambass-text fade-up">
+        <p>Амбассадор — это практик который прошёл первый этап и входит во второй с собственной исследовательской линией. Вы не просто участвуете в чужом исследовании. Вы проводите своё — внутри общей инфраструктуры. Со своими клиентами, своими гипотезами, своими данными.</p>
+      </div>
+      <div class="se-steps" id="se-steps">
+        <div class="se-step se-s-blue">
+          <div class="se-step-num">01</div>
+          <div class="se-step-name">Верификация</div>
+          <div class="se-step-desc">Проходите первый этап. Получаете свой MNPI-профиль. Понимаете протокол изнутри.</div>
+          <span class="se-step-result">→ Доказательная база метода</span>
+        </div>
+        <div class="se-step-arrow">→</div>
+        <div class="se-step se-s-gold">
+          <div class="se-step-num">02</div>
+          <div class="se-step-name">Место в экосистеме</div>
+          <div class="se-step-desc">Верифицированная практика появляется в приложении Neiry и комьюнити проекта.</div>
+          <span class="se-step-result">→ Аудитория 10 000+</span>
+        </div>
+        <div class="se-step-arrow">→</div>
+        <div class="se-step se-s-green">
+          <div class="se-step-num">03</div>
+          <div class="se-step-name">Рост практики</div>
+          <div class="se-step-desc">Совместные форматы. Новые контакты. Доверие через данные а не через маркетинг.</div>
+          <span class="se-step-result">→ Новые клиенты</span>
+        </div>
+        <div class="se-step-arrow">→</div>
+        <div class="se-step se-s-violet se-step-4">
+          <div class="se-step-num">04</div>
+          <div class="se-step-name">Доход</div>
+          <div class="se-step-desc">Реферальная программа после верификации.</div>
+          <div class="se-step-income">до 20%</div>
+          <div class="se-step-incomenote">с каждого привлечённого участника<br>~200 000 ₽ средняя стоимость программы</div>
+        </div>
+      </div>
+      <div class="se-ambass-note fade-up">Привёл 5 клиентов — окупил участие. Привёл 10 — зарабатываешь.</div>
+      <div class="se-ambass-badge fade-up"><span class="se-red-dot">●</span> Набор первых 50 амбассадоров</div>
+
+      <!-- Pricing table -->
+      <h3 class="se-sec-title fade-up">Посчитаем честно</h3>
+      <div class="se-pricing-table fade-up">
+        <div class="se-price-row">
+          <span class="se-price-name">Neiry MindTracker</span>
+          <span class="se-price-old">70 000 ₽</span>
+          <span class="se-price-new">43 000 ₽ ✓</span>
+        </div>
+        <div class="se-price-row">
+          <span class="se-price-name">Программа Константина Шеля</span>
+          <span class="se-price-old">от 90 000 ₽</span>
+          <span class="se-price-incl">Входит ✓</span>
+        </div>
+        <div class="se-price-row">
+          <span class="se-price-name">Программа Натальи Морозовой</span>
+          <span class="se-price-old">от 180 000 ₽</span>
+          <span class="se-price-incl">Входит ✓</span>
+        </div>
+        <hr class="se-pricing-divider">
+        <div class="se-pricing-total">
+          <div>
+            <div class="se-total-label">Итого рыночная стоимость</div>
+            <div class="se-total-note">Первая когорта — соавторы исследования. Условия меняются после 1 мая.</div>
+          </div>
+          <div class="se-total-right">
+            <span class="se-total-old">340 000+ ₽</span>
+            <div class="se-total-sub">Условия для первых 10</div>
+            <div class="se-total-new">· · · ₽</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tariff cards -->
+      <div class="se-tariffs" id="se-tariffs">
+        <div class="se-tariff se-t-featured">
+          <span class="se-tariff-badge">До 1 мая</span>
+          <div class="se-tariff-sub">Для первых 10 · из текущего набора</div>
+          <div class="se-tariff-name">Разовые условия</div>
+          <ul class="se-tariff-list">
+            <li>Neiry за 43 000 ₽</li>
+            <li>Точка А — семь сессий</li>
+            <li>MNPI-профиль + две Книги</li>
+            <li>Вход во второй этап</li>
+          </ul>
+        </div>
+        <div class="se-tariff se-t-plain">
+          <span class="se-tariff-badge">Тариф</span>
+          <div class="se-tariff-sub">Для себя · с 1 мая · подписка</div>
+          <div class="se-tariff-name">Личное исследование</div>
+          <ul class="se-tariff-list">
+            <li>Личное исследование</li>
+            <li>Книга 1 + Книга 2</li>
+            <li>Без работы с клиентами</li>
+          </ul>
+        </div>
+        <div class="se-tariff se-t-violet">
+          <span class="se-tariff-badge">Тариф Про</span>
+          <div class="se-tariff-sub">Эксперты · группа</div>
+          <div class="se-tariff-name">Верификация метода</div>
+          <ul class="se-tariff-list">
+            <li>Всё из тарифа «Для себя»</li>
+            <li>Верификация своего метода</li>
+            <li>Работа с клиентами</li>
+            <li>Реферальная система</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- What you get -->
+      <h3 class="se-sec-title fade-up">Что вы держите в руках после первого этапа</h3>
+      <div class="se-results" id="se-results">
+        <div class="se-res-card se-r-blue">
+          <div class="se-res-name">MNPI-профиль</div>
+          <div class="se-res-text">Радарная карта · ваша нейромапа · точка А от которой считается рост</div>
+        </div>
+        <div class="se-res-card se-r-gold">
+          <div class="se-res-name">6 выгрузок данных</div>
+          <div class="se-res-text">CSV + ИИ-анализ · временные метки · ваши данные навсегда</div>
+        </div>
+        <div class="se-res-card se-r-violet">
+          <div class="se-res-name">Книга — Кто Ты</div>
+          <div class="se-res-text">Нейропрофиль · портрет через семь Миров · ваше зеркало</div>
+        </div>
+        <div class="se-res-card se-r-green">
+          <div class="se-res-name">Книга — Анализ сфер</div>
+          <div class="se-res-text">Что в мозге за каждой сферой жизни · основа для планера</div>
+        </div>
+        <div class="se-res-card se-r-cyan">
+          <div class="se-res-name">Пульт управления</div>
+          <div class="se-res-text">Навык шести режимов · верифицирован на ЭЭГ</div>
+        </div>
+        <div class="se-res-card se-r-orange">
+          <div class="se-res-name">Планер интеграции</div>
+          <div class="se-res-text">Ритмы Жизни · состояния встроены в жизнь</div>
+        </div>
+      </div>
+      <div class="se-results-note fade-up">Это не сертификат об окончании курса. Это живые данные о вашем мозге — для использования дальше.</div>
+
+    </div>
+  </section>
+
+  <!-- SCREEN 12: GARMIN -->
+  <section class="gr-section" id="gr-section">
+    <div class="gr-blob gr-blob-1"></div>
+    <div class="gr-blob gr-blob-2"></div>
+    <div class="gr-inner">
+
+      <div class="gr-label fade-up">Технология: Garmin</div>
+      <h2 class="gr-title fade-up">Тело не может лгать</h2>
+      <div class="gr-intro fade-up">
+        <p>Пока мозг регистрирует состояние в момент сессии, тело хранит историю нескольких недель. Вариабельность сердечного ритма, качество сна, уровень стресса — это долгосрочная летопись того, что с вами происходит. Garmin читает эту летопись непрерывно, 24 часа в сутки.</p>
+        <p>Один участник приходит на сессию с HRV 68, восстановлен, спал 7:40, стресс 18. Другой — с HRV 24, не спал нормально три дня, стресс 72. Их практика будет разной. Их результат — тоже. Без этих данных вы видите только то, что происходит сейчас. С ними — понимаете почему.</p>
+      </div>
+
+      <!-- Scenarios -->
+      <div class="gr-scenarios" id="gr-scenarios">
+        <div class="gr-scenario gr-sc-green">
+          <div class="gr-sc-title">Сценарий А — Ресурс</div>
+          <div class="gr-sc-row"><span class="gr-sc-key">HRV (ср. 7 дней)</span><span class="gr-sc-val">68 мс</span></div>
+          <div class="gr-sc-row"><span class="gr-sc-key">Сон прошлой ночью</span><span class="gr-sc-val">7ч 40м / 94%</span></div>
+          <div class="gr-sc-row"><span class="gr-sc-key">Уровень стресса</span><span class="gr-sc-val">18 / 100</span></div>
+          <div class="gr-sc-row"><span class="gr-sc-key">Body Battery до сессии</span><span class="gr-sc-val">82%</span></div>
+          <div class="gr-sc-row"><span class="gr-sc-key">Дыхание (ночное)</span><span class="gr-sc-val">14.2 вд/мин</span></div>
+          <div class="gr-sc-conclusion">Участник ресурсен. Практика скорее всего даст эффект. Мозг открыт к изменениям.</div>
+        </div>
+        <div class="gr-scenario gr-sc-red">
+          <div class="gr-sc-title">Сценарий Б — Истощение</div>
+          <div class="gr-sc-row"><span class="gr-sc-key">HRV (ср. 7 дней)</span><span class="gr-sc-val">24 мс</span></div>
+          <div class="gr-sc-row"><span class="gr-sc-key">Сон прошлой ночью</span><span class="gr-sc-val">5ч 10м / 61%</span></div>
+          <div class="gr-sc-row"><span class="gr-sc-key">Уровень стресса</span><span class="gr-sc-val">72 / 100</span></div>
+          <div class="gr-sc-row"><span class="gr-sc-key">Body Battery до сессии</span><span class="gr-sc-val">23%</span></div>
+          <div class="gr-sc-row"><span class="gr-sc-key">Дыхание (ночное)</span><span class="gr-sc-val">18.7 вд/мин</span></div>
+          <div class="gr-sc-conclusion">Участник истощён. Практика работает в защиту, не в рост. Результат будет другим.</div>
+        </div>
+        <div class="gr-scenarios-note">* данные условные, для иллюстрации паттернов</div>
+      </div>
+
+      <!-- Body diagram -->
+      <div class="gr-body-block" id="gr-body-block">
+        <div class="gr-body-left">
+          <div class="gr-body-card gr-bc-green" data-gr-delay="0">
+            <div class="gr-bc-name">HRV</div>
+            <div class="gr-bc-text">Вариабельность сердечного ритма — главный маркер восстановления нервной системы</div>
+          </div>
+          <div class="gr-body-card gr-bc-red" data-gr-delay="120">
+            <div class="gr-bc-name">Стресс</div>
+            <div class="gr-bc-text">Непрерывная оценка физиологического стресса на основе HRV-анализа</div>
+          </div>
+          <div class="gr-body-card gr-bc-blue" data-gr-delay="240">
+            <div class="gr-bc-name">Сон</div>
+            <div class="gr-bc-text">Стадии, качество, продолжительность — контекст состояния следующего дня</div>
+          </div>
+        </div>
+        <div class="gr-body-svg-wrap">
+          <svg class="gr-body-svg" viewBox="0 0 100 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Head -->
+            <circle cx="50" cy="22" r="16" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" fill="rgba(255,255,255,0.03)"/>
+            <!-- Neck -->
+            <line x1="44" y1="38" x2="42" y2="50" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+            <line x1="56" y1="38" x2="58" y2="50" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+            <!-- Torso -->
+            <path d="M38 50 Q30 58 28 90 Q26 110 30 130 L70 130 Q74 110 72 90 Q70 58 62 50 Z" stroke="rgba(255,255,255,0.15)" stroke-width="1.2" fill="rgba(255,255,255,0.03)"/>
+            <!-- Arms -->
+            <path d="M30 58 Q18 75 16 100 Q14 115 18 125" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" fill="none"/>
+            <path d="M70 58 Q82 75 84 100 Q86 115 82 125" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" fill="none"/>
+            <!-- Legs -->
+            <path d="M38 130 Q36 160 35 185 Q34 205 36 230" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" fill="none"/>
+            <path d="M62 130 Q64 160 65 185 Q66 205 64 230" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" fill="none"/>
+            <!-- Feet -->
+            <path d="M33 229 Q30 235 26 236 Q30 237 38 235" stroke="rgba(255,255,255,0.1)" stroke-width="1.2" fill="none"/>
+            <path d="M67 229 Q70 235 74 236 Q70 237 62 235" stroke="rgba(255,255,255,0.1)" stroke-width="1.2" fill="none"/>
+            <!-- Heart dot -->
+            <circle cx="45" cy="80" r="3" fill="rgba(224,92,92,0.7)"/>
+            <circle cx="45" cy="80" r="5" stroke="rgba(224,92,92,0.3)" stroke-width="1" fill="none"/>
+            <!-- Wrist dot (garmin) -->
+            <circle cx="17" cy="110" r="3" fill="rgba(80,216,144,0.7)"/>
+            <!-- Lines to left cards -->
+            <line x1="16" y1="80" x2="0" y2="80" stroke="rgba(80,216,144,0.3)" stroke-width="0.8" stroke-dasharray="2,2"/>
+            <line x1="16" y1="100" x2="0" y2="145" stroke="rgba(224,92,92,0.3)" stroke-width="0.8" stroke-dasharray="2,2"/>
+            <line x1="16" y1="110" x2="0" y2="205" stroke="rgba(59,158,255,0.3)" stroke-width="0.8" stroke-dasharray="2,2"/>
+            <!-- Lines to right cards -->
+            <line x1="84" y1="90" x2="100" y2="80" stroke="rgba(200,169,110,0.3)" stroke-width="0.8" stroke-dasharray="2,2"/>
+            <line x1="84" y1="105" x2="100" y2="145" stroke="rgba(155,126,222,0.3)" stroke-width="0.8" stroke-dasharray="2,2"/>
+            <line x1="84" y1="115" x2="100" y2="205" stroke="rgba(60,190,210,0.3)" stroke-width="0.8" stroke-dasharray="2,2"/>
+            <!-- SpO2 dot (fingertip indicator) -->
+            <circle cx="83" cy="110" r="2.5" fill="rgba(60,190,210,0.6)"/>
+          </svg>
+        </div>
+        <div class="gr-body-right">
+          <div class="gr-body-card gr-bc-gold" data-gr-delay="60">
+            <div class="gr-bc-name">Body Battery</div>
+            <div class="gr-bc-text">Накопленный энергетический ресурс: от 0 до 100, снижается под нагрузкой, растёт во сне</div>
+          </div>
+          <div class="gr-body-card gr-bc-violet" data-gr-delay="180">
+            <div class="gr-bc-name">Дыхание</div>
+            <div class="gr-bc-text">Частота дыхания в покое — чувствительный индикатор физического и эмоционального напряжения</div>
+          </div>
+          <div class="gr-body-card gr-bc-cyan" data-gr-delay="300">
+            <div class="gr-bc-name">SpO2</div>
+            <div class="gr-bc-text">Насыщение крови кислородом — влияет на ясность сознания и доступность мозга к изменениям</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Garmin -->
+      <h3 class="gr-sec-title fade-up">Почему именно Garmin</h3>
+      <div class="gr-why-block fade-up">
+        <div class="gr-why-intro">Существуют десятки носимых устройств. Мы остановились на Garmin по конкретным причинам — не маркетинговым, а методологическим.</div>
+        <div class="gr-check-list" id="gr-check-list">
+          <div class="gr-check-item" data-gr-delay="0">
+            <span class="gr-check-icon">✓</span>
+            <span><span class="gr-check-strong">Медицинский класс точности HRV.</span> Garmin измеряет HRV оптически в течение ночи с точностью, сопоставимой с нагрудными ЭКГ-мониторами. Большинство других устройств дают показание лишь утром и с существенно большей погрешностью.</span>
+          </div>
+          <div class="gr-check-item" data-gr-delay="100">
+            <span class="gr-check-icon">✓</span>
+            <span><span class="gr-check-strong">Body Battery как единая метрика.</span> Алгоритм Body Battery объединяет HRV, стресс, активность и сон в один показатель, пригодный для сравнения между сессиями без специальных знаний физиологии.</span>
+          </div>
+          <div class="gr-check-item" data-gr-delay="200">
+            <span class="gr-check-icon">✓</span>
+            <span><span class="gr-check-strong">Открытый API и совместимость.</span> Garmin Connect Health API позволяет нам забирать данные в нашу систему, строить корреляции с ЭЭГ и автоматически включать физиологический контекст в карту сессии.</span>
+          </div>
+          <div class="gr-check-item" data-gr-delay="300">
+            <span class="gr-check-icon">✓</span>
+            <span><span class="gr-check-strong">Носимость 24/7 без компромиссов.</span> Garmin заряжается за 1–2 часа и работает до 14 дней. Участник не снимает его даже во время медитации — это критично для непрерывного трекинга.</span>
+          </div>
+        </div>
+        <div class="gr-why-note">* Мы не аффилированы с Garmin. Выбор основан исключительно на методологическом соответствии задачам исследования.</div>
+      </div>
+
+      <!-- Combo: Neiry + Garmin -->
+      <h3 class="gr-sec-title fade-up">Neiry + Garmin = Полная картина</h3>
+      <div class="gr-combo-block fade-up">
+        <div class="gr-combo-card">
+          <div class="gr-combo-label">Нейроинтерфейс</div>
+          <div class="gr-combo-name">Neiry</div>
+          <div class="gr-combo-sub">ЭЭГ в реальном времени<br>Состояние мозга здесь и сейчас<br>32 метрики сознания</div>
+        </div>
+        <div class="gr-combo-plus">+</div>
+        <div class="gr-combo-card">
+          <div class="gr-combo-label">Биотрекер</div>
+          <div class="gr-combo-name">Garmin</div>
+          <div class="gr-combo-sub">Непрерывный телесный контекст<br>HRV, сон, стресс, ресурс<br>История последних недель</div>
+        </div>
+        <div class="gr-combo-result">
+          <div class="gr-combo-result-title">Индекс MNPI</div>
+          <div class="gr-combo-result-text">Впервые практика получает двойной фундамент: что происходит в мозге и в каком физиологическом состоянии находится тело. Только пересечение этих двух потоков даёт настоящую верификацию изменения.</div>
+        </div>
+      </div>
+      <div class="gr-combo-note">Neiry читает настоящее. Garmin хранит историю. Вместе они дают MNPI.</div>
+
+      <!-- Purchase order -->
+      <h3 class="gr-sec-title fade-up">Порядок сбора оборудования</h3>
+      <div class="gr-purchase fade-up">
+        <div class="gr-pur-card gr-pur-1">
+          <div class="gr-pur-badge">Первая покупка</div>
+          <div class="gr-pur-order">// Приоритет 01</div>
+          <div class="gr-pur-name">Garmin Fenix / Forerunner 965</div>
+          <div class="gr-pur-desc">Наиболее полный набор биомаркеров. HRV Status, Body Battery, точное ночное измерение, SpO2, дыхание. Подключается к Garmin Connect Health API. Подойдёт любая модель из линейки Fenix 7 / Forerunner 9xx / Epix.</div>
+        </div>
+        <div class="gr-pur-card gr-pur-2">
+          <div class="gr-pur-badge">Вторая покупка</div>
+          <div class="gr-pur-order">// Приоритет 02</div>
+          <div class="gr-pur-name">Neiry Head</div>
+          <div class="gr-pur-desc">Нейробанд для ЭЭГ-измерений во время сессии. Предзаказ открывается ограниченными слотами для участников программы.</div>
+        </div>
+        <div class="gr-purchase-note">* Если вы уже носите другой трекер — уточните у нас совместимость перед покупкой.</div>
+      </div>
+
+      <!-- Closing -->
+      <div class="gr-closing fade-up">
+        <p>Тело помнит всё. Мозг живёт в настоящем. Практика разворачивается на пересечении этих двух временных горизонтов.</p>
+        <p>Garmin — это не дополнение к исследованию. Это основа контекста, без которого ЭЭГ-данные остаются снимком без подписи. Мы знаем, что произошло в мозге. Garmin объясняет почему.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCREEN 15: FUTURE -->
+  <section class="fw-section" id="fw-section">
+    <div class="fw-blob fw-blob-1"></div>
+    <div class="fw-inner">
+
+      <div class="fw-label fade-up">Будущее рынка практик</div>
+      <h2 class="fw-title fade-up">Рынок где побеждает результат — а не маркетинг</h2>
+      <div class="fw-intro fade-up">
+        <p>Представьте рынок практик через десять лет. Не тот где клиент выбирает по красивым фото в Instagram и количеству отзывов. А тот где у каждого практика есть верифицированные данные о том что его метод делает с мозгом и телом клиента. Где скорость изменения биометрических показателей — а не харизма и упаковка — определяет репутацию.</p>
+        <p>Это не утопия. Это то куда движется персональная медицина, нейронаука и индустрия благополучия одновременно. И это именно то что мы начинаем строить прямо сейчас.</p>
+      </div>
+
+      <!-- Two worlds -->
+      <div class="fw-worlds" id="fw-worlds">
+        <div class="fw-world fw-world-now">
+          <div class="fw-world-head">Сегодня</div>
+          <ul class="fw-world-list">
+            <li><span class="fw-mark-bad">✗</span>Клиент выбирает практика по отзывам и подписчикам</li>
+            <li><span class="fw-mark-bad">✗</span>Мастер доказывает результат словами</li>
+            <li><span class="fw-mark-bad">✗</span>Рынок конкурирует маркетингом</li>
+            <li><span class="fw-mark-bad">✗</span>Шаманизм и реальная экспертиза неразличимы</li>
+            <li><span class="fw-mark-bad">✗</span>Откат через месяц — норма</li>
+            <li><span class="fw-mark-bad">✗</span>Методы не развиваются — воспроизводятся</li>
+          </ul>
+        </div>
+        <div class="fw-world-divider"></div>
+        <div class="fw-world fw-world-future">
+          <div class="fw-world-head">Через десять лет</div>
+          <ul class="fw-world-list">
+            <li><span class="fw-mark-good">✓</span>Рейтинг специалистов по скорости изменения биометрических данных</li>
+            <li><span class="fw-mark-good">✓</span>Верификация метода — стандарт профессии</li>
+            <li><span class="fw-mark-good">✓</span>Рынок конкурирует результатами</li>
+            <li><span class="fw-mark-good">✓</span>Мистический опыт соединён с твёрдыми данными</li>
+            <li><span class="fw-mark-good">✓</span>Изменения закрепляются потому что видна их физиология</li>
+            <li><span class="fw-mark-good">✓</span>Методы растут на основе обратной связи в данных</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Glass card -->
+      <div class="fw-glass fade-up">
+        <p>Один из самых важных эффектов верификации — это очищение рынка. Когда результат начинает измеряться объективно, исчезает пространство для тех кто продаёт красивые обещания без содержания. Не потому что их запретили — а потому что данные говорят сами за себя. Клиент видит: у этого практика биометрические показатели клиентов улучшаются в среднем за восемь недель. У другого — нет. Выбор становится простым.</p>
+        <p>При этом верификация не убивает глубину и не обесценивает мистический опыт. Она его легитимизирует. Практик который умеет вводить людей в состояние глубокой трансформации — теперь может показать это в данных. Самадхи, поток, пустота — всё это реальные нейрофизиологические события. И именно те практики которые умеют их воспроизводимо создавать — получат подтверждение которого у них никогда не было.</p>
+      </div>
+
+      <!-- Practitioner profiles -->
+      <h3 class="fw-sec-title fade-up">Новый рейтинг специалистов</h3>
+      <div class="fw-profiles" id="fw-profiles">
+        <div class="fw-profile fw-profile-plain">
+          <div class="fw-avatar fw-avatar-a">А</div>
+          <div class="fw-prof-name">Практик А</div>
+          <div class="fw-prof-method">Йога-нидра</div>
+          <div class="fw-metric-row"><span class="fw-metric-key">Relaxation Index прирост</span><span class="fw-metric-val">+34%</span></div>
+          <div class="fw-metric-row"><span class="fw-metric-key">Stress Index снижение</span><span class="fw-metric-val">−28%</span></div>
+          <div class="fw-metric-row"><span class="fw-metric-key">HRV через 8 нед.</span><span class="fw-metric-val">+12 мс</span></div>
+          <div class="fw-metric-row"><span class="fw-metric-key">Верифицировано клиентов</span><span class="fw-metric-val">47</span></div>
+          <div class="fw-stars">
+            <span class="fw-star">★</span><span class="fw-star">★</span><span class="fw-star">★</span><span class="fw-star">★</span><span class="fw-star" style="opacity:0.25">★</span>
+            <span class="fw-star-note">На основе<br>биометрических данных</span>
+          </div>
+        </div>
+        <div class="fw-profile fw-profile-feat">
+          <div class="fw-avatar fw-avatar-b">Б</div>
+          <div class="fw-prof-name">Практик Б</div>
+          <div class="fw-prof-method">Дыхательные практики</div>
+          <div class="fw-metric-row"><span class="fw-metric-key">Alpha Gravity прирост</span><span class="fw-metric-val">+41%</span></div>
+          <div class="fw-metric-row"><span class="fw-metric-key">Theta в сессии</span><span class="fw-metric-val">стабильно 18+ мин</span></div>
+          <div class="fw-metric-row"><span class="fw-metric-key">Switching Index</span><span class="fw-metric-val">×2.3 за 3 мес.</span></div>
+          <div class="fw-metric-row"><span class="fw-metric-key">Верифицировано клиентов</span><span class="fw-metric-val">83</span></div>
+          <div class="fw-stars">
+            <span class="fw-star">★</span><span class="fw-star">★</span><span class="fw-star">★</span><span class="fw-star">★</span><span class="fw-star">★</span>
+            <span class="fw-star-note">На основе<br>биометрических данных</span>
+          </div>
+        </div>
+        <div class="fw-profile fw-profile-plain">
+          <div class="fw-avatar fw-avatar-c">В</div>
+          <div class="fw-prof-name">Практик В</div>
+          <div class="fw-prof-method">Соматическая терапия</div>
+          <div class="fw-metric-row"><span class="fw-metric-key">Resilience Index прирост</span><span class="fw-metric-val fw-metric-val-g">+29%</span></div>
+          <div class="fw-metric-row"><span class="fw-metric-key">HRV восстановление</span><span class="fw-metric-val fw-metric-val-g">медиана 6 дней</span></div>
+          <div class="fw-metric-row"><span class="fw-metric-key">Body Battery через 12 нед.</span><span class="fw-metric-val fw-metric-val-g">+18</span></div>
+          <div class="fw-metric-row"><span class="fw-metric-key">Верифицировано клиентов</span><span class="fw-metric-val fw-metric-val-g">31</span></div>
+          <div class="fw-stars">
+            <span class="fw-star">★</span><span class="fw-star">★</span><span class="fw-star">★</span><span class="fw-star">★</span><span class="fw-star" style="opacity:0.25">★</span>
+            <span class="fw-star-note">На основе<br>биометрических данных</span>
+          </div>
+        </div>
+      </div>
+      <div class="fw-profiles-note fade-up">Это не фантастика. Это то что становится возможным когда данные накапливаются и стандартизируются. Именно ради этого мы собираем выборку 10 000 человек.</div>
+
+      <!-- Consequences -->
+      <h3 class="fw-sec-title fade-up">Что меняется для вас когда рынок оцифровывается</h3>
+      <div class="fw-conseq" id="fw-conseq">
+        <div class="fw-conseq-item" data-fw-delay="0">
+          <span class="fw-conseq-num">01</span>
+          <span class="fw-conseq-text"><strong>Ваш метод перестаёт быть словами и становится данными</strong> — клиент видит результат до того как начал</span>
+        </div>
+        <div class="fw-conseq-item" data-fw-delay="150">
+          <span class="fw-conseq-num">02</span>
+          <span class="fw-conseq-text"><strong>Ваша репутация строится на том что вы умеете делать</strong> — а не на том насколько громко вы об этом говорите</span>
+        </div>
+        <div class="fw-conseq-item" data-fw-delay="300">
+          <span class="fw-conseq-num">03</span>
+          <span class="fw-conseq-text"><strong>Ваш метод развивается потому что вы видите что в нём работает</strong> — и усиливаете именно это</span>
+        </div>
+        <div class="fw-conseq-item" data-fw-delay="450">
+          <span class="fw-conseq-num">04</span>
+          <span class="fw-conseq-text"><strong>Вы занимаете место в новой категории</strong> — верифицированные практики — которая только формируется</span>
+        </div>
+      </div>
+
+      <!-- Mysticism block -->
+      <div class="fw-mystik fade-up">
+        <div class="fw-mystik-title">Мистический опыт и твёрдые данные — не противоречие</div>
+        <p>Есть страх что верификация убьёт глубину. Что если всё измерить — исчезнет что-то неуловимое. Этот страх понятен. Но он основан на ложной дихотомии.</p>
+        <p>Квантовая физика не убила красоту вселенной — она её углубила. Нейробиология не обесценила медитацию — она показала что тысячи лет практики привели к реальным структурным изменениям мозга. Данные не заменяют переживание. <strong>Они дают ему язык.</strong></p>
+        <p>Практик который умеет создавать в человеке состояние глубокой тишины — это мастер. И теперь он сможет это доказать. Не вопреки данным. Через них.</p>
+      </div>
+
+      <!-- Concentric rings -->
+      <h3 class="fw-sec-title fade-up">10 000 подтверждений — мировой прецедент</h3>
+      <div class="fw-rings-grid" id="fw-rings-grid">
+        <div class="fw-rings-svg-wrap">
+          <svg class="fw-rings-svg" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" id="fw-rings-svg">
+            <!-- Ring 4: outermost dashed -->
+            <circle class="fw-ring fw-ring-4" cx="160" cy="160" r="150" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4 7"/>
+            <!-- Ring 3: violet -->
+            <circle class="fw-ring fw-ring-3" cx="160" cy="160" r="116" stroke="rgba(155,126,222,0.32)" stroke-width="1.5"/>
+            <!-- Ring 2: green -->
+            <circle class="fw-ring fw-ring-2" cx="160" cy="160" r="82" stroke="rgba(80,216,144,0.38)" stroke-width="1.5"/>
+            <!-- Ring 1: blue -->
+            <circle class="fw-ring fw-ring-1" cx="160" cy="160" r="48" stroke="rgba(59,158,255,0.45)" stroke-width="1.5"/>
+            <!-- Center glow -->
+            <circle class="fw-ring fw-ring-0 fw-center-glow" cx="160" cy="160" r="22" fill="rgba(200,169,110,0.15)"/>
+            <!-- Center dot -->
+            <circle class="fw-ring fw-ring-0" cx="160" cy="160" r="13" fill="rgba(200,169,110,0.82)"/>
+            <!-- Center text -->
+            <text x="160" y="157" text-anchor="middle" fill="rgba(10,10,20,0.9)" font-family="'Oswald',sans-serif" font-size="7" font-weight="700" class="fw-ring fw-ring-0">ТЫ</text>
+            <text x="160" y="167" text-anchor="middle" fill="rgba(10,10,20,0.65)" font-family="'Courier Prime',monospace" font-size="5" class="fw-ring fw-ring-0">1 профиль</text>
+          </svg>
+        </div>
+        <div class="fw-ring-labels" id="fw-ring-labels">
+          <div class="fw-ring-label" data-ring="0">
+            <div class="fw-ring-dot" style="background: rgba(200,169,110,0.85);"></div>
+            <div>
+              <div class="fw-ring-label-name" style="color: #C8A96E;">ТЫ</div>
+              <div class="fw-ring-label-sub">1 профиль · точка входа</div>
+            </div>
+          </div>
+          <div class="fw-ring-label" data-ring="1">
+            <div class="fw-ring-dot" style="background: rgba(59,158,255,0.75);"></div>
+            <div>
+              <div class="fw-ring-label-name" style="color: #3B9EFF;">Твои клиенты</div>
+              <div class="fw-ring-label-sub">10–50 человек</div>
+            </div>
+          </div>
+          <div class="fw-ring-label" data-ring="2">
+            <div class="fw-ring-dot" style="background: rgba(80,216,144,0.75);"></div>
+            <div>
+              <div class="fw-ring-label-name" style="color: #50D890;">Сообщество исследователей</div>
+              <div class="fw-ring-label-sub">Open Lab · нормативная база</div>
+            </div>
+          </div>
+          <div class="fw-ring-label" data-ring="3">
+            <div class="fw-ring-dot" style="background: rgba(155,126,222,0.75);"></div>
+            <div>
+              <div class="fw-ring-label-name" style="color: #9B7EDE;">Рынок практик</div>
+              <div class="fw-ring-label-sub">Конкуренция на результатах</div>
+            </div>
+          </div>
+          <div class="fw-ring-label" data-ring="4">
+            <div class="fw-ring-dot" style="background: rgba(255,255,255,0.18); border: 1px dashed rgba(255,255,255,0.3); box-sizing: border-box;"></div>
+            <div>
+              <div class="fw-ring-10k">10 000</div>
+              <div class="fw-ring-label-sub">исследователей · мировой прецедент</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div class="fw-quote-block" id="fw-quote-block">
+        <div class="fw-quote-text">«Перевести субъективный опыт тишины, присутствия и саморегуляции в понятный, измеримый и воспроизводимый стандарт — и сделать практиков частью этого перехода.»</div>
+        <div class="fw-quote-sign">ONTO NOTHING × Ритмы Жизни × Neiry · 2026</div>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
 <script src="../../components/nav.js"></script>
@@ -5618,6 +6923,310 @@
         t5Obs.unobserve(top5);
       }, { threshold: 0.1 });
       t5Obs.observe(top5);
+    }
+  })();
+
+  // Screen 15: Future
+  (function() {
+    // Two worlds
+    var worlds = document.getElementById('fw-worlds');
+    if (worlds) {
+      var wObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          worlds.querySelector('.fw-world-now').classList.add('fw-vis');
+          setTimeout(function() {
+            worlds.querySelector('.fw-world-future').classList.add('fw-vis');
+          }, 500);
+          wObs.unobserve(worlds);
+        });
+      }, { threshold: 0.2 });
+      wObs.observe(worlds);
+    }
+
+    // Practitioner profiles
+    var fwProfiles = document.getElementById('fw-profiles');
+    if (fwProfiles) {
+      var fpObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          fwProfiles.querySelectorAll('.fw-profile').forEach(function(p, i) {
+            setTimeout(function() { p.classList.add('fw-vis'); }, i * 160);
+          });
+          fpObs.unobserve(fwProfiles);
+        });
+      }, { threshold: 0.15 });
+      fpObs.observe(fwProfiles);
+    }
+
+    // Consequences stagger
+    var conseq = document.getElementById('fw-conseq');
+    if (conseq) {
+      var cqObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          conseq.querySelectorAll('.fw-conseq-item').forEach(function(item) {
+            var delay = parseInt(item.getAttribute('data-fw-delay') || '0', 10);
+            setTimeout(function() { item.classList.add('fw-vis'); }, delay);
+          });
+          cqObs.unobserve(conseq);
+        });
+      }, { threshold: 0.2 });
+      cqObs.observe(conseq);
+    }
+
+    // Concentric rings
+    var ringsGrid = document.getElementById('fw-rings-grid');
+    if (ringsGrid) {
+      var rgObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          var svg = document.getElementById('fw-rings-svg');
+          var labels = document.getElementById('fw-ring-labels');
+          [0, 1, 2, 3, 4].forEach(function(n) {
+            var delay = n * 320;
+            setTimeout(function() {
+              if (svg) svg.querySelectorAll('.fw-ring-' + n).forEach(function(r) { r.classList.add('fw-ring-vis'); });
+              if (labels) {
+                var lbl = labels.querySelector('[data-ring="' + n + '"]');
+                if (lbl) lbl.classList.add('fw-ring-vis');
+              }
+            }, delay);
+          });
+          rgObs.unobserve(ringsGrid);
+        });
+      }, { threshold: 0.2 });
+      rgObs.observe(ringsGrid);
+    }
+
+    // Quote
+    var fwQuote = document.getElementById('fw-quote-block');
+    if (fwQuote) {
+      var fqObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          fwQuote.classList.add('fw-vis');
+          fqObs.unobserve(fwQuote);
+        });
+      }, { threshold: 0.3 });
+      fqObs.observe(fwQuote);
+    }
+  })();
+
+  // Screen 14: Second Stage
+  (function() {
+    // Transition diagram
+    var trans = document.getElementById('se-transition');
+    if (trans) {
+      var trObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          var stages = trans.querySelectorAll('.se-stage');
+          stages[0] && stages[0].classList.add('se-vis');
+          setTimeout(function() {
+            var arr = trans.querySelector('.se-transition-arrow');
+            if (arr) arr.classList.add('se-vis');
+          }, 400);
+          setTimeout(function() {
+            stages[1] && stages[1].classList.add('se-vis');
+          }, 700);
+          trObs.unobserve(trans);
+        });
+      }, { threshold: 0.2 });
+      trObs.observe(trans);
+    }
+
+    // Directions
+    var dirs = document.getElementById('se-directions');
+    if (dirs) {
+      var diObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          dirs.querySelectorAll('.se-dir-card').forEach(function(c, i) {
+            setTimeout(function() { c.classList.add('se-vis'); }, i * 130);
+          });
+          diObs.unobserve(dirs);
+        });
+      }, { threshold: 0.2 });
+      diObs.observe(dirs);
+    }
+
+    // Ambassador steps
+    var steps = document.getElementById('se-steps');
+    if (steps) {
+      var stObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          steps.querySelectorAll('.se-step').forEach(function(s, i) {
+            setTimeout(function() { s.classList.add('se-vis'); }, i * 150);
+          });
+          steps.querySelectorAll('.se-step-arrow').forEach(function(a) {
+            a.classList.add('se-vis');
+          });
+          stObs.unobserve(steps);
+        });
+      }, { threshold: 0.15 });
+      stObs.observe(steps);
+    }
+
+    // Tariff cards
+    var tariffs = document.getElementById('se-tariffs');
+    if (tariffs) {
+      var taObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          tariffs.querySelectorAll('.se-tariff').forEach(function(c, i) {
+            setTimeout(function() { c.classList.add('se-vis'); }, i * 120);
+          });
+          taObs.unobserve(tariffs);
+        });
+      }, { threshold: 0.2 });
+      taObs.observe(tariffs);
+    }
+
+    // Results grid
+    var seRes = document.getElementById('se-results');
+    if (seRes) {
+      var srObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          seRes.querySelectorAll('.se-res-card').forEach(function(c, i) {
+            setTimeout(function() { c.classList.add('se-vis'); }, i * 80);
+          });
+          srObs.unobserve(seRes);
+        });
+      }, { threshold: 0.15 });
+      srObs.observe(seRes);
+    }
+  })();
+
+  // Screen 13: First Stage
+  (function() {
+    // Sessions tape - sequential stagger
+    var tape = document.getElementById('fs-tape');
+    if (tape) {
+      var tapeObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          tape.querySelectorAll('.fs-card').forEach(function(c, i) {
+            setTimeout(function() { c.classList.add('fs-vis'); }, i * 130);
+          });
+          tapeObs.unobserve(tape);
+        });
+      }, { threshold: 0.1 });
+      tapeObs.observe(tape);
+    }
+
+    // Phases
+    var phases = document.getElementById('fs-phases');
+    if (phases) {
+      var phObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          phases.querySelectorAll('.fs-phase').forEach(function(p, i) {
+            setTimeout(function() { p.classList.add('fs-vis'); }, i * 200);
+          });
+          phases.querySelectorAll('.fs-phase-arrow').forEach(function(a) {
+            a.classList.add('fs-vis');
+          });
+          phObs.unobserve(phases);
+        });
+      }, { threshold: 0.2 });
+      phObs.observe(phases);
+    }
+
+    // Results grid stagger
+    var results = document.getElementById('fs-results');
+    if (results) {
+      var resObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          results.querySelectorAll('.fs-res-card').forEach(function(c, i) {
+            setTimeout(function() { c.classList.add('fs-vis'); }, i * 90);
+          });
+          resObs.unobserve(results);
+        });
+      }, { threshold: 0.15 });
+      resObs.observe(results);
+    }
+
+    // Quote card
+    var quote = document.getElementById('fs-quote');
+    if (quote) {
+      var qObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          quote.classList.add('fs-vis');
+          qObs.unobserve(quote);
+        });
+      }, { threshold: 0.2 });
+      qObs.observe(quote);
+    }
+
+    // Logistics stagger
+    var logistics = document.getElementById('fs-logistics');
+    if (logistics) {
+      var lgObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          logistics.querySelectorAll('.fs-log-item').forEach(function(item) {
+            var delay = parseInt(item.getAttribute('data-fs-delay') || '0', 10);
+            setTimeout(function() { item.classList.add('fs-vis'); }, delay);
+          });
+          lgObs.unobserve(logistics);
+        });
+      }, { threshold: 0.25 });
+      lgObs.observe(logistics);
+    }
+  })();
+
+  // Screen 12: Garmin
+  (function() {
+    // Scenarios
+    var scenarios = document.getElementById('gr-scenarios');
+    if (scenarios) {
+      var scObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          scenarios.querySelectorAll('.gr-scenario').forEach(function(c) {
+            c.classList.add('gr-vis');
+          });
+          scObs.unobserve(scenarios);
+        });
+      }, { threshold: 0.2 });
+      scObs.observe(scenarios);
+    }
+
+    // Body cards
+    var bodyBlock = document.getElementById('gr-body-block');
+    if (bodyBlock) {
+      var bbObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          bodyBlock.querySelectorAll('.gr-body-card').forEach(function(c) {
+            var delay = parseInt(c.getAttribute('data-gr-delay') || '0', 10);
+            setTimeout(function() { c.classList.add('gr-vis'); }, delay);
+          });
+          bbObs.unobserve(bodyBlock);
+        });
+      }, { threshold: 0.15 });
+      bbObs.observe(bodyBlock);
+    }
+
+    // Checklist stagger
+    var checkList = document.getElementById('gr-check-list');
+    if (checkList) {
+      var clObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          checkList.querySelectorAll('.gr-check-item').forEach(function(c) {
+            var delay = parseInt(c.getAttribute('data-gr-delay') || '0', 10);
+            setTimeout(function() { c.classList.add('gr-vis'); }, delay);
+          });
+          clObs.unobserve(checkList);
+        });
+      }, { threshold: 0.2 });
+      clObs.observe(checkList);
     }
   })();
 </script>
