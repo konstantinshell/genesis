@@ -21,21 +21,11 @@
 
   // ── Пункты меню ─────────────────────────────────────────────────
   const navItems = [
-    { label: 'Главная',         href: root + 'index.html',              match: /^\/$|\/index\.html$|^$/ },
-    { label: 'Ритмы жизни',     href: root + 'ritmy/index.html',        match: /\/ritmy\// },
-    { label: 'Исследование',    href: root + 'issledovanie/index.html', match: /\/issledovanie\// },
-    { label: 'MNIP',            href: root + 'mnip/index.html',         match: /\/mnip\// },
-    { label: 'Neiry',           href: root + 'neiry/index.html',        match: /\/neiry\// },
-    { label: 'Блог',            href: root + 'blog/index.html',         match: /\/blog\// },
-    { label: 'Загрузка данных',  href: root + 'research-upload/index.html', match: /\/research-upload\// },
-    { label: 'Записаться',      href: root + 'zapisatsya/index.html',   match: /\/zapisatsya\// },
+    { label: 'Главная',           href: root + 'blog/programma-issledovaniya/index.html', match: /\/programma-issledovaniya\// },
+    { label: 'Neiry',             href: root + 'neiry/index.html',                        match: /\/neiry\// },
+    { label: 'Блог',              href: root + 'blog/index.html',                         match: /^\/blog\/$|\/blog\/index\.html$/ },
+    { label: 'Как это работает',  href: root + 'kak-eto-rabotaet/index.html',             match: /\/kak-eto-rabotaet\// },
   ];
-
-  const ctaItem = {
-    label: 'Как это работает',
-    href: root + 'kak-eto-rabotaet/index.html',
-    match: /\/kak-eto-rabotaet\//
-  };
 
   // ── Собираем HTML навигации ──────────────────────────────────────
   const linksHtml = navItems.map(item => {
@@ -43,15 +33,11 @@
     return `<li><a href="${item.href}" class="${isActive.trim()}">${item.label}</a></li>`;
   }).join('');
 
-  const ctaActive = ctaItem.match.test(path) ? ' active' : '';
-  const ctaHtml = `<li><a href="${ctaItem.href}" class="nav-cta${ctaActive}">${ctaItem.label}</a></li>`;
-
   const navHtml = `
 <nav class="site-nav" id="site-nav">
-  <a href="${root}index.html" class="nav-logo">ONTO NOTHING</a>
+  <a href="${root}blog/programma-issledovaniya/index.html" class="nav-logo">RHYTHMS OF NOTHING × NEIRY</a>
   <ul class="nav-links" id="nav-links">
     ${linksHtml}
-    ${ctaHtml}
   </ul>
   <button class="nav-burger" id="nav-burger" aria-label="Меню">
     <span></span><span></span><span></span>

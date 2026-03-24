@@ -23,7 +23,7 @@
 .nav-logo {
   font-family: "Oswald", sans-serif;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   letter-spacing: 0.08em;
   color: #16161A;
   text-decoration: none;
@@ -95,59 +95,132 @@
   transition: all 0.25s;
 }
 
-/* Footer */
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
 .site-footer {
   position: relative;
   z-index: 10;
-  background: rgba(22,22,26,0.96);
-  color: rgba(255,255,255,0.6);
-  padding: 48px 24px 32px;
+  background: #13131A;
+  color: rgba(255,255,255,0.55);
 }
+
+/* — Top section: 3 columns — */
 .footer-inner {
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 32px;
-  align-items: start;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 48px 40px;
+  padding: 56px 24px 48px;
 }
+.footer-col { display: flex; flex-direction: column; gap: 12px; }
+
 .footer-brand {
   font-family: "Oswald", sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: #fff;
   text-transform: uppercase;
-  margin-bottom: 8px;
 }
 .footer-desc {
   font-family: "Jost", sans-serif;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  max-width: 320px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.45);
+  max-width: 280px;
+}
+
+.footer-col-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 4px;
 }
 .footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .footer-links a {
   font-family: "Jost", sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: rgba(255,255,255,0.5);
   text-decoration: none;
   transition: color 0.18s;
 }
 .footer-links a:hover { color: #fff; }
+
+/* — Bottom section — */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer-bottom-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-copy-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
 .footer-copy {
-  grid-column: 1 / -1;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.1);
   font-family: "Courier Prime", monospace;
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.04em;
+  flex: 1;
+  min-width: 0;
+}
+.footer-neiry-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  text-decoration: none;
+  flex-shrink: 0;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+  border-left: 1px solid rgba(255,255,255,0.15);
+  padding-left: 16px;
+}
+.footer-neiry-badge:hover { opacity: 0.85; }
+.footer-neiry-badge .badge-label {
+  font-family: "Jost", sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.footer-neiry-badge .badge-name {
+  font-family: "Oswald", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.footer-disclaimer {
+  font-family: "Jost", sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.25);
+}
+.footer-warning {
+  font-family: "Jost", sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.2);
 }
 
 /* ══════════════════════════════════
@@ -175,6 +248,10 @@
   .nav-cta { margin-left: 0 !important; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-col--brand { grid-column: 1 / -1; }
+}
+@media (max-width: 500px) {
   .footer-inner { grid-template-columns: 1fr; }
 }
