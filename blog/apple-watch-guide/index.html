@@ -218,6 +218,7 @@
       right: 0;
       background: #ffffff;
       border-bottom: 1px solid #f0f0f0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       padding: 16px 24px;
       z-index: 100;
       display: none;
@@ -459,6 +460,132 @@
       line-height: 1.5;
     }
 
+    /* ──────────────────────────────
+       РАЗДЕЛ 3 — СОВМЕСТИМЫЕ УСТРОЙСТВА
+    ────────────────────────────── */
+
+    .aw-devices-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 36px 0;
+    }
+
+    @media (max-width: 1024px) {
+      .aw-devices-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .aw-devices-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .aw-device-card {
+      background: #ffffff;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .aw-device-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .aw-device-icon {
+      width: 100%;
+      height: 60px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .aw-device-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .aw-device-name {
+      font-family: var(--fb);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .aw-device-status {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .aw-device-status.full {
+      background: #4ade80;
+    }
+
+    .aw-device-status.good {
+      background: #fbbf24;
+    }
+
+    .aw-device-status.limited {
+      background: #d1d5db;
+    }
+
+    .aw-device-status.none {
+      background: #9ca3af;
+    }
+
+    .aw-device-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .aw-device-tag {
+      display: inline-block;
+      font-family: var(--fb);
+      font-size: 0.75rem;
+      background: #f0f0ff;
+      color: #5F5FFF;
+      padding: 4px 10px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+
+    .aw-callout-devices {
+      background: #f3f3ff;
+      border-left: 4px solid #5F5FFF;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 36px 0;
+    }
+
+    .aw-callout-devices-title {
+      font-family: var(--fb);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .aw-callout-devices p {
+      font-family: var(--fb);
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
   </style>
 </head>
 <body>
@@ -502,7 +629,7 @@
     <h1 class="aw-title">Apple Watch + Apple Health:<br>полное руководство для исследователя</h1>
 
     <!-- Подзаголовок -->
-    <p class="aw-sub">Архитектура HealthKit, экспорт данных, Python-обработка и ИИ-анализ — от нативного XML до сырых сенсорных потоков.</p>
+    <p class="aw-sub">От нативного экспорта до Python-пайплайнов — как работать с физиологическими данными на любом уровне подготовки.</p>
 
     <!-- Анимированная линия -->
     <div class="aw-line-wrap">
@@ -515,7 +642,7 @@
     <div class="aw-meta">
       <span>2026-03-25</span>
       <span class="aw-meta-dot"></span>
-      <span>10 разделов</span>
+      <span>12 разделов</span>
       <span class="aw-meta-dot"></span>
       <span>~20 мин чтения</span>
     </div>
@@ -537,7 +664,7 @@
         <li class="aw-nav-item">
           <button class="aw-nav-pill active" data-section="0">
             <span class="aw-nav-dot"></span>
-            <span>1. Архитектура HealthKit</span>
+            <span>1. Архитектура</span>
           </button>
         </li>
         <li class="aw-nav-item">
@@ -549,49 +676,61 @@
         <li class="aw-nav-item">
           <button class="aw-nav-pill" data-section="2">
             <span class="aw-nav-dot"></span>
-            <span>3. Совместимые устройства</span>
+            <span>3. Устройства</span>
           </button>
         </li>
         <li class="aw-nav-item">
           <button class="aw-nav-pill" data-section="3">
             <span class="aw-nav-dot"></span>
-            <span>4. Экспорт данных</span>
+            <span>4. Уровень 1: XML</span>
           </button>
         </li>
         <li class="aw-nav-item">
           <button class="aw-nav-pill" data-section="4">
             <span class="aw-nav-dot"></span>
-            <span>5. Форматы данных</span>
+            <span>5. Уровень 2: Приложения</span>
           </button>
         </li>
         <li class="aw-nav-item">
           <button class="aw-nav-pill" data-section="5">
             <span class="aw-nav-dot"></span>
-            <span>6. Обработка ИИ</span>
+            <span>6. Уровень 3: Python</span>
           </button>
         </li>
         <li class="aw-nav-item">
           <button class="aw-nav-pill" data-section="6">
             <span class="aw-nav-dot"></span>
-            <span>7. Очистка данных</span>
+            <span>7. Уровень 4: Сенсоры</span>
           </button>
         </li>
         <li class="aw-nav-item">
           <button class="aw-nav-pill" data-section="7">
             <span class="aw-nav-dot"></span>
-            <span>8. Ограничения</span>
+            <span>8. Форматы</span>
           </button>
         </li>
         <li class="aw-nav-item">
           <button class="aw-nav-pill" data-section="8">
             <span class="aw-nav-dot"></span>
-            <span>9. Таблица инструментов</span>
+            <span>9. ИИ-анализ</span>
           </button>
         </li>
         <li class="aw-nav-item">
           <button class="aw-nav-pill" data-section="9">
             <span class="aw-nav-dot"></span>
-            <span>10. Чек-лист</span>
+            <span>10. Ограничения</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="10">
+            <span class="aw-nav-dot"></span>
+            <span>11. Таблица</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="11">
+            <span class="aw-nav-dot"></span>
+            <span>12. Чек-лист</span>
           </button>
         </li>
       </ul>
@@ -610,7 +749,7 @@
       <div class="aw-arch-wrap">
         <svg width="100%" viewBox="0 0 260 220" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Box 1: Apple Watch -->
-          <rect x="30" y="20" width="200" height="40" rx="6" stroke="#333" stroke-width="1.2" fill="white"/>
+          <rect x="30" y="20" width="200" height="40" rx="6" stroke="#e0e0e0" stroke-width="1.2" fill="white"/>
           <text x="130" y="48" font-family="Jost" font-size="14" font-weight="500" text-anchor="middle" fill="#333">Apple Watch</text>
 
           <!-- Arrow 1 -->
@@ -619,13 +758,13 @@
 
           <!-- Animated dot on arrow 1 -->
           <circle cx="130" cy="72" r="2.5" fill="#5F5FFF">
-            <animate attributeName="cy" values="60;90;60" dur="2.4s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0;1;0" dur="2.4s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="60;90;60" dur="1.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
           </circle>
 
-          <!-- Box 2: HealthKit -->
-          <rect x="30" y="90" width="200" height="40" rx="6" stroke="#333" stroke-width="1.2" fill="white"/>
-          <text x="130" y="118" font-family="Jost" font-size="14" font-weight="500" text-anchor="middle" fill="#333">HealthKit</text>
+          <!-- Box 2: HealthKit Store -->
+          <rect x="30" y="90" width="200" height="40" rx="6" stroke="#e0e0e0" stroke-width="1.2" fill="white"/>
+          <text x="130" y="118" font-family="Jost" font-size="14" font-weight="500" text-anchor="middle" fill="#333">HealthKit Store</text>
 
           <!-- Arrow 2 -->
           <line x1="130" y1="130" x2="130" y2="155" stroke="#5F5FFF" stroke-width="1.5"/>
@@ -633,12 +772,12 @@
 
           <!-- Animated dot on arrow 2 -->
           <circle cx="130" cy="142" r="2.5" fill="#5F5FFF">
-            <animate attributeName="cy" values="130;160;130" dur="2.4s" repeatCount="indefinite" begin="0.8s"/>
-            <animate attributeName="opacity" values="0;1;0" dur="2.4s" repeatCount="indefinite" begin="0.8s"/>
+            <animate attributeName="cy" values="130;160;130" dur="1.5s" repeatCount="indefinite" begin="0.75s"/>
+            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.75s"/>
           </circle>
 
           <!-- Box 3: Your Data -->
-          <rect x="30" y="160" width="200" height="40" rx="6" stroke="#333" stroke-width="1.2" fill="white"/>
+          <rect x="30" y="160" width="200" height="40" rx="6" stroke="#e0e0e0" stroke-width="1.2" fill="white"/>
           <text x="130" y="188" font-family="Jost" font-size="14" font-weight="500" text-anchor="middle" fill="#333">Ваши данные</text>
         </svg>
       </div>
@@ -738,13 +877,226 @@
 
         <div class="aw-metric-item">
           <div class="aw-metric-body">
-            <div class="aw-metric-name">Тренировки, шаги, VO2 max — <span class="aw-inline-code">HKWorkout</span></div>
-            <div class="aw-metric-desc">Структурированные записи о тренировках с GPS-треками, зонами пульса, калориями. Шаги, дистанция, этажи, активные калории.</div>
+            <div class="aw-metric-name">Шаги, дистанция, калории — <span class="aw-inline-code">StepCount</span>, <span class="aw-inline-code">DistanceWalkingRunning</span>, <span class="aw-inline-code">ActiveEnergyBurned</span></div>
+            <div class="aw-metric-desc">Агрегированные данные физической активности.</div>
+          </div>
+        </div>
+
+        <div class="aw-metric-item">
+          <div class="aw-metric-body">
+            <div class="aw-metric-name">VO2 max — <span class="aw-inline-code">VO2Max</span></div>
+            <div class="aw-metric-desc">Расчётный показатель кардиовыносливости на основе данных тренировок.</div>
+          </div>
+        </div>
+
+        <div class="aw-metric-item">
+          <div class="aw-metric-body">
+            <div class="aw-metric-name">Тренировки — <span class="aw-inline-code">HKWorkout</span></div>
+            <div class="aw-metric-desc">Структурированные записи тренировок с GPS-треками, зонами пульса, калориями.</div>
           </div>
         </div>
       </div>
 
       <p>Каждая запись в базе сопровождается метаданными: источник (название устройства или приложения), идентификатор устройства, временные метки начала и конца замера. Поле <span class="aw-inline-code">sourceName</span> позволяет впоследствии фильтровать данные по конкретному устройству — это важный инструмент очистки.</p>
+
+    </section>
+
+    <!-- РАЗДЕЛ 3 — СОВМЕСТИМЫЕ УСТРОЙСТВА -->
+    <section class="aw-section" data-section="2">
+      <div class="aw-section-number">Раздел 3</div>
+      <h2 class="aw-section-title">Совместимые устройства — кто и что пишет в базу</h2>
+
+      <p>Здесь кроется одна из ключевых ценностей Apple Health для исследователя: это открытая экосистема-агрегатор. Если устройство умеет записывать данные в HealthKit, все описанные в этой инструкции методы работают для него в полном объёме.</p>
+
+      <!-- Сетка карточек устройств -->
+      <div class="aw-devices-grid">
+
+        <!-- Apple Watch -->
+        <div class="aw-device-card">
+          <div class="aw-device-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="32" height="32" rx="6" stroke="#333" stroke-width="1.2" fill="white"/>
+              <rect x="12" y="12" width="26" height="26" rx="4" stroke="#eee" stroke-width="0.8" fill="#f8f8ff"/>
+              <circle cx="25" cy="25" r="3" fill="#5F5FFF"/>
+            </svg>
+          </div>
+          <div class="aw-device-header">
+            <span class="aw-device-name">Apple Watch</span>
+            <div class="aw-device-status full"></div>
+          </div>
+          <div class="aw-device-tags">
+            <span class="aw-device-tag">Пульс</span>
+            <span class="aw-device-tag">HRV</span>
+            <span class="aw-device-tag">Сон</span>
+            <span class="aw-device-tag">SpO2</span>
+          </div>
+        </div>
+
+        <!-- Garmin -->
+        <div class="aw-device-card">
+          <div class="aw-device-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="25" cy="25" r="18" stroke="#333" stroke-width="1.2" fill="white"/>
+              <circle cx="25" cy="25" r="12" stroke="#eee" stroke-width="0.8" fill="none"/>
+              <line x1="25" y1="13" x2="25" y2="25" stroke="#333" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="25" y1="25" x2="32" y2="25" stroke="#333" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="aw-device-header">
+            <span class="aw-device-name">Garmin</span>
+            <div class="aw-device-status good"></div>
+          </div>
+          <div class="aw-device-tags">
+            <span class="aw-device-tag">ЧСС</span>
+            <span class="aw-device-tag">HRV</span>
+            <span class="aw-device-tag">Тренировки</span>
+          </div>
+        </div>
+
+        <!-- Coros -->
+        <div class="aw-device-card">
+          <div class="aw-device-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M25 8 L35 20 L32 35 L18 35 L15 20 Z" stroke="#333" stroke-width="1.2" fill="white"/>
+              <circle cx="25" cy="22" r="3" fill="#5F5FFF"/>
+            </svg>
+          </div>
+          <div class="aw-device-header">
+            <span class="aw-device-name">Coros</span>
+            <div class="aw-device-status full"></div>
+          </div>
+          <div class="aw-device-tags">
+            <span class="aw-device-tag">Пульс</span>
+            <span class="aw-device-tag">Сон</span>
+            <span class="aw-device-tag">SpO2</span>
+          </div>
+        </div>
+
+        <!-- Oura Ring -->
+        <div class="aw-device-card">
+          <div class="aw-device-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="25" cy="25" r="14" stroke="#333" stroke-width="2" fill="none"/>
+              <circle cx="25" cy="25" r="9" stroke="#eee" stroke-width="1" fill="none"/>
+              <circle cx="25" cy="25" r="4" fill="#5F5FFF"/>
+            </svg>
+          </div>
+          <div class="aw-device-header">
+            <span class="aw-device-name">Oura Ring</span>
+            <div class="aw-device-status full"></div>
+          </div>
+          <div class="aw-device-tags">
+            <span class="aw-device-tag">Сон</span>
+            <span class="aw-device-tag">HRV</span>
+            <span class="aw-device-tag">Температура</span>
+          </div>
+        </div>
+
+        <!-- Whoop -->
+        <div class="aw-device-card">
+          <div class="aw-device-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="15" width="30" height="20" rx="3" stroke="#333" stroke-width="1.2" fill="white"/>
+              <path d="M14 25 Q18 20 22 25 Q26 30 30 25 Q34 20 38 25" stroke="#5F5FFF" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="aw-device-header">
+            <span class="aw-device-name">Whoop</span>
+            <div class="aw-device-status good"></div>
+          </div>
+          <div class="aw-device-tags">
+            <span class="aw-device-tag">Нагрузка</span>
+            <span class="aw-device-tag">HRV</span>
+            <span class="aw-device-tag">Восстановление</span>
+          </div>
+        </div>
+
+        <!-- Polar -->
+        <div class="aw-device-card">
+          <div class="aw-device-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="25" cy="25" r="12" stroke="#333" stroke-width="1.2" fill="white"/>
+              <path d="M25 15 L28 22 L35 22 L30 27 L32 35 L25 31 L18 35 L20 27 L15 22 L22 22 Z" stroke="#5F5FFF" stroke-width="0.8" fill="#5F5FFF" opacity="0.3"/>
+            </svg>
+          </div>
+          <div class="aw-device-header">
+            <span class="aw-device-name">Polar</span>
+            <div class="aw-device-status good"></div>
+          </div>
+          <div class="aw-device-tags">
+            <span class="aw-device-tag">ЧСС</span>
+            <span class="aw-device-tag">Нагрузка</span>
+            <span class="aw-device-tag">Сон</span>
+          </div>
+        </div>
+
+        <!-- Withings -->
+        <div class="aw-device-card">
+          <div class="aw-device-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="12" y="10" width="26" height="30" rx="3" stroke="#333" stroke-width="1.2" fill="white"/>
+              <line x1="18" y1="18" x2="32" y2="18" stroke="#eee" stroke-width="0.8"/>
+              <line x1="18" y1="24" x2="32" y2="24" stroke="#5F5FFF" stroke-width="1.5"/>
+              <line x1="18" y1="30" x2="32" y2="30" stroke="#eee" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <div class="aw-device-header">
+            <span class="aw-device-name">Withings</span>
+            <div class="aw-device-status full"></div>
+          </div>
+          <div class="aw-device-tags">
+            <span class="aw-device-tag">ЭКГ</span>
+            <span class="aw-device-tag">SpO2</span>
+            <span class="aw-device-tag">Давление</span>
+          </div>
+        </div>
+
+        <!-- Fitbit -->
+        <div class="aw-device-card">
+          <div class="aw-device-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="14" y="10" width="22" height="30" rx="4" stroke="#333" stroke-width="1.2" fill="white"/>
+              <circle cx="20" cy="22" r="2.5" fill="#5F5FFF"/>
+              <circle cx="25" cy="22" r="2.5" fill="#5F5FFF"/>
+              <circle cx="30" cy="22" r="2.5" fill="#5F5FFF"/>
+            </svg>
+          </div>
+          <div class="aw-device-header">
+            <span class="aw-device-name">Fitbit</span>
+            <div class="aw-device-status limited"></div>
+          </div>
+          <div class="aw-device-tags">
+            <span class="aw-device-tag">Шаги</span>
+            <span class="aw-device-tag">ЧСС</span>
+          </div>
+        </div>
+
+        <!-- Samsung & Pixel -->
+        <div class="aw-device-card">
+          <div class="aw-device-icon">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="14" width="30" height="22" rx="2" stroke="#333" stroke-width="1.2" fill="white"/>
+              <line x1="15" y1="20" x2="35" y2="20" stroke="#d1d5db" stroke-width="1"/>
+              <line x1="15" y1="26" x2="35" y2="26" stroke="#d1d5db" stroke-width="1"/>
+              <line x1="15" y1="32" x2="35" y2="32" stroke="#d1d5db" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="aw-device-header">
+            <span class="aw-device-name">Samsung/Pixel</span>
+            <div class="aw-device-status none"></div>
+          </div>
+          <div class="aw-device-tags">
+            <span class="aw-device-tag">Android</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Callout: как проверить источники -->
+      <div class="aw-callout-devices">
+        <div class="aw-callout-devices-title">💡 Как проверить источники данных</div>
+        <p>Откройте приложение <strong>Здоровье</strong> → выберите любую метрику (например, Пульс) → прокрутите вниз до раздела <strong>«Источники данных и доступ»</strong>. Там перечислены все устройства и приложения, пишущие данные этого типа. Для чистоты эксперимента определите приоритетный источник и убедитесь, что он стоит первым в списке.</p>
+      </div>
 
     </section>
 
