@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple Watch + Apple Health: полное руководство для исследователя — ONTO NOTHING</title>
+  <meta name="description" content="Полное руководство по Apple Watch и Apple Health для исследователей: архитектура HealthKit, экспорт данных, Python-обработка, ИИ-анализ.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+  <style>
+
+    html, body {
+      background: #ffffff;
+    }
+    .page-orbs { display: none; }
+
+    /* ──────────────────────────────
+       HERO — ПЕРВЫЙ ЭКРАН
+    ────────────────────────────── */
+    .aw-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 80px;
+      background: #ffffff;
+      position: relative;
+      text-align: center;
+    }
+
+    /* Хлебные крошки */
+    .breadcrumb {
+      position: absolute;
+      top: 88px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .breadcrumb a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb-sep { opacity: 0.4; }
+
+    /* SVG-иконка часов */
+    .aw-icon-wrap {
+      margin-bottom: 36px;
+    }
+
+    /* Тег над иконкой */
+    .aw-tag {
+      display: inline-block;
+      font-family: var(--fm);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* Заголовок */
+    .aw-title {
+      font-family: var(--fh);
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      max-width: 820px;
+      margin: 0 auto 12px;
+    }
+
+    /* Подзаголовок */
+    .aw-sub {
+      font-family: var(--fb);
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    /* SVG-линия под заголовком */
+    .aw-line-wrap {
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .aw-underline {
+      width: 100%;
+      height: 2px;
+      display: block;
+    }
+    .aw-underline-path {
+      stroke: #5F5FFF;
+      stroke-width: 1.5;
+      fill: none;
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      animation: drawLine 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+    }
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Мета-строка под линией */
+    .aw-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 28px;
+      font-family: var(--fm);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .aw-meta-dot {
+      width: 3px;
+      height: 3px;
+      background: #d0d0d0;
+      border-radius: 50%;
+    }
+
+    /* ── Apple Watch SVG анимации волн ── */
+    @keyframes wavePulse1 {
+      0%   { opacity: 0; stroke-dashoffset: 60; }
+      20%  { opacity: 1; }
+      60%  { opacity: 0.8; stroke-dashoffset: 0; }
+      100% { opacity: 0; stroke-dashoffset: 0; }
+    }
+    @keyframes wavePulse2 {
+      0%   { opacity: 0; stroke-dashoffset: 80; }
+      20%  { opacity: 0; }
+      40%  { opacity: 1; }
+      80%  { opacity: 0.8; stroke-dashoffset: 0; }
+      100% { opacity: 0; stroke-dashoffset: 0; }
+    }
+    @keyframes wavePulse3 {
+      0%   { opacity: 0; stroke-dashoffset: 100; }
+      40%  { opacity: 0; }
+      60%  { opacity: 1; }
+      90%  { opacity: 0.6; stroke-dashoffset: 0; }
+      100% { opacity: 0; stroke-dashoffset: 0; }
+    }
+
+    .wave-1 {
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: wavePulse1 2.8s ease-in-out infinite;
+    }
+    .wave-2 {
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: wavePulse2 2.8s ease-in-out infinite;
+      animation-delay: 0.3s;
+    }
+    .wave-3 {
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: wavePulse3 2.8s ease-in-out infinite;
+      animation-delay: 0.6s;
+    }
+
+    /* Скролл-подсказка */
+    .aw-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      animation: fadeInHint 0.8s ease 1.8s forwards;
+    }
+    @keyframes fadeInHint {
+      to { opacity: 1; }
+    }
+    .scroll-arrow {
+      animation: bounceDown 1.6s ease infinite;
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+    .aw-scroll-hint span {
+      font-family: var(--fm);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c0c0c0;
+    }
+
+    /* ──────────────────────────────
+       STICKY НАВИГАЦИЯ
+    ────────────────────────────── */
+    .aw-sticky-nav {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 16px 24px;
+      z-index: 100;
+      display: none;
+    }
+    .aw-sticky-nav.show {
+      display: block;
+    }
+
+    .aw-nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    .aw-nav-container::-webkit-scrollbar {
+      height: 4px;
+    }
+    .aw-nav-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .aw-nav-container::-webkit-scrollbar-thumb {
+      background: #d0d0d0;
+      border-radius: 2px;
+    }
+
+    .aw-nav-list {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .aw-nav-item {
+      flex-shrink: 0;
+    }
+
+    .aw-nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 16px;
+      font-family: var(--fb);
+      font-size: 0.85rem;
+      color: var(--text);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .aw-nav-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .aw-nav-pill.active {
+      border-color: var(--accent);
+    }
+
+    .aw-nav-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .aw-nav-pill.active .aw-nav-dot {
+      opacity: 1;
+    }
+
+    /* ──────────────────────────────
+       КОНТЕНТ РАЗДЕЛОВ
+    ────────────────────────────── */
+    .aw-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .aw-section {
+      padding: 80px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .aw-section:last-child {
+      border-bottom: none;
+    }
+
+    .aw-section-number {
+      font-family: var(--fm);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .aw-section-title {
+      font-family: var(--fh);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    .aw-section p {
+      font-family: var(--fb);
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--body-c);
+      margin-bottom: 20px;
+    }
+
+    .aw-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .aw-inline-code {
+      font-family: var(--fm);
+      font-size: 0.9em;
+      background: #f5f5f5;
+      color: #333;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    /* Иконка архитектуры (простой SVG справа) */
+    .aw-arch-wrap {
+      float: right;
+      margin-left: 32px;
+      margin-bottom: 24px;
+      width: 280px;
+    }
+
+    @media (max-width: 768px) {
+      .aw-arch-wrap {
+        float: none;
+        margin-left: 0;
+        margin-bottom: 32px;
+        width: 100%;
+      }
+    }
+
+    /* ──────────────────────────────
+       РАЗДЕЛ 2 — ПРИРОДА ДАННЫХ
+    ────────────────────────────── */
+
+    /* Заголовок раздела с ЭКГ-волной слева */
+    .aw-section-header-ecg {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .aw-ecg-icon {
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .ecg-path {
+      stroke-dasharray: 220;
+      stroke-dashoffset: 220;
+      transition: stroke-dashoffset 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ecg-path.drawn {
+      stroke-dashoffset: 0;
+    }
+
+    /* Большой акцентный callout */
+    .aw-callout-big {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin: 36px 0;
+    }
+    .aw-callout-big-text {
+      font-family: var(--fb);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #5F5FFF;
+      line-height: 1.4;
+    }
+    .aw-callout-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Блок метрик со списком */
+    .aw-metrics-block {
+      background: #fafafa;
+      border: 1px solid #eeeeee;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 36px 0;
+    }
+    .aw-metrics-title {
+      font-family: var(--fm);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid #eee;
+    }
+    .aw-metric-item {
+      display: flex;
+      border-left: 3px solid #5F5FFF;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 16px 20px;
+      background: #fff;
+    }
+    .aw-metric-item:last-child {
+      border-bottom: none;
+    }
+    .aw-metric-item:nth-child(odd) {
+      background: #fafafa;
+    }
+    .aw-metric-body {
+      flex: 1;
+    }
+    .aw-metric-name {
+      font-family: var(--fb);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .aw-metric-desc {
+      font-family: var(--fb);
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+  </style>
+</head>
+<body>
+
+<main>
+  <section class="aw-hero">
+
+    <!-- Хлебные крошки -->
+    <div class="breadcrumb">
+      <a href="../../blog/">Блог</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Apple Watch + Apple Health</span>
+    </div>
+
+    <!-- Тег -->
+    <div class="aw-tag">Руководство исследователя</div>
+
+    <!-- SVG Apple Watch с пульсовыми волнами -->
+    <div class="aw-icon-wrap">
+      <svg width="80" height="88" viewBox="0 0 80 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ремешок верхний -->
+        <rect x="28" y="0" width="24" height="14" rx="4" stroke="#CCCCCC" stroke-width="1.2" fill="none"/>
+        <!-- Корпус часов -->
+        <rect x="14" y="14" width="52" height="48" rx="10" stroke="#333333" stroke-width="1.5" fill="white"/>
+        <!-- Экран -->
+        <rect x="20" y="20" width="40" height="36" rx="6" stroke="#EEEEEE" stroke-width="1" fill="#F8F8FF"/>
+        <!-- Пульс на экране (маленький) -->
+        <polyline points="24,38 28,38 30,30 33,46 36,34 39,42 42,38 46,38" stroke="#5F5FFF" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Кнопка Digital Crown -->
+        <rect x="66" y="28" width="4" height="10" rx="2" stroke="#BBBBBB" stroke-width="1" fill="none"/>
+        <!-- Ремешок нижний -->
+        <rect x="28" y="62" width="24" height="14" rx="4" stroke="#CCCCCC" stroke-width="1.2" fill="none"/>
+        <!-- Пульсовые волны вправо (3 дуги) -->
+        <path class="wave-1" d="M68 38 Q74 33 74 38 Q74 43 68 38" stroke="#5F5FFF" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <path class="wave-2" d="M68 38 Q80 28 80 38 Q80 48 68 38" stroke="#5F5FFF" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+        <path class="wave-3" d="M68 38 Q86 22 86 38 Q86 54 68 38" stroke="#5F5FFF" stroke-width="0.7" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- Заголовок -->
+    <h1 class="aw-title">Apple Watch + Apple Health:<br>полное руководство для исследователя</h1>
+
+    <!-- Подзаголовок -->
+    <p class="aw-sub">Архитектура HealthKit, экспорт данных, Python-обработка и ИИ-анализ — от нативного XML до сырых сенсорных потоков.</p>
+
+    <!-- Анимированная линия -->
+    <div class="aw-line-wrap">
+      <svg class="aw-underline" viewBox="0 0 820 2" preserveAspectRatio="none">
+        <line class="aw-underline-path" x1="0" y1="1" x2="820" y2="1"/>
+      </svg>
+    </div>
+
+    <!-- Мета -->
+    <div class="aw-meta">
+      <span>2026-03-25</span>
+      <span class="aw-meta-dot"></span>
+      <span>10 разделов</span>
+      <span class="aw-meta-dot"></span>
+      <span>~20 мин чтения</span>
+    </div>
+
+    <!-- Скролл-подсказка -->
+    <div class="aw-scroll-hint">
+      <svg class="scroll-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 3v10M4 9l4 4 4-4" stroke="#C0C0C0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Листать</span>
+    </div>
+
+  </section>
+
+  <!-- Sticky навигация -->
+  <nav class="aw-sticky-nav">
+    <div class="aw-nav-container">
+      <ul class="aw-nav-list">
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill active" data-section="0">
+            <span class="aw-nav-dot"></span>
+            <span>1. Архитектура HealthKit</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="1">
+            <span class="aw-nav-dot"></span>
+            <span>2. Природа данных</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="2">
+            <span class="aw-nav-dot"></span>
+            <span>3. Совместимые устройства</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="3">
+            <span class="aw-nav-dot"></span>
+            <span>4. Экспорт данных</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="4">
+            <span class="aw-nav-dot"></span>
+            <span>5. Форматы данных</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="5">
+            <span class="aw-nav-dot"></span>
+            <span>6. Обработка ИИ</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="6">
+            <span class="aw-nav-dot"></span>
+            <span>7. Очистка данных</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="7">
+            <span class="aw-nav-dot"></span>
+            <span>8. Ограничения</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="8">
+            <span class="aw-nav-dot"></span>
+            <span>9. Таблица инструментов</span>
+          </button>
+        </li>
+        <li class="aw-nav-item">
+          <button class="aw-nav-pill" data-section="9">
+            <span class="aw-nav-dot"></span>
+            <span>10. Чек-лист</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Контент -->
+  <div class="aw-content">
+
+    <!-- РАЗДЕЛ 1 -->
+    <section class="aw-section" data-section="0">
+      <div class="aw-section-number">Раздел 1</div>
+      <h2 class="aw-section-title">Что такое Apple Health и как это устроено</h2>
+
+      <!-- Иконка архитектуры -->
+      <div class="aw-arch-wrap">
+        <svg width="100%" viewBox="0 0 260 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Box 1: Apple Watch -->
+          <rect x="30" y="20" width="200" height="40" rx="6" stroke="#333" stroke-width="1.2" fill="white"/>
+          <text x="130" y="48" font-family="Jost" font-size="14" font-weight="500" text-anchor="middle" fill="#333">Apple Watch</text>
+
+          <!-- Arrow 1 -->
+          <line x1="130" y1="60" x2="130" y2="85" stroke="#5F5FFF" stroke-width="1.5"/>
+          <polygon points="130,90 126,82 134,82" fill="#5F5FFF"/>
+
+          <!-- Animated dot on arrow 1 -->
+          <circle cx="130" cy="72" r="2.5" fill="#5F5FFF">
+            <animate attributeName="cy" values="60;90;60" dur="2.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;0" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- Box 2: HealthKit -->
+          <rect x="30" y="90" width="200" height="40" rx="6" stroke="#333" stroke-width="1.2" fill="white"/>
+          <text x="130" y="118" font-family="Jost" font-size="14" font-weight="500" text-anchor="middle" fill="#333">HealthKit</text>
+
+          <!-- Arrow 2 -->
+          <line x1="130" y1="130" x2="130" y2="155" stroke="#5F5FFF" stroke-width="1.5"/>
+          <polygon points="130,160 126,152 134,152" fill="#5F5FFF"/>
+
+          <!-- Animated dot on arrow 2 -->
+          <circle cx="130" cy="142" r="2.5" fill="#5F5FFF">
+            <animate attributeName="cy" values="130;160;130" dur="2.4s" repeatCount="indefinite" begin="0.8s"/>
+            <animate attributeName="opacity" values="0;1;0" dur="2.4s" repeatCount="indefinite" begin="0.8s"/>
+          </circle>
+
+          <!-- Box 3: Your Data -->
+          <rect x="30" y="160" width="200" height="40" rx="6" stroke="#333" stroke-width="1.2" fill="white"/>
+          <text x="130" y="188" font-family="Jost" font-size="14" font-weight="500" text-anchor="middle" fill="#333">Ваши данные</text>
+        </svg>
+      </div>
+
+      <p>Прежде чем работать с данными, важно понять архитектуру системы. Без этого понимания многие вещи будут казаться странными — например, почему данные иногда дублируются, почему пульс фиксируется не каждую секунду или почему файл экспорта весит полгигабайта.</p>
+
+      <p>Apple Health — это не просто приложение. Это централизованная база данных физиологической информации, развёрнутая локально на вашем iPhone. Техническое название — <span class="aw-inline-code">HealthKit</span>. Приложение Health, которое вы видите на экране, является лишь пользовательским интерфейсом к этой базе.</p>
+
+      <p><strong>Ключевой принцип:</strong> данные хранятся на устройстве, а не на серверах Apple. Это означает, что у Apple нет облачного API, через который исследователь мог бы удалённо подключиться и скачать чьи-то данные. Весь доступ происходит только через iPhone конкретного пользователя, с его явного разрешения. При включённой двухфакторной аутентификации даже сама Apple не имеет ключей для расшифровки данных — они защищены сквозным шифрованием.</p>
+
+      <p><strong>Как данные попадают в базу:</strong> любое устройство или приложение, имеющее разрешение пользователя, может записывать данные в HealthKit. Apple Watch делает это автоматически и непрерывно. Garmin, Oura, Polar и другие устройства — через свои приложения. Пользователь также может вводить данные вручную. Каждая запись содержит четыре обязательных поля: тип данных, числовое значение, единицу измерения и источник — устройство или приложение, которое создало запись.</p>
+
+      <p><strong>Модель хранения данных</strong> важна для понимания того, что происходит при наличии нескольких устройств. Apple Health не усредняет и не смешивает данные от разных источников — она хранит все записи изолированно. Когда вы запрашиваете суточный итог (например, количество шагов за день), система применяет иерархию приоритетов и выбирает значение от источника с наибольшим приоритетом. По умолчанию Apple Watch стоит выше iPhone, iPhone выше сторонних приложений. Пользователь может изменить этот порядок вручную в настройках раздела «Источники данных».</p>
+
+      <p>Это имеет практическое следствие для исследователя: если участник носит одновременно Apple Watch и Garmin, шаги будут записаны дважды, но в суммарную статистику попадут только от приоритетного источника. В сыром экспорте, однако, будут видны обе записи — и это нужно учитывать при очистке данных.</p>
+    </section>
+
+    <!-- РАЗДЕЛ 2 -->
+    <section class="aw-section" data-section="1">
+
+      <div class="aw-section-header-ecg">
+        <!-- ЭКГ-волна — рисуется при появлении в зоне видимости -->
+        <div class="aw-ecg-icon">
+          <svg width="60" height="36" viewBox="0 0 120 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="ecg-path" d="M0,18 L20,18 L26,18 L30,4 L34,32 L38,10 L42,26 L46,18 L60,18 L80,18 L84,18 L88,8 L92,28 L96,12 L100,22 L104,18 L120,18" stroke="#5F5FFF" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="aw-section-number">Раздел 2</div>
+          <h2 class="aw-section-title" style="margin-bottom:0">Что на самом деле хранится внутри — природа данных</h2>
+        </div>
+      </div>
+
+      <p>Это один из самых важных разделов для исследователя. Разница между тем, что вы ожидаете получить, и тем, что реально хранится в Apple Health, может полностью изменить дизайн вашего исследования.</p>
+
+      <!-- Главный акцент -->
+      <div class="aw-callout-big">
+        <div class="aw-callout-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="11" stroke="#5F5FFF" stroke-width="1.5"/>
+            <line x1="12" y1="8" x2="12" y2="13" stroke="#5F5FFF" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="16.5" r="1" fill="#5F5FFF"/>
+          </svg>
+        </div>
+        <div class="aw-callout-big-text">Apple Health не хранит сырые сигналы датчиков.</div>
+      </div>
+
+      <p>Apple Watch считывает фотоплетизмограмму (PPG) — оптический сигнал отражения зелёного света от кровеносных сосудов — и обрабатывает его с помощью встроенных алгоритмов машинного обучения. В базу данных попадает уже результат: значение пульса в ударах в минуту, а не сам волновой сигнал. То же самое происходит с акселерометром: вместо исходного потока значений ускорения по трём осям в HealthKit записывается количество шагов или факт тренировки.</p>
+
+      <p>Для исследователя это означает следующее: вы работаете с <strong>обработанными показателями</strong>, а не с первичными физиологическими сигналами. Это не делает данные бесполезными — они отлично подходят для трендового анализа, корреляций, наблюдательных исследований и работы с большими выборками. Но если ваша задача — анализировать качество самого сигнала или получать R-R интервалы с миллисекундной точностью, стандартных возможностей HealthKit будет недостаточно.</p>
+
+      <!-- Блок метрик -->
+      <div class="aw-metrics-block">
+        <div class="aw-metrics-title">Что конкретно хранится в HealthKit</div>
+
+        <div class="aw-metric-item">
+          <div class="aw-metric-body">
+            <div class="aw-metric-name">Частота сердечных сокращений — <span class="aw-inline-code">HeartRate</span></div>
+            <div class="aw-metric-desc">Значения в уд/мин с точными временными метками. Вне тренировки — раз в 5–10 мин, во время тренировки — непрерывно (~раз в 5 сек).</div>
+          </div>
+        </div>
+
+        <div class="aw-metric-item">
+          <div class="aw-metric-body">
+            <div class="aw-metric-name">Вариабельность сердечного ритма — <span class="aw-inline-code">HeartRateVariabilitySDNN</span></div>
+            <div class="aw-metric-desc">Значение SDNN в миллисекундах. Собирается преимущественно ночью, в периоды расслабления. Разреженные данные — 3–5 точек в сутки.</div>
+          </div>
+        </div>
+
+        <div class="aw-metric-item">
+          <div class="aw-metric-body">
+            <div class="aw-metric-name">Насыщение крови кислородом — <span class="aw-inline-code">OxygenSaturation</span></div>
+            <div class="aw-metric-desc">Значения SpO2 в процентах. Снимаются в фоне преимущественно ночью, на Series 6 и новее.</div>
+          </div>
+        </div>
+
+        <div class="aw-metric-item">
+          <div class="aw-metric-body">
+            <div class="aw-metric-name">Температура запястья — <span class="aw-inline-code">AppleSleepingWristTemperature</span></div>
+            <div class="aw-metric-desc">Доступна с Series 8 и новее, измеряется только во время сна.</div>
+          </div>
+        </div>
+
+        <div class="aw-metric-item">
+          <div class="aw-metric-body">
+            <div class="aw-metric-name">Фазы сна — <span class="aw-inline-code">SleepAnalysis</span></div>
+            <div class="aw-metric-desc">Категориальные данные: Core, Deep, REM, Awake. Точность ~60–70% по сравнению с полисомнографией.</div>
+          </div>
+        </div>
+
+        <div class="aw-metric-item">
+          <div class="aw-metric-body">
+            <div class="aw-metric-name">ЭКГ — <span class="aw-inline-code">Electrocardiogram</span></div>
+            <div class="aw-metric-desc">Одноканальная запись (отведение I), 30 секунд, только при ручном снятии. Единственный способ получить близкое к сырому кардиосигналу.</div>
+          </div>
+        </div>
+
+        <div class="aw-metric-item">
+          <div class="aw-metric-body">
+            <div class="aw-metric-name">Тренировки, шаги, VO2 max — <span class="aw-inline-code">HKWorkout</span></div>
+            <div class="aw-metric-desc">Структурированные записи о тренировках с GPS-треками, зонами пульса, калориями. Шаги, дистанция, этажи, активные калории.</div>
+          </div>
+        </div>
+      </div>
+
+      <p>Каждая запись в базе сопровождается метаданными: источник (название устройства или приложения), идентификатор устройства, временные метки начала и конца замера. Поле <span class="aw-inline-code">sourceName</span> позволяет впоследствии фильтровать данные по конкретному устройству — это важный инструмент очистки.</p>
+
+    </section>
+
+  </div>
+
+</main>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+
+<script>
+  // Показываем навигацию при скролле
+  const stickyNav = document.querySelector('.aw-sticky-nav');
+  const heroSection = document.querySelector('.aw-hero');
+
+  window.addEventListener('scroll', () => {
+    const heroBottom = heroSection.offsetHeight;
+    if (window.scrollY > heroBottom - 200) {
+      stickyNav.classList.add('show');
+    } else {
+      stickyNav.classList.remove('show');
+    }
+  });
+
+  // Навигация по секциям
+  const navButtons = document.querySelectorAll('.aw-nav-pill');
+  const sections = document.querySelectorAll('.aw-section');
+
+  navButtons.forEach((button, idx) => {
+    button.addEventListener('click', () => {
+      const section = sections[idx];
+      section.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Обновление активного пункта при скролле
+  window.addEventListener('scroll', () => {
+    let currentSection = 0;
+    sections.forEach((section, idx) => {
+      if (section.offsetTop <= window.scrollY + 200) {
+        currentSection = idx;
+      }
+    });
+
+    navButtons.forEach((button) => button.classList.remove('active'));
+    if (navButtons[currentSection]) {
+      navButtons[currentSection].classList.add('active');
+    }
+  });
+
+  // ЭКГ-анимация при появлении в зоне видимости
+  const ecgPath = document.querySelector('.ecg-path');
+  if (ecgPath) {
+    const ecgObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          ecgPath.classList.add('drawn');
+          ecgObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    ecgObserver.observe(ecgPath.closest('section'));
+  }
+</script>
+</body>
+</html>
