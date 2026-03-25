@@ -467,7 +467,7 @@
     .aw-devices-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 20px;
       margin: 36px 0;
     }
 
@@ -485,76 +485,96 @@
 
     .aw-device-card {
       background: #ffffff;
-      border: 1px solid #e8e8e8;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      transition: all 0.2s ease;
+      border: 1px solid #e8e8f0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
       cursor: pointer;
     }
 
     .aw-device-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(95, 95, 255, 0.13);
+      border-color: rgba(95, 95, 255, 0.28);
     }
 
     .aw-device-icon {
       width: 100%;
-      height: 60px;
-      margin-bottom: 16px;
+      height: 88px;
+      background: linear-gradient(145deg, #f3f3ff 0%, #eaeaff 100%);
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .aw-device-body {
+      padding: 16px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
 
     .aw-device-header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 8px;
       margin-bottom: 12px;
     }
 
     .aw-device-name {
       font-family: var(--fb);
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 700;
       color: var(--text);
-      flex: 1;
     }
 
-    .aw-device-status {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
+    .aw-device-badge {
+      font-family: var(--fb);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 3px 9px;
+      border-radius: 20px;
+      white-space: nowrap;
       flex-shrink: 0;
     }
 
-    .aw-device-status.full {
-      background: #4ade80;
+    .aw-device-badge.full {
+      background: #dcfce7;
+      color: #16a34a;
     }
 
-    .aw-device-status.good {
-      background: #fbbf24;
+    .aw-device-badge.good {
+      background: #fef9c3;
+      color: #a16207;
     }
 
-    .aw-device-status.limited {
-      background: #d1d5db;
+    .aw-device-badge.limited {
+      background: #f1f5f9;
+      color: #64748b;
     }
 
-    .aw-device-status.none {
-      background: #9ca3af;
+    .aw-device-badge.none {
+      background: #f4f4f5;
+      color: #a1a1aa;
     }
 
     .aw-device-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
+      margin-top: auto;
     }
 
     .aw-device-tag {
       display: inline-block;
       font-family: var(--fb);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       background: #f0f0ff;
       color: #5F5FFF;
       padding: 4px 10px;
@@ -585,6 +605,637 @@
       line-height: 1.6;
       margin: 0;
     }
+
+    /* ── РАЗДЕЛ 4: УРОВЕНЬ 1 XML ── */
+    .aw-level-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .aw-level-badge {
+      font-family: var(--fb);
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #5F5FFF;
+      color: #fff;
+      padding: 5px 14px;
+      border-radius: 8px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .aw-level-label {
+      font-family: var(--fb);
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .aw-section-2col {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .aw-section-2col {
+        grid-template-columns: 1fr;
+      }
+      .aw-iphone-anim { display: none; }
+    }
+    .aw-steps {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .aw-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .aw-step-num {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      background: #5F5FFF;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fb);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .aw-step-text {
+      font-family: var(--fb);
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.55;
+      padding-top: 5px;
+    }
+    .aw-code-block {
+      position: relative;
+      background: #1a1a2e;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      overflow: auto;
+    }
+    .aw-code-block pre {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .aw-code-block .c-attr { color: #5F5FFF; }
+    .aw-code-block .c-val  { color: #4caf50; }
+    .aw-code-block .c-q    { color: #888; }
+    .aw-code-block .c-tag  { color: #e2e2e2; }
+    .aw-copy-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #aaa;
+      font-family: var(--fb);
+      font-size: 0.72rem;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .aw-copy-btn:hover { background: rgba(95,95,255,0.3); color: #fff; }
+    .aw-callout-purple {
+      background: #f3f3ff;
+      border-left: 4px solid #5F5FFF;
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+    .aw-callout-purple-title {
+      font-family: var(--fb);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #5F5FFF;
+      margin-bottom: 10px;
+    }
+    .aw-callout-purple p {
+      font-family: var(--fb);
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .aw-iphone-anim {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 24px;
+    }
+
+    /* ── РАЗДЕЛ 5: УРОВЕНЬ 2 ПРИЛОЖЕНИЯ ── */
+    .aw-apps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+    @media (max-width: 640px) {
+      .aw-apps-grid { grid-template-columns: 1fr; }
+    }
+    .aw-app-card {
+      background: #fff;
+      border: 1px solid #e8e8f0;
+      border-radius: 14px;
+      padding: 20px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .aw-app-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(95,95,255,0.1);
+    }
+    .aw-app-card.featured {
+      border-color: rgba(95,95,255,0.3);
+      background: linear-gradient(160deg, #fff 80%, #f5f5ff 100%);
+    }
+    .aw-app-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .aw-app-name {
+      font-family: var(--fb);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .aw-app-star {
+      font-size: 0.7rem;
+      background: #fff8e1;
+      color: #f59e0b;
+      border: 1px solid #fde68a;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-family: var(--fb);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .aw-app-desc {
+      font-family: var(--fb);
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .aw-app-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .aw-app-tag {
+      font-family: var(--fb);
+      font-size: 0.68rem;
+      background: #f0f0ff;
+      color: #5F5FFF;
+      padding: 3px 9px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+    .aw-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e8e8f0;
+    }
+    .aw-data-table thead tr {
+      background: #5F5FFF;
+    }
+    .aw-data-table thead th {
+      font-family: var(--fb);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #fff;
+      padding: 12px 16px;
+      text-align: left;
+      letter-spacing: 0.04em;
+    }
+    .aw-data-table tbody tr:nth-child(odd) {
+      background: #fff;
+    }
+    .aw-data-table tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+    .aw-data-table tbody tr:hover {
+      background: #f3f3ff;
+    }
+    .aw-data-table td {
+      font-family: var(--fb);
+      font-size: 0.85rem;
+      color: var(--text);
+      padding: 11px 16px;
+      border-top: 1px solid #f0f0f4;
+    }
+    .aw-data-table td:first-child {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.8rem;
+      color: #5F5FFF;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .aw-table-note {
+      font-family: var(--fb);
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-top: 12px;
+      padding-left: 4px;
+    }
+
+    /* ── РАЗДЕЛ 6: УРОВЕНЬ 3 PYTHON ── */
+    .aw-section-dotgrid {
+      background-image: radial-gradient(circle, #d8d8e8 1px, transparent 1px);
+      background-size: 22px 22px;
+      background-position: 0 0;
+    }
+    .aw-code-block .c-kw  { color: #5F5FFF; }
+    .aw-code-block .c-str { color: #4caf50; }
+    .aw-code-block .c-cmt { color: #666; font-style: italic; }
+    .aw-code-block .c-fn  { color: #ffb86c; }
+    .aw-code-block .c-num { color: #ff79c6; }
+    .aw-code-block .c-plain { color: #e2e2e2; }
+    .aw-code-label {
+      font-family: var(--fb);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      margin-top: 24px;
+    }
+    .aw-libs-list {
+      margin: 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid #e8e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .aw-lib-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 20px;
+      background: #fff;
+      border-bottom: 1px solid #f0f0f4;
+      transition: background 0.15s;
+    }
+    .aw-lib-row:last-child { border-bottom: none; }
+    .aw-lib-row:hover { background: #f8f8ff; }
+    .aw-lib-icon {
+      width: 36px;
+      height: 36px;
+      background: #f0f0ff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .aw-lib-name {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #5F5FFF;
+      margin-bottom: 3px;
+    }
+    .aw-lib-desc {
+      font-family: var(--fb);
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── РАЗДЕЛ 7: УРОВЕНЬ 4 СЕНСОРЫ ── */
+    .aw-osc-wrap {
+      margin-bottom: 28px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .aw-callout-red {
+      background: #fff5f5;
+      border-left: 4px solid #ff6b6b;
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin-top: 28px;
+    }
+    .aw-callout-red-title {
+      font-family: var(--fb);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #e53e3e;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .aw-callout-red p {
+      font-family: var(--fb);
+      font-size: 0.88rem;
+      color: #744141;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .aw-tool-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    @media (max-width: 640px) {
+      .aw-tool-cards { grid-template-columns: 1fr; }
+    }
+    .aw-tool-card {
+      background: #fff;
+      border: 1px solid #e8e8f0;
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .aw-tool-name {
+      font-family: var(--fb);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .aw-tool-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .aw-tool-features li {
+      font-family: var(--fb);
+      font-size: 0.83rem;
+      color: var(--muted);
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .aw-tool-features li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #5F5FFF;
+    }
+
+    /* ── РАЗДЕЛ 8: ФОРМАТЫ ── */
+    .aw-formats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+    @media (max-width: 900px) {
+      .aw-formats-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .aw-formats-grid { grid-template-columns: 1fr; }
+    }
+    .aw-format-card {
+      background: #fff;
+      border: 1px solid #e8e8f0;
+      border-radius: 14px;
+      padding: 20px 16px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .aw-format-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    }
+    .aw-format-card.xml:hover  { background: #fff8e1; border-color: #f6d860; }
+    .aw-format-card.csv:hover  { background: #e8f5e9; border-color: #81c784; }
+    .aw-format-card.json:hover { background: #fff3e0; border-color: #ffb74d; }
+    .aw-format-card.gpx:hover  { background: #e3f2fd; border-color: #64b5f6; }
+    .aw-format-card.fit:hover  { background: #f3e5f5; border-color: #ba68c8; }
+    .aw-format-abbr {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #5F5FFF;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .aw-format-icon {
+      opacity: 0.5;
+    }
+    .aw-format-desc {
+      font-family: var(--fb);
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+    .aw-format-tools {
+      font-family: var(--fb);
+      font-size: 0.72rem;
+      color: #5F5FFF;
+      font-weight: 500;
+    }
+
+    /* ── РАЗДЕЛ 9: ИИ-АНАЛИЗ ── */
+    .aw-pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 28px 0;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .aw-pipeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      flex-shrink: 0;
+    }
+    .aw-pipeline-step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .aw-pipeline-box {
+      background: #fff;
+      border: 1.5px solid #5F5FFF;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-family: var(--fb);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #5F5FFF;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .aw-pipeline-arrow {
+      color: #5F5FFF;
+      font-size: 1.2rem;
+      padding: 0 4px;
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      align-self: flex-start;
+      margin-top: 12px;
+    }
+    .aw-pipeline-arrow.visible { opacity: 1; }
+    .aw-ai-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin: 24px 0;
+    }
+    @media (max-width: 700px) {
+      .aw-ai-two-col { grid-template-columns: 1fr; }
+    }
+    .aw-ai-list-title {
+      font-family: var(--fb);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .aw-callout-lock {
+      background: #f3f3ff;
+      border-left: 4px solid #5F5FFF;
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .aw-callout-lock-icon { flex-shrink: 0; margin-top: 2px; }
+    .aw-callout-lock-body { flex: 1; }
+    .aw-callout-lock-title {
+      font-family: var(--fb);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #5F5FFF;
+      margin-bottom: 6px;
+    }
+    .aw-callout-lock p {
+      font-family: var(--fb);
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .aw-workflow {
+      background: #fafafa;
+      border: 1px solid #e8e8f0;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .aw-workflow-title {
+      font-family: var(--fb);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .aw-note-muted {
+      font-family: var(--fb);
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-top: 16px;
+      padding-left: 4px;
+      font-style: italic;
+    }
+
+    /* ── РАЗДЕЛ 10: ОЧИСТКА ДАННЫХ ── */
+    .aw-diag-table { width:100%; border-radius:12px; overflow:hidden; border:1px solid #e8e8f0; margin:24px 0; }
+    .aw-diag-row { display:grid; grid-template-columns:44px 1fr 1fr; align-items:start; padding:14px 16px; border-bottom:1px solid #f0f0f4; transition:background 0.15s; }
+    .aw-diag-row:last-child { border-bottom:none; }
+    .aw-diag-row:nth-child(odd) { background:#fff; }
+    .aw-diag-row:nth-child(even) { background:#fafafa; }
+    .aw-diag-row:hover { background:#f5f5ff; }
+    .aw-diag-icon { display:flex; align-items:center; justify-content:center; padding-top:2px; }
+    .aw-diag-problem { font-family:var(--fb); font-size:0.85rem; font-weight:600; color:var(--text); padding-right:16px; }
+    .aw-diag-problem span { display:block; font-size:0.78rem; font-weight:400; color:var(--muted); margin-top:3px; line-height:1.45; }
+    .aw-diag-solution { font-family:var(--fb); font-size:0.83rem; color:var(--muted); line-height:1.5; }
+    .aw-diag-solution code { font-size:0.72rem; background:#f0f0ff; color:#5F5FFF; padding:1px 5px; border-radius:4px; }
+
+    /* ── РАЗДЕЛ 11: ОГРАНИЧЕНИЯ ── */
+    .aw-limits-section { background:#f7f7f7; border-radius:16px; padding:32px; margin:0 -8px; }
+    .aw-limits-two-col { display:grid; grid-template-columns:1fr 1px 1fr; gap:24px; margin-top:24px; }
+    @media (max-width:680px) { .aw-limits-two-col { grid-template-columns:1fr; } .aw-limits-divider { display:none; } }
+    .aw-limits-divider { background:#e0e0e0; }
+    .aw-limits-col-title { font-family:var(--fb); font-size:0.78rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:12px; }
+    .aw-limits-col-title.good { color:#16a34a; }
+    .aw-limits-col-title.needs { color:var(--muted); }
+    .aw-limits-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+    .aw-limits-list li { font-family:var(--fb); font-size:0.85rem; color:var(--text); display:flex; gap:10px; align-items:flex-start; line-height:1.45; }
+    .aw-limits-list li svg { flex-shrink:0; margin-top:2px; }
+    .aw-garmin-callout { background:#f0f7ff; border-left:4px solid #5F5FFF; border-radius:0 10px 10px 0; padding:16px 20px; margin-top:20px; }
+    .aw-garmin-callout p { font-family:var(--fb); font-size:0.85rem; color:var(--text); line-height:1.6; margin:0; }
+
+    /* ── РАЗДЕЛ 12: СРАВНИТЕЛЬНАЯ ТАБЛИЦА ── */
+    .aw-compare-table { width:100%; border-collapse:collapse; border-radius:12px; overflow:hidden; border:1px solid #e8e8f0; margin:24px 0; font-size:0.82rem; }
+    .aw-compare-table thead tr { background:#5F5FFF; }
+    .aw-compare-table thead th { font-family:var(--fb); font-size:0.75rem; font-weight:600; color:#fff; padding:11px 12px; text-align:left; white-space:nowrap; }
+    .aw-compare-table tbody tr:nth-child(odd) { background:#fff; }
+    .aw-compare-table tbody tr:nth-child(even) { background:#fafafa; }
+    .aw-compare-table tbody tr:hover { background:#f3f3ff; }
+    .aw-compare-table td { font-family:var(--fb); color:var(--text); padding:10px 12px; border-top:1px solid #f0f0f4; vertical-align:top; line-height:1.45; }
+    .aw-compare-table td:first-child { font-weight:500; }
+    .aw-level-pill { display:inline-block; font-size:0.65rem; font-weight:700; padding:2px 8px; border-radius:20px; white-space:nowrap; }
+    .aw-level-pill.s1 { background:#dcfce7; color:#16a34a; }
+    .aw-level-pill.s2 { background:#dbeafe; color:#1d4ed8; }
+    .aw-level-pill.s3 { background:#ede9fe; color:#5F5FFF; }
+    .aw-level-pill.s4 { background:#e0e7ff; color:#1a1a6e; }
+    .aw-ai-yes   { color:#16a34a; font-weight:600; }
+    .aw-ai-conv  { color:#d97706; }
+    .aw-ai-part  { color:#6366f1; }
+
+    /* ── РАЗДЕЛ 13: ЧЕК-ЛИСТ ── */
+    .aw-checklist-counter { font-family:var(--fb); font-size:0.88rem; color:var(--muted); margin-bottom:20px; }
+    .aw-checklist-counter strong { color:#5F5FFF; font-size:1rem; }
+    .aw-checklist-group { margin-bottom:28px; }
+    .aw-checklist-group-title { font-family:var(--fb); font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid #e8e8f0; }
+    .aw-check-item { display:flex; align-items:flex-start; gap:14px; padding:10px 12px; border-radius:8px; cursor:pointer; transition:background 0.2s; user-select:none; }
+    .aw-check-item:hover { background:#f5f5ff; }
+    .aw-check-item.checked { background:#f0fff4; }
+    .aw-check-item.checked .aw-check-text { color:var(--muted); }
+    .aw-check-box { width:20px; height:20px; border:2px solid #d0d0e0; border-radius:5px; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px; transition:background 0.2s, border-color 0.2s; }
+    .aw-check-item.checked .aw-check-box { background:#5F5FFF; border-color:#5F5FFF; }
+    .aw-check-tick { transform:scale(0); transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1); }
+    .aw-check-item.checked .aw-check-tick { transform:scale(1); }
+    .aw-check-text { font-family:var(--fb); font-size:0.88rem; color:var(--text); line-height:1.5; }
+
+    /* ── ФИНАЛЬНЫЙ АБЗАЦ ── */
+    .aw-finale { text-align:center; padding:40px 20px; border-top:1px solid #e8e8f0; border-bottom:1px solid #e8e8f0; margin:40px 0 0; }
+    .aw-finale p { font-family:var(--fb); font-size:1rem; line-height:1.8; color:var(--text); max-width:700px; margin:0 auto; }
 
   </style>
 </head>
@@ -914,179 +1565,236 @@
         <!-- Apple Watch -->
         <div class="aw-device-card">
           <div class="aw-device-icon">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="9" y="9" width="32" height="32" rx="6" stroke="#333" stroke-width="1.2" fill="white"/>
-              <rect x="12" y="12" width="26" height="26" rx="4" stroke="#eee" stroke-width="0.8" fill="#f8f8ff"/>
-              <circle cx="25" cy="25" r="3" fill="#5F5FFF"/>
+            <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- ремешок -->
+              <rect x="20" y="2" width="18" height="8" rx="3" fill="#5F5FFF" opacity="0.25"/>
+              <rect x="20" y="48" width="18" height="8" rx="3" fill="#5F5FFF" opacity="0.25"/>
+              <!-- корпус -->
+              <rect x="9" y="10" width="40" height="38" rx="10" fill="white" stroke="#d0d0e8" stroke-width="1.4"/>
+              <!-- экран -->
+              <rect x="14" y="16" width="30" height="26" rx="6" fill="#f5f5ff"/>
+              <!-- цифры -->
+              <line x1="29" y1="20" x2="29" y2="27" stroke="#5F5FFF" stroke-width="2" stroke-linecap="round"/>
+              <line x1="29" y1="29" x2="34" y2="29" stroke="#5F5FFF" stroke-width="2" stroke-linecap="round"/>
+              <!-- кнопка Digital Crown -->
+              <rect x="49" y="22" width="3" height="8" rx="1.5" fill="#d0d0e8"/>
             </svg>
           </div>
-          <div class="aw-device-header">
-            <span class="aw-device-name">Apple Watch</span>
-            <div class="aw-device-status full"></div>
-          </div>
-          <div class="aw-device-tags">
-            <span class="aw-device-tag">Пульс</span>
-            <span class="aw-device-tag">HRV</span>
-            <span class="aw-device-tag">Сон</span>
-            <span class="aw-device-tag">SpO2</span>
+          <div class="aw-device-body">
+            <div class="aw-device-header">
+              <span class="aw-device-name">Apple Watch</span>
+              <span class="aw-device-badge full">Полная</span>
+            </div>
+            <div class="aw-device-tags">
+              <span class="aw-device-tag">Пульс</span>
+              <span class="aw-device-tag">HRV</span>
+              <span class="aw-device-tag">Сон</span>
+              <span class="aw-device-tag">SpO2</span>
+            </div>
           </div>
         </div>
 
         <!-- Garmin -->
         <div class="aw-device-card">
           <div class="aw-device-icon">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="25" cy="25" r="18" stroke="#333" stroke-width="1.2" fill="white"/>
-              <circle cx="25" cy="25" r="12" stroke="#eee" stroke-width="0.8" fill="none"/>
-              <line x1="25" y1="13" x2="25" y2="25" stroke="#333" stroke-width="1.2" stroke-linecap="round"/>
-              <line x1="25" y1="25" x2="32" y2="25" stroke="#333" stroke-width="1.2" stroke-linecap="round"/>
+            <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- внешний безель -->
+              <circle cx="29" cy="29" r="22" fill="white" stroke="#d0d0e8" stroke-width="1.4"/>
+              <!-- внутреннее кольцо -->
+              <circle cx="29" cy="29" r="16" stroke="#eeeeff" stroke-width="1"/>
+              <!-- тики на безеле -->
+              <line x1="29" y1="8" x2="29" y2="12" stroke="#5F5FFF" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="50" y1="29" x2="46" y2="29" stroke="#c8c8e0" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="8" y1="29" x2="12" y2="29" stroke="#c8c8e0" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="29" y1="50" x2="29" y2="46" stroke="#c8c8e0" stroke-width="1.4" stroke-linecap="round"/>
+              <!-- стрелки -->
+              <line x1="29" y1="16" x2="29" y2="29" stroke="#333" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="29" y1="29" x2="38" y2="29" stroke="#5F5FFF" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="29" cy="29" r="2.5" fill="#5F5FFF"/>
             </svg>
           </div>
-          <div class="aw-device-header">
-            <span class="aw-device-name">Garmin</span>
-            <div class="aw-device-status good"></div>
-          </div>
-          <div class="aw-device-tags">
-            <span class="aw-device-tag">ЧСС</span>
-            <span class="aw-device-tag">HRV</span>
-            <span class="aw-device-tag">Тренировки</span>
+          <div class="aw-device-body">
+            <div class="aw-device-header">
+              <span class="aw-device-name">Garmin</span>
+              <span class="aw-device-badge good">Хорошая</span>
+            </div>
+            <div class="aw-device-tags">
+              <span class="aw-device-tag">ЧСС</span>
+              <span class="aw-device-tag">HRV</span>
+              <span class="aw-device-tag">Тренировки</span>
+            </div>
           </div>
         </div>
 
         <!-- Coros -->
         <div class="aw-device-card">
           <div class="aw-device-icon">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M25 8 L35 20 L32 35 L18 35 L15 20 Z" stroke="#333" stroke-width="1.2" fill="white"/>
-              <circle cx="25" cy="22" r="3" fill="#5F5FFF"/>
+            <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- корпус круглые часы -->
+              <circle cx="29" cy="29" r="22" fill="white" stroke="#d0d0e8" stroke-width="1.4"/>
+              <!-- инфографика: три дуги прогресса -->
+              <path d="M29 10 A19 19 0 0 1 48 29" stroke="#5F5FFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <path d="M29 14 A15 15 0 0 1 44 29" stroke="#5F5FFF" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+              <path d="M29 18 A11 11 0 0 1 40 29" stroke="#5F5FFF" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.25"/>
+              <!-- центральная точка -->
+              <circle cx="29" cy="29" r="4" fill="white" stroke="#5F5FFF" stroke-width="1.5"/>
+              <circle cx="29" cy="29" r="1.5" fill="#5F5FFF"/>
             </svg>
           </div>
-          <div class="aw-device-header">
-            <span class="aw-device-name">Coros</span>
-            <div class="aw-device-status full"></div>
-          </div>
-          <div class="aw-device-tags">
-            <span class="aw-device-tag">Пульс</span>
-            <span class="aw-device-tag">Сон</span>
-            <span class="aw-device-tag">SpO2</span>
+          <div class="aw-device-body">
+            <div class="aw-device-header">
+              <span class="aw-device-name">Coros</span>
+              <span class="aw-device-badge full">Полная</span>
+            </div>
+            <div class="aw-device-tags">
+              <span class="aw-device-tag">Пульс</span>
+              <span class="aw-device-tag">Сон</span>
+              <span class="aw-device-tag">SpO2</span>
+            </div>
           </div>
         </div>
 
         <!-- Oura Ring -->
         <div class="aw-device-card">
           <div class="aw-device-icon">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="25" cy="25" r="14" stroke="#333" stroke-width="2" fill="none"/>
-              <circle cx="25" cy="25" r="9" stroke="#eee" stroke-width="1" fill="none"/>
-              <circle cx="25" cy="25" r="4" fill="#5F5FFF"/>
+            <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- кольцо — характерная форма Oura -->
+              <circle cx="29" cy="29" r="19" stroke="#d0d0e8" stroke-width="6" fill="none"/>
+              <!-- акцентная дуга -->
+              <path d="M29 10 A19 19 0 0 1 48 29" stroke="#5F5FFF" stroke-width="6" stroke-linecap="round" fill="none"/>
+              <!-- датчик на внутренней стороне -->
+              <rect x="23" y="39" width="12" height="4" rx="2" fill="#5F5FFF" opacity="0.4"/>
             </svg>
           </div>
-          <div class="aw-device-header">
-            <span class="aw-device-name">Oura Ring</span>
-            <div class="aw-device-status full"></div>
-          </div>
-          <div class="aw-device-tags">
-            <span class="aw-device-tag">Сон</span>
-            <span class="aw-device-tag">HRV</span>
-            <span class="aw-device-tag">Температура</span>
+          <div class="aw-device-body">
+            <div class="aw-device-header">
+              <span class="aw-device-name">Oura Ring</span>
+              <span class="aw-device-badge full">Полная</span>
+            </div>
+            <div class="aw-device-tags">
+              <span class="aw-device-tag">Сон</span>
+              <span class="aw-device-tag">HRV</span>
+              <span class="aw-device-tag">Температура</span>
+            </div>
           </div>
         </div>
 
         <!-- Whoop -->
         <div class="aw-device-card">
           <div class="aw-device-icon">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="15" width="30" height="20" rx="3" stroke="#333" stroke-width="1.2" fill="white"/>
-              <path d="M14 25 Q18 20 22 25 Q26 30 30 25 Q34 20 38 25" stroke="#5F5FFF" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- браслет Whoop — характерная прямоугольная форма -->
+              <rect x="8" y="18" width="42" height="22" rx="5" fill="white" stroke="#d0d0e8" stroke-width="1.4"/>
+              <!-- пульсовая волна внутри -->
+              <path d="M12 29 L18 29 L21 22 L24 36 L27 25 L30 29 L46 29" stroke="#5F5FFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="aw-device-header">
-            <span class="aw-device-name">Whoop</span>
-            <div class="aw-device-status good"></div>
-          </div>
-          <div class="aw-device-tags">
-            <span class="aw-device-tag">Нагрузка</span>
-            <span class="aw-device-tag">HRV</span>
-            <span class="aw-device-tag">Восстановление</span>
+          <div class="aw-device-body">
+            <div class="aw-device-header">
+              <span class="aw-device-name">Whoop</span>
+              <span class="aw-device-badge good">Хорошая</span>
+            </div>
+            <div class="aw-device-tags">
+              <span class="aw-device-tag">Нагрузка</span>
+              <span class="aw-device-tag">HRV</span>
+              <span class="aw-device-tag">Восстановление</span>
+            </div>
           </div>
         </div>
 
         <!-- Polar -->
         <div class="aw-device-card">
           <div class="aw-device-icon">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="25" cy="25" r="12" stroke="#333" stroke-width="1.2" fill="white"/>
-              <path d="M25 15 L28 22 L35 22 L30 27 L32 35 L25 31 L18 35 L20 27 L15 22 L22 22 Z" stroke="#5F5FFF" stroke-width="0.8" fill="#5F5FFF" opacity="0.3"/>
+            <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- корпус -->
+              <circle cx="29" cy="29" r="22" fill="white" stroke="#d0d0e8" stroke-width="1.4"/>
+              <!-- сердце (фирменный символ Polar) -->
+              <path d="M29 37 C29 37 16 30 16 22 C16 18 19 15 22.5 15 C25 15 27.5 16.5 29 19 C30.5 16.5 33 15 35.5 15 C39 15 42 18 42 22 C42 30 29 37 29 37Z" fill="#5F5FFF" opacity="0.18" stroke="#5F5FFF" stroke-width="1.3"/>
             </svg>
           </div>
-          <div class="aw-device-header">
-            <span class="aw-device-name">Polar</span>
-            <div class="aw-device-status good"></div>
-          </div>
-          <div class="aw-device-tags">
-            <span class="aw-device-tag">ЧСС</span>
-            <span class="aw-device-tag">Нагрузка</span>
-            <span class="aw-device-tag">Сон</span>
+          <div class="aw-device-body">
+            <div class="aw-device-header">
+              <span class="aw-device-name">Polar</span>
+              <span class="aw-device-badge good">Хорошая</span>
+            </div>
+            <div class="aw-device-tags">
+              <span class="aw-device-tag">ЧСС</span>
+              <span class="aw-device-tag">Нагрузка</span>
+              <span class="aw-device-tag">Сон</span>
+            </div>
           </div>
         </div>
 
         <!-- Withings -->
         <div class="aw-device-card">
           <div class="aw-device-icon">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="12" y="10" width="26" height="30" rx="3" stroke="#333" stroke-width="1.2" fill="white"/>
-              <line x1="18" y1="18" x2="32" y2="18" stroke="#eee" stroke-width="0.8"/>
-              <line x1="18" y1="24" x2="32" y2="24" stroke="#5F5FFF" stroke-width="1.5"/>
-              <line x1="18" y1="30" x2="32" y2="30" stroke="#eee" stroke-width="0.8"/>
+            <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- аналоговые часы Withings с медицинским уклоном -->
+              <circle cx="29" cy="29" r="22" fill="white" stroke="#d0d0e8" stroke-width="1.4"/>
+              <!-- крест (медицина) -->
+              <rect x="26" y="19" width="6" height="20" rx="2" fill="#5F5FFF" opacity="0.2"/>
+              <rect x="19" y="26" width="20" height="6" rx="2" fill="#5F5FFF" opacity="0.2"/>
+              <!-- ЭКГ-линия поверх -->
+              <path d="M16 29 L21 29 L23 24 L26 34 L28 27 L30 29 L42 29" stroke="#5F5FFF" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="aw-device-header">
-            <span class="aw-device-name">Withings</span>
-            <div class="aw-device-status full"></div>
-          </div>
-          <div class="aw-device-tags">
-            <span class="aw-device-tag">ЭКГ</span>
-            <span class="aw-device-tag">SpO2</span>
-            <span class="aw-device-tag">Давление</span>
+          <div class="aw-device-body">
+            <div class="aw-device-header">
+              <span class="aw-device-name">Withings</span>
+              <span class="aw-device-badge full">Полная</span>
+            </div>
+            <div class="aw-device-tags">
+              <span class="aw-device-tag">ЭКГ</span>
+              <span class="aw-device-tag">SpO2</span>
+              <span class="aw-device-tag">Давление</span>
+            </div>
           </div>
         </div>
 
         <!-- Fitbit -->
         <div class="aw-device-card">
           <div class="aw-device-icon">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="14" y="10" width="22" height="30" rx="4" stroke="#333" stroke-width="1.2" fill="white"/>
-              <circle cx="20" cy="22" r="2.5" fill="#5F5FFF"/>
-              <circle cx="25" cy="22" r="2.5" fill="#5F5FFF"/>
-              <circle cx="30" cy="22" r="2.5" fill="#5F5FFF"/>
+            <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- вертикальный трекер Fitbit -->
+              <rect x="19" y="8" width="20" height="42" rx="7" fill="white" stroke="#d0d0e8" stroke-width="1.4"/>
+              <!-- три светодиода (характерно для Fitbit) -->
+              <circle cx="29" cy="22" r="3" fill="#5F5FFF" opacity="0.9"/>
+              <circle cx="29" cy="30" r="3" fill="#5F5FFF" opacity="0.45"/>
+              <circle cx="29" cy="38" r="3" fill="#d0d0e8"/>
             </svg>
           </div>
-          <div class="aw-device-header">
-            <span class="aw-device-name">Fitbit</span>
-            <div class="aw-device-status limited"></div>
-          </div>
-          <div class="aw-device-tags">
-            <span class="aw-device-tag">Шаги</span>
-            <span class="aw-device-tag">ЧСС</span>
+          <div class="aw-device-body">
+            <div class="aw-device-header">
+              <span class="aw-device-name">Fitbit</span>
+              <span class="aw-device-badge limited">Частичная</span>
+            </div>
+            <div class="aw-device-tags">
+              <span class="aw-device-tag">Шаги</span>
+              <span class="aw-device-tag">ЧСС</span>
+            </div>
           </div>
         </div>
 
         <!-- Samsung & Pixel -->
         <div class="aw-device-card">
           <div class="aw-device-icon">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="14" width="30" height="22" rx="2" stroke="#333" stroke-width="1.2" fill="white"/>
-              <line x1="15" y1="20" x2="35" y2="20" stroke="#d1d5db" stroke-width="1"/>
-              <line x1="15" y1="26" x2="35" y2="26" stroke="#d1d5db" stroke-width="1"/>
-              <line x1="15" y1="32" x2="35" y2="32" stroke="#d1d5db" stroke-width="1"/>
+            <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- квадратные смарт-часы Android -->
+              <rect x="10" y="10" width="38" height="38" rx="10" fill="white" stroke="#d8d8d8" stroke-width="1.4"/>
+              <rect x="16" y="16" width="26" height="26" rx="6" fill="#f8f8f8"/>
+              <!-- иконка "нет" — перечёркнутый круг -->
+              <circle cx="29" cy="29" r="8" stroke="#c0c0c8" stroke-width="1.5" fill="none"/>
+              <line x1="23" y1="23" x2="35" y2="35" stroke="#c0c0c8" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="aw-device-header">
-            <span class="aw-device-name">Samsung/Pixel</span>
-            <div class="aw-device-status none"></div>
-          </div>
-          <div class="aw-device-tags">
-            <span class="aw-device-tag">Android</span>
+          <div class="aw-device-body">
+            <div class="aw-device-header">
+              <span class="aw-device-name">Samsung / Pixel</span>
+              <span class="aw-device-badge none">Нет</span>
+            </div>
+            <div class="aw-device-tags">
+              <span class="aw-device-tag">Android</span>
+            </div>
           </div>
         </div>
 
@@ -1096,6 +1804,878 @@
       <div class="aw-callout-devices">
         <div class="aw-callout-devices-title">💡 Как проверить источники данных</div>
         <p>Откройте приложение <strong>Здоровье</strong> → выберите любую метрику (например, Пульс) → прокрутите вниз до раздела <strong>«Источники данных и доступ»</strong>. Там перечислены все устройства и приложения, пишущие данные этого типа. Для чистоты эксперимента определите приоритетный источник и убедитесь, что он стоит первым в списке.</p>
+      </div>
+
+    </section>
+
+    <!-- РАЗДЕЛ 4 — УРОВЕНЬ 1: XML -->
+    <section class="aw-section" data-section="3">
+
+      <div class="aw-level-header">
+        <span class="aw-level-badge">Уровень 1</span>
+        <span class="aw-level-label">Без кода</span>
+      </div>
+      <div class="aw-section-number">Раздел 4</div>
+      <h2 class="aw-section-title">Нативный экспорт (XML)</h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-top:-8px;margin-bottom:24px;">Бесплатно · Полный архив · Подходит для однократного глубокого извлечения всей истории</p>
+
+      <div class="aw-section-2col">
+        <div>
+          <p>Самый простой способ получить все данные — нативный экспорт прямо из приложения Здоровье. Никаких сторонних инструментов, никаких разрешений — просто несколько нажатий.</p>
+
+          <ul class="aw-steps">
+            <li class="aw-step">
+              <div class="aw-step-num">1</div>
+              <div class="aw-step-text">Откройте приложение <strong>Здоровье</strong> на iPhone.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">2</div>
+              <div class="aw-step-text">Нажмите на свой <strong>аватар или инициалы</strong> в правом верхнем углу.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">3</div>
+              <div class="aw-step-text">Прокрутите вниз до пункта <strong>«Экспортировать все данные о здоровье»</strong>.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">4</div>
+              <div class="aw-step-text">Подтвердите действие. Формирование архива займёт <strong>от нескольких минут до получаса</strong>.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">5</div>
+              <div class="aw-step-text">Сохраните файл <code>export.zip</code> через AirDrop, iCloud Drive или отправьте по почте.</div>
+            </li>
+          </ul>
+
+          <p><strong>Что внутри архива:</strong> основной файл — <code>export.xml</code>. Каждая запись выглядит так:</p>
+
+          <div class="aw-code-block">
+            <button class="aw-copy-btn" onclick="navigator.clipboard.writeText(this.nextElementSibling.textContent.trim());this.textContent='Скопировано';setTimeout(()=>this.textContent='Скопировать',2000)">Скопировать</button>
+            <pre><span class="c-tag">&lt;Record</span>
+  <span class="c-attr">type</span>=<span class="c-q">"</span><span class="c-val">HKQuantityTypeIdentifierHeartRate</span><span class="c-q">"</span>
+  <span class="c-attr">sourceName</span>=<span class="c-q">"</span><span class="c-val">Apple Watch</span><span class="c-q">"</span>
+  <span class="c-attr">unit</span>=<span class="c-q">"</span><span class="c-val">count/min</span><span class="c-q">"</span>
+  <span class="c-attr">startDate</span>=<span class="c-q">"</span><span class="c-val">2025-03-15 08:14:22 +0300</span><span class="c-q">"</span>
+  <span class="c-attr">value</span>=<span class="c-q">"</span><span class="c-val">72</span><span class="c-q">"</span><span class="c-tag">/&gt;</span></pre>
+          </div>
+
+          <p>Если данные пришли с Coros или Garmin — поле <code>sourceName</code> будет содержать его название. Структура идентична.</p>
+          <p style="color:var(--muted);font-size:0.88rem;">⚠️ Размер файла: от 100 МБ до 1–2 ГБ за несколько лет. Excel такой файл не откроет. Нужен конвертер или код.</p>
+          <p style="color:var(--muted);font-size:0.88rem;">Помимо <code>export.xml</code> в архиве: GPX-файлы с GPS-треками тренировок и папка <code>electrocardiograms</code> с данными ЭКГ.</p>
+
+          <div class="aw-callout-purple">
+            <div class="aw-callout-purple-title">Что делать с XML без кода</div>
+            <p>Онлайн-сервис <strong>applehealthdata.com</strong> — файл обрабатывается локально в браузере, данные никуда не передаются. На выходе — набор CSV-файлов, разбитых по типам данных: отдельный файл для пульса, шагов, сна и так далее.</p>
+          </div>
+        </div>
+
+        <!-- SVG анимация: iPhone → export.zip -->
+        <div class="aw-iphone-anim">
+          <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- iPhone корпус -->
+            <rect x="30" y="10" width="100" height="180" rx="18" fill="white" stroke="#d0d0e8" stroke-width="1.8"/>
+            <rect x="38" y="26" width="84" height="130" rx="8" fill="#f5f5ff"/>
+            <!-- динамик -->
+            <rect x="60" y="16" width="40" height="5" rx="2.5" fill="#d0d0e8"/>
+            <!-- кнопка Home -->
+            <circle cx="80" cy="173" r="7" stroke="#d0d0e8" stroke-width="1.5" fill="white"/>
+            <!-- стрелка "поделиться" на экране -->
+            <line x1="80" y1="70" x2="80" y2="100" stroke="#5F5FFF" stroke-width="1.8" stroke-linecap="round"/>
+            <polyline points="72,78 80,70 88,78" stroke="#5F5FFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="66" y1="88" x2="66" y2="110" stroke="#5F5FFF" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="94" y1="88" x2="94" y2="110" stroke="#5F5FFF" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="66" y1="110" x2="94" y2="110" stroke="#5F5FFF" stroke-width="1.4" stroke-linecap="round"/>
+            <!-- Анимированный файл export.zip -->
+            <g class="aw-zip-file">
+              <!-- иконка файла -->
+              <rect x="62" y="200" width="36" height="44" rx="5" fill="white" stroke="#5F5FFF" stroke-width="1.5"/>
+              <polyline points="82,200 82,212 94,212" stroke="#5F5FFF" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+              <line x1="62" y1="212" x2="94" y2="212" stroke="#d0d0e8" stroke-width="0.8"/>
+              <text x="68" y="228" font-family="Courier Prime, monospace" font-size="5.5" fill="#5F5FFF" font-weight="700">.zip</text>
+              <text x="65" y="238" font-family="Jost, sans-serif" font-size="5" fill="#888">export</text>
+            </g>
+            <style>
+              .aw-zip-file {
+                animation: zipFall 3.6s ease-in-out infinite;
+              }
+              @keyframes zipFall {
+                0%   { transform: translateY(-60px); opacity: 0; }
+                15%  { opacity: 1; }
+                60%  { transform: translateY(0px); opacity: 1; }
+                85%  { transform: translateY(0px); opacity: 0; }
+                100% { transform: translateY(-60px); opacity: 0; }
+              }
+            </style>
+          </svg>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- РАЗДЕЛ 5 — УРОВЕНЬ 2: ПРИЛОЖЕНИЯ -->
+    <section class="aw-section" data-section="4">
+
+      <div class="aw-level-header">
+        <span class="aw-level-badge">Уровень 2</span>
+        <span class="aw-level-label">Без кода</span>
+      </div>
+      <div class="aw-section-number">Раздел 5</div>
+      <h2 class="aw-section-title">Приложения-экспортёры</h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-top:-8px;margin-bottom:24px;">Практичный путь для большинства задач. Работают одинаково для данных из любого источника, синхронизированного с Apple Health.</p>
+
+      <div class="aw-apps-grid">
+
+        <!-- Health Auto Export -->
+        <div class="aw-app-card featured">
+          <div class="aw-app-card-header">
+            <span class="aw-app-name">Health Auto Export</span>
+            <span class="aw-app-star">★ рекомендуем</span>
+          </div>
+          <p class="aw-app-desc">Поддерживает 150+ метрик. Сохраняет каждый отдельный замер (Individual Samples) — критично для временных рядов. Автоматическая отправка в Dropbox, Google Drive, REST API. Есть версия для macOS.</p>
+          <div class="aw-app-tags">
+            <span class="aw-app-tag">CSV</span>
+            <span class="aw-app-tag">JSON</span>
+            <span class="aw-app-tag">GPX</span>
+            <span class="aw-app-tag">150+ метрик</span>
+            <span class="aw-app-tag">Автоматизация</span>
+            <span class="aw-app-tag">REST API</span>
+            <span class="aw-app-tag">MQTT</span>
+          </div>
+        </div>
+
+        <!-- HealthExport -->
+        <div class="aw-app-card">
+          <div class="aw-app-card-header">
+            <span class="aw-app-name">HealthExport</span>
+          </div>
+          <p class="aw-app-desc">Выбор конкретных метрик и интервала агрегации. Данные с детализацией до минуты. Удобно для выборочного экспорта без лишнего шума.</p>
+          <div class="aw-app-tags">
+            <span class="aw-app-tag">CSV</span>
+            <span class="aw-app-tag">Агрегация</span>
+            <span class="aw-app-tag">Фильтры</span>
+          </div>
+        </div>
+
+        <!-- QS Access -->
+        <div class="aw-app-card">
+          <div class="aw-app-card-header">
+            <span class="aw-app-name">QS Access</span>
+          </div>
+          <p class="aw-app-desc">Бесплатный минималистичный инструмент. Выбираете показатели → нажимаете «Create Table» → получаете CSV. Нулевой порог входа.</p>
+          <div class="aw-app-tags">
+            <span class="aw-app-tag">CSV</span>
+            <span class="aw-app-tag">Бесплатно</span>
+            <span class="aw-app-tag">Просто</span>
+          </div>
+        </div>
+
+        <!-- Health App Data Export Tool -->
+        <div class="aw-app-card">
+          <div class="aw-app-card-header">
+            <span class="aw-app-name">Health Data Export Tool</span>
+          </div>
+          <p class="aw-app-desc">Поддерживает Walking Asymmetry, Six-Minute Walk Test и другие новые метрики. Умеет создавать PDF-отчёты для врача.</p>
+          <div class="aw-app-tags">
+            <span class="aw-app-tag">CSV</span>
+            <span class="aw-app-tag">PDF</span>
+            <span class="aw-app-tag">Новые метрики</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p><strong>Структура итоговой таблицы</strong> — одинакова для всех приложений выше:</p>
+
+      <table class="aw-data-table">
+        <thead>
+          <tr>
+            <th>Колонка</th>
+            <th>Что содержит</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>StartDate</td>
+            <td>Точная временная метка начала замера</td>
+          </tr>
+          <tr>
+            <td>EndDate</td>
+            <td>Время окончания замера</td>
+          </tr>
+          <tr>
+            <td>Value</td>
+            <td>Числовое значение показателя</td>
+          </tr>
+          <tr>
+            <td>Unit</td>
+            <td>Единица измерения — <code>count/min</code>, <code>ms</code>, <code>%</code>, <code>kcal</code></td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>Источник данных: Apple Watch, COROS PACE 3, Garmin Connect…</td>
+          </tr>
+          <tr>
+            <td>Device</td>
+            <td>Идентификатор конкретного устройства</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="aw-table-note">Колонка <code>Source</code> позволяет мгновенно отфильтровать данные по устройству, если в базе несколько источников.</p>
+
+    </section>
+
+    <!-- РАЗДЕЛ 6 — УРОВЕНЬ 3: PYTHON -->
+    <section class="aw-section aw-section-dotgrid" data-section="5">
+
+      <div class="aw-level-header">
+        <span class="aw-level-badge">Уровень 3</span>
+        <span class="aw-level-label">Python</span>
+      </div>
+      <div class="aw-section-number">Раздел 6</div>
+      <h2 class="aw-section-title">Python и программная обработка</h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-top:-8px;margin-bottom:24px;">Полный контроль над каждым шагом. Для тех, кто хочет парсить, чистить, строить корреляции, применять статистические модели.</p>
+
+      <!-- Шаг 1 -->
+      <ul class="aw-steps">
+        <li class="aw-step">
+          <div class="aw-step-num">1</div>
+          <div class="aw-step-text">Получите <code>export.xml</code> через нативный экспорт (Уровень 1). Распакуйте архив.</div>
+        </li>
+      </ul>
+
+      <!-- Шаг 2 -->
+      <ul class="aw-steps" style="margin-top:0">
+        <li class="aw-step">
+          <div class="aw-step-num">2</div>
+          <div class="aw-step-text">Установите библиотеки:</div>
+        </li>
+      </ul>
+      <div class="aw-code-block" style="margin-top:8px">
+        <button class="aw-copy-btn" onclick="navigator.clipboard.writeText('pip install pandas lxml matplotlib seaborn');this.textContent='Скопировано';setTimeout(()=>this.textContent='Скопировать',2000)">Скопировать</button>
+        <pre><span class="c-plain">pip install pandas lxml matplotlib seaborn</span></pre>
+      </div>
+
+      <!-- Шаг 3 -->
+      <ul class="aw-steps" style="margin-top:16px">
+        <li class="aw-step">
+          <div class="aw-step-num">3</div>
+          <div class="aw-step-text">Парсинг XML в DataFrame:</div>
+        </li>
+      </ul>
+      <div class="aw-code-block" style="margin-top:8px">
+        <button class="aw-copy-btn" onclick="this.textContent='Скопировано';setTimeout(()=>this.textContent='Скопировать',2000)">Скопировать</button>
+        <pre><span class="c-kw">import</span> <span class="c-plain">xml.etree.ElementTree</span> <span class="c-kw">as</span> <span class="c-plain">ET</span>
+<span class="c-kw">import</span> <span class="c-plain">pandas</span> <span class="c-kw">as</span> <span class="c-plain">pd</span>
+
+<span class="c-plain">tree</span> = <span class="c-fn">ET.parse</span>(<span class="c-str">'export.xml'</span>)
+<span class="c-plain">root</span> = <span class="c-plain">tree.</span><span class="c-fn">getroot</span>()
+
+<span class="c-plain">records</span> = []
+<span class="c-kw">for</span> <span class="c-plain">record</span> <span class="c-kw">in</span> <span class="c-plain">root.</span><span class="c-fn">findall</span>(<span class="c-str">'.//Record'</span>):
+    <span class="c-plain">records.</span><span class="c-fn">append</span>({
+        <span class="c-str">'type'</span>:       <span class="c-plain">record.</span><span class="c-fn">get</span>(<span class="c-str">'type'</span>),
+        <span class="c-str">'value'</span>:      <span class="c-plain">record.</span><span class="c-fn">get</span>(<span class="c-str">'value'</span>),
+        <span class="c-str">'unit'</span>:       <span class="c-plain">record.</span><span class="c-fn">get</span>(<span class="c-str">'unit'</span>),
+        <span class="c-str">'startDate'</span>:  <span class="c-plain">record.</span><span class="c-fn">get</span>(<span class="c-str">'startDate'</span>),
+        <span class="c-str">'endDate'</span>:    <span class="c-plain">record.</span><span class="c-fn">get</span>(<span class="c-str">'endDate'</span>),
+        <span class="c-str">'sourceName'</span>: <span class="c-plain">record.</span><span class="c-fn">get</span>(<span class="c-str">'sourceName'</span>),
+        <span class="c-str">'device'</span>:     <span class="c-plain">record.</span><span class="c-fn">get</span>(<span class="c-str">'device'</span>),
+    })
+
+<span class="c-plain">df</span> = <span class="c-fn">pd.DataFrame</span>(<span class="c-plain">records</span>)</pre>
+      </div>
+
+      <!-- Шаг 4 -->
+      <ul class="aw-steps" style="margin-top:16px">
+        <li class="aw-step">
+          <div class="aw-step-num">4</div>
+          <div class="aw-step-text">Извлечение конкретной метрики и фильтр по устройству:</div>
+        </li>
+      </ul>
+      <div class="aw-code-block" style="margin-top:8px">
+        <button class="aw-copy-btn" onclick="this.textContent='Скопировано';setTimeout(()=>this.textContent='Скопировать',2000)">Скопировать</button>
+        <pre><span class="c-plain">hr_df</span> = <span class="c-plain">df</span>[<span class="c-plain">df</span>[<span class="c-str">'type'</span>] == <span class="c-str">'HKQuantityTypeIdentifierHeartRate'</span>].<span class="c-fn">copy</span>()
+<span class="c-plain">hr_df</span>[<span class="c-str">'value'</span>]     = <span class="c-fn">pd.to_numeric</span>(<span class="c-plain">hr_df</span>[<span class="c-str">'value'</span>])
+<span class="c-plain">hr_df</span>[<span class="c-str">'startDate'</span>] = <span class="c-fn">pd.to_datetime</span>(<span class="c-plain">hr_df</span>[<span class="c-str">'startDate'</span>])
+<span class="c-plain">hr_df</span> = <span class="c-plain">hr_df.</span><span class="c-fn">sort_values</span>(<span class="c-str">'startDate'</span>)
+
+<span class="c-cmt"># Фильтр по конкретному устройству:</span>
+<span class="c-plain">hr_df</span> = <span class="c-plain">hr_df</span>[<span class="c-plain">hr_df</span>[<span class="c-str">'sourceName'</span>] == <span class="c-str">'Apple Watch'</span>]
+<span class="c-cmt"># или:</span>
+<span class="c-plain">hr_df</span> = <span class="c-plain">hr_df</span>[<span class="c-plain">hr_df</span>[<span class="c-str">'sourceName'</span>] == <span class="c-str">'COROS PACE 3'</span>]</pre>
+      </div>
+
+      <!-- Шаг 5 -->
+      <ul class="aw-steps" style="margin-top:16px">
+        <li class="aw-step">
+          <div class="aw-step-num">5</div>
+          <div class="aw-step-text">Визуализация временного ряда:</div>
+        </li>
+      </ul>
+      <div class="aw-code-block" style="margin-top:8px">
+        <button class="aw-copy-btn" onclick="this.textContent='Скопировано';setTimeout(()=>this.textContent='Скопировать',2000)">Скопировать</button>
+        <pre><span class="c-kw">import</span> <span class="c-plain">matplotlib.pyplot</span> <span class="c-kw">as</span> <span class="c-plain">plt</span>
+
+<span class="c-plain">plt.</span><span class="c-fn">figure</span>(<span class="c-plain">figsize</span>=(<span class="c-num">14</span>, <span class="c-num">4</span>))
+<span class="c-plain">plt.</span><span class="c-fn">plot</span>(<span class="c-plain">hr_df</span>[<span class="c-str">'startDate'</span>], <span class="c-plain">hr_df</span>[<span class="c-str">'value'</span>], <span class="c-plain">alpha</span>=<span class="c-num">0.4</span>, <span class="c-plain">linewidth</span>=<span class="c-num">0.5</span>)
+<span class="c-plain">plt.</span><span class="c-fn">title</span>(<span class="c-str">'Heart Rate Time Series — Apple Watch'</span>)
+<span class="c-plain">plt.</span><span class="c-fn">xlabel</span>(<span class="c-str">'Date'</span>)
+<span class="c-plain">plt.</span><span class="c-fn">ylabel</span>(<span class="c-str">'BPM'</span>)
+<span class="c-plain">plt.</span><span class="c-fn">tight_layout</span>()
+<span class="c-plain">plt.</span><span class="c-fn">show</span>()</pre>
+      </div>
+
+      <!-- Идентификаторы HealthKit -->
+      <div class="aw-code-label">Основные идентификаторы типов данных в HealthKit</div>
+      <div class="aw-code-block">
+        <button class="aw-copy-btn" onclick="this.textContent='Скопировано';setTimeout(()=>this.textContent='Скопировать',2000)">Скопировать</button>
+        <pre><span class="c-plain">HKQuantityTypeIdentifierHeartRate</span>               <span class="c-cmt"># пульс (count/min)</span>
+<span class="c-plain">HKQuantityTypeIdentifierHeartRateVariabilitySDNN</span> <span class="c-cmt"># HRV (ms)</span>
+<span class="c-plain">HKQuantityTypeIdentifierStepCount</span>               <span class="c-cmt"># шаги</span>
+<span class="c-plain">HKQuantityTypeIdentifierVO2Max</span>                  <span class="c-cmt"># VO2 max (мл/кг/мин)</span>
+<span class="c-plain">HKQuantityTypeIdentifierOxygenSaturation</span>        <span class="c-cmt"># SpO2 (%)</span>
+<span class="c-plain">HKQuantityTypeIdentifierRespiratoryRate</span>         <span class="c-cmt"># частота дыхания</span>
+<span class="c-plain">HKCategoryTypeIdentifierSleepAnalysis</span>           <span class="c-cmt"># сон (категориальный)</span>
+<span class="c-plain">HKQuantityTypeIdentifierRestingHeartRate</span>        <span class="c-cmt"># пульс в покое</span></pre>
+      </div>
+
+      <!-- Анализ HRV + корреляции -->
+      <div class="aw-code-label">Анализ HRV</div>
+      <div class="aw-code-block">
+        <button class="aw-copy-btn" onclick="this.textContent='Скопировано';setTimeout(()=>this.textContent='Скопировать',2000)">Скопировать</button>
+        <pre><span class="c-kw">import</span> <span class="c-plain">heartpy</span> <span class="c-kw">as</span> <span class="c-plain">hp</span>
+
+<span class="c-plain">working_data, measures</span> = <span class="c-fn">hp.process</span>(<span class="c-plain">data</span>, <span class="c-plain">sample_rate</span>=<span class="c-num">1.0</span>)
+<span class="c-fn">print</span>(<span class="c-str">'SDNN:'</span>,  <span class="c-plain">measures</span>[<span class="c-str">'sdnn'</span>])
+<span class="c-fn">print</span>(<span class="c-str">'RMSSD:'</span>, <span class="c-plain">measures</span>[<span class="c-str">'rmssd'</span>])</pre>
+      </div>
+
+      <div class="aw-code-label">Корреляционный анализ</div>
+      <div class="aw-code-block">
+        <button class="aw-copy-btn" onclick="this.textContent='Скопировано';setTimeout(()=>this.textContent='Скопировать',2000)">Скопировать</button>
+        <pre><span class="c-plain">combined</span> = <span class="c-fn">pd.merge</span>(<span class="c-plain">hr_daily</span>,  <span class="c-plain">hrv_daily</span>,   <span class="c-plain">on</span>=<span class="c-str">'date'</span>)
+<span class="c-plain">combined</span> = <span class="c-fn">pd.merge</span>(<span class="c-plain">combined</span>, <span class="c-plain">sleep_daily</span>, <span class="c-plain">on</span>=<span class="c-str">'date'</span>)
+<span class="c-fn">print</span>(<span class="c-plain">combined.</span><span class="c-fn">corr</span>())</pre>
+      </div>
+
+      <!-- Готовые библиотеки -->
+      <p style="font-weight:700;margin-top:32px;margin-bottom:0;">Готовые библиотеки</p>
+      <div class="aw-libs-list">
+        <div class="aw-lib-row">
+          <div class="aw-lib-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="3" y="5" width="14" height="10" rx="2" stroke="#5F5FFF" stroke-width="1.4"/>
+              <line x1="7" y1="9" x2="13" y2="9" stroke="#5F5FFF" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="7" y1="12" x2="11" y2="12" stroke="#5F5FFF" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="aw-lib-name">apple-health-parser</div>
+            <div class="aw-lib-desc">PyPI — извлечение из ZIP-архива, валидация структуры, генерация графиков. Минимум кода для старта.</div>
+          </div>
+        </div>
+        <div class="aw-lib-row">
+          <div class="aw-lib-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="3" y="5" width="14" height="10" rx="2" stroke="#5F5FFF" stroke-width="1.4"/>
+              <line x1="7" y1="9" x2="13" y2="9" stroke="#5F5FFF" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="7" y1="12" x2="11" y2="12" stroke="#5F5FFF" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="aw-lib-name">apple-health-extractor</div>
+            <div class="aw-lib-desc">Изолированное извлечение конкретных типов данных. Удобно, если нужна одна метрика без полного парсинга всего файла.</div>
+          </div>
+        </div>
+        <div class="aw-lib-row">
+          <div class="aw-lib-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="3" y="5" width="14" height="10" rx="2" stroke="#5F5FFF" stroke-width="1.4"/>
+              <line x1="7" y1="9" x2="13" y2="9" stroke="#5F5FFF" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="7" y1="12" x2="11" y2="12" stroke="#5F5FFF" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="aw-lib-name">qs-ledger</div>
+            <div class="aw-lib-desc">Набор Jupyter Notebooks для комплексного анализа данных о здоровье. Включает готовые пайплайны для Apple Health, Garmin, Oura.</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- РАЗДЕЛ 7 — УРОВЕНЬ 4: СЫРЫЕ СЕНСОРЫ -->
+    <section class="aw-section" data-section="6">
+
+      <div class="aw-level-header">
+        <span class="aw-level-badge">Уровень 4</span>
+        <span class="aw-level-label">Специальное ПО</span>
+      </div>
+      <div class="aw-section-number">Раздел 7</div>
+
+      <!-- Осциллограф-анимация -->
+      <div class="aw-osc-wrap">
+        <svg width="100%" height="64" viewBox="0 0 800 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <g class="aw-osc-scroll">
+            <!-- Низкочастотная волна -->
+            <path d="M-800,32 C-740,10 -700,54 -640,32 C-580,10 -540,54 -480,32 C-420,10 -380,54 -320,32 C-260,10 -220,54 -160,32 C-100,10 -60,54 0,32 C60,10 100,54 160,32 C220,10 260,54 320,32 C380,10 420,54 480,32 C540,10 580,54 640,32 C700,10 740,54 800,32 C860,10 900,54 960,32 C1020,10 1060,54 1120,32 C1180,10 1220,54 1280,32 C1340,10 1380,54 1440,32 C1500,10 1540,54 1600,32" stroke="#5F5FFF" stroke-width="1.6" fill="none" opacity="0.9"/>
+            <!-- Среднечастотная волна -->
+            <path d="M-800,32 C-770,18 -750,46 -720,32 C-690,18 -670,46 -640,32 C-610,18 -590,46 -560,32 C-530,18 -510,46 -480,32 C-450,18 -430,46 -400,32 C-370,18 -350,46 -320,32 C-290,18 -270,46 -240,32 C-210,18 -190,46 -160,32 C-130,18 -110,46 -80,32 C-50,18 -30,46 0,32 C30,18 50,46 80,32 C110,18 130,46 160,32 C190,18 210,46 240,32 C270,18 290,46 320,32 C350,18 370,46 400,32 C430,18 450,46 480,32 C510,18 530,46 560,32 C590,18 610,46 640,32 C670,18 690,46 720,32 C750,18 770,46 800,32 C830,18 850,46 880,32 C910,18 930,46 960,32 C990,18 1010,46 1040,32 C1070,18 1090,46 1120,32 C1150,18 1170,46 1200,32 C1230,18 1250,46 1280,32 C1310,18 1330,46 1360,32 C1390,18 1410,46 1440,32 C1470,18 1490,46 1520,32 C1550,18 1570,46 1600,32" stroke="#9999ff" stroke-width="1.2" fill="none" opacity="0.7"/>
+            <!-- Высокочастотная волна -->
+            <path d="M-800,32 C-792,24 -788,40 -780,32 C-772,24 -768,40 -760,32 C-752,24 -748,40 -740,32 C-732,24 -728,40 -720,32 C-712,24 -708,40 -700,32 C-692,24 -688,40 -680,32 C-672,24 -668,40 -660,32 C-652,24 -648,40 -640,32 C-632,24 -628,40 -620,32 C-612,24 -608,40 -600,32 C-592,24 -588,40 -580,32 C-572,24 -568,40 -560,32 C-552,24 -548,40 -540,32 C-532,24 -528,40 -520,32 C-512,24 -508,40 -500,32 C-492,24 -488,40 -480,32 C-472,24 -468,40 -460,32 C-452,24 -448,40 -440,32 C-432,24 -428,40 -420,32 C-412,24 -408,40 -400,32 C-392,24 -388,40 -380,32 C-372,24 -368,40 -360,32 C-352,24 -348,40 -340,32 C-332,24 -328,40 -320,32 C-312,24 -308,40 -300,32 C-292,24 -288,40 -280,32 C-272,24 -268,40 -260,32 C-252,24 -248,40 -240,32 C-232,24 -228,40 -220,32 C-212,24 -208,40 -200,32 C-192,24 -188,40 -180,32 C-172,24 -168,40 -160,32 C-152,24 -148,40 -140,32 C-132,24 -128,40 -120,32 C-112,24 -108,40 -100,32 C-92,24 -88,40 -80,32 C-72,24 -68,40 -60,32 C-52,24 -48,40 -40,32 C-32,24 -28,40 -20,32 C-12,24 -8,40 0,32 C8,24 12,40 20,32 C28,24 32,40 40,32 C48,24 52,40 60,32 C68,24 72,40 80,32 C88,24 92,40 100,32 C108,24 112,40 120,32 C128,24 132,40 140,32 C148,24 152,40 160,32 C168,24 172,40 180,32 C188,24 192,40 200,32 C208,24 212,40 220,32 C228,24 232,40 240,32 C248,24 252,40 260,32 C268,24 272,40 280,32 C288,24 292,40 300,32 C308,24 312,40 320,32 C328,24 332,40 340,32 C348,24 352,40 360,32 C368,24 372,40 380,32 C388,24 392,40 400,32 C408,24 412,40 420,32 C428,24 432,40 440,32 C448,24 452,40 460,32 C468,24 472,40 480,32 C488,24 492,40 500,32 C508,24 512,40 520,32 C528,24 532,40 540,32 C548,24 552,40 560,32 C568,24 572,40 580,32 C588,24 592,40 600,32 C608,24 612,40 620,32 C628,24 632,40 640,32 C648,24 652,40 660,32 C668,24 672,40 680,32 C688,24 692,40 700,32 C708,24 712,40 720,32 C728,24 732,40 740,32 C748,24 752,40 760,32 C768,24 772,40 780,32 C788,24 792,40 800,32 C808,24 812,40 820,32 C828,24 832,40 840,32 C848,24 852,40 860,32 C868,24 872,40 880,32 C888,24 892,40 900,32 C908,24 912,40 920,32 C928,24 932,40 940,32 C948,24 952,40 960,32 C968,24 972,40 980,32 C988,24 992,40 1000,32 C1008,24 1012,40 1020,32 C1028,24 1032,40 1040,32 C1048,24 1052,40 1060,32 C1068,24 1072,40 1080,32 C1088,24 1092,40 1100,32 C1108,24 1112,40 1120,32 C1128,24 1132,40 1140,32 C1148,24 1152,40 1160,32 C1168,24 1172,40 1180,32 C1188,24 1192,40 1200,32 C1208,24 1212,40 1220,32 C1228,24 1232,40 1240,32 C1248,24 1252,40 1260,32 C1268,24 1272,40 1280,32 C1288,24 1292,40 1300,32 C1308,24 1312,40 1320,32 C1328,24 1332,40 1340,32 C1348,24 1352,40 1360,32 C1368,24 1372,40 1380,32 C1388,24 1392,40 1400,32 C1408,24 1412,40 1420,32 C1428,24 1432,40 1440,32 C1448,24 1452,40 1460,32 C1468,24 1472,40 1480,32 C1488,24 1492,40 1500,32 C1508,24 1512,40 1520,32 C1528,24 1532,40 1540,32 C1548,24 1552,40 1560,32 C1568,24 1572,40 1580,32 C1588,24 1592,40 1600,32" stroke="#ccccff" stroke-width="0.8" fill="none" opacity="0.6"/>
+          </g>
+          <style>
+            .aw-osc-scroll { animation: oscScroll 4s linear infinite; }
+            @keyframes oscScroll { from { transform: translateX(0); } to { transform: translateX(800px); } }
+          </style>
+        </svg>
+      </div>
+
+      <h2 class="aw-section-title">Сырые данные датчиков в реальном времени</h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-top:-8px;margin-bottom:24px;">Если задача — акселерометр, гироскоп, магнитометр с частотой 50–100 Гц. HealthKit здесь не поможет.</p>
+
+      <p>Apple Watch не сохраняет высокочастотные данные датчиков в долгосрочную базу — по соображениям энергопотребления и памяти. Для таких задач существуют специальные приложения.</p>
+
+      <div class="aw-tool-cards">
+        <div class="aw-tool-card">
+          <div class="aw-tool-name">Sensor Logger</div>
+          <ul class="aw-tool-features">
+            <li>Запускается одновременно на iPhone и Apple Watch</li>
+            <li>Акселерометр, гироскоп, барометр, магнитометр, GPS, пульс из HealthKit</li>
+            <li>Стриминг через HTTP и MQTT в реальном времени по локальной сети</li>
+            <li>Экспорт: ZIP CSV, JSON, Excel, KML</li>
+            <li>Подходит для биомеханики и кинематики</li>
+          </ul>
+        </div>
+        <div class="aw-tool-card">
+          <div class="aw-tool-name">SensorLog</div>
+          <ul class="aw-tool-features">
+            <li>Альтернативный инструмент</li>
+            <li>Транслирует данные акселерометра с Apple Watch на компьютер по HTTP/TCP</li>
+            <li>Колонки AccelerometerX/Y/Z с временными метками</li>
+            <li>Подходит для анализа двигательных паттернов</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="aw-callout-red">
+        <div class="aw-callout-red-title">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 2L16.5 15H1.5L9 2Z" stroke="#e53e3e" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+            <line x1="9" y1="7" x2="9" y2="11" stroke="#e53e3e" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="9" cy="13.5" r="0.8" fill="#e53e3e"/>
+          </svg>
+          Важное ограничение
+        </div>
+        <p>Фоновая запись высокочастотных данных на Apple Watch ограничена системой iOS/watchOS. Длительные сессии (более 1–2 часов) требуют, чтобы экран оставался активным или приложение работало в специальном режиме Workout. Учитывайте это при планировании протокола.</p>
+      </div>
+
+    </section>
+
+    <!-- РАЗДЕЛ 8 — ФОРМАТЫ ДАННЫХ -->
+    <section class="aw-section" data-section="7">
+
+      <div class="aw-section-number">Раздел 8</div>
+      <h2 class="aw-section-title">Форматы данных и что с ними делать</h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-top:-8px;margin-bottom:8px;">Один и тот же файл здоровья может прийти в разных форматах — каждый требует своего подхода.</p>
+
+      <div class="aw-formats-grid">
+
+        <!-- XML -->
+        <div class="aw-format-card xml">
+          <div class="aw-format-abbr">
+            XML
+            <svg class="aw-format-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4 5L7 10L4 15" stroke="#5F5FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 5L13 10L16 15" stroke="#5F5FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="9" y1="3" x2="11" y2="17" stroke="#5F5FFF" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="aw-format-desc">Самый полный, наименее удобный. Содержит всё. Excel не откроет из-за размера.</div>
+          <div class="aw-format-tools">applehealthdata.com · applehealth2csv · Python</div>
+        </div>
+
+        <!-- CSV -->
+        <div class="aw-format-card csv">
+          <div class="aw-format-abbr">
+            CSV
+            <svg class="aw-format-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="3" y="4" width="14" height="12" rx="2" stroke="#5F5FFF" stroke-width="1.4"/>
+              <line x1="3" y1="8" x2="17" y2="8" stroke="#5F5FFF" stroke-width="1"/>
+              <line x1="8" y1="8" x2="8" y2="16" stroke="#5F5FFF" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="aw-format-desc">Универсальный рабочий формат. Excel, Google Sheets, pandas, R. Внимание: метки времени — строки, нужно преобразование.</div>
+          <div class="aw-format-tools">Excel · pandas · R · Google Sheets</div>
+        </div>
+
+        <!-- JSON -->
+        <div class="aw-format-card json">
+          <div class="aw-format-abbr">
+            JSON
+            <svg class="aw-format-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7 4C5 4 4 5 4 7V9C4 10.5 3 11 3 11C3 11 4 11.5 4 13V15C4 17 5 18 7 18" stroke="#5F5FFF" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M13 4C15 4 16 5 16 7V9C16 10.5 17 11 17 11C17 11 16 11.5 16 13V15C16 17 15 18 13 18" stroke="#5F5FFF" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="aw-format-desc">Для программной обработки. Каждая запись — объект с явными полями. Хорошо для пайплайнов и API.</div>
+          <div class="aw-format-tools">Python · Node.js · REST API</div>
+        </div>
+
+        <!-- GPX -->
+        <div class="aw-format-card gpx">
+          <div class="aw-format-abbr">
+            GPX
+            <svg class="aw-format-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="9" r="3" stroke="#5F5FFF" stroke-width="1.4"/>
+              <path d="M10 2C6.7 2 4 4.7 4 8C4 12.4 10 18 10 18C10 18 16 12.4 16 8C16 4.7 13.3 2 10 2Z" stroke="#5F5FFF" stroke-width="1.4" fill="none"/>
+            </svg>
+          </div>
+          <div class="aw-format-desc">GPS-треки тренировок. Маршрут с координатами и временными метками.</div>
+          <div class="aw-format-tools">Google Maps · Komoot · Runalyze · GoldenCheetah</div>
+        </div>
+
+        <!-- FIT -->
+        <div class="aw-format-card fit">
+          <div class="aw-format-abbr">
+            FIT
+            <svg class="aw-format-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M3 13 L6 8 L9 11 L12 5 L15 9 L17 7" stroke="#5F5FFF" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="aw-format-desc">Бинарный формат Garmin/Coros. ЧСС посекундно, GPS, темп, мощность. Детализация выше, чем в Apple Health.</div>
+          <div class="aw-format-tools">GoldenCheetah · Runalyze · fitfileviewer.com</div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- РАЗДЕЛ 9 — ИИ-АНАЛИЗ -->
+    <section class="aw-section" data-section="8">
+
+      <div class="aw-section-number">Раздел 9</div>
+      <h2 class="aw-section-title">Обработка данных с помощью ИИ-моделей</h2>
+      <p>CSV-файлы из Apple Health хорошо поддаются анализу с помощью языковых моделей. Это работает, и работает хорошо.</p>
+
+      <!-- Pipeline -->
+      <div class="aw-pipeline" id="aw-pipeline">
+        <div class="aw-pipeline-step">
+          <div class="aw-pipeline-box">Экспорт CSV</div>
+        </div>
+        <div class="aw-pipeline-arrow">→</div>
+        <div class="aw-pipeline-step">
+          <div class="aw-pipeline-box">Загрузка в ИИ</div>
+        </div>
+        <div class="aw-pipeline-arrow">→</div>
+        <div class="aw-pipeline-step">
+          <div class="aw-pipeline-box">Вопрос</div>
+        </div>
+        <div class="aw-pipeline-arrow">→</div>
+        <div class="aw-pipeline-step">
+          <div class="aw-pipeline-box">Анализ</div>
+        </div>
+        <div class="aw-pipeline-arrow">→</div>
+        <div class="aw-pipeline-step">
+          <div class="aw-pipeline-box" style="background:#5F5FFF;color:#fff;">Инсайт</div>
+        </div>
+      </div>
+
+      <!-- Два списка -->
+      <div class="aw-ai-two-col">
+        <div>
+          <div class="aw-ai-list-title">Что умеют делать ИИ-модели</div>
+          <ul class="aw-steps">
+            <li class="aw-step">
+              <div class="aw-step-num">1</div>
+              <div class="aw-step-text"><strong>Анализировать корреляции</strong> — связь между HRV и качеством сна, между активностью и пульсом покоя.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">2</div>
+              <div class="aw-step-text"><strong>Находить паттерны и аномалии</strong> — скачки пульса, изменения сна после нагрузок, недельные ритмы.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">3</div>
+              <div class="aw-step-text"><strong>Генерировать статистику</strong> — средние, медианы, стандартные отклонения, тренды за период.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">4</div>
+              <div class="aw-step-text"><strong>Помогать с интерпретацией</strong> — объяснять показатели в контексте физиологии.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">5</div>
+              <div class="aw-step-text"><strong>Писать и отлаживать код</strong> — создавать Python-скрипты, если вы не программист.</div>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div class="aw-ai-list-title">Как подготовить данные</div>
+          <ul class="aw-steps">
+            <li class="aw-step">
+              <div class="aw-step-num">1</div>
+              <div class="aw-step-text">Не загружайте XML напрямую — <strong>конвертируйте в CSV</strong> сначала.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">2</div>
+              <div class="aw-step-text"><strong>Ограничьте период</strong> — для анализа в чате достаточно 30–90 дней.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">3</div>
+              <div class="aw-step-text"><strong>Выбирайте конкретные метрики</strong> — не весь архив, только нужные типы данных.</div>
+            </li>
+            <li class="aw-step">
+              <div class="aw-step-num">4</div>
+              <div class="aw-step-text"><strong>Проверьте конфиденциальность</strong> — удалите личные идентификаторы перед загрузкой данных третьих лиц.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p><strong>Инструменты:</strong> Health2AI и AI Health Export конвертируют экспорт в форматы, оптимизированные для загрузки в ChatGPT, Claude или другие языковые модели.</p>
+
+      <!-- Callout: конфиденциальность + Ollama -->
+      <div class="aw-callout-lock">
+        <div class="aw-callout-lock-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect x="4" y="10" width="14" height="10" rx="3" stroke="#5F5FFF" stroke-width="1.5"/>
+            <path d="M7 10V7C7 4.8 8.8 3 11 3C13.2 3 15 4.8 15 7V10" stroke="#5F5FFF" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="11" cy="15" r="1.5" fill="#5F5FFF"/>
+          </svg>
+        </div>
+        <div class="aw-callout-lock-body">
+          <div class="aw-callout-lock-title">Локальная работа без передачи данных в облако</div>
+          <p>Репозиторий <strong>apple-health</strong> на GitHub поддерживает интеграцию с локальными моделями через <strong>Ollama</strong>. Важно для исследований, где данные участников не должны покидать защищённый контур.</p>
+        </div>
+      </div>
+
+      <!-- Пример рабочего процесса -->
+      <div class="aw-workflow">
+        <div class="aw-workflow-title">Пример рабочего процесса</div>
+        <ul class="aw-steps">
+          <li class="aw-step">
+            <div class="aw-step-num" style="width:24px;height:24px;font-size:0.75rem">1</div>
+            <div class="aw-step-text">Экспортируйте через <strong>Health Auto Export</strong> в CSV за последние 3 месяца: HeartRate, HRV, SleepAnalysis, StepCount.</div>
+          </li>
+          <li class="aw-step">
+            <div class="aw-step-num" style="width:24px;height:24px;font-size:0.75rem">2</div>
+            <div class="aw-step-text">Загрузите CSV в диалог с <strong>Claude</strong> или <strong>GPT-4</strong>.</div>
+          </li>
+          <li class="aw-step">
+            <div class="aw-step-num" style="width:24px;height:24px;font-size:0.75rem">3</div>
+            <div class="aw-step-text">Задайте конкретный вопрос: «Покажи корреляцию между ночным HRV и шагами за предыдущий день» или «Найди дни, когда пульс в покое был значительно выше среднего».</div>
+          </li>
+          <li class="aw-step">
+            <div class="aw-step-num" style="width:24px;height:24px;font-size:0.75rem">4</div>
+            <div class="aw-step-text">Получите анализ и интерпретацию.</div>
+          </li>
+        </ul>
+      </div>
+
+      <p class="aw-note-muted">⚠️ ИИ-анализ — это разведочный анализ (exploratory analysis), не финальные выводы исследования. Результаты требуют статистического подтверждения.</p>
+
+    </section>
+
+    <!-- РАЗДЕЛ 10 — ОЧИСТКА ДАННЫХ -->
+    <section class="aw-section" data-section="9">
+      <div class="aw-section-number">Раздел 10</div>
+      <h2 class="aw-section-title">Очистка и подготовка данных</h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-top:-8px;margin-bottom:8px;">Типичные проблемы и конкретные решения для каждой из них.</p>
+
+      <div class="aw-diag-table">
+        <div class="aw-diag-row">
+          <div class="aw-diag-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="10" height="12" rx="2" stroke="#5F5FFF" stroke-width="1.3"/><rect x="9" y="7" width="10" height="12" rx="2" stroke="#5F5FFF" stroke-width="1.3" fill="white"/></svg></div>
+          <div class="aw-diag-problem">Дублирование данных<span>Два трекера → две записи с разными источниками, но близкими метками времени</span></div>
+          <div class="aw-diag-solution">Определите приоритетный источник и фильтруйте:<br><code>df = df[df['sourceName'] == 'Apple Watch']</code></div>
+        </div>
+        <div class="aw-diag-row">
+          <div class="aw-diag-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#5F5FFF" stroke-width="1.3"/><line x1="11" y1="6" x2="11" y2="11" stroke="#5F5FFF" stroke-width="1.3" stroke-linecap="round"/><line x1="11" y1="11" x2="15" y2="11" stroke="#5F5FFF" stroke-width="1.3" stroke-linecap="round"/><line x1="5" y1="17" x2="7" y2="19" stroke="#5F5FFF" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="2 2"/></svg></div>
+          <div class="aw-diag-problem">Временные разрывы в пульсе<span>ЧСС фиксируется раз в 5–10 минут вне тренировки — в дневном ряду будут пропуски</span></div>
+          <div class="aw-diag-solution">Это нормально. Если нужен непрерывный ряд — применяйте линейную интерполяцию явно, помечая заполненные значения отдельным флагом.</div>
+        </div>
+        <div class="aw-diag-row">
+          <div class="aw-diag-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#5F5FFF" stroke-width="1.3"/><ellipse cx="11" cy="11" rx="4" ry="8" stroke="#5F5FFF" stroke-width="1.3"/><line x1="3" y1="11" x2="19" y2="11" stroke="#5F5FFF" stroke-width="1.3"/></svg></div>
+          <div class="aw-diag-problem">Часовые пояса<span>Метки хранятся со смещением UTC; у путешественников возможны сдвиги</span></div>
+          <div class="aw-diag-solution"><code>pd.to_datetime(df['startDate'], utc=True).dt.tz_convert('Europe/Moscow')</code></div>
+        </div>
+        <div class="aw-diag-row">
+          <div class="aw-diag-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><polyline points="3,15 8,7 11,12 14,5 19,15" stroke="#5F5FFF" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="5" r="2" fill="#5F5FFF"/></svg></div>
+          <div class="aw-diag-problem">Выбросы и артефакты<span>Пульс выше 220 или ниже 30 — почти наверняка артефакт (плохой контакт)</span></div>
+          <div class="aw-diag-solution"><code>hr_df = hr_df[(hr_df['value'] >= 30) & (hr_df['value'] <= 220)]</code></div>
+        </div>
+        <div class="aw-diag-row">
+          <div class="aw-diag-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="8" width="16" height="10" rx="2" stroke="#5F5FFF" stroke-width="1.3"/><line x1="7" y1="12" x2="7" y2="14" stroke="#5F5FFF" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="10" x2="11" y2="14" stroke="#5F5FFF" stroke-width="1.5" stroke-linecap="round"/><line x1="15" y1="13" x2="15" y2="14" stroke="#5F5FFF" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="aw-diag-problem">Разреженность HRV<span>Apple Health записывает SDNN только ночью — 3–5 точек в сутки</span></div>
+          <div class="aw-diag-solution">Для трендового анализа достаточно. Для минутного мониторинга ВНС — нагрудный датчик Polar H10.</div>
+        </div>
+        <div class="aw-diag-row">
+          <div class="aw-diag-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="4" y="3" width="14" height="16" rx="2" stroke="#5F5FFF" stroke-width="1.3"/><line x1="7" y1="8" x2="15" y2="8" stroke="#5F5FFF" stroke-width="1.2"/><line x1="7" y1="12" x2="15" y2="12" stroke="#5F5FFF" stroke-width="1.2"/><line x1="7" y1="16" x2="11" y2="16" stroke="#5F5FFF" stroke-width="1.2"/></svg></div>
+          <div class="aw-diag-problem">Провенанс данных<span>За несколько лет пользователь мог сменить устройство — алгоритмы новых поколений дают систематически другие значения</span></div>
+          <div class="aw-diag-solution">Документируйте модель устройства и версию watchOS на момент исследования. Учитывайте возможный сдвиг на границе смены.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- РАЗДЕЛ 11 — ОГРАНИЧЕНИЯ -->
+    <section class="aw-section" data-section="10">
+      <div class="aw-limits-section">
+        <div class="aw-section-number">Раздел 11</div>
+        <h2 class="aw-section-title" style="margin-bottom:12px">Честно об ограничениях</h2>
+        <p>Что Apple не отдаёт и почему это важно знать до начала исследования.</p>
+
+        <ul style="list-style:none;padding:0;margin:20px 0;display:flex;flex-direction:column;gap:10px;">
+          <li style="font-family:var(--fb);font-size:0.88rem;color:var(--text);line-height:1.6;padding-left:16px;border-left:3px solid #e0e0e0;"><strong>Нет доступа к сырому PPG-сигналу.</strong> Apple Watch измеряет фотоплетизмограмму, но отдаёт только конечный результат — значение пульса в bpm.</li>
+          <li style="font-family:var(--fb);font-size:0.88rem;color:var(--text);line-height:1.6;padding-left:16px;border-left:3px solid #e0e0e0;"><strong>Нет непрерывных R-R интервалов в фоновом режиме.</strong> Частично решается через ЭКГ (30 сек вручную) или приложения HRV Logger и Heart Plot. Для полноценного HRV в частотной области — Polar H10.</li>
+          <li style="font-family:var(--fb);font-size:0.88rem;color:var(--text);line-height:1.6;padding-left:16px;border-left:3px solid #e0e0e0;"><strong>Нет серверного API.</strong> Данные нужно вытолкнуть с устройства участника вручную или через приложение-автоэкспортёр.</li>
+          <li style="font-family:var(--fb);font-size:0.88rem;color:var(--text);line-height:1.6;padding-left:16px;border-left:3px solid #e0e0e0;"><strong>«Чёрный ящик» алгоритмов.</strong> Apple не раскрывает детали расчёта HRV, фаз сна, VO2 max. Алгоритмы меняются с обновлениями watchOS — документируйте версию.</li>
+        </ul>
+
+        <p style="font-family:var(--fb);font-size:0.82rem;color:var(--muted);margin-bottom:20px;"><strong style="color:var(--text)">Точность показателей:</strong> Пульс в покое ±5 bpm у 89% измерений · ФП: специфичность 0.91 · Шаги при ходьбе: погрешность 2–3% · Калории: погрешность до 30–50% · Фазы сна: 60–70% vs полисомнография · SpO2: ±3–4%</p>
+
+        <div class="aw-limits-two-col">
+          <div>
+            <div class="aw-limits-col-title good">Подходит хорошо</div>
+            <ul class="aw-limits-list">
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/><polyline points="4.5,8 7,10.5 11.5,5.5" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Наблюдательные исследования</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/><polyline points="4.5,8 7,10.5 11.5,5.5" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Трендовый анализ</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/><polyline points="4.5,8 7,10.5 11.5,5.5" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Популяционные исследования</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/><polyline points="4.5,8 7,10.5 11.5,5.5" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Лонгитюдный мониторинг</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/><polyline points="4.5,8 7,10.5 11.5,5.5" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Пилотные проекты</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/><polyline points="4.5,8 7,10.5 11.5,5.5" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Скрининг сердечно-сосудистых рисков</li>
+            </ul>
+          </div>
+          <div class="aw-limits-divider"></div>
+          <div>
+            <div class="aw-limits-col-title needs">Нужны доп. инструменты</div>
+            <ul class="aw-limits-list">
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#c0c0c8" stroke-width="1.2" fill="none"/></svg>Клиническая диагностика</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#c0c0c8" stroke-width="1.2" fill="none"/></svg>Фармакологические испытания</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#c0c0c8" stroke-width="1.2" fill="none"/></svg>Высокоточный HRV в частотной области</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#c0c0c8" stroke-width="1.2" fill="none"/></svg>Нейрофизиология</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#c0c0c8" stroke-width="1.2" fill="none"/></svg>Спортивная наука на элитном уровне</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="aw-garmin-callout">
+          <p><strong>О Garmin — для тех, кому важна открытость.</strong> Garmin предоставляет более открытый доступ через Garmin Health API и Connect IQ. Для исследований, где критичен доступ к первичным данным, Garmin нередко удобнее. Apple выигрывает в удобстве для пользователя, но данные остаются в «закрытом саду» — это сознательная позиция платформы.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- РАЗДЕЛ 12 — СРАВНИТЕЛЬНАЯ ТАБЛИЦА -->
+    <section class="aw-section" data-section="11">
+      <div class="aw-section-number">Раздел 12</div>
+      <h2 class="aw-section-title">Сравнительная таблица инструментов</h2>
+
+      <div style="overflow-x:auto;">
+        <table class="aw-compare-table">
+          <thead>
+            <tr>
+              <th>Задача</th>
+              <th>Инструмент</th>
+              <th>Формат</th>
+              <th>Уровень</th>
+              <th>ИИ-анализ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Быстро получить CSV без кода</td>
+              <td>Health Auto Export / QS Access</td>
+              <td>CSV</td>
+              <td><span class="aw-level-pill s1">Начальный</span></td>
+              <td class="aw-ai-yes">✓ Да</td>
+            </tr>
+            <tr>
+              <td>Полный исторический архив</td>
+              <td>Нативный экспорт + онлайн-конвертер</td>
+              <td>XML → CSV</td>
+              <td><span class="aw-level-pill s1">Начальный</span></td>
+              <td class="aw-ai-conv">⏱ После конвертации</td>
+            </tr>
+            <tr>
+              <td>Автоматический ежедневный поток</td>
+              <td>Health Auto Export Premium</td>
+              <td>CSV / JSON</td>
+              <td><span class="aw-level-pill s2">Средний</span></td>
+              <td class="aw-ai-yes">✓ Да</td>
+            </tr>
+            <tr>
+              <td>Программная обработка, корреляции</td>
+              <td>Нативный экспорт + Python (pandas)</td>
+              <td>XML → DataFrame</td>
+              <td><span class="aw-level-pill s3">Продвинутый</span></td>
+              <td class="aw-ai-yes">✓ Полный контроль</td>
+            </tr>
+            <tr>
+              <td>HRV-анализ в частотной области</td>
+              <td>Python + heartpy + Polar H10</td>
+              <td>CSV → обработка</td>
+              <td><span class="aw-level-pill s4">Исследовательский</span></td>
+              <td class="aw-ai-part">~ Частично</td>
+            </tr>
+            <tr>
+              <td>Сырые данные акселерометра</td>
+              <td>Sensor Logger / SensorLog</td>
+              <td>CSV / JSON / HTTP</td>
+              <td><span class="aw-level-pill s4">Исследовательский</span></td>
+              <td class="aw-ai-conv">⏱ После экспорта</td>
+            </tr>
+            <tr>
+              <td>Детальные данные тренировок</td>
+              <td>FIT-файлы Garmin/Coros + GoldenCheetah</td>
+              <td>FIT → CSV</td>
+              <td><span class="aw-level-pill s2">Средний</span></td>
+              <td class="aw-ai-conv">⏱ После конвертации</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- РАЗДЕЛ 13 — ЧЕК-ЛИСТ -->
+    <section class="aw-section" data-section="12" id="aw-checklist-section">
+      <div class="aw-section-number">Раздел 13</div>
+      <h2 class="aw-section-title">Чек-лист для запуска исследования</h2>
+      <div class="aw-checklist-counter">Выполнено: <strong id="aw-done-count">0</strong> из <strong>17</strong></div>
+
+      <div class="aw-checklist-group">
+        <div class="aw-checklist-group-title">Прежде чем начать сбор данных</div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Определить, какие метрики нужны и с какой детализацией (ежесекундно, поминутно, суточно)</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Выбрать устройство и убедиться, что оно поддерживает нужные типы данных</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Настроить приоритеты источников в Apple Health, если используется несколько устройств</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Проверить, что нужные типы данных записываются: Здоровье → метрика → Источники данных</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Установить приложение-экспортёр (Health Auto Export рекомендуется)</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Провести тестовый экспорт и убедиться, что данные корректны</div></div>
+      </div>
+
+      <div class="aw-checklist-group">
+        <div class="aw-checklist-group-title">При работе с данными</div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Документировать версию watchOS и модель устройства на момент исследования</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Фильтровать данные по источнику, если в базе несколько устройств</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Проверить временные зоны и привести к единому стандарту</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Удалить физиологически невозможные выбросы</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Явно отмечать интерполированные значения, если заполняете временные разрывы</div></div>
+      </div>
+
+      <div class="aw-checklist-group">
+        <div class="aw-checklist-group-title">При анализе с ИИ</div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Конвертировать в CSV перед загрузкой</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Ограничить период данных до релевантного (30–90 дней для большинства задач)</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Выгружать только нужные метрики, не весь архив</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Рассматривать ИИ-анализ как разведочный — подтверждать статистическими методами</div></div>
+      </div>
+
+      <div class="aw-checklist-group">
+        <div class="aw-checklist-group-title">При публикации результатов</div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Указывать модель устройства и версию операционной системы</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">Описывать алгоритм очистки данных</div></div>
+        <div class="aw-check-item" onclick="awToggle(this)"><div class="aw-check-box"><svg class="aw-check-tick" width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="aw-check-text">При необходимости проводить валидацию подвыборки на клиническом оборудовании</div></div>
+      </div>
+
+      <!-- Финальный абзац -->
+      <div class="aw-finale">
+        <p>Данные с носимых устройств — это не идеальный научный материал по умолчанию. Это богатый, плотный, но зашумлённый поток наблюдений из реальной жизни человека — и именно это делает их ценными. Apple Health предлагает исследователю редкое сочетание: унифицированный доступ к многолетним физиологическим данным, собранным в естественных условиях без лабораторных ограничений. Ключ к работе с этим материалом — понимать, где заканчивается реальный сигнал и начинается алгоритмическая интерпретация.</p>
       </div>
 
     </section>
@@ -1157,8 +2737,35 @@
           ecgObserver.disconnect();
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.05 });
     ecgObserver.observe(ecgPath.closest('section'));
+  }
+
+  // Pipeline stagger animation
+  const pipeline = document.getElementById('aw-pipeline');
+  if (pipeline) {
+    const steps = pipeline.querySelectorAll('.aw-pipeline-step');
+    const arrows = pipeline.querySelectorAll('.aw-pipeline-arrow');
+    const pipeObs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        steps.forEach((el, i) => {
+          setTimeout(() => el.classList.add('visible'), i * 150);
+        });
+        arrows.forEach((el, i) => {
+          setTimeout(() => el.classList.add('visible'), i * 150 + 100);
+        });
+        pipeObs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    pipeObs.observe(pipeline);
+  }
+
+  // Чек-лист
+  function awToggle(el) {
+    el.classList.toggle('checked');
+    const count = document.querySelectorAll('.aw-check-item.checked').length;
+    const counter = document.getElementById('aw-done-count');
+    if (counter) counter.textContent = count;
   }
 </script>
 </body>
