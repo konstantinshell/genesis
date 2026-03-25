@@ -670,6 +670,462 @@
       line-height: 1.65;
     }
 
+    /* ──────────────────────────────
+       ЭКРАН 4 — НАУЧНАЯ ВАЛИДАЦИЯ
+    ────────────────────────────── */
+    .science-section {
+      padding: 100px 20px;
+      background: #ffffff;
+    }
+    .science-section .s-inner { max-width: 860px; margin: 0 auto; }
+    .science-section h2 {
+      font-family: var(--fh);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; color: var(--text);
+      margin-bottom: 48px; line-height: 1.1;
+    }
+    .science-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .science-card {
+      background: #fafafa;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: box-shadow 0.25s, transform 0.25s;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.25s;
+    }
+    .science-card.visible { opacity: 1; transform: translateY(0); }
+    .science-card:hover { box-shadow: 0 10px 36px rgba(0,0,0,0.08); transform: translateY(-3px); }
+    .science-card .s-icon { font-size: 1.5rem; margin-bottom: 14px; }
+    .science-card .s-title {
+      font-family: var(--fh); font-size: 1rem;
+      font-weight: 600; color: var(--text); margin-bottom: 8px;
+    }
+    .science-card .s-text {
+      font-family: var(--fb); font-size: 0.85rem;
+      color: var(--muted); line-height: 1.65;
+    }
+
+    /* ──────────────────────────────
+       ЭКРАН 5 — ТОЧНОСТЬ
+    ────────────────────────────── */
+    .accuracy-section {
+      padding: 100px 20px;
+      background: #f9f9fb;
+    }
+    .accuracy-section .s-inner { max-width: 860px; margin: 0 auto; }
+    .accuracy-section h2 {
+      font-family: var(--fh);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; color: var(--text);
+      margin-bottom: 12px; line-height: 1.1;
+    }
+    .accuracy-section > .s-inner > p {
+      font-family: var(--fb); font-size: 0.95rem;
+      color: var(--muted); line-height: 1.75; margin-bottom: 48px;
+    }
+    /* Таблица точности */
+    .acc-table { width: 100%; border-collapse: collapse; margin-bottom: 48px; }
+    .acc-table th {
+      font-family: var(--fm); font-size: 0.65rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); padding: 0 12px 12px;
+      text-align: left; border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .acc-table td {
+      font-family: var(--fb); font-size: 0.85rem;
+      color: var(--text); padding: 14px 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      vertical-align: middle;
+    }
+    .acc-table tr { opacity: 0; transform: translateX(-8px);
+      transition: opacity 0.4s ease, transform 0.4s ease; }
+    .acc-table tr.visible { opacity: 1; transform: translateX(0); }
+    .acc-badge {
+      display: inline-block; font-family: var(--fm);
+      font-size: 0.7rem; padding: 3px 10px; border-radius: 20px;
+      font-weight: 700; white-space: nowrap;
+    }
+    .acc-badge.good  { background: rgba(0,168,150,0.1); color: #00A896; }
+    .acc-badge.ok    { background: rgba(255,165,0,0.1);  color: #e6900a; }
+    .acc-badge.warn  { background: rgba(255,100,80,0.1); color: #d94f3a; }
+    /* HRV сравнение */
+    .hrv-compare { margin-bottom: 40px; }
+    .hrv-compare-title {
+      font-family: var(--fm); font-size: 0.7rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .hrv-row {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .hrv-row.visible { opacity: 1; transform: translateY(0); }
+    .hrv-name { font-family: var(--fb); font-size: 0.85rem;
+      color: var(--text); width: 160px; flex-shrink: 0; }
+    .hrv-bar-wrap { flex: 1; background: rgba(0,0,0,0.06);
+      border-radius: 4px; height: 8px; overflow: hidden; }
+    .hrv-bar { height: 100%; border-radius: 4px;
+      width: 0%; transition: width 1s ease-out; background: rgba(0,0,0,0.15); }
+    .hrv-bar.whoop { background: #00A896; }
+    .hrv-val { font-family: var(--fm); font-size: 0.75rem;
+      color: var(--muted); width: 56px; text-align: right; flex-shrink: 0; }
+    .info-box-note {
+      display: flex; gap: 14px;
+      background: rgba(95,95,255,0.04);
+      border: 1px solid rgba(95,95,255,0.18);
+      border-left: 3px solid #5F5FFF;
+      border-radius: 8px; padding: 18px 20px;
+    }
+    .info-box-note .ibn-icon { font-family: var(--fm); font-size: 0.75rem;
+      color: #5F5FFF; flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+    .info-box-note .ibn-text { font-family: var(--fb); font-size: 0.875rem;
+      color: #444; line-height: 1.65; }
+
+    /* ──────────────────────────────
+       ЭКРАН 6 — СТРУКТУРА ДАННЫХ
+    ────────────────────────────── */
+    .datamap-section {
+      padding: 100px 20px;
+      background: #ffffff;
+    }
+    .datamap-section .s-inner { max-width: 860px; margin: 0 auto; }
+    .datamap-section h2 {
+      font-family: var(--fh); font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.1;
+    }
+    .datamap-section > .s-inner > .dm-intro {
+      font-family: var(--fb); font-size: 0.95rem;
+      color: var(--muted); line-height: 1.75; margin-bottom: 48px;
+    }
+    .dm-groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+    }
+    .dm-group {
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px; overflow: hidden;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .dm-group.visible { opacity: 1; transform: translateY(0); }
+    .dm-group-head {
+      font-family: var(--fm); font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 14px 20px; font-weight: 700;
+    }
+    .dm-group.recovery .dm-group-head { background: rgba(0,168,150,0.08); color: #00A896; }
+    .dm-group.sleep    .dm-group-head { background: rgba(95,95,255,0.07); color: #5F5FFF; }
+    .dm-group.cycle    .dm-group-head { background: rgba(245,166,35,0.08); color: #c47d00; }
+    .dm-group.workout  .dm-group-head { background: rgba(220,80,80,0.07);  color: #b94040; }
+    .dm-field {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 20px; border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .dm-field:last-child { border-bottom: none; }
+    .dm-field-name {
+      font-family: var(--fm); font-size: 0.75rem;
+      color: var(--text); min-width: 180px; flex-shrink: 0;
+    }
+    .dm-field-desc {
+      font-family: var(--fb); font-size: 0.82rem;
+      color: var(--muted); line-height: 1.5;
+    }
+    .dm-warn { font-size: 0.75rem; }
+
+    /* ──────────────────────────────
+       ОБЩИЕ — экспортные экраны
+    ────────────────────────────── */
+    .export-section { padding: 100px 20px; }
+    .export-section.bg-white  { background: #ffffff; }
+    .export-section.bg-light  { background: #f9f9fb; }
+    .export-section .s-inner  { max-width: 860px; margin: 0 auto; }
+    .export-section h2 {
+      font-family: var(--fh); font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700; color: var(--text); line-height: 1.1; margin-bottom: 16px;
+    }
+    .export-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .exp-badge {
+      font-family: var(--fm); font-size: 0.68rem; padding: 5px 12px;
+      border-radius: 20px; background: rgba(0,168,150,0.08);
+      color: #00A896; border: 1px solid rgba(0,168,150,0.2);
+    }
+    .export-section > .s-inner > .exp-intro {
+      font-family: var(--fb); font-size: 0.95rem;
+      color: var(--muted); line-height: 1.75; margin-bottom: 48px;
+    }
+    /* Steps flow */
+    .steps-flow {
+      display: flex; flex-wrap: wrap; gap: 0;
+      align-items: center; margin-bottom: 48px;
+    }
+    .step-node {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px; flex: 1; min-width: 80px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .step-node.visible { opacity: 1; transform: translateY(0); }
+    .step-circle {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(0,168,150,0.1); border: 1.5px solid rgba(0,168,150,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fm); font-size: 0.72rem; color: #00A896; font-weight: 700;
+    }
+    .step-label { font-family: var(--fb); font-size: 0.74rem; color: var(--text); text-align: center; line-height: 1.35; }
+    .step-note  { font-family: var(--fm); font-size: 0.62rem; color: var(--muted); text-align: center; line-height: 1.3; }
+    .step-arrow { font-size: 0.9rem; color: rgba(0,0,0,0.15); flex-shrink: 0; margin: 0 2px; margin-bottom: 28px; }
+    /* File cards */
+    .file-cards {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(188px, 1fr));
+      gap: 16px; margin-bottom: 40px;
+    }
+    .file-card {
+      background: #fff; border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px; padding: 20px;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.2s;
+    }
+    .file-card.visible { opacity: 1; transform: translateY(0); }
+    .file-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
+    .file-name { font-family: var(--fm); font-size: 0.74rem; color: var(--text); margin-bottom: 8px; word-break: break-all; }
+    .file-desc { font-family: var(--fb); font-size: 0.82rem; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
+    .file-tag  { display: inline-block; font-family: var(--fm); font-size: 0.62rem; padding: 3px 8px; border-radius: 4px; background: rgba(95,95,255,0.07); color: #5F5FFF; }
+    /* Code block */
+    .code-block { background: #1a1a1f; border-radius: 12px; padding: 24px; margin-bottom: 40px; overflow-x: auto; }
+    .code-block pre { font-family: var(--fm); font-size: 0.78rem; color: #e2e2e8; line-height: 1.75; margin: 0; white-space: pre; }
+    /* Warn/note boxes */
+    .warn-box {
+      display: flex; gap: 14px; background: rgba(255,100,80,0.04);
+      border: 1px solid rgba(255,100,80,0.2); border-left: 3px solid #d94f3a;
+      border-radius: 8px; padding: 18px 20px; margin-bottom: 0;
+    }
+    .warn-box .wb-icon { font-size: 0.95rem; flex-shrink: 0; margin-top: 2px; }
+    .warn-box .wb-text { font-family: var(--fb); font-size: 0.875rem; color: #444; line-height: 1.65; }
+    /* Pros/Cons */
+    .pro-con { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+    @media (max-width: 600px) { .pro-con { grid-template-columns: 1fr; } }
+    .pro-col { background: rgba(0,168,150,0.05); border: 1px solid rgba(0,168,150,0.18); border-radius: 12px; padding: 22px; }
+    .con-col { background: rgba(255,100,80,0.04); border: 1px solid rgba(255,100,80,0.18); border-radius: 12px; padding: 22px; }
+    .pc-title { font-family: var(--fm); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; font-weight: 700; }
+    .pro-col .pc-title { color: #00A896; }
+    .con-col .pc-title { color: #d94f3a; }
+    .pc-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .pc-list li { font-family: var(--fb); font-size: 0.85rem; color: var(--text); padding-left: 18px; position: relative; line-height: 1.5; }
+    .pro-col .pc-list li::before { content: '✓'; position: absolute; left: 0; color: #00A896; font-weight: 700; }
+    .con-col .pc-list li::before { content: '✗'; position: absolute; left: 0; color: #d94f3a; font-weight: 700; }
+    /* Endpoints */
+    .endpoints { margin-bottom: 40px; }
+    .ep-row { display: flex; gap: 16px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .ep-method { font-family: var(--fm); font-size: 0.68rem; font-weight: 700; color: #00A896; flex-shrink: 0; width: 28px; }
+    .ep-path   { font-family: var(--fm); font-size: 0.8rem; color: var(--text); flex-shrink: 0; min-width: 220px; }
+    .ep-desc   { font-family: var(--fb); font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* ──────────────────────────────
+       ЭКРАН 10 — ТАБЫ (библиотеки)
+    ────────────────────────────── */
+    .tabs-wrap { margin-bottom: 40px; }
+    .tab-buttons { display: flex; gap: 0; margin-bottom: 0; border-bottom: 2px solid rgba(0,0,0,0.08); }
+    .tab-btn {
+      font-family: var(--fm); font-size: 0.78rem; padding: 10px 20px;
+      background: none; border: none; cursor: pointer; color: var(--muted);
+      border-bottom: 2px solid transparent; margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn.active { color: #00A896; border-bottom-color: #00A896; }
+    .tab-panel { display: none; padding: 28px 0 0; }
+    .tab-panel.active { display: block; }
+    .tab-features {
+      display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;
+    }
+    .tab-feature {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--fb); font-size: 0.88rem; color: var(--text);
+    }
+    .tab-feature::before { content: '✓'; color: #00A896; font-weight: 700; flex-shrink: 0; }
+    .install-line {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(0,0,0,0.04); border-radius: 8px;
+      padding: 8px 16px; margin-bottom: 20px;
+    }
+    .install-label { font-family: var(--fm); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .install-cmd   { font-family: var(--fm); font-size: 0.82rem; color: var(--text); }
+    .tab-warn {
+      display: flex; gap: 12px;
+      background: rgba(255,165,0,0.05); border: 1px solid rgba(255,165,0,0.25);
+      border-left: 3px solid #f5a623; border-radius: 8px; padding: 16px 18px;
+      margin-bottom: 20px;
+    }
+    .tw-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 2px; }
+    .tw-text { font-family: var(--fb); font-size: 0.85rem; color: #444; line-height: 1.65; }
+
+    /* ──────────────────────────────
+       ЭКРАН 11 — APPLE HEALTH
+    ────────────────────────────── */
+    .sync-table {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px; margin-bottom: 32px;
+    }
+    @media (max-width: 560px) { .sync-table { grid-template-columns: 1fr; } }
+    .sync-col { border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); }
+    .sync-col-head {
+      font-family: var(--fm); font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 12px 18px; font-weight: 700;
+    }
+    .sync-col.to-apple .sync-col-head   { background: rgba(0,168,150,0.08); color: #00A896; }
+    .sync-col.from-apple .sync-col-head { background: rgba(95,95,255,0.07); color: #5F5FFF; }
+    .sync-row {
+      font-family: var(--fb); font-size: 0.85rem; color: var(--text);
+      padding: 9px 18px; border-bottom: 1px solid rgba(0,0,0,0.04);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sync-row:last-child { border-bottom: none; }
+    .sync-col.to-apple   .sync-row::before { content:'→'; color:#00A896; font-weight:700; flex-shrink:0; }
+    .sync-col.from-apple .sync-row::before { content:'←'; color:#5F5FFF; font-weight:700; flex-shrink:0; }
+
+    /* ──────────────────────────────
+       ЭКРАН 12 — SELF-HOSTED
+    ────────────────────────────── */
+    /* Pipeline SVG диаграмма */
+    .pipeline-diagram {
+      margin: 40px 0; display: flex; justify-content: center;
+    }
+    /* Tool cards */
+    .tool-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+    @media (max-width: 560px) { .tool-cards { grid-template-columns: 1fr; } }
+    .tool-card {
+      border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 22px;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.2s;
+    }
+    .tool-card.visible { opacity: 1; transform: translateY(0); }
+    .tool-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+    .tool-card-name { font-family: var(--fh); font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .tool-card-link { font-family: var(--fm); font-size: 0.7rem; color: #00A896; margin-bottom: 12px; display: block; text-decoration: none; }
+    .tool-card-desc { font-family: var(--fb); font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
+    /* Stack */
+    .stack-box { background: #fafafa; border: 1px solid rgba(0,0,0,0.07); border-radius: 14px; overflow: hidden; }
+    .stack-title { font-family: var(--fm); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 16px 20px 12px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .stack-layers { display: flex; flex-direction: column; }
+    .stack-layer {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 20px; border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .stack-layer:last-child { border-bottom: none; }
+    .stack-num { font-family: var(--fm); font-size: 0.68rem; color: var(--muted); width: 20px; flex-shrink: 0; }
+    .stack-role { font-family: var(--fm); font-size: 0.75rem; color: var(--muted); min-width: 140px; flex-shrink: 0; }
+    .stack-tech { font-family: var(--fb); font-size: 0.88rem; color: var(--text); font-weight: 500; }
+    .stack-note { font-family: var(--fb); font-size: 0.8rem; color: var(--muted); padding: 14px 20px; border-top: 1px solid rgba(0,0,0,0.05); line-height: 1.6; }
+
+    /* ──────────────────────────────
+       ЭКРАН 13 — СРАВНЕНИЕ МЕТОДОВ
+    ────────────────────────────── */
+    .filter-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .filter-tag {
+      font-family: var(--fm); font-size: 0.72rem; padding: 6px 14px;
+      border-radius: 20px; border: 1.5px solid rgba(0,0,0,0.12);
+      background: transparent; cursor: pointer; color: var(--muted);
+      transition: all 0.2s;
+    }
+    .filter-tag.active, .filter-tag:hover {
+      border-color: #00A896; color: #00A896; background: rgba(0,168,150,0.07);
+    }
+    .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; overflow-x: auto; display: block; }
+    .compare-table th {
+      font-family: var(--fm); font-size: 0.64rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+      padding: 0 14px 12px; text-align: left;
+      border-bottom: 1px solid rgba(0,0,0,0.1); white-space: nowrap;
+    }
+    .compare-table td {
+      font-family: var(--fb); font-size: 0.84rem; color: var(--text);
+      padding: 14px; border-bottom: 1px solid rgba(0,0,0,0.05);
+      vertical-align: middle; white-space: nowrap;
+    }
+    .compare-table tr { transition: opacity 0.25s, transform 0.25s; }
+    .compare-table tr.hidden { display: none; }
+    .compare-table tr.highlighted td:first-child { border-left: 3px solid #00A896; }
+    .status-ok   { color: #00A896; font-weight: 700; font-family: var(--fm); font-size: 0.78rem; }
+    .status-warn { color: #e6900a; font-weight: 700; font-family: var(--fm); font-size: 0.78rem; }
+    .stars       { color: var(--muted); font-size: 0.8rem; }
+    .stars .on   { color: #f5a623; }
+
+    /* ──────────────────────────────
+       ЭКРАН 14 — АНАЛИТИКА
+    ────────────────────────────── */
+    .analytics-section { padding: 100px 20px; background: #ffffff; }
+    .analytics-section .s-inner { max-width: 860px; margin: 0 auto; }
+    .analytics-section h2 {
+      font-family: var(--fh); font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700; color: var(--text); line-height: 1.1; margin-bottom: 48px;
+    }
+    .analytics-levels { display: flex; flex-direction: column; gap: 20px; }
+    .analytics-level {
+      border-radius: 14px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08);
+      opacity: 0; transform: translateX(-16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .analytics-level.visible { opacity: 1; transform: translateX(0); }
+    .level-head {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 24px; border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .level-num {
+      font-family: var(--fm); font-size: 0.65rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 4px; flex-shrink: 0;
+    }
+    .level-1 .level-num { background: rgba(0,168,150,0.1); color: #00A896; }
+    .level-2 .level-num { background: rgba(245,166,35,0.1); color: #c47d00; }
+    .level-3 .level-num { background: rgba(95,95,255,0.1);  color: #5F5FFF; }
+    .level-title { font-family: var(--fh); font-size: 1rem; font-weight: 600; color: var(--text); }
+    .level-tool  { font-family: var(--fm); font-size: 0.72rem; color: var(--muted); margin-left: auto; flex-shrink: 0; }
+    .level-body  { padding: 20px 24px; }
+    .level-body p { font-family: var(--fb); font-size: 0.9rem; color: var(--muted); line-height: 1.75; margin: 0; }
+    .level-body ul { margin: 12px 0 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .level-body li { font-family: var(--fb); font-size: 0.88rem; color: var(--text); padding-left: 18px; position: relative; }
+    .level-body li::before { content: '→'; position: absolute; left: 0; color: var(--muted); }
+
+    /* ──────────────────────────────
+       ЭКРАН 15 — ОГРАНИЧЕНИЯ
+    ────────────────────────────── */
+    .limits-section { padding: 100px 20px; background: #f9f9fb; }
+    .limits-section .s-inner { max-width: 860px; margin: 0 auto; }
+    .limits-section h2 {
+      font-family: var(--fh); font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700; color: var(--text); line-height: 1.1; margin-bottom: 12px;
+    }
+    .limits-section > .s-inner > .limits-intro {
+      font-family: var(--fb); font-size: 0.95rem;
+      color: var(--muted); line-height: 1.75; margin-bottom: 40px;
+    }
+    .limits-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+    @media (max-width: 580px) { .limits-cols { grid-template-columns: 1fr; } }
+    .limits-good, .limits-bad { border-radius: 14px; overflow: hidden; }
+    .limits-good { border: 1px solid rgba(0,168,150,0.2); }
+    .limits-bad  { border: 1px solid rgba(255,100,80,0.2); }
+    .limits-head {
+      font-family: var(--fm); font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 14px 20px; font-weight: 700;
+    }
+    .limits-good .limits-head { background: rgba(0,168,150,0.07); color: #00A896; }
+    .limits-bad  .limits-head { background: rgba(255,100,80,0.07); color: #d94f3a; }
+    .limits-list { list-style: none; padding: 0; margin: 0; }
+    .limits-list li {
+      font-family: var(--fb); font-size: 0.86rem; color: var(--text);
+      padding: 10px 20px; border-bottom: 1px solid rgba(0,0,0,0.04);
+      display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
+    }
+    .limits-list li:last-child { border-bottom: none; }
+    .limits-good .limits-list li::before { content: '✓'; color: #00A896; font-weight: 700; flex-shrink: 0; }
+    .limits-bad  .limits-list li::before { content: '✗'; color: #d94f3a; font-weight: 700; flex-shrink: 0; }
+
   </style>
 </head>
 <body>
@@ -911,6 +1367,766 @@
     </div>
   </section>
 
+  <!-- ЭКРАН 4 — НАУЧНАЯ ВАЛИДАЦИЯ -->
+  <section class="science-section" id="science">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 03 · Научная валидация</div>
+      <h2>Где используют WHOOP<br>исследователи</h2>
+      <div class="science-grid">
+        <div class="science-card"><div class="s-icon">🏋️</div><div class="s-title">Спортивная наука</div><p class="s-text">Австралийский институт спорта (AIS) провёл валидацию, подтвердив точность HR 99,7% и HRV 99% при сравнении с ЭКГ-стандартом. Команды НБА, НФЛ, НХЛ, FIFA используют WHOOP для управления нагрузками.</p></div>
+        <div class="science-card"><div class="s-icon">🎖️</div><div class="s-title">Военная медицина</div><p class="s-text">USSOCOM тестировал WHOOP для мониторинга боеготовности спецназа. Задача — определять момент, когда оперативник физически не готов к выполнению задачи.</p></div>
+        <div class="science-card"><div class="s-icon">🚀</div><div class="s-title">NASA</div><p class="s-text">Агентство изучало применение для мониторинга астронавтов. Непрерывное отслеживание HRV как маркера адаптационного стресса в условиях невесомости.</p></div>
+        <div class="science-card"><div class="s-icon">🎓</div><div class="s-title">Университетские лаборатории</div><p class="s-text">JMIR (2024), Schyvens et al. (2025), Dial et al. (2025). Десятки публикаций по биомаркерам восстановления, детекции COVID, мониторингу студентов-атлетов NCAA.</p></div>
+        <div class="science-card"><div class="s-icon">🦠</div><div class="s-title">COVID-исследования</div><p class="s-text">Изменения HRV и частоты дыхания фиксируются за 2–3 дня до симптомов. Первый носимый трекер с верифицированной ранней детекцией вирусного заражения.</p></div>
+        <div class="science-card"><div class="s-icon">🏢</div><div class="s-title">Корпоративный wellbeing</div><p class="s-text">Goldman Sachs, McKinsey — программы для топ-менеджмента. Агрегированные данные для анализа уровня стресса и истощения в командах.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 5 — ТОЧНОСТЬ -->
+  <section class="accuracy-section" id="accuracy">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 04 · Точность</div>
+      <h2>Что говорит наука.<br>Честно.</h2>
+      <p>Точность WHOOP неоднородна в зависимости от метрики. Для исследователя важно понимать, где данные надёжны, а где — нет.</p>
+
+      <table class="acc-table">
+        <thead>
+          <tr class="visible">
+            <th>Метрика</th>
+            <th>Точность</th>
+            <th>Источник</th>
+            <th>Статус</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Пульс (покой/сон)</td><td>99.7%</td><td>AIS, 2022</td><td><span class="acc-badge good">✓ Надёжно</span></td></tr>
+          <tr><td>HRV RMSSD (ночной)</td><td>99%</td><td>AIS, 2022</td><td><span class="acc-badge good">✓ Надёжно</span></td></tr>
+          <tr><td>Общее время сна</td><td>−1.4 мин смещение</td><td>JMIR, 2024</td><td><span class="acc-badge good">✓ Надёжно</span></td></tr>
+          <tr><td>Глубокий сон</td><td>−9.3 мин, чувств. 69.6%</td><td>Schyvens, 2025</td><td><span class="acc-badge ok">~ Приемлемо</span></td></tr>
+          <tr><td>REM-сон</td><td>+21.0 мин переоценка</td><td>JMIR, 2024</td><td><span class="acc-badge warn">⚠ Осторожно</span></td></tr>
+          <tr><td>Пробуждения</td><td>специфичность 51%</td><td>Schyvens, 2025</td><td><span class="acc-badge warn">✗ Слабое место</span></td></tr>
+          <tr><td>HR на тренировке</td><td>отставание до 50 уд/мин</td><td>Community</td><td><span class="acc-badge warn">✗ Ненадёжно</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="hrv-compare">
+        <div class="hrv-compare-title">Сравнение точности HRV по трекерам (Dial et al., 2025)</div>
+        <div class="hrv-row" data-val="99"><div class="hrv-name">Oura Gen 4</div><div class="hrv-bar-wrap"><div class="hrv-bar"></div></div><div class="hrv-val">CCC 0.99</div></div>
+        <div class="hrv-row" data-val="97"><div class="hrv-name">Oura Gen 3</div><div class="hrv-bar-wrap"><div class="hrv-bar"></div></div><div class="hrv-val">CCC 0.97</div></div>
+        <div class="hrv-row" data-val="94"><div class="hrv-name">WHOOP 4.0</div><div class="hrv-bar-wrap"><div class="hrv-bar whoop"></div></div><div class="hrv-val">CCC 0.94</div></div>
+        <div class="hrv-row" data-val="87"><div class="hrv-name">Garmin Fenix 6</div><div class="hrv-bar-wrap"><div class="hrv-bar"></div></div><div class="hrv-val">CCC 0.87</div></div>
+        <div class="hrv-row" data-val="82"><div class="hrv-name">Polar Grit X Pro</div><div class="hrv-bar-wrap"><div class="hrv-bar"></div></div><div class="hrv-val">CCC 0.82</div></div>
+      </div>
+
+      <div class="info-box-note">
+        <span class="ibn-icon">// ВАЖНО</span>
+        <p class="ibn-text">WHOOP измеряет HRV только в окне глубокого сна — не непрерывно. Recovery Score и Strain — проприетарные алгоритмы без открытой валидации. Для строгих исследований работайте с сырыми метриками (HRV, RHR, стадии сна), а не с составными баллами.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 6 — СТРУКТУРА ДАННЫХ -->
+  <section class="datamap-section" id="datamap">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 05 · Архитектура данных</div>
+      <h2>Что внутри.<br>Полная карта полей.</h2>
+      <p class="dm-intro">Перед тем как приступать к экспорту — важно понять, что именно вы будете получать и в какой структуре.</p>
+
+      <div class="dm-groups">
+
+        <div class="dm-group recovery">
+          <div class="dm-group-head">Recovery — утренний расчёт</div>
+          <div class="dm-field"><span class="dm-field-name">hrv_rmssd_milli</span><span class="dm-field-desc">HRV в миллисекундах · <strong>Используйте это, а не score</strong></span></div>
+          <div class="dm-field"><span class="dm-field-name">resting_heart_rate</span><span class="dm-field-desc">ЧСС покоя (уд/мин)</span></div>
+          <div class="dm-field"><span class="dm-field-name">recovery_score</span><span class="dm-field-desc">0–100 · <span class="dm-warn">⚠ Проприетарный алгоритм</span></span></div>
+          <div class="dm-field"><span class="dm-field-name">spo2_percentage</span><span class="dm-field-desc">Насыщение кислородом (%)</span></div>
+          <div class="dm-field"><span class="dm-field-name">skin_temp_celsius</span><span class="dm-field-desc">Дельта температуры от базовой линии</span></div>
+        </div>
+
+        <div class="dm-group sleep">
+          <div class="dm-group-head">Sleep</div>
+          <div class="dm-field"><span class="dm-field-name">total_in_bed_time</span><span class="dm-field-desc">Общее время в постели (мин)</span></div>
+          <div class="dm-field"><span class="dm-field-name">total_sleep_time</span><span class="dm-field-desc">Реальное время сна (мин)</span></div>
+          <div class="dm-field"><span class="dm-field-name">sleep_efficiency</span><span class="dm-field-desc">Эффективность (%)</span></div>
+          <div class="dm-field"><span class="dm-field-name">slow_wave_sleep</span><span class="dm-field-desc">Глубокий сон (мин) · <span class="dm-warn">смещение −9.3 мин</span></span></div>
+          <div class="dm-field"><span class="dm-field-name">rem_sleep</span><span class="dm-field-desc">REM (мин) · <span class="dm-warn">переоценка +21 мин</span></span></div>
+          <div class="dm-field"><span class="dm-field-name">sleep_latency</span><span class="dm-field-desc">Латентность засыпания (мин)</span></div>
+          <div class="dm-field"><span class="dm-field-name">disturbances</span><span class="dm-field-desc">Количество нарушений · <span class="dm-warn">низкая специфичность</span></span></div>
+        </div>
+
+        <div class="dm-group cycle">
+          <div class="dm-group-head">Cycle — биологический цикл</div>
+          <div class="dm-field"><span class="dm-field-name">strain</span><span class="dm-field-desc">Нагрузка 0–21 · <span class="dm-warn">⚠ Логарифмическая, непрямая</span></span></div>
+          <div class="dm-field"><span class="dm-field-name">kilojoule</span><span class="dm-field-desc">Энергозатраты (кДж)</span></div>
+          <div class="dm-field"><span class="dm-field-name">average_heart_rate</span><span class="dm-field-desc">Средний пульс за цикл</span></div>
+          <div class="dm-field"><span class="dm-field-name">cycle_start / end</span><span class="dm-field-desc">ISO 8601, UTC</span></div>
+        </div>
+
+        <div class="dm-group workout">
+          <div class="dm-group-head">Workout</div>
+          <div class="dm-field"><span class="dm-field-name">sport_name</span><span class="dm-field-desc">Тип активности</span></div>
+          <div class="dm-field"><span class="dm-field-name">duration</span><span class="dm-field-desc">Продолжительность (сек)</span></div>
+          <div class="dm-field"><span class="dm-field-name">avg / max_heart_rate</span><span class="dm-field-desc">Пульс средний и максимальный</span></div>
+          <div class="dm-field"><span class="dm-field-name">zone_1–5_minutes</span><span class="dm-field-desc">Минуты в каждой пульсовой зоне</span></div>
+          <div class="dm-field"><span class="dm-field-name">strain</span><span class="dm-field-desc">Нагрузка активности (0–21)</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 7 — ОФИЦИАЛЬНЫЙ ЭКСПОРТ -->
+  <section class="export-section bg-white" id="export1">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 06 · Экспорт данных · Метод 1</div>
+      <h2>Официальный экспорт<br>через приложение</h2>
+      <div class="export-badges">
+        <span class="exp-badge">★★☆☆☆ Сложность: минимальная</span>
+        <span class="exp-badge">Вся история</span>
+        <span class="exp-badge">Без кода</span>
+        <span class="exp-badge">Ручной</span>
+      </div>
+      <p class="exp-intro">Самый простой путь. Вся история одним запросом. Рекомендован как первый шаг для любого исследователя.</p>
+
+      <!-- Шаги -->
+      <div class="steps-flow">
+        <div class="step-node">
+          <div class="step-circle">01</div>
+          <span class="step-label">Приложение<br>WHOOP</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">02</div>
+          <span class="step-label">More →<br>App Settings</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">03</div>
+          <span class="step-label">Data Export</span>
+          <span class="step-note">или account.<br>whoop.com</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">04</div>
+          <span class="step-label">Request<br>Export</span>
+          <span class="step-note">раз в 24 часа</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">05</div>
+          <span class="step-label">Email<br>→ ZIP</span>
+          <span class="step-note">30 мин — 2 ч</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">06</div>
+          <span class="step-label">4 × CSV</span>
+          <span class="step-note">вся история</span>
+        </div>
+      </div>
+
+      <!-- Карточки файлов -->
+      <div class="file-cards">
+        <div class="file-card">
+          <div class="file-name">physiological_cycles.csv</div>
+          <p class="file-desc">Главная таблица. Каждая строка — один биологический цикл. HRV, ЧСС покоя, Recovery Score, Strain, калории, сон.</p>
+          <span class="file-tag">ОСНОВНАЯ · НАЧНИТЕ ЗДЕСЬ</span>
+        </div>
+        <div class="file-card">
+          <div class="file-name">sleeps.csv</div>
+          <p class="file-desc">Детализация каждого сна и дремоты. Стадии в минутах, эффективность, нарушения, латентность.</p>
+          <span class="file-tag">СОН</span>
+        </div>
+        <div class="file-card">
+          <div class="file-name">workouts.csv</div>
+          <p class="file-desc">Все зафиксированные активности. Тип, пульсовые зоны, Strain, калории. Без Strength Trainer.</p>
+          <span class="file-tag">НАГРУЗКА · Без силовых</span>
+        </div>
+        <div class="file-card">
+          <div class="file-name">journal_entries.csv</div>
+          <p class="file-desc">Дневниковые метки: алкоголь, кофеин, стресс, медикаменты. Ценный источник для корреляционного анализа.</p>
+          <span class="file-tag">ПОВЕДЕНИЕ</span>
+        </div>
+      </div>
+
+      <!-- Code block -->
+      <div class="code-block"><pre><span class="cm"># Загрузка основной таблицы</span>
+<span class="ck">import</span> pandas <span class="ck">as</span> pd
+
+cycles = pd.read_csv(<span class="cs">'physiological_cycles.csv'</span>)
+
+<span class="cm"># Конвертация временных меток в UTC</span>
+cycles[<span class="cs">'cycle_start'</span>] = pd.to_datetime(
+    cycles[<span class="cs">'cycle_start'</span>], utc=<span class="cf">True</span>
+)
+
+<span class="cm"># Конвертация в локальный часовой пояс</span>
+cycles[<span class="cs">'cycle_start'</span>] = cycles[<span class="cs">'cycle_start'</span>].dt.tz_convert(
+    <span class="cs">'Europe/Moscow'</span>
+)
+
+<span class="cf">print</span>(cycles[[<span class="cs">'cycle_start'</span>, <span class="cs">'hrv_rmssd_milli'</span>,
+              <span class="cs">'resting_heart_rate'</span>, <span class="cs">'recovery_score'</span>]].head())</pre></div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 8 — WHOOP2CSV -->
+  <section class="export-section bg-light" id="export2">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 06 · Экспорт данных · Метод 2</div>
+      <h2>Whoop2CSV —<br>без кода, автоматически</h2>
+      <div class="export-badges">
+        <span class="exp-badge">★☆☆☆☆ Сложность: минимальная</span>
+        <span class="exp-badge">До 90 дней</span>
+        <span class="exp-badge">OAuth</span>
+        <span class="exp-badge">Google Sheets</span>
+      </div>
+      <p class="exp-intro">Для тех, кому нужна автоматизация без программирования. Сервис работает через официальный OAuth WHOOP — read-only, пароль никуда не передаётся.</p>
+
+      <div class="steps-flow">
+        <div class="step-node">
+          <div class="step-circle">01</div>
+          <span class="step-label">whoop2csv<br>.com</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">02</div>
+          <span class="step-label">Connect<br>with WHOOP</span>
+          <span class="step-note">OAuth редирект</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">03</div>
+          <span class="step-label">Разрешить<br>доступ</span>
+          <span class="step-note">только чтение</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">04</div>
+          <span class="step-label">Выбрать<br>период</span>
+          <span class="step-note">7 / 30 / 90 дней</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">05</div>
+          <span class="step-label">CSV или<br>Google Sheets</span>
+          <span class="step-note">автовыгрузка еженед.</span>
+        </div>
+      </div>
+
+      <div class="pro-con">
+        <div class="pro-col">
+          <div class="pc-title">Преимущества перед app-экспортом</div>
+          <ul class="pc-list">
+            <li>Настраиваемая периодичность</li>
+            <li>Прямая интеграция с Google Sheets</li>
+            <li>Гибкий выбор полей</li>
+            <li>Нет ожидания 24 часа</li>
+          </ul>
+        </div>
+        <div class="con-col">
+          <div class="pc-title">Ограничения</div>
+          <ul class="pc-list">
+            <li>Максимум 90 дней за один запрос</li>
+            <li>Нет полной истории как в официальном экспорте</li>
+            <li>Зависимость от стороннего сервиса</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 9 — ОФИЦИАЛЬНЫЙ API -->
+  <section class="export-section bg-white" id="export3">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 06 · Экспорт данных · Метод 3</div>
+      <h2>Официальный<br>WHOOP Developer API</h2>
+      <div class="export-badges">
+        <span class="exp-badge">★★★☆☆ Сложность: средняя</span>
+        <span class="exp-badge">OAuth 2.0</span>
+        <span class="exp-badge">Автоматизация</span>
+        <span class="exp-badge">Мультиюзер</span>
+      </div>
+      <p class="exp-intro">Для исследователей, которым нужна автоматизация, долгосрочный мониторинг нескольких участников или интеграция в собственный аналитический pipeline.</p>
+
+      <div class="steps-flow">
+        <div class="step-node">
+          <div class="step-circle">01</div>
+          <span class="step-label">developer<br>.whoop.com</span>
+          <span class="step-note">Бесплатно</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">02</div>
+          <span class="step-label">Создать<br>приложение</span>
+          <span class="step-note">+ Redirect URI</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">03</div>
+          <span class="step-label">Client ID<br>+ Secret</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">04</div>
+          <span class="step-label">Выбрать<br>scopes</span>
+          <span class="step-note">read:recovery<br>read:sleep…</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">05</div>
+          <span class="step-label">Access<br>Token</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">06</div>
+          <span class="step-label">API<br>запросы</span>
+        </div>
+      </div>
+
+      <!-- Endpoints -->
+      <div class="endpoints">
+        <div class="ep-row"><span class="ep-method">GET</span><span class="ep-path">/v2/recovery</span><span class="ep-desc">Recovery Score, HRV, RHR, SpO₂, температура</span></div>
+        <div class="ep-row"><span class="ep-method">GET</span><span class="ep-path">/v2/activity/sleep</span><span class="ep-desc">Стадии сна, эффективность, нарушения</span></div>
+        <div class="ep-row"><span class="ep-method">GET</span><span class="ep-path">/v2/activity/workout</span><span class="ep-desc">Тренировки, пульсовые зоны, Strain</span></div>
+        <div class="ep-row"><span class="ep-method">GET</span><span class="ep-path">/v2/cycle</span><span class="ep-desc">Физиологические циклы, общая нагрузка</span></div>
+        <div class="ep-row"><span class="ep-method">GET</span><span class="ep-path">/v2/user/profile/basic</span><span class="ep-desc">Профиль пользователя</span></div>
+      </div>
+
+      <!-- Code block -->
+      <div class="code-block"><pre><span class="ck">import</span> requests
+
+access_token = <span class="cs">"ВАШ_ТОКЕН"</span>
+
+<span class="ck">def</span> <span class="cf">get_all_recovery</span>(start_date: str) -> list:
+    <span class="cs">"""Получить всю историю Recovery с пагинацией"""</span>
+    url = <span class="cs">"https://api.prod.whoop.com/developer/v2/recovery"</span>
+    headers = {<span class="cs">"Authorization"</span>: <span class="cf">f</span><span class="cs">"Bearer {access_token}"</span>}
+    results = []
+    params = {<span class="cs">"limit"</span>: 25, <span class="cs">"start"</span>: start_date}
+
+    <span class="ck">while</span> <span class="cf">True</span>:
+        response = requests.get(url, headers=headers, params=params)
+        data = response.json()
+        results.extend(data[<span class="cs">"records"</span>])
+
+        <span class="cm"># Пагинация через next_token</span>
+        <span class="ck">if not</span> data.get(<span class="cs">"next_token"</span>):
+            <span class="ck">break</span>
+        params[<span class="cs">"next_token"</span>] = data[<span class="cs">"next_token"</span>]
+
+    <span class="ck">return</span> results
+
+history = get_all_recovery(<span class="cs">"2023-01-01T00:00:00Z"</span>)
+<span class="cf">print</span>(<span class="cf">f</span><span class="cs">"Получено записей: {len(history)}"</span>)</pre></div>
+
+      <div class="warn-box">
+        <span class="wb-icon">⚠</span>
+        <p class="wb-text">Rate limit — около 1000 запросов/час. При мультипользовательских исследованиях (&gt;10 участников) запросите увеличение лимита: support@developer.whoop.com. Добавляйте <code style="font-family:var(--fm);font-size:0.8em;">time.sleep(1)</code> между последовательными запросами.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 10 — PYTHON БИБЛИОТЕКИ -->
+  <section class="export-section bg-light" id="export4">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 06 · Экспорт данных · Метод 4</div>
+      <h2>Python-библиотеки:<br>whoopy и whoop-data</h2>
+      <div class="export-badges">
+        <span class="exp-badge">★★★☆☆ Сложность: средняя</span>
+        <span class="exp-badge">Pandas</span>
+        <span class="exp-badge">DataFrame</span>
+        <span class="exp-badge">Автопагинация</span>
+      </div>
+
+      <div class="tabs-wrap">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="whoopy">whoopy (официальный)</button>
+          <button class="tab-btn" data-tab="whoopdata">whoop-data (неофициальный)</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-whoopy">
+          <div class="install-line">
+            <span class="install-label">install</span>
+            <span class="install-cmd">pip install whoopy</span>
+          </div>
+          <div class="tab-features">
+            <div class="tab-feature">Автоматически обрабатывает пагинацию next_token</div>
+            <div class="tab-feature">Возвращает данные как pandas DataFrame</div>
+            <div class="tab-feature">Поддерживает async-режим</div>
+            <div class="tab-feature">Token refresh из коробки</div>
+          </div>
+          <div class="code-block"><pre><span class="ck">from</span> whoopy <span class="ck">import</span> WhoopClient
+
+client = WhoopClient(client_id=<span class="cs">"..."</span>, client_secret=<span class="cs">"..."</span>)
+
+<span class="cm"># Вся история сна как DataFrame</span>
+sleep_df = client.sleep.get_dataframe(
+    start=<span class="cs">"2023-01-01"</span>,
+    end=<span class="cs">"2025-03-01"</span>
+)
+
+<span class="cm"># Корреляция HRV и глубокого сна</span>
+correlation = sleep_df[<span class="cs">'hrv_rmssd_milli'</span>].corr(
+    sleep_df[<span class="cs">'slow_wave_duration'</span>]
+)
+<span class="cf">print</span>(<span class="cf">f</span><span class="cs">"Корреляция HRV и глубокого сна: {correlation:.3f}"</span>)</pre></div>
+        </div>
+
+        <div class="tab-panel" id="tab-whoopdata">
+          <div class="install-line">
+            <span class="install-label">install</span>
+            <span class="install-cmd">pip install whoop-data</span>
+          </div>
+          <div class="tab-features">
+            <div class="tab-feature">HR с гранулярностью 6 секунд — недоступно в официальном API</div>
+            <div class="tab-feature">HR с гранулярностью 1 минута</div>
+            <div class="tab-feature">Авторизация по логину/паролю (не OAuth)</div>
+          </div>
+          <div class="tab-warn">
+            <span class="tw-icon">⚠</span>
+            <p class="tw-text">Использует реверс-инжиниринг внутреннего API WHOOP. Нарушает Terms of Service. Может измениться без предупреждения. Теоретически — риск блокировки аккаунта. Используйте осознанно.</p>
+          </div>
+          <div class="code-block"><pre><span class="ck">from</span> whoop_data <span class="ck">import</span> WhoopClient
+
+client = WhoopClient(
+    username=<span class="cs">"email@example.com"</span>,
+    password=<span class="cs">"пароль"</span>
+)
+
+<span class="cm"># HR каждые 6 секунд за неделю</span>
+hr_raw = client.get_heart_rate(
+    from_date=<span class="cs">"2024-01-01"</span>,
+    to_date=<span class="cs">"2024-01-07"</span>,
+    frequency=<span class="cs">"6"</span>  <span class="cm"># "6", "60" или "600"</span>
+)</pre></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 11 — APPLE HEALTH -->
+  <section class="export-section bg-white" id="export5">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 06 · Экспорт данных · Метод 5</div>
+      <h2>Интеграция<br>с Apple Health</h2>
+      <div class="export-badges">
+        <span class="exp-badge">★☆☆☆☆ Сложность: минимальная</span>
+        <span class="exp-badge">iOS only</span>
+        <span class="exp-badge">Двусторонняя синхронизация</span>
+      </div>
+
+      <div class="steps-flow" style="margin-bottom: 40px;">
+        <div class="step-node">
+          <div class="step-circle">01</div>
+          <span class="step-label">WHOOP →<br>Интеграции</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">02</div>
+          <span class="step-label">Apple Health<br>→ Подключить</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">03</div>
+          <span class="step-label">Выбрать<br>категории</span>
+          <span class="step-note">Разрешить</span>
+        </div>
+        <span class="step-arrow">›</span>
+        <div class="step-node">
+          <div class="step-circle">04</div>
+          <span class="step-label">Health →<br>Приложения</span>
+          <span class="step-note">управление<br>разрешениями</span>
+        </div>
+      </div>
+
+      <div class="sync-table">
+        <div class="sync-col to-apple">
+          <div class="sync-col-head">Из WHOOP → Apple Health</div>
+          <div class="sync-row">Сон (стадии, эффективность)</div>
+          <div class="sync-row">ЧСС покоя</div>
+          <div class="sync-row">Средний пульс</div>
+          <div class="sync-row">SpO₂</div>
+          <div class="sync-row">Частота дыхания</div>
+          <div class="sync-row">Тренировки (Strain, калории)</div>
+          <div class="sync-row">Recovery Score</div>
+        </div>
+        <div class="sync-col from-apple">
+          <div class="sync-col-head">Из Apple Health → WHOOP</div>
+          <div class="sync-row">Активности (тренировки)</div>
+          <div class="sync-row">Шаги (ограничено в WHOOP 5.0)</div>
+          <div class="sync-row">HR из других устройств</div>
+        </div>
+      </div>
+
+      <div class="info-box-note">
+        <span class="ibn-icon">// NOTE</span>
+        <p class="ibn-text">HRV не передаётся между платформами — разные единицы: WHOOP использует RMSSD (мс), Apple Health — SDNN (мс). Синхронизация не мгновенная, работает в фоновом режиме. Для экспорта из Apple Health в произвольный формат используйте приложение <strong>Health Auto Export</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 12 — SELF-HOSTED PIPELINE -->
+  <section class="export-section bg-light" id="export6">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 06 · Экспорт данных · Метод 6</div>
+      <h2>Автоматизированный<br>self-hosted пайплайн</h2>
+      <div class="export-badges">
+        <span class="exp-badge">★★★★★ Сложность: высокая</span>
+        <span class="exp-badge">Мультиюзер</span>
+        <span class="exp-badge">Docker</span>
+        <span class="exp-badge">PostgreSQL</span>
+        <span class="exp-badge">Grafana</span>
+      </div>
+      <p class="exp-intro">Для долгосрочных исследований с несколькими участниками и необходимостью хранения данных в собственной инфраструктуре.</p>
+
+      <!-- Pipeline SVG -->
+      <div class="pipeline-diagram">
+        <svg width="100%" viewBox="0 0 700 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;">
+          <!-- Boxes -->
+          <rect x="10"  y="30" width="120" height="44" rx="8" fill="rgba(0,168,150,0.08)" stroke="rgba(0,168,150,0.3)" stroke-width="1.5"/>
+          <rect x="190" y="30" width="120" height="44" rx="8" fill="rgba(0,0,0,0.04)"      stroke="rgba(0,0,0,0.15)"     stroke-width="1.5"/>
+          <rect x="370" y="30" width="120" height="44" rx="8" fill="rgba(0,0,0,0.04)"      stroke="rgba(0,0,0,0.15)"     stroke-width="1.5"/>
+          <rect x="550" y="30" width="120" height="44" rx="8" fill="rgba(95,95,255,0.07)"  stroke="rgba(95,95,255,0.25)"  stroke-width="1.5"/>
+          <!-- Labels -->
+          <text x="70"  y="56" font-family="Courier Prime,monospace" font-size="11" fill="#00A896" text-anchor="middle">WHOOP API</text>
+          <text x="250" y="50" font-family="Courier Prime,monospace" font-size="11" fill="#555"    text-anchor="middle">Python</text>
+          <text x="250" y="65" font-family="Courier Prime,monospace" font-size="11" fill="#555"    text-anchor="middle">Scheduler</text>
+          <text x="430" y="50" font-family="Courier Prime,monospace" font-size="11" fill="#555"    text-anchor="middle">PostgreSQL</text>
+          <text x="610" y="50" font-family="Courier Prime,monospace" font-size="11" fill="#5F5FFF" text-anchor="middle">Grafana</text>
+          <text x="610" y="65" font-family="Courier Prime,monospace" font-size="11" fill="#5F5FFF" text-anchor="middle">Dashboard</text>
+          <!-- Arrows -->
+          <line x1="130" y1="52" x2="188" y2="52" stroke="#ccc" stroke-width="1.5" stroke-dasharray="4 3">
+            <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.8s" repeatCount="indefinite"/>
+          </line>
+          <polygon points="190,52 183,48 183,56" fill="#ccc"/>
+          <line x1="310" y1="52" x2="368" y2="52" stroke="#ccc" stroke-width="1.5" stroke-dasharray="4 3">
+            <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.8s" repeatCount="indefinite"/>
+          </line>
+          <polygon points="370,52 363,48 363,56" fill="#ccc"/>
+          <line x1="490" y1="52" x2="548" y2="52" stroke="#ccc" stroke-width="1.5" stroke-dasharray="4 3">
+            <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.8s" repeatCount="indefinite"/>
+          </line>
+          <polygon points="550,52 543,48 543,56" fill="#ccc"/>
+          <!-- CSV path -->
+          <rect x="10"  y="110" width="120" height="36" rx="8" fill="rgba(0,168,150,0.05)" stroke="rgba(0,168,150,0.2)" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="70" y="132" font-family="Courier Prime,monospace" font-size="10" fill="#888" text-anchor="middle">App Export CSV</text>
+          <line x1="130" y1="128" x2="250" y2="128" stroke="#ddd" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <line x1="250" y1="128" x2="250" y2="76" stroke="#ddd" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <polygon points="250,74 246,82 254,82" fill="#ddd"/>
+          <text x="190" y="142" font-family="Courier Prime,monospace" font-size="9" fill="#aaa" text-anchor="middle">pandas</text>
+        </svg>
+      </div>
+
+      <!-- Tool cards -->
+      <div class="tool-cards">
+        <div class="tool-card">
+          <div class="tool-card-name">MyWhoop</div>
+          <a class="tool-card-link">github.com/karl-cardenas-coding/mywhoop</a>
+          <p class="tool-card-desc">Self-hosted сервер на Docker. Ежедневно автоматически скачивает данные всех подключённых аккаунтов. Экспорт в AWS S3, локальный CSV/JSON. Для многопользовательских исследований.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-name">Get-My-Whoop</div>
+          <a class="tool-card-link">github.com/zachgodsell93/Get-My-Whoop</a>
+          <p class="tool-card-desc">Python-приложение с поддержкой PostgreSQL/SQLite, CSV/JSON/Excel, cron-синхронизации. Для персональной исследовательской базы данных.</p>
+        </div>
+      </div>
+
+      <!-- Stack -->
+      <div class="stack-box">
+        <div class="stack-title">Рекомендуемый production-стек</div>
+        <div class="stack-layers">
+          <div class="stack-layer"><span class="stack-num">01</span><span class="stack-role">Сбор данных</span><span class="stack-tech">WHOOP API + whoopy</span></div>
+          <div class="stack-layer"><span class="stack-num">02</span><span class="stack-role">Обработка</span><span class="stack-tech">Python + pandas</span></div>
+          <div class="stack-layer"><span class="stack-num">03</span><span class="stack-role">Хранение</span><span class="stack-tech">PostgreSQL</span></div>
+          <div class="stack-layer"><span class="stack-num">04</span><span class="stack-role">Визуализация</span><span class="stack-tech">Grafana</span></div>
+        </div>
+        <div class="stack-note">Покрывает большинство исследовательских задач, работает в реальном времени, масштабируется на несколько участников.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 13 — СРАВНЕНИЕ МЕТОДОВ -->
+  <section class="export-section bg-white" id="compare">
+    <div class="s-inner">
+      <div class="section-eyebrow">// Итоговая таблица</div>
+      <h2>Какой метод выбрать</h2>
+
+      <div class="filter-tags">
+        <button class="filter-tag active" data-filter="all">Все методы</button>
+        <button class="filter-tag" data-filter="nocode">Без кода</button>
+        <button class="filter-tag" data-filter="auto">Автоматизация</button>
+        <button class="filter-tag" data-filter="full">Полная история</button>
+        <button class="filter-tag" data-filter="detail">Максимум данных</button>
+      </div>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Метод</th>
+            <th>Сложность</th>
+            <th>Автоматизация</th>
+            <th>История</th>
+            <th>Детальность</th>
+            <th>Статус</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-tags="nocode full">
+            <td>Официальный экспорт (app)</td>
+            <td class="stars"><span class="on">★</span>☆☆☆☆</td>
+            <td>Ручной</td>
+            <td>Вся</td>
+            <td>Агрегаты</td>
+            <td><span class="status-ok">✓ Официально</span></td>
+          </tr>
+          <tr data-tags="nocode auto">
+            <td>Whoop2CSV</td>
+            <td class="stars"><span class="on">★</span>☆☆☆☆</td>
+            <td>Google Sheets</td>
+            <td>90 дней</td>
+            <td>Агрегаты</td>
+            <td><span class="status-ok">✓ Официально</span></td>
+          </tr>
+          <tr data-tags="auto full">
+            <td>Официальный API</td>
+            <td class="stars"><span class="on">★★★</span>☆☆</td>
+            <td>Да</td>
+            <td>Вся</td>
+            <td>Агрегаты</td>
+            <td><span class="status-ok">✓ Официально</span></td>
+          </tr>
+          <tr data-tags="auto full">
+            <td>Python whoopy</td>
+            <td class="stars"><span class="on">★★★</span>☆☆</td>
+            <td>Да (cron)</td>
+            <td>Вся</td>
+            <td>Агрегаты</td>
+            <td><span class="status-ok">✓ Официально</span></td>
+          </tr>
+          <tr data-tags="auto full detail">
+            <td>Python whoop-data</td>
+            <td class="stars"><span class="on">★★★</span>☆☆</td>
+            <td>Да</td>
+            <td>Вся</td>
+            <td>HR 6-сек</td>
+            <td><span class="status-warn">⚠ Неофициально</span></td>
+          </tr>
+          <tr data-tags="auto full">
+            <td>Self-hosted pipeline</td>
+            <td class="stars"><span class="on">★★★★★</span></td>
+            <td>Да (сервер)</td>
+            <td>Вся</td>
+            <td>Агрегаты</td>
+            <td><span class="status-ok">✓ Официально</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box-note">
+        <span class="ibn-icon">→</span>
+        <p class="ibn-text">Начинающему исследователю: старт с официального экспорта через приложение. Через 10 минут у вас будет вся история в CSV. Дальше — <strong>whoopy</strong> для автоматизации.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 14 — ЧТО ДЕЛАТЬ С ДАННЫМИ -->
+  <section class="analytics-section" id="analytics">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 07 · Аналитика</div>
+      <h2>Что делать с данными дальше</h2>
+
+      <div class="analytics-levels">
+        <div class="analytics-level level-1">
+          <div class="level-head">
+            <span class="level-num">Уровень 1</span>
+            <span class="level-title">Начинающий</span>
+            <span class="level-tool">Google Sheets / Excel</span>
+          </div>
+          <div class="level-body">
+            <p>Откройте physiological_cycles.csv. Постройте три простых графика:</p>
+            <ul>
+              <li>HRV по времени — видны паттерны восстановления и стресса</li>
+              <li>Зависимость Recovery Score от времени сна</li>
+              <li>Strain текущего дня vs Recovery следующего утра</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analytics-level level-2">
+          <div class="level-head">
+            <span class="level-num">Уровень 2</span>
+            <span class="level-title">Аналитик</span>
+            <span class="level-tool">Python + pandas</span>
+          </div>
+          <div class="level-body">
+            <p>Загрузить все четыре CSV. Конвертировать временные метки в datetime с учётом часового пояса. Создать единую таблицу через merge по дате цикла.</p>
+            <ul>
+              <li>Автокорреляция HRV</li>
+              <li>Детектирование аномалий через z-score</li>
+              <li>Корреляционный анализ journal.csv с Recovery</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analytics-level level-3">
+          <div class="level-head">
+            <span class="level-num">Уровень 3</span>
+            <span class="level-title">Исследователь</span>
+            <span class="level-tool">Публикации</span>
+          </div>
+          <div class="level-body">
+            <p>Работать только с сырыми метриками: HRV (RMSSD), ЧСС покоя, стадии сна в минутах. Избегать Recovery Score и Strain как зависимых переменных — проприетарные алгоритмы без открытой валидации.</p>
+            <ul>
+              <li>Все временные метки — ISO UTC</li>
+              <li>При синхронизации с ЭЭГ, опросниками или поведенческими данными — единый часовой пояс обязателен</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 15 — ОГРАНИЧЕНИЯ ДЛЯ НАУКИ -->
+  <section class="limits-section" id="limits">
+    <div class="s-inner">
+      <div class="section-eyebrow">// 08 · Методологические ограничения</div>
+      <h2>Честные ограничения<br>WHOOP для науки</h2>
+      <p class="limits-intro">Укажите эти ограничения в методологическом разделе любой публикации, использующей данные WHOOP.</p>
+
+      <div class="limits-cols">
+        <div class="limits-good">
+          <div class="limits-head">WHOOP подходит для</div>
+          <ul class="limits-list">
+            <li>Longitudinal мониторинга в реальных условиях</li>
+            <li>Поведенческих исследований (недели, месяцы)</li>
+            <li>Паттернов восстановления на больших горизонтах</li>
+            <li>Когортных исследований (несколько участников)</li>
+            <li>Коучинга и прикладных программ</li>
+            <li>Детекции COVID-паттернов</li>
+          </ul>
+        </div>
+        <div class="limits-bad">
+          <div class="limits-head">WHOOP не подходит для</div>
+          <ul class="limits-list">
+            <li>Исследований, требующих beat-to-beat HRV</li>
+            <li>Точной стадийности сна (особенно REM и пробуждения)</li>
+            <li>Кастомной аналитики физиологических сигналов</li>
+            <li>Интрадневного непрерывного HRV</li>
+            <li>Лабораторных условий с высокой точностью</li>
+            <li>Исследований с высокоинтенсивными нагрузками</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box-note">
+        <span class="ibn-icon">→</span>
+        <p class="ibn-text">Для задач, требующих beat-to-beat HRV или сырых сигналов — рассмотрите <strong>Oura Ring</strong> (более открытый API, CCC = 0.99) или специализированное оборудование (<strong>Polar H10 + Elite HRV</strong>, Zephyr BioHarness).</p>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <script src="../../components/nav.js"></script>
@@ -976,6 +2192,144 @@
     });
   }, { threshold: 0.15 });
   timelineItems.forEach(item => timelineObserver.observe(item));
+
+  // Экран 4 — карточки науки
+  const sciCards = document.querySelectorAll('.science-card');
+  const sciObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = Array.from(sciCards).indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), i * 90);
+        sciObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  sciCards.forEach(c => sciObs.observe(c));
+
+  // Экран 5 — строки таблицы
+  const accRows = document.querySelectorAll('.acc-table tbody tr');
+  const accObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = Array.from(accRows).indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        accObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  accRows.forEach(r => accObs.observe(r));
+
+  // Экран 5 — HRV прогресс-бары
+  const hrvRows = document.querySelectorAll('.hrv-row');
+  const hrvObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const row = e.target;
+        const val = parseInt(row.dataset.val);
+        const i = Array.from(hrvRows).indexOf(row);
+        setTimeout(() => {
+          row.classList.add('visible');
+          row.querySelector('.hrv-bar').style.width = val + '%';
+        }, i * 100);
+        hrvObs.unobserve(row);
+      }
+    });
+  }, { threshold: 0.2 });
+  hrvRows.forEach(r => hrvObs.observe(r));
+
+  // Экран 6 — карточки данных
+  const dmGroups = document.querySelectorAll('.dm-group');
+  const dmObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = Array.from(dmGroups).indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        dmObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  dmGroups.forEach(g => dmObs.observe(g));
+
+  // Экраны 7–9 — step-nodes (анимация по секциям)
+  document.querySelectorAll('.steps-flow').forEach(flow => {
+    const nodes = flow.querySelectorAll('.step-node');
+    const flowObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          nodes.forEach((n, i) => setTimeout(() => n.classList.add('visible'), i * 100));
+          flowObs.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    flowObs.observe(flow);
+  });
+
+  // File cards
+  const fileCards = document.querySelectorAll('.file-card');
+  const fcObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = Array.from(fileCards).indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), i * 90);
+        fcObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  fileCards.forEach(c => fcObs.observe(c));
+
+  // Экран 10 — табы
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const wrap = btn.closest('.tabs-wrap');
+      wrap.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      wrap.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      wrap.querySelector('#tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Экран 12 — tool cards
+  const toolCards = document.querySelectorAll('.tool-card');
+  const tcObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = Array.from(toolCards).indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), i * 120);
+        tcObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  toolCards.forEach(c => tcObs.observe(c));
+
+  // Экран 13 — фильтры таблицы
+  document.querySelectorAll('.filter-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+      tag.classList.add('active');
+      const filter = tag.dataset.filter;
+      document.querySelectorAll('.compare-table tbody tr').forEach(row => {
+        if (filter === 'all') {
+          row.classList.remove('hidden');
+        } else {
+          const tags = row.dataset.tags || '';
+          tags.includes(filter) ? row.classList.remove('hidden') : row.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Экран 14 — уровни аналитики
+  const levels = document.querySelectorAll('.analytics-level');
+  const lvlObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = Array.from(levels).indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), i * 150);
+        lvlObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  levels.forEach(l => lvlObs.observe(l));
 </script>
 
 </body>
