@@ -27,14 +27,37 @@
       box-shadow: var(--glass-s);
       border: 1px solid rgba(255,255,255,0.7);
       padding: 28px;
+      padding-top: 44px;
       text-decoration: none;
       color: inherit;
       transition: transform 0.2s, box-shadow 0.2s;
       display: block;
+      position: relative;
+      overflow: visible;
     }
     .post-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+    }
+
+    /* NEW — плашка над карточкой */
+    .post-badge-new {
+      position: absolute;
+      top: -13px;
+      left: 24px;
+      font-family: var(--fm);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: var(--accent);
+      color: #fff;
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(95,95,255,0.5); }
+      50%      { box-shadow: 0 0 0 6px rgba(95,95,255,0); }
     }
     .post-date {
       font-family: var(--fm);
@@ -65,7 +88,7 @@
 </div>
 
 <main>
-  <section class="page-hero s">
+  <section class="page-hero s" style="padding-top: 48px; padding-bottom: 32px;">
     <div class="s-inner">
       <span class="tag">контент</span>
       <h1>Блог</h1>
@@ -76,6 +99,12 @@
   <section class="s">
     <div class="s-inner">
       <div class="posts-grid">
+        <a href="./whoop-guide/index.html" class="post-card">
+          <div class="post-date">2026-03-26</div>
+          <span class="post-badge-new">NEW</span>
+          <div class="post-title">WHOOP как источник данных: исследовательский гайд</div>
+          <p class="post-excerpt">Полное руководство для исследователей — от архитектуры платформы до работающего pipeline. HRV, сон, API, Python, Apple Health и self-hosted стек.</p>
+        </a>
         <a href="./apple-watch-guide/index.html" class="post-card">
           <div class="post-date">2026-03-25</div>
           <div class="post-title">Apple Watch + Apple Health: руководство для исследователя</div>
@@ -85,21 +114,6 @@
           <div class="post-date">2026-03-24</div>
           <div class="post-title">Garmin: Руководство исследователя</div>
           <p class="post-excerpt">От распаковки до первого серьёзного замера — HRV, Body Battery, стресс, сон, экспорт данных. Полный гид для исследований ONTO NOTHING.</p>
-        </a>
-        <a href="./post-1/index.html" class="post-card">
-          <div class="post-date">2026-03-15</div>
-          <div class="post-title">Как ЭЭГ меняет понимание медитации</div>
-          <p class="post-excerpt">Что происходит в мозге во время глубокой практики — и почему это важно для каждого.</p>
-        </a>
-        <a href="./post-2/index.html" class="post-card">
-          <div class="post-date">2026-03-08</div>
-          <div class="post-title">Альфа, тета, дельта: навигатор по волнам</div>
-          <p class="post-excerpt">Простой гид по мозговым ритмам и их связи с состояниями осознанности.</p>
-        </a>
-        <a href="./post-3/index.html" class="post-card">
-          <div class="post-date">2026-02-28</div>
-          <div class="post-title">Ритмы сна и пики продуктивности</div>
-          <p class="post-excerpt">Как синхронизировать практику с биологическими циклами для максимального эффекта.</p>
         </a>
       </div>
     </div>
