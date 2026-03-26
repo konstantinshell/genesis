@@ -25,6 +25,7 @@
     { label: 'Neiry',             href: root + 'neiry/index.html',                        match: /\/neiry\// },
     { label: 'Блог',              href: root + 'blog/index.html',                         match: /^\/blog\/$|\/blog\/index\.html$/ },
     { label: 'Как это работает',  href: root + 'kak-eto-rabotaet/index.html',             match: /\/kak-eto-rabotaet\// },
+    { label: 'ONTO NOTHING',      href: root + 'onto-nothing/index.html',                  match: /\/onto-nothing\// },
   ];
 
   // ── Собираем HTML навигации ──────────────────────────────────────

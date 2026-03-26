@@ -20,6 +20,7 @@
     { label: 'Блог',              href: root + 'blog/index.html' },
     { label: 'Записаться',        href: root + 'zapisatsya/index.html' },
     { label: 'Как это работает',  href: root + 'kak-eto-rabotaet/index.html' },
+    { label: 'ONTO NOTHING',      href: root + 'onto-nothing/index.html' },
   ];
 
   const legalLinks = [
