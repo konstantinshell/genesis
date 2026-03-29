@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>∅</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #080808;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .logo-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-wrap svg {
+      width: min(60vw, 60vh);
+      height: min(60vw, 60vh);
+      filter: drop-shadow(0 0 32px #00ff5588) drop-shadow(0 0 80px #00ff5522);
+      animation: breathe 4s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { filter: drop-shadow(0 0 28px #00ff5566) drop-shadow(0 0 70px #00ff5518); }
+      50%       { filter: drop-shadow(0 0 44px #00ff55aa) drop-shadow(0 0 110px #00ff5530); }
+    }
+
+    /* subtle star bottom-right */
+    .star {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      color: #555;
+      font-size: 18px;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="logo-wrap">
+  <!--
+    Logo: stylised ø / empty-set
+    – circle, stroke only
+    – diagonal slash from lower-left (with curved tail) to upper-right (with horizontal bar)
+  -->
+  <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#00FF55" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+
+      <!-- Circle centred at 100,100 radius 52 -->
+      <circle cx="100" cy="100" r="52"/>
+
+      <!-- Diagonal slash: enters circle bottom-left, exits top-right -->
+      <!-- Curved tail at bottom-left: starts at ~(30,155), curves to (58,148) entering circle -->
+      <path d="M 30 158 Q 44 148 58 142"/>
+
+      <!-- Main diagonal line through circle -->
+      <line x1="58" y1="142" x2="142" y2="58"/>
+
+      <!-- Horizontal bar at top-right -->
+      <line x1="142" y1="58" x2="175" y2="58"/>
+
+    </g>
+  </svg>
+</div>
+
+<div class="star">✦</div>
+
+</body>
+</html>
