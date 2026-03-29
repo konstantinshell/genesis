@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RHYTHMS NOTHING — Мой профиль</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page-orbs">
+    <span></span>
+    <span></span>
+</div>
+
+<!-- НАВИГАЦИЯ -->
+<nav class="mini-app-nav">
+    <button class="nav-btn active" data-page="profile">
+        👤 Мой профиль
+    </button>
+    <button class="nav-btn" data-page="materials">
+        📚 Материалы
+    </button>
+</nav>
+
+<!-- ЛИЧНЫЙ ПРОФИЛЬ -->
+<main id="profile-page" class="page active">
+    <div class="container">
+
+        <!-- ЗАГРУЗКА -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Загружаю твой профиль...</p>
+        </div>
+
+        <!-- ПРОФИЛЬ (скрыт при загрузке) -->
+        <div id="profile-content" style="display: none;">
+
+            <!-- HEADER ПРОФИЛЯ -->
+            <section class="profile-header">
+                <div class="profile-avatar">👤</div>
+                <h1 id="profile-name">Имя Фамилия</h1>
+                <p id="profile-city" class="profile-meta">Город · Деятельность</p>
+            </section>
+
+            <!-- РОАДМЭП -->
+            <section class="card">
+                <h2>🗺 Роадмэп исследования</h2>
+                <div class="roadmap">
+                    <div class="milestone">
+                        <div class="milestone-icon">✅</div>
+                        <div class="milestone-text">
+                            <strong>Этап 0</strong>
+                            <span>Изучение инструментов</span>
+                        </div>
+                    </div>
+                    <div class="milestone">
+                        <div class="milestone-icon">🔄</div>
+                        <div class="milestone-text">
+                            <strong>Этап 1</strong>
+                            <span id="current-stage">Чекап MNPI (текущий)</span>
+                        </div>
+                    </div>
+                    <div class="milestone">
+                        <div class="milestone-icon">🔒</div>
+                        <div class="milestone-text">
+                            <strong>Этап 2</strong>
+                            <span>Программа исследования</span>
+                        </div>
+                    </div>
+                    <div class="milestone">
+                        <div class="milestone-icon">🔒</div>
+                        <div class="milestone-text">
+                            <strong>Этап 3</strong>
+                            <span>Годовая программа</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MNPI INDEX -->
+            <section class="card">
+                <h2>🧠 Твой MNPI</h2>
+                <div id="mnpi-content" class="text-content">
+                    <p>Данные загружаются...</p>
+                </div>
+            </section>
+
+            <!-- ЗАДАЧИ НА НЕДЕЛЮ -->
+            <section class="card">
+                <h2>📋 Задачи на неделю</h2>
+                <div id="weekly-tasks" class="text-content">
+                    <p>Задачи появятся после первого обновления</p>
+                </div>
+            </section>
+
+            <!-- ДАННЫЕ NEIRY -->
+            <section class="card">
+                <h2>📡 Последние данные NEIRY</h2>
+                <div id="neiry-data" class="metrics-grid">
+                    <div class="metric">
+                        <span class="metric-label">Концентрация</span>
+                        <span class="metric-value" id="metric-focus">—</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Релаксация</span>
+                        <span class="metric-value" id="metric-relax">—</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Стресс</span>
+                        <span class="metric-value" id="metric-stress">—</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Внимание</span>
+                        <span class="metric-value" id="metric-attention">—</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ЦЕЛЬ НА ГОД -->
+            <section class="card">
+                <h2>🎯 Цель на год</h2>
+                <div id="yearly-goal" class="text-content">
+                    <p>Формируется на основе твоих данных</p>
+                </div>
+            </section>
+
+            <!-- ЧТО ЗАЖИГАЕТ / ТОРМОЗИТ -->
+            <section class="card two-columns">
+                <div>
+                    <h3>⚡ Что зажигает</h3>
+                    <div id="what-ignites" class="text-content">
+                        <p>Данные появятся после анализа</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>🧱 Что тормозит</h3>
+                    <div id="what-blocks" class="text-content">
+                        <p>Данные появятся после анализа</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ПОСЛЕДНЕЕ ОБНОВЛЕНИЕ -->
+            <div class="update-info">
+                <small>Обновлено: <span id="last-update">сейчас</span></small>
+            </div>
+
+        </div>
+
+        <!-- ОШИБКА -->
+        <div id="error-message" style="display: none;" class="error-box">
+            <p>⚠️ Не удалось загрузить профиль</p>
+            <small id="error-text"></small>
+        </div>
+
+    </div>
+</main>
+
+<!-- МАТЕРИАЛЫ ПРОГРАММЫ -->
+<main id="materials-page" class="page">
+    <div class="container">
+        <section class="card">
+            <h2>📚 Материалы программы</h2>
+            <p>Здесь будут размещены материалы исследования, практики, статьи и ресурсы.</p>
+        </section>
+
+        <section class="card">
+            <h3>🎬 Вводные материалы</h3>
+            <ul>
+                <li><a href="#">Что такое MNPI</a></li>
+                <li><a href="#">Как работает нейротрекер Neiry</a></li>
+                <li><a href="#">Методология исследования</a></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3>🧘 Практики</h3>
+            <ul>
+                <li><a href="#">Базовая медитация</a></li>
+                <li><a href="#">Дыхательные техники</a></li>
+                <li><a href="#">Работа с телесными ощущениями</a></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3>📖 Статьи</h3>
+            <ul>
+                <li><a href="#">Биологические ритмы и здоровье</a></li>
+                <li><a href="#">Нейропластичность: как тренировать мозг</a></li>
+                <li><a href="#">Самопознание через данные</a></li>
+            </ul>
+        </section>
+    </div>
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>

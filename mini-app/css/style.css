@@ -1,0 +1,377 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #ECEEF2;
+    --text: #16161A;
+    --muted: #888896;
+    --accent: #5F5FFF;
+    --blue: #0A84FF;
+    --success: #34C759;
+    --warning: #FF9500;
+    --error: #FF3B30;
+    --fh: "Oswald", sans-serif;
+    --fb: "Jost", sans-serif;
+    --fm: "Courier Prime", monospace;
+}
+
+body {
+    font-family: var(--fb);
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+.page-orbs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.page-orbs span {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(95, 95, 255, 0.1) 0%, transparent 70%);
+    filter: blur(40px);
+}
+
+.page-orbs span:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    left: -100px;
+    animation: float 8s ease-in-out infinite;
+}
+
+.page-orbs span:nth-child(2) {
+    width: 200px;
+    height: 200px;
+    bottom: -50px;
+    right: -50px;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(30px); }
+}
+
+/* Navigation */
+.mini-app-nav {
+    display: flex;
+    gap: 0;
+    background: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-btn {
+    flex: 1;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-family: var(--fb);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.nav-btn:hover {
+    color: var(--text);
+    background: rgba(95, 95, 255, 0.05);
+}
+
+.nav-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+/* Pages */
+.page {
+    display: none;
+    position: relative;
+    z-index: 1;
+}
+
+.page.active {
+    display: block;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
+/* Loading State */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    gap: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(95, 95, 255, 0.1);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* Error Box */
+.error-box {
+    background: rgba(255, 59, 48, 0.1);
+    border-left: 4px solid var(--error);
+    padding: 16px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.error-box p {
+    color: var(--error);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.error-box small {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* Profile Header */
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    font-size: 80px;
+    margin-bottom: 16px;
+}
+
+.profile-header h1 {
+    font-family: var(--fh);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.profile-meta {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* Card */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+    font-family: var(--fh);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+}
+
+.card h3 {
+    font-family: var(--fh);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.card.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 0;
+}
+
+.card.two-columns > div {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card.two-columns h3 {
+    margin-top: 0;
+}
+
+/* Roadmap */
+.roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.milestone {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.milestone-icon {
+    font-size: 24px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.milestone-text {
+    flex: 1;
+    padding-top: 2px;
+}
+
+.milestone-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.milestone-text span {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.milestone-text span#current-stage {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.metric {
+    background: rgba(95, 95, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+}
+
+.metric-label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.metric-value {
+    display: block;
+    font-family: var(--fm);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* Text Content */
+.text-content {
+    line-height: 1.6;
+}
+
+.text-content p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.text-content ul {
+    list-style: none;
+    margin: 0;
+}
+
+.text-content li {
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.text-content li:last-child {
+    border-bottom: none;
+}
+
+.text-content a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.text-content a:hover {
+    text-decoration: underline;
+}
+
+/* Update Info */
+.update-info {
+    text-align: center;
+    padding: 20px 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 16px;
+    }
+
+    .profile-header h1 {
+        font-size: 24px;
+    }
+
+    .card.two-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .nav-btn {
+        font-size: 12px;
+        padding: 10px 12px;
+    }
+}
