@@ -1,124 +1,48 @@
 {
-  "name": "RHYTHMS NOTHING",
+  "name": "ONTO NOTHING",
   "role": "Организация",
   "real": true,
   "updated": "30.03.2026",
   "total_real": 3,
   "children": [
     {
-      "name": "Константин Шель",
+      "name": "Константин",
       "role": "Основатель",
       "real": true,
       "children": [
         {
-          "name": "Натали Морозова",
+          "name": "Натали",
           "role": "Со-основатель",
           "real": true,
           "children": [
-            {
-              "name": "Алексей Волков (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Ирина Лебедева (свободно)",
-                  "real": false,
-                  "children": [
-                    { "name": "Виктор Новиков (свободно)", "real": false, "children": [] }
-                  ]
-                },
-                {
-                  "name": "Павел Соколов (свободно)",
-                  "real": false,
-                  "children": [
-                    { "name": "Анна Петрова (свободно)", "real": false, "children": [] }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "Мария Светлова (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Сергей Зайцев (свободно)",
-                  "real": false,
-                  "children": [
-                    { "name": "Татьяна Попова (свободно)", "real": false, "children": [] }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "Дмитрий Орлов (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Елена Крылова (свободно)",
-                  "real": false,
-                  "children": [
-                    { "name": "Николай Белов (свободно)", "real": false, "children": [] }
-                  ]
-                },
-                {
-                  "name": "Оксана Белова (свободно)",
-                  "real": false,
-                  "children": [
-                    { "name": "Денис Козлов (свободно)", "real": false, "children": [] }
-                  ]
-                }
-              ]
-            }
+            { "name": "Алексей", "real": false, "children": [
+              { "name": "Ирина", "real": false, "children": [] },
+              { "name": "Павел", "real": false, "children": [] }
+            ]},
+            { "name": "Мария", "real": false, "children": [
+              { "name": "Сергей", "real": false, "children": [] }
+            ]}
           ]
         },
         {
-          "name": "Андрей Козлов (свободно)",
+          "name": "Андрей",
           "real": false,
           "children": [
-            {
-              "name": "Марина Соловьёва (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Игорь Федотов (свободно)",
-                  "real": false,
-                  "children": [
-                    { "name": "Дарья Тихонова (свободно)", "real": false, "children": [] }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "Владимир Степанов (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Светлана Медведева (свободно)",
-                  "real": false,
-                  "children": [
-                    { "name": "Максим Борисов (свободно)", "real": false, "children": [] }
-                  ]
-                }
-              ]
-            }
+            { "name": "Марина", "real": false, "children": [
+              { "name": "Игорь", "real": false, "children": [] }
+            ]},
+            { "name": "Владимир", "real": false, "children": [
+              { "name": "Светлана", "real": false, "children": [] }
+            ]}
           ]
         },
         {
-          "name": "Олеся Романова (свободно)",
+          "name": "Олеся",
           "real": false,
           "children": [
-            {
-              "name": "Евгений Макаров (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Полина Ершова (свободно)",
-                  "real": false,
-                  "children": [
-                    { "name": "Тимур Хасанов (свободно)", "real": false, "children": [] }
-                  ]
-                }
-              ]
-            }
+            { "name": "Евгений", "real": false, "children": [
+              { "name": "Полина", "real": false, "children": [] }
+            ]}
           ]
         }
       ]

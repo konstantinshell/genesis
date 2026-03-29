@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0">
   <title>Сеть — ONTO NOTHING</title>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -13,156 +13,202 @@
       background: #0a0a0f;
       color: #e0e0e8;
       min-height: 100vh;
+      overflow-x: auto;
     }
 
     .header {
       text-align: center;
-      padding: 48px 20px 16px;
+      padding: 40px 20px 12px;
     }
     .header h1 {
       font-family: "Oswald", sans-serif;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       color: #fff;
     }
     .header p {
-      color: #666;
-      font-size: 13px;
-      margin-top: 8px;
+      color: #555;
+      font-size: 12px;
+      margin-top: 6px;
     }
 
     .stats {
       display: flex;
       justify-content: center;
-      gap: 40px;
-      padding: 20px;
-      margin-bottom: 20px;
+      gap: 32px;
+      padding: 16px 20px 24px;
     }
     .stat-num {
       font-family: "Oswald", sans-serif;
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 600;
       color: #7c6fff;
       text-align: center;
     }
     .stat-label {
-      font-size: 11px;
-      color: #555;
+      font-size: 10px;
+      color: #444;
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    .tree {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 20px 80px;
+    /* ── MLM TREE ── */
+    .mlm-tree {
+      display: flex;
+      justify-content: center;
+      padding: 20px 10px 80px;
+      overflow-x: auto;
     }
 
-    /* Node */
-    .n {
+    .mlm-tree ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding-top: 20px;
       position: relative;
     }
-    .n-box {
+
+    .mlm-tree li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding: 0 8px;
+    }
+
+    /* Вертикальная линия вниз от родителя */
+    .mlm-tree li::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 20px;
+      background: rgba(124, 111, 255, 0.25);
+    }
+
+    /* Горизонтальная линия между братьями */
+    .mlm-tree li::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      height: 2px;
+      background: rgba(124, 111, 255, 0.25);
+      width: 100%;
+      left: 0;
+    }
+
+    .mlm-tree li:first-child::after { left: 50%; width: 50%; }
+    .mlm-tree li:last-child::after { width: 50%; }
+    .mlm-tree li:only-child::after { display: none; }
+
+    /* Корневой узел — без линий сверху */
+    .mlm-tree > ul > li::before,
+    .mlm-tree > ul > li::after { display: none; }
+
+    /* ── NODE CARD ── */
+    .node {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      cursor: default;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      margin: 6px 0;
-      border-radius: 8px;
-      transition: all 0.2s;
-    }
-    .n-box:hover { background: rgba(124, 111, 255, 0.05); }
-
-    /* Types */
-    .n-box.org {
-      background: rgba(124, 111, 255, 0.12);
-      border: 1px solid rgba(124, 111, 255, 0.3);
       justify-content: center;
-      margin-bottom: 16px;
+      font-size: 22px;
+      margin-bottom: 6px;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .n-box.founder {
-      background: rgba(124, 111, 255, 0.08);
-      border-left: 3px solid #7c6fff;
+    .node:hover .avatar {
+      transform: scale(1.15);
     }
-    .n-box.real {
-      background: rgba(255, 255, 255, 0.04);
-      border-left: 3px solid #2d9e5a;
+
+    .avatar.org {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #7c6fff, #4a3fbf);
+      box-shadow: 0 0 30px rgba(124, 111, 255, 0.4);
+      font-size: 26px;
     }
-    .n-box.demo {
+    .avatar.founder {
+      background: linear-gradient(135deg, #7c6fff, #5a4fd9);
+      box-shadow: 0 0 20px rgba(124, 111, 255, 0.3);
+    }
+    .avatar.real {
+      background: linear-gradient(135deg, #2d9e5a, #1e7a42);
+      box-shadow: 0 0 15px rgba(45, 158, 90, 0.3);
+    }
+    .avatar.demo {
       background: transparent;
-      border: 1px dashed rgba(255,255,255,0.08);
-      opacity: 0.5;
+      border: 2px dashed rgba(255,255,255,0.15);
     }
-    .n-box.demo:hover { opacity: 0.8; }
 
-    .n-icon {
-      font-size: 20px;
-      min-width: 28px;
+    .name {
+      font-size: 12px;
+      font-weight: 500;
+      color: #ccc;
       text-align: center;
+      max-width: 80px;
+      line-height: 1.3;
     }
-    .n-info { flex: 1; }
-    .n-name {
-      font-size: 14px;
-      font-weight: 500;
-      color: #e0e0e8;
-    }
-    .n-box.demo .n-name { color: #555; }
-    .n-role {
-      font-size: 11px;
-      color: #666;
-    }
-    .n-lvl {
-      font-size: 10px;
-      color: #7c6fff;
-      background: rgba(124, 111, 255, 0.15);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 500;
-    }
+    .demo .name { color: #444; }
 
-    /* Children connector */
-    .n-kids {
-      margin-left: 20px;
-      padding-left: 20px;
-      border-left: 1px solid rgba(124, 111, 255, 0.12);
+    .role-tag {
+      font-size: 9px;
+      color: #7c6fff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+    .demo .role-tag { color: #333; }
+
+    .level-badge {
+      font-size: 9px;
+      color: #555;
+      margin-top: 2px;
     }
 
     .updated {
       text-align: center;
-      padding: 30px;
-      color: #333;
-      font-size: 12px;
+      padding: 20px;
+      color: #2a2a2a;
+      font-size: 11px;
     }
 
     .legend {
       display: flex;
       justify-content: center;
-      gap: 24px;
-      padding: 0 20px 24px;
+      gap: 20px;
+      padding: 0 20px 20px;
     }
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: #555;
+      gap: 5px;
+      font-size: 10px;
+      color: #444;
     }
-    .leg-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 2px;
-    }
-    .leg-dot.r { background: #2d9e5a; }
-    .leg-dot.f { background: #7c6fff; }
-    .leg-dot.d { border: 1px dashed #555; }
+    .lg { width: 8px; height: 8px; border-radius: 50%; }
+    .lg.f { background: #7c6fff; }
+    .lg.r { background: #2d9e5a; }
+    .lg.d { border: 1.5px dashed #444; }
 
     @media (max-width: 600px) {
-      .header h1 { font-size: 22px; }
-      .n-kids { margin-left: 12px; padding-left: 14px; }
-      .stats { gap: 24px; }
+      .mlm-tree { padding: 10px 0 60px; }
+      .avatar { width: 40px; height: 40px; font-size: 18px; }
+      .avatar.org { width: 48px; height: 48px; }
+      .name { font-size: 10px; max-width: 60px; }
+      .mlm-tree li { padding: 0 4px; }
     }
   </style>
 </head>
@@ -170,7 +216,7 @@
 
 <div class="header">
   <h1>Сеть ONTO NOTHING</h1>
-  <p>Реферальная структура — 5 колен</p>
+  <p>MLM-структура — 5 колен</p>
 </div>
 
 <div class="stats">
@@ -185,12 +231,12 @@
 </div>
 
 <div class="legend">
-  <div class="legend-item"><div class="leg-dot f"></div> Основатель</div>
-  <div class="legend-item"><div class="leg-dot r"></div> Участник</div>
-  <div class="legend-item"><div class="leg-dot d"></div> Свободно</div>
+  <div class="legend-item"><div class="lg f"></div> Основатель</div>
+  <div class="legend-item"><div class="lg r"></div> Участник</div>
+  <div class="legend-item"><div class="lg d"></div> Свободно</div>
 </div>
 
-<div class="tree" id="tree"></div>
+<div class="mlm-tree" id="tree"></div>
 <div class="updated" id="upd"></div>
 
 <script>
@@ -200,53 +246,50 @@ async function init() {
     const d = await r.json();
     document.getElementById('s-real').textContent = d.total_real;
     document.getElementById('upd').textContent = 'Обновлено: ' + d.updated;
-    document.getElementById('tree').innerHTML = render(d, 0);
+    document.getElementById('tree').innerHTML = '<ul>' + renderNode(d, 0) + '</ul>';
   } catch(e) {
-    document.getElementById('tree').innerHTML = '<p style="text-align:center;color:#444">Загрузка...</p>';
+    document.getElementById('tree').innerHTML = '<p style="color:#333;text-align:center">Загрузка...</p>';
   }
 }
 
-function render(node, depth) {
+function renderNode(node, depth) {
   const isOrg = depth === 0;
-  const isFounder = (node.role || '').includes('Основатель') || (node.role || '').includes('основатель');
+  const isFounder = (node.role || '').toLowerCase().includes('основатель');
   const isReal = node.real && !isOrg && !isFounder;
   const isDemo = !node.real;
 
-  let cls = 'n-box';
+  let avatarCls = 'avatar';
   let icon = '👤';
-  if (isOrg) { cls += ' org'; icon = '🌐'; }
-  else if (isFounder) { cls += ' founder'; icon = '👑'; }
-  else if (isReal) { cls += ' real'; icon = '✦'; }
-  else if (isDemo) { cls += ' demo'; icon = '○'; }
+  if (isOrg) { avatarCls += ' org'; icon = '🌐'; }
+  else if (isFounder) { avatarCls += ' founder'; icon = '👑'; }
+  else if (isReal) { avatarCls += ' real'; icon = '✦'; }
+  else { avatarCls += ' demo'; icon = '?'; }
 
-  let lvl = '';
-  if (depth >= 2 && !isOrg) {
-    lvl = '<span class="n-lvl">L' + (depth - 1) + '</span>';
-  }
+  let role = '';
+  if (isOrg) role = 'организация';
+  else if (isFounder) role = node.role;
+  else if (isDemo) role = 'свободно';
 
-  let role = node.role || '';
-  if (isDemo) role = 'свободное место';
+  let level = '';
+  if (depth >= 3) level = '<div class="level-badge">колено ' + (depth - 1) + '</div>';
 
-  let name = node.name;
-  if (isDemo) name = name.replace(' (свободно)', '');
-
-  let html = '<div class="n"><div class="' + cls + '">';
-  html += '<div class="n-icon">' + icon + '</div>';
-  html += '<div class="n-info"><div class="n-name">' + name + '</div>';
-  if (role) html += '<div class="n-role">' + role + '</div>';
-  html += '</div>';
-  html += lvl;
+  let html = '<li>';
+  html += '<div class="node' + (isDemo ? ' demo' : '') + '">';
+  html += '<div class="' + avatarCls + '">' + icon + '</div>';
+  html += '<div class="name">' + node.name + '</div>';
+  if (role) html += '<div class="role-tag">' + role + '</div>';
+  html += level;
   html += '</div>';
 
   if (node.children && node.children.length) {
-    html += '<div class="n-kids">';
+    html += '<ul>';
     for (const ch of node.children) {
-      html += render(ch, depth + 1);
+      html += renderNode(ch, depth + 1);
     }
-    html += '</div>';
+    html += '</ul>';
   }
 
-  html += '</div>';
+  html += '</li>';
   return html;
 }
 
