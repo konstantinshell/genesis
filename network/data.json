@@ -2,7 +2,7 @@
   "name": "RHYTHMS NOTHING",
   "role": "🌐 Организация",
   "real": true,
-  "updated": "30.03.2026",
+  "updated": "30.03.2026 04:20",
   "total_real": 3,
   "children": [
     {
@@ -22,7 +22,11 @@
                   "name": "Виктор Новиков (свободно)",
                   "real": false,
                   "children": [
-                    { "name": "Юлия Кузнецова (свободно)", "real": false, "children": [] }
+                    {
+                      "name": "Юлия Кузнецова (свободно)",
+                      "real": false,
+                      "children": []
+                    }
                   ]
                 }
               ]
@@ -35,7 +39,11 @@
                   "name": "Анна Петрова (свободно)",
                   "real": false,
                   "children": [
-                    { "name": "Роман Васильев (свободно)", "real": false, "children": [] }
+                    {
+                      "name": "Роман Васильев (свободно)",
+                      "real": false,
+                      "children": []
+                    }
                   ]
                 }
               ]
@@ -54,7 +62,11 @@
                   "name": "Татьяна Попова (свободно)",
                   "real": false,
                   "children": [
-                    { "name": "Артём Смирнов (свободно)", "real": false, "children": [] }
+                    {
+                      "name": "Артём Смирнов (свободно)",
+                      "real": false,
+                      "children": []
+                    }
                   ]
                 }
               ]
@@ -67,7 +79,11 @@
                   "name": "Денис Козлов (свободно)",
                   "real": false,
                   "children": [
-                    { "name": "Лена Орлова (свободно)", "real": false, "children": [] }
+                    {
+                      "name": "Лена Орлова (свободно)",
+                      "real": false,
+                      "children": []
+                    }
                   ]
                 }
               ]
@@ -86,7 +102,11 @@
                   "name": "Николай Белов (свободно)",
                   "real": false,
                   "children": [
-                    { "name": "Кира Волкова (свободно)", "real": false, "children": [] }
+                    {
+                      "name": "Кира Волкова (свободно)",
+                      "real": false,
+                      "children": []
+                    }
                   ]
                 }
               ]
@@ -112,7 +132,11 @@
                   "name": "Игорь Федотов (свободно)",
                   "real": false,
                   "children": [
-                    { "name": "Дарья Тихонова (свободно)", "real": false, "children": [] }
+                    {
+                      "name": "Дарья Тихонова (свободно)",
+                      "real": false,
+                      "children": []
+                    }
                   ]
                 }
               ]
@@ -125,7 +149,11 @@
                   "name": "Светлана Медведева (свободно)",
                   "real": false,
                   "children": [
-                    { "name": "Максим Борисов (свободно)", "real": false, "children": [] }
+                    {
+                      "name": "Максим Борисов (свободно)",
+                      "real": false,
+                      "children": []
+                    }
                   ]
                 }
               ]
@@ -144,7 +172,11 @@
                   "name": "Полина Ершова (свободно)",
                   "real": false,
                   "children": [
-                    { "name": "Тимур Хасанов (свободно)", "real": false, "children": [] }
+                    {
+                      "name": "Тимур Хасанов (свободно)",
+                      "real": false,
+                      "children": []
+                    }
                   ]
                 }
               ]
@@ -157,7 +189,11 @@
                   "name": "Антон Григорьев (свободно)",
                   "real": false,
                   "children": [
-                    { "name": "Вера Ларионова (свободно)", "real": false, "children": [] }
+                    {
+                      "name": "Вера Ларионова (свободно)",
+                      "real": false,
+                      "children": []
+                    }
                   ]
                 }
               ]
@@ -176,7 +212,11 @@
                   "name": "Руслан Гусев (свободно)",
                   "real": false,
                   "children": [
-                    { "name": "Яна Филатова (свободно)", "real": false, "children": [] }
+                    {
+                      "name": "Яна Филатова (свободно)",
+                      "real": false,
+                      "children": []
+                    }
                   ]
                 }
               ]
