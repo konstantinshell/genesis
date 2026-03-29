@@ -1,5 +1,5 @@
 {
-  "name": "ONTO NOTHING",
+  "name": "РИТМЫ NOTHING",
   "role": "Организация",
   "real": true,
   "updated": "30.03.2026",
@@ -10,41 +10,45 @@
       "role": "Основатель",
       "real": true,
       "children": [
-        {
-          "name": "Натали",
-          "role": "Со-основатель",
-          "real": true,
-          "children": [
-            { "name": "Алексей", "real": false, "children": [
-              { "name": "Ирина", "real": false, "children": [] },
-              { "name": "Павел", "real": false, "children": [] }
-            ]},
-            { "name": "Мария", "real": false, "children": [
-              { "name": "Сергей", "real": false, "children": [] }
-            ]}
-          ]
-        },
-        {
-          "name": "Андрей",
-          "real": false,
-          "children": [
-            { "name": "Марина", "real": false, "children": [
-              { "name": "Игорь", "real": false, "children": [] }
-            ]},
-            { "name": "Владимир", "real": false, "children": [
-              { "name": "Светлана", "real": false, "children": [] }
-            ]}
-          ]
-        },
-        {
-          "name": "Олеся",
-          "real": false,
-          "children": [
-            { "name": "Евгений", "real": false, "children": [
-              { "name": "Полина", "real": false, "children": [] }
-            ]}
-          ]
-        }
+        { "name": "Алексей", "real": false, "children": [
+          { "name": "Ирина", "real": false, "children": [
+            { "name": "Виктор", "real": false, "children": [] }
+          ]},
+          { "name": "Павел", "real": false, "children": [
+            { "name": "Анна", "real": false, "children": [] }
+          ]}
+        ]},
+        { "name": "Мария", "real": false, "children": [
+          { "name": "Сергей", "real": false, "children": [
+            { "name": "Татьяна", "real": false, "children": [] }
+          ]}
+        ]},
+        { "name": "Дмитрий", "real": false, "children": [
+          { "name": "Елена", "real": false, "children": [] }
+        ]}
+      ]
+    },
+    {
+      "name": "Натали",
+      "role": "Основатель",
+      "real": true,
+      "children": [
+        { "name": "Андрей", "real": false, "children": [
+          { "name": "Марина", "real": false, "children": [
+            { "name": "Игорь", "real": false, "children": [] }
+          ]},
+          { "name": "Владимир", "real": false, "children": [
+            { "name": "Светлана", "real": false, "children": [] }
+          ]}
+        ]},
+        { "name": "Олеся", "real": false, "children": [
+          { "name": "Евгений", "real": false, "children": [
+            { "name": "Полина", "real": false, "children": [] }
+          ]}
+        ]},
+        { "name": "Кирилл", "real": false, "children": [
+          { "name": "Алина", "real": false, "children": [] }
+        ]}
       ]
     }
   ]
