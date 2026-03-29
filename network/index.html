@@ -3,250 +3,245 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Сеть RHYTHMS NOTHING</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/nav.css">
+  <title>Сеть — ONTO NOTHING</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { background: #ECEEF2; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    .tree-header {
-      text-align: center;
-      padding: 40px 20px 20px;
+    body {
+      font-family: "Jost", sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e8;
+      min-height: 100vh;
     }
-    .tree-header h1 {
+
+    .header {
+      text-align: center;
+      padding: 48px 20px 16px;
+    }
+    .header h1 {
+      font-family: "Oswald", sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .header p {
+      color: #666;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .stat-num {
       font-family: "Oswald", sans-serif;
       font-size: 32px;
       font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .tree-header p {
-      color: #888896;
-      font-size: 14px;
-    }
-    .tree-stats {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin: 20px 0 30px;
-    }
-    .tree-stat {
+      color: #7c6fff;
       text-align: center;
     }
-    .tree-stat-value {
-      font-family: "Courier Prime", monospace;
-      font-size: 28px;
-      font-weight: 700;
-      color: #5F5FFF;
-    }
-    .tree-stat-label {
+    .stat-label {
       font-size: 11px;
-      color: #888896;
-      margin-top: 4px;
+      color: #555;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .tree-container {
-      max-width: 800px;
+    .tree {
+      max-width: 700px;
       margin: 0 auto;
-      padding: 0 20px 60px;
+      padding: 0 20px 80px;
     }
 
-    /* Tree nodes */
-    .node {
+    /* Node */
+    .n {
       position: relative;
-      margin-left: 24px;
     }
-    .node-root {
-      margin-left: 0;
-    }
-    .node-content {
+    .n-box {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 10px 16px;
-      margin: 4px 0;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      transition: transform 0.2s;
+      padding: 12px 16px;
+      margin: 6px 0;
+      border-radius: 8px;
+      transition: all 0.2s;
     }
-    .node-content:hover {
-      transform: translateX(4px);
-    }
-    .node-content.demo {
-      background: rgba(255,255,255,0.5);
-      border: 1px dashed #ccc;
-    }
-    .node-content.founder {
-      background: linear-gradient(135deg, rgba(95,95,255,0.08), rgba(10,132,255,0.08));
-      border-left: 3px solid #5F5FFF;
-    }
-    .node-content.org {
-      background: linear-gradient(135deg, rgba(95,95,255,0.15), rgba(10,132,255,0.15));
-      border-left: 3px solid #5F5FFF;
-    }
+    .n-box:hover { background: rgba(124, 111, 255, 0.05); }
 
-    .node-icon {
-      font-size: 24px;
-      min-width: 32px;
+    /* Types */
+    .n-box.org {
+      background: rgba(124, 111, 255, 0.12);
+      border: 1px solid rgba(124, 111, 255, 0.3);
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .n-box.founder {
+      background: rgba(124, 111, 255, 0.08);
+      border-left: 3px solid #7c6fff;
+    }
+    .n-box.real {
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 3px solid #2d9e5a;
+    }
+    .n-box.demo {
+      background: transparent;
+      border: 1px dashed rgba(255,255,255,0.08);
+      opacity: 0.5;
+    }
+    .n-box.demo:hover { opacity: 0.8; }
+
+    .n-icon {
+      font-size: 20px;
+      min-width: 28px;
       text-align: center;
     }
-    .node-info {
-      flex: 1;
-    }
-    .node-name {
-      font-family: "Oswald", sans-serif;
-      font-size: 15px;
+    .n-info { flex: 1; }
+    .n-name {
+      font-size: 14px;
       font-weight: 500;
+      color: #e0e0e8;
     }
-    .node-role {
+    .n-box.demo .n-name { color: #555; }
+    .n-role {
       font-size: 11px;
-      color: #888896;
+      color: #666;
     }
-    .node-level {
-      font-family: "Courier Prime", monospace;
-      font-size: 11px;
-      color: #5F5FFF;
-      background: rgba(95,95,255,0.1);
+    .n-lvl {
+      font-size: 10px;
+      color: #7c6fff;
+      background: rgba(124, 111, 255, 0.15);
       padding: 2px 8px;
       border-radius: 4px;
+      font-weight: 500;
     }
 
-    /* Connector lines */
-    .node-children {
-      position: relative;
+    /* Children connector */
+    .n-kids {
+      margin-left: 20px;
       padding-left: 20px;
-      border-left: 2px solid rgba(95,95,255,0.15);
-      margin-left: 16px;
+      border-left: 1px solid rgba(124, 111, 255, 0.12);
+    }
+
+    .updated {
+      text-align: center;
+      padding: 30px;
+      color: #333;
+      font-size: 12px;
     }
 
     .legend {
-      max-width: 800px;
-      margin: 0 auto 30px;
-      padding: 0 20px;
       display: flex;
-      gap: 20px;
       justify-content: center;
-      flex-wrap: wrap;
+      gap: 24px;
+      padding: 0 20px 24px;
     }
     .legend-item {
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 12px;
-      color: #888896;
+      font-size: 11px;
+      color: #555;
     }
-    .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 3px;
+    .leg-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
     }
-    .legend-dot.real { background: #5F5FFF; }
-    .legend-dot.demo { background: #ccc; border: 1px dashed #999; }
-
-    .update-info {
-      text-align: center;
-      padding: 20px;
-      color: #888896;
-      font-size: 12px;
-    }
+    .leg-dot.r { background: #2d9e5a; }
+    .leg-dot.f { background: #7c6fff; }
+    .leg-dot.d { border: 1px dashed #555; }
 
     @media (max-width: 600px) {
-      .tree-header h1 { font-size: 24px; }
-      .node { margin-left: 12px; }
-      .node-children { padding-left: 12px; margin-left: 10px; }
-      .node-content { padding: 8px 12px; }
+      .header h1 { font-size: 22px; }
+      .n-kids { margin-left: 12px; padding-left: 14px; }
+      .stats { gap: 24px; }
     }
   </style>
 </head>
 <body>
 
-<div class="page-orbs"><span></span><span></span></div>
-
-<div class="tree-header">
-  <h1>🌳 Сеть RHYTHMS NOTHING</h1>
-  <p>Реферальное дерево — 5 колен</p>
+<div class="header">
+  <h1>Сеть ONTO NOTHING</h1>
+  <p>Реферальная структура — 5 колен</p>
 </div>
 
-<div class="tree-stats">
-  <div class="tree-stat">
-    <div class="tree-stat-value" id="stat-real">—</div>
-    <div class="tree-stat-label">участников</div>
+<div class="stats">
+  <div>
+    <div class="stat-num" id="s-real">—</div>
+    <div class="stat-label">участников</div>
   </div>
-  <div class="tree-stat">
-    <div class="tree-stat-value">5</div>
-    <div class="tree-stat-label">колен</div>
+  <div>
+    <div class="stat-num">5</div>
+    <div class="stat-label">колен</div>
   </div>
 </div>
 
 <div class="legend">
-  <div class="legend-item"><div class="legend-dot real"></div> Реальный участник</div>
-  <div class="legend-item"><div class="legend-dot demo"></div> Свободное место</div>
+  <div class="legend-item"><div class="leg-dot f"></div> Основатель</div>
+  <div class="legend-item"><div class="leg-dot r"></div> Участник</div>
+  <div class="legend-item"><div class="leg-dot d"></div> Свободно</div>
 </div>
 
-<div class="tree-container" id="tree"></div>
-
-<div class="update-info" id="updated"></div>
+<div class="tree" id="tree"></div>
+<div class="updated" id="upd"></div>
 
 <script>
-async function loadTree() {
+async function init() {
   try {
-    const resp = await fetch('data.json?t=' + Date.now());
-    const data = await resp.json();
-
-    document.getElementById('stat-real').textContent = data.total_real;
-    document.getElementById('updated').textContent = 'Обновлено: ' + data.updated;
-
-    const container = document.getElementById('tree');
-    container.innerHTML = renderNode(data, 0, true);
+    const r = await fetch('data.json?t=' + Date.now());
+    const d = await r.json();
+    document.getElementById('s-real').textContent = d.total_real;
+    document.getElementById('upd').textContent = 'Обновлено: ' + d.updated;
+    document.getElementById('tree').innerHTML = render(d, 0);
   } catch(e) {
-    document.getElementById('tree').innerHTML =
-      '<p style="text-align:center;color:#888;">Данные загружаются...</p>';
+    document.getElementById('tree').innerHTML = '<p style="text-align:center;color:#444">Загрузка...</p>';
   }
 }
 
-function renderNode(node, depth, isRoot) {
+function render(node, depth) {
   const isOrg = depth === 0;
-  const isFounder = node.role && node.role.includes('Основатель');
+  const isFounder = (node.role || '').includes('Основатель') || (node.role || '').includes('основатель');
+  const isReal = node.real && !isOrg && !isFounder;
   const isDemo = !node.real;
 
+  let cls = 'n-box';
   let icon = '👤';
-  if (isOrg) icon = '🌐';
-  else if (isFounder) icon = '👑';
-  else if (isDemo) icon = '🔓';
+  if (isOrg) { cls += ' org'; icon = '🌐'; }
+  else if (isFounder) { cls += ' founder'; icon = '👑'; }
+  else if (isReal) { cls += ' real'; icon = '✦'; }
+  else if (isDemo) { cls += ' demo'; icon = '○'; }
 
-  let contentClass = 'node-content';
-  if (isOrg) contentClass += ' org';
-  else if (isFounder) contentClass += ' founder';
-  else if (isDemo) contentClass += ' demo';
-
-  let levelBadge = '';
-  if (depth > 1) {
-    levelBadge = `<span class="node-level">L${depth - 1}</span>`;
+  let lvl = '';
+  if (depth >= 2 && !isOrg) {
+    lvl = '<span class="n-lvl">L' + (depth - 1) + '</span>';
   }
 
-  let roleText = node.role || '';
-  if (node.city && node.real && !isFounder && !isOrg) {
-    roleText = node.city;
-  }
+  let role = node.role || '';
+  if (isDemo) role = 'свободное место';
 
-  let html = `
-    <div class="node ${isRoot ? 'node-root' : ''}">
-      <div class="${contentClass}">
-        <div class="node-icon">${icon}</div>
-        <div class="node-info">
-          <div class="node-name">${node.name}</div>
-          ${roleText ? '<div class="node-role">' + roleText + '</div>' : ''}
-        </div>
-        ${levelBadge}
-      </div>`;
+  let name = node.name;
+  if (isDemo) name = name.replace(' (свободно)', '');
 
-  if (node.children && node.children.length > 0) {
-    html += '<div class="node-children">';
-    for (const child of node.children) {
-      html += renderNode(child, depth + 1, false);
+  let html = '<div class="n"><div class="' + cls + '">';
+  html += '<div class="n-icon">' + icon + '</div>';
+  html += '<div class="n-info"><div class="n-name">' + name + '</div>';
+  if (role) html += '<div class="n-role">' + role + '</div>';
+  html += '</div>';
+  html += lvl;
+  html += '</div>';
+
+  if (node.children && node.children.length) {
+    html += '<div class="n-kids">';
+    for (const ch of node.children) {
+      html += render(ch, depth + 1);
     }
     html += '</div>';
   }
@@ -255,10 +250,8 @@ function renderNode(node, depth, isRoot) {
   return html;
 }
 
-loadTree();
+init();
 </script>
 
-<script src="../components/nav.js"></script>
-<script src="../components/footer.js"></script>
 </body>
 </html>

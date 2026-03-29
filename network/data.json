@@ -1,125 +1,75 @@
 {
   "name": "RHYTHMS NOTHING",
-  "role": "🌐 Организация",
+  "role": "Организация",
   "real": true,
-  "updated": "30.03.2026 04:20",
+  "updated": "30.03.2026",
   "total_real": 3,
   "children": [
     {
       "name": "Константин Шель",
-      "role": "👑 Основатель",
+      "role": "Основатель",
       "real": true,
       "children": [
         {
-          "name": "Алексей Волков (свободно)",
-          "real": false,
+          "name": "Натали Морозова",
+          "role": "Со-основатель",
+          "real": true,
           "children": [
             {
-              "name": "Ирина Лебедева (свободно)",
+              "name": "Алексей Волков (свободно)",
               "real": false,
               "children": [
                 {
-                  "name": "Виктор Новиков (свободно)",
+                  "name": "Ирина Лебедева (свободно)",
                   "real": false,
                   "children": [
-                    {
-                      "name": "Юлия Кузнецова (свободно)",
-                      "real": false,
-                      "children": []
-                    }
+                    { "name": "Виктор Новиков (свободно)", "real": false, "children": [] }
+                  ]
+                },
+                {
+                  "name": "Павел Соколов (свободно)",
+                  "real": false,
+                  "children": [
+                    { "name": "Анна Петрова (свободно)", "real": false, "children": [] }
                   ]
                 }
               ]
             },
             {
-              "name": "Павел Соколов (свободно)",
+              "name": "Мария Светлова (свободно)",
               "real": false,
               "children": [
                 {
-                  "name": "Анна Петрова (свободно)",
+                  "name": "Сергей Зайцев (свободно)",
                   "real": false,
                   "children": [
-                    {
-                      "name": "Роман Васильев (свободно)",
-                      "real": false,
-                      "children": []
-                    }
+                    { "name": "Татьяна Попова (свободно)", "real": false, "children": [] }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Дмитрий Орлов (свободно)",
+              "real": false,
+              "children": [
+                {
+                  "name": "Елена Крылова (свободно)",
+                  "real": false,
+                  "children": [
+                    { "name": "Николай Белов (свободно)", "real": false, "children": [] }
+                  ]
+                },
+                {
+                  "name": "Оксана Белова (свободно)",
+                  "real": false,
+                  "children": [
+                    { "name": "Денис Козлов (свободно)", "real": false, "children": [] }
                   ]
                 }
               ]
             }
           ]
         },
-        {
-          "name": "Мария Светлова (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Сергей Зайцев (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Татьяна Попова (свободно)",
-                  "real": false,
-                  "children": [
-                    {
-                      "name": "Артём Смирнов (свободно)",
-                      "real": false,
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "Оксана Белова (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Денис Козлов (свободно)",
-                  "real": false,
-                  "children": [
-                    {
-                      "name": "Лена Орлова (свободно)",
-                      "real": false,
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "Дмитрий Орлов (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Елена Крылова (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Николай Белов (свободно)",
-                  "real": false,
-                  "children": [
-                    {
-                      "name": "Кира Волкова (свободно)",
-                      "real": false,
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Натали Морозова",
-      "role": "👑 Основатель",
-      "real": true,
-      "children": [
         {
           "name": "Андрей Козлов (свободно)",
           "real": false,
@@ -132,11 +82,7 @@
                   "name": "Игорь Федотов (свободно)",
                   "real": false,
                   "children": [
-                    {
-                      "name": "Дарья Тихонова (свободно)",
-                      "real": false,
-                      "children": []
-                    }
+                    { "name": "Дарья Тихонова (свободно)", "real": false, "children": [] }
                   ]
                 }
               ]
@@ -149,11 +95,7 @@
                   "name": "Светлана Медведева (свободно)",
                   "real": false,
                   "children": [
-                    {
-                      "name": "Максим Борисов (свободно)",
-                      "real": false,
-                      "children": []
-                    }
+                    { "name": "Максим Борисов (свободно)", "real": false, "children": [] }
                   ]
                 }
               ]
@@ -172,51 +114,7 @@
                   "name": "Полина Ершова (свободно)",
                   "real": false,
                   "children": [
-                    {
-                      "name": "Тимур Хасанов (свободно)",
-                      "real": false,
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "Наташа Кравцова (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Антон Григорьев (свободно)",
-                  "real": false,
-                  "children": [
-                    {
-                      "name": "Вера Ларионова (свободно)",
-                      "real": false,
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "Кирилл Захаров (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Алина Воронова (свободно)",
-              "real": false,
-              "children": [
-                {
-                  "name": "Руслан Гусев (свободно)",
-                  "real": false,
-                  "children": [
-                    {
-                      "name": "Яна Филатова (свободно)",
-                      "real": false,
-                      "children": []
-                    }
+                    { "name": "Тимур Хасанов (свободно)", "real": false, "children": [] }
                   ]
                 }
               ]
