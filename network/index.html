@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сеть RHYTHMS NOTHING</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <style>
+    body { background: #ECEEF2; }
+
+    .tree-header {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+    .tree-header h1 {
+      font-family: "Oswald", sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .tree-header p {
+      color: #888896;
+      font-size: 14px;
+    }
+    .tree-stats {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 20px 0 30px;
+    }
+    .tree-stat {
+      text-align: center;
+    }
+    .tree-stat-value {
+      font-family: "Courier Prime", monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: #5F5FFF;
+    }
+    .tree-stat-label {
+      font-size: 11px;
+      color: #888896;
+      margin-top: 4px;
+    }
+
+    .tree-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Tree nodes */
+    .node {
+      position: relative;
+      margin-left: 24px;
+    }
+    .node-root {
+      margin-left: 0;
+    }
+    .node-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      margin: 4px 0;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+    .node-content:hover {
+      transform: translateX(4px);
+    }
+    .node-content.demo {
+      background: rgba(255,255,255,0.5);
+      border: 1px dashed #ccc;
+    }
+    .node-content.founder {
+      background: linear-gradient(135deg, rgba(95,95,255,0.08), rgba(10,132,255,0.08));
+      border-left: 3px solid #5F5FFF;
+    }
+    .node-content.org {
+      background: linear-gradient(135deg, rgba(95,95,255,0.15), rgba(10,132,255,0.15));
+      border-left: 3px solid #5F5FFF;
+    }
+
+    .node-icon {
+      font-size: 24px;
+      min-width: 32px;
+      text-align: center;
+    }
+    .node-info {
+      flex: 1;
+    }
+    .node-name {
+      font-family: "Oswald", sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .node-role {
+      font-size: 11px;
+      color: #888896;
+    }
+    .node-level {
+      font-family: "Courier Prime", monospace;
+      font-size: 11px;
+      color: #5F5FFF;
+      background: rgba(95,95,255,0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* Connector lines */
+    .node-children {
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid rgba(95,95,255,0.15);
+      margin-left: 16px;
+    }
+
+    .legend {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      padding: 0 20px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #888896;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+    }
+    .legend-dot.real { background: #5F5FFF; }
+    .legend-dot.demo { background: #ccc; border: 1px dashed #999; }
+
+    .update-info {
+      text-align: center;
+      padding: 20px;
+      color: #888896;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .tree-header h1 { font-size: 24px; }
+      .node { margin-left: 12px; }
+      .node-children { padding-left: 12px; margin-left: 10px; }
+      .node-content { padding: 8px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-orbs"><span></span><span></span></div>
+
+<div class="tree-header">
+  <h1>🌳 Сеть RHYTHMS NOTHING</h1>
+  <p>Реферальное дерево — 5 колен</p>
+</div>
+
+<div class="tree-stats">
+  <div class="tree-stat">
+    <div class="tree-stat-value" id="stat-real">—</div>
+    <div class="tree-stat-label">участников</div>
+  </div>
+  <div class="tree-stat">
+    <div class="tree-stat-value">5</div>
+    <div class="tree-stat-label">колен</div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot real"></div> Реальный участник</div>
+  <div class="legend-item"><div class="legend-dot demo"></div> Свободное место</div>
+</div>
+
+<div class="tree-container" id="tree"></div>
+
+<div class="update-info" id="updated"></div>
+
+<script>
+async function loadTree() {
+  try {
+    const resp = await fetch('data.json?t=' + Date.now());
+    const data = await resp.json();
+
+    document.getElementById('stat-real').textContent = data.total_real;
+    document.getElementById('updated').textContent = 'Обновлено: ' + data.updated;
+
+    const container = document.getElementById('tree');
+    container.innerHTML = renderNode(data, 0, true);
+  } catch(e) {
+    document.getElementById('tree').innerHTML =
+      '<p style="text-align:center;color:#888;">Данные загружаются...</p>';
+  }
+}
+
+function renderNode(node, depth, isRoot) {
+  const isOrg = depth === 0;
+  const isFounder = node.role && node.role.includes('Основатель');
+  const isDemo = !node.real;
+
+  let icon = '👤';
+  if (isOrg) icon = '🌐';
+  else if (isFounder) icon = '👑';
+  else if (isDemo) icon = '🔓';
+
+  let contentClass = 'node-content';
+  if (isOrg) contentClass += ' org';
+  else if (isFounder) contentClass += ' founder';
+  else if (isDemo) contentClass += ' demo';
+
+  let levelBadge = '';
+  if (depth > 1) {
+    levelBadge = `<span class="node-level">L${depth - 1}</span>`;
+  }
+
+  let roleText = node.role || '';
+  if (node.city && node.real && !isFounder && !isOrg) {
+    roleText = node.city;
+  }
+
+  let html = `
+    <div class="node ${isRoot ? 'node-root' : ''}">
+      <div class="${contentClass}">
+        <div class="node-icon">${icon}</div>
+        <div class="node-info">
+          <div class="node-name">${node.name}</div>
+          ${roleText ? '<div class="node-role">' + roleText + '</div>' : ''}
+        </div>
+        ${levelBadge}
+      </div>`;
+
+  if (node.children && node.children.length > 0) {
+    html += '<div class="node-children">';
+    for (const child of node.children) {
+      html += renderNode(child, depth + 1, false);
+    }
+    html += '</div>';
+  }
+
+  html += '</div>';
+  return html;
+}
+
+loadTree();
+</script>
+
+<script src="../components/nav.js"></script>
+<script src="../components/footer.js"></script>
+</body>
+</html>
