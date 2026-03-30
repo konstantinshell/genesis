@@ -2,110 +2,98 @@
   "name": "РИТМЫ NOTHING",
   "role": "Организация",
   "real": true,
-  "updated": "30.03.2026 20:45",
+  "updated": "30.03.2026",
   "total_real": 5,
   "children": [
     {
-      "name": "Константин",
-      "role": "Основатель",
+      "name": "Валентина",
       "real": true,
       "children": [
         {
-          "name": "Алексей",
+          "name": "Ирина (свободно)",
           "real": false,
           "children": [
-            {
-              "name": "Ирина",
-              "real": false,
-              "children": [
-                {
-                  "name": "Виктор",
-                  "real": false,
-                  "children": []
-                }
-              ]
-            },
-            {
-              "name": "Павел",
-              "real": false,
-              "children": [
-                {
-                  "name": "Анна",
-                  "real": false,
-                  "children": []
-                }
-              ]
-            }
+            { "name": "Виктор (свободно)", "real": false, "children": [
+              { "name": "Анна (свободно)", "real": false, "children": [] }
+            ]}
           ]
         },
         {
-          "name": "Мария",
+          "name": "Павел (свободно)",
           "real": false,
           "children": [
-            {
-              "name": "Сергей",
-              "real": false,
-              "children": [
-                {
-                  "name": "Татьяна",
-                  "real": false,
-                  "children": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "Дмитрий",
-          "real": false,
-          "children": [
-            {
-              "name": "Елена",
-              "real": false,
-              "children": []
-            }
+            { "name": "Сергей (свободно)", "real": false, "children": [
+              { "name": "Татьяна (свободно)", "real": false, "children": [] }
+            ]}
           ]
         }
       ]
     },
     {
-      "name": "Натали",
-      "role": "Основатель",
+      "name": "Вадим Гурьев",
       "real": true,
       "children": [
         {
-          "name": "Натали Морозова",
-          "city": "Москва",
-          "role": "Высшее",
-          "real": true,
-          "children": []
-        },
-        {
-          "name": "Олеся",
+          "name": "Алексей (свободно)",
           "real": false,
           "children": [
-            {
-              "name": "Евгений",
-              "real": false,
-              "children": [
-                {
-                  "name": "Полина",
-                  "real": false,
-                  "children": []
-                }
-              ]
-            }
+            { "name": "Марина (свободно)", "real": false, "children": [
+              { "name": "Игорь (свободно)", "real": false, "children": [] }
+            ]}
           ]
         },
         {
-          "name": "Кирилл",
+          "name": "Мария (свободно)",
           "real": false,
           "children": [
-            {
-              "name": "Алина",
-              "real": false,
-              "children": []
-            }
+            { "name": "Евгений (свободно)", "real": false, "children": [
+              { "name": "Полина (свободно)", "real": false, "children": [] }
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Дмитрий (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Елена (свободно)",
+          "real": false,
+          "children": [
+            { "name": "Николай (свободно)", "real": false, "children": [
+              { "name": "Кира (свободно)", "real": false, "children": [] }
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Олеся (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Андрей (свободно)",
+          "real": false,
+          "children": [
+            { "name": "Светлана (свободно)", "real": false, "children": [
+              { "name": "Максим (свободно)", "real": false, "children": [] }
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Кирилл (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Алина (свободно)",
+          "real": false,
+          "children": [
+            { "name": "Руслан (свободно)", "real": false, "children": [
+              { "name": "Яна (свободно)", "real": false, "children": [] }
+            ]}
           ]
         }
       ]
