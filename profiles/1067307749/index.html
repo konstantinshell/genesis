@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Валентина — ONTO NOTHING</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+  <style>
+    .profile-header { text-align: center; margin-bottom: 30px; }
+    .profile-avatar { font-size: 80px; margin-bottom: 16px; }
+    .profile-header h1 { font-family: var(--fh); font-size: 28px; font-weight: 600; margin-bottom: 8px; }
+    .profile-meta { color: var(--muted); font-size: 14px; }
+    .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .card h2 { font-family: var(--fh); font-size: 18px; font-weight: 600; margin-bottom: 16px; }
+    .card h3 { font-family: var(--fh); font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+    .card p { font-size: 14px; line-height: 1.6; margin-bottom: 8px; }
+    .card ul { padding-left: 20px; margin: 8px 0; }
+    .card li { font-size: 14px; padding: 4px 0; }
+    .card strong { color: var(--accent); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .milestone { display: flex; gap: 12px; align-items: center; padding: 8px 0; }
+    .milestone-icon { font-size: 20px; min-width: 30px; text-align: center; }
+    .milestone-text strong { display: block; font-size: 14px; }
+    .milestone-text span { font-size: 12px; color: var(--muted); }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+    .stat { background: rgba(95,95,255,0.05); border-radius: 8px; padding: 12px; text-align: center; }
+    .stat-value { font-family: var(--fm); font-size: 24px; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .update-info { text-align: center; padding: 20px 0; color: var(--muted); font-size: 12px; }
+    .page-nav { display: flex; gap: 0; background: white; border-bottom: 1px solid rgba(0,0,0,0.05); position: sticky; top: 60px; z-index: 90; }
+    .page-nav button { flex: 1; padding: 12px; background: none; border: none; border-bottom: 3px solid transparent; font-family: var(--fb); font-size: 14px; font-weight: 500; color: var(--muted); cursor: pointer; }
+    .page-nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-page { display: none; }
+    .tab-page.active { display: block; }
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .profile-header h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-orbs"><span></span><span></span></div>
+
+<nav class="page-nav">
+  <button class="active" onclick="switchTab('profile', this)">👤 Мой профиль</button>
+  <button onclick="switchTab('materials', this)">📚 Материалы</button>
+</nav>
+
+<main>
+  <!-- ═══ ПРОФИЛЬ ═══ -->
+  <div id="tab-profile" class="tab-page active">
+    <section class="s">
+      <div class="s-inner">
+
+        <div class="profile-header">
+          <div class="profile-avatar">🧠</div>
+          <h1>Валентина</h1>
+          <p class="profile-meta">Остров Бали · Исследователь мозга и блогер</p>
+          <p class="profile-meta">🏅 Мастер</p>
+        </div>
+
+        <!-- Анкета -->
+        <div class="card">
+          <h2>📝 Анкета</h2>
+          <table style="width:100%; font-size:14px; border-collapse:collapse;">
+            <tr><td style="padding:8px 0; color:var(--muted); width:40%;">Образование</td><td style="padding:8px 0;">Прошла полный курс остановки внутреннего диалога , есть художественное образование и я мастер татуировки</td></tr>
+            <tr><td style="padding:8px 0; color:var(--muted); border-top:1px solid #f0f0f0;">Цель исследования</td><td style="padding:8px 0; border-top:1px solid #f0f0f0;">Лучше понимать себя , тело мозг</td></tr>
+            <tr><td style="padding:8px 0; color:var(--muted); border-top:1px solid #f0f0f0;">Хочет изменить</td><td style="padding:8px 0; border-top:1px solid #f0f0f0;">Профессия и продуктивность сейчас на первом месте</td></tr>
+            <tr><td style="padding:8px 0; color:var(--muted); border-top:1px solid #f0f0f0;">Метрики</td><td style="padding:8px 0; border-top:1px solid #f0f0f0;">За показателями сна</td></tr>
+            <tr><td style="padding:8px 0; color:var(--muted); border-top:1px solid #f0f0f0;">Свой метод</td><td style="padding:8px 0; border-top:1px solid #f0f0f0;">Нет</td></tr>
+            <tr><td style="padding:8px 0; color:var(--muted); border-top:1px solid #f0f0f0;">Как узнал</td><td style="padding:8px 0; border-top:1px solid #f0f0f0;">Являюсь другом создателя</td></tr>
+            <tr><td style="padding:8px 0; color:var(--muted); border-top:1px solid #f0f0f0;">Пригласил</td><td style="padding:8px 0; border-top:1px solid #f0f0f0;">Rhythms Nothing (организация)</td></tr>
+            <tr><td style="padding:8px 0; color:var(--muted); border-top:1px solid #f0f0f0;">Регистрация</td><td style="padding:8px 0; border-top:1px solid #f0f0f0;">2026-03-30 20:26</td></tr>
+          </table>
+        </div>
+
+        <!-- Статистика -->
+        <div class="card">
+          <h2>📊 Активность</h2>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Рефлексий</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Сессий</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Метрик</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Роадмэп -->
+        <div class="card">
+          <h2>🗺 Роадмэп</h2>
+          <div class="milestone"><div class="milestone-icon">✅</div><div class="milestone-text"><strong>Этап 0</strong><span>Изучение инструментов</span></div></div>
+          <div class="milestone"><div class="milestone-icon">🔒</div><div class="milestone-text"><strong>Этап 1</strong><span>Чекап MNPI</span></div></div>
+          <div class="milestone"><div class="milestone-icon">🔒</div><div class="milestone-text"><strong>Этап 2</strong><span>Программа исследования</span></div></div>
+          <div class="milestone"><div class="milestone-icon">🔒</div><div class="milestone-text"><strong>Этап 3</strong><span>Годовая программа</span></div></div>
+        </div>
+
+        <!-- MNPI -->
+        <div class="card">
+          <h2>🧠 MNPI Index</h2>
+          <p>Данные ожидаются...</p>
+        </div>
+
+        <!-- Задачи -->
+        <div class="card">
+          <h2>📋 Задачи на неделю</h2>
+          <p>Данные ожидаются...</p>
+        </div>
+
+        <!-- Данные NEIRY -->
+        <div class="card">
+          <h2>📡 Данные NEIRY</h2>
+          <p>Данные ожидаются...</p>
+        </div>
+
+        <!-- Цель на год -->
+        <div class="card">
+          <h2>🎯 Цель на год</h2>
+          <p>Лучше понимать себя , тело мозг</p>
+        </div>
+
+        <!-- Зажигает / Тормозит -->
+        <div class="two-col">
+          <div class="card">
+            <h3>⚡ Что зажигает</h3>
+            <p>Данные ожидаются...</p>
+          </div>
+          <div class="card">
+            <h3>🧱 Что тормозит</h3>
+            <p>Данные ожидаются...</p>
+          </div>
+        </div>
+
+        <div class="update-info">
+          Обновлено: 30.03.2026
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ МАТЕРИАЛЫ ═══ -->
+  <div id="tab-materials" class="tab-page">
+    <section class="s">
+      <div class="s-inner">
+
+        <div class="card">
+          <h2>📚 Материалы программы</h2>
+          <p>Ресурсы для прохождения программы ONTO NOTHING</p>
+        </div>
+
+        <div class="card">
+          <h3>🎬 Вводные материалы</h3>
+          <ul>
+            <li>Что такое MNPI и как он измеряется</li>
+            <li>Как работает нейротрекер Neiry</li>
+            <li>Методология исследования</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🧘 Практики</h3>
+          <ul>
+            <li>Базовая медитация (15 мин)</li>
+            <li>Дыхательные техники перед сессией</li>
+            <li>Body scan — работа с телесными ощущениями</li>
+            <li>Подготовка к ЭЭГ-сессии</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>📖 Статьи и исследования</h3>
+          <ul>
+            <li>Биологические ритмы и самопознание</li>
+            <li>Нейропластичность: тренировка мозга</li>
+            <li>Феноменология внутреннего опыта</li>
+            <li>Телесные дескрипторы в речи</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🔧 Инструменты</h3>
+          <ul>
+            <li>Как записывать рефлексии</li>
+            <li>Как загружать данные NEIRY</li>
+            <li>Как читать свой отчёт MNPI</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>
