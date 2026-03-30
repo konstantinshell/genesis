@@ -148,6 +148,25 @@
     .node:hover .av {
       transform: scale(1.12);
     }
+    a.node-link {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    a.node-link:hover .nm {
+      color: #5F5FFF;
+    }
+    a.node-link:hover .av {
+      transform: scale(1.15);
+      box-shadow: 0 4px 20px rgba(95, 95, 255, 0.4);
+    }
+    .tg-badge {
+      font-size: 9px;
+      color: #0A84FF;
+      margin-top: 2px;
+    }
 
     .av.org {
       width: 60px;
@@ -267,11 +286,28 @@ function renderNode(node, depth) {
   else if (isFounder) role = 'основатель';
   else if (isDemo) role = 'свободно';
 
+  let hasLink = node.real && !isOrg && (node.profile || node.tg);
+  let linkUrl = node.profile || (node.tg ? 'https://t.me/' + node.tg : '');
+
+  let name = node.name;
+  if (isDemo) name = name.replace(' (свободно)', '');
+
   let html = '<li>';
   html += '<div class="node' + (isDemo ? ' demo-node' : '') + '">';
+
+  if (hasLink) {
+    html += '<a class="node-link" href="' + linkUrl + '" target="_blank">';
+  }
+
   html += '<div class="' + avCls + '">' + icon + '</div>';
-  html += '<div class="nm">' + node.name + '</div>';
+  html += '<div class="nm">' + name + '</div>';
   if (role) html += '<div class="rl">' + role + '</div>';
+  if (node.tg && node.real) html += '<div class="tg-badge">@' + node.tg + '</div>';
+
+  if (hasLink) {
+    html += '</a>';
+  }
+
   html += '</div>';
 
   if (node.children && node.children.length) {
