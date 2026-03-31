@@ -84,48 +84,59 @@ table{border-collapse:collapse;width:100%}
 /* ═══════════════════════════════════════════════════════════ */
 /* STICKY BLOCK NAV                                           */
 /* ═══════════════════════════════════════════════════════════ */
-.block-nav{
+/* ═══════════════════════════════════════════════════════════ */
+/* STICKY COMBINED NAV                                        */
+/* ═══════════════════════════════════════════════════════════ */
+.sticky-header{
   position:sticky;top:0;z-index:100;
-  background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,0.95);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border2);
+  box-shadow:0 1px 8px rgba(0,0,0,0.06);
+}
+
+/* Level switcher row */
+.level-row{
+  max-width:1200px;margin:0 auto;padding:10px 20px 0;
+}
+.level-tabs{
+  display:flex;gap:0;background:var(--bg3);border-radius:10px;padding:3px;
+  border:1px solid var(--border);
+}
+.level-btn{
+  flex:1;padding:9px 16px;border-radius:8px;font-family:'DM Mono',monospace;
+  font-size:13px;border:none;background:transparent;color:var(--text3);
+  cursor:pointer;transition:.2s;text-align:center;font-weight:500;
+}
+.level-btn.active{background:var(--bg2);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,0.1)}
+.level-btn:hover:not(.active){color:var(--text2);background:rgba(0,0,0,0.02)}
+
+/* Block nav row */
+.block-nav{
   overflow-x:auto;scrollbar-width:none;
 }
 .block-nav::-webkit-scrollbar{display:none}
 .block-nav-inner{
-  display:flex;gap:4px;padding:8px 16px;min-width:max-content;
+  display:flex;gap:2px;padding:8px 20px 10px;min-width:max-content;
   max-width:1200px;margin:0 auto;
 }
 .block-nav-btn{
-  display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;
-  font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);
+  display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:6px;
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);
   border:none;background:transparent;cursor:pointer;white-space:nowrap;transition:.2s;
 }
-.block-nav-btn:hover{color:var(--text);background:var(--glass)}
-.block-nav-btn.active{color:var(--text);background:var(--glass2)}
+.block-nav-btn:hover{color:var(--text);background:rgba(0,0,0,0.04)}
+.block-nav-btn.active{color:var(--text);background:rgba(0,0,0,0.06);font-weight:500}
 .block-nav-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.block-nav-btn.special{border:1px solid rgba(124,58,237,0.25)}
-.block-nav-btn.special .block-nav-dot{width:8px;height:8px;border-radius:2px}
+.block-nav-btn.special{border:1px solid rgba(124,58,237,0.2)}
+.block-nav-btn.special .block-nav-dot{width:7px;height:7px;border-radius:2px}
 
-/* ═══════════════════════════════════════════════════════════ */
-/* LEVEL SWITCHER                                             */
-/* ═══════════════════════════════════════════════════════════ */
-.level-switcher{
-  max-width:1200px;margin:0 auto;padding:24px 24px 0;
+/* Level description below sticky (not sticky itself) */
+.level-desc-wrap{
+  max-width:1200px;margin:0 auto;padding:8px 24px 0;
 }
-.level-tabs{
-  display:flex;gap:4px;background:var(--bg3);border-radius:10px;padding:4px;
-  border:1px solid var(--border);
-}
-.level-btn{
-  flex:1;padding:10px 16px;border-radius:8px;font-family:'DM Mono',monospace;
-  font-size:13px;border:none;background:transparent;color:var(--text3);
-  cursor:pointer;transition:.2s;text-align:center;
-}
-.level-btn.active{background:var(--bg2);color:var(--text);border:1px solid var(--border2);box-shadow:0 1px 3px rgba(0,0,0,0.08)}
-.level-btn:hover:not(.active){color:var(--text2)}
 .level-desc{
   font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);
-  margin-top:10px;padding-left:4px;min-height:18px;
+  min-height:18px;
 }
 
 /* ═══════════════════════════════════════════════════════════ */
@@ -387,33 +398,34 @@ body:not([data-l3-unlocked]) .level-btn[data-level="3"]::after{content:' 🔒';f
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!-- STICKY BLOCK NAV                                        -->
+<!-- STICKY COMBINED HEADER                                  -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<nav class="block-nav">
-  <div class="block-nav-inner">
-    <button class="block-nav-btn" data-target="setup"><span class="block-nav-dot" style="background:#6366F1"></span>Установка</button>
-    <button class="block-nav-btn" data-target="session"><span class="block-nav-dot" style="background:var(--c-session)"></span>Сессия</button>
-    <button class="block-nav-btn" data-target="electrodes"><span class="block-nav-dot" style="background:var(--c-electrodes)"></span>Электроды</button>
-    <button class="block-nav-btn" data-target="ppg"><span class="block-nav-dot" style="background:var(--c-ppg)"></span>PPG</button>
-    <button class="block-nav-btn" data-target="indices"><span class="block-nav-dot" style="background:var(--c-indices)"></span>Индексы</button>
-    <button class="block-nav-btn" data-target="alpha"><span class="block-nav-dot" style="background:var(--c-alpha)"></span>Альфа</button>
-    <button class="block-nav-btn" data-target="emotions"><span class="block-nav-dot" style="background:var(--c-emotions)"></span>Эмоции</button>
-    <button class="block-nav-btn" data-target="rhythms"><span class="block-nav-dot" style="background:var(--c-rhythms)"></span>Ритмы</button>
-    <button class="block-nav-btn" data-target="peaks"><span class="block-nav-dot" style="background:var(--c-peaks)"></span>Пики</button>
-    <button class="block-nav-btn" data-target="status"><span class="block-nav-dot" style="background:var(--c-status)"></span>Статус</button>
-    <button class="block-nav-btn special" data-target="researcher"><span class="block-nav-dot" style="background:var(--c-l3)"></span>Исследователи</button>
+<div class="sticky-header">
+  <div class="level-row">
+    <div class="level-tabs">
+      <button class="level-btn active" data-level="1">Уровень 1: Справочник</button>
+      <button class="level-btn" data-level="2">Уровень 2: Наука</button>
+      <button class="level-btn" data-level="3">Уровень 3: Исследователи</button>
+    </div>
   </div>
-</nav>
+  <nav class="block-nav">
+    <div class="block-nav-inner">
+      <button class="block-nav-btn" data-target="setup"><span class="block-nav-dot" style="background:#6366F1"></span>Установка</button>
+      <button class="block-nav-btn" data-target="session"><span class="block-nav-dot" style="background:var(--c-session)"></span>Сессия</button>
+      <button class="block-nav-btn" data-target="electrodes"><span class="block-nav-dot" style="background:var(--c-electrodes)"></span>Электроды</button>
+      <button class="block-nav-btn" data-target="ppg"><span class="block-nav-dot" style="background:var(--c-ppg)"></span>PPG</button>
+      <button class="block-nav-btn" data-target="indices"><span class="block-nav-dot" style="background:var(--c-indices)"></span>Индексы</button>
+      <button class="block-nav-btn" data-target="alpha"><span class="block-nav-dot" style="background:var(--c-alpha)"></span>Альфа</button>
+      <button class="block-nav-btn" data-target="emotions"><span class="block-nav-dot" style="background:var(--c-emotions)"></span>Эмоции</button>
+      <button class="block-nav-btn" data-target="rhythms"><span class="block-nav-dot" style="background:var(--c-rhythms)"></span>Ритмы</button>
+      <button class="block-nav-btn" data-target="peaks"><span class="block-nav-dot" style="background:var(--c-peaks)"></span>Пики</button>
+      <button class="block-nav-btn" data-target="status"><span class="block-nav-dot" style="background:var(--c-status)"></span>Статус</button>
+      <button class="block-nav-btn special" data-target="researcher"><span class="block-nav-dot" style="background:var(--c-l3)"></span>Исследователи</button>
+    </div>
+  </nav>
+</div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- LEVEL SWITCHER                                          -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<div class="level-switcher">
-  <div class="level-tabs">
-    <button class="level-btn active" data-level="1">Уровень 1: Справочник</button>
-    <button class="level-btn" data-level="2">Уровень 2: Наука</button>
-    <button class="level-btn" data-level="3">Уровень 3: Исследователи</button>
-  </div>
+<div class="level-desc-wrap">
   <div class="level-desc" id="levelDesc">Быстрые таблицы, термины и значения всех метрик</div>
 </div>
 
@@ -1630,7 +1642,7 @@ const observer = new IntersectionObserver((entries) => {
       }
     }
   });
-}, { rootMargin: '-20% 0px -70% 0px' });
+}, { rootMargin: '-100px 0px -65% 0px' });
 
 sections.forEach(s => observer.observe(s));
 
