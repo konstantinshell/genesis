@@ -2,7 +2,7 @@
   "name": "РИТМЫ NOTHING",
   "role": "Организация",
   "real": true,
-  "updated": "30.03.2026",
+  "updated": "31.03.2026 19:41",
   "total_real": 5,
   "children": [
     {
@@ -12,17 +12,37 @@
       "profile": "https://konstantinshell.github.io/genesis/profiles/1067307749/",
       "children": [
         {
-          "name": "Ирина (свободно)", "real": false, "children": [
-            { "name": "Виктор (свободно)", "real": false, "children": [
-              { "name": "Анна (свободно)", "real": false, "children": [] }
-            ]}
+          "name": "Ирина (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Виктор (свободно)",
+              "real": false,
+              "children": [
+                {
+                  "name": "Анна (свободно)",
+                  "real": false,
+                  "children": []
+                }
+              ]
+            }
           ]
         },
         {
-          "name": "Павел (свободно)", "real": false, "children": [
-            { "name": "Сергей (свободно)", "real": false, "children": [
-              { "name": "Татьяна (свободно)", "real": false, "children": [] }
-            ]}
+          "name": "Павел (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Сергей (свободно)",
+              "real": false,
+              "children": [
+                {
+                  "name": "Татьяна (свободно)",
+                  "real": false,
+                  "children": []
+                }
+              ]
+            }
           ]
         }
       ]
@@ -34,46 +54,98 @@
       "profile": "https://konstantinshell.github.io/genesis/profiles/1139648370/",
       "children": [
         {
-          "name": "Алексей (свободно)", "real": false, "children": [
-            { "name": "Марина (свободно)", "real": false, "children": [
-              { "name": "Игорь (свободно)", "real": false, "children": [] }
-            ]}
-          ]
+          "name": "Натали Морозова",
+          "city": "Москва",
+          "role": "Высшее",
+          "real": true,
+          "children": []
         },
         {
-          "name": "Мария (свободно)", "real": false, "children": [
-            { "name": "Евгений (свободно)", "real": false, "children": [
-              { "name": "Полина (свободно)", "real": false, "children": [] }
-            ]}
+          "name": "Мария (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Евгений (свободно)",
+              "real": false,
+              "children": [
+                {
+                  "name": "Полина (свободно)",
+                  "real": false,
+                  "children": []
+                }
+              ]
+            }
           ]
         }
       ]
     },
     {
-      "name": "Дмитрий (свободно)", "real": false, "children": [
-        { "name": "Елена (свободно)", "real": false, "children": [
-          { "name": "Николай (свободно)", "real": false, "children": [
-            { "name": "Кира (свободно)", "real": false, "children": [] }
-          ]}
-        ]}
+      "name": "Дмитрий (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Елена (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Николай (свободно)",
+              "real": false,
+              "children": [
+                {
+                  "name": "Кира (свободно)",
+                  "real": false,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
     {
-      "name": "Олеся (свободно)", "real": false, "children": [
-        { "name": "Андрей (свободно)", "real": false, "children": [
-          { "name": "Светлана (свободно)", "real": false, "children": [
-            { "name": "Максим (свободно)", "real": false, "children": [] }
-          ]}
-        ]}
+      "name": "Олеся (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Андрей (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Светлана (свободно)",
+              "real": false,
+              "children": [
+                {
+                  "name": "Максим (свободно)",
+                  "real": false,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
     {
-      "name": "Кирилл (свободно)", "real": false, "children": [
-        { "name": "Алина (свободно)", "real": false, "children": [
-          { "name": "Руслан (свободно)", "real": false, "children": [
-            { "name": "Яна (свободно)", "real": false, "children": [] }
-          ]}
-        ]}
+      "name": "Кирилл (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Алина (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Руслан (свободно)",
+              "real": false,
+              "children": [
+                {
+                  "name": "Яна (свободно)",
+                  "real": false,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
       ]
     }
   ]
