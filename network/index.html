@@ -73,6 +73,79 @@
     .lg.r { background: #34C759; }
     .lg.d { border: 2px dashed #bbb; }
 
+    /* ── FOUNDERS PANEL ── */
+    .founders {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      padding: 0 20px 30px;
+    }
+    .founder-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s;
+    }
+    .founder-card:hover { transform: scale(1.05); }
+    .founder-av {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      background: linear-gradient(135deg, #5F5FFF, #4848D0);
+      box-shadow: 0 4px 16px rgba(95, 95, 255, 0.25);
+      margin-bottom: 6px;
+    }
+    .founder-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #16161A;
+    }
+    .founder-role {
+      font-size: 10px;
+      color: #5F5FFF;
+      text-transform: uppercase;
+    }
+    .org-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      background: linear-gradient(135deg, #5F5FFF, #3D3DBF);
+      box-shadow: 0 4px 20px rgba(95, 95, 255, 0.35);
+      flex-shrink: 0;
+    }
+    .org-label {
+      text-align: center;
+      font-family: "Oswald", sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: #888;
+      margin-top: 4px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .org-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .founders-line {
+      width: 2px;
+      height: 30px;
+      background: #ccc;
+      margin: 0 auto;
+    }
+
     /* ── MLM TREE ── */
     .mlm-wrap {
       display: flex;
@@ -248,6 +321,27 @@
   <div class="legend-item"><div class="lg r"></div> Участник</div>
   <div class="legend-item"><div class="lg d"></div> Свободно</div>
 </div>
+
+<div class="founders">
+  <a class="founder-card" href="https://konstantinshell.github.io/genesis/profiles/41537154/" target="_blank">
+    <div class="founder-av">👤</div>
+    <div class="founder-name">Константин Шель</div>
+    <div class="founder-role">основатель</div>
+  </a>
+
+  <div class="org-block">
+    <div class="org-circle">🌐</div>
+    <div class="org-label">Ритмы Nothing</div>
+  </div>
+
+  <a class="founder-card" href="https://konstantinshell.github.io/genesis/profiles/8211648754/" target="_blank">
+    <div class="founder-av">👤</div>
+    <div class="founder-name">Натали Морозова</div>
+    <div class="founder-role">основатель</div>
+  </a>
+</div>
+
+<div class="founders-line"></div>
 
 <div class="mlm-wrap">
   <div class="mlm-tree" id="tree"></div>
