@@ -1600,9 +1600,11 @@ function setLevel(level) {
   }
 }
 
-// Restore saved level
+// Restore saved level (but don't scroll on page load)
 const savedLevel = localStorage.getItem('neiry-level') || '1';
 setLevel(savedLevel);
+// Always start from top
+window.scrollTo(0, 0);
 
 document.querySelectorAll('.level-btn').forEach(btn => {
   btn.addEventListener('click', () => setLevel(btn.dataset.level));
