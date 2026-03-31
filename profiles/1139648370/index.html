@@ -49,7 +49,7 @@
 
 <nav class="page-nav">
   <button class="active" onclick="switchTab('profile', this)">👤 Мой профиль</button>
-  <button onclick="switchTab('materials', this)">📚 Материалы</button>
+  <button onclick="switchTab('schedule', this)">📅 Расписание</button>
 </nav>
 
 <main>
@@ -145,52 +145,53 @@
     </section>
   </div>
 
-  <!-- ═══ МАТЕРИАЛЫ ═══ -->
-  <div id="tab-materials" class="tab-page">
+  <!-- ═══ РАСПИСАНИЕ ═══ -->
+  <div id="tab-schedule" class="tab-page">
     <section class="s">
       <div class="s-inner">
 
         <div class="card">
-          <h2>📚 Материалы программы</h2>
-          <p>Ресурсы для прохождения программы ONTO NOTHING</p>
+          <h2>📅 Расписание мероприятий</h2>
+          <p>Предстоящие встречи, эфиры и события программы</p>
         </div>
 
-        <div class="card">
-          <h3>🎬 Вводные материалы</h3>
-          <ul>
-            <li>Что такое MNPI и как он измеряется</li>
-            <li>Как работает нейротрекер Neiry</li>
-            <li>Методология исследования</li>
-          </ul>
+        <div class="card" style="border-left: 4px solid var(--accent);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+            <div>
+              <h3 style="margin-bottom: 4px;">🧠 За здоровье и Мозг</h3>
+              <p style="color: var(--accent); font-weight: 600; font-size: 15px; margin: 0;">3 апреля 2026</p>
+            </div>
+            <span style="background: rgba(95,95,255,0.1); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Скоро</span>
+          </div>
+
+          <p style="font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
+            Открытая встреча о том, как современные нейротехнологии помогают понимать свой мозг, отслеживать здоровье и управлять состояниями. Разберём практические инструменты — от нейробэндов до анализа биоритмов.
+          </p>
+
+          <div style="margin-bottom: 12px;">
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 8px; font-weight: 500;">СПИКЕРЫ:</p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 8px; background: rgba(95,95,255,0.04); padding: 8px 14px; border-radius: 8px;">
+                <span style="font-size: 20px;">👑</span>
+                <div>
+                  <div style="font-size: 13px; font-weight: 500;">Константин Шель</div>
+                  <div style="font-size: 11px; color: var(--muted);">Основатель ONTO NOTHING</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; background: rgba(95,95,255,0.04); padding: 8px 14px; border-radius: 8px;">
+                <span style="font-size: 20px;">👑</span>
+                <div>
+                  <div style="font-size: 13px; font-weight: 500;">Натали Морозова</div>
+                  <div style="font-size: 11px; color: var(--muted);">Со-основатель, биохакер</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>🧘 Практики</h3>
-          <ul>
-            <li>Базовая медитация (15 мин)</li>
-            <li>Дыхательные техники перед сессией</li>
-            <li>Body scan — работа с телесными ощущениями</li>
-            <li>Подготовка к ЭЭГ-сессии</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>📖 Статьи и исследования</h3>
-          <ul>
-            <li>Биологические ритмы и самопознание</li>
-            <li>Нейропластичность: тренировка мозга</li>
-            <li>Феноменология внутреннего опыта</li>
-            <li>Телесные дескрипторы в речи</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>🔧 Инструменты</h3>
-          <ul>
-            <li>Как записывать рефлексии</li>
-            <li>Как загружать данные NEIRY</li>
-            <li>Как читать свой отчёт MNPI</li>
-          </ul>
+        <div class="card" style="opacity: 0.5;">
+          <h3>📅 Больше мероприятий скоро</h3>
+          <p style="font-size: 14px; color: var(--muted);">Следи за обновлениями в боте и профиле</p>
         </div>
 
       </div>

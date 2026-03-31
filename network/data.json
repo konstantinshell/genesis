@@ -2,7 +2,7 @@
   "name": "РИТМЫ NOTHING",
   "role": "Организация",
   "real": true,
-  "updated": "31.03.2026 19:41",
+  "updated": "31.03.2026 21:48",
   "total_real": 5,
   "children": [
     {
@@ -55,7 +55,6 @@
       "children": [
         {
           "name": "Алексей (свободно)",
-          "real": false,
           "real": false,
           "children": [
             {
