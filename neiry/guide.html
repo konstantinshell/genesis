@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neiry Capsule Guide — ONTO NOTHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════ */
+/* DESIGN TOKENS                                              */
+/* ═══════════════════════════════════════════════════════════ */
+:root {
+  --bg: #080B12;
+  --bg2: #0D1120;
+  --bg3: #111827;
+  --glass: rgba(255,255,255,0.04);
+  --glass2: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --text: #E8EDF5;
+  --text2: #94A3B8;
+  --text3: #64748B;
+  --c-session: #94A3B8;
+  --c-electrodes: #8B5CF6;
+  --c-ppg: #EF4444;
+  --c-indices: #F59E0B;
+  --c-alpha: #3B82F6;
+  --c-emotions: #10B981;
+  --c-rhythms: #06B6D4;
+  --c-peaks: #E2E8F0;
+  --c-status: #FB923C;
+  --c-l3: #A78BFA;
+}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* RESET & BASE                                               */
+/* ═══════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;font-weight:400;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;line-height:1.15}
+table{border-collapse:collapse;width:100%}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* HERO                                                       */
+/* ═══════════════════════════════════════════════════════════ */
+.hero{
+  position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;padding:80px 24px 60px;
+  background:
+    radial-gradient(ellipse 600px 400px at 30% 40%, rgba(59,130,246,0.12), transparent),
+    radial-gradient(ellipse 500px 350px at 70% 60%, rgba(139,92,246,0.10), transparent),
+    radial-gradient(ellipse 400px 300px at 50% 80%, rgba(16,185,129,0.07), transparent),
+    var(--bg);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;max-width:740px}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;font-size:12px;letter-spacing:4px;
+  color:var(--text3);margin-bottom:20px;text-transform:uppercase;
+}
+.hero h1{
+  font-size:clamp(36px,6vw,64px);font-weight:800;margin-bottom:16px;
+  background:linear-gradient(135deg,#fff 0%,#06B6D4 50%,#3B82F6 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--text2);margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.hero-btn{
+  padding:10px 22px;border-radius:8px;font-family:'DM Mono',monospace;font-size:13px;
+  border:1px solid var(--border2);background:var(--glass2);color:var(--text);
+  cursor:pointer;transition:.2s;
+}
+.hero-btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25)}
+.hero-btn[data-accent="1"]{border-color:rgba(6,182,212,0.4)}
+.hero-btn[data-accent="2"]{border-color:rgba(139,92,246,0.4)}
+.hero-btn[data-accent="3"]{border-color:rgba(167,139,250,0.4)}
+
+/* SVG waves */
+.hero-waves{width:100%;max-width:600px;height:80px;margin:0 auto}
+.hero-waves path{fill:none;stroke-width:1.5;opacity:0.6}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* STICKY BLOCK NAV                                           */
+/* ═══════════════════════════════════════════════════════════ */
+.block-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,11,18,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  overflow-x:auto;scrollbar-width:none;
+}
+.block-nav::-webkit-scrollbar{display:none}
+.block-nav-inner{
+  display:flex;gap:4px;padding:8px 16px;min-width:max-content;
+  max-width:1200px;margin:0 auto;
+}
+.block-nav-btn{
+  display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;
+  font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);
+  border:none;background:transparent;cursor:pointer;white-space:nowrap;transition:.2s;
+}
+.block-nav-btn:hover{color:var(--text);background:var(--glass)}
+.block-nav-btn.active{color:var(--text);background:var(--glass2)}
+.block-nav-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.block-nav-btn.special{border:1px solid rgba(167,139,250,0.3)}
+.block-nav-btn.special .block-nav-dot{width:8px;height:8px;border-radius:2px}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* LEVEL SWITCHER                                             */
+/* ═══════════════════════════════════════════════════════════ */
+.level-switcher{
+  max-width:1200px;margin:0 auto;padding:24px 24px 0;
+}
+.level-tabs{
+  display:flex;gap:4px;background:var(--bg2);border-radius:10px;padding:4px;
+  border:1px solid var(--border);
+}
+.level-btn{
+  flex:1;padding:10px 16px;border-radius:8px;font-family:'DM Mono',monospace;
+  font-size:13px;border:none;background:transparent;color:var(--text3);
+  cursor:pointer;transition:.2s;text-align:center;
+}
+.level-btn.active{background:var(--glass2);color:var(--text);border:1px solid var(--border2)}
+.level-btn:hover:not(.active){color:var(--text2)}
+.level-desc{
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);
+  margin-top:10px;padding-left:4px;min-height:18px;
+}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* LEVEL VISIBILITY                                           */
+/* ═══════════════════════════════════════════════════════════ */
+.level-content{display:none;animation:fadeIn .25s ease}
+body[data-active-level="1"] .l1-content{display:block}
+body[data-active-level="2"] .l2-content{display:block}
+body[data-active-level="3"] .l3-content{display:block}
+body[data-active-level="3"] .l3-section{display:block}
+body:not([data-active-level="3"]) .l3-section{display:none}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* BLOCK SECTION                                              */
+/* ═══════════════════════════════════════════════════════════ */
+.content-wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.block-section{padding:48px 0 32px;border-bottom:1px solid var(--border)}
+.block-section:last-of-type{border-bottom:none}
+.block-header{display:flex;gap:16px;align-items:flex-start;margin-bottom:28px}
+.block-accent-line{width:4px;border-radius:4px;min-height:56px;flex-shrink:0}
+.block-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.block-title{font-size:clamp(22px,3vw,30px);margin-bottom:4px}
+.block-subtitle{font-size:14px;color:var(--text2)}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* L1 TABLES                                                  */
+/* ═══════════════════════════════════════════════════════════ */
+.table-wrapper{overflow-x:auto;border-radius:10px;border:1px solid var(--border);background:var(--glass)}
+.metrics-table{width:100%;min-width:600px}
+.metrics-table thead th{
+  font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;
+  letter-spacing:1.5px;color:var(--text3);padding:12px 16px;text-align:left;
+  border-bottom:1px solid var(--border2);background:var(--glass);
+}
+.metrics-table tbody td{
+  padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.03);
+  font-size:13px;color:var(--text2);vertical-align:top;
+}
+.metrics-table tbody tr:hover{background:rgba(255,255,255,0.02)}
+.metrics-table .metric-name{
+  font-family:'DM Mono',monospace;font-weight:500;color:var(--text);white-space:nowrap;
+}
+.metrics-table .formula{font-family:'DM Mono',monospace;font-size:12px;color:var(--text3)}
+
+/* Badges */
+.badge{
+  display:inline-block;padding:2px 8px;border-radius:100px;
+  font-size:11px;font-family:'DM Mono',monospace;margin:2px;line-height:1.4;
+}
+.badge.green{background:rgba(16,185,129,0.15);color:#10B981;border:1px solid rgba(16,185,129,0.3)}
+.badge.yellow{background:rgba(245,158,11,0.15);color:#F59E0B;border:1px solid rgba(245,158,11,0.3)}
+.badge.red{background:rgba(239,68,68,0.15);color:#EF4444;border:1px solid rgba(239,68,68,0.3)}
+.badge.blue{background:rgba(59,130,246,0.15);color:#3B82F6;border:1px solid rgba(59,130,246,0.3)}
+.badge.gray{background:rgba(148,163,184,0.15);color:#94A3B8;border:1px solid rgba(148,163,184,0.3)}
+.badge.purple{background:rgba(139,92,246,0.15);color:#8B5CF6;border:1px solid rgba(139,92,246,0.3)}
+.badge.cyan{background:rgba(6,182,212,0.15);color:#06B6D4;border:1px solid rgba(6,182,212,0.3)}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* L2 ACCORDION                                               */
+/* ═══════════════════════════════════════════════════════════ */
+.accordion{display:flex;flex-direction:column;gap:4px}
+.accordion-item{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--glass)}
+.accordion-header{
+  display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;
+  transition:.15s;user-select:none;
+}
+.accordion-header:hover{background:var(--glass2)}
+.metric-tag{
+  font-family:'DM Mono',monospace;font-size:12px;font-weight:500;
+  color:var(--text);white-space:nowrap;min-width:100px;
+}
+.metric-summary{font-size:13px;color:var(--text3);flex:1}
+.accordion-arrow{
+  font-size:18px;color:var(--text3);transition:transform .3s;flex-shrink:0;
+  font-family:'DM Mono',monospace;
+}
+.accordion-item.open .accordion-arrow{transform:rotate(90deg)}
+.accordion-body{
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+}
+.accordion-item.open .accordion-body{max-height:2000px}
+.accordion-body-inner{
+  padding:16px 18px 20px;font-size:14px;color:var(--text2);line-height:1.7;
+  border-top:1px solid var(--border);background:rgba(255,255,255,0.02);
+}
+.accordion-body-inner p{margin-bottom:10px}
+.accordion-body-inner strong{color:var(--text);font-weight:500}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* L3 SECTION                                                 */
+/* ═══════════════════════════════════════════════════════════ */
+.l3-section{
+  padding:60px 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 30%, rgba(139,92,246,0.06), transparent),
+    radial-gradient(ellipse 500px 350px at 80% 70%, rgba(59,130,246,0.05), transparent),
+    var(--bg2);
+}
+.l3-header{margin-bottom:40px}
+.l3-header h2{font-size:clamp(26px,4vw,38px);margin-bottom:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.l3-badge{
+  font-family:'DM Mono',monospace;font-size:11px;padding:4px 12px;border-radius:6px;
+  background:rgba(167,139,250,0.15);color:#A78BFA;border:1px solid rgba(167,139,250,0.3);
+  font-weight:500;letter-spacing:1px;
+}
+.l3-desc{font-size:15px;color:var(--text2);max-width:700px}
+
+/* L3 sub-sections */
+.l3-sub{margin-bottom:48px}
+.l3-sub-title{
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:16px;
+  padding-bottom:8px;border-bottom:1px solid var(--border);
+}
+
+/* Pattern cards */
+.pattern-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.pattern-card{
+  border:1px solid var(--border2);border-radius:12px;overflow:hidden;
+  background:var(--glass);transition:.2s;
+}
+.pattern-card:hover{border-color:rgba(255,255,255,0.2);transform:translateY(-2px)}
+.pattern-card-head{
+  padding:16px 18px;display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid var(--border);
+}
+.pattern-icon{font-size:22px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--glass2)}
+.pattern-card-head h4{font-size:15px;font-family:'Syne',sans-serif}
+.pattern-card-head p{font-size:12px;color:var(--text3);margin-top:2px;font-family:'DM Sans',sans-serif;font-weight:400}
+.pattern-markers{padding:14px 18px;border-bottom:1px solid var(--border)}
+.pattern-markers h5{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:8px}
+.marker-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.marker-list li{font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);padding-left:14px;position:relative}
+.marker-list li::before{content:'';width:5px;height:5px;border-radius:50%;position:absolute;left:0;top:6px}
+.pattern-expand{
+  padding:10px 18px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);
+  cursor:pointer;display:flex;align-items:center;gap:6px;transition:.15s;
+}
+.pattern-expand:hover{color:var(--text);background:var(--glass)}
+.pattern-detail{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.pattern-card.open .pattern-detail{max-height:3000px}
+.pattern-card.open .pattern-expand .p-arrow{transform:rotate(90deg)}
+.p-arrow{transition:transform .3s}
+.pattern-detail-inner{padding:16px 18px;font-size:13px;color:var(--text2);line-height:1.7;border-top:1px solid var(--border)}
+.pattern-detail-inner p{margin-bottom:8px}
+.pattern-detail-inner strong{color:var(--text)}
+
+/* Comparison table */
+.compare-table{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--border2);border-radius:12px;overflow:hidden;
+}
+.compare-col{min-width:0}
+.compare-col-head{padding:16px 20px;text-align:center;font-family:'Syne',sans-serif;font-size:16px;font-weight:700}
+.compare-col:first-child .compare-col-head{background:rgba(239,68,68,0.1);border-bottom:2px solid rgba(239,68,68,0.3)}
+.compare-col:last-child .compare-col-head{background:rgba(16,185,129,0.1);border-bottom:2px solid rgba(16,185,129,0.3)}
+.compare-row{padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px}
+.compare-row .cr-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);margin-bottom:2px}
+.compare-row .cr-value{color:var(--text2)}
+.compare-col:first-child .compare-row{border-right:1px solid var(--border)}
+
+/* Checklist */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:8px}
+.checklist li{
+  display:flex;gap:10px;align-items:flex-start;padding:10px 14px;
+  border-radius:8px;background:var(--glass);border:1px solid var(--border);font-size:13px;color:var(--text2);
+}
+.checklist li .cl-icon{flex-shrink:0;width:20px;text-align:center;font-size:14px}
+
+/* Hierarchy */
+.hierarchy{display:flex;flex-direction:column;gap:12px}
+.hierarchy-level{padding:14px 18px;border-radius:10px;border:1px solid var(--border);background:var(--glass)}
+.hierarchy-level h5{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.hierarchy-level p{font-size:13px;color:var(--text2)}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* FOOTER                                                     */
+/* ═══════════════════════════════════════════════════════════ */
+.site-footer{
+  text-align:center;padding:48px 24px;border-top:1px solid var(--border);
+  background:var(--bg);
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;
+  font-size:13px;color:var(--text3);margin-bottom:16px;transition:.2s;
+}
+.back-link:hover{color:var(--text)}
+.footer-logo{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text3);letter-spacing:2px;margin-bottom:8px}
+.disclaimer{font-size:12px;color:var(--text3);max-width:400px;margin:0 auto}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* RESPONSIVE                                                 */
+/* ═══════════════════════════════════════════════════════════ */
+@media(max-width:768px){
+  .hero{min-height:420px;padding:60px 16px 40px}
+  .block-section{padding:32px 0 24px}
+  .content-wrap{padding:0 16px}
+  .pattern-grid{grid-template-columns:1fr}
+  .compare-table{grid-template-columns:1fr}
+  .compare-col:first-child .compare-row{border-right:none}
+  .level-tabs{flex-direction:column}
+  .level-btn{padding:8px 12px}
+  .metrics-table{min-width:500px}
+}
+</style>
+</head>
+<body data-active-level="1">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- HERO                                                    -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">RHYTHMS OF NOTHING &times; NEIRY</div>
+    <h1>Расшифровка твоих данных</h1>
+    <p class="hero-sub">Полное руководство по метрикам Neiry Capsule — от терминов до многомерного анализа</p>
+    <div class="hero-btns">
+      <button class="hero-btn" data-accent="1" onclick="setLevel('1')">Справочник</button>
+      <button class="hero-btn" data-accent="2" onclick="setLevel('2')">Глубокий разбор</button>
+      <button class="hero-btn" data-accent="3" onclick="setLevel('3')">Для исследователей</button>
+    </div>
+    <svg class="hero-waves" viewBox="0 0 600 80" preserveAspectRatio="none">
+      <path d="" stroke="#3B82F6" class="wave" data-freq="0.02" data-amp="18" data-speed="0.8" data-offset="40"/>
+      <path d="" stroke="#06B6D4" class="wave" data-freq="0.015" data-amp="14" data-speed="1.1" data-offset="40"/>
+      <path d="" stroke="#8B5CF6" class="wave" data-freq="0.025" data-amp="10" data-speed="0.6" data-offset="40"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STICKY BLOCK NAV                                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<nav class="block-nav">
+  <div class="block-nav-inner">
+    <button class="block-nav-btn" data-target="session"><span class="block-nav-dot" style="background:var(--c-session)"></span>Сессия</button>
+    <button class="block-nav-btn" data-target="electrodes"><span class="block-nav-dot" style="background:var(--c-electrodes)"></span>Электроды</button>
+    <button class="block-nav-btn" data-target="ppg"><span class="block-nav-dot" style="background:var(--c-ppg)"></span>PPG</button>
+    <button class="block-nav-btn" data-target="indices"><span class="block-nav-dot" style="background:var(--c-indices)"></span>Индексы</button>
+    <button class="block-nav-btn" data-target="alpha"><span class="block-nav-dot" style="background:var(--c-alpha)"></span>Альфа</button>
+    <button class="block-nav-btn" data-target="emotions"><span class="block-nav-dot" style="background:var(--c-emotions)"></span>Эмоции</button>
+    <button class="block-nav-btn" data-target="rhythms"><span class="block-nav-dot" style="background:var(--c-rhythms)"></span>Ритмы</button>
+    <button class="block-nav-btn" data-target="peaks"><span class="block-nav-dot" style="background:var(--c-peaks)"></span>Пики</button>
+    <button class="block-nav-btn" data-target="status"><span class="block-nav-dot" style="background:var(--c-status)"></span>Статус</button>
+    <button class="block-nav-btn special" data-target="researcher"><span class="block-nav-dot" style="background:var(--c-l3)"></span>Исследователи</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- LEVEL SWITCHER                                          -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="level-switcher">
+  <div class="level-tabs">
+    <button class="level-btn active" data-level="1">Уровень 1: Справочник</button>
+    <button class="level-btn" data-level="2">Уровень 2: Наука</button>
+    <button class="level-btn" data-level="3">Уровень 3: Исследователи</button>
+  </div>
+  <div class="level-desc" id="levelDesc">Быстрые таблицы, термины и значения всех метрик</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- MAIN CONTENT                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="content-wrap">
+
+<!-- ══════ БЛОК 0: СЕССИЯ ══════ -->
+<section id="session" class="block-section">
+  <div class="block-header">
+    <div class="block-accent-line" style="background:var(--c-session)"></div>
+    <div>
+      <div class="block-eyebrow" style="color:var(--c-session)">БЛОК 0 — СЕССИЯ</div>
+      <h2 class="block-title">Общая информация</h2>
+      <p class="block-subtitle">Статус устройства, подключение, длительность записи</p>
+    </div>
+  </div>
+
+  <div class="level-content l1-content">
+    <div class="table-wrapper">
+      <table class="metrics-table">
+        <thead><tr><th>Метрика</th><th>Что это</th><th>Значения</th></tr></thead>
+        <tbody>
+          <tr><td class="metric-name">IsConnected</td><td>Статус подключения устройства</td><td><span class="badge green">true</span> <span class="badge gray">false</span></td></tr>
+          <tr><td class="metric-name">Battery</td><td>Заряд батареи</td><td><span class="badge green">&gt;15%</span> <span class="badge red">&lt;15% — качество передачи может снижаться</span></td></tr>
+          <tr><td class="metric-name">Serial</td><td>Серийный номер устройства</td><td>числовой код</td></tr>
+          <tr><td class="metric-name">Firmware</td><td>Версия прошивки</td><td>числовой код версии</td></tr>
+          <tr><td class="metric-name">Mode</td><td>Режим работы</td><td><span class="badge blue">SignalResist</span></td></tr>
+          <tr><td class="metric-name">Session Start</td><td>Время начала сессии</td><td>чч:мм:сс</td></tr>
+          <tr><td class="metric-name">Session Duration</td><td>Длительность записи</td><td><span class="badge yellow">&gt;5 мин для HRV</span> <span class="badge green">&gt;10 мин для Accumulated Fatigue</span></td></tr>
+          <tr><td class="metric-name">Session ID</td><td>Уникальный ID сессии</td><td>буквенно-числовой код</td></tr>
+          <tr><td class="metric-name">Data Markup (1–5)</td><td>Кнопки маркировки событий</td><td>нажимается вручную во время записи</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="level-content l2-content">
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">IsConnected</span><span class="metric-summary">Статус подключения устройства в момент просмотра</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Показывает, активно ли соединение с устройством в момент просмотра. Значение <strong>false</strong> при открытой записи означает, что данные отображаются из файла или соединение прервалось.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Battery</span><span class="metric-summary">Процент заряда — критичен для полевых исследований</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Процент заряда. Критически важно для полевых исследований: при заряде ниже <strong>15%</strong> качество беспроводной передачи может ухудшаться.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Session Duration</span><span class="metric-summary">Длительность записи — влияет на достоверность HRV</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Длительность текущей записи. Метрики HRV требуют минимум <strong>5 минут</strong> чистой записи для надёжных расчётов. <strong>Accumulated Fatigue</strong> осмыслен только в сессиях длиннее 10 минут.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Data Markup</span><span class="metric-summary">Кнопки маркировки событий в реальном времени</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Инструмент маркировки событий в реальном времени. Нажатие ставит временную метку в данные. Используется для синхронизации: «вот здесь началась медитация», «здесь дали задачу», «здесь испытуемый открыл глаза».</p><p>Без этих меток сравнительный анализ до/после в пределах одной сессии <strong>затруднён</strong>.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-content l3-content">
+    <div style="padding:20px;border-radius:10px;background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:14px">
+      <p><strong>Для исследователей:</strong> Метки Data Markup (кнопки 1–5) — ключевой инструмент для синхронизации субъективных событий с объективными данными. В экспортных данных Excel каждая метка привязана к таймкоду, что позволяет измерить латентность между объективным паттерном и субъективным осознанием.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ БЛОК 1: ЭЛЕКТРОДЫ ══════ -->
+<section id="electrodes" class="block-section">
+  <div class="block-header">
+    <div class="block-accent-line" style="background:var(--c-electrodes)"></div>
+    <div>
+      <div class="block-eyebrow" style="color:var(--c-electrodes)">БЛОК 1 — ЭЛЕКТРОДЫ</div>
+      <h2 class="block-title">Качество контакта и ЭЭГ-сигнал</h2>
+      <p class="block-subtitle">Импеданс, артефакты, амплитуда, спектр</p>
+    </div>
+  </div>
+
+  <div class="level-content l1-content">
+    <div class="table-wrapper">
+      <table class="metrics-table">
+        <thead><tr><th>Метрика</th><th>Что это</th><th>Значения / Норма</th></tr></thead>
+        <tbody>
+          <tr><td class="metric-name">O1, T3, O2, T4 (кОм)</td><td>Импеданс каждого электрода</td><td><span class="badge green">до 100–300 кОм — норма для сухих электродов</span></td></tr>
+          <tr><td class="metric-name">Electrode (O1-T3)</td><td>Отведение: левое полушарие</td><td><span class="badge purple">аналитическое мышление, речь</span></td></tr>
+          <tr><td class="metric-name">Electrode (O2-T4)</td><td>Отведение: правое полушарие</td><td><span class="badge purple">пространственное восприятие, эмоции</span></td></tr>
+          <tr><td class="metric-name">Artifacts</td><td>Наличие помех в сигнале</td><td><span class="badge green">No = чисто</span> <span class="badge red">Yes = помехи</span></td></tr>
+          <tr><td class="metric-name">Average µV</td><td>Средняя амплитуда ЭЭГ-сигнала</td><td><span class="badge green">10–100 µV — норма</span> <span class="badge yellow">5–6 µV — ниже нормы</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="level-content l2-content">
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Импеданс</span><span class="metric-summary">Сопротивление на границе электрод–кожа</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Импеданс — это сопротивление на границе между электродом и кожей. Для сухих электродов Neiry Capsule нормальный диапазон — до <strong>100–300 кОм</strong>. Принципиальное отличие от клинических систем с гелем: там требуется импеданс ниже 5 кОм.</p><p>Высокий импеданс (&gt;400 кОм) означает плохой контакт — сигнал слабый, артефактов много. Правильно: плотно прижать и мягко подвигать.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">O1-T3 / O2-T4</span><span class="metric-summary">Два канала ЭЭГ — левое и правое полушарие</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p><strong>O1-T3</strong> — отведение от левой затылочной области до левого виска: аналитическое мышление, речевые функции, последовательная обработка.</p><p><strong>O2-T4</strong> — правое полушарие: пространственное восприятие, эмоциональная обработка, целостное мышление.</p><p>Разница между каналами до 30–40% в амплитуде — функциональная норма. При деактивации DMN асимметрия обычно снижается.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Average µV</span><span class="metric-summary">Физический показатель силы электрической активности мозга</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Средняя амплитуда сигнала в микровольтах. Норма: <strong>10–100 µV</strong>. Значения 5–7 µV характерны для сухих электродов без геля, для людей с густыми волосами или при несовершенном контакте.</p><p>Низкий Average µV не делает данные недостоверными, если Artifacts = No и импеданс в норме — алгоритм компенсирует.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Спектр (FFT)</span><span class="metric-summary">Распределение мощности по частотам 0–35 Гц</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>FFT-спектр: распределение мощности по частотам. Каждый цветовой диапазон соответствует ритму. Высокий пик на 6 Гц — сильная тета. Пик на 10 Гц — альфа-пик.</p><p><strong>Подозрение на артефакт:</strong> равномерно высокая мощность в диапазоне 20–30 Гц с открытыми глазами — мышечное напряжение.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-content l3-content">
+    <div style="padding:20px;border-radius:10px;background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:14px">
+      <p><strong>Межполушарная асимметрия:</strong> При деактивации DMN (практики ONTO NOTHING) асимметрия между O1-T3 и O2-T4 обычно снижается — оба полушария входят в более синхронный режим. Это один из маркеров успешной практики остановки внутреннего диалога.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ БЛОК 2: PPG ══════ -->
+<section id="ppg" class="block-section">
+  <div class="block-header">
+    <div class="block-accent-line" style="background:var(--c-ppg)"></div>
+    <div>
+      <div class="block-eyebrow" style="color:var(--c-ppg)">БЛОК 2 — PPG МЕТРИКИ</div>
+      <h2 class="block-title">Сердечно-сосудистые показатели</h2>
+      <p class="block-subtitle">Фотоплетизмография, HRV, стресс-индексы</p>
+    </div>
+  </div>
+
+  <div class="level-content l1-content">
+    <div class="table-wrapper">
+      <table class="metrics-table">
+        <thead><tr><th>Метрика</th><th>Что это</th><th>Формула</th><th>Значения / Норма</th></tr></thead>
+        <tbody>
+          <tr><td class="metric-name">Perfusion</td><td>Индекс периферической перфузии</td><td class="formula">AC/DC &times; 100%</td><td><span class="badge red">&lt;0.5% слабый</span> <span class="badge yellow">0.5–1% рабочий</span> <span class="badge green">1–10% хороший</span></td></tr>
+          <tr><td class="metric-name">PPG quality avg</td><td>Интегральная оценка качества PPG</td><td class="formula">0–1</td><td><span class="badge red">&lt;0.5 ненадёжно</span> <span class="badge green">&gt;0.7 приемлемо</span></td></tr>
+          <tr><td class="metric-name">Is Calibrated</td><td>Флаг калибровки PPG</td><td class="formula">—</td><td><span class="badge green">Yes</span> <span class="badge red">No</span></td></tr>
+          <tr><td class="metric-name">HR (bpm)</td><td>Частота сердечных сокращений</td><td class="formula">60 / mean(RR)</td><td><span class="badge green">покой: 55–85</span> <span class="badge blue">спортсмены: 35–50</span></td></tr>
+          <tr><td class="metric-name">RR(M)</td><td>Среднее время между ударами сердца</td><td class="formula">—</td><td><span class="badge green">покой: 0.7–1.2 с</span></td></tr>
+          <tr><td class="metric-name">Mo</td><td>Мода кардиоинтервалов</td><td class="formula">наиболее частый RR</td><td><span class="badge green">покой: 0.75–1.0 с</span></td></tr>
+          <tr><td class="metric-name">SDNN</td><td>Стандартное отклонение RR-интервалов</td><td class="formula">&radic;(1/N &times; &Sigma;(RR&#7522;&minus;RR&#x0304;)&sup2;)</td><td><span class="badge green">&gt;50 мс норма</span> <span class="badge cyan">&gt;100 мс хорошо</span></td></tr>
+          <tr><td class="metric-name">CV</td><td>Коэффициент вариации HRV</td><td class="formula">SDNN/mean(RR)&times;100</td><td><span class="badge green">5–15%</span></td></tr>
+          <tr><td class="metric-name">AMo</td><td>Амплитуда моды</td><td class="formula">% интервалов в модальном диапазоне</td><td><span class="badge green">покой: 30–50%</span> <span class="badge yellow">стресс: 50–60%+</span></td></tr>
+          <tr><td class="metric-name">MxdMn</td><td>Вариационный размах</td><td class="formula">max(RR) &minus; min(RR)</td><td><span class="badge green">покой: 200–500+ мс</span></td></tr>
+          <tr><td class="metric-name">SI (Баевский)</td><td>Стресс-индекс</td><td class="formula">AMo / (2&times;Mo&times;MxdMn)</td><td><span class="badge green">50–150 норма</span> <span class="badge yellow">150–300 напряжение</span> <span class="badge red">300+ выраженное</span></td></tr>
+          <tr><td class="metric-name">SAT (Каплан)</td><td>Индекс психоэмоционального стресса</td><td class="formula">проприетарный</td><td><span class="badge green">60–120 норма</span> <span class="badge yellow">120–200 умеренный</span> <span class="badge red">200+ выраженный</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="level-content l2-content">
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">PPG принцип</span><span class="metric-summary">Фотоплетизмография — оптический метод измерения</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Фотоплетизмография — оптический метод. Датчик светит в кожу и измеряет, как меняется поглощение света при прохождении пульсовой волны. Сигнал состоит из двух компонент: <strong>AC</strong> (пульсирующая, синхронная с ударами сердца) и <strong>DC</strong> (постоянная). Большинство показателей вычисляются из AC-компоненты.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Perfusion</span><span class="metric-summary">Соотношение AC/DC — сила пульсации крови</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Соотношение AC к DC, умноженное на 100. Отражает, насколько сильно кровь пульсирует в месте измерения. Низкий Perfusion может означать: вазоконстрикцию от стресса/холода, плохой контакт датчика, слабое кровоснабжение области.</p><p><strong>Важнейшее правило:</strong> при Perfusion ниже 0.5% данные SI и SAT рассчитываются ненадёжно.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">HRV</span><span class="metric-summary">Вариабельность сердечного ритма — не шум, а функция</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Здоровое сердце не бьётся как метроном. Каждый удар чуть отличается, и эта вариабельность управляется вегетативной нервной системой.</p><p><strong>Парасимпатика</strong> (покой) — вариабельность высокая. <strong>Симпатика</strong> (стресс) — вариабельность падает, ритм монотонный.</p><p>Главный драйвер HRV в покое — <strong>дыхательная синусовая аритмия (RSA)</strong>. Медленное глубокое дыхание резко повышает MxdMn и SDNN — это физиологическая реакция, не «улучшение здоровья».</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">SDNN</span><span class="metric-summary">Золотой стандарт HRV — зависит от длины записи</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Стандартное отклонение всех RR-интервалов. Главный интегральный показатель HRV: отражает суммарную активность обоих отделов ВНС.</p><p><strong>Критично:</strong> SDNN зависит от длины записи — за 1 минуту он математически ниже, чем за 5 минут. Нельзя сравнивать SDNN разной длины.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">SI (Баевский)</span><span class="metric-summary">Стресс-индекс: степень «централизации» управления ритмом</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Формула: <strong>AMo / (2 &times; Mo &times; MxdMn)</strong>. Разработан для мониторинга космонавтов. Измеряет, насколько сердце «зажато» в монотонный ритм.</p><p>Высокий SI — симпатическая мобилизация. <strong>Нюанс:</strong> очень низкий SI (&lt;30) тоже не норма — ритм «робота», признак патологии или запредельного истощения.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">SAT (Каплан)</span><span class="metric-summary">Психоэмоциональный стресс — в 3–4 раза чувствительнее SI</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>В контексте Neiry Capsule SAT — <strong>не насыщение кислородом</strong>, а индекс психоэмоционального стресса по Каплану. В 3–4 раза чувствительнее к тревожным состояниям, чем SI.</p><p><strong>Практическое правило:</strong> Высокий SI при нормальном SAT — физическая нагрузка. Нормальный SI при высоком SAT — тревога без физической причины.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-content l3-content">
+    <div style="padding:20px;border-radius:10px;background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:14px">
+      <p><strong>Вагально-кортикальная петля:</strong> Блуждающий нерв идёт от ствола мозга к сердцу. Когда ACC и медиальная ПФК активируют парасимпатику — SDNN растёт, SI падает. Одновременно: Alpha-мощность растёт, Relaxation Index увеличивается. Это задокументированный механизм (Thayer &amp; Lane, 2000; Porges, 2011).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ БЛОК 3: ИНДЕКСЫ ══════ -->
+<section id="indices" class="block-section">
+  <div class="block-header">
+    <div class="block-accent-line" style="background:var(--c-indices)"></div>
+    <div>
+      <div class="block-eyebrow" style="color:var(--c-indices)">БЛОК 3 — INDICES AND SCORES</div>
+      <h2 class="block-title">Производные индексы</h2>
+      <p class="block-subtitle">Концентрация, усталость, продуктивность, Alpha Gravity</p>
+    </div>
+  </div>
+
+  <div class="level-content l1-content">
+    <div class="table-wrapper">
+      <table class="metrics-table">
+        <thead><tr><th>Метрика</th><th>Что это</th><th>Формула</th><th>Значения / Норма</th></tr></thead>
+        <tbody>
+          <tr><td class="metric-name">Relaxation Index</td><td>Соотношение расслабленности к активации</td><td class="formula">Alpha / Beta</td><td><span class="badge red">&lt;0.5 высокая активация</span> <span class="badge green">0.5–1.5 рабочее</span> <span class="badge cyan">&gt;2.0 глубокий покой</span></td></tr>
+          <tr><td class="metric-name">Concentration Index</td><td>Соотношение активации к расслабленности</td><td class="formula">Beta / Alpha</td><td><span class="badge yellow">&lt;1.0 рассеянность</span> <span class="badge green">2.0–3.5 хорошая</span> <span class="badge red">&gt;6.0 перенапряжение</span></td></tr>
+          <tr><td class="metric-name">Fatigue Score</td><td>Моментальный уровень усталости</td><td class="formula">(Alpha+Theta)/Beta</td><td><span class="badge green">0.3–0.8 бодрость</span> <span class="badge yellow">1.0–2.0 усталость</span> <span class="badge red">&gt;3.0 критично</span></td></tr>
+          <tr><td class="metric-name">Reverse Fatigue</td><td>Обратный индекс — уровень бодрости</td><td class="formula">Beta/(Alpha+Theta)</td><td><span class="badge green">&gt;2.0 высокая бодрость</span> <span class="badge yellow">1.0–2.0 рабочий</span> <span class="badge red">&lt;1.0 сонливость</span></td></tr>
+          <tr><td class="metric-name">Accumulated Fatigue</td><td>Накопленная усталость за сессию</td><td class="formula">интегральный</td><td><span class="badge green">0–3 резервы есть</span> <span class="badge yellow">3–6 умеренно</span> <span class="badge red">&gt;8 критично</span></td></tr>
+          <tr><td class="metric-name">Productivity Score</td><td>Комплексная когнитивная эффективность</td><td class="formula">составной</td><td><span class="badge red">&lt;40% низкая</span> <span class="badge yellow">40–60% средняя</span> <span class="badge green">60–80% хорошая</span> <span class="badge cyan">&gt;80% пик</span></td></tr>
+          <tr><td class="metric-name">Alpha Gravity</td><td>Соотношение верхней и нижней альфы</td><td class="formula">A2/A1</td><td><span class="badge blue">&lt;0.8 творческий</span> <span class="badge green">~1.0 баланс</span> <span class="badge cyan">&gt;1.2 аналитика</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="level-content l2-content">
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Relaxation / Concentration</span><span class="metric-summary">Математически обратны, но не противоположны по смыслу</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Relaxation = Alpha/Beta, Concentration = Beta/Alpha. Когда один растёт, другой падает. Однако существует состояние «расслабленной концентрации» — умеренно высокий Concentration при умеренном Relaxation. Это нейрофизиологический коррелят <strong>состояния потока</strong>.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Fatigue Score</span><span class="metric-summary">Нарастание тета + снижение беты — усталость или медитация?</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Fatigue Score растёт когда медленные ритмы (Alpha + Theta) нарастают, а Beta падает. <strong>Нюанс:</strong> это может означать как усталость, так и глубокое медитативное погружение. Различить их помогает комбинация с Instant Frequency Peaks и Alpha Peak.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Accumulated Fatigue</span><span class="metric-summary">Биохимический «долг» — аденозин не выводится за 2–3 минуты</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Интегральный показатель, основанный на теории аллостатической нагрузки. Связан с накоплением <strong>аденозина</strong> в префронтальной коре. Аденозин не выводится за 2–3 минуты перерыва — только медленный сон его утилизирует.</p><p><strong>Важно:</strong> Accumulated Fatigue не должен резко падать в середине сессии — если это происходит, скорее всего сбой калибровки.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Alpha Gravity</span><span class="metric-summary">A2/A1 — баланс DMN и CEN, ключевая метрика ONTO NOTHING</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Нижняя альфа (A1) связана с <strong>DMN</strong> — блуждание ума, самореференция. Верхняя альфа (A2) связана с <strong>CEN</strong> — прицельное торможение при внешней фокусировке.</p><p>Alpha Gravity ~1.0 = когнитивная гибкость. Это прямая метрика для исследований ONTO NOTHING: при деактивации DMN A1 снижается, Alpha Gravity <strong>растёт</strong>.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Productivity Score</span><span class="metric-summary">Составной показатель — нельзя интерпретировать в изоляции</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Интегрирует: Concentration Index, Fatigue Score, Cognitive Load, стабильность ритмов. 52% при высокой нагрузке и низкой усталости — один профиль. 52% при низкой нагрузке и высокой усталости — принципиально другой.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-content l3-content">
+    <div style="padding:20px;border-radius:10px;background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:14px">
+      <p><strong>Жёсткие корреляции:</strong> Concentration Index = 1 / Relaxation Index. Fatigue Score = 1 / Reverse Fatigue. Если эти соотношения нарушены — технический сбой, не физиология.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ БЛОК 4: АЛЬФА-ПРОФИЛЬ ══════ -->
+<section id="alpha" class="block-section">
+  <div class="block-header">
+    <div class="block-accent-line" style="background:var(--c-alpha)"></div>
+    <div>
+      <div class="block-eyebrow" style="color:var(--c-alpha)">БЛОК 4 — INDIVIDUAL ALPHA RANGE</div>
+      <h2 class="block-title">Персональный альфа-профиль</h2>
+      <p class="block-subtitle">Нейрофизиологический паспорт — генетически детерминирован на 70–80%</p>
+    </div>
+  </div>
+
+  <div class="level-content l1-content">
+    <div class="table-wrapper">
+      <table class="metrics-table">
+        <thead><tr><th>Метрика</th><th>Что это</th><th>Значения / Норма</th></tr></thead>
+        <tbody>
+          <tr><td class="metric-name">IAF</td><td>Индивидуальная альфа-частота (центр масс спектра)</td><td><span class="badge green">9.5–11.5 Гц</span> <span class="badge gray">снижается ~0.1 Гц за 10 лет</span></td></tr>
+          <tr><td class="metric-name">IAPF</td><td>Частота максимального альфа-пика</td><td><span class="badge green">9.5–11.5 Гц</span> <span class="badge blue">отличается от IAF &le;0.5 Гц</span></td></tr>
+          <tr><td class="metric-name">IAPF Power (µV²)</td><td>Мощность индивидуального альфа-пика</td><td><span class="badge green">18–30 лет: 15–50 µV²</span> <span class="badge gray">снижается с возрастом</span></td></tr>
+          <tr><td class="metric-name">IABW</td><td>Ширина индивидуального альфа-диапазона</td><td><span class="badge green">3–7 Гц</span></td></tr>
+          <tr><td class="metric-name">IAPF Suppression</td><td>Степень подавления альфа при задаче</td><td><span class="badge yellow">&lt;1.2 слабая мобилизация</span> <span class="badge green">~2.0 норма</span> <span class="badge red">&gt;3.5 гиперактивация</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="level-content l2-content">
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">IAF vs IAPF</span><span class="metric-summary">Центр тяжести спектра vs частота максимального пика</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p><strong>IAF</strong> — «центр тяжести» альфа-спектра, взвешенное среднее. <strong>IAPF</strong> — частота максимальной мощности, «острие» пика.</p><p>Когда альфа-генератор один и хорошо выражен — совпадают (разница &lt;0.2 Гц). Большое расхождение указывает на широкий размытый пик или несколько генераторов.</p><p>IAF у монозиготных близнецов различается менее чем на 0.2 Гц — используется для биометрической идентификации.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">IAPF Power</span><span class="metric-summary">Количество синхронизированных нейронов</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Амплитуда на частоте IAPF в µV². Отражает количество синхронизированных нейронов. Хронически низкая IAPF Power при нормальном IAPF — маркер стресса или истощения: нейроны «знают» частоту, но синхронизируются слабо.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">IAPF Suppression</span><span class="metric-summary">Коэффициент подавления альфа при переходе к задаче</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Отношение мощности в покое к мощности при задании. Норма ~2.0: альфа снижается вдвое при работе. Ниже 1.2 — мозг не может эффективно «включиться» (выгорание, хроническая усталость). Выше 3.5 — избыточная гиперактивация.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Эффекты среды</span><span class="metric-summary">Кофеин, время суток, недосып — влияние на IAF</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Кофеин может повышать IAF на 0.2–0.5 Гц на 2–3 часа. IAF выше утром на 0.5–1.0 Гц (циркадный дрейф). После одной бессонной ночи IAPF может снизиться на 1–2 Гц.</p><p><strong>Вывод:</strong> Калибровку для сравнительных исследований нужно проводить в одинаковое время суток и при одинаковом уровне кофеина.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-content l3-content">
+    <div style="padding:20px;border-radius:10px;background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:14px">
+      <p><strong>Персональный baseline:</strong> Все паттерны Уровня 3 применяются к <strong>отклонению от персонального baseline</strong>. Beta мощность 0.55 — норма для одного и тревога для другого. Alpha Peak 9.8 Гц — снижен для человека с IAPF 11.5, но нормален для IAPF 9.6. Отклонение &gt;30% за 5 мин — значимое событие.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ БЛОК 5: ЭМОЦИИ ══════ -->
+<section id="emotions" class="block-section">
+  <div class="block-header">
+    <div class="block-accent-line" style="background:var(--c-emotions)"></div>
+    <div>
+      <div class="block-eyebrow" style="color:var(--c-emotions)">БЛОК 5 — EMOTIONS</div>
+      <h2 class="block-title">Эмоционально-когнитивные метрики</h2>
+      <p class="block-subtitle">Attention, Relaxation, Cognitive Load, Cognitive Control</p>
+    </div>
+  </div>
+
+  <div class="level-content l1-content">
+    <div class="table-wrapper">
+      <table class="metrics-table">
+        <thead><tr><th>Метрика</th><th>Что это</th><th>Значения / Норма</th></tr></thead>
+        <tbody>
+          <tr><td class="metric-name">Attention</td><td>Качество и глубина фокуса внимания</td><td><span class="badge yellow">&lt;30 рассеянность</span> <span class="badge green">60–80 глубокий фокус</span> <span class="badge red">&gt;85 гиперфокус</span></td></tr>
+          <tr><td class="metric-name">Relaxation</td><td>Глубина психофизиологического расслабления</td><td><span class="badge red">&lt;30 стресс</span> <span class="badge green">55–75 расслабление</span> <span class="badge cyan">&gt;75 глубокий покой</span></td></tr>
+          <tr><td class="metric-name">Cognitive Load</td><td>Когнитивная нагрузка на рабочую память</td><td><span class="badge yellow">&lt;30 скука</span> <span class="badge green">50–70 оптимум</span> <span class="badge red">&gt;80 перегрузка</span></td></tr>
+          <tr><td class="metric-name">Cognitive Control</td><td>Исполнительный контроль — качество регуляции</td><td><span class="badge red">&lt;25 импульсивность</span> <span class="badge green">55–80 высокий контроль</span> <span class="badge yellow">&gt;80 гиперконтроль</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="level-content l2-content">
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Attention</span><span class="metric-summary">Engagement Index — 90+ это туннельный фокус, не эффективность</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Алгоритм близок к Engagement Index NASA. Физиологически отражает активность дорсолатеральной ПФК и передней поясной коры.</p><p><strong>Важно:</strong> Значение 90+ — не максимальная эффективность, а туннельный фокус, истощающий глюкозный резерв за 15–20 минут. Оптимум: <strong>60–80</strong> с естественными флуктуациями.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Relaxation</span><span class="metric-summary">Проприетарный алгоритм Neiry — интегрирует Alpha/Beta + HRV</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Проприетарный алгоритм Neiry (2020–2021), интегрирующий Alpha/Beta, показатели HRV и отклонение от baseline. Высокий Relaxation при одновременно высоком Attention — нетипичная комбинация, характерная для опытных медитаторов в состоянии «открытого присутствия».</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Cognitive Load</span><span class="metric-summary">Task Load Index — закон Йеркса-Додсона</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Показывает, насколько интенсивно используется рабочая память. Оптимальный диапазон <strong>50–70</strong>: ниже 30 — скука, выше 80 — перегрузка и ошибки. Перевёрнутая U-образная кривая эффективности.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Cognitive Control</span><span class="metric-summary">Самый сложный показатель — управление мышлением</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Отражает активность префронтальных исполнительных систем: рабочая память (дорсолатеральная ПФК), когнитивная гибкость (ACC), ингибиторный контроль.</p><p><strong>Критическое сочетание:</strong> Cognitive Load &gt;80 при Cognitive Control &lt;30 — состояние паники или когнитивного коллапса. Мозг перегружен и не может себя организовать.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-content l3-content">
+    <div style="padding:20px;border-radius:10px;background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:14px">
+      <p><strong>Несмотря на название блока, эти показатели не измеряют «эмоции» в бытовом смысле.</strong> Это функциональные нейрофизиологические состояния нейронных сетей, которые <em>коррелируют</em> с эмоциональными переживаниями, но не тождественны им.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ БЛОК 6: РИТМЫ ══════ -->
+<section id="rhythms" class="block-section">
+  <div class="block-header">
+    <div class="block-accent-line" style="background:var(--c-rhythms)"></div>
+    <div>
+      <div class="block-eyebrow" style="color:var(--c-rhythms)">БЛОК 6 — RHYTHMS</div>
+      <h2 class="block-title">Мощности ритмов мозга</h2>
+      <p class="block-subtitle">Нормализованные значения — Alpha, Beta, Theta, SMR</p>
+    </div>
+  </div>
+
+  <div class="level-content l1-content">
+    <div class="table-wrapper">
+      <table class="metrics-table">
+        <thead><tr><th>Метрика</th><th>Диапазон</th><th>Что это</th><th>Покой</th><th>Работа</th></tr></thead>
+        <tbody>
+          <tr><td class="metric-name">Alpha</td><td>8–13 Гц</td><td>Ритм активного торможения</td><td><span class="badge green">0.28–0.50</span></td><td><span class="badge blue">0.10–0.25</span></td></tr>
+          <tr><td class="metric-name">Beta</td><td>13–30 Гц</td><td>Ритм когнитивной обработки</td><td><span class="badge green">0.20–0.35</span></td><td><span class="badge blue">0.30–0.55</span></td></tr>
+          <tr><td class="metric-name">Theta</td><td>4–8 Гц</td><td>Ритм памяти, интуиции, контроля</td><td><span class="badge green">0.12–0.22</span></td><td><span class="badge blue">0.10–0.18</span></td></tr>
+          <tr><td class="metric-name">SMR</td><td>12–15 Гц</td><td>Сенсомоторный ритм — спокойная бдительность</td><td><span class="badge green">0.07–0.15</span></td><td><span class="badge blue">0.06–0.12</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--text3);margin-top:8px;font-family:'DM Mono',monospace">Сумма Alpha + Beta + Theta + SMR &approx; 1.0 (нормализовано)</p>
+  </div>
+
+  <div class="level-content l2-content">
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Нормализация</span><span class="metric-summary">Значения 0–1 — доли от общей мощности, ритмы конкурируют</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Значения 0–1 — доли от общей спектральной мощности. Сумма &approx; 1.0. Ритмы <strong>конкурируют</strong>: если Beta выросла с 0.30 до 0.55, доля беты в «пироге» увеличилась, вытеснив другие ритмы.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Alpha</span><span class="metric-summary">Открыт Бергером в 1924 — ритм активного торможения</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Генерируется таламо-кортикальными петлями. Функция — <strong>активное торможение</strong> нерелевантных нейронных сетей. Нарастание альфы при открытых глазах и задаче — не расслабление, а уход в автопилот или усталость.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Beta</span><span class="metric-summary">Широкий диапазон 13–30 Гц — неоднороден</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Нижний бета (13–18 Гц) — расслабленная концентрация. Средний (18–25 Гц) — активная аналитика. Высокий (25–30 Гц) — тревожная гиперактивация.</p><p><strong>Осторожно:</strong> мышечные артефакты от напряжения челюсти/лба попадают в диапазон 20–40 Гц и неотличимы от «высокой беты» без проверки.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Theta</span><span class="metric-summary">Ритм гиппокампа — память, навигация, творчество</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Генерируется гиппокампом и медиальными структурами. Связан с пространственной навигацией, консолидацией памяти, творческими инсайтами. Фронтальная тета (6–8 Гц) — маркер когнитивного контроля и ошибочного мониторинга.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">SMR</span><span class="metric-summary">Сенсомоторный ритм — спокойная бдительность при неподвижности</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Ритм сенсомоторной коры на границе Alpha и Beta (12–15 Гц). Растёт при физической неподвижности с сохранным вниманием. Используется в нейрофидбек-протоколах для тренировки спокойной концентрации.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-content l3-content">
+    <div style="padding:20px;border-radius:10px;background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:14px">
+      <p><strong>Ключевой принцип:</strong> Rhythms говорит «сколько энергии». Instant Frequency Peaks говорит «какого качества эта энергия». Только вместе они дают полную картину. Alpha 0.35 + Peak 11.5 Гц = расслабленная острота. Alpha 0.40 + Peak 8.5 Гц = сонливость.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ БЛОК 7: ПИКИ ══════ -->
+<section id="peaks" class="block-section">
+  <div class="block-header">
+    <div class="block-accent-line" style="background:var(--c-peaks)"></div>
+    <div>
+      <div class="block-eyebrow" style="color:var(--c-peaks)">БЛОК 7 — INSTANT FREQUENCY PEAKS</div>
+      <h2 class="block-title">Мгновенные пиковые частоты</h2>
+      <p class="block-subtitle">Alpha Peak, Beta Peak, Theta Peak — качество ритмов</p>
+    </div>
+  </div>
+
+  <div class="level-content l1-content">
+    <div class="table-wrapper">
+      <table class="metrics-table">
+        <thead><tr><th>Метрика</th><th>Диапазон</th><th>Нижняя зона</th><th>Центральная</th><th>Верхняя зона</th></tr></thead>
+        <tbody>
+          <tr><td class="metric-name">Alpha Peak</td><td>8–13 Гц</td><td><span class="badge yellow">8–9.5: сонливость</span></td><td><span class="badge green">9.5–11: нейтральное бодрствование</span></td><td><span class="badge cyan">11–13: ясная готовность, поток</span></td></tr>
+          <tr><td class="metric-name">Beta Peak</td><td>13–30 Гц</td><td><span class="badge blue">13–16: SMR-граница, тихий фокус</span></td><td><span class="badge green">16–21: активная аналитика</span></td><td><span class="badge red">21–30: напряжение, тревога</span></td></tr>
+          <tr><td class="metric-name">Theta Peak</td><td>4–8 Гц</td><td><span class="badge yellow">4–5.5: глубокий покой, засыпание</span></td><td><span class="badge green">5.5–6.5: инсайты, интуиция</span></td><td><span class="badge gray">6.5–8: мечтательность, рассеянность</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="level-content l2-content">
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Alpha Peak</span><span class="metric-summary">Ключевой маркер общего функционального состояния</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Мгновенная частота максимального пика альфа-ритма. Реагирует мгновенно на изменения состояния. Важнейший персонализированный маркер: интерпретируется только относительно IAPF.</p><p><strong>Alpha Peak ниже IAPF на 1.5+ Гц</strong> — усталость или засыпание. <strong>Alpha Peak выше или равен IAPF</strong> — высокая функциональная готовность.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Beta Peak</span><span class="metric-summary">Качество когнитивной обработки — от SMR до тревоги</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Показывает «качество» бета-активности. Beta Peak 16–19 Гц — продуктивная аналитика. Beta Peak &gt;21 Гц — тревожная гиперактивация, даже если Beta мощность не самая высокая.</p><p>Beta Peak в SMR-зоне (13–15 Гц) при медитации — маркер прекращения вербальной обработки.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Theta Peak</span><span class="metric-summary">Различает засыпание, медитацию и рассеянность</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p>Центральная зона 5.5–6.5 Гц — баланс, инсайты. Нижняя зона 4–5.5 Гц — глубокий покой или засыпание. Верхняя 6.5–8 Гц — мечтательность, рассеянность, DMN-активность.</p><p><strong>Ключевой для диагностики:</strong> при усталости Theta Peak нестабилен и в нижней зоне. При медитации — стабилен и центральный.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-content l3-content">
+    <div style="padding:20px;border-radius:10px;background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:14px">
+      <p><strong>Комбинация Мощность + Пик:</strong></p>
+      <p>Высокая мощность + Высокий пик = Активная высококачественная работа</p>
+      <p>Высокая мощность + Низкий пик = Много, но «тяжёлого» ритма</p>
+      <p>Низкая мощность + Высокий пик = Мало, но «острого» ритма</p>
+      <p>Низкая мощность + Низкий пик = Истощение или переход</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ БЛОК 8: СТАТУС ══════ -->
+<section id="status" class="block-section">
+  <div class="block-header">
+    <div class="block-accent-line" style="background:var(--c-status)"></div>
+    <div>
+      <div class="block-eyebrow" style="color:var(--c-status)">БЛОК 8 — STATE CHARACTERISTICS</div>
+      <h2 class="block-title">Итоговые статусы</h2>
+      <p class="block-subtitle">Рекомендации, стресс, валидность данных</p>
+    </div>
+  </div>
+
+  <div class="level-content l1-content">
+    <div class="table-wrapper">
+      <table class="metrics-table">
+        <thead><tr><th>Статус</th><th>Варианты</th><th>Что означает</th></tr></thead>
+        <tbody>
+          <tr><td class="metric-name">Recommendation</td><td><span class="badge gray">No recommendation</span> <span class="badge blue">есть рекомендация</span></td><td>Наличие системной рекомендации по состоянию</td></tr>
+          <tr><td class="metric-name">Stress</td><td><span class="badge green">No stress</span> <span class="badge red">Stress detected</span></td><td>Итоговая оценка уровня стресса по PPG + ЭЭГ</td></tr>
+          <tr><td class="metric-name">State</td><td><span class="badge green">Valid State</span> <span class="badge red">Invalid State</span></td><td>Валидность текущих данных — все системы работают корректно</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="level-content l2-content">
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header"><span class="metric-tag">Valid State</span><span class="metric-summary">Абсолютный приоритет — без него данные не интерпретируются</span><span class="accordion-arrow">&rsaquo;</span></div>
+        <div class="accordion-body"><div class="accordion-body-inner"><p><strong>Valid State</strong> — зелёный свет для интерпретации. Означает, что все системы работают корректно: импеданс в норме, артефакты минимальны, PPG откалиброван.</p><p><strong>Invalid State</strong> — данные этого периода не должны интерпретироваться. Возможные причины: плохой контакт, движение, потеря связи.</p><p>Это <strong>уровень 1 иерархии доверия</strong> — абсолютный приоритет над всеми остальными метриками.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-content l3-content">
+    <div style="padding:20px;border-radius:10px;background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:14px">
+      <p><strong>Иерархия доверия к данным:</strong></p>
+      <p>1. Техническое качество (Valid State, Artifacts, Perfusion) — абсолютный приоритет</p>
+      <p>2. Физиологические якоря (SDNN, SI, Alpha Peak vs IAPF) — высокий приоритет</p>
+      <p>3. Когнитивные производные (Indices) — средний, только после калибровки</p>
+      <p>4. Мгновенные показатели (Peaks, Emotions) — значимы при устойчивости &gt;2 мин</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /content-wrap -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- LEVEL 3: RESEARCHER SECTION                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section id="researcher" class="l3-section level-content l3-content">
+<div class="content-wrap">
+  <div class="l3-header">
+    <h2>Многомерный анализ <span class="l3-badge">RESEARCHER</span></h2>
+    <p class="l3-desc">Интегральные паттерны, пересечения систем, диагностические протоколы. Neiry Capsule &times; ONTO NOTHING Research Framework</p>
+  </div>
+
+  <!-- ЧАСТЬ A: Межсистемные связи -->
+  <div class="l3-sub">
+    <h3 class="l3-sub-title">Часть I — Межсистемные связи EEG &harr; PPG</h3>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:20px">Мозг и сердечно-сосудистая система управляются одними структурами через вегетативную нервную систему. Блуждающий нерв — главный парасимпатический кабель — соединяет ствол мозга с сердцем. Это <strong>вагально-кортикальная петля</strong> (Thayer &amp; Lane, 2000; Porges, 2011).</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:24px">
+      <div style="padding:16px;border-radius:10px;background:var(--glass);border:1px solid var(--border)">
+        <h5 style="font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--c-emotions);margin-bottom:8px">Истинное расслабление</h5>
+        <p style="font-size:13px;color:var(--text2)">ЭЭГ: Alpha 0.28–0.45, Alpha Peak 9.5–11 Гц, Beta 0.15–0.25. PPG: SDNN &gt;60 мс, SI 50–120. Парасимпатика доминирует. Состояние восстановления.</p>
+      </div>
+      <div style="padding:16px;border-radius:10px;background:var(--glass);border:1px solid var(--border)">
+        <h5 style="font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--c-ppg);margin-bottom:8px">Псевдорасслабление</h5>
+        <p style="font-size:13px;color:var(--text2)">ЭЭГ и PPG не согласованы. Вариант А: тело спокойно, мозг работает (Beta высокая, PPG норма). Вариант Б: мозг «спокоен», но SI &gt;200, SDNN &lt;35 — хронический стресс.</p>
+      </div>
+      <div style="padding:16px;border-radius:10px;background:var(--glass);border:1px solid var(--border)">
+        <h5 style="font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--c-indices);margin-bottom:8px">Когнитивная мобилизация</h5>
+        <p style="font-size:13px;color:var(--text2)">Beta 0.35–0.55, Concentration 2.0–3.5, SDNN 40–65 мс. Здоровый рабочий режим, поддерживается 20–40 минут до нарастания усталости.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЧАСТЬ B: Матрица состояний -->
+  <div class="l3-sub">
+    <h3 class="l3-sub-title">Часть II — Матрица когнитивных состояний</h3>
+    <div class="pattern-grid">
+
+      <!-- ПОТОК -->
+      <div class="pattern-card">
+        <div class="pattern-card-head">
+          <div class="pattern-icon" style="color:#06B6D4">&#x25C8;</div>
+          <div><h4 style="color:#06B6D4">Поток (Flow State)</h4><p>Баланс между нагрузкой и ресурсом</p></div>
+        </div>
+        <div class="pattern-markers">
+          <h5>EEG-маркеры</h5>
+          <ul class="marker-list">
+            <li style="--dot:#3B82F6"><span style="position:absolute;left:0;top:4px;color:#3B82F6;font-size:8px">&#9679;</span>Alpha Peak: 11–12.5 Гц</li>
+            <li style="--dot:#3B82F6"><span style="position:absolute;left:0;top:4px;color:#3B82F6;font-size:8px">&#9679;</span>Beta Peak: 16–19 Гц</li>
+            <li style="--dot:#3B82F6"><span style="position:absolute;left:0;top:4px;color:#3B82F6;font-size:8px">&#9679;</span>Theta Peak: 5.5–6.5 Гц</li>
+            <li style="--dot:#3B82F6"><span style="position:absolute;left:0;top:4px;color:#3B82F6;font-size:8px">&#9679;</span>Concentration: 2.0–3.0</li>
+            <li style="--dot:#3B82F6"><span style="position:absolute;left:0;top:4px;color:#3B82F6;font-size:8px">&#9679;</span>Cognitive Control: 60–82</li>
+          </ul>
+        </div>
+        <div class="pattern-markers">
+          <h5>PPG-сопровождение</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>SDNN: 45–70 мс</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>SI: 100–160</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>HR: 75–90 уд/мин</li>
+          </ul>
+        </div>
+        <div class="pattern-expand" onclick="this.closest('.pattern-card').classList.toggle('open')"><span class="p-arrow">&rsaquo;</span> Подробнее</div>
+        <div class="pattern-detail"><div class="pattern-detail-inner"><p>Требует точного баланса между вызовом и навыком. Транзиентная гиперфронтальность с последующей частичной деактивацией ПФК. Beta Peak не уходит в высокую зону — тревоги нет. Alpha Peak высокий — целевое ингибирование работает. Нейрофизиологически поток поддерживается 20–40 минут.</p></div></div>
+      </div>
+
+      <!-- ПРЕДПОТОК -->
+      <div class="pattern-card">
+        <div class="pattern-card-head">
+          <div class="pattern-icon" style="color:#3B82F6">&#x25C9;</div>
+          <div><h4 style="color:#3B82F6">Предпоток</h4><p>Готовность к потоку — стартовая позиция</p></div>
+        </div>
+        <div class="pattern-markers">
+          <h5>EEG-маркеры</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#3B82F6;font-size:8px">&#9679;</span>Alpha Peak: 10.5–12 Гц</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#3B82F6;font-size:8px">&#9679;</span>Beta Peak: 15–18 Гц</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#3B82F6;font-size:8px">&#9679;</span>Concentration: 1.5–2.5</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#3B82F6;font-size:8px">&#9679;</span>Relaxation: 0.8–1.5</li>
+          </ul>
+        </div>
+        <div class="pattern-markers">
+          <h5>PPG-сопровождение</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>SDNN: &gt;50 мс</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>SI: 80–140</li>
+          </ul>
+        </div>
+        <div class="pattern-expand" onclick="this.closest('.pattern-card').classList.toggle('open')"><span class="p-arrow">&rsaquo;</span> Подробнее</div>
+        <div class="pattern-detail"><div class="pattern-detail-inner"><p>Слегка ниже когнитивная нагрузка, чуть выше расслабленность. Мозг «прогрет», но не в задаче. Если фиксируется в начале сессии — поток вероятен. Если вместо него тревога или усталость — продуктивная сессия маловероятна без регуляции.</p></div></div>
+      </div>
+
+      <!-- ТРЕВОЖНАЯ КОНЦЕНТРАЦИЯ -->
+      <div class="pattern-card">
+        <div class="pattern-card-head">
+          <div class="pattern-icon" style="color:#F59E0B">&#x26A1;</div>
+          <div><h4 style="color:#F59E0B">Тревожная концентрация</h4><p>Сосредоточен из страха, не из вовлечённости</p></div>
+        </div>
+        <div class="pattern-markers">
+          <h5>EEG-маркеры</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#F59E0B;font-size:8px">&#9679;</span>Beta Peak: &gt;21 Гц (ключевой)</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#F59E0B;font-size:8px">&#9679;</span>Beta мощность: &gt;0.55</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#F59E0B;font-size:8px">&#9679;</span>Alpha Peak: &lt;9.5 Гц</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#F59E0B;font-size:8px">&#9679;</span>Cognitive Load: &gt;75</li>
+          </ul>
+        </div>
+        <div class="pattern-markers">
+          <h5>PPG-сопровождение</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>SAT: &gt;180, SI: &gt;200</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>SDNN: &lt;35 мс, HR: &gt;90</li>
+          </ul>
+        </div>
+        <div class="pattern-expand" onclick="this.closest('.pattern-card').classList.toggle('open')"><span class="p-arrow">&rsaquo;</span> Подробнее</div>
+        <div class="pattern-detail"><div class="pattern-detail-inner"><p>Гиперактивация симпатической системы. Норадреналин из locus coeruleus затапливает ПФК — перевёрнутая U-кривая Арнстена. Высокий Attention при Beta Peak &gt;21 и низком Cognitive Control — туннельное зрение из стресса, не продуктивность.</p></div></div>
+      </div>
+
+      <!-- УСТАЛОЕ БДЕНИЕ -->
+      <div class="pattern-card">
+        <div class="pattern-card-head">
+          <div class="pattern-icon" style="color:#94A3B8">&#x25CE;</div>
+          <div><h4 style="color:#94A3B8">Усталое бдение</h4><p>Когнитивные ресурсы исчерпаны, но человек работает</p></div>
+        </div>
+        <div class="pattern-markers">
+          <h5>EEG-маркеры</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#94A3B8;font-size:8px">&#9679;</span>Attention: 70–90 (кажется сосредоточенным)</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#94A3B8;font-size:8px">&#9679;</span>Cognitive Control: &lt;40 (падает)</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#94A3B8;font-size:8px">&#9679;</span>Accumulated Fatigue: &gt;7</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#94A3B8;font-size:8px">&#9679;</span>Alpha Peak снижен на 1.5–2.5 Гц</li>
+          </ul>
+        </div>
+        <div class="pattern-markers">
+          <h5>PPG-сопровождение</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>SDNN: 25–40 мс</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>SI: 180–280</li>
+          </ul>
+        </div>
+        <div class="pattern-expand" onclick="this.closest('.pattern-card').classList.toggle('open')"><span class="p-arrow">&rsaquo;</span> Подробнее</div>
+        <div class="pattern-detail"><div class="pattern-detail-inner"><p>Один из наиболее опасных паттернов. Человек не осознаёт снижения. Субъективная уверенность сохраняется, но реальная точность снижена на 30–40%. Ключевой признак: падение Cognitive Control при сохранном Cognitive Load.</p></div></div>
+      </div>
+
+      <!-- СКУКА -->
+      <div class="pattern-card">
+        <div class="pattern-card-head">
+          <div class="pattern-icon" style="color:#64748B">&#x25CB;</div>
+          <div><h4 style="color:#64748B">Скука / Гипоактивация</h4><p>Задача слишком проста — мозг «отключается»</p></div>
+        </div>
+        <div class="pattern-markers">
+          <h5>EEG-маркеры</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#64748B;font-size:8px">&#9679;</span>Alpha: &gt;0.40 при активной задаче</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#64748B;font-size:8px">&#9679;</span>Beta: &lt;0.20</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#64748B;font-size:8px">&#9679;</span>Attention: &lt;35</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#64748B;font-size:8px">&#9679;</span>Productivity Score: &lt;35%</li>
+          </ul>
+        </div>
+        <div class="pattern-expand" onclick="this.closest('.pattern-card').classList.toggle('open')"><span class="p-arrow">&rsaquo;</span> Подробнее</div>
+        <div class="pattern-detail"><div class="pattern-detail-inner"><p>Недостаточная активация по закону Йеркса-Додсона — левая часть перевёрнутой U. Мало возбуждения, мало эффективности. Отличие от медитации: Alpha Peak невысокий (8.5–10), Theta Peak в верхней зоне (6.5–7.5 Гц — рассеянность).</p></div></div>
+      </div>
+
+      <!-- КОГНИТИВНЫЙ КОЛЛАПС -->
+      <div class="pattern-card">
+        <div class="pattern-card-head">
+          <div class="pattern-icon" style="color:#EF4444">&#x2715;</div>
+          <div><h4 style="color:#EF4444">Когнитивный коллапс</h4><p>Острое состояние перегрузки</p></div>
+        </div>
+        <div class="pattern-markers">
+          <h5>EEG-маркеры</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>Beta Peak: &gt;24 Гц</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>Cognitive Control: &lt;25</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>Cognitive Load: &gt;85</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>Alpha: &lt;0.10 (подавлена полностью)</li>
+          </ul>
+        </div>
+        <div class="pattern-markers">
+          <h5>PPG-сопровождение</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>SI: &gt;300, SAT: &gt;250</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#EF4444;font-size:8px">&#9679;</span>SDNN: &lt;25 мс, HR: &gt;95</li>
+          </ul>
+        </div>
+        <div class="pattern-expand" onclick="this.closest('.pattern-card').classList.toggle('open')"><span class="p-arrow">&rsaquo;</span> Подробнее</div>
+        <div class="pattern-detail"><div class="pattern-detail-inner"><p>Гиперпродукция кортизола и норадреналина. ПФК теряет контроль над лимбической системой. Полная потеря когерентности. Данные при этом паттерне маркируются как нерабочие. Участнику необходим перерыв 15–20 минут.</p></div></div>
+      </div>
+
+      <!-- ВОССТАНОВЛЕНИЕ -->
+      <div class="pattern-card">
+        <div class="pattern-card-head">
+          <div class="pattern-icon" style="color:#10B981">&#x25D1;</div>
+          <div><h4 style="color:#10B981">Восстановление</h4><p>Активный отдых — мозг восстанавливается</p></div>
+        </div>
+        <div class="pattern-markers">
+          <h5>EEG-маркеры</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#10B981;font-size:8px">&#9679;</span>Alpha: 0.35–0.55, Peak 10–11.5 Гц</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#10B981;font-size:8px">&#9679;</span>Beta: 0.10–0.20</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#10B981;font-size:8px">&#9679;</span>Relaxation: &gt;1.5</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#10B981;font-size:8px">&#9679;</span>Fatigue Score снижается</li>
+          </ul>
+        </div>
+        <div class="pattern-markers">
+          <h5>PPG-сопровождение</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#10B981;font-size:8px">&#9679;</span>SDNN растёт в динамике</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#10B981;font-size:8px">&#9679;</span>SI и SAT снижаются</li>
+          </ul>
+        </div>
+        <div class="pattern-expand" onclick="this.closest('.pattern-card').classList.toggle('open')"><span class="p-arrow">&rsaquo;</span> Подробнее</div>
+        <div class="pattern-detail"><div class="pattern-detail-inner"><p>Не «бездействие» — мозг активно восстанавливается. Гиппокамп консолидирует воспоминания, астроциты выводят метаболиты. «Ничегонеделание» с этим паттерном продуктивнее, чем продолжение работы при «Усталом бдении».</p></div></div>
+      </div>
+
+      <!-- СОН НА ХОДУ -->
+      <div class="pattern-card">
+        <div class="pattern-card-head">
+          <div class="pattern-icon" style="color:#8B5CF6">&#x25D0;</div>
+          <div><h4 style="color:#8B5CF6">Сон на ходу</h4><p>Гипнагогия при бодрствовании</p></div>
+        </div>
+        <div class="pattern-markers">
+          <h5>EEG-маркеры</h5>
+          <ul class="marker-list">
+            <li><span style="position:absolute;left:0;top:4px;color:#8B5CF6;font-size:8px">&#9679;</span>Theta: &gt;0.30, Peak 4–5.5 Гц</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#8B5CF6;font-size:8px">&#9679;</span>Alpha: &gt;0.40, Peak 8–9.5 Гц</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#8B5CF6;font-size:8px">&#9679;</span>Beta: &lt;0.15</li>
+            <li><span style="position:absolute;left:0;top:4px;color:#8B5CF6;font-size:8px">&#9679;</span>Attention: &lt;25</li>
+          </ul>
+        </div>
+        <div class="pattern-expand" onclick="this.closest('.pattern-card').classList.toggle('open')"><span class="p-arrow">&rsaquo;</span> Подробнее</div>
+        <div class="pattern-detail"><div class="pattern-detail-inner"><p>Граница бодрствования и сна 1 стадии. Таламус генерирует медленные веретена, гиппокамп в режиме гипнагогических образов. Данные маркируются как нерабочий период. Если фиксируется в начале сессии — участнику необходим сон.</p></div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ЧАСТЬ C: Сравнительная таблица -->
+  <div class="l3-sub">
+    <h3 class="l3-sub-title">Усталость vs Медитация — критическое различие</h3>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:16px">Оба состояния дают: высокую Theta, сниженную Beta, рост Relaxation. Вот как их различить:</p>
+    <div class="compare-table">
+      <div class="compare-col">
+        <div class="compare-col-head" style="color:#EF4444">Усталость</div>
+        <div class="compare-row"><div class="cr-label">Alpha Peak</div><div class="cr-value">Снизился от IAPF на 1.5–3 Гц &#8595;</div></div>
+        <div class="compare-row"><div class="cr-label">Theta Peak</div><div class="cr-value">Нижняя зона 4–5.5 Гц, нестабилен</div></div>
+        <div class="compare-row"><div class="cr-label">Beta Peak</div><div class="cr-value">Хаотичен, нестабилен</div></div>
+        <div class="compare-row"><div class="cr-label">Accumulated Fatigue</div><div class="cr-value">Высокий, растёт</div></div>
+        <div class="compare-row"><div class="cr-label">SDNN</div><div class="cr-value">Снижен от базового</div></div>
+        <div class="compare-row"><div class="cr-label">SI</div><div class="cr-value">Растёт</div></div>
+        <div class="compare-row"><div class="cr-label">Cognitive Control</div><div class="cr-value">Падает</div></div>
+        <div class="compare-row"><div class="cr-label">Субъективно</div><div class="cr-value">«Тяжело», «хочу спать»</div></div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head" style="color:#10B981">Медитация</div>
+        <div class="compare-row"><div class="cr-label">Alpha Peak</div><div class="cr-value">Высокий или выше IAPF &#8593;</div></div>
+        <div class="compare-row"><div class="cr-label">Theta Peak</div><div class="cr-value">Центральная зона 5.5–6.5 Гц, стабилен</div></div>
+        <div class="compare-row"><div class="cr-label">Beta Peak</div><div class="cr-value">Стабильно снижен к 13–15 Гц</div></div>
+        <div class="compare-row"><div class="cr-label">Accumulated Fatigue</div><div class="cr-value">Низкий или не меняется</div></div>
+        <div class="compare-row"><div class="cr-label">SDNN</div><div class="cr-value">Растёт, RSA усиливается</div></div>
+        <div class="compare-row"><div class="cr-label">SI</div><div class="cr-value">Снижается или стабилен</div></div>
+        <div class="compare-row"><div class="cr-label">Cognitive Control</div><div class="cr-value">Стабилен или растёт</div></div>
+        <div class="compare-row"><div class="cr-label">Субъективно</div><div class="cr-value">«Легко», «ясно»</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЧАСТЬ D: Правила интерпретации -->
+  <div class="l3-sub">
+    <h3 class="l3-sub-title">Правила интерпретации</h3>
+
+    <h4 style="font-size:15px;margin:16px 0 10px;color:var(--text)">Иерархия доверия к данным</h4>
+    <div class="hierarchy">
+      <div class="hierarchy-level" style="border-left:3px solid #EF4444">
+        <h5 style="color:#EF4444">Уровень 1 — Техническое качество (абсолютный приоритет)</h5>
+        <p>Valid State, Artifacts, Perfusion, PPG quality, Average µV, импеданс. Если здесь проблемы — всё остальное не интерпретируется.</p>
+      </div>
+      <div class="hierarchy-level" style="border-left:3px solid #F59E0B">
+        <h5 style="color:#F59E0B">Уровень 2 — Физиологические якоря (высокий)</h5>
+        <p>SDNN и SI — самые «честные» маркеры ВНС. Alpha Peak относительно IAPF. Accumulated Fatigue.</p>
+      </div>
+      <div class="hierarchy-level" style="border-left:3px solid #3B82F6">
+        <h5 style="color:#3B82F6">Уровень 3 — Когнитивные производные (средний)</h5>
+        <p>Concentration, Relaxation, Fatigue Score. Имеют смысл только если калибровка корректна.</p>
+      </div>
+      <div class="hierarchy-level" style="border-left:3px solid #64748B">
+        <h5 style="color:#64748B">Уровень 4 — Мгновенные показатели (требуют динамики)</h5>
+        <p>Instant Frequency Peaks, Emotions. Один момент малоинформативен. Значимо устойчивое состояние 2+ минуты.</p>
+      </div>
+    </div>
+
+    <h4 style="font-size:15px;margin:24px 0 10px;color:var(--text)">Что нельзя интерпретировать без контекста</h4>
+    <ul class="checklist">
+      <li><span class="cl-icon">&#x26A0;</span>Alpha Peak без IAPF — невозможно понять, высокий он или низкий</li>
+      <li><span class="cl-icon">&#x26A0;</span>Beta мощность без Beta Peak — нельзя отличить продуктивную от тревожной</li>
+      <li><span class="cl-icon">&#x26A0;</span>Theta мощность без Alpha Peak — нельзя отличить усталость от медитации</li>
+      <li><span class="cl-icon">&#x26A0;</span>SI без SAT — нельзя различить физический и психоэмоциональный стресс</li>
+      <li><span class="cl-icon">&#x26A0;</span>Любой показатель без Valid State — нет гарантии достоверности</li>
+      <li><span class="cl-icon">&#x26A0;</span>Fatigue Score без Accumulated Fatigue — моментальная без контекста накопленной</li>
+    </ul>
+
+    <h4 style="font-size:15px;margin:24px 0 10px;color:var(--text)">Временные окна интерпретации</h4>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px">
+      <div style="padding:14px;border-radius:8px;background:var(--glass);border:1px solid var(--border)">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--c-ppg);margin-bottom:4px">СЕКУНДЫ (1–10 с)</div>
+        <p style="font-size:13px;color:var(--text2)">Instant Frequency Peaks — реагируют мгновенно. Одиночный пик не информативен.</p>
+      </div>
+      <div style="padding:14px;border-radius:8px;background:var(--glass);border:1px solid var(--border)">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--c-indices);margin-bottom:4px">МИНУТЫ (1–5 мин)</div>
+        <p style="font-size:13px;color:var(--text2)">Alpha/Beta мощность, Emotions. Нужна устойчивость минимум 90 секунд.</p>
+      </div>
+      <div style="padding:14px;border-radius:8px;background:var(--glass);border:1px solid var(--border)">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--c-emotions);margin-bottom:4px">СЕССИЯ (5–60 мин)</div>
+        <p style="font-size:13px;color:var(--text2)">Accumulated Fatigue, динамика SDNN, Productivity Score. Тренд важнее точки.</p>
+      </div>
+      <div style="padding:14px;border-radius:8px;background:var(--glass);border:1px solid var(--border)">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--c-alpha);margin-bottom:4px">ДНИ/НЕДЕЛИ</div>
+        <p style="font-size:13px;color:var(--text2)">IAPF, базовый HRV, Baseline-метрики. Отражают нейропластичность.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЧАСТЬ E: ONTO NOTHING специфика -->
+  <div class="l3-sub">
+    <h3 class="l3-sub-title">ONTO NOTHING — Специфические паттерны</h3>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px">
+      <!-- Тихий ум -->
+      <div style="padding:20px;border-radius:12px;background:var(--glass);border:1px solid rgba(6,182,212,0.3)">
+        <h4 style="font-family:'Syne',sans-serif;font-size:16px;color:#06B6D4;margin-bottom:10px">Паттерн «Тихий ум»</h4>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:12px">Остановка внутреннего диалога — центральный феномен ONTO NOTHING.</p>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);line-height:1.8">
+          <div>Beta мощность: 0.04–0.15 (резкое падение)</div>
+          <div>Beta Peak: 13–15 Гц (к SMR-границе)</div>
+          <div>Alpha мощность: 0.30–0.50 (растёт)</div>
+          <div>Alpha Peak: 11–12.5 Гц (стабилен/растёт)</div>
+          <div>SMR: 0.10–0.18 (может расти)</div>
+          <div>Alpha Gravity: растёт (A1 снижается, A2 стабильна)</div>
+        </div>
+        <p style="font-size:12px;color:var(--text3);margin-top:10px"><strong>Ключевой признак:</strong> одновременное падение Beta мощности И смещение Beta Peak вниз.</p>
+      </div>
+
+      <!-- Мыслевирус -->
+      <div style="padding:20px;border-radius:12px;background:var(--glass);border:1px solid rgba(239,68,68,0.3)">
+        <h4 style="font-family:'Syne',sans-serif;font-size:16px;color:#EF4444;margin-bottom:10px">Паттерн «Мыслевирус»</h4>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:12px">Паразитический паттерн мышления, захватывающий внимание.</p>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);line-height:1.8">
+          <div>Beta мощность: рост на 0.15–0.25 за 30–60 сек</div>
+          <div>Beta Peak: прыжок с 14–15 до 18–22 Гц</div>
+          <div>Alpha мощность: падает</div>
+          <div>Alpha Gravity: резко снижается</div>
+          <div>Theta Peak: смещается вверх к 7–8 Гц</div>
+          <div>HR: кратковременный рост на 3–8 уд/мин</div>
+        </div>
+        <p style="font-size:12px;color:var(--text3);margin-top:10px"><strong>Детекция:</strong> Маркировка кнопками 1–5 в момент «захвата» для измерения латентности.</p>
+      </div>
+
+      <!-- Деактивация DMN -->
+      <div style="padding:20px;border-radius:12px;background:var(--glass);border:1px solid rgba(167,139,250,0.3);grid-column:1/-1">
+        <h4 style="font-family:'Syne',sans-serif;font-size:16px;color:#A78BFA;margin-bottom:10px">ЭЭГ-сигнатура деактивации DMN при сохранении осознанности</h4>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:12px">Деактивация Default Mode Network через практику осознанности (не через внешнюю задачу) — качественно иной механизм. CEN не гиперактивируется — специфическое «открытое присутствие».</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px">
+          <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);line-height:1.8">
+            <div style="color:var(--text3);font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">ЭЭГ-сигнатура</div>
+            <div>Нижняя альфа (A1): снижается</div>
+            <div>Верхняя альфа (A2): стабилизируется/растёт</div>
+            <div>Alpha Gravity: &gt;1.2</div>
+            <div>Фронтальный тета: 6–8 Гц, стабилен</div>
+            <div>Beta Peak: 13–15 Гц (SMR-зона)</div>
+            <div>Beta мощность: 0.08–0.18</div>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);line-height:1.8">
+            <div style="color:var(--text3);font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">PPG-сопровождение</div>
+            <div>SDNN: растёт</div>
+            <div>SI: снижается</div>
+            <div>SAT: снижается</div>
+            <div style="margin-top:8px;color:var(--text3);font-size:11px">Парасимпатическое доминирование<br>(Phongsuphap et al., 2008)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Минимальный набор -->
+  <div class="l3-sub">
+    <h3 class="l3-sub-title">Минимальный набор для надёжной диагностики</h3>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:16px">Восемь чисел для характеристики состояния с максимальной достоверностью:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
+      <div style="padding:12px 16px;border-radius:8px;background:var(--glass);border:1px solid var(--border);border-left:3px solid var(--c-ppg)">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px">PPG</div>
+        <div style="font-size:14px;color:var(--text);margin-top:4px">SI, SAT, SDNN</div>
+      </div>
+      <div style="padding:12px 16px;border-radius:8px;background:var(--glass);border:1px solid var(--border);border-left:3px solid var(--c-rhythms)">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px">ЭЭГ базовые</div>
+        <div style="font-size:14px;color:var(--text);margin-top:4px">Beta, Alpha мощности</div>
+      </div>
+      <div style="padding:12px 16px;border-radius:8px;background:var(--glass);border:1px solid var(--border);border-left:3px solid var(--c-peaks)">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px">Пики</div>
+        <div style="font-size:14px;color:var(--text);margin-top:4px">Alpha Peak, Beta Peak</div>
+      </div>
+      <div style="padding:12px 16px;border-radius:8px;background:var(--glass);border:1px solid var(--border);border-left:3px solid var(--c-emotions)">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px">Индексы</div>
+        <div style="font-size:14px;color:var(--text);margin-top:4px">Cognitive Control</div>
+      </div>
+      <div style="padding:12px 16px;border-radius:8px;background:var(--glass);border:1px solid var(--border);border-left:3px solid var(--c-indices)">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px">Усталость</div>
+        <div style="font-size:14px;color:var(--text);margin-top:4px">Accumulated Fatigue</div>
+      </div>
+      <div style="padding:12px 16px;border-radius:8px;background:var(--glass);border:1px solid var(--border);border-left:3px solid var(--c-status)">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px">Системный</div>
+        <div style="font-size:14px;color:var(--text);margin-top:4px">Valid State</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <a href="../" class="back-link">&larr; Вернуться на сайт</a>
+  <div class="footer-logo">ONTO NOTHING &times; NEIRY</div>
+  <p class="disclaimer">Данный материал носит образовательный характер. Не является медицинской рекомендацией.</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<script>
+/* ── Level switcher ── */
+const levelDescs = {
+  '1': 'Быстрые таблицы, термины и значения всех метрик',
+  '2': 'Подробные описания, физиология, механизмы работы',
+  '3': 'Многомерный анализ, паттерны, пересечения систем'
+};
+
+function setLevel(level) {
+  document.body.dataset.activeLevel = level;
+  localStorage.setItem('neiry-level', level);
+  document.querySelectorAll('.level-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.level === level);
+  });
+  document.getElementById('levelDesc').textContent = levelDescs[level] || '';
+}
+
+// Restore saved level
+const savedLevel = localStorage.getItem('neiry-level') || '1';
+setLevel(savedLevel);
+
+document.querySelectorAll('.level-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLevel(btn.dataset.level));
+});
+
+/* ── Accordion ── */
+document.querySelectorAll('.accordion-header').forEach(header => {
+  header.addEventListener('click', () => {
+    header.parentElement.classList.toggle('open');
+  });
+});
+
+/* ── Block nav scroll & active state ── */
+document.querySelectorAll('.block-nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = document.getElementById(btn.dataset.target);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+const sections = document.querySelectorAll('.block-section, .l3-section');
+const navBtns = document.querySelectorAll('.block-nav-btn');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.target === id);
+      });
+      // Auto-scroll nav to active button
+      const activeBtn = document.querySelector(`.block-nav-btn[data-target="${id}"]`);
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+/* ── Animated SVG waves ── */
+const waves = document.querySelectorAll('.wave');
+let t = 0;
+function animateWaves() {
+  t += 0.02;
+  waves.forEach(wave => {
+    const freq = parseFloat(wave.dataset.freq);
+    const amp = parseFloat(wave.dataset.amp);
+    const speed = parseFloat(wave.dataset.speed);
+    const offset = parseFloat(wave.dataset.offset);
+    let d = 'M0,' + offset;
+    for (let x = 0; x <= 600; x += 4) {
+      const y = offset + Math.sin(x * freq + t * speed) * amp
+                       + Math.sin(x * freq * 1.5 + t * speed * 0.7) * (amp * 0.3);
+      d += ' L' + x + ',' + y.toFixed(1);
+    }
+    wave.setAttribute('d', d);
+  });
+  requestAnimationFrame(animateWaves);
+}
+animateWaves();
+</script>
+</body>
+</html>
