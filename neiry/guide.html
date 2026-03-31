@@ -190,7 +190,8 @@ body[data-active-level="3"] .l1-only{display:none}
 /* ═══════════════════════════════════════════════════════════ */
 /* L2 ACCORDION                                               */
 /* ═══════════════════════════════════════════════════════════ */
-.accordion{display:flex;flex-direction:column;gap:4px}
+.accordion{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(max-width:768px){.accordion{grid-template-columns:1fr}}
 .accordion-item{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--glass)}
 .accordion-header{
   display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;
