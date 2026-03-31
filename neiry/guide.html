@@ -391,6 +391,7 @@ body:not([data-l3-unlocked]) .level-btn[data-level="3"]::after{content:' 🔒';f
 <!-- ═══════════════════════════════════════════════════════ -->
 <nav class="block-nav">
   <div class="block-nav-inner">
+    <button class="block-nav-btn" data-target="setup"><span class="block-nav-dot" style="background:#6366F1"></span>Установка</button>
     <button class="block-nav-btn" data-target="session"><span class="block-nav-dot" style="background:var(--c-session)"></span>Сессия</button>
     <button class="block-nav-btn" data-target="electrodes"><span class="block-nav-dot" style="background:var(--c-electrodes)"></span>Электроды</button>
     <button class="block-nav-btn" data-target="ppg"><span class="block-nav-dot" style="background:var(--c-ppg)"></span>PPG</button>
@@ -420,6 +421,153 @@ body:not([data-l3-unlocked]) .level-btn[data-level="3"]::after{content:' 🔒';f
 <!-- MAIN CONTENT                                            -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div class="content-wrap">
+
+<!-- ══════ УСТАНОВКА ПРОГРАММЫ ══════ -->
+<section id="setup" class="block-section l1-only">
+  <div class="block-header">
+    <div class="block-accent-line" style="background:#6366F1"></div>
+    <div>
+      <div class="block-eyebrow" style="color:#6366F1">НАЧАЛО РАБОТЫ</div>
+      <h2 class="block-title">Установка программы Neiry Capsule</h2>
+      <p class="block-subtitle">Скачивание, активация, первая калибровка</p>
+    </div>
+  </div>
+
+  <div class="level-content l1-content">
+    <div style="display:flex;flex-direction:column;gap:24px">
+
+      <!-- ШАГ 1 -->
+      <div style="padding:24px;border-radius:12px;border:1px solid var(--border);background:var(--glass)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(99,102,241,0.12);color:#6366F1;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px">1</div>
+          <h3 style="font-size:18px">Скачайте программу</h3>
+        </div>
+        <p style="color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:12px">Зайдите в официальный Telegram-канал Neiry Capsule:</p>
+        <a href="https://t.me/neurocapsule" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:8px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);color:#4F46E5;font-family:'DM Mono',monospace;font-size:13px;transition:.2s;text-decoration:none">
+          t.me/neurocapsule &rarr;
+        </a>
+        <p style="color:var(--text2);font-size:14px;line-height:1.7;margin-top:12px">В последнем посте канала найдите финальную версию, доступную для скачивания.</p>
+        <div style="margin-top:12px;padding:12px 16px;border-radius:8px;background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.15)">
+          <p style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);margin-bottom:4px">Актуальная ссылка (март 2026):</p>
+          <a href="http://cloud.neiry.ru/Capsule_and_API_2_0_40_19_09_2025.zip" style="font-family:'DM Mono',monospace;font-size:13px;color:#4F46E5;word-break:break-all">cloud.neiry.ru/Capsule_and_API_2_0_40_19_09_2025.zip</a>
+        </div>
+      </div>
+
+      <!-- ШАГ 2 -->
+      <div style="padding:24px;border-radius:12px;border:1px solid var(--border);background:var(--glass)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(99,102,241,0.12);color:#6366F1;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px">2</div>
+          <h3 style="font-size:18px">Получите лицензионный ключ</h3>
+        </div>
+        <p style="color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:12px">В комментариях к последнему посту в канале напишите сообщение по шаблону:</p>
+        <div style="padding:16px 20px;border-radius:10px;background:var(--bg2);border:1px solid var(--border2);font-family:'DM Mono',monospace;font-size:13px;color:var(--text);line-height:1.8">
+          <div>Прошу ключ</div>
+          <div>Почта: <span style="color:#4F46E5">vashapochta@gmail.com</span></div>
+          <div>Серийный номер: <span style="color:#4F46E5">sn 822236</span></div>
+        </div>
+        <div style="margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2)">
+          <p style="font-size:13px;color:var(--text2);line-height:1.6"><strong style="color:#B45309">Где найти серийный номер?</strong> Серийный номер (Serial Number) находится на <strong>левой внутренней стороне</strong> трекера Neiry Capsule. Это 6-значный числовой код, например <span style="font-family:'DM Mono',monospace;color:#4F46E5">821049</span>. Он также отображается в программе в поле Serial после подключения устройства.</p>
+        </div>
+        <p style="color:var(--text3);font-size:13px;margin-top:12px">Ключ нужен один раз — при первом запуске. Сохраните его, чтобы был под рукой.</p>
+      </div>
+
+      <!-- ШАГ 3 -->
+      <div style="padding:24px;border-radius:12px;border:1px solid var(--border);background:var(--glass)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(99,102,241,0.12);color:#6366F1;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px">3</div>
+          <h3 style="font-size:18px">Установите и запустите</h3>
+        </div>
+        <p style="color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:14px">После скачивания у вас будет архив с двумя папками:</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px">
+          <div style="padding:12px 16px;border-radius:8px;border:1px solid var(--border);background:var(--bg2)">
+            <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text3)">Папка 1</div>
+            <div style="font-family:'DM Mono',monospace;font-size:14px;color:var(--text)">CapsuleAPI</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:2px">для разработчиков</div>
+          </div>
+          <div style="padding:12px 16px;border-radius:8px;border:1px solid rgba(99,102,241,0.25);background:rgba(99,102,241,0.05)">
+            <div style="font-family:'DM Mono',monospace;font-size:12px;color:#6366F1">Папка 2 &larr; нужна эта</div>
+            <div style="font-family:'DM Mono',monospace;font-size:14px;color:var(--text)">CapsuleAppReleases</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:2px">основная программа</div>
+          </div>
+        </div>
+        <p style="color:var(--text2);font-size:14px;line-height:1.7">Откройте <strong>CapsuleAppReleases</strong> и выберите вашу платформу:</p>
+        <ul style="list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:6px">
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text2)"><span style="font-family:'DM Mono',monospace;font-size:12px;padding:2px 8px;border-radius:4px;background:var(--glass2);color:var(--text)">Windows</span> — папка Windows</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text2)"><span style="font-family:'DM Mono',monospace;font-size:12px;padding:2px 8px;border-radius:4px;background:var(--glass2);color:var(--text)">Mac Intel</span> — папка macOS</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text2)"><span style="font-family:'DM Mono',monospace;font-size:12px;padding:2px 8px;border-radius:4px;background:var(--glass2);color:var(--text)">Mac M1/M2/M3</span> — папка ARM</li>
+        </ul>
+        <div style="margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(5,150,105,0.08);border:1px solid rgba(5,150,105,0.2)">
+          <p style="font-size:13px;color:var(--text2);line-height:1.6"><strong style="color:#047857">Bluetooth обязателен.</strong> Убедитесь, что Bluetooth включён на вашем компьютере. Если встроенного Bluetooth нет — используйте USB-адаптер (должен быть в аксессуарах комплекта).</p>
+        </div>
+      </div>
+
+      <!-- ШАГ 4 -->
+      <div style="padding:24px;border-radius:12px;border:1px solid var(--border);background:var(--glass)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(99,102,241,0.12);color:#6366F1;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px">4</div>
+          <h3 style="font-size:18px">Первый запуск</h3>
+        </div>
+        <p style="color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:12px">При первом входе в программу:</p>
+        <ol style="list-style:none;counter-reset:steps;display:flex;flex-direction:column;gap:10px;margin-bottom:14px">
+          <li style="display:flex;gap:10px;font-size:14px;color:var(--text2);line-height:1.6"><span style="font-family:'DM Mono',monospace;font-size:12px;color:#6366F1;flex-shrink:0">4.1</span>Слева в панели <strong>Write options</strong> — прожмите все галочки (Cardio Metrics, EEG, EEG Artifacts, Emotions, PPG, Productivity и т.д.)</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:var(--text2);line-height:1.6"><span style="font-family:'DM Mono',monospace;font-size:12px;color:#6366F1;flex-shrink:0">4.2</span>Нажмите <strong>«Start Offline»</strong> (или войдите с логином, если у вас есть аккаунт)</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:var(--text2);line-height:1.6"><span style="font-family:'DM Mono',monospace;font-size:12px;color:#6366F1;flex-shrink:0">4.3</span>Если потребуется лицензионный ключ — вставьте полученный ключ. Это делается один раз</li>
+        </ol>
+      </div>
+
+      <!-- ШАГ 5 -->
+      <div style="padding:24px;border-radius:12px;border:1px solid rgba(99,102,241,0.25);background:rgba(99,102,241,0.03)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(99,102,241,0.12);color:#6366F1;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px">5</div>
+          <h3 style="font-size:18px">Калибровка — самый важный шаг</h3>
+        </div>
+        <p style="color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:16px">Без калибровки данные PPG и часть индексов будут некорректны. Выполните <strong>два шага по порядку</strong>:</p>
+
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px">
+          <div style="padding:16px;border-radius:10px;border:1px solid rgba(99,102,241,0.2);background:var(--bg2)">
+            <div style="font-family:'DM Mono',monospace;font-size:11px;color:#6366F1;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Шаг A</div>
+            <h4 style="font-size:15px;margin-bottom:6px">Quick IAPF Calibration (Closed Eyes)</h4>
+            <p style="font-size:13px;color:var(--text2);line-height:1.5">Нажмите кнопку в верхней панели. Закройте глаза, расслабьтесь. Система определит вашу индивидуальную альфа-частоту (IAPF) — ваш «нейрофизиологический паспорт».</p>
+          </div>
+          <div style="padding:16px;border-radius:10px;border:1px solid rgba(99,102,241,0.2);background:var(--bg2)">
+            <div style="font-family:'DM Mono',monospace;font-size:11px;color:#6366F1;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Шаг B</div>
+            <h4 style="font-size:15px;margin-bottom:6px">Calibrate Baselines</h4>
+            <p style="font-size:13px;color:var(--text2);line-height:1.5">Нажмите кнопку <strong>Calibrate baselines</strong>. Система зафиксирует ваши базовые показатели — точку отсчёта для всех последующих индексов.</p>
+          </div>
+        </div>
+
+        <p style="color:var(--text2);font-size:14px;line-height:1.7">После калибровки будут работать все PPG-данные и ЭЭГ-данные вместе. Калибровку достаточно выполнить один раз — данные сохраняются.</p>
+      </div>
+
+      <!-- ШАГ 6 -->
+      <div style="padding:24px;border-radius:12px;border:1px solid var(--border);background:var(--glass)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(99,102,241,0.12);color:#6366F1;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px">6</div>
+          <h3 style="font-size:18px">Разметка сессии кнопками</h3>
+        </div>
+        <p style="color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:14px">Справа в интерфейсе есть кнопки <strong>Data Markup (1–5)</strong>. Используйте их для разметки сессии:</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px">
+          <div style="padding:14px 16px;border-radius:8px;border:1px solid rgba(59,130,246,0.2);background:rgba(59,130,246,0.05)">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#2563EB;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:rgba(37,99,235,0.12)">1</span>
+              <strong style="font-size:14px">ДО практики</strong>
+            </div>
+            <p style="font-size:13px;color:var(--text2);line-height:1.5">Нажмите сразу после запуска записи — это точка «до целевого замера»</p>
+          </div>
+          <div style="padding:14px 16px;border-radius:8px;border:1px solid rgba(5,150,105,0.2);background:rgba(5,150,105,0.05)">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#059669;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:rgba(5,150,105,0.12)">2</span>
+              <strong style="font-size:14px">Начало практики</strong>
+            </div>
+            <p style="font-size:13px;color:var(--text2);line-height:1.5">Нажмите когда начинается сессия или практика — это позволит разделить «до» и «во время»</p>
+          </div>
+        </div>
+        <p style="color:var(--text3);font-size:13px;line-height:1.6">Эти метки сохраняются в экспортных данных (Excel/CSV) и позволяют точно разделить фрагменты сессии для анализа. Без разметки сравнительный анализ «до/после» внутри одной сессии затруднён.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- ══════ БЛОК 0: СЕССИЯ ══════ -->
 <section id="session" class="block-section l1-only">
