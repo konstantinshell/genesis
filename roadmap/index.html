@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Road Map — ONTO NOTHING</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <style>
+    .roadmap-hero { text-align: center; padding: 60px 20px 30px; }
+    .roadmap-hero h1 { font-family: var(--fh); font-size: 36px; font-weight: 700; margin-bottom: 12px; }
+    .roadmap-hero p { color: var(--muted); font-size: 16px; max-width: 600px; margin: 0 auto; }
+
+    .stage {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border-left: 4px solid var(--accent);
+    }
+    .stage.locked {
+      opacity: 0.5;
+      border-left-color: #ccc;
+    }
+    .stage-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .stage-num {
+      font-family: var(--fh);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stage.locked .stage-num { color: #ccc; }
+    .stage-title {
+      font-family: var(--fh);
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .stage-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .stage-body { font-size: 15px; line-height: 1.7; }
+    .stage-body p { margin-bottom: 16px; }
+
+    .task-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+    }
+    .task-list li {
+      display: flex;
+      gap: 12px;
+      padding: 14px 16px;
+      background: rgba(95,95,255,0.04);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      align-items: flex-start;
+    }
+    .task-list li .task-icon { font-size: 20px; min-width: 28px; }
+    .task-list li .task-text { flex: 1; }
+    .task-list li .task-text strong { display: block; font-size: 15px; margin-bottom: 4px; }
+    .task-list li .task-text span { font-size: 13px; color: var(--muted); }
+
+    .btn-action {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background 0.2s;
+      margin-top: 8px;
+      margin-right: 8px;
+    }
+    .btn-action:hover { background: #4848D0; }
+    .btn-action.secondary {
+      background: white;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    .btn-action.secondary:hover { background: rgba(95,95,255,0.05); }
+
+    .lock-badge {
+      display: inline-block;
+      background: #f0f0f0;
+      color: #999;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .stage { padding: 20px; }
+      .stage-num { font-size: 36px; }
+      .stage-title { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-orbs"><span></span><span></span></div>
+
+<main>
+  <div class="roadmap-hero">
+    <h1>Road Map</h1>
+    <p>Пошаговый план прохождения программы исследования ONTO NOTHING</p>
+  </div>
+
+  <section class="s">
+    <div class="s-inner">
+
+      <!-- ═══ ЭТАП 0 ═══ -->
+      <div class="stage">
+        <div class="stage-header">
+          <div class="stage-num">0</div>
+          <div>
+            <div class="stage-title">Сбор первичной информации и настройка гаджетов</div>
+            <div class="stage-subtitle">Подготовка к исследованию</div>
+          </div>
+        </div>
+
+        <div class="stage-body">
+          <p>На этом этапе ты настраиваешь свои инструменты и собираешь базовые данные. Это фундамент для всей программы — чем точнее данные на старте, тем ценнее будут результаты.</p>
+
+          <ol class="task-list">
+            <li>
+              <div class="task-icon">🧠</div>
+              <div class="task-text">
+                <strong>Активируй нейробэнд NEIRY</strong>
+                <span>Исследуй все доступные метрики — концентрация, релаксация, стресс, внимание. Пройди несколько тестовых сессий.</span>
+              </div>
+            </li>
+            <li>
+              <div class="task-icon">📖</div>
+              <div class="task-text">
+                <strong>Изучи гайд по NEIRY</strong>
+                <span>Подробная инструкция по работе с нейротрекером, настройке и интерпретации данных.</span>
+              </div>
+            </li>
+            <li>
+              <div class="task-icon">⌚</div>
+              <div class="task-text">
+                <strong>Скачай данные с фитнес-гаджетов</strong>
+                <span>Выгрузи данные за последние 3-6 месяцев со своих фитнес-трекеров (Garmin, Apple Watch, Mi Band и др.) в формате Excel или CSV.</span>
+              </div>
+            </li>
+            <li>
+              <div class="task-icon">📤</div>
+              <div class="task-text">
+                <strong>Отправь данные в бота</strong>
+                <span>Нажми кнопку "📊 Выгрузить фитнес данные" в боте и прикрепи файл.</span>
+              </div>
+            </li>
+          </ol>
+
+          <a href="https://konstantinshell.github.io/genesis/neiry/" class="btn-action">📖 Гайд по NEIRY</a>
+          <a href="https://konstantinshell.github.io/genesis/blog/" class="btn-action secondary">📚 Инструкции в блоге</a>
+        </div>
+      </div>
+
+      <!-- ═══ ЭТАП 1 ═══ -->
+      <div class="stage">
+        <div class="stage-header">
+          <div class="stage-num">1</div>
+          <div>
+            <div class="stage-title">Чекап MNPI</div>
+            <div class="stage-subtitle">6 аудио-сессий с ЭЭГ-мониторингом</div>
+          </div>
+        </div>
+
+        <div class="stage-body">
+          <p>Основной этап — ты проходишь 6 аудио-сессий, записываешь данные с нейротрекера и текст с диктофона после каждой сессии. На основе этих данных рассчитывается твой индекс MNPI.</p>
+
+          <ol class="task-list">
+            <li>
+              <div class="task-icon">🎧</div>
+              <div class="task-text">
+                <strong>Пройди 6 аудио-сессий</strong>
+                <span>Каждая сессия — 15-20 минут. Слушай аудио в наушниках с включённым нейротрекером NEIRY.</span>
+              </div>
+            </li>
+            <li>
+              <div class="task-icon">📊</div>
+              <div class="task-text">
+                <strong>Загрузи CSV после каждой сессии</strong>
+                <span>После сессии экспортируй данные из NEIRY в CSV и загрузи в бота.</span>
+              </div>
+            </li>
+            <li>
+              <div class="task-icon">🎙</div>
+              <div class="task-text">
+                <strong>Запиши расшифровку на диктофон</strong>
+                <span>После каждой сессии расскажи на диктофон — что чувствовал, что видел, какие ощущения в теле. Расшифруй и загрузи текст в бота.</span>
+              </div>
+            </li>
+          </ol>
+
+          <a href="https://disk.yandex.ru/d/XSw9BmEZQnSuhA" class="btn-action" target="_blank">🎧 Аудио-сессии на Яндекс.Диске</a>
+          <a href="https://t.me/ritmnothingbot" class="btn-action secondary">🤖 Открыть бота</a>
+        </div>
+      </div>
+
+      <!-- ═══ ЭТАП 2 ═══ -->
+      <div class="stage locked">
+        <div class="stage-header">
+          <div class="stage-num">2</div>
+          <div>
+            <div class="stage-title">Программа исследования</div>
+            <div class="stage-subtitle">Углублённая работа с данными</div>
+          </div>
+        </div>
+
+        <div class="stage-body">
+          <p>После прохождения чекапа ты получаешь персональную программу исследования на основе твоих данных MNPI.</p>
+          <span class="lock-badge">🔒 Откроется после завершения Этапа 1</span>
+        </div>
+      </div>
+
+      <!-- ═══ ЭТАП 3 ═══ -->
+      <div class="stage locked">
+        <div class="stage-header">
+          <div class="stage-num">3</div>
+          <div>
+            <div class="stage-title">Годовая программа</div>
+            <div class="stage-subtitle">Долгосрочное сопровождение</div>
+          </div>
+        </div>
+
+        <div class="stage-body">
+          <p>Полный цикл исследования с регулярным мониторингом, сессиями и персональными рекомендациями.</p>
+          <span class="lock-badge">🔒 Откроется после завершения Этапа 2</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script src="../components/nav.js"></script>
+<script src="../components/footer.js"></script>
+</body>
+</html>
