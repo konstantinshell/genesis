@@ -137,6 +137,9 @@ body[data-active-level="2"] .l2-content{display:block}
 body[data-active-level="3"] .l3-content{display:block}
 body[data-active-level="3"] .l3-section{display:block}
 body:not([data-active-level="3"]) .l3-section{display:none}
+/* Hide technical-only blocks on L2 and L3 */
+body[data-active-level="2"] .l1-only,
+body[data-active-level="3"] .l1-only{display:none}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* ═══════════════════════════════════════════════════════════ */
@@ -418,7 +421,7 @@ body:not([data-l3-unlocked]) .level-btn[data-level="3"]::after{content:' 🔒';f
 <div class="content-wrap">
 
 <!-- ══════ БЛОК 0: СЕССИЯ ══════ -->
-<section id="session" class="block-section">
+<section id="session" class="block-section l1-only">
   <div class="block-header">
     <div class="block-accent-line" style="background:var(--c-session)"></div>
     <div>
@@ -461,7 +464,7 @@ body:not([data-l3-unlocked]) .level-btn[data-level="3"]::after{content:' 🔒';f
 </section>
 
 <!-- ══════ БЛОК 1: ЭЛЕКТРОДЫ ══════ -->
-<section id="electrodes" class="block-section">
+<section id="electrodes" class="block-section l1-only">
   <div class="block-header">
     <div class="block-accent-line" style="background:var(--c-electrodes)"></div>
     <div>
@@ -882,7 +885,7 @@ body:not([data-l3-unlocked]) .level-btn[data-level="3"]::after{content:' 🔒';f
 </section>
 
 <!-- ══════ БЛОК 8: СТАТУС ══════ -->
-<section id="status" class="block-section">
+<section id="status" class="block-section l1-only">
   <div class="block-header">
     <div class="block-accent-line" style="background:var(--c-status)"></div>
     <div>
