@@ -54,14 +54,8 @@
       "profile": "https://konstantinshell.github.io/genesis/profiles/1139648370/",
       "children": [
         {
-          "name": "Натали Морозова",
-          "city": "Москва",
-          "role": "Высшее",
-          "real": true,
-          "children": []
-        },
-        {
-          "name": "Мария (свободно)",
+          "name": "Алексей (свободно)",
+          "real": false,
           "real": false,
           "children": [
             {
