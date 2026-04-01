@@ -113,26 +113,31 @@
     <!-- Набор исследователя -->
     <div class="c">
       <h2>🧰 Набор исследователя</h2>
-      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;">
-        <div style="flex:1; min-width:45%; background:#12121a; border-radius:10px; padding:14px; text-align:center;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;">
+        <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧠</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">NEIRY бэнд</div>
           <div style="font-size:11px; color:{'#34c759' if 'да' in profile.get('has_neiry','').lower() or '✅' in profile.get('has_neiry','') else '#ff453a'}; margin-top:4px; font-weight:500;">✅ Есть</div>
         </div>
-        <div style="flex:1; min-width:45%; background:#12121a; border-radius:10px; padding:14px; text-align:center;">
+        <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">⌚</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Фитнес-трекер</div>
           <div style="font-size:11px; color:{'#34c759' if profile.get('fitness_tracker','—') not in ('—','Нет','нет','❌ Нет') else '#ff453a'}; margin-top:4px; font-weight:500;">✅ гармин</div>
         </div>
-        <div style="flex:1; min-width:45%; background:#12121a; border-radius:10px; padding:14px; text-align:center;">
+        <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧬</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">ДНК тест</div>
           <div style="font-size:11px; color:{'#34c759' if profile.get('dna_test','—') not in ('—','❌ Нет','нет','Нет') else '#ff453a'}; margin-top:4px; font-weight:500;">❌ Нет</div>
         </div>
-        <div style="flex:1; min-width:45%; background:#12121a; border-radius:10px; padding:14px; text-align:center;">
+        <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🏥</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Клин. анализы</div>
           <div style="font-size:11px; color:{'#34c759' if profile.get('last_checkup','—') not in ('—','нет','Нет') else '#ff453a'}; margin-top:4px; font-weight:500;">❌ Нет</div>
+        </div>
+        <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center; grid-column:1/3;">
+          <div style="font-size:24px; margin-bottom:6px;">🧘</div>
+          <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Рефлексия в бот</div>
+          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">❌ Не записано</div>
         </div>
       </div>
     </div>
