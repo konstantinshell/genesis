@@ -110,6 +110,23 @@
       <p style="font-size:11px; color:#555; margin-top:8px;">Личный профиль и описание на основе анкеты появится после прохождения чекапа</p>
     </div>
 
+    <!-- Набор исследователя -->
+    <div class="c">
+      <h2>🧰 Набор исследователя</h2>
+      <div style="display:flex; gap:10px; margin-top:8px;">
+        <div style="flex:1; background:#12121a; border-radius:10px; padding:14px; text-align:center;">
+          <div style="font-size:24px; margin-bottom:6px;">🧠</div>
+          <div style="font-size:12px; font-weight:600; color:#e0e0e8;">NEIRY бэнд</div>
+          <div style="font-size:11px; color:{'#34c759' if 'да' in profile.get('has_neiry','').lower() or '✅' in profile.get('has_neiry','') else '#ff453a'}; margin-top:4px; font-weight:500;">✅ Есть</div>
+        </div>
+        <div style="flex:1; background:#12121a; border-radius:10px; padding:14px; text-align:center;">
+          <div style="font-size:24px; margin-bottom:6px;">⌚</div>
+          <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Фитнес-трекер</div>
+          <div style="font-size:11px; color:{'#34c759' if profile.get('fitness_tracker','—') not in ('—','Нет','нет','❌ Нет') else '#ff453a'}; margin-top:4px; font-weight:500;">✅ Аpl часы</div>
+        </div>
+      </div>
+    </div>
+
     <!-- Активность -->
     <div class="c">
       <h2>📊 Активность <span style="font-size:11px; color:#666; font-weight:400;">Средние значения за неделю</span></h2>
@@ -221,7 +238,7 @@
         <div>📍 Город: Москва Россия</div>
         <div>💼 Деятельность: Предприниматель</div>
         <div>🎓 Образование: Высшее экономическое и психологическое</div>
-        <div>📧 Email: —</div>
+        <div>📧 Email: Nmorozova@soleader.ru</div>
         <div>🎯 Цель: Помощь</div>
         <div>📅 Регистрация: 2026-04-01 11:55</div>
       </div>
