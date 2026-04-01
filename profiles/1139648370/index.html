@@ -4,211 +4,248 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Вадим Гурьев — ONTO NOTHING</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../../css/nav.css">
-  <style>
-    .profile-header { text-align: center; margin-bottom: 30px; }
-    .profile-avatar { font-size: 80px; margin-bottom: 16px; }
-    .profile-header h1 { font-family: var(--fh); font-size: 28px; font-weight: 600; margin-bottom: 8px; }
-    .profile-meta { color: var(--muted); font-size: 14px; }
-    .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .card h2 { font-family: var(--fh); font-size: 18px; font-weight: 600; margin-bottom: 16px; }
-    .card h3 { font-family: var(--fh); font-size: 16px; font-weight: 600; margin-bottom: 12px; }
-    .card p { font-size: 14px; line-height: 1.6; margin-bottom: 8px; }
-    .card ul { padding-left: 20px; margin: 8px 0; }
-    .card li { font-size: 14px; padding: 4px 0; }
-    .card strong { color: var(--accent); }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .milestone { display: flex; gap: 12px; align-items: center; padding: 8px 0; }
-    .milestone-icon { font-size: 20px; min-width: 30px; text-align: center; }
-    .milestone-text strong { display: block; font-size: 14px; }
-    .milestone-text span { font-size: 12px; color: var(--muted); }
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
-    .stat { background: rgba(95,95,255,0.05); border-radius: 8px; padding: 12px; text-align: center; }
-    .stat-value { font-family: var(--fm); font-size: 24px; font-weight: 700; color: var(--accent); }
-    .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
-    .update-info { text-align: center; padding: 20px 0; color: var(--muted); font-size: 12px; }
-    .page-nav { display: flex; gap: 0; background: white; border-bottom: 1px solid rgba(0,0,0,0.05); position: sticky; top: 60px; z-index: 90; }
-    .page-nav button { flex: 1; padding: 12px; background: none; border: none; border-bottom: 3px solid transparent; font-family: var(--fb); font-size: 14px; font-weight: 500; color: var(--muted); cursor: pointer; }
-    .page-nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
-    .tab-page { display: none; }
-    .tab-page.active { display: block; }
-    @media (max-width: 600px) {
-      .two-col { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: 1fr 1fr; }
-      .profile-header h1 { font-size: 24px; }
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:"Jost",sans-serif; background:#0f0f14; color:#e0e0e8; min-height:100vh; padding-bottom:70px; }
+    .container { max-width:480px; margin:0 auto; padding:16px; }
+
+    /* Header */
+    .hdr { display:flex; align-items:center; gap:14px; padding:20px 0 16px; }
+    .hdr-av { width:50px; height:50px; border-radius:50%; background:#1e1e2a; display:flex; align-items:center; justify-content:center; font-size:24px; }
+    .hdr h1 { font-family:"Oswald",sans-serif; font-size:20px; font-weight:600; }
+    .hdr-meta { font-size:12px; color:#888; }
+    .badge { display:inline-block; background:rgba(95,95,255,0.15); color:#7c6fff; padding:2px 10px; border-radius:4px; font-size:11px; margin-top:4px; }
+
+    /* Card */
+    .c { background:#1a1a22; border-radius:14px; padding:18px; margin-bottom:14px; }
+    .c h2 { font-family:"Oswald",sans-serif; font-size:16px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+    .c h3 { font-size:14px; font-weight:600; margin-bottom:8px; }
+    .c p { font-size:13px; line-height:1.6; color:#aaa; margin-bottom:8px; }
+    .c ul { padding-left:18px; }
+    .c li { font-size:13px; color:#aaa; padding:2px 0; }
+
+    /* Stats */
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .st { background:#12121a; border-radius:10px; padding:14px 8px; text-align:center; }
+    .st-v { font-family:"Courier Prime",monospace; font-size:22px; font-weight:700; color:#7c6fff; }
+    .st-l { font-size:10px; color:#666; margin-top:4px; }
+
+    /* Roadmap */
+    .rm { display:flex; align-items:center; gap:10px; padding:8px 0; }
+    .rm-i { font-size:18px; min-width:26px; text-align:center; }
+    .rm-t strong { display:block; font-size:13px; color:#e0e0e8; }
+    .rm-t span { font-size:11px; color:#666; }
+    .rm-btn { display:inline-block; background:#7c6fff; color:#fff; padding:6px 14px; border-radius:6px; font-size:11px; text-decoration:none; font-weight:500; }
+
+    /* MNPI placeholder */
+    .mnpi-chart { background:linear-gradient(135deg,#1a1a2a,#12121f); border-radius:10px; padding:20px; margin-bottom:12px; position:relative; overflow:hidden; height:100px; }
+    .mnpi-chart::after { content:''; position:absolute; bottom:0; left:0; right:0; height:50px; background:linear-gradient(transparent,rgba(124,111,255,0.1)); }
+    .mnpi-bar { position:absolute; bottom:10px; height:3px; background:#7c6fff; border-radius:2px; left:10px; right:10px; }
+
+    /* Neiry metrics */
+    .neiry-grid { display:flex; gap:8px; }
+    .neiry-m { flex:1; background:#12121a; border-radius:8px; padding:10px; text-align:center; }
+    .neiry-m .label { font-size:10px; color:#7c6fff; font-weight:600; text-transform:uppercase; }
+    .neiry-m .val { font-family:"Courier Prime",monospace; font-size:16px; color:#e0e0e8; margin-top:4px; }
+
+    /* Fitness */
+    .fit-grid { display:flex; gap:8px; }
+    .fit-m { flex:1; background:#12121a; border-radius:8px; padding:10px; text-align:center; }
+    .fit-m .icon { font-size:18px; }
+    .fit-m .label { font-size:10px; color:#666; }
+    .fit-m .val { font-family:"Courier Prime",monospace; font-size:14px; color:#e0e0e8; margin-top:2px; }
+
+    /* Tasks */
+    .task-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+    .task-dot.morning { background:#f59e0b; }
+    .task-dot.day { background:#3b82f6; }
+    .task-dot.evening { background:#a855f7; }
+    .task-section { margin-bottom:12px; }
+    .task-section h3 { font-size:13px; color:#888; margin-bottom:6px; }
+
+    /* Google Cal */
+    .gcal-btn { display:inline-block; background:#7c6fff; color:#fff; padding:10px 20px; border-radius:8px; font-size:13px; text-decoration:none; font-weight:500; }
+
+    /* Bottom Nav */
+    .bnav { position:fixed; bottom:0; left:0; right:0; background:#1a1a22; border-top:1px solid #2a2a35; display:flex; justify-content:center; z-index:100; }
+    .bnav a { flex:1; max-width:96px; text-align:center; padding:10px 0 8px; text-decoration:none; color:#555; font-size:10px; transition:color 0.2s; }
+    .bnav a.active { color:#7c6fff; }
+    .bnav a .ico { font-size:20px; display:block; margin-bottom:2px; }
+
+    /* Tab pages */
+    .tab { display:none; }
+    .tab.active { display:block; }
+
+    .updated { text-align:center; padding:16px; color:#333; font-size:11px; }
+
+    @media (max-width:400px) {
+      .stats { grid-template-columns:1fr 1fr; }
+      .neiry-grid, .fit-grid { flex-wrap:wrap; }
     }
   </style>
 </head>
 <body>
 
-<div class="page-orbs"><span></span><span></span></div>
+<div class="container">
+  <!-- ═══ HEADER ═══ -->
+  <div class="hdr">
+    <div class="hdr-av">👤</div>
+    <div>
+      <h1>Вадим Гурьев</h1>
+      <div class="hdr-meta">Россия, город Чусовой · Банкротство физлиц, биохакинг</div>
+      <span class="badge">🏅 Мастер</span>
+    </div>
+  </div>
 
-<nav class="page-nav">
-  <button class="active" onclick="switchTab('profile', this)">👤 Мой профиль</button>
-  <button onclick="switchTab('schedule', this)">📅 Расписание</button>
+  <!-- TAB: ГЛАВНАЯ -->
+  <div id="tab-main" class="tab active">
+
+    <!-- О себе -->
+    <div class="c">
+      <h2>📝 О себе</h2>
+      <div style="font-size:13px; line-height:1.6; color:#aaa;">
+        <p>Ответ давал в Гугл форме 😁</p><p>Хочет изменить: Все сразу</p>
+      </div>
+      <p style="font-size:11px; color:#555; margin-top:8px;">Личный профиль и описание на основе анкеты появится после прохождения чекапа</p>
+    </div>
+
+    <!-- Активность -->
+    <div class="c">
+      <h2>📊 Активность <span style="font-size:11px; color:#666; font-weight:400;">Средние значения за неделю</span></h2>
+      <div class="stats">
+        <div class="st"><div class="st-v">1</div><div class="st-l">Рефлексий</div></div>
+        <div class="st"><div class="st-v">0</div><div class="st-l">Сессий</div></div>
+        <div class="st"><div class="st-v">0</div><div class="st-l">Метрик</div></div>
+      </div>
+    </div>
+
+    <!-- Роадмэп -->
+    <a href="https://konstantinshell.github.io/genesis/roadmap/" style="text-decoration:none; color:inherit;">
+    <div class="c" style="cursor:pointer;">
+      <h2>🗺 Роадмэп <a href="https://konstantinshell.github.io/genesis/roadmap/" class="rm-btn">открыть задания</a></h2>
+      <div class="rm"><div class="rm-i">✅</div><div class="rm-t"><strong>Этап 0</strong><span>Изучение инструментов</span></div></div>
+      <div class="rm"><div class="rm-i">🔒</div><div class="rm-t"><strong>Этап 1</strong><span>Чекап MNPI</span></div></div>
+      <div class="rm"><div class="rm-i">🔒</div><div class="rm-t"><strong>Этап 2</strong><span>Программа исследования</span></div></div>
+      <div class="rm"><div class="rm-i">🔒</div><div class="rm-t"><strong>Этап 3</strong><span>Годовая программа</span></div></div>
+    </div>
+    </a>
+
+    <!-- MNPI Index -->
+    <div class="c">
+      <h2>🧠 MNPI Index <span style="font-size:11px; color:#666; font-weight:400;">ожидание</span></h2>
+      <div class="mnpi-chart"><div class="mnpi-bar"></div></div>
+      <p>Данные ожидаются... Пройдите ЧЕКАП MNPI</p>
+    </div>
+
+    <!-- Данные NEIRY -->
+    <div class="c">
+      <h2>📡 Данные NEIRY</h2>
+      <p style="font-size:11px; color:#666;">Средние значения за неделю. Данные обновляются раз в сутки после загрузки CSV в бота</p>
+      <div class="neiry-grid">
+        <div class="neiry-m"><div class="label">Альфа</div><div class="val">—</div></div>
+        <div class="neiry-m"><div class="label">Тета</div><div class="val">—</div></div>
+        <div class="neiry-m"><div class="label">Бета</div><div class="val">—</div></div>
+      </div>
+      <p style="font-size:11px; color:#555; margin-top:8px; text-transform:uppercase;">Нажмите в боте кнопку "Выгрузить фитнес данные"</p>
+    </div>
+
+    <!-- Фитнес-трекер -->
+    <div class="c">
+      <h2>⌚ Фитнес-трекер</h2>
+      <p style="font-size:11px; color:#666;">Средние значения за неделю</p>
+      <div class="fit-grid">
+        <div class="fit-m"><div class="icon">❤️</div><div class="label">Пульс</div><div class="val">—</div></div>
+        <div class="fit-m"><div class="icon">💓</div><div class="label">HRV</div><div class="val">—</div></div>
+        <div class="fit-m"><div class="icon">😴</div><div class="label">Сон Качество</div><div class="val">—</div></div>
+      </div>
+    </div>
+
+    <!-- Задачи на неделю -->
+    <div class="c">
+      <h2>📋 Задачи на неделю</h2>
+      <p>Данные ожидаются...</p>
+    </div>
+
+    <!-- Задачи дня -->
+    <div class="c">
+      <h2>⚡ Задачи дня</h2>
+      <div class="task-section">
+        <h3><span class="task-dot morning"></span>Утро</h3>
+        <p>Нет задач</p>
+      </div>
+      <div class="task-section">
+        <h3><span class="task-dot day"></span>День</h3>
+        <p>Нет задач</p>
+      </div>
+      <div class="task-section">
+        <h3><span class="task-dot evening"></span>Вечер</h3>
+        <p>Нет задач</p>
+      </div>
+    </div>
+
+    <!-- Google Календарь -->
+    <div class="c">
+      <h2>📅 Google Календарь</h2>
+      <div style="text-align:center; padding:16px;">
+        <div style="font-size:32px; margin-bottom:8px;">📅</div>
+        <p>Подключите Google Календарь для синхронизации</p>
+        <a href="https://calendar.google.com/calendar/r/settings" class="gcal-btn" target="_blank">Подключить</a>
+      </div>
+    </div>
+
+    <div class="updated">Обновлено: 01.04.2026</div>
+  </div>
+
+  <!-- TAB: ЗАДАЧИ -->
+  <div id="tab-tasks" class="tab">
+    <div class="c"><h2>📋 Задачи</h2><p>Раздел в разработке</p></div>
+  </div>
+
+  <!-- TAB: КАЛЕНДАРЬ -->
+  <div id="tab-calendar" class="tab">
+    <div class="c"><h2>📅 Календарь</h2><p>Подключите Google Календарь через кнопку на главной</p></div>
+  </div>
+
+  <!-- TAB: НЕЙРО -->
+  <div id="tab-neuro" class="tab">
+    <div class="c"><h2>🧠 Нейро</h2><p>Данные NEIRY и MNPI появятся после прохождения чекапа</p></div>
+  </div>
+
+  <!-- TAB: ПРОФИЛЬ -->
+  <div id="tab-profile" class="tab">
+    <div class="c">
+      <h2>👤 Профиль</h2>
+      <div style="font-size:13px; line-height:2; color:#aaa;">
+        <div>📍 Город: Россия, город Чусовой</div>
+        <div>💼 Деятельность: Банкротство физлиц, биохакинг</div>
+        <div>🎓 Образование: Нет</div>
+        <div>📧 Email: —</div>
+        <div>🎯 Цель: Ответ давал в Гугл форме 😁</div>
+        <div>📅 Регистрация: 2026-03-30 20:41</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bnav">
+  <a href="#" class="active" onclick="switchTab('main',this)"><span class="ico">🏠</span>Главная</a>
+  <a href="#" onclick="switchTab('tasks',this)"><span class="ico">📋</span>Задачи</a>
+  <a href="#" onclick="switchTab('calendar',this)"><span class="ico">📅</span>Календарь</a>
+  <a href="#" onclick="switchTab('neuro',this)"><span class="ico">🧠</span>Нейро</a>
+  <a href="#" onclick="switchTab('profile',this)"><span class="ico">👤</span>Профиль</a>
 </nav>
 
-<main>
-  <!-- ═══ ПРОФИЛЬ ═══ -->
-  <div id="tab-profile" class="tab-page active">
-    <section class="s">
-      <div class="s-inner">
-
-        <div class="profile-header">
-          <div class="profile-avatar">🧠</div>
-          <h1>Вадим Гурьев</h1>
-          <p class="profile-meta">Россия, город Чусовой · Банкротство физлиц, биохакинг</p>
-          <p class="profile-meta">🏅 Мастер</p>
-        </div>
-
-        <!-- О себе (нарратив) -->
-        <div class="card">
-          <h2>👤 О себе</h2>
-          <div style="font-size:14px; line-height:1.7; color:#333;">
-            <p>Ответ давал в Гугл форме 😁</p><p>Хочет изменить: Все сразу</p>
-          </div>
-        </div>
-
-        <!-- Статистика -->
-        <div class="card">
-          <h2>📊 Активность</h2>
-          <div class="stats">
-            <div class="stat">
-              <div class="stat-value">1</div>
-              <div class="stat-label">Рефлексий</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">0</div>
-              <div class="stat-label">Сессий</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">0</div>
-              <div class="stat-label">Метрик</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Роадмэп -->
-        <a href="https://konstantinshell.github.io/genesis/roadmap/" style="text-decoration:none; color:inherit; display:block;">
-        <div class="card" style="cursor:pointer; transition: box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(95,95,255,0.2)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'">
-          <h2>🗺 Роадмэп <span style="font-size:12px; color:var(--accent); font-weight:400;">→ открыть задания</span></h2>
-          <div class="milestone"><div class="milestone-icon">✅</div><div class="milestone-text"><strong>Этап 0</strong><span>Изучение инструментов</span></div></div>
-          <div class="milestone"><div class="milestone-icon">🔒</div><div class="milestone-text"><strong>Этап 1</strong><span>Чекап MNPI</span></div></div>
-          <div class="milestone"><div class="milestone-icon">🔒</div><div class="milestone-text"><strong>Этап 2</strong><span>Программа исследования</span></div></div>
-          <div class="milestone"><div class="milestone-icon">🔒</div><div class="milestone-text"><strong>Этап 3</strong><span>Годовая программа</span></div></div>
-        </div>
-        </a>
-
-        <!-- MNPI -->
-        <div class="card">
-          <h2>🧠 MNPI Index</h2>
-          <p>Данные ожидаются...</p>
-        </div>
-
-        <!-- Задачи -->
-        <div class="card">
-          <h2>📋 Задачи на неделю</h2>
-          <p>Данные ожидаются...</p>
-        </div>
-
-        <!-- Данные NEIRY -->
-        <div class="card">
-          <h2>📡 Данные NEIRY</h2>
-          <p>Данные ожидаются...</p>
-        </div>
-
-        <!-- Цель на год -->
-        <div class="card">
-          <h2>🎯 Цель на год</h2>
-          <p>Ответ давал в Гугл форме 😁</p>
-        </div>
-
-        <!-- Зажигает / Тормозит -->
-        <div class="two-col">
-          <div class="card">
-            <h3>⚡ Что зажигает</h3>
-            <p>Данные ожидаются...</p>
-          </div>
-          <div class="card">
-            <h3>🧱 Что тормозит</h3>
-            <p>Данные ожидаются...</p>
-          </div>
-        </div>
-
-        <div class="update-info">
-          Обновлено: 01.04.2026
-        </div>
-
-      </div>
-    </section>
-  </div>
-
-  <!-- ═══ РАСПИСАНИЕ ═══ -->
-  <div id="tab-schedule" class="tab-page">
-    <section class="s">
-      <div class="s-inner">
-
-        <div class="card">
-          <h2>📅 Расписание мероприятий</h2>
-          <p>Предстоящие встречи, эфиры и события программы</p>
-        </div>
-
-        <div class="card" style="border-left: 4px solid var(--accent);">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
-            <div>
-              <h3 style="margin-bottom: 4px;">🧠 За здоровье и Мозг</h3>
-              <p style="color: var(--accent); font-weight: 600; font-size: 15px; margin: 0;">3 апреля 2026</p>
-            </div>
-            <span style="background: rgba(95,95,255,0.1); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Скоро</span>
-          </div>
-
-          <p style="font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
-            Открытая встреча о том, как современные нейротехнологии помогают понимать свой мозг, отслеживать здоровье и управлять состояниями. Разберём практические инструменты — от нейробэндов до анализа биоритмов.
-          </p>
-
-          <div style="margin-bottom: 12px;">
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 8px; font-weight: 500;">СПИКЕРЫ:</p>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-              <div style="display: flex; align-items: center; gap: 8px; background: rgba(95,95,255,0.04); padding: 8px 14px; border-radius: 8px;">
-                <span style="font-size: 20px;">👑</span>
-                <div>
-                  <div style="font-size: 13px; font-weight: 500;">Константин Шель</div>
-                </div>
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px; background: rgba(95,95,255,0.04); padding: 8px 14px; border-radius: 8px;">
-                <span style="font-size: 20px;">👑</span>
-                <div>
-                  <div style="font-size: 13px; font-weight: 500;">Натали Морозова</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="opacity: 0.5;">
-          <h3>📅 Больше мероприятий скоро</h3>
-          <p style="font-size: 14px; color: var(--muted);">Следи за обновлениями в боте и профиле</p>
-        </div>
-
-      </div>
-    </section>
-  </div>
-</main>
-
 <script>
-function switchTab(name, btn) {
-  document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.page-nav button').forEach(b => b.classList.remove('active'));
+function switchTab(name, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.bnav a').forEach(a => a.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  btn.classList.add('active');
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
 }
 </script>
 
-<script src="../../components/nav.js"></script>
-<script src="../../components/footer.js"></script>
 </body>
 </html>
