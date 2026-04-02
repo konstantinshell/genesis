@@ -9,6 +9,7 @@
       "name": "Валентина",
       "real": true,
       "band": "promo_member",
+      "tracker": true,
       "tg": "Vi_vittt",
       "profile": "https://konstantinshell.github.io/genesis/profiles/1067307749/",
       "children": [
@@ -132,6 +133,7 @@
       "name": "Вадим Гурьев",
       "real": true,
       "band": "promo",
+      "tracker": true,
       "tg": "vadimolegich",
       "profile": "https://konstantinshell.github.io/genesis/profiles/1139648370/",
       "children": [
