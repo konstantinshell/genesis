@@ -234,6 +234,163 @@
       margin-top: 12px;
     }
 
+    /* ── DOC HEADER ── */
+    .doc-header {
+      background: #fdfaf5;
+      border: 1px solid #d9cdb5;
+      border-radius: 12px;
+      padding: 36px 32px 28px;
+      margin-bottom: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .doc-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #8b6914, #c9a84c, #8b6914);
+    }
+    .doc-seal {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      border: 3px solid #8b6914;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .doc-seal::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      border: 1px dashed #c9a84c;
+    }
+    .doc-seal svg {
+      width: 32px;
+      height: 32px;
+      color: #8b6914;
+    }
+    .doc-type {
+      font-family: "Courier Prime", monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: #9a8b74;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+    .doc-title {
+      font-family: "Oswald", sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #2c2418;
+      line-height: 1.2;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .doc-subtitle {
+      font-size: 14px;
+      color: #7a6b56;
+      margin-bottom: 20px;
+    }
+    .doc-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+      margin: 0 auto 20px;
+      max-width: 280px;
+    }
+    .doc-meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .doc-meta-item {
+      text-align: center;
+    }
+    .doc-meta-label {
+      font-family: "Courier Prime", monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: #b8a88e;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 2px;
+    }
+    .doc-meta-value {
+      font-family: "Courier Prime", monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: #2c2418;
+    }
+    .doc-parties {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #efe7d9;
+    }
+    .doc-party {
+      text-align: center;
+    }
+    .doc-party-label {
+      font-family: "Courier Prime", monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: #b8a88e;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+    .doc-party-name {
+      font-family: "Oswald", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #2c2418;
+    }
+    .doc-party-desc {
+      font-size: 11px;
+      color: #9a8b74;
+      margin-top: 2px;
+    }
+    .doc-party-x {
+      font-family: "Oswald", sans-serif;
+      font-size: 18px;
+      color: #c9a84c;
+      font-weight: 300;
+    }
+    .doc-stamp {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 6px 20px;
+      border: 2px solid #dc2626;
+      border-radius: 4px;
+      font-family: "Courier Prime", monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: #dc2626;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transform: rotate(-2deg);
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .doc-header { padding: 28px 20px 24px; }
+      .doc-title { font-size: 20px; }
+      .doc-meta { gap: 20px; }
+      .doc-parties { grid-template-columns: 1fr; gap: 8px; }
+      .doc-party-x { display: none; }
+    }
+
     /* ── ACCEPT BLOCK ── */
     .accept-block {
       background: #fdfaf5;
@@ -380,6 +537,48 @@
 
 <!-- CONTENT -->
 <div class="container">
+
+  <!-- ШАПКА ДОКУМЕНТА -->
+  <div class="doc-header">
+    <div class="doc-seal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+    </div>
+    <div class="doc-type">Конфиденциальный документ</div>
+    <div class="doc-title">Соглашение о неразглашении<br>конфиденциальной информации</div>
+    <div class="doc-subtitle">Non-Disclosure Agreement (NDA)</div>
+    <div class="doc-divider"></div>
+    <div class="doc-meta">
+      <div class="doc-meta-item">
+        <div class="doc-meta-label">Версия</div>
+        <div class="doc-meta-value">1.0</div>
+      </div>
+      <div class="doc-meta-item">
+        <div class="doc-meta-label">Дата публикации</div>
+        <div class="doc-meta-value">01.04.2026</div>
+      </div>
+      <div class="doc-meta-item">
+        <div class="doc-meta-label">Статус</div>
+        <div class="doc-meta-value">Действует</div>
+      </div>
+    </div>
+    <div class="doc-parties">
+      <div class="doc-party">
+        <div class="doc-party-label">Раскрывающая сторона</div>
+        <div class="doc-party-name">РИТМЫ NOTHING</div>
+        <div class="doc-party-desc">Проект исследования состояний сознания</div>
+      </div>
+      <div class="doc-party-x">&times;</div>
+      <div class="doc-party">
+        <div class="doc-party-label">Принимающая сторона</div>
+        <div class="doc-party-name">Участник исследования</div>
+        <div class="doc-party-desc">Физическое лицо, акцептирующее соглашение</div>
+      </div>
+    </div>
+    <div class="doc-stamp">Требует подписания</div>
+  </div>
 
   <!-- БЛОК 1 — вводный -->
   <div class="card card-intro">
