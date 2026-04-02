@@ -3,313 +3,561 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Соглашение об участии — RHYTHMS NOTHING</title>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <title>Соглашение о неразглашении — РИТМЫ NOTHING</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: "Jost", sans-serif;
-      background: #f8f9fb;
-      color: #1a1d26;
+      background: #f5f0e8;
+      color: #2c2418;
       line-height: 1.7;
+      padding-top: 72px;
     }
+
+    /* subtle paper grain */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ── FIXED HEADER ── */
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #faf6ef;
+      border-bottom: 1px solid #e0d5c3;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      backdrop-filter: blur(12px);
+    }
+    .top-bar-titles h1 {
+      font-family: "Oswald", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #2c2418;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .top-bar-titles p {
+      font-size: 11px;
+      color: #9a8b74;
+      margin-top: 2px;
+    }
+    .top-bar-btn {
+      flex-shrink: 0;
+      background: #2c2418;
+      color: #faf6ef;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: "Jost", sans-serif;
+    }
+    .top-bar-btn:hover { background: #4a3c28; }
+
+    /* ── CONTENT ── */
     .container {
       max-width: 680px;
       margin: 0 auto;
-      padding: 40px 24px 60px;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .header h1 {
-      font-family: "Oswald", sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .header p {
-      color: #6b7280;
-      font-size: 14px;
-    }
-    .badge {
-      display: inline-block;
-      background: #eef2ff;
-      color: #5F5FFF;
-      padding: 4px 14px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      margin-bottom: 16px;
+      padding: 32px 20px 80px;
+      position: relative;
+      z-index: 1;
     }
 
-    .section {
-      background: white;
-      border-radius: 12px;
-      padding: 28px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    /* ── CARDS ── */
+    .card {
+      background: #fdfaf5;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #e8dfd0;
+      box-shadow: 0 2px 8px rgba(60,45,20,0.05);
+      overflow: hidden;
     }
-    .section h2 {
+    .card-body {
+      padding: 24px 28px;
+    }
+
+    /* ── COLLAPSIBLE ── */
+    .card-toggle {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 28px;
       font-family: "Oswald", sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      color: #1a1d26;
-    }
-    .section h3 {
       font-size: 15px;
       font-weight: 600;
-      margin: 20px 0 8px;
-      color: #1a1d26;
+      color: #2c2418;
+      text-align: left;
+      transition: background 0.15s;
     }
-    .section p {
+    .card-toggle:hover { background: #f7f2e9; }
+    .card-toggle .chevron {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: transform 0.25s;
+      color: #b8a88e;
+    }
+    .card-toggle.open .chevron { transform: rotate(180deg); }
+    .card-content {
+      display: none;
+      padding: 0 28px 24px;
+      border-top: 1px solid #efe7d9;
+    }
+    .card-content.open { display: block; }
+
+    /* ── TYPOGRAPHY ── */
+    .card h2 {
+      font-family: "Oswald", sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: #2c2418;
+    }
+    .card p {
       font-size: 14px;
+      color: #4a3c28;
       margin-bottom: 12px;
-      color: #374151;
     }
-    .section ul {
+    .card p:last-child { margin-bottom: 0; }
+    .card ul {
       padding-left: 20px;
       margin-bottom: 12px;
     }
-    .section li {
+    .card li {
       font-size: 14px;
-      color: #374151;
+      color: #4a3c28;
       margin-bottom: 6px;
+    }
+    .card strong { color: #2c2418; }
+    .card em { color: #7a6b56; }
+    .num {
+      font-family: "Courier Prime", monospace;
+      font-weight: 700;
+      color: #8b6914;
+      margin-right: 4px;
+      font-size: 13px;
     }
 
-    .parties {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 20px;
+    /* ── INTRO card ── */
+    .card-intro {
+      background: #faf6ef;
+      border: 1px solid #d9cdb5;
+      border-left: 4px solid #8b6914;
     }
-    .party {
-      background: #f9fafb;
-      border-radius: 10px;
-      padding: 16px;
+    .card-intro p { color: #4a3c28; }
+    .card-intro .placeholder {
+      display: inline-block;
+      background: #efe7d4;
+      border-radius: 3px;
+      padding: 2px 8px;
+      font-size: 13px;
+      color: #8b6914;
+      border: 1px dashed #c9b78e;
     }
-    .party-label {
-      font-size: 11px;
-      color: #9ca3af;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 6px;
+
+    /* ── SECTION 9 ── */
+    .card-accept {
+      border-left: 4px solid #8b6914;
+      background: #faf6ef;
     }
-    .party-name {
-      font-size: 15px;
+    .card-accept h2 { color: #5a4210; }
+    .legal-note {
+      background: #f5eed9;
+      border-left: 3px solid #8b6914;
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #5a4210;
+      line-height: 1.6;
+    }
+    .legal-note strong { color: #3d2d08; }
+
+    /* ── HISTORY TABLE ── */
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+    .history-table th {
+      text-align: left;
       font-weight: 600;
-      color: #1a1d26;
+      color: #9a8b74;
+      padding: 6px 10px;
+      border-bottom: 1px solid #e0d5c3;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .party-desc {
+    .history-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #efe7d9;
+      color: #4a3c28;
+    }
+    .history-table tr:last-child td { border-bottom: none; }
+    .ver-badge {
+      background: #f0e6cf;
+      color: #8b6914;
+      border-radius: 3px;
+      padding: 2px 8px;
       font-size: 12px;
-      color: #6b7280;
-      margin-top: 4px;
+      font-weight: 700;
+      font-family: "Courier Prime", monospace;
+    }
+    .history-note {
+      font-size: 12px;
+      color: #9a8b74;
+      margin-top: 12px;
     }
 
-    .highlight {
-      background: #eef2ff;
-      border-left: 3px solid #5F5FFF;
-      padding: 16px 20px;
-      border-radius: 0 8px 8px 0;
-      margin: 16px 0;
+    /* ── ACCEPT BLOCK ── */
+    .accept-block {
+      background: #fdfaf5;
+      border-radius: 12px;
+      border: 2px solid #2c2418;
+      margin-top: 32px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(44,36,24,0.1);
     }
-    .highlight p {
-      color: #3730a3;
-      font-weight: 500;
-      margin: 0;
+    .accept-block-icon {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 16px;
+      background: #f0e6cf;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #d4c4a0;
     }
-
-    .updates {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 24px;
+    .accept-block-icon svg {
+      width: 24px;
+      height: 24px;
+      color: #8b6914;
     }
-    .updates h3 {
-      color: #166534;
-      font-size: 14px;
+    .accept-block h3 {
+      font-family: "Oswald", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #2c2418;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .accept-block .accept-warning {
+      background: #fef8ee;
+      border: 1px solid #e8d5a8;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .accept-block .accept-warning p {
+      font-size: 13px;
+      color: #6b5420;
       margin: 0 0 8px;
     }
-    .updates p {
-      color: #15803d;
-      font-size: 13px;
-      margin: 0;
-    }
-    .update-log {
-      margin-top: 12px;
-      font-size: 12px;
-      color: #6b7280;
-    }
-    .update-log div {
-      padding: 4px 0;
-      border-bottom: 1px solid #f3f4f6;
-    }
+    .accept-block .accept-warning p:last-child { margin: 0; }
+    .accept-block .accept-warning strong { color: #3d2d08; }
 
-    .cta {
-      text-align: center;
-      margin-top: 40px;
-      padding: 32px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-    .cta p {
-      font-size: 14px;
-      color: #6b7280;
-      margin-bottom: 20px;
-    }
-    .cta-btn {
+    .accept-btn {
       display: inline-block;
-      background: #5F5FFF;
-      color: white;
-      padding: 16px 40px;
-      border-radius: 10px;
+      background: #2c2418;
+      color: #faf6ef;
+      padding: 18px 48px;
+      border-radius: 8px;
       font-size: 16px;
       font-weight: 600;
       text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.3px;
     }
-    .cta-btn:hover {
-      background: #4848d0;
-      transform: translateY(-2px);
-    }
-    .cta-note {
-      font-size: 12px;
-      color: #9ca3af;
-      margin-top: 12px;
+    .accept-btn:hover {
+      background: #4a3c28;
+      transform: translateY(-1px);
     }
 
+    /* ── RED LEGAL WARNING UNDER BUTTON ── */
+    .legal-warning-block {
+      margin-top: 20px;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      border-radius: 8px;
+      padding: 16px 20px;
+      text-align: left;
+    }
+    .legal-warning-block .lw-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .legal-warning-block .lw-title svg {
+      width: 18px;
+      height: 18px;
+      color: #dc2626;
+      flex-shrink: 0;
+    }
+    .legal-warning-block .lw-title span {
+      font-size: 13px;
+      font-weight: 700;
+      color: #991b1b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .legal-warning-block p {
+      font-size: 12px;
+      color: #991b1b;
+      margin: 0 0 6px;
+      line-height: 1.6;
+    }
+    .legal-warning-block p:last-child { margin-bottom: 0; }
+    .legal-warning-block strong { color: #7f1d1d; }
+
+    /* ── PRIVACY LINK ── */
+    .accept-privacy {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #e8dfd0;
+      font-size: 13px;
+      color: #7a6b56;
+    }
+    .accept-privacy a {
+      color: #8b6914;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(139,105,20,0.3);
+      transition: border-color 0.2s;
+    }
+    .accept-privacy a:hover { border-color: #8b6914; }
+
     @media (max-width: 600px) {
-      .parties { grid-template-columns: 1fr; }
-      .container { padding: 20px 16px 40px; }
-      .header h1 { font-size: 24px; }
+      body { padding-top: 84px; }
+      .top-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .top-bar-btn { width: 100%; text-align: center; }
+      .card-toggle { font-size: 14px; padding: 16px 20px; }
+      .card-body, .card-content { padding-left: 20px; padding-right: 20px; }
+      .accept-block { padding: 24px 20px; }
+      .accept-btn { width: 100%; padding: 16px 20px; }
     }
   </style>
 </head>
 <body>
 
+<!-- FIXED HEADER -->
+<div class="top-bar">
+  <div class="top-bar-titles">
+    <h1>Соглашение о неразглашении</h1>
+    <p>Участник исследования × РИТМЫ NOTHING</p>
+  </div>
+  <button class="top-bar-btn" onclick="document.getElementById('accept-section').scrollIntoView({behavior:'smooth'})">Подписать соглашение →</button>
+</div>
+
+<!-- CONTENT -->
 <div class="container">
 
-  <div class="header">
-    <span class="badge">Соглашение</span>
-    <h1>Соглашение об участии в исследовательской программе</h1>
-    <p>RHYTHMS NOTHING — Программа нейроисследований ONTO NOTHING</p>
+  <!-- БЛОК 1 — вводный -->
+  <div class="card card-intro">
+    <div class="card-body">
+      <p><em>Настоящее Соглашение заключается с <strong>РИТМЫ NOTHING</strong> — проектом, созданным и управляемым <strong>Константином Шелем</strong> и <strong>Натальей Морозовой</strong> совместно с технологическим партнёром <strong>ООО «Нейри» (Neiry)</strong> и рядом партнёров в области нейротехнологий, исследовательской инфраструктуры и цифровых инструментов. Мы — реальные люди и организации, стоящие за этим документом, и несём ответственность за то, как используется ваша информация.</em></p>
+      <p style="margin-top:12px"><em>Юридическое лицо: <span class="placeholder">_________________________ (в процессе оформления)</span></em></p>
+      <p style="margin-top:12px"><em>Настоящее Соглашение вступает в силу в момент акцептирования — нажатия кнопки подтверждения и возврата в Telegram-бот.</em></p>
+    </div>
   </div>
 
-  <!-- Стороны -->
-  <div class="section">
-    <h2>Стороны соглашения</h2>
-    <div class="parties">
-      <div class="party">
-        <div class="party-label">Сторона 1</div>
-        <div class="party-name">РИТМЫ NOTHING</div>
-        <div class="party-desc">Исследовательская платформа нейротехнологий и управления состояниями</div>
+  <!-- БЛОК 2 — Термины -->
+  <div class="card">
+    <button class="card-toggle" onclick="toggle(this)">
+      <span>1. Термины и определения</span>
+      <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </button>
+    <div class="card-content">
+      <p style="margin-top:16px"><strong>«Конфиденциальная информация»</strong> — любая информация, ставшая известной Участнику в связи с участием в программе «РИТМЫ NOTHING» и/или совместном проекте по исследованию управляемых состояний сознания (далее — «Программа»), независимо от формы её представления (устной, письменной, электронной, визуальной), включая, но не ограничиваясь:</p>
+      <ul>
+        <li>методологию «Onto Nothing»: протоколы управления состояниями, структуру «шести режимов», учебные материалы, тренировочные программы, методические руководства;</li>
+        <li>протоколы и результаты нейрофизиологического исследования: схемы сессий, необработанные данные ЭЭГ, интерпретации, промежуточные и итоговые отчёты;</li>
+        <li>персональные данные участников Программы и Исследования: ФИО, контактные данные, результаты замеров, анкеты, дневники;</li>
+        <li>внутренние процессы Программы: механизмы отбора, аккредитации и обучения амбассадоров, структура комьюнити, планы развития;</li>
+        <li>техническую информацию об устройствах и программном обеспечении Neiry, не являющуюся общедоступной;</li>
+        <li>маркетинговые стратегии, планы запуска, незавершённые материалы, внутренние коммуникации Программы.</li>
+      </ul>
+      <p><strong>«Раскрывающая сторона»</strong> — проект РИТМЫ NOTHING, осуществляющий деятельность под брендами «Onto Nothing» и «Ритмы Жизни», а также ООО «Нейри» (Neiry) в части информации, относящейся к устройствам и программному обеспечению.</p>
+      <p><strong>«Участник»</strong> — физическое лицо, акцептировавшее настоящее Соглашение и получающее доступ к Конфиденциальной информации в связи с участием в Программе.</p>
+    </div>
+  </div>
+
+  <!-- БЛОК 3 — Предмет и обязательства -->
+  <div class="card">
+    <button class="card-toggle" onclick="toggle(this)">
+      <span>2–3. Предмет и обязательства</span>
+      <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </button>
+    <div class="card-content">
+      <p style="margin-top:16px"><span class="num">2.1.</span> Участник обязуется не разглашать, не передавать и не использовать в личных целях или в интересах третьих лиц Конфиденциальную информацию, полученную в рамках участия в Программе, без предварительного письменного согласия Раскрывающей стороны.</p>
+      <p><span class="num">2.2.</span> Участник обязуется обеспечивать защиту Конфиденциальной информации с применением мер, не менее строгих, чем те, которые он применяет для защиты собственной конфиденциальной информации.</p>
+      <p style="margin-top:16px"><strong>Участник обязуется:</strong></p>
+      <ul>
+        <li>не копировать, не модифицировать и не распространять методологические материалы «Onto Nothing» (протоколы, учебные курсы, тренировочные программы) без письменного согласия Раскрывающей стороны;</li>
+        <li>не использовать методологию для создания собственных конкурирующих продуктов или программ;</li>
+        <li>не раскрывать результаты Исследования (включая данные ЭЭГ, интерпретации, статистические выводы) до их официальной публикации Раскрывающей стороной;</li>
+        <li>обеспечивать защиту персональных данных участников Программы и Исследования в соответствии с Федеральным законом № 152-ФЗ «О персональных данных»;</li>
+        <li>не использовать внутренние коммуникации Программы (чаты, переписки, закрытые материалы) для публичных публикаций без согласования;</li>
+        <li>ограничить круг лиц, имеющих доступ к Конфиденциальной информации, теми, кому она необходима для непосредственного исполнения обязательств по Программе.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- БЛОК 4 — Исключения -->
+  <div class="card">
+    <button class="card-toggle" onclick="toggle(this)">
+      <span>4. Исключения</span>
+      <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </button>
+    <div class="card-content">
+      <p style="margin-top:16px">Не является Конфиденциальной информацией для целей настоящего Соглашения:</p>
+      <ul>
+        <li>информация, являющаяся или ставшая общедоступной не в результате нарушения настоящего Соглашения;</li>
+        <li>информация, находившаяся в распоряжении Участника до её передачи Раскрывающей стороной;</li>
+        <li>информация, полученная Участником от третьего лица, имеющего законное право на её распространение;</li>
+        <li>информация, раскрытие которой требуется в соответствии с законодательством Российской Федерации по запросу уполномоченных государственных органов.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- БЛОК 5 — Ответственность и возврат -->
+  <div class="card">
+    <button class="card-toggle" onclick="toggle(this)">
+      <span>5–6. Ответственность и возврат информации</span>
+      <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </button>
+    <div class="card-content">
+      <p style="margin-top:16px"><span class="num">5.1.</span> В случае разглашения Конфиденциальной информации Участник обязуется возместить Раскрывающей стороне документально подтверждённые убытки, причинённые таким разглашением.</p>
+      <p><span class="num">5.2.</span> За каждый подтверждённый факт нарушения настоящего Соглашения Участник обязан выплатить Раскрывающей стороне штраф в размере <strong>500 000 (пятьсот тысяч) рублей</strong> сверх возмещения убытков, на основании письменного требования Раскрывающей стороны.</p>
+      <p><span class="num">5.3.</span> Раскрывающая сторона вправе исключить Участника из Программы при подтверждённом нарушении условий настоящего Соглашения.</p>
+      <p style="margin-top:16px"><span class="num">6.1.</span> По требованию Раскрывающей стороны или при прекращении участия в Программе Участник обязан в течение <strong>10 (десяти) рабочих дней:</strong></p>
+      <ul>
+        <li>вернуть или уничтожить все материалы, содержащие Конфиденциальную информацию;</li>
+        <li>удалить Конфиденциальную информацию с любых носителей данных;</li>
+        <li>подтвердить факт уничтожения/удаления в письменной форме.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- БЛОК 6 — Срок и прочие условия -->
+  <div class="card">
+    <button class="card-toggle" onclick="toggle(this)">
+      <span>7–8. Срок действия и прочие условия</span>
+      <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+    </button>
+    <div class="card-content">
+      <p style="margin-top:16px"><span class="num">7.1.</span> Настоящее Соглашение вступает в силу в момент акцептирования и действует в течение всего периода участия в Программе.</p>
+      <p><span class="num">7.2.</span> Обязательства по охране Конфиденциальной информации сохраняют силу в течение <strong>3 (трёх) лет</strong> после прекращения участия в Программе.</p>
+      <p style="margin-top:16px"><span class="num">8.1.</span> Все споры разрешаются путём переговоров. При невозможности урегулирования — в компетентном суде по месту нахождения Раскрывающей стороны.</p>
+      <p><span class="num">8.2.</span> Участник подтверждает, что ознакомился с содержанием настоящего Соглашения, полностью понимает его условия и акцептирует добровольно.</p>
+    </div>
+  </div>
+
+  <!-- БЛОК 7 — Электронное акцептирование -->
+  <div class="card card-accept">
+    <div class="card-body">
+      <h2>9. Порядок электронного акцептирования</h2>
+      <p><span class="num">9.1.</span> Настоящее Соглашение акцептируется в электронной форме в соответствии со <strong>ст. 438 ГК РФ</strong>. Акцептом является совершение Участником следующих последовательных действий: ознакомление с текстом Соглашения на настоящей странице и нажатие кнопки подтверждения с последующим возвратом в Telegram-бот.</p>
+      <p><span class="num">9.2.</span> В момент акцептирования автоматически фиксируются: Telegram ID Участника, имя аккаунта, дата и точное время нажатия кнопки. Эти данные являются подтверждением факта заключения Соглашения.</p>
+      <p><span class="num">9.3.</span> Акцептированное Соглашение имеет равную юридическую силу с соглашением, подписанным собственноручно, в соответствии с законодательством Российской Федерации.</p>
+      <p><span class="num">9.4.</span> Участник вправе в любой момент запросить у Раскрывающей стороны подтверждение факта и времени акцептирования.</p>
+      <div class="legal-note">
+        Настоящее Соглашение заключается в порядке, предусмотренном <strong>ст. 434 и ст. 438 ГК РФ</strong>: акцепт оферты путём совершения конклюдентных действий (нажатие кнопки) признаётся надлежащим способом заключения договора и порождает полноценные гражданско-правовые обязательства.<br><br>
+        Электронная фиксация акцептирования является доказательством факта заключения Соглашения в соответствии с <strong>ч. 3 ст. 75 АПК РФ</strong> и <strong>ч. 1 ст. 55 ГПК РФ</strong>.<br><br>
+        Обязательства по неразглашению охраняются <strong>ФЗ № 98-ФЗ «О коммерческой тайне»</strong>. Нарушение может повлечь гражданскую ответственность, административную по <strong>ст. 13.14 КоАП РФ</strong> и уголовную по <strong>ст. 183 УК РФ</strong>.
       </div>
-      <div class="party">
-        <div class="party-label">Сторона 2</div>
-        <div class="party-name">Участник исследования</div>
-        <div class="party-desc">Лицо, проходящее программу и предоставляющее данные для исследования</div>
+    </div>
+  </div>
+
+  <!-- БЛОК 8 — История обновлений -->
+  <div class="card">
+    <div class="card-body">
+      <h2>📋 История обновлений</h2>
+      <p style="color:#9a8b74; font-size:13px">Все изменения настоящего Соглашения фиксируются публично. Ничего не меняется «мелким шрифтом» — каждая правка отражена здесь с датой и описанием.</p>
+      <table class="history-table">
+        <thead>
+          <tr><th>Версия</th><th>Дата</th><th>Что изменилось</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="ver-badge">1.0</span></td>
+            <td>01 апреля 2026 г.</td>
+            <td>Первая публикация Соглашения</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="history-note">Участники, акцептировавшие предыдущую версию Соглашения, уведомляются об изменениях через Telegram-бот и при необходимости проходят повторное акцептирование.</p>
+    </div>
+  </div>
+
+  <!-- ── БЛОК АКЦЕПТИРОВАНИЯ ── -->
+  <div class="accept-block" id="accept-section">
+    <div class="accept-block-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <h3>Электронное подписание</h3>
+    <div class="accept-warning">
+      <p><strong>Нажатие кнопки ниже равносильно собственноручной подписи</strong> — аналогично тому, как вы подтверждаете операции в банковских приложениях (Сбербанк Онлайн, Тинькофф, Альфа-Банк) нажатием кнопки «Подтвердить».</p>
+      <p>В момент нажатия автоматически фиксируются: ваш Telegram ID, имя аккаунта, дата и точное время. Эти данные являются юридическим доказательством факта заключения Соглашения.</p>
+      <p>Пожалуйста, убедитесь, что вы прочитали и поняли все условия Соглашения перед нажатием.</p>
+    </div>
+
+    <a href="https://t.me/ritmnothingbot?start=nda_accepted" class="accept-btn">Я ознакомился и принимаю условия →</a>
+
+    <!-- RED LEGAL WARNING -->
+    <div class="legal-warning-block">
+      <div class="lw-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Юридическая сила нажатия</span>
       </div>
-    </div>
-  </div>
-
-  <!-- Предмет -->
-  <div class="section">
-    <h2>1. Предмет соглашения</h2>
-    <p>Настоящее Соглашение регулирует условия участия в исследовательской программе ONTO NOTHING, включая сбор, обработку и хранение персональных данных, данных нейроинтерфейсов, фитнес-трекеров и других источников биометрической информации.</p>
-  </div>
-
-  <!-- Конфиденциальность -->
-  <div class="section">
-    <h2>2. Политика конфиденциальности</h2>
-
-    <h3>2.1 Какие данные мы собираем</h3>
-    <ul>
-      <li>Персональные данные (имя, контакты, город, дата рождения)</li>
-      <li>Данные анкеты (цели, методы, оборудование)</li>
-      <li>Данные нейротрекера NEIRY (ЭЭГ, концентрация, релаксация, стресс)</li>
-      <li>Данные фитнес-трекеров (пульс, HRV, сон, активность)</li>
-      <li>Клинические анализы (по вашему согласию)</li>
-      <li>Рефлексии и текстовые записи</li>
-      <li>Аудио-транскрипции сессий</li>
-    </ul>
-
-    <h3>2.2 Как мы используем данные</h3>
-    <ul>
-      <li>Для расчёта индексов MNPI и персонализации программы</li>
-      <li>Для научного анализа и публикаций (в анонимизированном виде)</li>
-      <li>Для генерации персональных отчётов и рекомендаций</li>
-    </ul>
-
-    <div class="highlight">
-      <p>Мы НЕ передаём ваши данные третьим лицам. Мы НЕ продаём и НЕ распространяем персональную информацию. Ваши данные используются исключительно в рамках исследовательской программы.</p>
+      <p>Нажатие кнопки является <strong>акцептом оферты</strong> в соответствии со <strong>ст. 434 и ст. 438 Гражданского кодекса РФ</strong> и порождает полноценные гражданско-правовые обязательства.</p>
+      <p>Электронная фиксация (Telegram ID, дата, время) является допустимым доказательством в суде (<strong>ч. 3 ст. 75 АПК РФ</strong>, <strong>ч. 1 ст. 55 ГПК РФ</strong>).</p>
+      <p>Нарушение обязательств о неразглашении преследуется по <strong>ФЗ № 98-ФЗ «О коммерческой тайне»</strong>, а также может повлечь ответственность по <strong>ст. 13.14 КоАП РФ</strong> (административная) и <strong>ст. 183 УК РФ</strong> (уголовная).</p>
     </div>
 
-    <h3>2.3 Хранение данных</h3>
-    <p>Данные хранятся на защищённых серверах с шифрованием. Доступ имеют только авторизованные исследователи программы. Вы можете запросить удаление своих данных в любой момент.</p>
-  </div>
-
-  <!-- NDA -->
-  <div class="section">
-    <h2>3. Соглашение о неразглашении (NDA)</h2>
-
-    <h3>3.1 Обязательства RHYTHMS NOTHING</h3>
-    <ul>
-      <li>Не разглашать персональные данные участника</li>
-      <li>Не передавать индивидуальные результаты третьим лицам без согласия</li>
-      <li>Обеспечить безопасное хранение всех данных</li>
-      <li>Уведомлять участника об изменениях в условиях</li>
-    </ul>
-
-    <h3>3.2 Обязательства Участника</h3>
-    <ul>
-      <li>Не распространять методологию исследования (PI/MNPI) без согласия</li>
-      <li>Не копировать и не передавать материалы программы</li>
-      <li>Не публиковать результаты исследования от имени программы</li>
-      <li>Сохранять конфиденциальность данных других участников</li>
-    </ul>
-
-    <h3>3.3 Интеллектуальная собственность</h3>
-    <p>Методология PI/MNPI, аудио-сессии, протоколы исследования и алгоритмы анализа являются интеллектуальной собственностью RHYTHMS NOTHING. Участник получает право использовать результаты для личного развития.</p>
-  </div>
-
-  <!-- Права участника -->
-  <div class="section">
-    <h2>4. Права участника</h2>
-    <ul>
-      <li>Доступ к своим персональным данным в любой момент</li>
-      <li>Запрос на удаление данных и выход из программы</li>
-      <li>Получение персональных отчётов и рекомендаций</li>
-      <li>Участие в амбассадорской программе (по желанию)</li>
-      <li>Отзыв согласия на обработку данных</li>
-    </ul>
-  </div>
-
-  <!-- Срок действия -->
-  <div class="section">
-    <h2>5. Срок действия</h2>
-    <p>Соглашение вступает в силу с момента принятия (нажатия кнопки подтверждения) и действует на весь период участия в программе. При выходе из программы обязательства по конфиденциальности сохраняются в течение 3 (трёх) лет.</p>
-  </div>
-
-  <!-- Обновления -->
-  <div class="updates">
-    <h3>📋 Обновления соглашения</h3>
-    <p>Все изменения в соглашении фиксируются здесь. Ничего не подписывается мелким шрифтом — мы ценим прозрачность.</p>
-    <div class="update-log">
-      <div>📅 02.04.2026 — Первая версия соглашения опубликована</div>
+    <!-- PRIVACY LINK -->
+    <div class="accept-privacy">
+      Принимая Соглашение, вы также подтверждаете, что ознакомились с нашей <a href="../privacy/index.html">Политикой конфиденциальности</a>
     </div>
-  </div>
-
-  <!-- Кнопка -->
-  <div class="cta">
-    <p>Нажимая кнопку ниже, вы подтверждаете что ознакомились с условиями Соглашения, Политикой конфиденциальности и NDA, и принимаете их.</p>
-    <a href="https://t.me/ritmnothingbot?start=nda_accepted" class="cta-btn">Я принимаю условия и возвращаюсь в программу</a>
-    <div class="cta-note">Нажатие кнопки является электронной подписью соглашения</div>
   </div>
 
 </div>
+
+<script>
+  function toggle(btn) {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+  }
+</script>
 
 </body>
 </html>
