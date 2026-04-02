@@ -71,6 +71,7 @@
       "name": "Виктория Левина",
       "real": true,
       "band": "paid",
+      "tracker": true,
       "tg": "levina_victory",
       "profile": "https://konstantinshell.github.io/genesis/profiles/424514495/",
       "children": [
