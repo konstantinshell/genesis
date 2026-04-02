@@ -240,6 +240,11 @@
       color: #0A84FF;
       margin-top: 2px;
     }
+    .band-badge {
+      font-size: 11px;
+      margin-top: 1px;
+      line-height: 1;
+    }
 
     .av.org {
       width: 60px;
@@ -320,6 +325,9 @@
   <div class="legend-item"><div class="lg f"></div> Основатель</div>
   <div class="legend-item"><div class="lg r"></div> Участник</div>
   <div class="legend-item"><div class="lg d"></div> Свободно</div>
+  <div class="legend-item">🧠 Нейробенд</div>
+  <div class="legend-item">🎁 Промо бенд</div>
+  <div class="legend-item">⭐ Промо участник</div>
 </div>
 
 <div class="founders">
@@ -397,6 +405,9 @@ function renderNode(node, depth) {
   html += '<div class="nm">' + name + '</div>';
   if (role) html += '<div class="rl">' + role + '</div>';
   if (node.tg && node.real) html += '<div class="tg-badge">@' + node.tg + '</div>';
+  if (node.band === 'paid') html += '<div class="band-badge">🧠</div>';
+  else if (node.band === 'promo') html += '<div class="band-badge">🎁</div>';
+  else if (node.band === 'promo_member') html += '<div class="band-badge">⭐</div>';
 
   if (hasLink) {
     html += '</a>';

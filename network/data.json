@@ -8,6 +8,7 @@
     {
       "name": "Валентина",
       "real": true,
+      "band": "promo_member",
       "tg": "Vi_vittt",
       "profile": "https://konstantinshell.github.io/genesis/profiles/1067307749/",
       "children": [
@@ -68,6 +69,7 @@
     {
       "name": "Виктория Левина",
       "real": true,
+      "band": "paid",
       "tg": "levina_victory",
       "profile": "https://konstantinshell.github.io/genesis/profiles/424514495/",
       "children": [
@@ -98,6 +100,7 @@
     {
       "name": "Александр Новожилов",
       "real": true,
+      "band": "paid",
       "tg": "GoodWinZlo",
       "profile": "https://konstantinshell.github.io/genesis/profiles/221246992/",
       "children": [
@@ -128,6 +131,7 @@
     {
       "name": "Вадим Гурьев",
       "real": true,
+      "band": "promo",
       "tg": "vadimolegich",
       "profile": "https://konstantinshell.github.io/genesis/profiles/1139648370/",
       "children": [
@@ -158,6 +162,7 @@
     {
       "name": "Егор Андреев",
       "real": true,
+      "band": "promo",
       "tg": "Egor_iTao",
       "profile": "https://konstantinshell.github.io/genesis/profiles/147991795/",
       "children": [
