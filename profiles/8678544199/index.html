@@ -2,8 +2,9 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Константин НОВАТОР — ONTO NOTHING</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -68,8 +69,8 @@
     .gcal-btn { display:inline-block; background:#7c6fff; color:#fff; padding:10px 20px; border-radius:8px; font-size:13px; text-decoration:none; font-weight:500; }
 
     /* Bottom Nav */
-    .bnav { position:fixed; bottom:0; left:0; right:0; background:#1a1a22; border-top:1px solid #2a2a35; display:flex; justify-content:center; z-index:100; }
-    .bnav a { flex:1; max-width:96px; text-align:center; padding:10px 0 8px; text-decoration:none; color:#555; font-size:10px; transition:color 0.2s; }
+    .bnav { position:fixed; bottom:0; left:0; right:0; background:#1a1a22; border-top:1px solid #2a2a35; display:flex; justify-content:center; z-index:100; padding-bottom:env(safe-area-inset-bottom, 0px); }
+    .bnav a { flex:1; max-width:96px; text-align:center; padding:10px 0 8px; text-decoration:none; color:#555; font-size:10px; transition:color 0.2s; -webkit-tap-highlight-color:transparent; }
     .bnav a.active { color:#7c6fff; }
     .bnav a .ico { font-size:20px; display:block; margin-bottom:2px; }
 
@@ -265,7 +266,7 @@
       </div>
     </div>
 
-    <div class="updated">Обновлено: 01.04.2026</div>
+    <div class="updated">Обновлено: 02.04.2026</div>
     <div style="height:100px;"></div>
   </div>
 
@@ -339,6 +340,12 @@
 </nav>
 
 <script>
+// Telegram WebApp — раскрыть на полный экран
+if (window.Telegram && window.Telegram.WebApp) {
+  Telegram.WebApp.ready();
+  Telegram.WebApp.expand();
+}
+
 function switchTab(name, el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.bnav a').forEach(a => a.classList.remove('active'));
