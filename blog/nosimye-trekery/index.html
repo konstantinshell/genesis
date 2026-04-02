@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Носимые трекеры в научных исследованиях — ONTO NOTHING</title>
+  <meta name="description" content="Какие устройства используют лаборатории — и что они уже открыли. 7 открытий, таблица устройств, данные исследований.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+  <style>
+    html, body { background: #F0F0F0; }
+    .page-orbs { display: none; }
+
+    .on-body {
+      font-family: var(--fb);
+      background: linear-gradient(to bottom, #F0F0F0 0%, #E0E0E0 40%, #1A1A1A 70%, #0A0A0A 100%);
+      color: #1A1A1A;
+      line-height: 1.6;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .on-fade { animation: fadeUp 0.8s ease-out forwards; }
+    .on-d1 { animation: fadeUp 0.8s ease-out .1s forwards; opacity: 0; }
+    .on-d2 { animation: fadeUp 0.8s ease-out .2s forwards; opacity: 0; }
+    .on-d3 { animation: fadeUp 0.8s ease-out .3s forwards; opacity: 0; }
+    .on-d4 { animation: fadeUp 0.8s ease-out .4s forwards; opacity: 0; }
+
+    /* ── Container ── */
+    .on-c { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 768px) { .on-c { padding: 0 24px; } }
+
+    /* ── Breadcrumb ── */
+    .bc { display: flex; align-items: center; gap: 8px; font-family: var(--fm); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; padding-top: 100px; }
+    .bc a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    .bc a:hover { color: #30D158; }
+    .bc span { color: #ccc; }
+
+    /* ── Console Label ── */
+    .con-lbl { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0,0,0,.04); border: 1px solid rgba(0,0,0,.1); border-radius: 9999px; margin-bottom: 32px; }
+    .con-dot { width: 8px; height: 8px; background: #30D158; border-radius: 50%; animation: pulse 2s infinite; }
+    .con-txt { font-family: var(--fm); font-size: 12px; font-weight: 500; letter-spacing: .05em; color: rgba(0,0,0,.6); }
+
+    /* ── Headings ── */
+    .on-h1 { font-family: var(--fh); font-size: clamp(2.25rem,7vw,4.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -.02em; color: #1A1A1A; margin-bottom: 24px; }
+    .on-h1-gr { background: linear-gradient(to right,#1A1A1A,#555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .on-h2 { font-family: var(--fh); font-size: clamp(1.5rem,5vw,3rem); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; color: #1A1A1A; margin-bottom: 16px; }
+    .on-h2-w { color: #fff; }
+    .on-h3-w { font-family: var(--fh); font-size: clamp(1.25rem,4vw,2rem); font-weight: 700; line-height: 1.2; color: #fff; margin-bottom: 24px; }
+
+    /* ── Lead ── */
+    .on-lead { font-size: clamp(1rem,2.5vw,1.25rem); font-weight: 500; line-height: 1.5; color: #333; max-width: 48rem; margin-bottom: 40px; }
+    .on-lead u { text-decoration: none; border-bottom: 2px solid #30D158; }
+
+    /* ── Description Card ── */
+    .on-desc { padding: 24px; background: rgba(255,255,255,.8); border: 1px solid rgba(0,0,0,.06); border-radius: 16px; margin-bottom: 48px; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+    @media (min-width: 640px) { .on-desc { padding: 32px; } }
+    .on-desc p { font-size: clamp(.94rem,2vw,1.06rem); color: #444; line-height: 1.75; margin-bottom: 24px; }
+    .on-desc p:last-child { margin-bottom: 0; }
+
+    /* ── Badges ── */
+    .bdg-group { display: flex; flex-wrap: wrap; gap: 12px; }
+    .bdg { padding: 4px 12px; background: rgba(0,0,0,.05); border: 1px solid rgba(0,0,0,.1); border-radius: 8px; font-family: var(--fm); font-size: 12px; font-weight: 500; color: rgba(0,0,0,.6); }
+
+    /* ── Glass Cards ── */
+    .gl { background: rgba(255,255,255,.6); backdrop-filter: blur(12px); border: 1px solid rgba(0,0,0,.06); border-radius: 16px; transition: all .3s ease; }
+    .gl:hover { box-shadow: 0 10px 25px -5px rgba(0,0,0,.1); transform: translateY(-2px); }
+
+    /* ── Discovery Grid ── */
+    .disc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (min-width: 768px) { .disc-grid { gap: 20px; } }
+    @media (max-width: 600px) { .disc-grid { grid-template-columns: 1fr; } }
+    .disc-card { padding: 20px; display: flex; flex-direction: column; }
+    @media (min-width: 640px) { .disc-card { padding: 28px; } }
+    .disc-num { font-family: var(--fh); font-size: 2.5rem; font-weight: 700; color: rgba(0,0,0,.08); line-height: 1; margin-bottom: 12px; }
+    @media (min-width: 640px) { .disc-num { font-size: 3.5rem; } }
+    .disc-title { font-family: var(--fh); font-size: .95rem; font-weight: 700; color: #1A1A1A; margin-bottom: 16px; line-height: 1.4; }
+    @media (min-width: 640px) { .disc-title { font-size: 1.1rem; margin-bottom: 20px; } }
+    .disc-text { font-size: .8rem; color: #555; line-height: 1.7; }
+    @media (min-width: 640px) { .disc-text { font-size: .9rem; line-height: 1.75; } }
+    .disc-metric { display: inline-block; margin-top: 16px; padding: 8px 12px; background: rgba(48,209,88,.1); border: 1px solid rgba(48,209,88,.3); border-radius: 8px; font-family: var(--fm); font-size: .75rem; font-weight: 600; color: #16a34a; }
+
+    /* ── Dark Section ── */
+    .on-dark { padding: 96px 0; background: #0A0A0A; color: #fff; }
+    .on-dark-intro { margin-bottom: 48px; }
+    .on-dark-intro p { color: rgba(255,255,255,.6); max-width: 48rem; line-height: 1.75; }
+
+    /* ── Tabs ── */
+    .tabs { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+    .tab-btn { padding: 8px 16px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); font-family: var(--fb); font-size: 12px; font-weight: 500; color: rgba(255,255,255,.6); cursor: pointer; transition: all .2s; white-space: nowrap; }
+    @media (min-width: 640px) { .tab-btn { padding: 8px 24px; font-size: 14px; } }
+    .tab-btn:hover { border-color: rgba(255,255,255,.3); }
+    .tab-btn.active { background: rgba(255,255,255,.1); border-color: #30D158; color: #fff; }
+    .tab-c { display: none; }
+    .tab-c.active { display: table-row-group; }
+
+    /* ── Table ── */
+    .on-tbl-wrap { border-radius: 16px; overflow: hidden; background: #0A0A0A; border: 1px solid rgba(255,255,255,.06); }
+    .on-tbl-scroll { overflow-x: auto; }
+    .on-tbl-scroll::-webkit-scrollbar { height: 6px; }
+    .on-tbl-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,.05); }
+    .on-tbl-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); border-radius: 3px; }
+    .on-tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .on-tbl th { padding: 20px; text-align: left; font-family: var(--fm); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: rgba(255,255,255,.4); border-bottom: 1px solid rgba(255,255,255,.1); white-space: nowrap; }
+    .on-tbl td { padding: 20px; vertical-align: top; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .on-tbl tr:hover { background: rgba(255,255,255,.02); }
+    .dev-name { font-weight: 700; color: #fff; margin-bottom: 4px; transition: color .2s; }
+    .on-tbl tr:hover .dev-name { color: #30D158; }
+    .dev-price { font-family: var(--fm); font-size: 12px; color: rgba(255,255,255,.4); }
+    .lab-item { margin-bottom: 8px; font-size: 12px; color: rgba(255,255,255,.6); }
+    .lab-name { color: #30D158; font-weight: 600; }
+    .lab-name.yellow { color: #fde047; }
+    .lab-name.red { color: #f87171; }
+    .res-text { color: rgba(255,255,255,.8); line-height: 1.75; font-size: 12px; }
+
+    /* ── Numbered List ── */
+    .n-list { display: flex; flex-direction: column; gap: 32px; }
+    @media (min-width: 768px) { .n-list { gap: 40px; } }
+    .n-item { display: flex; gap: 16px; align-items: flex-start; }
+    .n-num { flex-shrink: 0; width: 32px; height: 32px; background: rgba(48,209,88,.15); border: 1px solid rgba(48,209,88,.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--fm); font-weight: 700; font-size: 14px; color: #30D158; }
+    .n-content h4 { font-family: var(--fh); font-size: clamp(1rem,3vw,1.25rem); font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.3; }
+    .n-content p { color: rgba(255,255,255,.6); font-size: clamp(.875rem,2vw,1rem); line-height: 1.7; }
+
+    /* ── Conclusion Card ── */
+    .concl { margin-top: 48px; padding: 24px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; }
+    .concl p { color: rgba(255,255,255,.7); font-size: clamp(.94rem,2vw,1.06rem); line-height: 1.75; }
+
+    /* ── Footer CTA ── */
+    .on-cta { padding: 96px 0; background: #0A0A0A; text-align: center; }
+    .on-cta h3 { font-family: var(--fh); font-size: clamp(1.5rem,5vw,2rem); font-weight: 700; color: #fff; margin-bottom: 24px; }
+    .cta-btn { display: inline-block; padding: 16px 32px; border: 2px solid rgba(255,255,255,.25); border-radius: 9999px; font-size: clamp(1rem,2.5vw,1.125rem); font-weight: 600; color: #fff; text-decoration: none; transition: all .3s ease; }
+    @media (min-width: 640px) { .cta-btn { padding: 20px 40px; } }
+    .cta-btn:hover { border-color: #30D158; background: rgba(48,209,88,.06); }
+    .on-footer-copy { margin-top: 96px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.1); font-family: var(--fm); font-size: 12px; color: rgba(255,255,255,.4); }
+    .on-footer-date { margin-top: 8px; font-size: 11px; color: rgba(255,255,255,.3); }
+
+    /* ── Sections ── */
+    .sec-hero { padding: 0 0 80px; }
+    .sec-disc { padding: 80px 0; }
+    .sec-mb { margin-bottom: 48px; }
+    @media (min-width: 768px) { .sec-mb { margin-bottom: 64px; } }
+  </style>
+</head>
+<body>
+
+<div class="page-orbs"><span></span><span></span></div>
+
+<div class="on-body">
+
+  <!-- HERO -->
+  <section class="sec-hero">
+    <div class="on-c">
+      <nav class="bc">
+        <a href="../../">Главная</a><span>/</span>
+        <a href="../">Блог</a><span>/</span>
+        <span>Носимые трекеры</span>
+      </nav>
+
+      <div class="on-fade con-lbl">
+        <span class="con-dot"></span>
+        <span class="con-txt">RESEARCH MODE // DATA STREAM ACTIVE</span>
+      </div>
+
+      <h1 class="on-d1 on-h1">
+        Носимые трекеры в <br>
+        <span class="on-h1-gr">научных исследованиях</span>
+      </h1>
+
+      <p class="on-d2 on-lead">
+        Какие устройства используют лаборатории — и что они уже <u>открыли</u>
+      </p>
+
+      <div class="on-d3 on-desc">
+        <p>
+          Долгое время у исследователей была одна общая проблема: человек приходил в лабораторию, проходил измерения — и уходил. Что происходило с ним дальше — после медитации, тренировки, стрессовой недели — оставалось за кадром. Приборы стояли в лаборатории, а жизнь шла снаружи.
+        </p>
+        <p>
+          Всё изменилось, когда появились потребительские носимые трекеры с открытым доступом к данным. Устройства на запястье и кольцо на пальце начали фиксировать то, что раньше требовало клиники: вариабельность сердечного ритма, фазы сна, температурные паттерны, частоту дыхания — непрерывно, 24 часа в сутки, месяцами. Лаборатории по всему миру быстро это заметили.
+        </p>
+      </div>
+
+      <div class="on-d4 bdg-group">
+        <span class="bdg">NEURO</span>
+        <span class="bdg">DATA</span>
+        <span class="bdg">BIO</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCOVERIES -->
+  <section class="sec-disc">
+    <div class="on-c">
+      <div class="sec-mb">
+        <h2 class="on-fade on-h2">Семь открытий, которые изменили понимание человека</h2>
+      </div>
+
+      <div class="disc-grid">
+
+        <div class="on-fade gl disc-card">
+          <span class="disc-num">01</span>
+          <h3 class="disc-title">Тело знает раньше, чем мы осознаём</h3>
+          <p class="disc-text">Исследователи Duke University обнаружили, что изменения HRV и частоты дыхания появляются за 24–48 часов до первых симптомов COVID-19. Алгоритм на основе данных Whoop выявлял заражение в бессимптомной фазе с чувствительностью 76%.<br><br>Это означает: физиологические сдвиги начинаются до того, как мозг регистрирует болезнь. Иммунная система активируется, вегетативная нервная система реагирует — но сознание ещё «не в курсе». Носимый трекер становится ранней системой предупреждения, фиксируя отклонения в реальном времени.<br><br><strong>Практическое применение:</strong> ежедневный мониторинг HRV может сигнализировать о начале инфекции за два дня до температуры, кашля или усталости.</p>
+          <span class="disc-metric">76% чувствительность &middot; 24–48 часов до симптомов</span>
+        </div>
+
+        <div class="on-d1 gl disc-card">
+          <span class="disc-num">02</span>
+          <h3 class="disc-title">Ритм движения важнее числа шагов</h3>
+          <p class="disc-text">Команда МФТИ и Gero обучила нейросеть на данных шагомеров — не количестве шагов, а ритме чередования активности и покоя. Оказалось, что паттерн движения позволяет определить биологический возраст и риски смерти в ближайшие годы с точностью, сопоставимой с анализами крови.<br><br>Ключевой вывод: <strong>как</strong> вы двигаетесь важнее, чем <strong>сколько</strong>. Хаотичный ритм с длительными периодами неподвижности коррелирует с ускоренным старением. Равномерное распределение активности в течение дня — признак здоровой вегетативной регуляции.<br><br><strong>Без инвазивных методов. Только трекер.</strong> Это открывает путь к массовому скринингу биологического возраста без лабораторий.</p>
+          <span class="disc-metric">Точность ≈ анализам крови &middot; Без инвазии</span>
+        </div>
+
+        <div class="on-d2 gl disc-card">
+          <span class="disc-num">03</span>
+          <h3 class="disc-title">Люди не осознают собственный стресс</h3>
+          <p class="disc-text">Исследование Университета Вермонта с Oura Ring показало: ночной пульс коррелирует с уровнем кортизола точнее (r=0.71), чем субъективные отчёты самих участников о стрессе.<br><br>Мы склонны рационализировать своё состояние: «Я в порядке», «Это не стресс, просто работа». Но тело не умеет лгать. Ночная тахикардия, сниженный HRV, повышенная температура кожи — объективные маркеры, которые невозможно подделать.<br><br><strong>Это открывает путь к бесконтактному мониторингу психологического состояния</strong> — без опросников, без анализов слюны, без самообмана.</p>
+          <span class="disc-metric">r=0.71 корреляция с кортизолом</span>
+        </div>
+
+        <div class="on-d3 gl disc-card">
+          <span class="disc-num">04</span>
+          <h3 class="disc-title">HRV — зеркало вегетативной нервной системы</h3>
+          <p class="disc-text">HRV отражает мгновенный физиологический стресс точнее, чем субъективное ощущение. Это различие принципиально: HRV показывает не то, как человек оценивает своё состояние, а то, что происходит в его нервной системе прямо сейчас.<br><br>Исследование с более чем 10 000 участников показало: у людей с изначально низким HRV риск развития гипертонии в течение 9 лет был значимо выше. Снижение автономной регуляции предшествовало клинической гипертонии.<br><br><strong>Трекер фиксирует это задолго до симптомов.</strong> HRV становится ранним биомаркером сердечно-сосудистых рисков.</p>
+          <span class="disc-metric">10 000+ участников &middot; 9 лет наблюдения</span>
+        </div>
+
+        <div class="on-d4 gl disc-card">
+          <span class="disc-num">05</span>
+          <h3 class="disc-title">Форма PPG-волны несёт информацию о возрасте</h3>
+          <p class="disc-text">Исследователи разработали «часы старения» на основе PPG-данных с потребительских носимых — и показали, что они тесно коррелируют с болезнями, поведением и продольными физиологическими изменениями (Nature Communications, 2025).<br><br>Ключевой вывод: модели, использующие полную форму PPG-волны, предсказывают биологический возраст точнее, чем модели, работающие только с ЧСС и HRV. В каждом ударе сердца закодировано больше информации о состоянии сосудов, эластичности тканей, автономной регуляции — чем мы умели считывать раньше.<br><br><strong>PPG-волна — это отпечаток вашей сердечно-сосудистой системы.</strong></p>
+          <span class="disc-metric">Nature Communications 2025 &middot; PPG-анализ</span>
+        </div>
+
+        <div class="on-fade gl disc-card">
+          <span class="disc-num">06</span>
+          <h3 class="disc-title">Субъективный стресс предшествует физиологическим сдвигам</h3>
+          <p class="disc-text">Масштабное исследование Whoop — 170 000 участников, 7,9 миллиона дней биометрических данных (JMIR, 2025) — показало: более высокий HRV и более низкая ЧСС в покое устойчиво коррелируют с лучшими показателями психического здоровья.<br><br>Но самый неожиданный вывод: субъективно ощущаемый стресс часто предшествовал измеримым изменениям в теле. Это переворачивает привычную логику: не тело сигнализирует уму, а ум первым регистрирует сдвиг — и только потом тело догоняет в данных.<br><br><strong>Сознание опережает физиологию на 12–24 часа.</strong></p>
+          <span class="disc-metric">170 000 участников &middot; 7.9M дней данных</span>
+        </div>
+
+        <div class="on-d1 gl disc-card" style="grid-column: 1 / -1;">
+          <span class="disc-num">07</span>
+          <h3 class="disc-title">Медитация изменяет HRV объективно и измеримо</h3>
+          <p class="disc-text">Во время медитации показатели вагусного тонуса значимо возрастали (p &lt; 0.000005), а симпатический тонус — значимо снижался. Это не субъективные отчёты — данные с датчика совпали с самооценкой участников и протоколом эксперимента.<br><br>Четырёхнедельная практика медитации привела к значимому улучшению когнитивной гибкости и снижению воспринимаемого уровня стресса по шкалам HRV.<br><br><strong>Важно:</strong> эффект фиксируется объективно, независимо от того, что человек думает о своей практике. Носимый датчик видит, произошёл ли сдвиг в вегетативной регуляции на самом деле.</p>
+          <span class="disc-metric">p &lt; 0.000005 &middot; 4 недели практики</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVICES TABLE -->
+  <section class="on-dark">
+    <div class="on-c">
+      <div class="on-dark-intro on-fade">
+        <h2 class="on-h2 on-h2-w">Какие устройства используют лаборатории — и как получить данные</h2>
+        <p>Список трекеров, отсортированных по удобству работы с данными для исследователей: от полной автоматизации до ручного экспорта. Для каждого бренда указаны реальные научные работы и суть полученных результатов.</p>
+      </div>
+
+      <div class="tabs on-d1">
+        <button class="tab-btn active" onclick="switchTab('suitable',this)">&#10003; Подходят</button>
+        <button class="tab-btn" onclick="switchTab('limited',this)">~ Можно</button>
+        <button class="tab-btn" onclick="switchTab('bad',this)">Не подходят</button>
+      </div>
+
+      <div class="on-tbl-wrap on-d2">
+        <div class="on-tbl-scroll">
+          <table class="on-tbl">
+            <thead>
+              <tr><th>Устройство</th><th>Лаборатории и исследования</th><th style="width:33%">Суть открытия / результат</th></tr>
+            </thead>
+            <tbody class="tab-c active" id="tab-suitable">
+              <tr>
+                <td><div class="dev-name">Garmin</div><div class="dev-price">от ~$250 &middot; Vivoactive 5</div></td>
+                <td><div class="lab-item"><span class="lab-name">Mayo Clinic</span><br>США &middot; 2024</div><div class="lab-item"><span class="lab-name">Gero / МФТИ</span><br>Россия &middot; 2018</div><div class="lab-item"><span class="lab-name">Cambridge</span><br>Великобритания &middot; 2024</div></td>
+                <td class="res-text">HRV после марафона не восстанавливается 7–10 дней. Биологический возраст по ритму активности. Точность VO&#x2082;max r=0.82.</td>
+              </tr>
+              <tr>
+                <td><div class="dev-name">Whoop 4.0 / 5.0</div><div class="dev-price">~$360/год</div></td>
+                <td><div class="lab-item"><span class="lab-name">Stanford Sleep Medicine</span><br>США &middot; 2025</div><div class="lab-item"><span class="lab-name">Duke University</span><br>США &middot; 2021–2022</div></td>
+                <td class="res-text">Микросон важен для когнитивного восстановления. Выявление COVID-19 за 24–48 часов до симптомов (76%).</td>
+              </tr>
+              <tr>
+                <td><div class="dev-name">Polar</div><div class="dev-price">от $50</div></td>
+                <td><div class="lab-item"><span class="lab-name">Univ. of Strathclyde</span><br>2021</div><div class="lab-item"><span class="lab-name">Oxford CAPTURE-24</span><br>2024</div></td>
+                <td class="res-text">Визуализация данных повышает активность на 23%. Датасет стал эталоном для обучения алгоритмов.</td>
+              </tr>
+              <tr>
+                <td><div class="dev-name">Oura Ring 4</div><div class="dev-price">$349 + $6/мес</div></td>
+                <td><div class="lab-item"><span class="lab-name">Stanford</span><br>2025</div><div class="lab-item"><span class="lab-name">Univ. of Vermont</span><br>2022</div></td>
+                <td class="res-text">Температура пальца растёт за 1–2 ночи до «плохого сна». Ночной пульс точнее отчётов о стрессе (r=0.71).</td>
+              </tr>
+              <tr>
+                <td><div class="dev-name">Fitbit</div><div class="dev-price">от ~$160</div></td>
+                <td><div class="lab-item"><span class="lab-name">NIH All of Us</span><br>2025</div><div class="lab-item"><span class="lab-name">Johns Hopkins</span><br>2022</div></td>
+                <td class="res-text">+2000 шагов снижают риск смерти на 8–11%. Шаги — предиктор тяжести легочной гипертензии.</td>
+              </tr>
+              <tr>
+                <td><div class="dev-name">Withings</div><div class="dev-price">от $200</div></td>
+                <td><div class="lab-item"><span class="lab-name">Клинические испытания ЕС/FDA</span></div></td>
+                <td class="res-text">Единственный трекер, данные которого признаются в клиниках. Выявление фибрилляции (87%).</td>
+              </tr>
+            </tbody>
+            <tbody class="tab-c" id="tab-limited">
+              <tr>
+                <td><div class="dev-name" style="color:#fde047">Apple Watch</div><div class="dev-price">от ~$250</div></td>
+                <td><div class="lab-item"><span class="lab-name yellow">Oxford</span><br>2025</div></td>
+                <td class="res-text">65% пациентов с психозом согласились носить трекер. Новый инструмент мониторинга в психиатрии.</td>
+              </tr>
+              <tr>
+                <td><div class="dev-name" style="color:#fde047">Samsung Galaxy Watch</div><div class="dev-price">от ~$200</div></td>
+                <td><div class="lab-item"><span class="lab-name yellow">РФ (Иркутск)</span><br>Пилот</div></td>
+                <td class="res-text">Только ручной экспорт. Для скриптов непригоден.</td>
+              </tr>
+              <tr>
+                <td><div class="dev-name" style="color:#fde047">Hume Band</div><div class="dev-price">$199–$249</div></td>
+                <td><div class="lab-item" style="color:rgba(255,255,255,.4)">Нет исследований</div></td>
+                <td class="res-text">Метрики не прошли валидацию. Жалобы на точность фаз сна.</td>
+              </tr>
+            </tbody>
+            <tbody class="tab-c" id="tab-bad">
+              <tr>
+                <td><div class="dev-name" style="color:#f87171">Xiaomi / Amazfit</div></td>
+                <td><div class="res-text" style="color:#f87171">Закрытая экосистема. Нет API.</div></td>
+                <td class="res-text" style="color:rgba(255,255,255,.4)">Для автоматизации непригоден.</td>
+              </tr>
+              <tr>
+                <td><div class="dev-name" style="color:#f87171">Huawei</div></td>
+                <td><div class="res-text" style="color:#f87171">Нет API. Самая закрытая экосистема.</div></td>
+                <td class="res-text" style="color:rgba(255,255,255,.4)">Не встречается в исследованиях.</td>
+              </tr>
+              <tr>
+                <td><div class="dev-name" style="color:#f87171">Coros / RingConn</div></td>
+                <td><div class="res-text" style="color:#f87171">Партнёрский API (месяцы).</div></td>
+                <td class="res-text" style="color:rgba(255,255,255,.4)">Не применяются в науке.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ERA -->
+  <section class="on-dark">
+    <div class="on-c">
+      <div class="on-dark-intro on-fade">
+        <h3 class="on-h3-w">Новая эра изучения человеческого потенциала</h3>
+        <p>Переход от субъективных ощущений к сбору данных через точные носимые устройства — это фундаментальный сдвиг в том, как мы исследуем себя. Превращая массивы данных с трекера в наглядную картину, независимые исследователи получают три неоспоримых инструмента для работы со своим ресурсом:</p>
+      </div>
+
+      <div class="n-list">
+        <div class="on-fade n-item">
+          <div class="n-num">1</div>
+          <div class="n-content">
+            <h4>Личная лаборатория (Полная автономность)</h4>
+            <p>Больше не нужно зависеть от клиник, сложного медицинского оборудования или внешних экспертов. Ваша повседневная жизнь — это и есть главная исследовательская база. Наличие на руке или пальце одного точного устройства позволяет изучать реакции своего организма в естественной среде, превращая каждый день в непрерывный эксперимент по раскрытию собственных возможностей.</p>
+          </div>
+        </div>
+        <div class="on-d1 n-item">
+          <div class="n-num">2</div>
+          <div class="n-content">
+            <h4>Тотальная объективность: тело не умеет лгать</h4>
+            <p>Наш ум склонен к рационализации, а непрерывный внутренний диалог часто искажает реальное восприятие себя. Мы можем убеждать себя, что полны сил, не замечая накопившейся усталости. Носимые устройства обходят этот ментальный шум. Они беспристрастно фиксируют чистые физиологические отпечатки (импринты), которые наши мысли, стресс, среда и привычки оставляют на теле. Такие метрики, как вариабельность сердечного ритма (HRV), становятся кристально чистым зеркалом вашего реального состояния, свободным от иллюзий.</p>
+          </div>
+        </div>
+        <div class="on-d2 n-item">
+          <div class="n-num">3</div>
+          <div class="n-content">
+            <h4>Понимание истинных ритмов жизни (Лонгитюдность)</h4>
+            <p>Разовые замеры показывают лишь случайный кадр, вырванный из контекста. Непрерывный трекинг позволяет увидеть картину целиком. Изучая себя изо дня в день, месяцами и годами, вы начинаете улавливать долгосрочные тренды и свои подлинные жизненные ритмы. Это позволяет не просто реагировать на спады энергии, а предвидеть их, точно понимая, какие факторы опустошают вас, а какие — восстанавливают.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concl on-d3">
+        <p>Доступ к собственным "сырым" данным — это ключ к прямому контакту со своей физиологией. Будущее саморазвития уже здесь, и оно строится на объективном понимании того, как функционирует наш организм под воздействием реальности.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <section class="on-cta">
+    <div class="on-c">
+      <h3 class="on-fade">Принять участие в программе исследования</h3>
+      <a href="https://ontonovator.tilda.ws/zapis" class="on-d1 cta-btn">Узнай больше &rarr;</a>
+      <div class="on-footer-copy on-d2">&copy; 2026, Константин Шель. Все права защищены.</div>
+      <div class="on-footer-date on-d2">Дата публикации: 14 марта 2026 г.</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-c').forEach(function(c) { c.classList.remove('active'); });
+  document.getElementById('tab-' + name).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+</script>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>
