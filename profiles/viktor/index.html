@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виктор — ONTO NOTHING</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#ECEEF2;--text:#16161A;--muted:#888896;
+            --accent:#5F5FFF;--blue:#0A84FF;--green:#30D158;
+            --orange:#FF9F0A;--red:#FF453A;
+            --fh:"Oswald";--fb:"Jost";--fm:"Courier Prime";
+        }
+        body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+        .page-orbs{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:hidden}
+        .page-orbs span{position:absolute;border-radius:50%;opacity:.1;filter:blur(40px)}
+        .page-orbs span:nth-child(1){width:300px;height:300px;background:var(--accent);top:-100px;left:-100px}
+        .page-orbs span:nth-child(2){width:200px;height:200px;background:var(--blue);bottom:-50px;right:-50px}
+
+        main{position:relative;z-index:2;max-width:520px;margin:0 auto;padding:40px 16px 80px}
+
+        /* ── HEADER ── */
+        .hdr{display:flex;align-items:center;gap:20px;margin-bottom:32px}
+        .av{width:72px;height:72px;border-radius:18px;background:linear-gradient(135deg,var(--accent),var(--blue));display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:1.8rem;color:#fff;font-weight:700;flex-shrink:0}
+        .hdr-info h1{font-family:var(--fh);font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+        .hdr-info p{color:var(--muted);font-size:.85rem;margin-top:2px}
+        .upd{font-family:var(--fm);font-size:.7rem;color:var(--muted);margin-top:6px}
+
+        /* ── КАРТОЧКА ── */
+        .c{background:#fff;border-radius:20px;padding:24px;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+        .c-title{font-family:var(--fh);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+        .c-title i{font-style:normal;font-size:1.2rem}
+
+        /* ── ТЕКСТОВЫЕ БЛОКИ ── */
+        .txt-block{font-size:.95rem;line-height:1.7;padding:16px 20px;border-radius:12px;border-left:3px solid var(--accent);background:linear-gradient(135deg,rgba(95,95,255,.04),rgba(10,132,255,.03))}
+        .txt-block.green{border-left-color:var(--green);background:linear-gradient(135deg,rgba(48,209,88,.06),rgba(48,209,88,.02))}
+        .txt-block .placeholder{color:var(--muted);font-style:italic}
+
+        /* ── МЕТРИКИ ── */
+        .mg{display:grid;gap:12px}
+        .mg.c3{grid-template-columns:repeat(3,1fr)}
+        .mg.c2{grid-template-columns:repeat(2,1fr)}
+
+        .mb{background:#f5f6f8;border-radius:14px;padding:16px 12px;text-align:center;border:1px solid rgba(0,0,0,.04);transition:transform .15s}
+        .mb:hover{transform:translateY(-1px)}
+        .mb .lbl{font-family:var(--fm);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;line-height:1.2}
+        .mb .val{font-family:var(--fm);font-size:1.6rem;font-weight:700;line-height:1}
+        .mb .unit{font-size:.7rem;color:var(--muted);margin-top:4px}
+        .mb .bar{margin-top:8px;height:3px;border-radius:2px;background:rgba(0,0,0,.06);overflow:hidden}
+        .mb .bar span{display:block;height:100%;border-radius:2px;transition:width .6s ease}
+        .bar-accent span{background:linear-gradient(90deg,var(--accent),var(--blue))}
+        .bar-green span{background:var(--green)}
+        .bar-orange span{background:var(--orange)}
+
+        .vg{color:var(--green)}.vo{color:var(--orange)}.vr{color:var(--red)}.va{color:var(--accent)}
+
+        /* ── СЕССИИ ── */
+        .sess{border:1px solid rgba(0,0,0,.06);border-radius:14px;overflow:hidden;margin-bottom:10px}
+        .sess summary{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;list-style:none;font-family:var(--fh);font-size:.9rem;background:rgba(0,0,0,.015);transition:background .15s}
+        .sess summary:hover{background:rgba(0,0,0,.03)}
+        .sess summary .dt{color:var(--muted);font-family:var(--fm);font-size:.75rem}
+        .sess[open] summary{border-bottom:1px solid rgba(0,0,0,.06)}
+        .sess .body{padding:18px;font-size:.9rem;line-height:1.7}
+        .sess .body h2{font-family:var(--fh);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:16px 0 8px}
+        .sess .body h2:first-child{margin-top:0}
+        .sess .body ul{padding-left:1rem}
+        .sess .body li{margin:.3rem 0}
+        .sess .body table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.82rem}
+        .sess .body th,.sess .body td{padding:6px 10px;border:1px solid rgba(0,0,0,.08);text-align:left}
+        .sess .body th{background:rgba(0,0,0,.03);font-family:var(--fh);font-size:.72rem;text-transform:uppercase}
+
+        /* ── FOOTER ── */
+        .ft{text-align:center;color:var(--muted);font-size:.8rem;margin-top:32px;padding-top:20px;border-top:1px solid rgba(0,0,0,.08)}
+
+        @media(max-width:400px){
+            .mg.c3{grid-template-columns:repeat(2,1fr)}
+            .mb .val{font-size:1.3rem}
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-orbs"><span></span><span></span></div>
+
+<main>
+
+    <!-- HEADER -->
+    <div class="hdr">
+        <div class="av">ВЖ</div>
+        <div class="hdr-info">
+            <h1>Виктор Журавков</h1>
+            <p>ЭЭГ-тренинг ONTO NOTHING</p>
+            <div class="upd">Обновлено: <!-- UPDATE_DATE -->ожидание первой сессии<!-- /UPDATE_DATE --></div>
+        </div>
+    </div>
+
+    <!-- 1. САММАРИ ДНЯ -->
+    <div class="c">
+        <div class="c-title"><i>📋</i> Саммари дня</div>
+        <div class="txt-block" id="summary">
+            <!-- SUMMARY -->
+            <span class="placeholder">Появится после загрузки данных в чат</span>
+            <!-- /SUMMARY -->
+        </div>
+    </div>
+
+    <!-- 2. РЕКОМЕНДАЦИЯ -->
+    <div class="c">
+        <div class="c-title"><i>🎯</i> Рекомендация</div>
+        <div class="txt-block green" id="reco">
+            <!-- RECO -->
+            <span class="placeholder">Появится после анализа сессии</span>
+            <!-- /RECO -->
+        </div>
+    </div>
+
+    <!-- 3. WHOOP -->
+    <div class="c">
+        <div class="c-title"><i>💚</i> WHOOP</div>
+        <div class="mg c3">
+            <div class="mb">
+                <div class="lbl">Recovery</div>
+                <div class="val" id="w-recovery"><!-- W_RECOVERY -->—<!-- /W_RECOVERY --></div>
+                <div class="unit">%</div>
+                <div class="bar bar-green"><span style="width:<!-- W_RECOVERY_BAR -->0<!-- /W_RECOVERY_BAR -->%"></span></div>
+            </div>
+            <div class="mb">
+                <div class="lbl">HRV</div>
+                <div class="val" id="w-hrv"><!-- W_HRV -->—<!-- /W_HRV --></div>
+                <div class="unit">ms</div>
+                <div class="bar bar-accent"><span style="width:<!-- W_HRV_BAR -->0<!-- /W_HRV_BAR -->%"></span></div>
+            </div>
+            <div class="mb">
+                <div class="lbl">Сон</div>
+                <div class="val" id="w-sleep"><!-- W_SLEEP -->—<!-- /W_SLEEP --></div>
+                <div class="unit">%</div>
+                <div class="bar bar-green"><span style="width:<!-- W_SLEEP_BAR -->0<!-- /W_SLEEP_BAR -->%"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. NEIRY -->
+    <div class="c">
+        <div class="c-title"><i>🧠</i> Neiry — ЭЭГ</div>
+        <div class="mg c3">
+            <div class="mb">
+                <div class="lbl">Cognitive</div>
+                <div class="val va" id="n-cog"><!-- N_COG -->—<!-- /N_COG --></div>
+                <div class="unit">0–100</div>
+                <div class="bar bar-accent"><span style="width:<!-- N_COG_BAR -->0<!-- /N_COG_BAR -->%"></span></div>
+            </div>
+            <div class="mb">
+                <div class="lbl">Alpha Gravity</div>
+                <div class="val va" id="n-alpha"><!-- N_ALPHA -->—<!-- /N_ALPHA --></div>
+                <div class="unit">медитация 1.0+</div>
+                <div class="bar bar-accent"><span style="width:<!-- N_ALPHA_BAR -->0<!-- /N_ALPHA_BAR -->%"></span></div>
+            </div>
+            <div class="mb">
+                <div class="lbl">Chill</div>
+                <div class="val vg" id="n-chill"><!-- N_CHILL -->—<!-- /N_CHILL --></div>
+                <div class="unit">парасимпатика</div>
+                <div class="bar bar-green"><span style="width:<!-- N_CHILL_BAR -->0<!-- /N_CHILL_BAR -->%"></span></div>
+            </div>
+            <div class="mb">
+                <div class="lbl">Stress</div>
+                <div class="val vo" id="n-stress"><!-- N_STRESS -->—<!-- /N_STRESS --></div>
+                <div class="unit">активация</div>
+                <div class="bar bar-orange"><span style="width:<!-- N_STRESS_BAR -->0<!-- /N_STRESS_BAR -->%"></span></div>
+            </div>
+            <div class="mb">
+                <div class="lbl">Self-Control</div>
+                <div class="val vg" id="n-sc"><!-- N_SC -->—<!-- /N_SC --></div>
+                <div class="unit">воля</div>
+                <div class="bar bar-green"><span style="width:<!-- N_SC_BAR -->0<!-- /N_SC_BAR -->%"></span></div>
+            </div>
+            <div class="mb">
+                <div class="lbl">Relaxation</div>
+                <div class="val va" id="n-relax"><!-- N_RELAX -->—<!-- /N_RELAX --></div>
+                <div class="unit">глубина</div>
+                <div class="bar bar-accent"><span style="width:<!-- N_RELAX_BAR -->0<!-- /N_RELAX_BAR -->%"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. ИСТОРИЯ СЕССИЙ -->
+    <div class="c">
+        <div class="c-title"><i>📊</i> История сессий</div>
+        <div id="sessions">
+            <!-- SESSIONS -->
+            <p style="color:var(--muted);font-style:italic;font-size:.9rem">Сессии появятся после первого отчёта</p>
+            <!-- /SESSIONS -->
+        </div>
+    </div>
+
+    <div class="ft">ONTO NOTHING · ЭЭГ-тренинг</div>
+
+</main>
+</body>
+</html>
