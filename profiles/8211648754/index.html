@@ -111,6 +111,66 @@
       <p style="font-size:11px; color:#555; margin-top:8px;">Личный профиль и описание на основе анкеты появится после прохождения чекапа</p>
     </div>
 
+    <!-- Анкета -->
+    <div class="c">
+      <h2>📋 Анкета</h2>
+      <div style="display:flex; flex-direction:column; gap:8px; margin-top:4px;">
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <span style="font-size:12px; color:#666;">Дата рождения</span>
+          <span style="font-size:12px; color:#e0e0e8;">22.01.1981</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <span style="font-size:12px; color:#666;">Образование</span>
+          <span style="font-size:12px; color:#e0e0e8; text-align:right; max-width:60%;">Высшее экономическое и психологическое</span>
+        </div>
+        <div style="padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <div style="font-size:12px; color:#666; margin-bottom:4px;">Цель</div>
+          <div style="font-size:12px; color:#e0e0e8; line-height:1.5;">Помощь</div>
+        </div>
+        <div style="padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <div style="font-size:12px; color:#666; margin-bottom:4px;">Что хочет изменить</div>
+          <div style="font-size:12px; color:#e0e0e8; line-height:1.5;">Все</div>
+        </div>
+        <div style="padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <div style="font-size:12px; color:#666; margin-bottom:4px;">Свой метод / практика</div>
+          <div style="font-size:12px; color:#e0e0e8; line-height:1.5;">Да</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <span style="font-size:12px; color:#666;">ДНК-тест</span>
+          <span style="font-size:12px; color:#e0e0e8;">❌ Нет</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <span style="font-size:12px; color:#666;">Последний чекап</span>
+          <span style="font-size:12px; color:#e0e0e8; text-align:right; max-width:60%;">Крови</span>
+        </div>
+        <div style="padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <div style="font-size:12px; color:#666; margin-bottom:4px;">Другие гаджеты</div>
+          <div style="font-size:12px; color:#e0e0e8;">Нет</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <span style="font-size:12px; color:#666;">Амбассадор</span>
+          <span style="font-size:12px; color:#e0e0e8;">✅ Да, хочу!</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <span style="font-size:12px; color:#666;">Лидер сообщества</span>
+          <span style="font-size:12px; color:#e0e0e8;">✅ Да</span>
+        </div>
+        <div style="padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <div style="font-size:12px; color:#666; margin-bottom:4px;">Каналы связи</div>
+          <div style="font-size:12px; color:#e0e0e8;">Телеграмм</div>
+        </div>
+        <div style="padding:8px 0; border-bottom:1px solid #2a2a35;">
+          <div style="font-size:12px; color:#666; margin-bottom:4px;">Тематика / аудитория</div>
+          <div style="font-size:12px; color:#e0e0e8;">Ты хотел спросить - Напиши название своего канала и тематику блога, который ведешь 🎯</div>
+          <div style="font-size:11px; color:#555; margin-top:4px; line-height:1.5;">4 тыс в инсте</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0;">
+          <span style="font-size:12px; color:#666;">Опыт в исследованиях</span>
+          <span style="font-size:12px; color:#e0e0e8;">Это должен быть первым наверное 😍</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Набор исследователя -->
     <div class="c">
       <h2>🧰 Набор исследователя</h2>
@@ -133,7 +193,7 @@
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🏥</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Клин. анализы</div>
-          <div style="font-size:11px; color:{'#34c759' if profile.get('last_checkup','—') not in ('—','нет','Нет') else '#ff453a'}; margin-top:4px; font-weight:500;">❌ Нет</div>
+          <div style="font-size:11px; color:{'#34c759' if profile.get('last_checkup','—') not in ('—','нет','Нет') else '#ff453a'}; margin-top:4px; font-weight:500;">✅ Да</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center; grid-column:1/3;">
           <div style="font-size:24px; margin-bottom:6px;">🧘</div>
