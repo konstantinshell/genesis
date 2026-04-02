@@ -78,6 +78,38 @@
       color: var(--body-c);
       line-height: 1.6;
     }
+
+    /* ── Табы переключения ── */
+    .content-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .content-tab {
+      font-family: var(--fh);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 10px 24px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(0,0,0,0.12);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+    .content-tab:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .content-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .tab-grid { display: none; }
+    .tab-grid.active { display: grid; }
   </style>
 </head>
 <body>
@@ -98,7 +130,12 @@
 
   <section class="s">
     <div class="s-inner">
-      <div class="posts-grid">
+      <div class="content-tabs">
+        <button class="content-tab active" onclick="switchContent('articles',this)">Статьи</button>
+        <button class="content-tab" onclick="switchContent('presentations',this)">Презентации</button>
+      </div>
+
+      <div class="posts-grid tab-grid active" id="grid-articles">
         <a href="./nosimye-trekery/index.html" class="post-card">
           <div class="post-date">2026-04-02</div>
 
@@ -129,9 +166,28 @@
           <p class="post-excerpt">От распаковки до первого серьёзного замера — HRV, Body Battery, стресс, сон, экспорт данных. Полный гид для исследований ONTO NOTHING.</p>
         </a>
       </div>
+
+      <!-- Презентации -->
+      <div class="posts-grid tab-grid" id="grid-presentations">
+        <a href="./neiry-presentation/index.html" class="post-card">
+          <div class="post-date">2026-03-14</div>
+          <div class="post-title">Neiry × Ритмы Жизни — Исследование нейропластичности</div>
+          <p class="post-excerpt">17 слайдов: MNPI, технология Neiry, методика ONTO NOTHING, программа амбассадоров, условия участия.</p>
+        </a>
+      </div>
+
     </div>
   </section>
 </main>
+
+<script>
+function switchContent(tab, btn) {
+  document.querySelectorAll('.tab-grid').forEach(function(g) { g.classList.remove('active'); });
+  document.getElementById('grid-' + tab).classList.add('active');
+  document.querySelectorAll('.content-tab').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+</script>
 
 <script src="../components/nav.js"></script>
 <script src="../components/footer.js"></script>
