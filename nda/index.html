@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Соглашение об участии — RHYTHMS NOTHING</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Jost", sans-serif;
+      background: #f8f9fb;
+      color: #1a1d26;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .header h1 {
+      font-family: "Oswald", sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .header p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+    .badge {
+      display: inline-block;
+      background: #eef2ff;
+      color: #5F5FFF;
+      padding: 4px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .section h2 {
+      font-family: "Oswald", sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #1a1d26;
+    }
+    .section h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 20px 0 8px;
+      color: #1a1d26;
+    }
+    .section p {
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #374151;
+    }
+    .section ul {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+    .section li {
+      font-size: 14px;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    .parties {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .party {
+      background: #f9fafb;
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .party-label {
+      font-size: 11px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .party-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a1d26;
+    }
+    .party-desc {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    .highlight {
+      background: #eef2ff;
+      border-left: 3px solid #5F5FFF;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+    }
+    .highlight p {
+      color: #3730a3;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .updates {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .updates h3 {
+      color: #166534;
+      font-size: 14px;
+      margin: 0 0 8px;
+    }
+    .updates p {
+      color: #15803d;
+      font-size: 13px;
+      margin: 0;
+    }
+    .update-log {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #6b7280;
+    }
+    .update-log div {
+      padding: 4px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 40px;
+      padding: 32px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .cta p {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 20px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #5F5FFF;
+      color: white;
+      padding: 16px 40px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cta-btn:hover {
+      background: #4848d0;
+      transform: translateY(-2px);
+    }
+    .cta-note {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .parties { grid-template-columns: 1fr; }
+      .container { padding: 20px 16px 40px; }
+      .header h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <span class="badge">Соглашение</span>
+    <h1>Соглашение об участии в исследовательской программе</h1>
+    <p>RHYTHMS NOTHING — Программа нейроисследований ONTO NOTHING</p>
+  </div>
+
+  <!-- Стороны -->
+  <div class="section">
+    <h2>Стороны соглашения</h2>
+    <div class="parties">
+      <div class="party">
+        <div class="party-label">Сторона 1</div>
+        <div class="party-name">РИТМЫ NOTHING</div>
+        <div class="party-desc">Исследовательская платформа нейротехнологий и управления состояниями</div>
+      </div>
+      <div class="party">
+        <div class="party-label">Сторона 2</div>
+        <div class="party-name">Участник исследования</div>
+        <div class="party-desc">Лицо, проходящее программу и предоставляющее данные для исследования</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Предмет -->
+  <div class="section">
+    <h2>1. Предмет соглашения</h2>
+    <p>Настоящее Соглашение регулирует условия участия в исследовательской программе ONTO NOTHING, включая сбор, обработку и хранение персональных данных, данных нейроинтерфейсов, фитнес-трекеров и других источников биометрической информации.</p>
+  </div>
+
+  <!-- Конфиденциальность -->
+  <div class="section">
+    <h2>2. Политика конфиденциальности</h2>
+
+    <h3>2.1 Какие данные мы собираем</h3>
+    <ul>
+      <li>Персональные данные (имя, контакты, город, дата рождения)</li>
+      <li>Данные анкеты (цели, методы, оборудование)</li>
+      <li>Данные нейротрекера NEIRY (ЭЭГ, концентрация, релаксация, стресс)</li>
+      <li>Данные фитнес-трекеров (пульс, HRV, сон, активность)</li>
+      <li>Клинические анализы (по вашему согласию)</li>
+      <li>Рефлексии и текстовые записи</li>
+      <li>Аудио-транскрипции сессий</li>
+    </ul>
+
+    <h3>2.2 Как мы используем данные</h3>
+    <ul>
+      <li>Для расчёта индексов MNPI и персонализации программы</li>
+      <li>Для научного анализа и публикаций (в анонимизированном виде)</li>
+      <li>Для генерации персональных отчётов и рекомендаций</li>
+    </ul>
+
+    <div class="highlight">
+      <p>Мы НЕ передаём ваши данные третьим лицам. Мы НЕ продаём и НЕ распространяем персональную информацию. Ваши данные используются исключительно в рамках исследовательской программы.</p>
+    </div>
+
+    <h3>2.3 Хранение данных</h3>
+    <p>Данные хранятся на защищённых серверах с шифрованием. Доступ имеют только авторизованные исследователи программы. Вы можете запросить удаление своих данных в любой момент.</p>
+  </div>
+
+  <!-- NDA -->
+  <div class="section">
+    <h2>3. Соглашение о неразглашении (NDA)</h2>
+
+    <h3>3.1 Обязательства RHYTHMS NOTHING</h3>
+    <ul>
+      <li>Не разглашать персональные данные участника</li>
+      <li>Не передавать индивидуальные результаты третьим лицам без согласия</li>
+      <li>Обеспечить безопасное хранение всех данных</li>
+      <li>Уведомлять участника об изменениях в условиях</li>
+    </ul>
+
+    <h3>3.2 Обязательства Участника</h3>
+    <ul>
+      <li>Не распространять методологию исследования (PI/MNPI) без согласия</li>
+      <li>Не копировать и не передавать материалы программы</li>
+      <li>Не публиковать результаты исследования от имени программы</li>
+      <li>Сохранять конфиденциальность данных других участников</li>
+    </ul>
+
+    <h3>3.3 Интеллектуальная собственность</h3>
+    <p>Методология PI/MNPI, аудио-сессии, протоколы исследования и алгоритмы анализа являются интеллектуальной собственностью RHYTHMS NOTHING. Участник получает право использовать результаты для личного развития.</p>
+  </div>
+
+  <!-- Права участника -->
+  <div class="section">
+    <h2>4. Права участника</h2>
+    <ul>
+      <li>Доступ к своим персональным данным в любой момент</li>
+      <li>Запрос на удаление данных и выход из программы</li>
+      <li>Получение персональных отчётов и рекомендаций</li>
+      <li>Участие в амбассадорской программе (по желанию)</li>
+      <li>Отзыв согласия на обработку данных</li>
+    </ul>
+  </div>
+
+  <!-- Срок действия -->
+  <div class="section">
+    <h2>5. Срок действия</h2>
+    <p>Соглашение вступает в силу с момента принятия (нажатия кнопки подтверждения) и действует на весь период участия в программе. При выходе из программы обязательства по конфиденциальности сохраняются в течение 3 (трёх) лет.</p>
+  </div>
+
+  <!-- Обновления -->
+  <div class="updates">
+    <h3>📋 Обновления соглашения</h3>
+    <p>Все изменения в соглашении фиксируются здесь. Ничего не подписывается мелким шрифтом — мы ценим прозрачность.</p>
+    <div class="update-log">
+      <div>📅 02.04.2026 — Первая версия соглашения опубликована</div>
+    </div>
+  </div>
+
+  <!-- Кнопка -->
+  <div class="cta">
+    <p>Нажимая кнопку ниже, вы подтверждаете что ознакомились с условиями Соглашения, Политикой конфиденциальности и NDA, и принимаете их.</p>
+    <a href="https://t.me/ritmnothingbot?start=nda_accepted" class="cta-btn">Я принимаю условия и возвращаюсь в программу</a>
+    <div class="cta-note">Нажатие кнопки является электронной подписью соглашения</div>
+  </div>
+
+</div>
+
+</body>
+</html>
