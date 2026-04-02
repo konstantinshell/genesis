@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Алена — ONTO NOTHING</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:"Jost",sans-serif; background:#0f0f14; color:#e0e0e8; min-height:100vh; padding-bottom:120px; }
+    .container { max-width:480px; margin:0 auto; padding:16px; }
+
+    /* Header */
+    .hdr { display:flex; align-items:center; gap:14px; padding:20px 0 16px; }
+    .hdr-av { width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg,#ff6b9d,#c44dff); display:flex; align-items:center; justify-content:center; font-size:18px; font-family:"Oswald",sans-serif; font-weight:700; color:#fff; }
+    .hdr h1 { font-family:"Oswald",sans-serif; font-size:20px; font-weight:600; }
+    .hdr-meta { font-size:12px; color:#888; }
+    .badge { display:inline-block; background:rgba(196,77,255,0.15); color:#c44dff; padding:2px 10px; border-radius:4px; font-size:11px; margin-top:4px; }
+
+    /* Card */
+    .c { background:#1a1a22; border-radius:14px; padding:18px; margin-bottom:14px; }
+    .c h2 { font-family:"Oswald",sans-serif; font-size:16px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+    .c h2 span.sub { font-size:11px; color:#666; font-weight:400; font-family:"Jost",sans-serif; }
+    .c p { font-size:13px; line-height:1.6; color:#aaa; margin-bottom:8px; }
+
+    /* Text blocks */
+    .txt { font-size:13px; line-height:1.7; color:#ccc; padding:14px 16px; border-radius:10px; border-left:3px solid #c44dff; background:#12121a; }
+    .txt.green { border-left-color:#34c759; }
+    .txt .ph { color:#555; font-style:italic; }
+
+    /* Stats grid */
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .st { background:#12121a; border-radius:10px; padding:14px 8px; text-align:center; }
+    .st-v { font-family:"Courier Prime",monospace; font-size:22px; font-weight:700; color:#c44dff; }
+    .st-l { font-size:10px; color:#666; margin-top:4px; text-transform:uppercase; letter-spacing:.05em; }
+    .st-bar { margin:8px auto 0; width:80%; height:3px; border-radius:2px; background:#2a2a35; overflow:hidden; }
+    .st-bar span { display:block; height:100%; border-radius:2px; }
+    .bar-p span { background:#c44dff; }
+    .bar-g span { background:#34c759; }
+    .bar-o span { background:#ff9f0a; }
+    .bar-r span { background:#ff453a; }
+
+    .vp { color:#c44dff; } .vg { color:#34c759; } .vo { color:#ff9f0a; } .vr { color:#ff453a; }
+
+    /* Neiry 6 metrics */
+    .ng { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+    .nm { background:#12121a; border-radius:10px; padding:12px 8px; text-align:center; }
+    .nm .lbl { font-size:9px; color:#c44dff; font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
+    .nm .val { font-family:"Courier Prime",monospace; font-size:18px; font-weight:700; color:#e0e0e8; margin-top:4px; }
+    .nm .hint { font-size:9px; color:#444; margin-top:2px; }
+    .nm .bar { margin:6px auto 0; width:80%; height:3px; border-radius:2px; background:#2a2a35; overflow:hidden; }
+    .nm .bar span { display:block; height:100%; border-radius:2px; background:#c44dff; }
+
+    /* Session cards */
+    .sess { background:#12121a; border-radius:10px; overflow:hidden; margin-bottom:8px; }
+    .sess summary { display:flex; justify-content:space-between; align-items:center; padding:12px 16px; cursor:pointer; list-style:none; font-size:13px; font-weight:500; }
+    .sess summary::-webkit-details-marker { display:none; }
+    .sess summary:hover { background:rgba(255,255,255,.02); }
+    .sess summary .dt { font-family:"Courier Prime",monospace; font-size:11px; color:#555; }
+    .sess[open] summary { border-bottom:1px solid #2a2a35; }
+    .sess .body { padding:14px 16px; font-size:12px; line-height:1.7; color:#aaa; }
+    .sess .body h2 { font-family:"Oswald",sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.1em; color:#c44dff; margin:12px 0 6px; }
+    .sess .body h2:first-child { margin-top:0; }
+    .sess .body ul { padding-left:16px; }
+    .sess .body li { margin:2px 0; }
+    .sess .body table { width:100%; border-collapse:collapse; margin:8px 0; font-size:11px; }
+    .sess .body th,.sess .body td { padding:4px 8px; border:1px solid #2a2a35; text-align:left; }
+    .sess .body th { background:#12121a; color:#c44dff; font-size:10px; text-transform:uppercase; }
+
+    /* Bottom Nav */
+    .bnav { position:fixed; bottom:0; left:0; right:0; background:#1a1a22; border-top:1px solid #2a2a35; display:flex; justify-content:center; z-index:100; padding-bottom:env(safe-area-inset-bottom,0); }
+    .bnav a { flex:1; max-width:96px; text-align:center; padding:10px 0 8px; text-decoration:none; color:#555; font-size:10px; transition:color .2s; -webkit-tap-highlight-color:transparent; }
+    .bnav a.active { color:#c44dff; }
+    .bnav a .ico { font-size:20px; display:block; margin-bottom:2px; }
+
+    /* Tabs */
+    .tab { display:none; }
+    .tab.active { display:block; }
+
+    .updated { text-align:center; padding:16px; color:#333; font-size:11px; }
+
+    @media (max-width:360px) {
+      .stats,.ng { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-av">АЖ</div>
+    <div>
+      <h1>Алена Журавкова</h1>
+      <div class="hdr-meta">ЭЭГ-тренинг · VIP</div>
+      <span class="badge">🧠 MNPI Beta</span>
+    </div>
+  </div>
+
+  <!-- TAB: ГЛАВНАЯ -->
+  <div id="tab-main" class="tab active">
+
+    <!-- Саммари дня -->
+    <div class="c">
+      <h2>📋 Саммари дня</h2>
+      <div class="txt" id="summary">
+        <!-- SUMMARY -->
+        <span class="ph">Данные появятся после загрузки рефлексии в чат</span>
+        <!-- /SUMMARY -->
+      </div>
+    </div>
+
+    <!-- Рекомендация -->
+    <div class="c">
+      <h2>🎯 Рекомендация</h2>
+      <div class="txt green" id="reco">
+        <!-- RECO -->
+        <span class="ph">Появится после анализа сессии</span>
+        <!-- /RECO -->
+      </div>
+    </div>
+
+    <!-- WHOOP -->
+    <div class="c">
+      <h2>💚 WHOOP <span class="sub">восстановление</span></h2>
+      <div class="stats">
+        <div class="st">
+          <div class="st-v vg" id="w-rec"><!-- W_REC -->—<!-- /W_REC --></div>
+          <div class="st-l">Recovery %</div>
+          <div class="st-bar bar-g"><span style="width:<!-- W_REC_BAR -->0<!-- /W_REC_BAR -->%"></span></div>
+        </div>
+        <div class="st">
+          <div class="st-v vp" id="w-hrv"><!-- W_HRV -->—<!-- /W_HRV --></div>
+          <div class="st-l">HRV ms</div>
+          <div class="st-bar bar-p"><span style="width:<!-- W_HRV_BAR -->0<!-- /W_HRV_BAR -->%"></span></div>
+        </div>
+        <div class="st">
+          <div class="st-v vg" id="w-sleep"><!-- W_SLEEP -->—<!-- /W_SLEEP --></div>
+          <div class="st-l">Сон %</div>
+          <div class="st-bar bar-g"><span style="width:<!-- W_SLEEP_BAR -->0<!-- /W_SLEEP_BAR -->%"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Neiry -->
+    <div class="c">
+      <h2>🧠 Neiry ЭЭГ <span class="sub">средние за сессию</span></h2>
+      <div class="ng">
+        <div class="nm">
+          <div class="lbl">Cognitive</div>
+          <div class="val" id="n-cog"><!-- N_COG -->—<!-- /N_COG --></div>
+          <div class="hint">тишина при низких</div>
+          <div class="bar"><span style="width:<!-- N_COG_BAR -->0<!-- /N_COG_BAR -->%"></span></div>
+        </div>
+        <div class="nm">
+          <div class="lbl">Alpha</div>
+          <div class="val" id="n-alpha"><!-- N_ALPHA -->—<!-- /N_ALPHA --></div>
+          <div class="hint">мастера 1.0+</div>
+          <div class="bar"><span style="width:<!-- N_ALPHA_BAR -->0<!-- /N_ALPHA_BAR -->%"></span></div>
+        </div>
+        <div class="nm">
+          <div class="lbl">Chill</div>
+          <div class="val" id="n-chill"><!-- N_CHILL -->—<!-- /N_CHILL --></div>
+          <div class="hint">парасимпатика</div>
+          <div class="bar"><span style="width:<!-- N_CHILL_BAR -->0<!-- /N_CHILL_BAR -->%"></span></div>
+        </div>
+        <div class="nm">
+          <div class="lbl">Stress</div>
+          <div class="val vo" id="n-stress"><!-- N_STRESS -->—<!-- /N_STRESS --></div>
+          <div class="hint">активация</div>
+          <div class="bar bar-o"><span style="width:<!-- N_STRESS_BAR -->0<!-- /N_STRESS_BAR -->%"></span></div>
+        </div>
+        <div class="nm">
+          <div class="lbl">Self-Ctrl</div>
+          <div class="val vg" id="n-sc"><!-- N_SC -->—<!-- /N_SC --></div>
+          <div class="hint">воля</div>
+          <div class="bar bar-g"><span style="width:<!-- N_SC_BAR -->0<!-- /N_SC_BAR -->%"></span></div>
+        </div>
+        <div class="nm">
+          <div class="lbl">Relax</div>
+          <div class="val vp" id="n-relax"><!-- N_RELAX -->—<!-- /N_RELAX --></div>
+          <div class="hint">глубина 1–12</div>
+          <div class="bar"><span style="width:<!-- N_RELAX_BAR -->0<!-- /N_RELAX_BAR -->%"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Активность -->
+    <div class="c">
+      <h2>📊 Активность</h2>
+      <div class="stats">
+        <div class="st"><div class="st-v" id="s-count"><!-- S_COUNT -->0<!-- /S_COUNT --></div><div class="st-l">Сессий</div></div>
+        <div class="st"><div class="st-v" id="s-streak"><!-- S_STREAK -->0<!-- /S_STREAK --></div><div class="st-l">Дней подряд</div></div>
+        <div class="st"><div class="st-v" id="s-last"><!-- S_LAST -->—<!-- /S_LAST --></div><div class="st-l">Последняя</div></div>
+      </div>
+    </div>
+
+    <div class="updated">Обновлено: <!-- UPDATE_DATE -->ожидание<!-- /UPDATE_DATE --></div>
+  </div>
+
+  <!-- TAB: СЕССИИ -->
+  <div id="tab-sessions" class="tab">
+    <div class="c">
+      <h2>📊 История сессий</h2>
+      <div id="sessions">
+        <!-- SESSIONS -->
+        <p style="color:#555;font-style:italic;">Сессии появятся после первого отчёта</p>
+        <!-- /SESSIONS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: ДИНАМИКА -->
+  <div id="tab-dynamics" class="tab">
+    <div class="c">
+      <h2>📈 Динамика MNPI</h2>
+      <div id="dynamics">
+        <!-- DYNAMICS -->
+        <p style="color:#555;font-style:italic;">Сравнение сессий появится после 2+ отчётов</p>
+        <!-- /DYNAMICS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: ПРОФИЛЬ -->
+  <div id="tab-profile" class="tab">
+    <div class="c">
+      <h2>👤 Профиль</h2>
+      <div style="font-size:13px; line-height:2; color:#aaa;">
+        <div>📍 Москва</div>
+        <div>🧠 Neiry MindTracker</div>
+        <div>⌚ WHOOP</div>
+        <div>🔬 VIP клиент</div>
+      </div>
+    </div>
+    <div class="c">
+      <h2>📡 Данные</h2>
+      <div style="font-size:13px; line-height:2; color:#aaa;">
+        <div>ЭЭГ сессий: <!-- TOTAL_SESSIONS -->0<!-- /TOTAL_SESSIONS --></div>
+        <div>Рефлексий: <!-- TOTAL_REFLECTIONS -->0<!-- /TOTAL_REFLECTIONS --></div>
+        <div>Дней в программе: <!-- TOTAL_DAYS -->0<!-- /TOTAL_DAYS --></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bnav">
+  <a href="#" class="active" onclick="switchTab('main',this)"><span class="ico">🏠</span>Главная</a>
+  <a href="#" onclick="switchTab('sessions',this)"><span class="ico">📊</span>Сессии</a>
+  <a href="#" onclick="switchTab('dynamics',this)"><span class="ico">📈</span>Динамика</a>
+  <a href="#" onclick="switchTab('profile',this)"><span class="ico">👤</span>Профиль</a>
+</nav>
+
+<script>
+function switchTab(name, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.bnav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+
+</body>
+</html>
