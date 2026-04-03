@@ -339,74 +339,50 @@
     <div id="tasks-root"><div style="text-align:center;padding:40px;color:#555;">Загрузка задач...</div></div>
   </div>
 
-  <!-- TAB: КАЛЕНДАРЬ -->
-  <div id="tab-calendar" class="tab">
-    <div class="c">
-      <h2>📅 Календарь</h2>
-      <p>Подключите Google Календарь через кнопку на главной</p>
-    </div>
+  <!-- TAB: MNPI -->
+  <div id="tab-mnpi" class="tab">
 
+    <!-- Прогресс выгрузки -->
     <div class="c">
-      <h2>🎯 Задания первого этапа</h2>
-      <div style="margin-top:8px;">
-        <div style="display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid #2a2a35;">
-          <div style="font-size:16px; min-width:24px;">⬜</div>
-          <div>
-            <div style="font-size:13px; color:#e0e0e8; font-weight:500;">Выгрузить данные с фитнес-трекера</div>
-            <div style="font-size:11px; color:#666;">Кнопка в боте: Выгрузить фитнес данные</div>
-          </div>
-        </div>
-        <div style="display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid #2a2a35;">
-          <div style="font-size:16px; min-width:24px;">⬜</div>
-          <div>
-            <div style="font-size:13px; color:#e0e0e8; font-weight:500;">Выгрузить рефлексию</div>
-            <div style="font-size:11px; color:#666;">Кнопка в боте: Рефлексия утро / вечер</div>
-          </div>
-        </div>
-        <div style="display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid #2a2a35;">
-          <div style="font-size:16px; min-width:24px;">⬜</div>
-          <div>
-            <div style="font-size:13px; color:#e0e0e8; font-weight:500;">Тестовая сессия NEIRY (20 мин, глаза закрыты)</div>
-            <div style="font-size:11px; color:#666;">Загрузить CSV в бота: кнопка CSV NEIRY</div>
-          </div>
-        </div>
-        <div style="display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid #2a2a35;">
-          <div style="font-size:16px; min-width:24px;">⬜</div>
-          <div>
-            <div style="font-size:13px; color:#e0e0e8; font-weight:500;">Выгрузить клинические анализы</div>
-            <div style="font-size:11px; color:#666;">ДНК, генетика, кровь, ЭКГ, МРТ</div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:14px; background:#12121a; border-radius:10px; padding:14px; text-align:center;">
-        <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:4px;">Твоя готовность</div>
-        <div style="font-family:'Courier Prime',monospace; font-size:28px; font-weight:700; color:#7c6fff;">0%</div>
+      <h2>🧪 Исследование MNPI</h2>
+      <div style="font-size:12px;color:#666;margin-bottom:12px;">Выгрузи данные чтобы начать чекап (0/4)</div>
+      <a href="https://t.me/ritmnothingbot?start=prereq_csv" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #2a2a35;text-decoration:none;color:inherit;"><div style="font-size:16px;min-width:24px;">⬜</div><div><div style="font-size:13px;color:#e0e0e8;font-weight:500;">Тестовый CSV с Neiry</div><div style="font-size:11px;color:#7c6fff;">Нажми чтобы загрузить →</div></div></a><a href="https://t.me/ritmnothingbot?start=prereq_reflection" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #2a2a35;text-decoration:none;color:inherit;"><div style="font-size:16px;min-width:24px;">⬜</div><div><div style="font-size:13px;color:#e0e0e8;font-weight:500;">Рефлексия</div><div style="font-size:11px;color:#7c6fff;">Нажми чтобы загрузить →</div></div></a><a href="https://t.me/ritmnothingbot?start=prereq_fitness" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #2a2a35;text-decoration:none;color:inherit;"><div style="font-size:16px;min-width:24px;">⬜</div><div><div style="font-size:13px;color:#e0e0e8;font-weight:500;">Фитнес данные</div><div style="font-size:11px;color:#7c6fff;">Нажми чтобы загрузить →</div></div></a><a href="https://t.me/ritmnothingbot?start=prereq_clinical" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #2a2a35;text-decoration:none;color:inherit;"><div style="font-size:16px;min-width:24px;">⬜</div><div><div style="font-size:13px;color:#e0e0e8;font-weight:500;">Клинические данные</div><div style="font-size:11px;color:#7c6fff;">Нажми чтобы загрузить →</div></div></a>
+      <div style="margin-top:14px;background:#12121a;border-radius:10px;padding:14px;text-align:center;">
+        <div style="font-size:11px;color:#666;text-transform:uppercase;margin-bottom:4px;">Готовность</div>
+        <div style="font-family:'Courier Prime',monospace;font-size:28px;font-weight:700;color:#7c6fff;">0%</div>
+        <div style="background:#2a2a35;border-radius:3px;height:6px;margin-top:8px;"><div style="background:#7c6fff;height:6px;border-radius:3px;width:0%;"></div></div>
       </div>
     </div>
 
+    <!-- Сессии -->
+    <div class="c" style="text-align:center;padding:20px;"><div style="font-size:28px;margin-bottom:8px;">🔒</div><div style="font-size:13px;color:#555;">Сессии откроются после 3 из 4 выгрузок</div></div>
+
+    <!-- Инструкция -->
     <div class="c">
       <h2>📋 Инструкция: Этап 0</h2>
       <p style="margin-bottom:12px;">Перед началом исследования выполни следующие шаги:</p>
-      <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:10px;">
-        <div style="font-size:14px; font-weight:600; color:#e0e0e8; margin-bottom:6px;">1. Скачай приложение Капсула</div>
-        <p>Исследуй все показатели и данные в гайде. Проведи тестовую сессию 20 минут с закрытыми глазами.</p>
+      <div style="background:#12121a;border-radius:10px;padding:14px;margin-bottom:10px;">
+        <div style="font-size:14px;font-weight:600;color:#e0e0e8;margin-bottom:6px;">1. Скачай приложение Капсула</div>
+        <p>Проведи тестовую сессию 20 минут с закрытыми глазами. Экспортируй CSV.</p>
       </div>
-      <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:10px;">
-        <div style="font-size:14px; font-weight:600; color:#e0e0e8; margin-bottom:6px;">2. Загрузи данные с фитнес-трекера</div>
-        <p>Нажми в боте кнопку *Выгрузить фитнес данные*. Отправь таблицы, которые ты получил со своего трекера (Excel, CSV).</p>
+      <div style="background:#12121a;border-radius:10px;padding:14px;margin-bottom:10px;">
+        <div style="font-size:14px;font-weight:600;color:#e0e0e8;margin-bottom:6px;">2. Напиши рефлексию</div>
+        <p>Опиши свой последний месяц — как прошёл, успехи, что хочешь улучшить.</p>
       </div>
-      <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:10px;">
-        <div style="font-size:14px; font-weight:600; color:#e0e0e8; margin-bottom:6px;">3. Выгрузи клинические анализы</div>
-        <p>Нажми в боте *Клин. анализы*. Отправь все доступные лабораторные анализы и клинические чекапы за последние 2-3 месяца. В любом виде — фото, PDF, скан.</p>
+      <div style="background:#12121a;border-radius:10px;padding:14px;margin-bottom:10px;">
+        <div style="font-size:14px;font-weight:600;color:#e0e0e8;margin-bottom:6px;">3. Загрузи фитнес данные</div>
+        <p>Таблицы Garmin/Whoop/CSV. Если не выгружается — скриншоты → Gemini → текст → сюда.</p>
       </div>
-      <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:10px;">
-        <div style="font-size:14px; font-weight:600; color:#e0e0e8; margin-bottom:6px;">4. Загрузи CSV из NEIRY</div>
-        <p>После тестовой сессии экспортируй данные из Капсулы в CSV. Нажми в боте *CSV NEIRY* и отправь файл.</p>
+      <div style="background:#12121a;border-radius:10px;padding:14px;margin-bottom:10px;">
+        <div style="font-size:14px;font-weight:600;color:#e0e0e8;margin-bottom:6px;">4. Загрузи клинические данные</div>
+        <p>PDF/фото анализов. Идеально: отправь в Gemini → получи текст → пришли сюда.</p>
       </div>
-      <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:10px;">
-        <div style="font-size:14px; font-weight:600; color:#e0e0e8; margin-bottom:6px;">5. Запиши рефлексию</div>
-        <p>Нажми в боте *Рефлексия утро* или *Рефлексия вечер*. Напиши свои мысли, ощущения, что чувствуешь. Это важная часть исследования.</p>
-      </div>
+    </div>
+
+    <!-- Roadmap -->
+    <div class="c">
+      <h2>🗺 Роадмэп</h2>
+      <a href="https://konstantinshell.github.io/genesis/roadmap/" style="display:block;text-align:center;background:#7c6fff;color:#fff;padding:10px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:500;">Открыть роадмэп исследования</a>
     </div>
   </div>
 
@@ -506,7 +482,7 @@
 <nav class="bnav">
   <a href="#" class="active" onclick="switchTab('main',this)"><span class="ico">🏠</span>Главная</a>
   <a href="#" onclick="switchTab('tasks',this)"><span class="ico">📋</span>Задачи</a>
-  <a href="#" onclick="switchTab('calendar',this)"><span class="ico">📅</span>Календарь</a>
+  <a href="#" onclick="switchTab('mnpi',this)"><span class="ico">🧪</span>MNPI</a>
   <a href="#" onclick="switchTab('neuro',this)"><span class="ico">🧠</span>NEIRY</a>
   <a href="#" onclick="switchTab('profile',this)"><span class="ico">👤</span>Профиль</a>
 </nav>
