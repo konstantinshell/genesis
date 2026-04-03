@@ -5,7 +5,7 @@
   "weeks_in_program": 0,
   "first_correlation_ready": false,
   "checklist": {
-    "anketa": false,
+    "anketa": true,
     "session_1": false,
     "session_2": false,
     "session_3": false,
