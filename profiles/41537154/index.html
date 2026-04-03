@@ -181,14 +181,14 @@
     <!-- Рефлексии + загрузки -->
     <div class="c" style="padding:14px;">
       <div style="display:flex;gap:8px;margin-bottom:10px;">
-        <a href="#" onclick="Telegram.WebApp.openTelegramLink('https://t.me/ritmnothingbot?start=morning');return false;" class="refl-btn" style="flex:1;">
+        <div onclick="Telegram.WebApp.openTelegramLink('https://t.me/ritmnothingbot?start=morning');" class="refl-btn" style="flex:1;cursor:pointer;">
           <span style="font-family:'Courier Prime',monospace;font-size:15px;font-weight:700;min-width:18px;">1</span>
           <span>🌅 Утренняя рефлексия</span>
-        </a>
-        <a href="#" onclick="Telegram.WebApp.openTelegramLink('https://t.me/ritmnothingbot?start=evening');return false;" class="refl-btn" style="flex:1;">
+        </div>
+        <div onclick="Telegram.WebApp.openTelegramLink('https://t.me/ritmnothingbot?start=evening');" class="refl-btn" style="flex:1;cursor:pointer;">
           <span style="font-family:'Courier Prime',monospace;font-size:15px;font-weight:700;min-width:18px;">0</span>
           <span>🌙 Вечерняя рефлексия</span>
-        </a>
+        </div>
       </div>
       <div style="background:#12121a;border-radius:8px;padding:10px;text-align:center;">
         <span style="font-size:11px;color:#555;">EEG · HRV · Анализы — данные появятся по мере прохождения чекапа</span>
