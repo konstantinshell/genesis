@@ -624,22 +624,56 @@ function renderSec1(today) {
 function renderSec2(today) {
   var allTasks = [].concat(today.morning||[], today.day||[], today.evening||[]);
   var present = {};
-  for (var i = 0; i < allTasks.length; i++) present[allTasks[i].sphere] = true;
-  var h = '<div class="c"><h2>⚖️ Баланс сфер сегодня</h2><div class="sphere-balance">';
-  for (var key in present) {
-    var sc = SPHERE_COLORS[key] || { bg:'#222', text:'#888', label:key };
-    h += '<span class="sphere-pill" style="background:' + sc.bg + ';color:' + sc.text + ';">' + sc.label + '</span>';
+  var taskCount = {};
+  for (var i = 0; i < allTasks.length; i++) {
+    present[allTasks[i].sphere] = true;
+    taskCount[allTasks[i].sphere] = (taskCount[allTasks[i].sphere]||0) + 1;
   }
-  h += '</div>';
+  var allSpheres = ['profession','communication','knowledge','abundance','health','creativity','relationships','awareness'];
+  var total = allSpheres.length;
+  var activeCount = 0;
+  for (var s = 0; s < total; s++) if (present[allSpheres[s]]) activeCount++;
+
+  // SVG radar
+  var cx = 100, cy = 100, R = 75, r2 = 45;
+  var h = '<div class="c" style="text-align:center;"><h2 style="text-align:left;">⚖️ Баланс сфер</h2>';
+  h += '<svg viewBox="0 0 200 200" style="width:180px;height:180px;margin:8px auto;display:block;">';
+  // Grid circle
+  h += '<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="none" stroke="#2a2a35" stroke-width="0.5"/>';
+  h += '<circle cx="'+cx+'" cy="'+cy+'" r="'+r2+'" fill="none" stroke="#2a2a35" stroke-width="0.5"/>';
+  // Spokes + dots + labels
+  for (var i = 0; i < total; i++) {
+    var angle = (Math.PI * 2 * i / total) - Math.PI/2;
+    var x1 = cx + R * Math.cos(angle);
+    var y1 = cy + R * Math.sin(angle);
+    h += '<line x1="'+cx+'" y1="'+cy+'" x2="'+x1+'" y2="'+y1+'" stroke="#2a2a35" stroke-width="0.5"/>';
+    var key = allSpheres[i];
+    var sc = SPHERE_COLORS[key] || {dot:'#555',label:key};
+    var active = present[key];
+    var dotR = active ? 6 : 3;
+    var dotX = cx + (active ? R*0.8 : R*0.35) * Math.cos(angle);
+    var dotY = cy + (active ? R*0.8 : R*0.35) * Math.sin(angle);
+    var clr = active ? sc.dot : '#333';
+    h += '<circle cx="'+dotX+'" cy="'+dotY+'" r="'+dotR+'" fill="'+clr+'"';
+    if (active) h += ' style="filter:drop-shadow(0 0 4px '+sc.dot+')"';
+    h += '/>';
+    var lx = cx + (R+14) * Math.cos(angle);
+    var ly = cy + (R+14) * Math.sin(angle);
+    var anchor = Math.abs(Math.cos(angle)) < 0.3 ? 'middle' : (Math.cos(angle) > 0 ? 'start' : 'end');
+    var lclr = active ? sc.dot : '#444';
+    h += '<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="'+anchor+'" fill="'+lclr+'" font-size="7" font-family="Jost,sans-serif">'+sc.label+'</text>';
+  }
+  h += '</svg>';
+  h += '<div style="font-size:12px;color:#888;margin-top:4px;">'+activeCount+' из '+total+' сфер в плане</div>';
+  // Warnings
   var required = ['health','relationships','awareness'];
-  var warns = '';
   for (var r = 0; r < required.length; r++) {
     if (!present[required[r]]) {
       var lb = (SPHERE_COLORS[required[r]] || {}).label || required[r];
-      warns += '<div class="sphere-warn">⚠ ' + lb + ' не в плане сегодня</div>';
+      h += '<div class="sphere-warn">⚠ ' + lb + ' не в плане сегодня</div>';
     }
   }
-  h += warns + '</div>';
+  h += '</div>';
   return h;
 }
 
