@@ -80,9 +80,54 @@
 
     .updated { text-align:center; padding:16px; color:#333; font-size:11px; }
 
+    /* Tasks page */
+    .tasks-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+    .tasks-date { font-family:"Oswald",sans-serif; font-size:18px; font-weight:600; }
+    .tasks-physio { display:flex; gap:12px; font-size:11px; color:#888; }
+    .tasks-physio span { font-family:"Courier Prime",monospace; color:#e0e0e8; }
+    .stream-btn { display:inline-flex; align-items:center; gap:4px; background:#7c6fff; color:#fff; padding:8px 14px; border-radius:8px; font-size:12px; text-decoration:none; font-weight:500; }
+    .tsk { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid #1e1e2a; }
+    .tsk.done { opacity:0.45; }
+    .tsk-check { width:22px; height:22px; border-radius:50%; border:2px solid #444; flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:1px; transition:all 0.2s; }
+    .tsk-check.checked { background:#34c759; border-color:#34c759; }
+    .tsk-check.checked::after { content:'\2713'; color:#fff; font-size:13px; }
+    .tsk-body { flex:1; min-width:0; }
+    .tsk-text { font-size:13px; color:#e0e0e8; line-height:1.5; }
+    .tsk-meta { display:flex; gap:8px; align-items:center; margin-top:4px; flex-wrap:wrap; }
+    .tsk-sphere { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:500; }
+    .tsk-reason { font-size:10px; color:#555; }
+    .tasks-period-title { font-size:12px; color:#666; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; margin-top:4px; display:flex; align-items:center; gap:6px; }
+    .tasks-period-title .pdot { width:6px; height:6px; border-radius:50%; }
+    .tasks-period-title .pdot.morning { background:#f59e0b; }
+    .tasks-period-title .pdot.day { background:#3b82f6; }
+    .tasks-period-title .pdot.evening { background:#a855f7; }
+    .sphere-balance { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+    .sphere-pill { display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:6px; font-size:11px; }
+    .sphere-warn { font-size:11px; color:#ff453a; margin-top:8px; }
+    .week-task { display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid #1e1e2a; }
+    .week-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .week-text { flex:1; font-size:13px; color:#e0e0e8; }
+    .expand-btn { background:none; border:1px solid #2a2a35; color:#888; padding:8px 16px; border-radius:8px; font-size:12px; cursor:pointer; width:100%; margin-top:8px; }
+    .goal-item { margin-bottom:14px; }
+    .goal-text { font-size:13px; color:#e0e0e8; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+    .goal-bar { background:#2a2a35; border-radius:3px; height:6px; overflow:hidden; }
+    .goal-fill { height:6px; border-radius:3px; transition:width 0.3s; }
+    .goal-pct { font-size:11px; color:#888; margin-top:4px; }
+    .report-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:14px; }
+    .rp-st { background:#12121a; border-radius:8px; padding:10px; text-align:center; }
+    .rp-st .rp-v { font-family:"Courier Prime",monospace; font-size:20px; font-weight:700; }
+    .rp-st .rp-l { font-size:10px; color:#666; margin-top:2px; }
+    .sphere-bar-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+    .sphere-bar-label { font-size:11px; width:80px; flex-shrink:0; }
+    .sphere-bar-bg { flex:1; background:#2a2a35; border-radius:3px; height:8px; overflow:hidden; }
+    .sphere-bar-fill { height:8px; border-radius:3px; }
+    .sphere-bar-pct { font-size:11px; color:#888; width:36px; text-align:right; }
+    .stale-banner { background:#2a2a1a; border:1px solid #444420; border-radius:10px; padding:12px; text-align:center; font-size:12px; color:#aa9944; margin-bottom:14px; }
+
     @media (max-width:400px) {
       .stats { grid-template-columns:1fr 1fr; }
       .neiry-grid, .fit-grid { flex-wrap:wrap; }
+      .report-stats { grid-template-columns:repeat(2,1fr); }
     }
   </style>
 </head>
@@ -291,6 +336,16 @@
 
   <!-- TAB: ЗАДАЧИ -->
   <div id="tab-tasks" class="tab">
+    <div id="tasks-root"><div style="text-align:center;padding:40px;color:#555;">Загрузка задач...</div></div>
+  </div>
+
+  <!-- TAB: КАЛЕНДАРЬ -->
+  <div id="tab-calendar" class="tab">
+    <div class="c">
+      <h2>📅 Календарь</h2>
+      <p>Подключите Google Календарь через кнопку на главной</p>
+    </div>
+
     <div class="c">
       <h2>🎯 Задания первого этапа</h2>
       <div style="margin-top:8px;">
@@ -328,40 +383,31 @@
         <div style="font-family:'Courier Prime',monospace; font-size:28px; font-weight:700; color:#7c6fff;">0%</div>
       </div>
     </div>
+
     <div class="c">
       <h2>📋 Инструкция: Этап 0</h2>
       <p style="margin-bottom:12px;">Перед началом исследования выполни следующие шаги:</p>
-
       <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:10px;">
         <div style="font-size:14px; font-weight:600; color:#e0e0e8; margin-bottom:6px;">1. Скачай приложение Капсула</div>
         <p>Исследуй все показатели и данные в гайде. Проведи тестовую сессию 20 минут с закрытыми глазами.</p>
       </div>
-
       <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:10px;">
         <div style="font-size:14px; font-weight:600; color:#e0e0e8; margin-bottom:6px;">2. Загрузи данные с фитнес-трекера</div>
         <p>Нажми в боте кнопку *Выгрузить фитнес данные*. Отправь таблицы, которые ты получил со своего трекера (Excel, CSV).</p>
       </div>
-
       <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:10px;">
         <div style="font-size:14px; font-weight:600; color:#e0e0e8; margin-bottom:6px;">3. Выгрузи клинические анализы</div>
         <p>Нажми в боте *Клин. анализы*. Отправь все доступные лабораторные анализы и клинические чекапы за последние 2-3 месяца. В любом виде — фото, PDF, скан.</p>
       </div>
-
       <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:10px;">
         <div style="font-size:14px; font-weight:600; color:#e0e0e8; margin-bottom:6px;">4. Загрузи CSV из NEIRY</div>
         <p>После тестовой сессии экспортируй данные из Капсулы в CSV. Нажми в боте *CSV NEIRY* и отправь файл.</p>
       </div>
-
       <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:10px;">
         <div style="font-size:14px; font-weight:600; color:#e0e0e8; margin-bottom:6px;">5. Запиши рефлексию</div>
         <p>Нажми в боте *Рефлексия утро* или *Рефлексия вечер*. Напиши свои мысли, ощущения, что чувствуешь. Это важная часть исследования.</p>
       </div>
     </div>
-  </div>
-
-  <!-- TAB: КАЛЕНДАРЬ -->
-  <div id="tab-calendar" class="tab">
-    <div class="c"><h2>📅 Календарь</h2><p>Подключите Google Календарь через кнопку на главной</p></div>
   </div>
 
   <!-- TAB: НЕЙРО -->
@@ -466,7 +512,7 @@
 </nav>
 
 <script>
-// Telegram WebApp — раскрыть на полный экран
+// Telegram WebApp
 if (window.Telegram && window.Telegram.WebApp) {
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
@@ -492,6 +538,256 @@ function switchTab(name, el) {
   document.getElementById('tab-' + name).classList.add('active');
   if (el) el.classList.add('active');
   window.scrollTo(0, 0);
+  if (name === 'tasks') loadTasks();
+}
+
+/* ═══ TASKS ENGINE ═══ */
+var SPHERE_COLORS = {
+  profession:    { bg:'#1a1a2e', text:'#9d97ff', dot:'#7F77DD', label:'Профессия' },
+  communication: { bg:'#1a2030', text:'#6eaaee', dot:'#378ADD', label:'Общение' },
+  knowledge:     { bg:'#1a2518', text:'#8aba55', dot:'#639922', label:'Знания' },
+  abundance:     { bg:'#2a2018', text:'#daa040', dot:'#BA7517', label:'Изобилие' },
+  health:        { bg:'#182a24', text:'#3fc090', dot:'#1D9E75', label:'ЗОЖ' },
+  creativity:    { bg:'#2a1a18', text:'#e07850', dot:'#D85A30', label:'Творчество' },
+  relationships: { bg:'#2a2018', text:'#daa040', dot:'#BA7517', label:'Отношения' },
+  awareness:     { bg:'#182a24', text:'#3fc090', dot:'#1D9E75', label:'Осознанность' }
+};
+
+var SEASON_DATES = ['02-02','20-03','01-05','22-06','01-08','22-09','01-11','22-12'];
+
+function getNextSeasonDate() {
+  var now = new Date();
+  var year = now.getFullYear();
+  for (var i = 0; i < SEASON_DATES.length; i++) {
+    var parts = SEASON_DATES[i].split('-');
+    var d = new Date(year, parseInt(parts[1])-1, parseInt(parts[0]));
+    if (d > now) return d;
+  }
+  var p2 = SEASON_DATES[0].split('-');
+  return new Date(year+1, parseInt(p2[1])-1, parseInt(p2[0]));
+}
+
+function fmtDate(dateStr) {
+  var d = new Date(dateStr);
+  var months = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+  return d.getDate() + ' ' + months[d.getMonth()];
+}
+
+function fmtDateFull(dateStr) {
+  var d = new Date(dateStr);
+  var days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+  var months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  return days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()];
+}
+
+function sphereTag(sphere) {
+  var sc = SPHERE_COLORS[sphere] || { bg:'#222', text:'#888', dot:'#666', label:sphere };
+  return '<span class="tsk-sphere" style="background:' + sc.bg + ';color:' + sc.text + ';">' + sc.label + '</span>';
+}
+
+function sphereDot(sphere) {
+  var sc = SPHERE_COLORS[sphere] || { dot:'#666' };
+  return '<span class="week-dot" style="background:' + sc.dot + ';"></span>';
+}
+
+function toggleTask(id) {
+  var key = 'task_' + id + '_done';
+  var done = localStorage.getItem(key) === 'true';
+  localStorage.setItem(key, done ? 'false' : 'true');
+  var row = document.getElementById('tsk-' + id);
+  if (row) {
+    row.classList.toggle('done', !done);
+    var chk = row.querySelector('.tsk-check');
+    if (chk) chk.classList.toggle('checked', !done);
+  }
+}
+
+function isTaskDone(id) {
+  return localStorage.getItem('task_' + id + '_done') === 'true';
+}
+
+function renderTaskRow(task) {
+  var done = isTaskDone(task.id);
+  return '<div class="tsk' + (done ? ' done' : '') + '" id="tsk-' + task.id + '">'
+    + '<div class="tsk-check' + (done ? ' checked' : '') + '" onclick="toggleTask('' + task.id + '')"></div>'
+    + '<div class="tsk-body"><div class="tsk-text">' + task.text + '</div>'
+    + '<div class="tsk-meta">' + sphereTag(task.sphere)
+    + (task.reason ? '<span class="tsk-reason">' + task.reason + '</span>' : '')
+    + '</div></div></div>';
+}
+
+function renderPeriod(label, dotClass, tasks) {
+  if (!tasks || !tasks.length) return '';
+  var h = '<div class="tasks-period-title"><span class="pdot ' + dotClass + '"></span>' + label + '</div>';
+  for (var i = 0; i < tasks.length; i++) h += renderTaskRow(tasks[i]);
+  return h;
+}
+
+function renderSec1(today) {
+  var h = '<div class="c">';
+  h += '<div class="tasks-header"><div class="tasks-date">' + fmtDateFull(today.date) + '</div></div>';
+  if (today.physio) {
+    h += '<div style="display:flex;gap:12px;margin-bottom:10px;font-size:11px;color:#888;">';
+    if (today.physio.hrv) h += '<div>HRV <span style="color:#e0e0e8;font-family:Courier Prime,monospace;">' + today.physio.hrv + '</span></div>';
+    if (today.physio.body_battery) h += '<div>Battery <span style="color:#e0e0e8;font-family:Courier Prime,monospace;">' + today.physio.body_battery + '%</span></div>';
+    if (today.physio.sleep_h) h += '<div>Сон <span style="color:#e0e0e8;font-family:Courier Prime,monospace;">' + today.physio.sleep_h + 'ч</span></div>';
+    h += '</div>';
+  }
+  h += '<a href="https://t.me/ritmnothingbot?start=stream" class="stream-btn" style="margin-bottom:14px;display:inline-flex;">+ поток</a>';
+  h += renderPeriod('Утро', 'morning', today.morning);
+  h += renderPeriod('День', 'day', today.day);
+  h += renderPeriod('Вечер', 'evening', today.evening);
+  h += '</div>';
+  return h;
+}
+
+function renderSec2(today) {
+  var allTasks = [].concat(today.morning||[], today.day||[], today.evening||[]);
+  var present = {};
+  for (var i = 0; i < allTasks.length; i++) present[allTasks[i].sphere] = true;
+  var h = '<div class="c"><h2>⚖️ Баланс сфер сегодня</h2><div class="sphere-balance">';
+  for (var key in present) {
+    var sc = SPHERE_COLORS[key] || { bg:'#222', text:'#888', label:key };
+    h += '<span class="sphere-pill" style="background:' + sc.bg + ';color:' + sc.text + ';">' + sc.label + '</span>';
+  }
+  h += '</div>';
+  var required = ['health','relationships','awareness'];
+  var warns = '';
+  for (var r = 0; r < required.length; r++) {
+    if (!present[required[r]]) {
+      var lb = (SPHERE_COLORS[required[r]] || {}).label || required[r];
+      warns += '<div class="sphere-warn">⚠ ' + lb + ' не в плане сегодня</div>';
+    }
+  }
+  h += warns + '</div>';
+  return h;
+}
+
+function renderSec3(week) {
+  if (!week || !week.length) return '';
+  var h = '<div class="c"><h2>📅 На неделе</h2>';
+  var limit = Math.min(5, week.length);
+  for (var i = 0; i < limit; i++) {
+    h += '<div class="week-task">' + sphereDot(week[i].sphere) + '<div class="week-text">' + week[i].text + '</div>' + sphereTag(week[i].sphere) + '</div>';
+  }
+  if (week.length > 5) {
+    h += '<div id="week-extra" style="display:none;">';
+    for (var j = 5; j < week.length; j++) {
+      h += '<div class="week-task">' + sphereDot(week[j].sphere) + '<div class="week-text">' + week[j].text + '</div>' + sphereTag(week[j].sphere) + '</div>';
+    }
+    h += '</div>';
+    h += '<button class="expand-btn" onclick="var e=document.getElementById('week-extra');e.style.display=e.style.display==='none'?'block':'none';this.textContent=e.style.display==='none'?'ещё ' + (week.length-5) + ' задач':'свернуть';">ещё ' + (week.length-5) + ' задач</button>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderSec4(season) {
+  if (!season || !season.goals) return '';
+  var nd = getNextSeasonDate();
+  var deadline = season.deadline ? new Date(season.deadline) : nd;
+  var months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  var dlStr = deadline.getDate() + ' ' + months[deadline.getMonth()];
+  var h = '<div class="c"><h2>🎯 Цели сезона</h2><div style="font-size:12px;color:#666;margin-bottom:12px;">до ' + dlStr + '</div>';
+  for (var i = 0; i < season.goals.length; i++) {
+    var g = season.goals[i];
+    var clr = g.progress > 50 ? '#34c759' : (g.progress >= 20 ? '#f59e0b' : '#ff453a');
+    h += '<div class="goal-item">';
+    h += '<div class="goal-text">' + sphereDot(g.sphere) + g.text + '</div>';
+    h += '<div class="goal-bar"><div class="goal-fill" style="width:' + g.progress + '%;background:' + clr + ';"></div></div>';
+    h += '<div class="goal-pct">' + g.progress + '%</div>';
+    h += '</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderSec5(rp) {
+  if (!rp) return '';
+  var h = '<div class="c"><h2>📊 Отчёт недели</h2>';
+  h += '<div style="font-size:12px;color:#666;margin-bottom:12px;">' + (rp.period || '') + '</div>';
+  h += '<div class="report-stats">';
+  h += '<div class="rp-st"><div class="rp-v" style="color:#7c6fff;">' + rp.planned + '</div><div class="rp-l">План</div></div>';
+  h += '<div class="rp-st"><div class="rp-v" style="color:#34c759;">' + rp.done + '</div><div class="rp-l">Закрыто</div></div>';
+  h += '<div class="rp-st"><div class="rp-v" style="color:#f59e0b;">' + rp.moved + '</div><div class="rp-l">Перенос</div></div>';
+  h += '<div class="rp-st"><div class="rp-v" style="color:#ff453a;">' + rp.deleted + '</div><div class="rp-l">Удалено</div></div>';
+  h += '</div>';
+  // Sphere bars
+  if (rp.spheres) {
+    h += '<div style="margin-bottom:14px;">';
+    for (var key in rp.spheres) {
+      var s = rp.spheres[key];
+      var pct = s.planned > 0 ? Math.round(s.done / s.planned * 100) : 0;
+      var sc = SPHERE_COLORS[key] || { dot:'#666', label:key, text:'#888' };
+      var labelColor = pct < 40 ? '#ff453a' : sc.text;
+      var arrow = pct < 40 ? ' ←' : '';
+      h += '<div class="sphere-bar-row">';
+      h += '<div class="sphere-bar-label" style="color:' + labelColor + ';">' + sc.label + arrow + '</div>';
+      h += '<div class="sphere-bar-bg"><div class="sphere-bar-fill" style="width:' + pct + '%;background:' + sc.dot + ';"></div></div>';
+      h += '<div class="sphere-bar-pct">' + pct + '%</div>';
+      h += '</div>';
+    }
+    h += '</div>';
+  }
+  // Physio correlation
+  if (rp.physio_correlation) {
+    var pc = rp.physio_correlation;
+    h += '<div style="background:#12121a;border-radius:10px;padding:12px;margin-bottom:12px;">';
+    h += '<div style="font-size:11px;color:#666;text-transform:uppercase;margin-bottom:8px;">Физио-корреляция</div>';
+    h += '<div style="font-size:12px;color:#aaa;margin-bottom:4px;">HRV высокий → закрыто <span style="color:#34c759;font-family:Courier Prime,monospace;">' + pc.high_hrv_done_pct + '%</span></div>';
+    h += '<div style="font-size:12px;color:#aaa;margin-bottom:8px;">HRV низкий → закрыто <span style="color:#ff453a;font-family:Courier Prime,monospace;">' + pc.low_hrv_done_pct + '%</span></div>';
+    h += '<div style="font-size:11px;color:#555;font-style:italic;">Порог продуктивности: HRV &gt; ' + pc.threshold + '</div>';
+    h += '</div>';
+  }
+  // Patterns
+  if (rp.patterns && rp.patterns.length) {
+    h += '<div style="margin-bottom:12px;">';
+    h += '<div style="font-size:11px;color:#666;text-transform:uppercase;margin-bottom:8px;">Паттерны переносов</div>';
+    for (var p = 0; p < rp.patterns.length; p++) {
+      var pt = rp.patterns[p];
+      h += '<div style="background:#12121a;border-radius:8px;padding:10px;margin-bottom:6px;">';
+      h += '<div style="font-size:12px;color:#e0e0e8;">' + pt.text + ' <span style="color:#666;">· ' + pt.moved_weeks + ' нед подряд</span></div>';
+      h += '<div style="font-size:11px;color:#f59e0b;margin-top:4px;">' + pt.signal + '</div>';
+      h += '</div>';
+    }
+    h += '</div>';
+  }
+  // State summary
+  if (rp.state_summary) {
+    h += '<div style="font-size:13px;color:#888;font-style:italic;line-height:1.6;padding:10px 0;">' + rp.state_summary + '</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+var _tasksLoaded = false;
+function loadTasks() {
+  if (_tasksLoaded) return;
+  var root = document.getElementById('tasks-root');
+  fetch('./tasks.json').then(function(r) {
+    if (!r.ok) throw new Error('no json');
+    return r.json();
+  }).then(function(data) {
+    var t = data.tasks;
+    if (!t) { root.innerHTML = '<div class="c" style="text-align:center;color:#555;padding:30px;">Нет данных о задачах</div>'; return; }
+    var h = '';
+    // Stale check
+    if (t.updated_at) {
+      var updMs = new Date(t.updated_at).getTime();
+      if (Date.now() - updMs > 25*60*60*1000) {
+        h += '<div class="stale-banner">⏳ Данные устарели · сделай вечерний поток в боте</div>';
+      }
+    }
+    if (t.today) h += renderSec1(t.today);
+    if (t.today) h += renderSec2(t.today);
+    h += renderSec3(t.week);
+    h += renderSec4(t.season);
+    h += renderSec5(t.week_report);
+    root.innerHTML = h;
+    _tasksLoaded = true;
+  }).catch(function() {
+    root.innerHTML = '<div class="c" style="text-align:center;padding:30px;"><div style="font-size:28px;margin-bottom:8px;">📋</div><div style="font-size:13px;color:#555;">Задачи появятся после первого планирования в боте</div></div>';
+  });
 }
 </script>
 
