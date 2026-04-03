@@ -160,16 +160,26 @@
   <!-- TAB: ГЛАВНАЯ -->
   <div id="tab-main" class="tab active">
 
-    <!-- Активность -->
-    <div class="c" style="padding-bottom:10px;">
-      <div class="stats" style="margin-bottom:12px;">
-        <div class="st"><div class="st-v">0</div><div class="st-l">Утро</div></div>
-        <div class="st"><div class="st-v">0</div><div class="st-l">Вечер</div></div>
-        <div class="st"><div class="st-v">0</div><div class="st-l">EEG·HRV</div></div>
+    <!-- Рефлексии + загрузки -->
+    <div style="display:flex;gap:8px;margin-bottom:14px;">
+      <a href="https://t.me/ritmnothingbot?start=morning" class="refl-btn" style="flex:1;flex-direction:column;">
+        <div style="font-size:22px;font-weight:700;font-family:'Courier Prime',monospace;">0</div>
+        <div>🌅 Утренняя рефлексия</div>
+      </a>
+      <a href="https://t.me/ritmnothingbot?start=evening" class="refl-btn" style="flex:1;flex-direction:column;">
+        <div style="font-size:22px;font-weight:700;font-family:'Courier Prime',monospace;">0</div>
+        <div>🌙 Вечерняя рефлексия</div>
+      </a>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:14px;">
+      <div class="st" style="flex:1;background:#1a1a22;border-radius:12px;padding:14px;">
+        <div class="st-v">0</div><div class="st-l">EEG сессий</div>
       </div>
-      <div style="display:flex;gap:8px;">
-        <a href="https://t.me/ritmnothingbot?start=morning" class="refl-btn" style="flex:1;">🌅 Утренняя рефлексия</a>
-        <a href="https://t.me/ritmnothingbot?start=evening" class="refl-btn" style="flex:1;">🌙 Вечерняя рефлексия</a>
+      <div class="st" style="flex:1;background:#1a1a22;border-radius:12px;padding:14px;">
+        <div class="st-v">0</div><div class="st-l">HRV данных</div>
+      </div>
+      <div class="st" style="flex:1;background:#1a1a22;border-radius:12px;padding:14px;">
+        <div class="st-v">0</div><div class="st-l">Анализов</div>
       </div>
     </div>
 
