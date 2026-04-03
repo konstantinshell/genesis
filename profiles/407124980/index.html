@@ -181,11 +181,11 @@
     <!-- Рефлексии + загрузки -->
     <div class="c" style="padding:14px;">
       <div style="display:flex;gap:8px;margin-bottom:10px;">
-        <div onclick="Telegram.WebApp.openTelegramLink('https://t.me/ritmnothingbot?start=morning');" class="refl-btn" style="flex:1;cursor:pointer;">
+        <div onclick="Telegram.WebApp.openTelegramLink('https://t.me/ritmnothingbot?start=morning'); Telegram.WebApp.close();" class="refl-btn" style="flex:1;cursor:pointer;">
           <span style="font-family:'Courier Prime',monospace;font-size:15px;font-weight:700;min-width:18px;">0</span>
           <span>🌅 Утренняя рефлексия</span>
         </div>
-        <div onclick="Telegram.WebApp.openTelegramLink('https://t.me/ritmnothingbot?start=evening');" class="refl-btn" style="flex:1;cursor:pointer;">
+        <div onclick="Telegram.WebApp.openTelegramLink('https://t.me/ritmnothingbot?start=evening'); Telegram.WebApp.close();" class="refl-btn" style="flex:1;cursor:pointer;">
           <span style="font-family:'Courier Prime',monospace;font-size:15px;font-weight:700;min-width:18px;">0</span>
           <span>🌙 Вечерняя рефлексия</span>
         </div>
