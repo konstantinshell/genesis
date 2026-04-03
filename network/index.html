@@ -329,6 +329,7 @@
   <div class="legend-item">🎁 Промо бенд</div>
   <div class="legend-item">⭐ Промо участник</div>
   <div class="legend-item">⌚ Фитнес-трекер</div>
+  <div class="legend-item">⚠️ Без NDA</div>
 </div>
 
 <div class="founders">
@@ -410,6 +411,7 @@ function renderNode(node, depth) {
   else if (node.band === 'promo') html += '<div class="band-badge">🎁</div>';
   else if (node.band === 'promo_member') html += '<div class="band-badge">⭐</div>';
   if (node.tracker) html += '<div class="band-badge">⌚</div>';
+  if (isReal && node.nda === false) html += '<div class="band-badge" style="color:#ff9f0a;" title="Договор не подписан">⚠️ NDA</div>';
 
   if (hasLink) {
     html += '</a>';
