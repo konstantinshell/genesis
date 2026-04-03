@@ -2,9 +2,53 @@
   "name": "РИТМЫ NOTHING",
   "role": "Организация",
   "real": true,
-  "updated": "03.04.2026 18:11",
-  "total_real": 11,
+  "updated": "03.04.2026 22:10",
+  "total_real": 13,
   "children": [
+    {
+      "name": "Кирилл (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Татьяна (свободно)",
+          "real": false,
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Ирина (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Андрей (свободно)",
+          "real": false,
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Сергей (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Елена (свободно)",
+          "real": false,
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Татьяна (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Алексей (свободно)",
+          "real": false,
+          "children": []
+        }
+      ]
+    },
     {
       "name": "Валентина",
       "real": true,
@@ -12,22 +56,22 @@
       "profile": "https://konstantinshell.github.io/genesis/profiles/1067307749/",
       "children": [
         {
-          "name": "Ирина (свободно)",
+          "name": "Дмитрий (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Андрей (свободно)",
+              "name": "Ирина (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Сергей (свободно)",
+          "name": "Олеся (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Елена (свободно)",
+              "name": "Сергей (свободно)",
               "real": false,
               "children": []
             }
@@ -42,67 +86,6 @@
       "real": true,
       "tg": "",
       "profile": "https://konstantinshell.github.io/genesis/profiles/8678544199/",
-      "children": [
-        {
-          "name": "Кирилл (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Татьяна (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "Ирина (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Андрей (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Андрей Демчук",
-      "real": true,
-      "tg": "sky_world204",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/1610267716/",
-      "children": [
-        {
-          "name": "Мария (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Кирилл (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "Дмитрий (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Ирина (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        }
-      ],
-      "tracker": true
-    },
-    {
-      "name": "Станислав Орехов",
-      "real": true,
-      "tg": "StasOrekhov",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/183298681/",
       "children": [
         {
           "name": "Алексей (свободно)",
@@ -129,53 +112,11 @@
       ]
     },
     {
-      "name": "Илья Новицкий",
+      "name": "🆘",
       "real": true,
-      "tg": "Ilya_novator",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/319756543/",
+      "tg": "Tatyana_699612",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/407124980/",
       "children": [
-        {
-          "name": "Татьяна (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Алексей (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "Андрей (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Мария (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        }
-      ],
-      "tracker": true
-    },
-    {
-      "name": "Виктория Левина",
-      "real": true,
-      "tg": "levina_victory",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/424514495/",
-      "children": [
-        {
-          "name": "Олеся (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Сергей (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        },
         {
           "name": "Кирилл (свободно)",
           "real": false,
@@ -186,16 +127,57 @@
               "children": []
             }
           ]
+        },
+        {
+          "name": "Ирина (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Андрей (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
         }
       ],
-      "band": "paid",
       "tracker": true
     },
     {
-      "name": "Вячеслав Фетисов",
+      "name": "Андрей Демчук",
       "real": true,
-      "tg": "fetisov_vyacheslav",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/261261504/",
+      "tg": "sky_world204",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/1610267716/",
+      "children": [
+        {
+          "name": "Алексей (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Олеся (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Мария (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Кирилл (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        }
+      ],
+      "tracker": true
+    },
+    {
+      "name": "Станислав Орехов",
+      "real": true,
+      "tg": "StasOrekhov",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/183298681/",
       "children": [
         {
           "name": "Ирина (свободно)",
@@ -222,10 +204,10 @@
       ]
     },
     {
-      "name": "Александр Новожилов",
+      "name": "Илья Новицкий",
       "real": true,
-      "tg": "GoodWinZlo",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/221246992/",
+      "tg": "Ilya_novator",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/319756543/",
       "children": [
         {
           "name": "Елена (свободно)",
@@ -250,13 +232,13 @@
           ]
         }
       ],
-      "band": "paid"
+      "tracker": true
     },
     {
-      "name": "Вадим Гурьев",
+      "name": "Виктория Левина",
       "real": true,
-      "tg": "vadimolegich",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/1139648370/",
+      "tg": "levina_victory",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/424514495/",
       "children": [
         {
           "name": "Кирилл (свободно)",
@@ -281,15 +263,87 @@
           ]
         }
       ],
-      "band": "promo",
+      "band": "paid",
       "tracker": true
     },
     {
-      "name": "Алексей Смагажевский",
+      "name": "Вячеслав Фетисов",
       "real": true,
-      "tg": "AlSmag",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/429205054/",
+      "tg": "fetisov_vyacheslav",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/261261504/",
       "children": [
+        {
+          "name": "Татьяна (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Алексей (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Андрей (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Мария (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Константин Шель",
+      "real": true,
+      "tg": "yankitstor",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/652364423/",
+      "children": [
+        {
+          "name": "Алексей (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Олеся (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Мария (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Кирилл (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        }
+      ],
+      "tracker": true
+    },
+    {
+      "name": "Александр Новожилов",
+      "real": true,
+      "tg": "GoodWinZlo",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/221246992/",
+      "children": [
+        {
+          "name": "Олеся (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Сергей (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        },
         {
           "name": "Кирилл (свободно)",
           "real": false,
@@ -300,13 +354,65 @@
               "children": []
             }
           ]
-        },
+        }
+      ],
+      "band": "paid"
+    },
+    {
+      "name": "Вадим Гурьев",
+      "real": true,
+      "tg": "vadimolegich",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/1139648370/",
+      "children": [
         {
-          "name": "Ирина (свободно)",
+          "name": "Алексей (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Андрей (свободно)",
+              "name": "Олеся (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Мария (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Кирилл (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        }
+      ],
+      "band": "promo",
+      "tracker": true
+    },
+    {
+      "name": "Алексей Смагажевский",
+      "real": true,
+      "tg": "AlSmag",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/429205054/",
+      "children": [
+        {
+          "name": "Дмитрий (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Ирина (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Олеся (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Сергей (свободно)",
               "real": false,
               "children": []
             }
@@ -345,50 +451,6 @@
         }
       ],
       "band": "promo"
-    },
-    {
-      "name": "Дмитрий (свободно)",
-      "real": false,
-      "children": [
-        {
-          "name": "Ирина (свободно)",
-          "real": false,
-          "children": []
-        }
-      ]
-    },
-    {
-      "name": "Олеся (свободно)",
-      "real": false,
-      "children": [
-        {
-          "name": "Сергей (свободно)",
-          "real": false,
-          "children": []
-        }
-      ]
-    },
-    {
-      "name": "Ирина (свободно)",
-      "real": false,
-      "children": [
-        {
-          "name": "Андрей (свободно)",
-          "real": false,
-          "children": []
-        }
-      ]
-    },
-    {
-      "name": "Сергей (свободно)",
-      "real": false,
-      "children": [
-        {
-          "name": "Елена (свободно)",
-          "real": false,
-          "children": []
-        }
-      ]
     }
   ]
 }
