@@ -602,9 +602,9 @@ function isTaskDone(id) {
 }
 
 function renderTaskRow(task) {
-  var done = isTaskDone(task.id);
-  return '<div class="tsk' + (done ? ' done' : '') + '" id="tsk-' + task.id + '">'
-    + '<div class="tsk-check' + (done ? ' checked' : '') + '" onclick="toggleTask(\'' + task.id + '\')"></div>'
+  var sc = SPHERE_COLORS[task.sphere] || { dot:'#555' };
+  return '<div class="tsk" id="tsk-' + task.id + '">'
+    + '<div style="width:8px;height:8px;border-radius:50%;background:' + sc.dot + ';flex-shrink:0;margin-top:6px;"></div>'
     + '<div class="tsk-body"><div class="tsk-text">' + task.text + '</div>'
     + '<div class="tsk-meta">' + sphereTag(task.sphere)
     + (task.reason ? '<span class="tsk-reason">' + task.reason + '</span>' : '')
