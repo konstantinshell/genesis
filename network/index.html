@@ -411,7 +411,10 @@ function renderNode(node, depth) {
   else if (node.band === 'promo') html += '<div class="band-badge">🎁</div>';
   else if (node.band === 'promo_member') html += '<div class="band-badge">⭐</div>';
   if (node.tracker) html += '<div class="band-badge">⌚</div>';
-  if (isReal && node.nda === false) html += '<div class="band-badge" style="color:#ff9f0a;" title="Договор не подписан">⚠️ NDA</div>';
+  if (isReal) {
+    if (node.nda) html += '<div class="band-badge" style="color:#34c759;font-size:10px;">✅ NDA</div>';
+    else html += '<div class="band-badge" style="color:#ff9f0a;font-size:10px;">⚠️ NDA</div>';
+  }
 
   if (hasLink) {
     html += '</a>';
