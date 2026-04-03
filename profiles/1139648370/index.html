@@ -68,6 +68,19 @@
     /* Google Cal */
     .gcal-btn { display:inline-block; background:#7c6fff; color:#fff; padding:10px 20px; border-radius:8px; font-size:13px; text-decoration:none; font-weight:500; }
 
+    /* Reflection buttons */
+    .refl-btn {
+      display:flex; align-items:center; justify-content:center; gap:6px;
+      background:linear-gradient(135deg, #7c6fff, #5f4fdf); border-radius:12px;
+      padding:14px 8px; text-decoration:none; color:#fff; font-size:12px;
+      font-weight:600; border:1px solid rgba(124,111,255,0.3);
+      animation: refl-glow 3s ease-in-out infinite;
+    }
+    @keyframes refl-glow {
+      0%, 100% { box-shadow: 0 0 8px rgba(124,111,255,0.2); }
+      50% { box-shadow: 0 0 18px rgba(124,111,255,0.45); }
+    }
+
     /* Bottom Nav */
     .bnav { position:fixed; bottom:0; left:0; right:0; background:#1a1a22; border-top:1px solid #2a2a35; display:flex; justify-content:center; z-index:100; padding-bottom:env(safe-area-inset-bottom, 0px); }
     .bnav a { flex:1; max-width:96px; text-align:center; padding:10px 0 8px; text-decoration:none; color:#555; font-size:10px; transition:color 0.2s; -webkit-tap-highlight-color:transparent; }
@@ -155,8 +168,8 @@
         <div class="st"><div class="st-v">0</div><div class="st-l">EEG·HRV</div></div>
       </div>
       <div style="display:flex;gap:8px;">
-        <a href="https://t.me/ritmnothingbot?start=morning" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#7c6fff;border-radius:10px;padding:12px 8px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;">🌅 Утро</a>
-        <a href="https://t.me/ritmnothingbot?start=evening" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#7c6fff;border-radius:10px;padding:12px 8px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;">🌙 Вечер</a>
+        <a href="https://t.me/ritmnothingbot?start=morning" class="refl-btn" style="flex:1;">🌅 Утренняя рефлексия</a>
+        <a href="https://t.me/ritmnothingbot?start=evening" class="refl-btn" style="flex:1;">🌙 Вечерняя рефлексия</a>
       </div>
     </div>
 
@@ -392,7 +405,7 @@
         <div>🎓 Образование: Нет</div>
         <div>📧 Email: —</div>
         <div>📅 Регистрация: 2026-03-30 20:41</div>
-        <div>📄 Соглашение: —</div>
+        <div>📄 Соглашение: 03.04.2026 09:08</div>
       </div>
     </div>
 
