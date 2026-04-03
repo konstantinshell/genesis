@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Партнёры — ONTO NOTHING</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <style>
+    .partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 32px; }
+    .partner-card {
+      background: var(--glass-b, rgba(255,255,255,0.88));
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--glass-s, 0 4px 24px rgba(0,0,0,0.06));
+    }
+    .partner-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent, #5F5FFF); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 8px; font-family: "Oswald", sans-serif; }
+    .partner-name { font-family: "Oswald", sans-serif; font-size: 14px; font-weight: 600; }
+    .partner-role { font-size: 11px; color: var(--muted, #888); margin-top: 2px; }
+
+    .tasks-section { margin-bottom: 32px; }
+    .tasks-section-title {
+      font-family: "Oswald", sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .priority-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .priority-dot.hot { background: #FF453A; }
+    .priority-dot.planned { background: #0A84FF; }
+    .priority-dot.idea { background: #A855F7; }
+
+    .task-card {
+      background: var(--glass-b, rgba(255,255,255,0.88));
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--glass-s, 0 4px 24px rgba(0,0,0,0.06));
+      transition: transform 0.15s;
+    }
+    .task-card:hover { transform: translateY(-2px); }
+    .task-card.hot { border-left: 3px solid #FF453A; }
+    .task-card.planned { border-left: 3px solid #0A84FF; }
+    .task-card.idea { border-left: 3px solid #A855F7; }
+
+    .task-text { font-size: 14px; line-height: 1.5; color: var(--text, #16161A); margin-bottom: 8px; }
+    .task-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .task-author { font-size: 11px; color: var(--muted, #888); font-family: "Courier Prime", monospace; }
+    .task-sphere {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      font-family: "Courier Prime", monospace;
+      text-transform: uppercase;
+    }
+    .task-date { font-size: 10px; color: var(--muted, #888); margin-left: auto; }
+
+    .sphere-продукт { background: rgba(95,95,255,0.12); color: #5F5FFF; }
+    .sphere-исследования { background: rgba(52,199,89,0.12); color: #28a745; }
+    .sphere-маркетинг { background: rgba(255,159,10,0.12); color: #e08600; }
+    .sphere-операции { background: rgba(88,86,214,0.12); color: #5856D6; }
+    .sphere-финансы { background: rgba(218,160,64,0.12); color: #BA7517; }
+    .sphere-партнёрства { background: rgba(10,132,255,0.12); color: #0A84FF; }
+    .sphere-команда { background: rgba(255,69,58,0.12); color: #FF453A; }
+
+    .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+    .filter-btn {
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: var(--glass-b, rgba(255,255,255,0.88));
+      font-size: 12px;
+      font-family: "Jost", sans-serif;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--muted, #888);
+    }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent, #5F5FFF); color: #fff; border-color: var(--accent, #5F5FFF); }
+
+    .updated-info { text-align: center; font-size: 11px; color: var(--muted, #888); padding: 16px 0; font-family: "Courier Prime", monospace; }
+    .empty-state { text-align: center; padding: 40px 20px; color: var(--muted, #888); font-size: 14px; }
+  </style>
+</head>
+<body>
+
+<div class="page-orbs">
+  <span></span>
+  <span></span>
+</div>
+
+<main>
+  <section class="page-hero s">
+    <div class="s-inner">
+      <span class="tag">бесконтактное планирование</span>
+      <h1>Партнёры</h1>
+      <p>Задачи проекта, извлечённые из рефлексий. Каждый партнёр загружает мысли — ИИ формирует приоритеты.</p>
+    </div>
+  </section>
+
+  <section class="s">
+    <div class="s-inner">
+
+      <!-- Партнёры -->
+      <div class="partners-grid" id="partners-grid"></div>
+
+      <!-- Фильтры -->
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="hot">Горячие</button>
+        <button class="filter-btn" data-filter="planned">Плановые</button>
+        <button class="filter-btn" data-filter="idea">Идеи</button>
+      </div>
+
+      <!-- Задачи -->
+      <div id="tasks-container"></div>
+
+      <!-- Обновлено -->
+      <div class="updated-info" id="updated-info"></div>
+
+    </div>
+  </section>
+</main>
+
+<script>
+(function() {
+  var PRIORITY_LABELS = { hot: 'Горячие', planned: 'Плановые', idea: 'Идеи' };
+  var PRIORITY_ORDER = ['hot', 'planned', 'idea'];
+  var currentFilter = 'all';
+
+  function renderPartners(partners) {
+    var grid = document.getElementById('partners-grid');
+    grid.innerHTML = partners.map(function(p) {
+      var initials = p.name.split(' ').map(function(w) { return w[0]; }).join('');
+      return '<div class="partner-card">'
+        + '<div class="partner-avatar">' + initials + '</div>'
+        + '<div class="partner-name">' + p.name + '</div>'
+        + '<div class="partner-role">партнёр</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  function renderTasks(tasks) {
+    var container = document.getElementById('tasks-container');
+    var filtered = currentFilter === 'all' ? tasks : tasks.filter(function(t) { return t.priority === currentFilter; });
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<div class="empty-state">Нет задач в этой категории</div>';
+      return;
+    }
+
+    var grouped = {};
+    PRIORITY_ORDER.forEach(function(p) { grouped[p] = []; });
+    filtered.forEach(function(t) {
+      if (grouped[t.priority]) grouped[t.priority].push(t);
+    });
+
+    var html = '';
+    PRIORITY_ORDER.forEach(function(p) {
+      var list = grouped[p];
+      if (list.length === 0) return;
+
+      html += '<div class="tasks-section">';
+      html += '<div class="tasks-section-title"><span class="priority-dot ' + p + '"></span>' + PRIORITY_LABELS[p] + ' <span style="color:var(--muted);font-size:12px;font-weight:400;">(' + list.length + ')</span></div>';
+
+      list.forEach(function(t) {
+        html += '<div class="task-card ' + t.priority + '">';
+        html += '<div class="task-text">' + t.text + '</div>';
+        html += '<div class="task-meta">';
+        html += '<span class="task-author">' + t.author + '</span>';
+        html += '<span class="task-sphere sphere-' + t.sphere + '">#' + t.sphere + '</span>';
+        html += '<span class="task-date">' + t.created + '</span>';
+        html += '</div>';
+        html += '</div>';
+      });
+
+      html += '</div>';
+    });
+
+    container.innerHTML = html;
+  }
+
+  function setupFilters(tasks) {
+    var buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        buttons.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        renderTasks(tasks);
+      });
+    });
+  }
+
+  fetch('tasks.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      renderPartners(data.partners || []);
+      renderTasks(data.tasks || []);
+      setupFilters(data.tasks || []);
+
+      var info = document.getElementById('updated-info');
+      if (data.updated) {
+        var d = new Date(data.updated);
+        info.textContent = 'Обновлено: ' + d.toLocaleDateString('ru-RU') + ' ' + d.toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit'});
+      }
+    })
+    .catch(function() {
+      document.getElementById('tasks-container').innerHTML = '<div class="empty-state">Не удалось загрузить задачи</div>';
+    });
+})();
+</script>
+
+<script src="../components/nav.js"></script>
+<script src="../components/footer.js"></script>
+</body>
+</html>
