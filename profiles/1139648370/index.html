@@ -71,14 +71,14 @@
     /* Reflection buttons */
     .refl-btn {
       display:flex; align-items:center; justify-content:center; gap:6px;
-      background:linear-gradient(135deg, #7c6fff, #5f4fdf); border-radius:12px;
-      padding:14px 8px; text-decoration:none; color:#fff; font-size:12px;
-      font-weight:600; border:1px solid rgba(124,111,255,0.3);
+      background:linear-gradient(135deg, #7c6fff, #5f4fdf); border-radius:10px;
+      padding:10px 10px; text-decoration:none; color:#fff; font-size:12px;
+      font-weight:500; border:1px solid rgba(124,111,255,0.3);
       animation: refl-glow 3s ease-in-out infinite;
     }
     @keyframes refl-glow {
-      0%, 100% { box-shadow: 0 0 8px rgba(124,111,255,0.2); }
-      50% { box-shadow: 0 0 18px rgba(124,111,255,0.45); }
+      0%, 100% { box-shadow: 0 0 6px rgba(124,111,255,0.15); }
+      50% { box-shadow: 0 0 14px rgba(124,111,255,0.35); }
     }
 
     /* Bottom Nav */
@@ -161,25 +161,30 @@
   <div id="tab-main" class="tab active">
 
     <!-- Рефлексии + загрузки -->
-    <div style="display:flex;gap:8px;margin-bottom:14px;">
-      <a href="https://t.me/ritmnothingbot?start=morning" class="refl-btn" style="flex:1;flex-direction:column;">
-        <div style="font-size:22px;font-weight:700;font-family:'Courier Prime',monospace;">0</div>
-        <div>🌅 Утренняя рефлексия</div>
-      </a>
-      <a href="https://t.me/ritmnothingbot?start=evening" class="refl-btn" style="flex:1;flex-direction:column;">
-        <div style="font-size:22px;font-weight:700;font-family:'Courier Prime',monospace;">1</div>
-        <div>🌙 Вечерняя рефлексия</div>
-      </a>
-    </div>
-    <div style="display:flex;gap:8px;margin-bottom:14px;">
-      <div class="st" style="flex:1;background:#1a1a22;border-radius:12px;padding:14px;">
-        <div class="st-v">0</div><div class="st-l">EEG сессий</div>
+    <div class="c" style="padding:14px;">
+      <div style="display:flex;gap:8px;margin-bottom:10px;">
+        <a href="https://t.me/ritmnothingbot?start=morning" class="refl-btn" style="flex:1;">
+          <span style="font-family:'Courier Prime',monospace;font-size:15px;font-weight:700;min-width:18px;">0</span>
+          <span>🌅 Утренняя</span>
+        </a>
+        <a href="https://t.me/ritmnothingbot?start=evening" class="refl-btn" style="flex:1;">
+          <span style="font-family:'Courier Prime',monospace;font-size:15px;font-weight:700;min-width:18px;">1</span>
+          <span>🌙 Вечерняя</span>
+        </a>
       </div>
-      <div class="st" style="flex:1;background:#1a1a22;border-radius:12px;padding:14px;">
-        <div class="st-v">0</div><div class="st-l">HRV данных</div>
-      </div>
-      <div class="st" style="flex:1;background:#1a1a22;border-radius:12px;padding:14px;">
-        <div class="st-v">0</div><div class="st-l">Анализов</div>
+      <div style="display:flex;gap:8px;">
+        <div style="flex:1;background:#12121a;border-radius:8px;padding:8px;text-align:center;">
+          <span style="font-family:'Courier Prime',monospace;font-size:14px;color:#7c6fff;">0</span>
+          <span style="font-size:10px;color:#555;margin-left:4px;">EEG</span>
+        </div>
+        <div style="flex:1;background:#12121a;border-radius:8px;padding:8px;text-align:center;">
+          <span style="font-family:'Courier Prime',monospace;font-size:14px;color:#7c6fff;">0</span>
+          <span style="font-size:10px;color:#555;margin-left:4px;">HRV</span>
+        </div>
+        <div style="flex:1;background:#12121a;border-radius:8px;padding:8px;text-align:center;">
+          <span style="font-family:'Courier Prime',monospace;font-size:14px;color:#7c6fff;">0</span>
+          <span style="font-size:10px;color:#555;margin-left:4px;">Анализы</span>
+        </div>
       </div>
     </div>
 
