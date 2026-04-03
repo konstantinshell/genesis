@@ -836,38 +836,12 @@ var _tasksLoaded = false;
 var _plannerLevel = 0;
 var _plannerData = null;
 
-function renderLevel0Banner(planner) {
-  var cl = planner ? planner.checklist || {} : {};
-  var keys = Object.keys(cl);
-  var done = 0; for (var i=0;i<keys.length;i++) if (cl[keys[i]]) done++;
-  var total = keys.length || 11;
-  var pct = Math.round(done/total*100);
-  var filled = Math.round(done/total*10);
-  var bar = '';
-  for (var b=0;b<10;b++) bar += b < filled ? '█' : '░';
-
-  var labels = {anketa:'Анкета',session_1:'Сессия 1',session_2:'Сессия 2',session_3:'Сессия 3',session_4:'Сессия 4',session_5:'Сессия 5',session_6:'Сессия 6',session_7:'Сессия 7',neiry_csv:'Neiry CSV',garmin_2weeks:'Garmin 14 дней',reflection_stream:'7+ рефлексий'};
-
-  var h = '<div class="c" style="border:1px solid #2a2a35;background:linear-gradient(135deg,#12121a,#1a1a2e);">';
-  h += '<div style="font-family:Oswald,sans-serif;font-size:16px;font-weight:600;margin-bottom:8px;">📡 Режим сбора данных</div>';
-  h += '<p style="font-size:12px;color:#888;line-height:1.5;margin-bottom:12px;">AI анализирует твой контекст после того как Константин проведёт глубокий разбор базы. Пока — просто говори в бот всё что важно.</p>';
-  h += '<div style="background:#2a2a35;border-radius:4px;height:8px;margin-bottom:8px;overflow:hidden;"><div style="height:8px;border-radius:4px;background:linear-gradient(90deg,#7c6fff,#34c759);width:'+pct+'%;"></div></div>';
-  h += '<div style="font-size:11px;color:#888;text-align:center;margin-bottom:12px;">'+done+' из '+total+' · '+pct+'%</div>';
-  h += '<button onclick="document.getElementById(\'checklist-modal\').style.display=\'flex\'" style="width:100%;background:#7c6fff;color:#fff;border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;">Что нужно собрать →</button>';
+function renderLevel0Banner() {
+  var h = '<div class="c" style="border:1px solid #2a2a35;background:linear-gradient(135deg,#12121a,#1a1a2e);text-align:center;padding:24px 18px;">';
+  h += '<div style="font-size:28px;margin-bottom:10px;">📡</div>';
+  h += '<div style="font-family:Oswald,sans-serif;font-size:16px;font-weight:600;margin-bottom:10px;">Данные собираются</div>';
+  h += '<p style="font-size:13px;color:#888;line-height:1.6;">Веди рефлексию в боте — утро, вечер, поток мыслей. После прохождения чекапа MNPI здесь появятся задачи и планы.</p>';
   h += '</div>';
-
-  // Modal
-  h += '<div id="checklist-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:200;align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)this.style.display=\'none\'">';
-  h += '<div style="background:#1a1a22;border-radius:14px;padding:20px;max-width:360px;width:100%;">';
-  h += '<div style="font-family:Oswald,sans-serif;font-size:16px;font-weight:600;margin-bottom:12px;">📋 Чеклист сбора данных</div>';
-  h += '<div style="background:#2a2a35;border-radius:4px;height:6px;margin-bottom:12px;overflow:hidden;"><div style="height:6px;border-radius:4px;background:#7c6fff;width:'+pct+'%;"></div></div>';
-  for (var k in labels) {
-    var icon = cl[k] ? '✅' : '☐';
-    var clr = cl[k] ? '#888' : '#555';
-    h += '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #2a2a35;"><span style="font-size:14px;">'+icon+'</span><span style="font-size:12px;color:'+clr+';">'+labels[k]+'</span></div>';
-  }
-  h += '<button onclick="this.parentElement.parentElement.style.display=\'none\'" style="width:100%;margin-top:14px;background:#2a2a35;color:#888;border:none;border-radius:8px;padding:10px;font-size:12px;cursor:pointer;">Закрыть</button>';
-  h += '</div></div>';
   return h;
 }
 
@@ -890,7 +864,7 @@ function loadTasks() {
 
     // Level 0 banner
     if (_plannerLevel === 0) {
-      h += renderLevel0Banner(_plannerData);
+      h += renderLevel0Banner();
     }
 
     // Stale check
