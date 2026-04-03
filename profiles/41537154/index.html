@@ -150,7 +150,7 @@
     <!-- Активность -->
     <div class="c">
       <div class="stats">
-        <div class="st"><div class="st-v">0</div><div class="st-l">Рефлексий</div></div>
+        <div class="st"><div class="st-v">1</div><div class="st-l">Рефлексий</div></div>
         <div class="st"><div class="st-v">0</div><div class="st-l">Сессий</div></div>
         <div class="st"><div class="st-v">0</div><div class="st-l">Метрик</div></div>
       </div>
@@ -183,7 +183,7 @@
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧘</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Рефлексия в бот</div>
-          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">❌ Не записано</div>
+          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 1 записей</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🫀</div>
@@ -357,7 +357,7 @@
           </div>
         </div>
         <div style="display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid #2a2a35;">
-          <div style="font-size:16px; min-width:24px;">⬜</div>
+          <div style="font-size:16px; min-width:24px;">✅</div>
           <div>
             <div style="font-size:13px; color:#e0e0e8; font-weight:500;">Выгрузить рефлексию</div>
             <div style="font-size:11px; color:#666;">Кнопка в боте: Рефлексия утро / вечер</div>
@@ -380,7 +380,7 @@
       </div>
       <div style="margin-top:14px; background:#12121a; border-radius:10px; padding:14px; text-align:center;">
         <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:4px;">Твоя готовность</div>
-        <div style="font-family:'Courier Prime',monospace; font-size:28px; font-weight:700; color:#7c6fff;">0%</div>
+        <div style="font-family:'Courier Prime',monospace; font-size:28px; font-weight:700; color:#7c6fff;">25%</div>
       </div>
     </div>
 
@@ -676,7 +676,10 @@ function renderSec3(week) {
       h += '<div class="week-task">' + sphereDot(week[j].sphere) + '<div class="week-text">' + week[j].text + '</div>' + sphereTag(week[j].sphere) + '</div>';
     }
     h += '</div>';
-    h += '<button class="expand-btn" onclick="var e=document.getElementById(\'week-extra\');e.style.display=e.style.display===\'none\'?\'block\':\'none\';this.textContent=e.style.display===\'none\'?\'ещё ' + (week.length-5) + ' задач\':\'свернуть\';">ещё ' + (week.length-5) + ' задач</button>';
+    h += '<div id="week-btns" style="display:flex;gap:8px;margin-top:8px;">';
+    h += '<button class="expand-btn" style="flex:1;" onclick="var e=document.getElementById(\'week-extra\');var b=document.getElementById(\'week-tasklist-btn\');if(e.style.display===\'none\'){e.style.display=\'block\';b.style.display=\'block\';this.textContent=\'свернуть\';}else{e.style.display=\'none\';b.style.display=\'none\';this.textContent=\'ещё ' + (week.length-5) + ' задач\';}">ещё ' + (week.length-5) + ' задач</button>';
+    h += '<a id="week-tasklist-btn" href="https://t.me/ritmnothingbot?start=tasklist" class="expand-btn" style="flex:1;display:none;text-align:center;text-decoration:none;color:#7c6fff;border-color:#7c6fff;">все задачи списком</a>';
+    h += '</div>';
   }
   h += '</div>';
   return h;
