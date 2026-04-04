@@ -463,20 +463,30 @@
     .contrast-divider { width: 2px; background: var(--accent); box-shadow: 0 0 12px rgba(99,102,241,0.4); align-self: stretch; }
 
     /* ========== SCREEN 8: TECH MIRROR ========== */
-    .tech-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-    .tech-section .inner { max-width: 900px; width: 100%; margin: 0 auto; text-align: center; }
-    .tech-graph { position: relative; width: 500px; height: 420px; margin: 48px auto; }
+    .tech-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .tech-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; }
+    .tech-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center; margin-top: 40px; }
+    .tech-graph { position: relative; width: 100%; max-width: 500px; height: 480px; margin: 0 auto; }
     .tech-graph svg { width: 100%; height: 100%; overflow: visible; }
     .tech-node { opacity: 0; transition: opacity 0.6s ease; }
     .tech-graph.visible .tech-node { opacity: 1; }
     .tech-node-circle { stroke-width: 1.5; fill-opacity: 0.1; }
     .tech-node text { font-family: var(--fm); font-size: 10px; fill: var(--text); text-anchor: middle; }
-    .tech-line { stroke: rgba(99,102,241,0.2); stroke-width: 1; }
-    .tech-center-circle { fill: var(--accent); filter: drop-shadow(0 0 16px rgba(99,102,241,0.5)); }
+    .tech-line { stroke: rgba(99,102,241,0.15); stroke-width: 1; }
+    .tech-center-circle { fill: var(--accent); filter: drop-shadow(0 0 20px rgba(99,102,241,0.6)); }
     .tech-pulse-dot { fill: var(--accent); opacity: 0.8; }
     .tech-tooltip { position: absolute; background: rgba(17,17,39,0.95); backdrop-filter: blur(12px); border: 1px solid rgba(99,102,241,0.3); border-radius: 12px; padding: 14px 18px; max-width: 260px; pointer-events: none; opacity: 0; transition: opacity 0.3s, transform 0.3s; transform: translateY(8px); z-index: 10; text-align: left; font-size: 0.85rem; color: rgba(240,240,245,0.85); line-height: 1.5; }
     .tech-tooltip.active { opacity: 1; transform: translateY(0); }
     .tech-tooltip strong { color: var(--accent); font-family: var(--fh); text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 4px; }
+    .tech-info { text-align: left; }
+    .tech-info h2 { font-family: var(--fh); font-size: clamp(1.6rem,3.5vw,2.6rem); font-weight: 600; text-transform: uppercase; line-height: 1.2; margin-bottom: 20px; }
+    .tech-info > p { font-size: clamp(0.95rem,1.6vw,1.05rem); line-height: 1.7; color: rgba(240,240,245,0.75); margin-bottom: 16px; }
+    .tech-ai-block { background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.15); border-radius: 14px; padding: 24px; margin-top: 24px; }
+    .tech-ai-block h3 { font-family: var(--fh); font-size: 1rem; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .tech-ai-block p { font-size: 0.9rem; color: rgba(240,240,245,0.7); line-height: 1.6; margin-bottom: 12px; }
+    .tech-ai-list { list-style: none; margin: 0; padding: 0; }
+    .tech-ai-list li { font-size: 0.85rem; color: rgba(240,240,245,0.6); padding: 5px 0; padding-left: 16px; position: relative; }
+    .tech-ai-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
 
     /* ========== SCREEN 9: DASHBOARD ========== */
     .dash-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
@@ -654,7 +664,8 @@
       .flip-card { height: 300px; }
       .contrast-grid { grid-template-columns: 1fr; }
       .contrast-divider { width: 100%; height: 2px; }
-      .tech-graph { width: 100%; height: 320px; }
+      .tech-layout { grid-template-columns: 1fr; }
+      .tech-graph { width: 100%; height: 360px; }
       .dash-grid { grid-template-columns: 1fr; }
       .chaos-viz { width: 100%; }
       .layers-section .inner { grid-template-columns: 1fr; }
@@ -974,12 +985,32 @@
 <!-- ===== SCREEN 8: ТЕХНОЛОГИЧЕСКОЕ ЗЕРКАЛО ===== -->
 <section class="tech-section" id="screen8">
   <div class="inner">
-    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Технологическое зеркало, которого не&nbsp;существовало</h2>
-    <div class="tech-graph" id="techGraph">
-      <svg viewBox="0 0 500 420" id="techSvg"></svg>
-      <div class="tech-tooltip" id="techTooltip"></div>
+    <div class="tech-layout">
+      <div class="tech-graph" id="techGraph">
+        <svg viewBox="0 0 500 480" id="techSvg"></svg>
+        <div class="tech-tooltip" id="techTooltip"></div>
+      </div>
+      <div class="tech-info">
+        <h2 class="fade-up">Технологическое зеркало, которого не&nbsp;существовало</h2>
+        <p class="fade-up">Три потока данных — мозг, тело, контекст жизни — сходятся в одной точке. Но сами по себе данные — просто числа. Нужен тот, кто их прочитает.</p>
+        <p class="fade-up">ИИ — не четвёртый поток. Это зеркало. Процессор, который обрабатывает все потоки одновременно и видит то, что не может увидеть ни один человек.</p>
+
+        <div class="tech-ai-block fade-up">
+          <h3>🧬 ИИ-аналитик MNPI</h3>
+          <p>Более 100 миллионов параметров. Фирменные настройки ONTO NOTHING, обученные на перекрёстных данных нейро + физиологии + феноменологии. Не универсальный чат-бот, а специализированная модель, настроенная точно отражать многомерный поток информации.</p>
+          <ul class="tech-ai-list">
+            <li>Видит паттерны между волнами мозга и HRV, скрытые от глаз</li>
+            <li>Ловит рассинхронизацию потоков — диагностический сигнал</li>
+            <li>На массиве данных находит закономерности, о которых раньше невозможно было догадаться</li>
+            <li>Сравнивает твой профиль с тысячами других участников</li>
+            <li>Генерирует персональную обратную связь по каждой сессии</li>
+            <li>С каждым новым участником становится точнее</li>
+          </ul>
+        </div>
+
+        <div class="accent-quote fade-up" style="margin-top:24px;">Данные без ИИ — шум. ИИ без данных — фантазия. Вместе — зеркало, которое видит тебя объёмнее, чем ты сам.</div>
+      </div>
     </div>
-    <div class="accent-quote fade-up" style="margin:0 auto;">Впервые можно видеть — не только чувствовать.</div>
   </div>
 </section>
 
@@ -1595,75 +1626,132 @@ function observeVisible(id) {
   const svg = document.getElementById('techSvg');
   if (!svg) return;
   const ns = 'http://www.w3.org/2000/svg';
-  const devices = [
-    { name: 'HRV-трекер', x: 120, y: 80, desc: 'Пишет круглосуточно. Стресс, сон, восстановление, VO2max.', color: '#00E5A0' },
-    { name: 'Мобильный ЭЭГ', x: 250, y: 50, desc: 'Альфа, бета, тета. Что происходит с мозгом в момент практики.', color: '#5F5FFF' },
-    { name: 'Планер Ритмы Жизни', x: 380, y: 80, desc: '8 сфер жизни. Ежедневная рефлексия. Задачи, тренировки мозга, дневник.', color: '#A78BFA' },
+
+  // 3 input streams at top
+  const streams = [
+    { name: 'Нейро (ЭЭГ)', x: 100, y: 60, color: '#5F5FFF', desc: 'Альфа, бета, тета, гамма. Мозг в реальном времени.' },
+    { name: 'Тело (HRV)', x: 250, y: 40, color: '#00E5A0', desc: 'Пульс, стресс, сон, дыхание, температура. 24/7.' },
+    { name: 'Контекст (Планер)', x: 400, y: 60, color: '#A78BFA', desc: 'Рефлексия, задачи, голосовой нарратив, дневник.' },
   ];
-  const center = { x: 250, y: 280 };
+  const ai = { x: 250, y: 240 };       // AI center
+  const output = { x: 250, y: 420 };    // Output below
+
   const tooltip = document.getElementById('techTooltip');
 
-  devices.forEach((d, i) => {
-    // Line to center
+  // Defs for AI glow
+  const defs = document.createElementNS(ns, 'defs');
+  const flt = document.createElementNS(ns, 'filter');
+  flt.id = 'aiGlow';
+  flt.innerHTML = '<feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>';
+  defs.appendChild(flt);
+  svg.appendChild(defs);
+
+  // Lines from streams to AI
+  streams.forEach((s, i) => {
     const line = document.createElementNS(ns, 'line');
-    line.setAttribute('x1', d.x); line.setAttribute('y1', d.y);
-    line.setAttribute('x2', center.x); line.setAttribute('y2', center.y);
+    line.setAttribute('x1', s.x); line.setAttribute('y1', s.y);
+    line.setAttribute('x2', ai.x); line.setAttribute('y2', ai.y);
     line.classList.add('tech-line');
     svg.appendChild(line);
 
-    // Pulse dot on line
+    // Pulse flowing into AI
     const pd = document.createElementNS(ns, 'circle');
-    pd.setAttribute('r', 3);
-    pd.setAttribute('fill', d.color);
+    pd.setAttribute('r', 3.5); pd.setAttribute('fill', s.color);
     pd.classList.add('tech-pulse-dot');
-    const anim = document.createElementNS(ns, 'animateMotion');
-    anim.setAttribute('dur', (2.5 + i * 0.5) + 's');
-    anim.setAttribute('repeatCount', 'indefinite');
-    anim.setAttribute('path', `M${d.x},${d.y} L${center.x},${center.y}`);
-    pd.appendChild(anim);
-    svg.appendChild(pd);
+    const am = document.createElementNS(ns, 'animateMotion');
+    am.setAttribute('dur', (2 + i * 0.3) + 's');
+    am.setAttribute('repeatCount', 'indefinite');
+    am.setAttribute('path', `M${s.x},${s.y} L${ai.x},${ai.y}`);
+    pd.appendChild(am); svg.appendChild(pd);
 
-    // Node
+    // Stream node
     const g = document.createElementNS(ns, 'g');
     g.classList.add('tech-node');
-    g.style.transitionDelay = (0.3 + i * 0.4) + 's';
+    g.style.transitionDelay = (0.2 + i * 0.3) + 's';
     const c = document.createElementNS(ns, 'circle');
-    c.setAttribute('cx', d.x); c.setAttribute('cy', d.y); c.setAttribute('r', 28);
+    c.setAttribute('cx', s.x); c.setAttribute('cy', s.y); c.setAttribute('r', 26);
     c.classList.add('tech-node-circle');
-    c.setAttribute('stroke', d.color); c.setAttribute('fill', d.color);
+    c.setAttribute('stroke', s.color); c.setAttribute('fill', s.color);
     g.appendChild(c);
     const t = document.createElementNS(ns, 'text');
-    t.setAttribute('x', d.x); t.setAttribute('y', d.y + 4);
-    t.setAttribute('font-size', '9');
-    t.textContent = d.name;
+    t.setAttribute('x', s.x); t.setAttribute('y', s.y + 4);
+    t.setAttribute('font-size', '8'); t.textContent = s.name;
     g.appendChild(t);
     g.addEventListener('mouseenter', () => {
-      const gEl = document.getElementById('techGraph');
-      const rect = gEl.getBoundingClientRect();
-      tooltip.innerHTML = `<strong>${d.name}</strong>${d.desc}`;
-      tooltip.style.left = (d.x / 500 * rect.width - 130) + 'px';
-      tooltip.style.top = (d.y / 420 * rect.height + 40) + 'px';
+      const rect = document.getElementById('techGraph').getBoundingClientRect();
+      tooltip.innerHTML = `<strong>${s.name}</strong>${s.desc}`;
+      tooltip.style.left = (s.x / 500 * rect.width - 130) + 'px';
+      tooltip.style.top = (s.y / 480 * rect.height + 36) + 'px';
       tooltip.classList.add('active');
     });
     g.addEventListener('mouseleave', () => tooltip.classList.remove('active'));
     svg.appendChild(g);
   });
 
-  // Center node
-  const cc = document.createElementNS(ns, 'circle');
-  cc.setAttribute('cx', center.x); cc.setAttribute('cy', center.y); cc.setAttribute('r', 20);
-  cc.classList.add('tech-center-circle');
-  cc.classList.add('tech-node');
-  cc.style.transitionDelay = '1.5s';
-  svg.appendChild(cc);
-  const ct = document.createElementNS(ns, 'text');
-  ct.setAttribute('x', center.x); ct.setAttribute('y', center.y + 4);
-  ct.setAttribute('text-anchor', 'middle');
-  ct.setAttribute('font-family', 'Courier Prime'); ct.setAttribute('font-size', '9'); ct.setAttribute('fill', '#fff');
-  ct.classList.add('tech-node');
-  ct.style.transitionDelay = '1.6s';
-  ct.textContent = 'ДАННЫЕ';
-  svg.appendChild(ct);
+  // AI center — big pulsing node
+  const aiCircle = document.createElementNS(ns, 'circle');
+  aiCircle.setAttribute('cx', ai.x); aiCircle.setAttribute('cy', ai.y); aiCircle.setAttribute('r', 40);
+  aiCircle.setAttribute('fill', '#5F5FFF'); aiCircle.setAttribute('filter', 'url(#aiGlow)');
+  aiCircle.classList.add('tech-node'); aiCircle.style.transitionDelay = '1.2s';
+  // Pulse animation
+  const pulseAnim = document.createElementNS(ns, 'animate');
+  pulseAnim.setAttribute('attributeName', 'r'); pulseAnim.setAttribute('values', '38;44;38');
+  pulseAnim.setAttribute('dur', '3s'); pulseAnim.setAttribute('repeatCount', 'indefinite');
+  aiCircle.appendChild(pulseAnim);
+  svg.appendChild(aiCircle);
+  // AI label
+  const aiT1 = document.createElementNS(ns, 'text');
+  aiT1.setAttribute('x', ai.x); aiT1.setAttribute('y', ai.y - 4);
+  aiT1.setAttribute('text-anchor', 'middle'); aiT1.setAttribute('font-family', 'Courier Prime');
+  aiT1.setAttribute('font-size', '11'); aiT1.setAttribute('fill', '#fff'); aiT1.setAttribute('font-weight', 'bold');
+  aiT1.classList.add('tech-node'); aiT1.style.transitionDelay = '1.4s';
+  aiT1.textContent = 'ИИ';
+  svg.appendChild(aiT1);
+  const aiT2 = document.createElementNS(ns, 'text');
+  aiT2.setAttribute('x', ai.x); aiT2.setAttribute('y', ai.y + 12);
+  aiT2.setAttribute('text-anchor', 'middle'); aiT2.setAttribute('font-family', 'Courier Prime');
+  aiT2.setAttribute('font-size', '7'); aiT2.setAttribute('fill', 'rgba(255,255,255,0.7)');
+  aiT2.classList.add('tech-node'); aiT2.style.transitionDelay = '1.5s';
+  aiT2.textContent = '100M+ параметров';
+  svg.appendChild(aiT2);
+
+  // Line from AI to output
+  const outLine = document.createElementNS(ns, 'line');
+  outLine.setAttribute('x1', ai.x); outLine.setAttribute('y1', ai.y + 40);
+  outLine.setAttribute('x2', output.x); outLine.setAttribute('y2', output.y);
+  outLine.setAttribute('stroke', '#F5DEB3'); outLine.setAttribute('stroke-width', '2');
+  outLine.setAttribute('stroke-dasharray', '6 4');
+  svg.appendChild(outLine);
+
+  // Output pulse
+  const opd = document.createElementNS(ns, 'circle');
+  opd.setAttribute('r', 4); opd.setAttribute('fill', '#F5DEB3'); opd.setAttribute('opacity', '0.8');
+  const oam = document.createElementNS(ns, 'animateMotion');
+  oam.setAttribute('dur', '2s'); oam.setAttribute('repeatCount', 'indefinite');
+  oam.setAttribute('path', `M${ai.x},${ai.y + 40} L${output.x},${output.y}`);
+  opd.appendChild(oam); svg.appendChild(opd);
+
+  // Output node
+  const og = document.createElementNS(ns, 'g');
+  og.classList.add('tech-node'); og.style.transitionDelay = '1.8s';
+  const oc = document.createElementNS(ns, 'circle');
+  oc.setAttribute('cx', output.x); oc.setAttribute('cy', output.y); oc.setAttribute('r', 30);
+  oc.setAttribute('fill', '#F5DEB3'); oc.setAttribute('fill-opacity', '0.15');
+  oc.setAttribute('stroke', '#F5DEB3'); oc.setAttribute('stroke-width', '1.5');
+  og.appendChild(oc);
+  const ot = document.createElementNS(ns, 'text');
+  ot.setAttribute('x', output.x); ot.setAttribute('y', output.y - 2);
+  ot.setAttribute('text-anchor', 'middle'); ot.setAttribute('font-family', 'Courier Prime');
+  ot.setAttribute('font-size', '8'); ot.setAttribute('fill', '#F5DEB3');
+  ot.textContent = 'MNPI Отчёт';
+  og.appendChild(ot);
+  const ot2 = document.createElementNS(ns, 'text');
+  ot2.setAttribute('x', output.x); ot2.setAttribute('y', output.y + 12);
+  ot2.setAttribute('text-anchor', 'middle'); ot2.setAttribute('font-family', 'Courier Prime');
+  ot2.setAttribute('font-size', '7'); ot2.setAttribute('fill', 'rgba(245,222,179,0.6)');
+  ot2.textContent = 'Session Passport';
+  og.appendChild(ot2);
+  svg.appendChild(og);
 
   observeVisible('techGraph');
 })();
