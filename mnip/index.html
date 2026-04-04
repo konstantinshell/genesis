@@ -1058,12 +1058,25 @@
 <!-- ===== SCREEN 10: ХАОС → ПОРЯДОК ===== -->
 <section class="chaos-section" id="screen10">
   <div class="inner">
-    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Данных много. Понимания — ноль.</h2>
-    <p class="fade-up" style="color:var(--muted);max-width:600px;margin:0 auto 16px;">ЭЭГ — в одном приложении. Garmin — в другом. Слова — в голове. Нет инструмента, который сводит всё вместе.</p>
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">100+ субиндексов. Ноль понимания.</h2>
+    <p class="fade-up" style="color:var(--muted);max-width:700px;margin:0 auto 16px;">30 индексов Neiry — в одном приложении. 25 метрик Garmin — в другом. 50 параметров из планера — в третьем. Человек тонет в данных, которые не умеют разговаривать друг с другом.</p>
+
     <div class="chaos-viz" id="chaosViz">
       <svg viewBox="0 0 500 360" id="chaosSvg"></svg>
     </div>
-    <div class="accent-quote fade-up" style="max-width:700px;margin:0 auto;">Это не проблема технологий. Это проблема отсутствия единой интерпретационной рамки.</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:700px;margin:32px auto 0;" class="fade-up">
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;">
+        <h4 style="font-family:var(--fh);font-size:0.85rem;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Без MNPI</h4>
+        <p style="font-size:0.85rem;color:rgba(240,240,245,0.5);line-height:1.5;">HRV упал. Альфа выросла. Настроение хорошее. Что это значит? Никто не знает. Каждый источник молчит о других.</p>
+      </div>
+      <div style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.15);border-radius:12px;padding:20px;">
+        <h4 style="font-family:var(--fh);font-size:0.85rem;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">С MNPI</h4>
+        <p style="font-size:0.85rem;color:rgba(240,240,245,0.75);line-height:1.5;">ИИ видит: альфа выросла при падении HRV — это компенсаторная реакция на стресс, а не расслабление. Рекомендация: восстановительная практика.</p>
+      </div>
+    </div>
+
+    <div class="accent-quote fade-up" style="max-width:700px;margin:24px auto 0;">Проблема не в технологиях. Проблема — в отсутствии единой интерпретационной рамки. MNPI — эта рамка.</div>
   </div>
 </section>
 
