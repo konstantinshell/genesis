@@ -416,6 +416,185 @@
     .modes-list-mobile .mode-item p { font-size: 0.9rem; color: rgba(240,240,245,0.75); line-height: 1.5; }
     .modes-metaphor { font-family: var(--fm); font-size: 0.9rem; color: var(--muted); margin-bottom: 40px; }
 
+    /* ========== SCREEN 6: FLIP CARDS ========== */
+    .flip-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .flip-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; }
+    .flip-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin: 48px 0; perspective: 1200px; }
+    .flip-card { height: 340px; cursor: pointer; perspective: 1200px; }
+    .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
+    .flip-card:hover .flip-card-inner, .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 16px; padding: 32px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 1px solid rgba(255,255,255,0.08); }
+    .flip-front { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); }
+    .flip-back { background: rgba(17,17,39,0.95); backdrop-filter: blur(12px); transform: rotateY(180deg); }
+    .flip-icon { font-size: 48px; margin-bottom: 20px; }
+    .flip-front h3 { font-family: var(--fh); font-size: 1.3rem; font-weight: 600; text-transform: uppercase; }
+    .flip-back p { font-size: 0.95rem; line-height: 1.65; color: rgba(240,240,245,0.85); }
+    .flip-card:nth-child(1) .flip-face { box-shadow: inset 0 0 30px rgba(56,189,248,0.08); }
+    .flip-card:nth-child(2) .flip-face { box-shadow: inset 0 0 30px rgba(245,222,179,0.08); }
+    .flip-card:nth-child(3) .flip-face { box-shadow: inset 0 0 30px rgba(0,229,160,0.08); }
+
+    /* ========== SCREEN 7: CONTRAST SPLIT ========== */
+    .contrast-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+    .contrast-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; }
+    .contrast-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; margin: 48px 0; border-radius: 16px; overflow: hidden; min-height: 400px; }
+    .contrast-left { background: var(--bg); padding: 48px 36px; display: flex; flex-direction: column; gap: 24px; }
+    .contrast-right { background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(99,102,241,0.04)); padding: 48px 36px; display: flex; flex-direction: column; gap: 24px; }
+    .contrast-item { display: flex; align-items: flex-start; gap: 12px; }
+    .contrast-item .ci-icon { font-size: 20px; opacity: 0.5; flex-shrink: 0; }
+    .contrast-right .ci-icon { opacity: 1; }
+    .contrast-item p { font-size: 0.95rem; line-height: 1.6; color: rgba(240,240,245,0.6); }
+    .contrast-right .contrast-item p { color: var(--text); }
+    .contrast-divider { width: 2px; background: var(--accent); box-shadow: 0 0 12px rgba(99,102,241,0.4); align-self: stretch; }
+
+    /* ========== SCREEN 8: TECH MIRROR ========== */
+    .tech-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .tech-section .inner { max-width: 900px; width: 100%; margin: 0 auto; text-align: center; }
+    .tech-graph { position: relative; width: 500px; height: 420px; margin: 48px auto; }
+    .tech-graph svg { width: 100%; height: 100%; overflow: visible; }
+    .tech-node { opacity: 0; transition: opacity 0.6s ease; }
+    .tech-graph.visible .tech-node { opacity: 1; }
+    .tech-node-circle { stroke-width: 1.5; fill-opacity: 0.1; }
+    .tech-node text { font-family: var(--fm); font-size: 10px; fill: var(--text); text-anchor: middle; }
+    .tech-line { stroke: rgba(99,102,241,0.2); stroke-width: 1; }
+    .tech-center-circle { fill: var(--accent); filter: drop-shadow(0 0 16px rgba(99,102,241,0.5)); }
+    .tech-pulse-dot { fill: var(--accent); opacity: 0.8; }
+    .tech-tooltip { position: absolute; background: rgba(17,17,39,0.95); backdrop-filter: blur(12px); border: 1px solid rgba(99,102,241,0.3); border-radius: 12px; padding: 14px 18px; max-width: 260px; pointer-events: none; opacity: 0; transition: opacity 0.3s, transform 0.3s; transform: translateY(8px); z-index: 10; text-align: left; font-size: 0.85rem; color: rgba(240,240,245,0.85); line-height: 1.5; }
+    .tech-tooltip.active { opacity: 1; transform: translateY(0); }
+    .tech-tooltip strong { color: var(--accent); font-family: var(--fh); text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 4px; }
+
+    /* ========== SCREEN 9: DASHBOARD ========== */
+    .dash-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .dash-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; }
+    .dash-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin: 48px 0; }
+    .dash-widget { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px 24px; }
+    .dash-widget h3 { font-family: var(--fh); font-size: 1rem; text-transform: uppercase; margin-bottom: 8px; }
+    .dash-counter { font-family: var(--fm); font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
+    .dash-list { list-style: none; margin-bottom: 20px; }
+    .dash-list li { font-size: 0.85rem; color: rgba(240,240,245,0.7); padding: 3px 0; }
+    .dash-mini-chart { height: 40px; }
+    .dash-mini-chart svg { width: 100%; height: 100%; }
+    .dash-widget:nth-child(1) { border-top: 2px solid var(--neuro-green); }
+    .dash-widget:nth-child(1) .dash-counter { color: var(--neuro-green); }
+    .dash-widget:nth-child(2) { border-top: 2px solid var(--accent); }
+    .dash-widget:nth-child(2) .dash-counter { color: var(--accent); }
+    .dash-widget:nth-child(3) { border-top: 2px solid var(--warm); }
+    .dash-widget:nth-child(3) .dash-counter { color: var(--warm); }
+
+    /* ========== SCREEN 10: CHAOS→ORDER ========== */
+    .chaos-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .chaos-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; text-align: center; }
+    .chaos-viz { position: relative; width: 500px; height: 360px; margin: 48px auto; }
+    .chaos-viz svg { width: 100%; height: 100%; }
+    .chaos-dot { transition: all 1.5s cubic-bezier(0.34,1.56,0.64,1); }
+    .chaos-line { stroke-dasharray: 6 4; stroke: rgba(136,136,150,0.3); stroke-width: 1; transition: all 1.5s ease; }
+    .chaos-viz.ordered .chaos-line { stroke: var(--accent); stroke-dasharray: none; stroke-opacity: 0.6; }
+    .chaos-frame { fill: none; stroke: var(--accent); stroke-width: 2; rx: 12; opacity: 0; transition: opacity 1s ease 1s; }
+    .chaos-viz.ordered .chaos-frame { opacity: 1; }
+    .chaos-label-text { font-family: var(--fm); font-size: 11px; fill: var(--accent); text-anchor: middle; opacity: 0; transition: opacity 1s ease 1.2s; }
+    .chaos-viz.ordered .chaos-label-text { opacity: 1; }
+
+    /* ========== SCREEN 11: MNPI LAYERS ========== */
+    .layers-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .layers-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .layer-block { padding: 24px; border-radius: 12px; cursor: pointer; transition: background 0.3s; margin-bottom: 16px; }
+    .layer-block:hover, .layer-block.active { background: rgba(255,255,255,0.04); }
+    .layer-block h3 { font-family: var(--fh); font-size: 1.05rem; text-transform: uppercase; margin-bottom: 8px; }
+    .layer-block p { font-size: 0.9rem; color: rgba(240,240,245,0.7); line-height: 1.6; }
+    .layer-block[data-color="indigo"] { border-left: 3px solid var(--accent); }
+    .layer-block[data-color="green"] { border-left: 3px solid var(--neuro-green); }
+    .layer-block[data-color="warm"] { border-left: 3px solid var(--warm); }
+    .layer-block[data-color="purple"] { border-left: 3px solid var(--context-purple); }
+    .layers-svg-wrap { position: sticky; top: 30vh; }
+    .layers-svg-wrap svg { width: 100%; max-width: 400px; margin: 0 auto; display: block; }
+    .layer-ring { fill-opacity: 0; stroke-width: 1; transition: fill-opacity 0.3s, stroke-width 0.3s; }
+    .layer-ring.highlight { fill-opacity: 0.15; stroke-width: 3; }
+
+    /* ========== SCREEN 11B: FORMULA ========== */
+    .formula-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .formula-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; text-align: center; }
+    .formula-display { font-family: var(--fm); font-size: clamp(0.9rem,2.2vw,1.3rem); color: var(--accent); padding: 24px; background: rgba(99,102,241,0.08); border-radius: 12px; display: inline-block; margin: 32px 0 48px; letter-spacing: 0.02em; }
+    .radar-wrap { position: relative; width: 400px; height: 400px; margin: 0 auto 48px; }
+    .radar-wrap svg { width: 100%; height: 100%; }
+    .radar-axis { stroke: rgba(99,102,241,0.2); stroke-width: 1; }
+    .radar-area { fill: rgba(99,102,241,0.15); stroke: var(--accent); stroke-width: 2; transition: all 1.5s ease; }
+    .radar-area.hidden { opacity: 0; transform: scale(0.3); transform-origin: center; }
+    .radar-label { font-family: var(--fm); font-size: 12px; fill: var(--text); }
+    .radar-desc { position: absolute; background: rgba(17,17,39,0.95); backdrop-filter: blur(12px); border: 1px solid rgba(99,102,241,0.3); border-radius: 12px; padding: 14px 18px; max-width: 260px; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 10; text-align: left; font-size: 0.85rem; line-height: 1.5; color: rgba(240,240,245,0.85); }
+    .radar-desc.active { opacity: 1; pointer-events: auto; }
+    .radar-desc strong { color: var(--accent); display: block; margin-bottom: 4px; font-family: var(--fh); text-transform: uppercase; font-size: 0.8rem; }
+    .npi-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; margin: 0 auto 40px; }
+    .npi-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; text-align: left; }
+    .npi-card h4 { font-family: var(--fh); font-size: 0.95rem; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .npi-card p { font-size: 0.88rem; color: rgba(240,240,245,0.7); line-height: 1.5; }
+
+    /* ========== SCREEN 12: PROTOCOL ========== */
+    .protocol-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .protocol-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; }
+    .protocol-steps { display: flex; gap: 16px; margin: 48px 0; align-items: flex-start; position: relative; overflow-x: auto; padding-bottom: 16px; }
+    .protocol-step { flex: 0 0 200px; text-align: center; position: relative; padding-top: 16px; }
+    .protocol-step.active .ps-circle { background: var(--accent); box-shadow: 0 0 24px rgba(99,102,241,0.5); transform: scale(1.1); }
+    .ps-circle { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(99,102,241,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 22px; transition: all 0.4s ease; }
+    .protocol-step h4 { font-family: var(--fh); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 6px; }
+    .protocol-step p { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+    .protocol-connector { position: absolute; top: 44px; left: calc(50% + 28px); width: calc(100% - 56px); height: 2px; background: rgba(99,102,241,0.2); }
+    .protocol-step:last-child .protocol-connector { display: none; }
+    .protocol-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 40px 0; }
+    .pm-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; }
+    .pm-card h4 { font-family: var(--fm); font-size: 0.9rem; color: var(--accent); margin-bottom: 6px; }
+    .pm-card p { font-size: 0.85rem; color: rgba(240,240,245,0.7); line-height: 1.5; }
+
+    /* ========== SCREEN 13: BRIDGE ========== */
+    .bridge-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .bridge-section .inner { max-width: 900px; width: 100%; margin: 0 auto; text-align: center; }
+    .bridge-viz { position: relative; height: 200px; margin: 48px 0; }
+    .bridge-viz svg { width: 100%; height: 100%; overflow: visible; }
+    .bridge-path { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 500; stroke-dashoffset: 500; transition: stroke-dashoffset 2s ease; }
+    .bridge-viz.visible .bridge-path { stroke-dashoffset: 0; }
+    .bridge-bank { font-family: var(--fb); font-size: 0.9rem; fill: rgba(240,240,245,0.7); }
+    .bridge-label { font-family: var(--fm); font-size: 11px; fill: var(--accent); opacity: 0; transition: opacity 1s ease 1.5s; }
+    .bridge-viz.visible .bridge-label { opacity: 1; }
+
+    /* ========== SCREEN 14: FOR WHOM ========== */
+    .whom-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .whom-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; }
+    .whom-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin: 48px 0; }
+    .whom-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px 24px; cursor: pointer; transition: all 0.4s; }
+    .whom-card:hover { border-color: rgba(99,102,241,0.3); }
+    .whom-card .wc-icon { font-size: 36px; margin-bottom: 16px; }
+    .whom-card h3 { font-family: var(--fh); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 6px; }
+    .whom-card .wc-short { font-size: 0.9rem; color: var(--muted); margin-bottom: 0; }
+    .whom-card .wc-expanded { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease; opacity: 0; }
+    .whom-card:hover .wc-expanded, .whom-card.open .wc-expanded { max-height: 200px; opacity: 1; }
+    .whom-card .wc-expanded p { font-size: 0.9rem; color: rgba(240,240,245,0.8); line-height: 1.6; margin-top: 12px; }
+
+    /* ========== SCREEN 15: PORTAL ========== */
+    .portal-section { padding: 100px 24px; min-height: 80vh; display: flex; align-items: center; justify-content: center; }
+    .portal-section .inner { max-width: 700px; width: 100%; margin: 0 auto; text-align: center; }
+    .portal-oval { width: 220px; height: 280px; margin: 0 auto 40px; border-radius: 50%; border: 2px solid var(--accent); position: relative; background: radial-gradient(ellipse, #1a1a3e 0%, var(--bg) 100%); animation: portalGlow 3s ease-in-out infinite; }
+    @keyframes portalGlow { 0%,100% { box-shadow: 0 0 40px rgba(99,102,241,0.3), 0 0 80px rgba(0,229,160,0.1); } 50% { box-shadow: 0 0 60px rgba(99,102,241,0.5), 0 0 120px rgba(0,229,160,0.2); } }
+    .cta-btn { display: inline-block; font-family: var(--fb); font-size: 1.1rem; font-weight: 600; color: #fff; background: var(--accent); padding: 16px 40px; border-radius: 12px; text-decoration: none; transition: all 0.3s; margin-top: 24px; }
+    .cta-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(99,102,241,0.5); }
+
+    /* ========== SCREEN 16: CONSTELLATION ========== */
+    .constellation-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .constellation-section .inner { max-width: 900px; width: 100%; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+    .constellation-stars { position: absolute; inset: 0; z-index: 1; }
+    .constellation-stars span { position: absolute; width: 2px; height: 2px; background: rgba(240,240,245,0.15); border-radius: 50%; }
+    .constellation-viz { width: 440px; height: 440px; margin: 40px auto; position: relative; }
+    .constellation-viz svg { width: 100%; height: 100%; overflow: visible; }
+
+    /* ========== SCREEN 17: FOOTER ========== */
+    .final-section { padding: 100px 24px 60px; min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .final-section .inner { max-width: 800px; width: 100%; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+    .final-spiral { position: absolute; inset: 0; opacity: 0.06; z-index: 1; }
+    .final-spiral svg { width: 100%; height: 100%; }
+    .final-section h2 { font-family: var(--fh); font-size: clamp(2rem,5vw,3.5rem); font-weight: 700; text-transform: uppercase; line-height: 1.1; margin-bottom: 16px; }
+    .final-subtitle { font-family: var(--fb); font-size: clamp(1rem,2.5vw,1.3rem); color: rgba(240,240,245,0.65); margin-bottom: 24px; }
+    .final-partners { display: flex; justify-content: center; gap: 48px; margin-top: 60px; opacity: 0.5; }
+    .final-partners span { font-family: var(--fm); font-size: 0.85rem; color: var(--muted); transition: opacity 0.3s; }
+    .final-partners span:hover { opacity: 1; color: var(--text); }
+    .final-copy { margin-top: 40px; font-family: var(--fb); font-size: 0.75rem; color: rgba(136,136,150,0.5); }
+
     /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
       .hero-orb { width: 130px; height: 130px; margin-bottom: 36px; }
@@ -429,6 +608,22 @@
       .core-viz { width: 300px; height: 300px; }
       .modes-viz { display: none; }
       .modes-list-mobile { display: block; }
+      .flip-grid { grid-template-columns: 1fr; }
+      .flip-card { height: 300px; }
+      .contrast-grid { grid-template-columns: 1fr; }
+      .contrast-divider { width: 100%; height: 2px; }
+      .tech-graph { width: 100%; height: 320px; }
+      .dash-grid { grid-template-columns: 1fr; }
+      .chaos-viz { width: 100%; }
+      .layers-section .inner { grid-template-columns: 1fr; }
+      .layers-svg-wrap { position: static; margin-bottom: 32px; }
+      .radar-wrap { width: 300px; height: 300px; }
+      .npi-cards { grid-template-columns: 1fr; }
+      .protocol-steps { flex-wrap: nowrap; overflow-x: auto; }
+      .protocol-step { flex: 0 0 160px; }
+      .protocol-metrics { grid-template-columns: 1fr; }
+      .whom-grid { grid-template-columns: 1fr; }
+      .constellation-viz { width: 100%; height: 320px; }
     }
   </style>
 </head>
@@ -634,6 +829,301 @@
 </section>
 
 <div class="spacer"></div>
+
+<!-- ===== SCREEN 6: ТРИ ДОКАЗАТЕЛЬСТВА ===== -->
+<section class="flip-section" id="screen6">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Практики, получившие научное подтверждение</h2>
+    <div class="flip-grid">
+      <div class="flip-card fade-up" style="transition-delay:0.1s" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span class="flip-icon">❄️</span><h3>Вим Хоф</h3></div>
+          <div class="flip-face flip-back"><p>Метод контролируемого дыхания и холода. Добровольное влияние на иммунный ответ. Рецензируемые исследования подтверждают: человек может сознательно модулировать вегетативную нервную систему.</p></div>
+        </div>
+      </div>
+      <div class="flip-card fade-up" style="transition-delay:0.3s" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span class="flip-icon">🪷</span><h3>Буддийская медитация</h3></div>
+          <div class="flip-face flip-back"><p>Тысячелетняя система работы с вниманием. Мозг монахов показывает структурные изменения, невозможные у обычных людей. Практика меняет архитектуру мозга.</p></div>
+        </div>
+      </div>
+      <div class="flip-card fade-up" style="transition-delay:0.5s" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span class="flip-icon">〰️</span><h3>Протокол Пеннистона</h3></div>
+          <div class="flip-face flip-back"><p>Альфа-тета нейробиоуправление. Реабилитация ветеранов с ПТСР. Клинически значимые результаты по зависимостям. Мозг можно тренировать.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="accent-quote fade-up" style="max-width:600px;">Все три работают с одним — с состоянием мозга.</div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 7: ПРЕДЕЛ СУБЪЕКТИВНОСТИ ===== -->
+<section class="contrast-section" id="screen7">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Фундаментальный предел</h2>
+    <div class="contrast-grid fade-up">
+      <div class="contrast-left">
+        <div class="contrast-item"><span class="ci-icon">👁</span><p>Нельзя сравнить твоё «почувствовал» с моим</p></div>
+        <div class="contrast-item"><span class="ci-icon">🫥</span><p>Нельзя отделить эффект от плацебо</p></div>
+        <div class="contrast-item"><span class="ci-icon">🤷</span><p>Нельзя доказать тому, кто не почувствовал</p></div>
+      </div>
+      <div class="contrast-divider"></div>
+      <div class="contrast-right">
+        <div class="contrast-item"><span class="ci-icon">📊</span><p>Можно измерить</p></div>
+        <div class="contrast-item"><span class="ci-icon">⚖️</span><p>Можно сравнить</p></div>
+        <div class="contrast-item"><span class="ci-icon">🔁</span><p>Можно воспроизвести</p></div>
+      </div>
+    </div>
+    <div class="accent-quote fade-up" style="max-width:700px;margin-top:40px;">Авторитет и личное ощущение — мощные инструменты. Но они имеют потолок.</div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 8: ТЕХНОЛОГИЧЕСКОЕ ЗЕРКАЛО ===== -->
+<section class="tech-section" id="screen8">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Технологическое зеркало, которого не&nbsp;существовало</h2>
+    <div class="tech-graph" id="techGraph">
+      <svg viewBox="0 0 500 420" id="techSvg"></svg>
+      <div class="tech-tooltip" id="techTooltip"></div>
+    </div>
+    <div class="accent-quote fade-up" style="margin:0 auto;">Впервые можно видеть — не только чувствовать.</div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 9: МАСШТАБ ДАННЫХ ===== -->
+<section class="dash-section" id="screen9">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Масштаб данных об одном человеке — огромен</h2>
+    <div class="dash-grid" id="dashGrid">
+      <div class="dash-widget fade-up" style="transition-delay:0.1s">
+        <h3>Тело</h3>
+        <div class="dash-counter" data-target="20">0</div>
+        <ul class="dash-list"><li>HRV, Body Battery, стресс</li><li>Сон, VO2max, пульс</li><li>SpO2, температура</li></ul>
+        <div class="dash-mini-chart"><svg viewBox="0 0 200 40"><polyline fill="none" stroke="#00E5A0" stroke-width="2" points="0,30 30,20 60,25 90,10 120,15 150,8 180,12 200,5"/></svg></div>
+      </div>
+      <div class="dash-widget fade-up" style="transition-delay:0.3s">
+        <h3>Мозг</h3>
+        <div class="dash-counter" data-target="6">0</div>
+        <ul class="dash-list"><li>Альфа, бета, тета, дельта</li><li>Индекс релаксации</li><li>Маркеры нейропластичности</li></ul>
+        <div class="dash-mini-chart"><svg viewBox="0 0 200 40"><path fill="none" stroke="#5F5FFF" stroke-width="2" d="M0,20 Q25,5 50,20 T100,20 T150,20 T200,20"/></svg></div>
+      </div>
+      <div class="dash-widget fade-up" style="transition-delay:0.5s">
+        <h3>Феноменология</h3>
+        <div class="dash-counter" data-target="∞" data-symbol="∞">∞</div>
+        <ul class="dash-list"><li>Глубина рефлексии</li><li>Когнитивная гибкость</li><li>Телесная осознанность</li><li>Эмоциональный тон</li></ul>
+        <div class="dash-mini-chart"><svg viewBox="0 0 200 40"><circle cx="40" cy="20" r="8" fill="none" stroke="#F5DEB3" stroke-width="1.5" opacity="0.5"/><circle cx="80" cy="15" r="12" fill="none" stroke="#F5DEB3" stroke-width="1.5" opacity="0.6"/><circle cx="130" cy="22" r="6" fill="none" stroke="#F5DEB3" stroke-width="1.5" opacity="0.4"/><circle cx="170" cy="18" r="10" fill="none" stroke="#F5DEB3" stroke-width="1.5" opacity="0.5"/></svg></div>
+      </div>
+    </div>
+    <div class="accent-quote fade-up" style="max-width:500px;margin:0 auto;">Это уже не точка данных. Это портрет.</div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 10: ХАОС → ПОРЯДОК ===== -->
+<section class="chaos-section" id="screen10">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Данных много. Понимания — ноль.</h2>
+    <p class="fade-up" style="color:var(--muted);max-width:600px;margin:0 auto 16px;">ЭЭГ — в одном приложении. Garmin — в другом. Слова — в голове. Нет инструмента, который сводит всё вместе.</p>
+    <div class="chaos-viz" id="chaosViz">
+      <svg viewBox="0 0 500 360" id="chaosSvg"></svg>
+    </div>
+    <div class="accent-quote fade-up" style="max-width:700px;margin:0 auto;">Это не проблема технологий. Это проблема отсутствия единой интерпретационной рамки.</div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 11: MNPI ЧЕТЫРЕ СЛОЯ ===== -->
+<section class="layers-section" id="screen11">
+  <div class="inner">
+    <div>
+      <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:24px;">MNPI — многомерный индекс нейропластичности</h2>
+      <div class="layer-block fade-up" data-color="indigo" data-ring="0">
+        <h3 style="color:var(--accent);">Поток 1: Нейро</h3>
+        <p>Данные мозга: волны, активные сети, реакция на состояния, потенциал нейропластичности. Neiry нейробанд.</p>
+      </div>
+      <div class="layer-block fade-up" data-color="green" data-ring="1">
+        <h3 style="color:var(--neuro-green);">Поток 2: Физиология</h3>
+        <p>Данные тела: HRV, стресс-индекс, ЧСС, дыхание, температура кожи. Garmin / WHOOP / Oura. Круглосуточно.</p>
+      </div>
+      <div class="layer-block fade-up" data-color="warm" data-ring="2">
+        <h3 style="color:var(--warm);">Поток 3: Феноменология</h3>
+        <p>Голосовой нарратив. Телесные дескрипторы, тональность, глубина самонаблюдения. Анализ через ИИ.</p>
+      </div>
+      <div class="layer-block fade-up" data-color="purple" data-ring="3">
+        <h3 style="color:var(--context-purple);">Поток 4: Контекст жизни</h3>
+        <p>Планер «Ритмы Жизни». Задачи, рефлексия, тренировки мозга. Ежедневные данные на протяжении всего периода.</p>
+      </div>
+      <div class="accent-quote fade-up">Рассинхронизация между потоками — не шум, а диагностический сигнал.</div>
+      <p class="fade-up" style="color:var(--muted);margin-top:24px;font-size:0.95rem;">MNPI — это не конкуренция ни одной практике. Это зеркало для любой практики.</p>
+    </div>
+    <div class="layers-svg-wrap fade-up">
+      <svg viewBox="0 0 400 400" id="layersSvg">
+        <circle class="layer-ring" cx="200" cy="200" r="180" stroke="#A78BFA" stroke-width="1" fill="#A78BFA"/>
+        <circle class="layer-ring" cx="200" cy="200" r="140" stroke="#F5DEB3" stroke-width="1" fill="#F5DEB3"/>
+        <circle class="layer-ring" cx="200" cy="200" r="100" stroke="#00E5A0" stroke-width="1" fill="#00E5A0"/>
+        <circle class="layer-ring" cx="200" cy="200" r="60" stroke="#5F5FFF" stroke-width="1" fill="#5F5FFF"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 11B: ФОРМУЛА И СУБИНДЕКСЫ ===== -->
+<section class="formula-section" id="screen11b">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Формула MNPI</h2>
+    <div class="formula-display fade-up">MNPI = (SI × 0.30) + (DI × 0.35) + (RI × 0.20) + (PI × 0.15)</div>
+    <div class="radar-wrap" id="radarWrap">
+      <svg viewBox="0 0 400 400" id="radarSvg"></svg>
+      <div class="radar-desc" id="radarDesc"><strong id="rdTitle"></strong><span id="rdText"></span></div>
+    </div>
+    <div class="npi-cards fade-up">
+      <div class="npi-card"><h4>NPI-State</h4><p>Верификация сессии. Оценка качества конкретной практики. Сравнение методов на одном языке.</p></div>
+      <div class="npi-card"><h4>NPI-Trait</h4><p>Нейропрофиль человека. Взвешенное среднее по шести сессиям. Сравнение людей между собой.</p></div>
+    </div>
+    <div class="accent-quote fade-up" style="max-width:700px;margin:0 auto;">MNPI измеряет не состояние, а переход между состояниями. Это принципиально новый объект измерения.</div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 12: ПРОТОКОЛ ЧЕКАПА ===== -->
+<section class="protocol-section" id="screen12">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Как это выглядит на практике</h2>
+    <div class="protocol-steps" id="protocolSteps">
+      <div class="protocol-step fade-up" style="transition-delay:0.1s">
+        <div class="protocol-connector"></div>
+        <div class="ps-circle">📡</div>
+        <h4>T0 — Базовый замер</h4>
+        <p>10 мин. Спокойное бодрствование, закрытые глаза. Ваш «ноль».</p>
+      </div>
+      <div class="protocol-step fade-up" style="transition-delay:0.3s">
+        <div class="protocol-connector"></div>
+        <div class="ps-circle">〰️</div>
+        <h4>T1 — Модуляция</h4>
+        <p>30 мин. Активация режимов под аудиоинструкции. Четыре фазы.</p>
+      </div>
+      <div class="protocol-step fade-up" style="transition-delay:0.5s">
+        <div class="ps-circle">↩️</div>
+        <h4>T2 — Восстановление</h4>
+        <p>5 мин. Возврат к спокойному состоянию. Резидуальный эффект.</p>
+      </div>
+    </div>
+    <div class="protocol-metrics fade-up">
+      <div class="pm-card"><h4>AL — Латентность входа</h4><p>Скорость переключения в секундах. Цель: &lt; 60 сек.</p></div>
+      <div class="pm-card"><h4>SI — Стабильность</h4><p>Коэффициент вариации α/β в последние 5 мин. Цель: &lt; 20%.</p></div>
+      <div class="pm-card"><h4>RE — Резидуальный эффект</h4><p>% сохранения изменений после завершения. Показатель нейропластичности.</p></div>
+    </div>
+    <div class="accent-quote fade-up" style="max-width:500px;">Три числа — ваша нейрофизиологическая подпись.</div>
+    <p class="fade-up" style="color:var(--muted);margin-top:24px;font-size:0.9rem;max-width:700px;">MNPI не вычисляется за одну сессию. Полный индекс требует серию из шести структурированных сессий — каждая с уникальным режимом сознания и весовым коэффициентом.</p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 13: МОСТ ===== -->
+<section class="bridge-section" id="screen13">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Данные не отменяют опыт. Они дают ему голос.</h2>
+    <div class="bridge-viz" id="bridgeViz">
+      <svg viewBox="0 0 800 200">
+        <text class="bridge-bank" x="40" y="170" font-size="13">Авторитет. Личное ощущение.</text>
+        <text class="bridge-bank" x="540" y="170" font-size="13">Медицина. Корпорации. Наука.</text>
+        <path class="bridge-path" d="M 80,130 C 200,30 600,30 720,130"/>
+        <text class="bridge-label" x="400" y="55" text-anchor="middle">Session Passport — единый формат для любой практики</text>
+      </svg>
+    </div>
+    <p class="fade-up" style="color:rgba(240,240,245,0.7);max-width:600px;margin:0 auto;">Практика, у которой есть данные, говорит другим языком.</p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 14: ДЛЯ КОГО ===== -->
+<section class="whom-section" id="screen14">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Для кого</h2>
+    <div class="whom-grid">
+      <div class="whom-card fade-up" style="transition-delay:0.1s" onclick="this.classList.toggle('open')">
+        <div class="wc-icon">🪷</div>
+        <h3>Для практикующих</h3>
+        <p class="wc-short">Йога, медитация, дыхание, телесные практики</p>
+        <div class="wc-expanded"><p>Вы чувствуете эффект, но не можете описать его тому, кто не практикует. MNPI даёт язык — объективную картину того, что ваша практика делает с мозгом и телом.</p></div>
+      </div>
+      <div class="whom-card fade-up" style="transition-delay:0.3s" onclick="this.classList.toggle('open')">
+        <div class="wc-icon">👥</div>
+        <h3>Для тех, кто ведёт других</h3>
+        <p class="wc-short">Психологи, коучи, преподаватели, фасилитаторы</p>
+        <div class="wc-expanded"><p>Верифицировать эффект работы объективно, показать динамику до и после — теперь возможно. Это открывает совершенно другой уровень доверия к вашей работе.</p></div>
+      </div>
+      <div class="whom-card fade-up" style="transition-delay:0.5s" onclick="this.classList.toggle('open')">
+        <div class="wc-icon">🧭</div>
+        <h3>Для тех, кто хочет понять себя</h3>
+        <p class="wc-short">Без практики, без метода — просто посмотреть</p>
+        <div class="wc-expanded"><p>Получить честный портрет своего состояния. Увидеть, где ресурс, а где истощение. Иметь точку отсчёта.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 15: ПРИГЛАШЕНИЕ ===== -->
+<section class="portal-section" id="screen15">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:16px;">Исследование открыто</h2>
+    <div class="portal-oval fade-up"></div>
+    <p class="fade-up" style="color:rgba(240,240,245,0.8);max-width:560px;margin:0 auto;line-height:1.7;">Ты можешь пройти чекап. Надеть гарнитуру. Пройти протокол. Получить отчёт. Увидеть себя в этом зеркале — возможно, впервые так объёмно и честно.</p>
+    <div class="accent-quote fade-up" style="margin:24px auto 0;max-width:500px;">Начинается всё с одного шага — прийти и посмотреть.</div>
+    <a href="../zapisatsya/" class="cta-btn fade-up" style="margin-top:32px;">Пройти чекап →</a>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 16: СОЗВЕЗДИЕ ===== -->
+<section class="constellation-section" id="screen16">
+  <div class="constellation-stars" id="constellationStars"></div>
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Создать международный стандарт измерения нейропластичности</h2>
+    <p class="fade-up" style="color:rgba(240,240,245,0.7);max-width:650px;margin:0 auto 16px;">Единая метрика, которая позволяет сравнивать эффекты разных практик, разных методов, разных состояний — на одном языке.</p>
+    <div class="constellation-viz" id="constellationViz">
+      <svg viewBox="0 0 440 440" id="constellationSvg"></svg>
+    </div>
+    <div class="accent-quote fade-up" style="max-width:600px;margin:0 auto;">Каждый участник вносит свой вклад в формирование этого стандарта.</div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 17: ФИНАЛ ===== -->
+<section class="final-section" id="screen17">
+  <div class="final-spiral"><svg viewBox="0 0 800 800"><path d="M400,400 C400,200 600,200 600,400 S400,600 400,400 C400,150 650,150 650,400 S400,650 400,400 C400,100 700,100 700,400 S400,700 400,400" fill="none" stroke="rgba(99,102,241,0.5)" stroke-width="1"/></svg></div>
+  <div class="inner">
+    <h2 class="fade-up">Мы стоим в начале новой эры</h2>
+    <p class="final-subtitle fade-up">Эры объективного понимания внутреннего состояния человека</p>
+    <p class="fade-up" style="color:rgba(240,240,245,0.7);max-width:600px;margin:0 auto 32px;line-height:1.7;">Эры, где тысячелетний опыт человечества встречается с современными технологиями и перестаёт быть невидимым.</p>
+    <div class="accent-quote fade-up" style="max-width:500px;margin:0 auto 40px;">Если вы хотите оказаться в этой точке — добро пожаловать.</div>
+    <a href="../zapisatsya/" class="cta-btn fade-up">Войти в исследование →</a>
+    <div class="final-partners fade-up" style="margin-top:60px;">
+      <span>ONTO NOTHING</span>
+      <span>Ритмы Жизни</span>
+      <span>NEIRY</span>
+    </div>
+    <p class="final-copy fade-up">&copy; 2026 MNPI Research</p>
+  </div>
+</section>
 
 
 <script>
@@ -938,6 +1428,404 @@ if (coreViz) coreObs.observe(coreViz);
     });
   }
 })();
+
+// --- Generic visibility observer ---
+function observeVisible(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  obs.observe(el);
+}
+
+// --- Screen 7: contrast grid has divider in CSS Grid, fix 3-col ---
+// (no JS needed)
+
+// --- Screen 8: Tech Mirror graph ---
+(function initTechGraph() {
+  const svg = document.getElementById('techSvg');
+  if (!svg) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  const devices = [
+    { name: 'HRV-трекер', x: 120, y: 80, desc: 'Пишет круглосуточно. Стресс, сон, восстановление, VO2max.', color: '#00E5A0' },
+    { name: 'Мобильный ЭЭГ', x: 250, y: 50, desc: 'Альфа, бета, тета. Что происходит с мозгом в момент практики.', color: '#5F5FFF' },
+    { name: 'Планер Ритмы Жизни', x: 380, y: 80, desc: '8 сфер жизни. Ежедневная рефлексия. Задачи, тренировки мозга, дневник.', color: '#A78BFA' },
+  ];
+  const center = { x: 250, y: 280 };
+  const tooltip = document.getElementById('techTooltip');
+
+  devices.forEach((d, i) => {
+    // Line to center
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', d.x); line.setAttribute('y1', d.y);
+    line.setAttribute('x2', center.x); line.setAttribute('y2', center.y);
+    line.classList.add('tech-line');
+    svg.appendChild(line);
+
+    // Pulse dot on line
+    const pd = document.createElementNS(ns, 'circle');
+    pd.setAttribute('r', 3);
+    pd.setAttribute('fill', d.color);
+    pd.classList.add('tech-pulse-dot');
+    const anim = document.createElementNS(ns, 'animateMotion');
+    anim.setAttribute('dur', (2.5 + i * 0.5) + 's');
+    anim.setAttribute('repeatCount', 'indefinite');
+    anim.setAttribute('path', `M${d.x},${d.y} L${center.x},${center.y}`);
+    pd.appendChild(anim);
+    svg.appendChild(pd);
+
+    // Node
+    const g = document.createElementNS(ns, 'g');
+    g.classList.add('tech-node');
+    g.style.transitionDelay = (0.3 + i * 0.4) + 's';
+    const c = document.createElementNS(ns, 'circle');
+    c.setAttribute('cx', d.x); c.setAttribute('cy', d.y); c.setAttribute('r', 28);
+    c.classList.add('tech-node-circle');
+    c.setAttribute('stroke', d.color); c.setAttribute('fill', d.color);
+    g.appendChild(c);
+    const t = document.createElementNS(ns, 'text');
+    t.setAttribute('x', d.x); t.setAttribute('y', d.y + 4);
+    t.setAttribute('font-size', '9');
+    t.textContent = d.name;
+    g.appendChild(t);
+    g.addEventListener('mouseenter', () => {
+      const gEl = document.getElementById('techGraph');
+      const rect = gEl.getBoundingClientRect();
+      tooltip.innerHTML = `<strong>${d.name}</strong>${d.desc}`;
+      tooltip.style.left = (d.x / 500 * rect.width - 130) + 'px';
+      tooltip.style.top = (d.y / 420 * rect.height + 40) + 'px';
+      tooltip.classList.add('active');
+    });
+    g.addEventListener('mouseleave', () => tooltip.classList.remove('active'));
+    svg.appendChild(g);
+  });
+
+  // Center node
+  const cc = document.createElementNS(ns, 'circle');
+  cc.setAttribute('cx', center.x); cc.setAttribute('cy', center.y); cc.setAttribute('r', 20);
+  cc.classList.add('tech-center-circle');
+  cc.classList.add('tech-node');
+  cc.style.transitionDelay = '1.5s';
+  svg.appendChild(cc);
+  const ct = document.createElementNS(ns, 'text');
+  ct.setAttribute('x', center.x); ct.setAttribute('y', center.y + 4);
+  ct.setAttribute('text-anchor', 'middle');
+  ct.setAttribute('font-family', 'Courier Prime'); ct.setAttribute('font-size', '9'); ct.setAttribute('fill', '#fff');
+  ct.classList.add('tech-node');
+  ct.style.transitionDelay = '1.6s';
+  ct.textContent = 'ДАННЫЕ';
+  svg.appendChild(ct);
+
+  observeVisible('techGraph');
+})();
+
+// --- Screen 9: Dashboard counters ---
+(function initDashCounters() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.dash-counter').forEach(c => {
+          const sym = c.dataset.symbol;
+          if (sym) { c.textContent = sym; return; }
+          const target = parseInt(c.dataset.target);
+          let current = 0;
+          const step = Math.ceil(target / 30);
+          const iv = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(iv); }
+            c.textContent = current + '+';
+          }, 50);
+        });
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const dg = document.getElementById('dashGrid');
+  if (dg) obs.observe(dg);
+})();
+
+// --- Screen 10: Chaos → Order ---
+(function initChaos() {
+  const svg = document.getElementById('chaosSvg');
+  if (!svg) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  const icons = ['ЭЭГ', '⌚', '🧘', '📝', '💊'];
+  const chaosPos = [{x:80,y:60},{x:380,y:40},{x:60,y:260},{x:420,y:200},{x:250,y:300}];
+  const orderPos = [{x:150,y:120},{x:350,y:120},{x:100,y:230},{x:400,y:230},{x:250,y:180}];
+
+  // Lines
+  const lines = [];
+  for (let i = 0; i < chaosPos.length; i++) {
+    for (let j = i+1; j < chaosPos.length; j++) {
+      const l = document.createElementNS(ns, 'line');
+      l.setAttribute('x1', chaosPos[i].x); l.setAttribute('y1', chaosPos[i].y);
+      l.setAttribute('x2', chaosPos[j].x); l.setAttribute('y2', chaosPos[j].y);
+      l.classList.add('chaos-line');
+      l.dataset.i = i; l.dataset.j = j;
+      svg.appendChild(l);
+      lines.push(l);
+    }
+  }
+
+  // Dots
+  const dots = chaosPos.map((p, i) => {
+    const g = document.createElementNS(ns, 'g');
+    g.classList.add('chaos-dot');
+    const c = document.createElementNS(ns, 'circle');
+    c.setAttribute('cx', p.x); c.setAttribute('cy', p.y); c.setAttribute('r', 22);
+    c.setAttribute('fill', 'rgba(99,102,241,0.15)'); c.setAttribute('stroke', 'rgba(99,102,241,0.4)'); c.setAttribute('stroke-width', '1');
+    g.appendChild(c);
+    const t = document.createElementNS(ns, 'text');
+    t.setAttribute('x', p.x); t.setAttribute('y', p.y + 4);
+    t.setAttribute('text-anchor', 'middle'); t.setAttribute('font-size', '14'); t.setAttribute('fill', '#fff');
+    t.textContent = icons[i];
+    g.appendChild(t);
+    svg.appendChild(g);
+    return { g, c, t };
+  });
+
+  // Frame + label
+  const frame = document.createElementNS(ns, 'rect');
+  frame.setAttribute('x', 70); frame.setAttribute('y', 90);
+  frame.setAttribute('width', 360); frame.setAttribute('height', 180);
+  frame.classList.add('chaos-frame');
+  svg.appendChild(frame);
+  const label = document.createElementNS(ns, 'text');
+  label.setAttribute('x', 250); label.setAttribute('y', 80);
+  label.classList.add('chaos-label-text');
+  label.textContent = 'MNPI';
+  svg.appendChild(label);
+
+  // Observe
+  const chaosViz = document.getElementById('chaosViz');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => {
+          chaosViz.classList.add('ordered');
+          dots.forEach((d, i) => {
+            d.c.setAttribute('cx', orderPos[i].x); d.c.setAttribute('cy', orderPos[i].y);
+            d.t.setAttribute('x', orderPos[i].x); d.t.setAttribute('y', orderPos[i].y + 4);
+            d.c.setAttribute('stroke', 'rgba(99,102,241,0.8)');
+          });
+          lines.forEach(l => {
+            const i = +l.dataset.i, j = +l.dataset.j;
+            l.setAttribute('x1', orderPos[i].x); l.setAttribute('y1', orderPos[i].y);
+            l.setAttribute('x2', orderPos[j].x); l.setAttribute('y2', orderPos[j].y);
+          });
+        }, 800);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  if (chaosViz) obs.observe(chaosViz);
+})();
+
+// --- Screen 11: Layers interactive ---
+(function initLayers() {
+  const rings = document.querySelectorAll('#layersSvg .layer-ring');
+  const blocks = document.querySelectorAll('.layer-block');
+  blocks.forEach(b => {
+    b.addEventListener('mouseenter', () => {
+      const idx = +b.dataset.ring;
+      rings.forEach((r, i) => r.classList.toggle('highlight', i === (3 - idx)));
+      blocks.forEach(bb => bb.classList.remove('active'));
+      b.classList.add('active');
+    });
+    b.addEventListener('mouseleave', () => {
+      rings.forEach(r => r.classList.remove('highlight'));
+      b.classList.remove('active');
+    });
+  });
+})();
+
+// --- Screen 11B: Radar chart ---
+(function initRadar() {
+  const svg = document.getElementById('radarSvg');
+  if (!svg) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  const cx = 200, cy = 200, maxR = 150;
+  const axes = [
+    { label: 'SI — Переключаемость', pct: 0.75, angle: -90, title: 'Switching Index — 30%', desc: 'Скорость и точность перехода между режимами сознания. Не «как глубоко ты сидишь», а «как быстро переключаешься».' },
+    { label: 'DI — Глубина', pct: 0.85, angle: 0, title: 'Depth Index — 35%', desc: 'Насколько далеко мозг уходит от обычного состояния. Персональная величина — от твоей собственной точки отсчёта.' },
+    { label: 'RI — Устойчивость', pct: 0.60, angle: 90, title: 'Resilience Index — 20%', desc: 'Сохраняется ли состояние, когда жизнь давит. Практическая нейропластичность.' },
+    { label: 'PI — Феноменология', pct: 0.70, angle: 180, title: 'Phenomenology Index — 15%', desc: 'Насколько точно ты описываешь свой опыт. Этот индекс валидирует остальные три.' },
+  ];
+
+  // Grid circles
+  [0.33, 0.66, 1].forEach(s => {
+    const c = document.createElementNS(ns, 'circle');
+    c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', maxR * s);
+    c.setAttribute('fill', 'none'); c.setAttribute('stroke', 'rgba(99,102,241,0.1)'); c.setAttribute('stroke-width', '1');
+    svg.appendChild(c);
+  });
+
+  // Axes + labels
+  const points = [];
+  const desc = document.getElementById('radarDesc');
+  const rdTitle = document.getElementById('rdTitle');
+  const rdText = document.getElementById('rdText');
+
+  axes.forEach((a, i) => {
+    const rad = a.angle * Math.PI / 180;
+    const ex = cx + maxR * Math.cos(rad);
+    const ey = cy + maxR * Math.sin(rad);
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+    line.setAttribute('x2', ex); line.setAttribute('y2', ey);
+    line.classList.add('radar-axis');
+    svg.appendChild(line);
+
+    // Label
+    const t = document.createElementNS(ns, 'text');
+    const lx = cx + (maxR + 20) * Math.cos(rad);
+    const ly = cy + (maxR + 20) * Math.sin(rad);
+    t.setAttribute('x', lx); t.setAttribute('y', ly + 4);
+    t.setAttribute('text-anchor', a.angle === 0 ? 'start' : a.angle === 180 ? 'end' : 'middle');
+    t.classList.add('radar-label');
+    t.textContent = a.label;
+    svg.appendChild(t);
+
+    // Data point
+    const px = cx + maxR * a.pct * Math.cos(rad);
+    const py = cy + maxR * a.pct * Math.sin(rad);
+    points.push(`${px},${py}`);
+
+    // Hover target
+    const hc = document.createElementNS(ns, 'circle');
+    hc.setAttribute('cx', px); hc.setAttribute('cy', py); hc.setAttribute('r', 16);
+    hc.setAttribute('fill', 'transparent'); hc.style.cursor = 'pointer';
+    hc.addEventListener('mouseenter', () => {
+      rdTitle.textContent = a.title;
+      rdText.textContent = a.desc;
+      const wrap = document.getElementById('radarWrap').getBoundingClientRect();
+      desc.style.left = (px / 400 * wrap.width - 130) + 'px';
+      desc.style.top = (py / 400 * wrap.height + 16) + 'px';
+      desc.classList.add('active');
+    });
+    hc.addEventListener('mouseleave', () => desc.classList.remove('active'));
+    svg.appendChild(hc);
+  });
+
+  // Area polygon
+  const poly = document.createElementNS(ns, 'polygon');
+  poly.setAttribute('points', points.join(' '));
+  poly.classList.add('radar-area', 'hidden');
+  svg.insertBefore(poly, svg.firstChild.nextSibling);
+
+  // Animate area on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { poly.classList.remove('hidden'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  const rw = document.getElementById('radarWrap');
+  if (rw) obs.observe(rw);
+})();
+
+// --- Screen 12: Protocol step activation on scroll ---
+(function initProtocol() {
+  const steps = document.querySelectorAll('.protocol-step');
+  if (!steps.length) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        let delay = 0;
+        steps.forEach((s, i) => {
+          setTimeout(() => s.classList.add('active'), delay);
+          delay += 600;
+        });
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  obs.observe(document.getElementById('protocolSteps'));
+})();
+
+// --- Screen 13: Bridge draw ---
+observeVisible('bridgeViz');
+
+// --- Screen 16: Constellation ---
+(function initConstellation() {
+  // Stars background
+  const starsEl = document.getElementById('constellationStars');
+  if (starsEl) {
+    for (let i = 0; i < 60; i++) {
+      const s = document.createElement('span');
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.opacity = (0.1 + Math.random() * 0.25);
+      s.style.width = s.style.height = (1 + Math.random() * 2) + 'px';
+      starsEl.appendChild(s);
+    }
+  }
+
+  const svg = document.getElementById('constellationSvg');
+  if (!svg) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  const cx = 220, cy = 220;
+  const satellites = [
+    { name: 'Onto Nothing', angle: -90, r: 150, color: '#5F5FFF' },
+    { name: 'Ритмы Жизни', angle: -18, r: 150, color: '#A78BFA' },
+    { name: 'NEIRY', angle: 54, r: 150, color: '#00E5A0' },
+    { name: 'Партнёры', angle: 126, r: 150, color: '#F5DEB3' },
+    { name: '120-150 участников', angle: 198, r: 150, color: '#F472B6' },
+  ];
+
+  // Center
+  const cc = document.createElementNS(ns, 'circle');
+  cc.setAttribute('cx', cx); cc.setAttribute('cy', cy); cc.setAttribute('r', 28);
+  cc.setAttribute('fill', '#5F5FFF');
+  const defs = document.createElementNS(ns, 'defs');
+  const f = document.createElementNS(ns, 'filter'); f.id = 'cGlow';
+  f.innerHTML = '<feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>';
+  defs.appendChild(f); svg.appendChild(defs);
+  cc.setAttribute('filter', 'url(#cGlow)');
+  svg.appendChild(cc);
+  const ct = document.createElementNS(ns, 'text');
+  ct.setAttribute('x', cx); ct.setAttribute('y', cy + 4);
+  ct.setAttribute('text-anchor', 'middle'); ct.setAttribute('font-family', 'Courier Prime');
+  ct.setAttribute('font-size', '10'); ct.setAttribute('fill', '#fff');
+  ct.textContent = 'MNPI';
+  svg.appendChild(ct);
+
+  satellites.forEach((s, i) => {
+    const rad = s.angle * Math.PI / 180;
+    const sx = cx + s.r * Math.cos(rad);
+    const sy = cy + s.r * Math.sin(rad);
+
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+    line.setAttribute('x2', sx); line.setAttribute('y2', sy);
+    line.setAttribute('stroke', 'rgba(99,102,241,0.2)'); line.setAttribute('stroke-width', '1');
+    svg.appendChild(line);
+
+    // Pulse dot on line
+    const pd = document.createElementNS(ns, 'circle');
+    pd.setAttribute('r', 2); pd.setAttribute('fill', s.color); pd.setAttribute('opacity', '0.7');
+    const am = document.createElementNS(ns, 'animateMotion');
+    am.setAttribute('dur', (3 + i * 0.4) + 's'); am.setAttribute('repeatCount', 'indefinite');
+    am.setAttribute('path', `M${cx},${cy} L${sx},${sy}`);
+    pd.appendChild(am); svg.appendChild(pd);
+
+    const nc = document.createElementNS(ns, 'circle');
+    nc.setAttribute('cx', sx); nc.setAttribute('cy', sy); nc.setAttribute('r', 14);
+    nc.setAttribute('fill', s.color); nc.setAttribute('fill-opacity', '0.2');
+    nc.setAttribute('stroke', s.color); nc.setAttribute('stroke-width', '1.5');
+    svg.appendChild(nc);
+
+    const nt = document.createElementNS(ns, 'text');
+    nt.setAttribute('x', sx); nt.setAttribute('y', sy + s.r * 0.15 + 28);
+    nt.setAttribute('text-anchor', 'middle'); nt.setAttribute('font-family', 'Courier Prime');
+    nt.setAttribute('font-size', '9'); nt.setAttribute('fill', 'rgba(240,240,245,0.8)');
+    nt.textContent = s.name;
+    svg.appendChild(nt);
+  });
+})();
+
+// Re-observe all new fade-up elements
+document.querySelectorAll('.fade-up:not(.visible)').forEach(el => fadeObserver.observe(el));
 </script>
 
 </body>
