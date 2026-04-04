@@ -2,7 +2,7 @@
   "name": "РИТМЫ NOTHING",
   "role": "Организация",
   "real": true,
-  "updated": "04.04.2026 14:42",
+  "updated": "04.04.2026",
   "total_real": 12,
   "children": [
     {
@@ -404,15 +404,19 @@
       "nda": true,
       "children": [
         {
-          "name": "Елена (свободно)",
-          "real": false,
+          "name": "Лиана Саунд",
+          "real": true,
+          "tg": "Liana_Sound",
+          "nda": false,
+          "pre_participant": true,
           "children": [
             {
               "name": "Дмитрий (свободно)",
               "real": false,
               "children": []
             }
-          ]
+          ],
+          "band": "paid"
         },
         {
           "name": "Алексей (свободно)",
@@ -439,6 +443,28 @@
           "children": []
         }
       ]
+    }
+  ],
+  "pre_participants": [
+    {
+      "name": "Станислав Орехов",
+      "tg": "StasOrekhov",
+      "registered": "2026-04-03",
+      "ref": "org",
+      "status": "banned"
+    },
+    {
+      "name": "Лиана Саунд",
+      "tg": "Liana_Sound",
+      "registered": "2026-04-04",
+      "ref": "Егор Андреев",
+      "ref_id": 147991795
+    },
+    {
+      "name": "Ирик Габитов",
+      "tg": "IrikG",
+      "registered": "2026-04-04",
+      "ref": "org"
     }
   ]
 }

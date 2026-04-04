@@ -295,6 +295,20 @@
       50% { box-shadow: 0 4px 20px rgba(255, 159, 10, 0.5); }
     }
 
+    /* ── PRE-PARTICIPANT (grey) ── */
+    .av.real.pre-participant {
+      background: linear-gradient(135deg, #888, #666);
+      box-shadow: 0 4px 12px rgba(136, 136, 136, 0.2);
+    }
+    .pre-participant-node .nm { color: #999; }
+    .pre-participant-node .rl { color: #aaa; }
+    .pre-participant-node .tg-badge { color: #888; }
+
+    .summary-table tr.pre-participant-row { background: rgba(136,136,136,0.06); }
+    .summary-table tr.pre-participant-row td { color: #999; }
+    .summary-table tr.pre-participant-row:hover { background: rgba(136,136,136,0.12); }
+    .status-badge.pre { background: rgba(136,136,136,0.15); color: #888; }
+
     /* ── SUMMARY TABLE ── */
     .summary-section {
       max-width: 900px;
@@ -392,6 +406,7 @@
   <div class="legend-item">⌚ Фитнес-трекер</div>
   <div class="legend-item">⚠️ Без NDA</div>
   <div class="legend-item"><div class="lg" style="background:#ff9f0a;"></div> Не пропущен</div>
+  <div class="legend-item"><div class="lg" style="background:#888;"></div> Зашёл в бота</div>
 </div>
 
 <div class="founders">
@@ -441,6 +456,25 @@
   </div>
 </div>
 
+<!-- ── PRE-PARTICIPANTS TABLE ── -->
+<div class="summary-section" id="pre-section" style="display:none;">
+  <div class="summary-title" style="color:#999;">👁 Зашли в бота, не дошли до NDA</div>
+  <div style="overflow-x:auto;">
+    <table class="summary-table" id="pre-table">
+      <thead>
+        <tr>
+          <th>Имя</th>
+          <th>Telegram</th>
+          <th>Дата регистрации</th>
+          <th>Откуда</th>
+          <th>Статус</th>
+        </tr>
+      </thead>
+      <tbody id="pre-body"></tbody>
+    </table>
+  </div>
+</div>
+
 <div class="updated" id="upd"></div>
 
 <script>
@@ -452,6 +486,7 @@ async function init() {
     document.getElementById('upd').textContent = 'Обновлено: ' + d.updated;
     document.getElementById('tree').innerHTML = '<ul>' + renderNode(d, 0) + '</ul>';
     buildSummary(d);
+    if (d.pre_participants && d.pre_participants.length) buildPreParticipants(d.pre_participants);
   } catch(e) {
     document.getElementById('tree').innerHTML = '<p style="color:#aaa;text-align:center">Загрузка...</p>';
   }
@@ -467,6 +502,7 @@ function renderNode(node, depth) {
   let icon = '👤';
   if (isOrg) { avCls += ' org'; icon = '🌐'; }
   else if (isFounder) { avCls += ' founder'; icon = '👑'; }
+  else if (isReal && node.pre_participant) { avCls += ' real pre-participant'; icon = '👁'; }
   else if (isReal) { avCls += ' real'; if (!node.nda) avCls += ' not-approved'; icon = '✦'; }
   else { avCls += ' demo'; icon = '?'; }
 
@@ -482,7 +518,8 @@ function renderNode(node, depth) {
   if (isDemo) name = name.replace(' (свободно)', '');
 
   let html = '<li>';
-  html += '<div class="node' + (isDemo ? ' demo-node' : '') + '">';
+  const nodeExtraCls = isDemo ? ' demo-node' : (node.pre_participant ? ' pre-participant-node' : '');
+  html += '<div class="node' + nodeExtraCls + '">';
 
   if (hasLink) {
     html += '<a class="node-link" href="' + linkUrl + '" target="_blank">';
@@ -520,7 +557,7 @@ function renderNode(node, depth) {
 }
 
 function collectReal(node, list) {
-  if (node.real && !node.role) {
+  if (node.real && !node.role && !node.pre_participant) {
     list.push(node);
   }
   if (node.children) {
@@ -572,6 +609,28 @@ function buildSummary(data) {
     html += '<td>' + lqLab + '</td>';
     html += '<td>' + band + '</td>';
     html += '<td>' + tracker + '</td>';
+    html += '</tr>';
+  }
+  tbody.innerHTML = html;
+}
+
+function buildPreParticipants(list) {
+  document.getElementById('pre-section').style.display = '';
+  const tbody = document.getElementById('pre-body');
+  let html = '';
+  for (const p of list) {
+    const tg = p.tg
+      ? '<a class="tbl-tg" href="https://t.me/' + p.tg + '" target="_blank" style="color:#888;">@' + p.tg + '</a>'
+      : '—';
+    const ref = p.ref || '—';
+    let status = '<span class="status-badge pre">⏳ Без NDA</span>';
+    if (p.status === 'banned') status = '<span class="status-badge pre" style="color:#c44;">🚫 Забанен</span>';
+    html += '<tr class="pre-participant-row">';
+    html += '<td>' + p.name + '</td>';
+    html += '<td>' + tg + '</td>';
+    html += '<td>' + (p.registered || '—') + '</td>';
+    html += '<td>' + ref + '</td>';
+    html += '<td>' + status + '</td>';
     html += '</tr>';
   }
   tbody.innerHTML = html;
