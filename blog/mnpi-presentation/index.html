@@ -1130,17 +1130,48 @@
 <!-- ===== SCREEN 11B: ФОРМУЛА И СУБИНДЕКСЫ ===== -->
 <section class="formula-section" id="screen11b">
   <div class="inner">
-    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Формула MNPI</h2>
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Как ИИ сжимает 100+ субиндексов в четыре числа</h2>
+    <p class="fade-up" style="color:var(--muted);max-width:700px;margin:0 auto 24px;">Из трёх потоков данных ИИ вычисляет четыре ключевых индекса. Каждый отвечает на свой вопрос.</p>
     <div class="formula-display fade-up">MNPI = (SI × 0.30) + (DI × 0.35) + (RI × 0.20) + (PI × 0.15)</div>
+
     <div class="radar-wrap" id="radarWrap">
       <svg viewBox="0 0 400 400" id="radarSvg"></svg>
       <div class="radar-desc" id="radarDesc"><strong id="rdTitle"></strong><span id="rdText"></span></div>
     </div>
-    <div class="npi-cards fade-up">
-      <div class="npi-card"><h4>NPI-State</h4><p>Верификация сессии. Оценка качества конкретной практики. Сравнение методов на одном языке.</p></div>
-      <div class="npi-card"><h4>NPI-Trait</h4><p>Нейропрофиль человека. Взвешенное среднее по шести сессиям. Сравнение людей между собой.</p></div>
+
+    <!-- 4 sub-index cards -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:0 auto 32px;max-width:1000px;" class="fade-up">
+      <div style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.2);border-radius:12px;padding:20px;text-align:left;">
+        <p style="font-family:var(--fm);font-size:1.6rem;font-weight:700;color:var(--accent);margin-bottom:4px;">SI</p>
+        <p style="font-family:var(--fh);font-size:0.8rem;text-transform:uppercase;margin-bottom:8px;">Переключаемость</p>
+        <p style="font-size:0.78rem;color:rgba(240,240,245,0.6);line-height:1.5;">Как быстро мозг переходит между режимами. Не «глубина», а скорость и точность переключения.</p>
+        <p style="font-family:var(--fm);font-size:0.65rem;color:var(--accent);margin-top:8px;opacity:0.7;">Вес: 30% · Источник: нейро + тело</p>
+      </div>
+      <div style="background:rgba(0,229,160,0.06);border:1px solid rgba(0,229,160,0.2);border-radius:12px;padding:20px;text-align:left;">
+        <p style="font-family:var(--fm);font-size:1.6rem;font-weight:700;color:var(--neuro-green);margin-bottom:4px;">DI</p>
+        <p style="font-family:var(--fh);font-size:0.8rem;text-transform:uppercase;margin-bottom:8px;">Глубина</p>
+        <p style="font-size:0.78rem;color:rgba(240,240,245,0.6);line-height:1.5;">Насколько далеко мозг уходит от обычного состояния. Персональная величина — от твоей точки отсчёта.</p>
+        <p style="font-family:var(--fm);font-size:0.65rem;color:var(--neuro-green);margin-top:8px;opacity:0.7;">Вес: 35% · Источник: нейро</p>
+      </div>
+      <div style="background:rgba(245,222,179,0.06);border:1px solid rgba(245,222,179,0.2);border-radius:12px;padding:20px;text-align:left;">
+        <p style="font-family:var(--fm);font-size:1.6rem;font-weight:700;color:var(--warm);margin-bottom:4px;">RI</p>
+        <p style="font-family:var(--fh);font-size:0.8rem;text-transform:uppercase;margin-bottom:8px;">Устойчивость</p>
+        <p style="font-size:0.78rem;color:rgba(240,240,245,0.6);line-height:1.5;">Сохраняется ли состояние, когда жизнь давит. Практическая нейропластичность — не на коврике, а в реальности.</p>
+        <p style="font-family:var(--fm);font-size:0.65rem;color:var(--warm);margin-top:8px;opacity:0.7;">Вес: 20% · Источник: тело + контекст</p>
+      </div>
+      <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:12px;padding:20px;text-align:left;">
+        <p style="font-family:var(--fm);font-size:1.6rem;font-weight:700;color:var(--context-purple);margin-bottom:4px;">PI</p>
+        <p style="font-family:var(--fh);font-size:0.8rem;text-transform:uppercase;margin-bottom:8px;">Феноменология</p>
+        <p style="font-size:0.78rem;color:rgba(240,240,245,0.6);line-height:1.5;">Насколько точно ты описываешь свой опыт. Этот индекс валидирует остальные три — он фильтр достоверности.</p>
+        <p style="font-family:var(--fm);font-size:0.65rem;color:var(--context-purple);margin-top:8px;opacity:0.7;">Вес: 15% · Источник: контекст (ИИ-анализ)</p>
+      </div>
     </div>
-    <div class="accent-quote fade-up" style="max-width:700px;margin:0 auto;">MNPI измеряет не состояние, а переход между состояниями. Это принципиально новый объект измерения.</div>
+
+    <div class="npi-cards fade-up">
+      <div class="npi-card"><h4>NPI-State</h4><p>Индекс одной сессии. Верификация конкретной практики. Можно сравнить методы между собой на одном языке.</p></div>
+      <div class="npi-card"><h4>NPI-Trait</h4><p>Нейропрофиль человека. Взвешенное среднее по шести сессиям. Твоя «нейропластическая подпись» — сравнение людей между собой.</p></div>
+    </div>
+    <div class="accent-quote fade-up" style="max-width:700px;margin:16px auto 0;">MNPI измеряет не состояние, а переход между состояниями. Это принципиально новый объект измерения.</div>
   </div>
 </section>
 
