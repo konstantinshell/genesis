@@ -553,14 +553,40 @@
 
     /* ========== SCREEN 13: BRIDGE ========== */
     .bridge-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-    .bridge-section .inner { max-width: 900px; width: 100%; margin: 0 auto; text-align: center; }
-    .bridge-viz { position: relative; height: 200px; margin: 48px 0; }
+    .bridge-section .inner { max-width: 1000px; width: 100%; margin: 0 auto; text-align: center; }
+    .bridge-viz { position: relative; height: 340px; margin: 48px 0; }
     .bridge-viz svg { width: 100%; height: 100%; overflow: visible; }
-    .bridge-path { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 500; stroke-dashoffset: 500; transition: stroke-dashoffset 2s ease; }
-    .bridge-viz.visible .bridge-path { stroke-dashoffset: 0; }
-    .bridge-bank { font-family: var(--fb); font-size: 0.9rem; fill: rgba(240,240,245,0.7); }
-    .bridge-label { font-family: var(--fm); font-size: 11px; fill: var(--accent); opacity: 0; transition: opacity 1s ease 1.5s; }
-    .bridge-viz.visible .bridge-label { opacity: 1; }
+    /* Main arc */
+    .bridge-arc { fill: none; stroke: url(#bridgeGrad); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 800; stroke-dashoffset: 800; transition: stroke-dashoffset 2.5s cubic-bezier(0.4,0,0.2,1); }
+    .bridge-viz.visible .bridge-arc { stroke-dashoffset: 0; }
+    /* Support cables */
+    .bridge-cable { fill: none; stroke: rgba(99,102,241,0.2); stroke-width: 1; stroke-dasharray: 4 3; opacity: 0; transition: opacity 1s ease 1.5s; }
+    .bridge-viz.visible .bridge-cable { opacity: 1; }
+    /* Pillars */
+    .bridge-pillar { fill: none; stroke: rgba(99,102,241,0.35); stroke-width: 2; opacity: 0; transition: opacity 0.8s ease 0.5s; }
+    .bridge-viz.visible .bridge-pillar { opacity: 1; }
+    /* Cliff faces */
+    .bridge-cliff { fill: rgba(255,255,255,0.03); stroke: rgba(255,255,255,0.06); stroke-width: 1; }
+    /* Labels */
+    .bridge-bank-label { font-family: var(--fh); font-size: 14px; fill: var(--text); text-transform: uppercase; letter-spacing: 0.08em; opacity: 0; transition: opacity 0.8s ease 0.3s; }
+    .bridge-viz.visible .bridge-bank-label { opacity: 1; }
+    .bridge-bank-sub { font-family: var(--fb); font-size: 11px; fill: rgba(240,240,245,0.5); opacity: 0; transition: opacity 0.8s ease 0.6s; }
+    .bridge-viz.visible .bridge-bank-sub { opacity: 1; }
+    .bridge-passport { font-family: var(--fm); font-size: 12px; fill: var(--accent); text-anchor: middle; opacity: 0; transition: opacity 1s ease 2s; }
+    .bridge-viz.visible .bridge-passport { opacity: 1; }
+    /* Pulse traveling across bridge */
+    .bridge-pulse { fill: var(--accent); opacity: 0; filter: drop-shadow(0 0 8px rgba(99,102,241,0.8)); }
+    .bridge-viz.visible .bridge-pulse { opacity: 0.9; }
+    /* Gap glow */
+    .bridge-gap-glow { fill: url(#gapGlow); opacity: 0; transition: opacity 1.5s ease 1s; }
+    .bridge-viz.visible .bridge-gap-glow { opacity: 1; }
+    /* Bottom text */
+    .bridge-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; text-align: left; }
+    .bridge-bottom-item { padding: 20px 24px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+    .bridge-bottom-item h4 { font-family: var(--fh); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 6px; }
+    .bridge-bottom-item.left h4 { color: var(--muted); }
+    .bridge-bottom-item.right h4 { color: var(--accent); }
+    .bridge-bottom-item p { font-size: 0.85rem; color: rgba(240,240,245,0.6); line-height: 1.5; }
 
     /* ========== SCREEN 14: FOR WHOM ========== */
     .whom-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
@@ -1045,14 +1071,78 @@
   <div class="inner">
     <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Данные не отменяют опыт. Они дают ему голос.</h2>
     <div class="bridge-viz" id="bridgeViz">
-      <svg viewBox="0 0 800 200">
-        <text class="bridge-bank" x="40" y="170" font-size="13">Авторитет. Личное ощущение.</text>
-        <text class="bridge-bank" x="540" y="170" font-size="13">Медицина. Корпорации. Наука.</text>
-        <path class="bridge-path" d="M 80,130 C 200,30 600,30 720,130"/>
-        <text class="bridge-label" x="400" y="55" text-anchor="middle">Session Passport — единый формат для любой практики</text>
+      <svg viewBox="0 0 900 340" id="bridgeSvg">
+        <defs>
+          <linearGradient id="bridgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#F5DEB3"/>
+            <stop offset="40%" stop-color="#5F5FFF"/>
+            <stop offset="100%" stop-color="#00E5A0"/>
+          </linearGradient>
+          <radialGradient id="gapGlow" cx="50%" cy="80%" r="40%">
+            <stop offset="0%" stop-color="rgba(99,102,241,0.12)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Abyss glow -->
+        <ellipse class="bridge-gap-glow" cx="450" cy="300" rx="250" ry="80"/>
+
+        <!-- Left cliff -->
+        <polygon class="bridge-cliff" points="0,200 180,200 180,340 0,340"/>
+        <!-- Right cliff -->
+        <polygon class="bridge-cliff" points="720,200 900,200 900,340 720,340"/>
+
+        <!-- Left pillar -->
+        <line class="bridge-pillar" x1="170" y1="120" x2="170" y2="200"/>
+        <line class="bridge-pillar" x1="180" y1="120" x2="180" y2="200"/>
+        <!-- Right pillar -->
+        <line class="bridge-pillar" x1="720" y1="120" x2="720" y2="200"/>
+        <line class="bridge-pillar" x1="730" y1="120" x2="730" y2="200"/>
+
+        <!-- Support cables left -->
+        <line class="bridge-cable" x1="175" y1="125" x2="250" y2="100"/>
+        <line class="bridge-cable" x1="175" y1="125" x2="320" y2="88"/>
+        <line class="bridge-cable" x1="175" y1="125" x2="390" y2="82"/>
+        <!-- Support cables right -->
+        <line class="bridge-cable" x1="725" y1="125" x2="650" y2="100"/>
+        <line class="bridge-cable" x1="725" y1="125" x2="580" y2="88"/>
+        <line class="bridge-cable" x1="725" y1="125" x2="510" y2="82"/>
+
+        <!-- Main bridge arc -->
+        <path class="bridge-arc" d="M 175,125 C 280,60 350,50 450,45 C 550,50 620,60 725,125"/>
+
+        <!-- Pulse dot traveling across -->
+        <circle class="bridge-pulse" r="5">
+          <animateMotion dur="3.5s" repeatCount="indefinite" path="M 175,125 C 280,60 350,50 450,45 C 550,50 620,60 725,125"/>
+        </circle>
+
+        <!-- Left bank labels -->
+        <text class="bridge-bank-label" x="90" y="175" text-anchor="middle">Практик</text>
+        <text class="bridge-bank-sub" x="90" y="192" text-anchor="middle">Авторитет. Ощущение.</text>
+        <text class="bridge-bank-sub" x="90" y="206" text-anchor="middle">Личный опыт.</text>
+
+        <!-- Right bank labels -->
+        <text class="bridge-bank-label" x="810" y="175" text-anchor="middle">Наука</text>
+        <text class="bridge-bank-sub" x="810" y="192" text-anchor="middle">Данные. Протоколы.</text>
+        <text class="bridge-bank-sub" x="810" y="206" text-anchor="middle">Доказательная база.</text>
+
+        <!-- Center label -->
+        <text class="bridge-passport" x="450" y="30">SESSION PASSPORT</text>
       </svg>
     </div>
-    <p class="fade-up" style="color:rgba(240,240,245,0.7);max-width:600px;margin:0 auto;">Практика, у которой есть данные, говорит другим языком.</p>
+
+    <div class="bridge-bottom fade-up">
+      <div class="bridge-bottom-item left">
+        <h4>Без моста</h4>
+        <p>«Мне помогло» — мощно, но закрыто. Работает только для тех, кто уже верит.</p>
+      </div>
+      <div class="bridge-bottom-item right">
+        <h4>С мостом</h4>
+        <p>Практика получает паспорт — объективный формат, понятный врачам, учёным, корпорациям.</p>
+      </div>
+    </div>
+
+    <div class="accent-quote fade-up" style="margin-top:32px;max-width:600px;">Практика, у которой есть данные, говорит другим языком.</div>
   </div>
 </section>
 
