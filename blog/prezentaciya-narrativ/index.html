@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Технологии и практики ментального здоровья — ONTO NOTHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0c;
+  --bg-warm: #0c0c0e;
+  --text: #e8e8ec;
+  --text-muted: #6a6a78;
+  --green: #2ecc71;
+  --green-dark: #1a8a4a;
+  --green-glow: rgba(46, 204, 113, 0.15);
+  --font: 'Inter', -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Scroll animations ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- BLOCK 1 — Provocation ---- */
+.block-1 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+.block-1 .hero-text {
+  font-size: clamp(1.8rem, 5vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.3;
+  max-width: 900px;
+  opacity: 0;
+  animation: fadeInHero 2s ease forwards;
+}
+@keyframes fadeInHero {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.scroll-arrow {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: fadeInArrow 2s 1.5s ease forwards, pulseArrow 2.5s 3.5s ease-in-out infinite;
+}
+.scroll-arrow svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--text-muted);
+  stroke-width: 1.5;
+  fill: none;
+}
+@keyframes fadeInArrow {
+  to { opacity: 0.4; }
+}
+@keyframes pulseArrow {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+  50%      { opacity: 0.15; transform: translateX(-50%) translateY(8px); }
+}
+
+/* ---- BLOCK 2, 3, 4 — Timeline ---- */
+.timeline-section {
+  position: relative;
+  padding: 6rem 2rem 6rem 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.timeline-line {
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--green), var(--green-dark), transparent);
+}
+.timeline-content {
+  margin-left: 4.5rem;
+}
+.timeline-content p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+.green-em {
+  color: var(--green);
+  font-style: italic;
+}
+.green-bold {
+  color: var(--green);
+  font-weight: 500;
+}
+
+/* ---- BLOCK 3 — Timeline dots ---- */
+.timeline-dot {
+  position: absolute;
+  left: 2rem;
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  transform: translateX(-3px);
+  box-shadow: 0 0 8px var(--green-glow);
+}
+
+.block-3 .beat-lines p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-bottom: 0.8rem;
+  padding-left: 0.5rem;
+  border-left: none;
+}
+
+/* ---- BLOCK 4 — Epochs ---- */
+.epochs {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  margin-left: 4.5rem;
+}
+.epoch-word {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: opacity 0.6s ease;
+}
+.epoch-word:nth-child(1) { color: #3a3a44; }
+.epoch-word:nth-child(2) { color: #4a4a56; }
+.epoch-word:nth-child(3) { color: #6a6a78; }
+.epoch-word:nth-child(4) { color: #9a9aaa; }
+.epoch-word:nth-child(5) { color: var(--green); }
+
+.timeline-end {
+  position: absolute;
+  left: 2rem;
+  bottom: 3rem;
+  width: 2px;
+  height: 0;
+}
+
+/* ---- BLOCK 5 — Mechanic ---- */
+.block-5 {
+  padding: 8rem 2rem;
+  text-align: center;
+  background: var(--bg-warm);
+  position: relative;
+}
+.block-5 .inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.block-5 p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+.block-5 .highlight {
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  color: var(--green);
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+/* ---- BLOCK 6 — Three examples ---- */
+.block-6 {
+  padding: 8rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.three-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.col-card {
+  text-align: center;
+}
+.col-card .icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.col-card .icon svg {
+  stroke: var(--green);
+  fill: none;
+  stroke-width: 1.5;
+  width: 40px;
+  height: 40px;
+}
+.col-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.col-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.block-6 .unifying {
+  text-align: center;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: var(--green);
+  font-weight: 500;
+}
+
+/* ---- BLOCK 7 — Chain ---- */
+.block-7 {
+  padding: 8rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.chain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.chain-step {
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  padding: 0.6rem 1rem;
+  border: 1px solid #2a2a34;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.chain-step.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.chain-arrow {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.chain-arrow.visible { opacity: 1; }
+.block-7 p {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+}
+.block-7 .highlight-end {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: var(--green);
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+/* ---- BLOCK 8 — New mirror ---- */
+.block-8 {
+  padding: 8rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.epoch-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  margin-bottom: 4rem;
+  box-shadow: 0 0 20px var(--green-glow);
+}
+.device-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--green);
+}
+.device-row p {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  padding-left: 1rem;
+  line-height: 1.7;
+}
+.block-8 .intro-text {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+.block-8 .big-phrase {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  color: var(--green);
+  font-weight: 600;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ---- BLOCK 9 — Data scale ---- */
+.block-9 {
+  padding: 8rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.data-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.data-card {
+  text-align: center;
+}
+.data-card .big-num {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 0.8rem;
+}
+.data-card .desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.block-9 .portrait-phrase {
+  text-align: center;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  font-weight: 500;
+}
+
+/* ---- BLOCK 10 — Problem ---- */
+.block-10 {
+  padding: 8rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 500px;
+}
+.scattered {
+  position: relative;
+  height: 280px;
+  margin-bottom: 3rem;
+}
+.scattered-item {
+  position: absolute;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid #2a2a34;
+  border-radius: 6px;
+  color: var(--text-muted);
+}
+.scattered-item:nth-child(1) { top: 10%; left: 5%; }
+.scattered-item:nth-child(2) { top: 50%; right: 8%; }
+.scattered-item:nth-child(3) { bottom: 5%; left: 35%; }
+.block-10 p {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+.block-10 .zero-phrase {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 600;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* ---- BLOCK 11 — MNPI ---- */
+.block-11 {
+  padding: 8rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.mnpi-diagram {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 320px;
+  margin: 0 auto 3rem;
+}
+.mnpi-node {
+  position: absolute;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  text-align: center;
+}
+.mnpi-node:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+.mnpi-node:nth-child(2) { bottom: 10%; left: 5%; }
+.mnpi-node:nth-child(3) { bottom: 10%; right: 5%; }
+.mnpi-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.1em;
+}
+.mnpi-diagram svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.mnpi-diagram svg line {
+  stroke: var(--green);
+  stroke-width: 1;
+  opacity: 0.5;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 1.5s ease;
+}
+.mnpi-diagram.visible svg line {
+  stroke-dashoffset: 0;
+}
+.block-11 p {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+  text-align: center;
+}
+.block-11 .mirror-phrase {
+  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+  color: var(--green);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ---- BLOCK 12 — Steps ---- */
+.block-12 {
+  padding: 8rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.step-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.step-num {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--green);
+  min-width: 2rem;
+  line-height: 1.5;
+}
+.step-item p {
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  line-height: 1.7;
+}
+.block-12 .final-phrase {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---- BLOCK 13 — Verification standard ---- */
+.block-13 {
+  padding: 8rem 2rem;
+  background: #0b0b0f;
+  text-align: center;
+}
+.block-13 .inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.block-13 p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+/* ---- BLOCK 14 — For whom ---- */
+.block-14 {
+  padding: 8rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.audience-item {
+  padding: 2rem 0;
+  border-bottom: 1px solid #1a1a24;
+}
+.audience-item:last-child { border-bottom: none; }
+.audience-item p {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  line-height: 1.8;
+}
+.audience-label {
+  color: var(--green);
+  font-weight: 500;
+}
+
+/* ---- BLOCK 15 — Invitation ---- */
+.block-15 {
+  padding: 8rem 2rem;
+  background: var(--bg-warm);
+  text-align: center;
+}
+.block-15 .inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.block-15 p {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+.block-15 .cta-phrase {
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  color: var(--green);
+  font-weight: 600;
+  margin: 2rem 0;
+}
+
+/* ---- BLOCK 16 — Big story ---- */
+.block-16 {
+  padding: 8rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.partners-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.partner-name {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.partner-line {
+  width: 40px;
+  height: 1px;
+  background: var(--green);
+}
+.block-16 p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+.block-16 .mnpi-big {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.1em;
+  margin: 2rem 0;
+}
+
+/* ---- BLOCK 17 — Welcome ---- */
+.block-17 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+.block-17 .pre-text {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  max-width: 650px;
+  margin-bottom: 4rem;
+  line-height: 1.8;
+}
+.block-17 .welcome-word {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.15em;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+.block-17 .closing {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--text-muted);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 768px) {
+  .three-cols, .data-cols {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .chain {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .chain-arrow {
+    transform: rotate(90deg);
+    margin: 0.3rem 0 0.3rem 1.5rem;
+  }
+  .timeline-section {
+    padding-left: 1rem;
+  }
+  .timeline-line { left: 1rem; }
+  .timeline-content { margin-left: 3rem; }
+  .epochs { margin-left: 3rem; gap: 0.8rem; }
+  .timeline-dot { left: 1rem; }
+  .scattered {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .scattered-item {
+    position: static;
+  }
+  .mnpi-diagram { height: 260px; }
+}
+</style>
+</head>
+<body>
+
+<!-- BLOCK 1 — Provocation -->
+<section class="block-1">
+  <div class="hero-text">
+    Люди тысячи лет управляли своим мозгом. Без&nbsp;МРТ. Без&nbsp;данных. Без&nbsp;науки. И&nbsp;это работало.<br><br>Вопрос только один&nbsp;&mdash; как это доказать сегодня.
+  </div>
+  <div class="scroll-arrow">
+    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </div>
+</section>
+
+<!-- BLOCK 2 — Thesis -->
+<section class="block-2 timeline-section">
+  <div class="timeline-line"></div>
+  <div class="timeline-content reveal">
+    <p>Сорок тысяч лет назад люди уже умели намеренно менять состояние мозга. Ритм барабана. Совместное дыхание. Транс. Пение у&nbsp;огня.</p>
+    <p>Они не знали слов <span class="green-em">&laquo;альфа-волны&raquo;</span> и&nbsp;<span class="green-em">&laquo;дефолтная сеть мозга&raquo;</span>. Но они точно знали&nbsp;&mdash; после этого человек становится другим.</p>
+    <p>И это работало.</p>
+  </div>
+</section>
+
+<!-- BLOCK 3 — Survival law -->
+<section class="block-3 timeline-section">
+  <div class="timeline-line"></div>
+  <div class="timeline-dot" style="top: 15%"></div>
+  <div class="timeline-dot" style="top: 40%"></div>
+  <div class="timeline-dot" style="top: 65%"></div>
+  <div class="timeline-dot" style="top: 85%"></div>
+  <div class="timeline-content reveal">
+    <div class="beat-lines">
+      <p>Выживали только те практики, которые реально меняли состояние.</p>
+      <p>Не те, которые красиво звучали.</p>
+      <p>Природный фильтр&nbsp;&mdash; жёстче любой научной рецензии.</p>
+      <p>Тысячи лет отбора.</p>
+      <p class="green-bold">То, что дошло до нас&nbsp;&mdash; работает.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 4 — Changing shells -->
+<section class="block-4 timeline-section">
+  <div class="timeline-line" style="background: linear-gradient(to bottom, var(--green-dark), transparent)"></div>
+  <div class="epochs reveal">
+    <span class="epoch-word">Религия</span>
+    <span class="epoch-word">Философия</span>
+    <span class="epoch-word">Психология</span>
+    <span class="epoch-word">Нейронаука</span>
+    <span class="epoch-word">Велнес</span>
+  </div>
+  <div class="timeline-content reveal">
+    <p>Каждая эпоха переупаковывала одно и&nbsp;то&nbsp;же в&nbsp;свои слова.</p>
+    <p>Оболочка менялась&nbsp;&mdash; механика оставалась.</p>
+    <p>Медитация стала майндфулнессом. Ритуал стал групповой терапией. Пост стал интервальным голоданием. Шаман стал коучем.</p>
+  </div>
+</section>
+
+<!-- BLOCK 5 — Single mechanic -->
+<section class="block-5">
+  <div class="inner reveal">
+    <p>У&nbsp;всех практик одна механика.</p>
+    <p>Человек намеренно входит в&nbsp;изменённое состояние. Мозг перестраивается. Тело реагирует. Что-то внутри сдвигается.</p>
+    <div class="highlight">Это и&nbsp;есть нейротехнология.</div>
+    <p style="margin-top:1rem; color: var(--text-muted)">Просто без этого слова.</p>
+  </div>
+</section>
+
+<!-- BLOCK 6 — Examples -->
+<section class="block-6">
+  <div class="three-cols reveal">
+    <div class="col-card">
+      <div class="icon"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/></svg></div>
+      <h3>Метод Вима Хофа</h3>
+      <p>Дыхание и&nbsp;холод</p>
+    </div>
+    <div class="col-card">
+      <div class="icon"><svg viewBox="0 0 40 40"><polygon points="20,4 36,36 4,36"/></svg></div>
+      <h3>Буддийская медитация</h3>
+      <p>Тысячелетняя система работы с&nbsp;вниманием</p>
+    </div>
+    <div class="col-card">
+      <div class="icon"><svg viewBox="0 0 40 40"><line x1="4" y1="20" x2="36" y2="20"/></svg></div>
+      <h3>Протокол Пеннистона</h3>
+      <p>Альфа-тета тренинг, разработанный в&nbsp;армии&nbsp;США</p>
+    </div>
+  </div>
+  <div class="unifying reveal">Все они работают с&nbsp;одним&nbsp;&mdash; с&nbsp;состоянием мозга.</div>
+</section>
+
+<!-- BLOCK 7 — Old verification -->
+<section class="block-7">
+  <div class="chain" id="chain">
+    <span class="chain-step">Пришёл</span><span class="chain-arrow">&rarr;</span>
+    <span class="chain-step">Попробовал</span><span class="chain-arrow">&rarr;</span>
+    <span class="chain-step">Почувствовал</span><span class="chain-arrow">&rarr;</span>
+    <span class="chain-step">Поверил</span><span class="chain-arrow">&rarr;</span>
+    <span class="chain-step">Передал</span>
+  </div>
+  <div class="reveal">
+    <p>Тысячи лет верификация выглядела именно так. Это работало.</p>
+    <p>Но у&nbsp;этой системы один фундаментальный предел&nbsp;&mdash; она полностью субъективна. Нельзя сравнить. Нельзя измерить.</p>
+    <div class="highlight-end">Нельзя доказать тому, кто не&nbsp;почувствовал.</div>
+  </div>
+</section>
+
+<!-- BLOCK 8 — New mirror -->
+<section class="block-8">
+  <div class="epoch-divider reveal"></div>
+  <div class="reveal">
+    <p class="intro-text">В&nbsp;последние 10-15&nbsp;лет появилось кое-что принципиально новое.</p>
+    <div class="device-row"><p>Фитнес-трекер пишет твой HRV, стресс, сон, восстановление&nbsp;&mdash; круглосуточно.</p></div>
+    <div class="device-row"><p>Мобильный ЭЭГ записывает активность мозга прямо во время практики.</p></div>
+    <div class="device-row"><p>Биорезонансный анализ даёт срез физиологии за несколько минут.</p></div>
+    <div class="big-phrase">Впервые в&nbsp;истории можно видеть&nbsp;&mdash; не&nbsp;только чувствовать.</div>
+  </div>
+</section>
+
+<!-- BLOCK 9 — Data scale -->
+<section class="block-9">
+  <div class="data-cols reveal">
+    <div class="data-card">
+      <div class="big-num">20</div>
+      <div class="desc">HRV, Body Battery, стресс, сон, VO2max&nbsp;&mdash; до 20 параметров с&nbsp;фитнес-трекера</div>
+    </div>
+    <div class="data-card">
+      <div class="big-num">10+</div>
+      <div class="desc">Альфа, бета, тета ритмы, индекс релаксации, нейропластичность&nbsp;&mdash; данные ЭЭГ</div>
+    </div>
+    <div class="data-card">
+      <div class="big-num">+&phi;</div>
+      <div class="desc">Феноменология&nbsp;&mdash; то, что говорит сам человек, плюс физиологический срез биореза</div>
+    </div>
+  </div>
+  <div class="portrait-phrase reveal">Это уже не точка данных. <strong>Это портрет.</strong></div>
+</section>
+
+<!-- BLOCK 10 — Problem -->
+<section class="block-10">
+  <div class="scattered reveal">
+    <div class="scattered-item">ЭЭГ</div>
+    <div class="scattered-item">Гармин</div>
+    <div class="scattered-item">Голос</div>
+  </div>
+  <div class="reveal">
+    <p>Данные есть. Картины нет.</p>
+    <p>ЭЭГ в&nbsp;одном приложении. Гармин в&nbsp;другом. То, что говорит человек&nbsp;&mdash; вообще нигде не&nbsp;зафиксировано. Никто не&nbsp;сводит это вместе.</p>
+    <div class="zero-phrase">Данных много. Понимания&nbsp;&mdash; ноль.</div>
+  </div>
+</section>
+
+<!-- BLOCK 11 — MNPI -->
+<section class="block-11">
+  <div class="mnpi-diagram reveal" id="mnpiDiagram">
+    <svg viewBox="0 0 400 320">
+      <line x1="200" y1="30" x2="200" y2="160"/>
+      <line x1="60" y1="260" x2="200" y2="160"/>
+      <line x1="340" y1="260" x2="200" y2="160"/>
+    </svg>
+    <div class="mnpi-node">Нейро</div>
+    <div class="mnpi-node">Физиология</div>
+    <div class="mnpi-node">Феноменология</div>
+    <div class="mnpi-center">MNPI</div>
+  </div>
+  <div class="reveal">
+    <p>Мы создали индекс, который это сводит. <strong>MNPI</strong>&nbsp;&mdash; многомерный индекс нейропластичности.</p>
+    <p>Три слоя: нейро&nbsp;&mdash; данные мозга, физиология&nbsp;&mdash; данные тела, феноменология&nbsp;&mdash; то, что говорит сам человек.</p>
+    <p>Это не&nbsp;конкуренция ни одной практике.</p>
+    <div class="mirror-phrase">Это зеркало для любой практики.</div>
+  </div>
+</section>
+
+<!-- BLOCK 12 — How it looks -->
+<section class="block-12">
+  <div class="step-list" id="stepList">
+    <div class="step-item"><span class="step-num">01</span><p>Ты приходишь на чекап. Надеваешь ЭЭГ-гарнитуру.</p></div>
+    <div class="step-item"><span class="step-num">02</span><p>Проходишь протокол&nbsp;&mdash; несколько состояний подряд.</p></div>
+    <div class="step-item"><span class="step-num">03</span><p>Параллельно идёт запись физиологии и&nbsp;голосовой поток.</p></div>
+    <div class="step-item"><span class="step-num">04</span><p>Платформа сводит всё вместе.</p></div>
+    <div class="step-item"><span class="step-num">05</span><p>Ты получаешь отчёт&nbsp;&mdash; не набор цифр, а&nbsp;интерпретацию. Что происходит с&nbsp;твоим мозгом.</p></div>
+  </div>
+  <div class="final-phrase reveal">Где ресурс. Где блок.</div>
+</section>
+
+<!-- BLOCK 13 — Verification standard -->
+<section class="block-13">
+  <div class="inner reveal">
+    <p>Мы стоим в&nbsp;точке, где авторитета и&nbsp;личного ощущения уже недостаточно.</p>
+    <p>Мир требует данных.</p>
+    <p>И <span class="green-bold">это не угроза практикам&nbsp;&mdash; это их следующий уровень</span>.</p>
+    <p>Практика с&nbsp;данными говорит громче. Убеждает точнее. Передаётся надёжнее.</p>
+  </div>
+</section>
+
+<!-- BLOCK 14 — For whom -->
+<section class="block-14">
+  <div class="reveal">
+    <div class="audience-item">
+      <p><span class="audience-label">Для тех, кто</span> уже практикует&nbsp;&mdash; йогу, медитацию, дыхание, телесные практики&nbsp;&mdash; и&nbsp;хочет понять, как это реально на них влияет.</p>
+    </div>
+    <div class="audience-item">
+      <p><span class="audience-label">Для тех, кто</span> ведёт других людей и хочет это верифицировать.</p>
+    </div>
+    <div class="audience-item">
+      <p><span class="audience-label">И для тех, кто</span> просто хочет увидеть, что происходит у них внутри.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 15 — Invitation -->
+<section class="block-15">
+  <div class="inner reveal">
+    <p>Мы сейчас в&nbsp;точке входа. Исследование открыто.</p>
+    <p>Ты можешь стать одним из первых, кто увидит себя в этом зеркале.</p>
+    <div class="cta-phrase">Пройди чекап. Посмотри, что там.</div>
+    <p style="color: var(--text-muted)">Дальше&nbsp;&mdash; сам решишь, что с этим делать.</p>
+  </div>
+</section>
+
+<!-- BLOCK 16 — Big story -->
+<section class="block-16">
+  <div class="reveal">
+    <p>За этим стоит кое-что большее, чем личный чекап.</p>
+    <div class="partners-row">
+      <span class="partner-name">Onto Nothing</span>
+      <span class="partner-line"></span>
+      <span class="partner-name">Ритмы Жизни</span>
+      <span class="partner-line"></span>
+      <span class="partner-name">Neiry</span>
+    </div>
+    <p>объединились вокруг одной цели&nbsp;&mdash; установить международный стандарт измерения нейропластичности.</p>
+    <div class="mnpi-big">MNPI</div>
+    <p>Это не просто индекс. Это язык, на котором человечество научится говорить о&nbsp;своём внутреннем состоянии точно и&nbsp;объективно.</p>
+  </div>
+</section>
+
+<!-- BLOCK 17 — Welcome -->
+<section class="block-17">
+  <div class="reveal">
+    <p class="pre-text">Возможно, ваши дети и&nbsp;внуки будут измерять своё состояние так&nbsp;же привычно, как сегодня измеряют давление. И&nbsp;этот стандарт создаётся сейчас. Здесь. Теми, кто решил войти первым.</p>
+  </div>
+  <div class="reveal" style="transition-delay: 0.6s;">
+    <div class="welcome-word">Welcome</div>
+    <p class="closing">Мы делаем этот шаг вместе.</p>
+  </div>
+</section>
+
+<script>
+// Intersection Observer for reveal animations
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Chain animation (block 7)
+const chainObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const items = entry.target.querySelectorAll('.chain-step, .chain-arrow');
+      items.forEach((item, i) => {
+        setTimeout(() => item.classList.add('visible'), i * 200);
+      });
+      chainObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const chain = document.getElementById('chain');
+if (chain) chainObserver.observe(chain);
+
+// Step list animation (block 12)
+const stepObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const items = entry.target.querySelectorAll('.step-item');
+      items.forEach((item, i) => {
+        setTimeout(() => item.classList.add('visible'), i * 250);
+      });
+      stepObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+const stepList = document.getElementById('stepList');
+if (stepList) stepObserver.observe(stepList);
+
+// MNPI diagram animation
+const mnpiObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      mnpiObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.4 });
+
+const mnpiDiagram = document.getElementById('mnpiDiagram');
+if (mnpiDiagram) mnpiObserver.observe(mnpiDiagram);
+</script>
+
+</body>
+</html>
