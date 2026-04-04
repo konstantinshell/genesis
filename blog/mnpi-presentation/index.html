@@ -1086,25 +1086,27 @@
 <section class="layers-section" id="screen11">
   <div class="inner">
     <div>
-      <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:24px;">MNPI — многомерный индекс нейропластичности</h2>
+      <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:12px;">Как 100+ субиндексов становятся одним числом</h2>
+      <p class="fade-up" style="color:var(--muted);margin-bottom:28px;font-size:0.95rem;">MNPI сводит три потока в единый индекс. Каждый поток — самостоятельная система данных.</p>
+
       <div class="layer-block fade-up" data-color="indigo" data-ring="0">
-        <h3 style="color:var(--accent);">Поток 1: Нейро</h3>
-        <p>Данные мозга: волны, активные сети, реакция на состояния, потенциал нейропластичности. Neiry нейробанд.</p>
+        <h3 style="color:var(--accent);">Поток 1: Нейро <span style="font-family:var(--fm);font-size:0.7rem;opacity:0.7;">30+ индексов · Neiry</span></h3>
+        <p>Волны мозга (альфа, бета, тета, дельта, гамма), соотношения мощности, латентность входа в состояние, устойчивость ритма, индекс релаксации, фокус, маркеры нейропластичности. Записывается во время сессии.</p>
       </div>
       <div class="layer-block fade-up" data-color="green" data-ring="1">
-        <h3 style="color:var(--neuro-green);">Поток 2: Физиология</h3>
-        <p>Данные тела: HRV, стресс-индекс, ЧСС, дыхание, температура кожи. Garmin / WHOOP / Oura. Круглосуточно.</p>
-      </div>
-      <div class="layer-block fade-up" data-color="warm" data-ring="2">
-        <h3 style="color:var(--warm);">Поток 3: Феноменология</h3>
-        <p>Голосовой нарратив. Телесные дескрипторы, тональность, глубина самонаблюдения. Анализ через ИИ.</p>
+        <h3 style="color:var(--neuro-green);">Поток 2: Физиология <span style="font-family:var(--fm);font-size:0.7rem;opacity:0.7;">25+ метрик · Garmin / WHOOP / Oura</span></h3>
+        <p>HRV, стресс-индекс, Body Battery, пульс покоя, SpO2, температура кожи, фазы сна, VO2max, дыхание, восстановление, нагрузка. Записывается круглосуточно — до, во время и после практики.</p>
       </div>
       <div class="layer-block fade-up" data-color="purple" data-ring="3">
-        <h3 style="color:var(--context-purple);">Поток 4: Контекст жизни</h3>
-        <p>Планер «Ритмы Жизни». Задачи, рефлексия, тренировки мозга. Ежедневные данные на протяжении всего периода.</p>
+        <h3 style="color:var(--context-purple);">Поток 3: Контекст жизни <span style="font-family:var(--fm);font-size:0.7rem;opacity:0.7;">50+ параметров · Планер «Ритмы Жизни»</span></h3>
+        <p>8 сфер жизни, голосовой нарратив → ИИ-анализ тональности и глубины, телесные дескрипторы, когнитивная гибкость, эмоциональный тон, задачи, тренировки мозга, дневник рефлексии. Ежедневно.</p>
       </div>
-      <div class="accent-quote fade-up">Рассинхронизация между потоками — не шум, а диагностический сигнал.</div>
-      <p class="fade-up" style="color:var(--muted);margin-top:24px;font-size:0.95rem;">MNPI — это не конкуренция ни одной практике. Это зеркало для любой практики.</p>
+
+      <div class="fade-up" style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.2);border-radius:12px;padding:20px;margin-top:20px;">
+        <p style="font-size:0.9rem;color:rgba(240,240,245,0.8);line-height:1.6;"><strong style="color:var(--accent);">Ключевой принцип:</strong> рассинхронизация между потоками — не шум, а диагностический сигнал. Если мозг показывает расслабление, а тело — стресс, это информация. ИИ видит эти несовпадения и превращает их в рекомендации.</p>
+      </div>
+
+      <div class="accent-quote fade-up" style="margin-top:20px;">MNPI — не конкуренция ни одной практике. Это зеркало для любой практики.</div>
     </div>
     <div class="layers-svg-wrap fade-up">
       <svg viewBox="0 0 400 400" id="layersSvg">
@@ -1112,6 +1114,12 @@
         <circle class="layer-ring" cx="200" cy="200" r="140" stroke="#F5DEB3" stroke-width="1" fill="#F5DEB3"/>
         <circle class="layer-ring" cx="200" cy="200" r="100" stroke="#00E5A0" stroke-width="1" fill="#00E5A0"/>
         <circle class="layer-ring" cx="200" cy="200" r="60" stroke="#5F5FFF" stroke-width="1" fill="#5F5FFF"/>
+        <!-- Labels on rings -->
+        <text x="200" y="200" text-anchor="middle" font-family="Courier Prime" font-size="9" fill="#fff">Нейро</text>
+        <text x="200" y="212" text-anchor="middle" font-family="Courier Prime" font-size="7" fill="rgba(255,255,255,0.6)">30+</text>
+        <text x="200" y="118" text-anchor="middle" font-family="Courier Prime" font-size="8" fill="rgba(255,255,255,0.8)">Физиология · 25+</text>
+        <text x="200" y="72" text-anchor="middle" font-family="Courier Prime" font-size="8" fill="rgba(255,255,255,0.7)">Феноменология</text>
+        <text x="200" y="32" text-anchor="middle" font-family="Courier Prime" font-size="8" fill="rgba(255,255,255,0.6)">Контекст · 50+</text>
       </svg>
     </div>
   </div>
