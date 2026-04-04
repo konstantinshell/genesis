@@ -285,6 +285,67 @@
     }
     .demo-node .rl { color: #bbb; }
 
+    .av.real.not-approved {
+      background: linear-gradient(135deg, #ff9f0a, #e08600);
+      box-shadow: 0 4px 12px rgba(255, 159, 10, 0.3);
+      animation: pulse-orange 2s infinite;
+    }
+    @keyframes pulse-orange {
+      0%, 100% { box-shadow: 0 4px 12px rgba(255, 159, 10, 0.3); }
+      50% { box-shadow: 0 4px 20px rgba(255, 159, 10, 0.5); }
+    }
+
+    /* ── SUMMARY TABLE ── */
+    .summary-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+    .summary-title {
+      font-family: "Oswald", sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .summary-table th {
+      background: #ddd;
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+      font-weight: 600;
+    }
+    .summary-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: middle;
+    }
+    .summary-table tr:hover { background: rgba(95,95,255,0.04); }
+    .summary-table tr.not-approved-row { background: rgba(255,159,10,0.08); }
+    .summary-table tr.not-approved-row:hover { background: rgba(255,159,10,0.14); }
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .status-badge.approved { background: rgba(52,199,89,0.15); color: #28a745; }
+    .status-badge.pending { background: rgba(255,159,10,0.15); color: #e08600; }
+    .tbl-link { color: #5F5FFF; text-decoration: none; }
+    .tbl-link:hover { text-decoration: underline; }
+    .tbl-tg { color: #0A84FF; text-decoration: none; font-size: 12px; }
+    .tbl-tg:hover { text-decoration: underline; }
+
     .updated {
       text-align: center;
       padding: 20px;
@@ -330,6 +391,7 @@
   <div class="legend-item">⭐ Промо участник</div>
   <div class="legend-item">⌚ Фитнес-трекер</div>
   <div class="legend-item">⚠️ Без NDA</div>
+  <div class="legend-item"><div class="lg" style="background:#ff9f0a;"></div> Не пропущен</div>
 </div>
 
 <div class="founders">
@@ -357,6 +419,26 @@
   <div class="mlm-tree" id="tree"></div>
 </div>
 
+<!-- ── SUMMARY TABLE ── -->
+<div class="summary-section">
+  <div class="summary-title">📋 Все участники</div>
+  <div style="overflow-x:auto;">
+    <table class="summary-table" id="summary-table">
+      <thead>
+        <tr>
+          <th>Имя</th>
+          <th>Telegram</th>
+          <th>Админка</th>
+          <th>NDA</th>
+          <th>Бенд</th>
+          <th>Трекер</th>
+        </tr>
+      </thead>
+      <tbody id="summary-body"></tbody>
+    </table>
+  </div>
+</div>
+
 <div class="updated" id="upd"></div>
 
 <script>
@@ -367,6 +449,7 @@ async function init() {
     document.getElementById('s-real').textContent = d.total_real;
     document.getElementById('upd').textContent = 'Обновлено: ' + d.updated;
     document.getElementById('tree').innerHTML = '<ul>' + renderNode(d, 0) + '</ul>';
+    buildSummary(d);
   } catch(e) {
     document.getElementById('tree').innerHTML = '<p style="color:#aaa;text-align:center">Загрузка...</p>';
   }
@@ -382,7 +465,7 @@ function renderNode(node, depth) {
   let icon = '👤';
   if (isOrg) { avCls += ' org'; icon = '🌐'; }
   else if (isFounder) { avCls += ' founder'; icon = '👑'; }
-  else if (isReal) { avCls += ' real'; icon = '✦'; }
+  else if (isReal) { avCls += ' real'; if (!node.nda) avCls += ' not-approved'; icon = '✦'; }
   else { avCls += ' demo'; icon = '?'; }
 
   let role = '';
@@ -432,6 +515,56 @@ function renderNode(node, depth) {
 
   html += '</li>';
   return html;
+}
+
+function collectReal(node, list) {
+  if (node.real && !node.role) {
+    list.push(node);
+  }
+  if (node.children) {
+    for (const ch of node.children) collectReal(ch, list);
+  }
+}
+
+function buildSummary(data) {
+  const people = [];
+  collectReal(data, people);
+  // Sort: not approved first
+  people.sort((a, b) => (a.nda === b.nda ? 0 : a.nda ? 1 : -1));
+
+  const tbody = document.getElementById('summary-body');
+  let html = '';
+  for (const p of people) {
+    const approved = p.nda;
+    const rowCls = approved ? '' : ' class="not-approved-row"';
+    const name = p.profile
+      ? '<a class="tbl-link" href="' + p.profile + '" target="_blank">' + p.name + '</a>'
+      : p.name;
+    const tg = p.tg
+      ? '<a class="tbl-tg" href="https://t.me/' + p.tg + '" target="_blank">@' + p.tg + '</a>'
+      : '—';
+    const adminBadge = approved
+      ? '<span class="status-badge approved">✅ Пропущен</span>'
+      : '<span class="status-badge pending">⏳ Не пропущен</span>';
+    const ndaBadge = approved
+      ? '<span style="color:#34c759;">✅ Подписан</span>'
+      : '<span style="color:#ff9f0a;">⚠️ Нет</span>';
+    let band = '—';
+    if (p.band === 'paid') band = '🧠 Нейробенд';
+    else if (p.band === 'promo') band = '🎁 Промо';
+    else if (p.band === 'promo_member') band = '⭐ Промо участник';
+    const tracker = p.tracker ? '⌚ Да' : '—';
+
+    html += '<tr' + rowCls + '>';
+    html += '<td>' + name + '</td>';
+    html += '<td>' + tg + '</td>';
+    html += '<td>' + adminBadge + '</td>';
+    html += '<td>' + ndaBadge + '</td>';
+    html += '<td>' + band + '</td>';
+    html += '<td>' + tracker + '</td>';
+    html += '</tr>';
+  }
+  tbody.innerHTML = html;
 }
 
 init();
