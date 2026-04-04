@@ -430,8 +430,10 @@
           <th>Telegram</th>
           <th>Админка</th>
           <th>NDA</th>
-          <th>Бенд</th>
-          <th>Трекер</th>
+          <th>Условия бенда</th>
+          <th>Фитнес-трекер</th>
+          <th>Амбассадор</th>
+          <th>LQ Lab</th>
         </tr>
       </thead>
       <tbody id="summary-body"></tbody>
@@ -550,10 +552,16 @@ function buildSummary(data) {
       ? '<span style="color:#34c759;">✅ Подписан</span>'
       : '<span style="color:#ff9f0a;">⚠️ Нет</span>';
     let band = '—';
-    if (p.band === 'paid') band = '🧠 Нейробенд';
+    if (p.band === 'paid') band = '🧠 Купил';
     else if (p.band === 'promo') band = '🎁 Промо';
-    else if (p.band === 'promo_member') band = '⭐ Промо участник';
-    const tracker = p.tracker ? '⌚ Да' : '—';
+    else if (p.band === 'promo_member') band = '⭐ Промо';
+    const tracker = p.tracker ? '⌚ ' + (p.tracker_model || 'Да') : '—';
+    const ambassador = p.ambassador
+      ? '<span style="color:#34c759;">✅ Да</span>'
+      : '<span style="color:#aaa;">—</span>';
+    const lqLab = p.lq_lab
+      ? '<span style="color:#34c759;">✅ Да</span>'
+      : '<span style="color:#aaa;">—</span>';
 
     html += '<tr' + rowCls + '>';
     html += '<td>' + name + '</td>';
@@ -562,6 +570,8 @@ function buildSummary(data) {
     html += '<td>' + ndaBadge + '</td>';
     html += '<td>' + band + '</td>';
     html += '<td>' + tracker + '</td>';
+    html += '<td>' + ambassador + '</td>';
+    html += '<td>' + lqLab + '</td>';
     html += '</tr>';
   }
   tbody.innerHTML = html;
