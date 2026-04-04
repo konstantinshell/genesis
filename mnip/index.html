@@ -3,46 +3,942 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MNIP — Multidimensional Neuroplasticity Index. Первый инструмент измерения нейропластичности в реальных условиях жизни. SI, DI, RI, PI индексы.">
-  <meta name="keywords" content="MNIP, нейропластичность индекс, ЭЭГ, управление состоянием, переключение, глубина, устойчивость">
-  <meta property="og:title" content="MNIP — многомерный индекс нейропластичности">
-  <meta property="og:description" content="Измеряем скорость переключения, глубину погружения, устойчивость и согласованность вашего состояния.">
+  <meta name="description" content="MNPI — Multidimensional Neuroplasticity Index. Первый инструмент объективного измерения нейропластичности.">
+  <meta property="og:title" content="MNPI — многомерный индекс нейропластичности">
+  <meta property="og:description" content="Шаман у костра делал то же самое, что делает нейробиолог в лаборатории. Разница — только в словах.">
   <meta property="og:type" content="website">
-  <title>MNIP — многомерный индекс нейропластичности</title>
+  <title>MNPI — многомерный индекс нейропластичности</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/nav.css">
+  <style>
+    /* ========== RESET & GLOBAL ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0A0A12;
+      --bg-deep: #111127;
+      --text: #F0F0F5;
+      --muted: #888896;
+      --accent: #5F5FFF;
+      --accent2: #6366F1;
+      --warm: #F5DEB3;
+      --neuro-green: #00E5A0;
+      --context-purple: #A78BFA;
+      --fh: "Oswald", sans-serif;
+      --fb: "Jost", sans-serif;
+      --fm: "Courier Prime", monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--fb);
+      font-size: 18px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Noise overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ========== STICKY NAV ========== */
+    .mnpi-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10, 10, 18, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(99, 102, 241, 0);
+      transition: border-color 0.3s ease;
+    }
+
+    .mnpi-nav.scrolled {
+      border-bottom-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .mnpi-nav-logo {
+      font-family: var(--fm);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    .mnpi-nav-cta {
+      font-family: var(--fb);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent);
+      border: 1px solid rgba(99, 102, 241, 0.5);
+      padding: 8px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .mnpi-nav-cta:hover {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: var(--accent);
+    }
+
+    /* ========== SPACER ========== */
+    .spacer { height: 18vh; }
+
+    /* ========== ACCENT QUOTE ========== */
+    .accent-quote {
+      font-family: var(--fm);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      line-height: 1.7;
+      color: var(--text);
+      padding: 20px 24px;
+      border-left: 3px solid var(--accent);
+      background: rgba(99, 102, 241, 0.08);
+      border-radius: 0 8px 8px 0;
+      margin-top: 32px;
+      max-width: 700px;
+    }
+
+    /* ========== SECTION BASE ========== */
+    .mnpi-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      position: relative;
+    }
+
+    .mnpi-section .inner {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .mnpi-section h2 {
+      font-family: var(--fh);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin-bottom: 32px;
+    }
+
+    .mnpi-section p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.7;
+      color: rgba(240, 240, 245, 0.85);
+      max-width: 680px;
+    }
+
+    /* ========== HERO (SCREEN 1) ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px 60px;
+    }
+
+    /* Radial warm glow behind orb */
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 222, 179, 0.12) 0%, rgba(99, 102, 241, 0.06) 40%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      pointer-events: none;
+    }
+
+    /* Orb */
+    .hero-orb {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin-bottom: 48px;
+      flex-shrink: 0;
+    }
+
+    .hero-orb-core {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 45% 45%, #F5DEB3 0%, #d4a55a 25%, #8B7355 45%, #5F5FFF 80%, #3a3ab8 100%);
+      animation: orbPulse 3s ease-in-out infinite;
+      box-shadow:
+        0 0 60px rgba(245, 222, 179, 0.3),
+        0 0 120px rgba(99, 102, 241, 0.15);
+    }
+
+    .hero-orb-glow {
+      position: absolute;
+      inset: -30px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 222, 179, 0.08) 0%, transparent 70%);
+      animation: orbGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes orbPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(245, 222, 179, 0.3), 0 0 120px rgba(99, 102, 241, 0.15); }
+      50% { transform: scale(1.06); box-shadow: 0 0 80px rgba(245, 222, 179, 0.4), 0 0 160px rgba(99, 102, 241, 0.25); }
+    }
+
+    @keyframes orbGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.7; }
+    }
+
+    /* Particles */
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-particles .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--warm);
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleRise linear infinite;
+    }
+
+    @keyframes particleRise {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+      }
+      10% { opacity: 0.8; }
+      80% { opacity: 0.3; }
+      100% {
+        transform: translateY(-220px) translateX(var(--drift)) scale(0.3);
+        opacity: 0;
+      }
+    }
+
+    /* Hero text */
+    .hero-title {
+      font-family: var(--fh);
+      font-size: clamp(1.6rem, 4.2vw, 3.2rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      max-width: 850px;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+    }
+
+    .hero-title.revealed { opacity: 1; }
+
+    .hero-title .char {
+      display: inline-block;
+      transition: none;
+    }
+
+    .hero-subtitle {
+      font-family: var(--fb);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      color: rgba(240, 240, 245, 0.65);
+      letter-spacing: 0.03em;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .hero-subtitle.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: scrollHintIn 1s ease 3s forwards;
+    }
+
+    .scroll-hint span {
+      font-family: var(--fm);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .scroll-hint-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 1.5px solid var(--muted);
+      border-bottom: 1.5px solid var(--muted);
+      transform: rotate(45deg);
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollHintIn {
+      to { opacity: 0.6; }
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(6px); }
+    }
+
+    /* ========== FADE-UP UTILITY ========== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== SCREEN 2: TIMELINE ========== */
+    .timeline-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .timeline-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; align-items: center; }
+    .timeline-text h2 { font-family: var(--fh); font-size: clamp(1.6rem,3.5vw,2.6rem); font-weight: 600; text-transform: uppercase; line-height: 1.2; margin-bottom: 24px; }
+    .timeline-text p { font-size: clamp(1rem,1.8vw,1.1rem); line-height: 1.75; color: rgba(240,240,245,0.8); margin-bottom: 20px; }
+    .timeline-river { position: relative; height: 320px; }
+    .timeline-river svg { width: 100%; height: 100%; overflow: visible; }
+    .timeline-river .river-path { fill: none; stroke: url(#riverGrad); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 2s ease; }
+    .timeline-river.visible .river-path { stroke-dashoffset: 0; }
+    .timeline-milestone { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .timeline-river.visible .timeline-milestone { opacity: 1; transform: translateY(0); }
+    .milestone-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 16px rgba(99,102,241,0.5); animation: mPulse 2.5s ease-in-out infinite; }
+    @keyframes mPulse { 0%,100% { box-shadow: 0 0 16px rgba(99,102,241,0.4); } 50% { box-shadow: 0 0 28px rgba(99,102,241,0.7); } }
+    .milestone-label { font-family: var(--fm); font-size: 13px; color: var(--text); white-space: nowrap; letter-spacing: 0.5px; }
+
+    /* ========== SCREEN 3: FUNNEL ========== */
+    .funnel-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .funnel-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .funnel-viz { position: relative; height: 400px; display: flex; align-items: center; justify-content: center; }
+    .funnel-viz svg { width: 100%; height: 100%; overflow: visible; }
+
+    /* ========== SCREEN 4: EPOCHS ========== */
+    .epochs-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .epochs-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; }
+    .epochs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin: 40px 0 48px; }
+    .epoch-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px 20px; text-align: center; position: relative; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+    .epoch-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.3); }
+    .epoch-card-core { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px rgba(99,102,241,0.5); margin: 0 auto 20px; }
+    .epoch-icon { font-size: 36px; margin-bottom: 16px; display: block; opacity: 0.9; }
+    .epoch-card h3 { font-family: var(--fh); font-size: 1.1rem; font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
+    .accordion-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .accordion-btn { width: 100%; background: none; border: none; color: var(--text); font-family: var(--fb); font-size: 1rem; padding: 16px 0; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: color 0.3s; }
+    .accordion-btn:hover { color: var(--accent); }
+    .accordion-btn::after { content: "+"; font-family: var(--fm); font-size: 1.2rem; color: var(--accent); transition: transform 0.3s; }
+    .accordion-item.open .accordion-btn::after { transform: rotate(45deg); }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .accordion-content p { padding: 0 0 16px; font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+
+    /* ========== SCREEN 5: CORE MECHANIC ========== */
+    .core-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .core-section .inner { max-width: 800px; width: 100%; margin: 0 auto; text-align: center; }
+    .core-viz { position: relative; width: 420px; height: 420px; margin: 48px auto; }
+    .core-viz svg { width: 100%; height: 100%; overflow: visible; }
+    .core-ring { fill: none; stroke: var(--accent); opacity: 0; transform-origin: 210px 210px; transform: scale(0.5); transition: opacity 1s ease, transform 1.5s ease; }
+    .core-viz.visible .core-ring { opacity: 1; transform: scale(1); animation: ringPulse 3s ease-in-out infinite; }
+    .core-viz.visible .core-ring:nth-child(3) { animation-delay: 0.3s; }
+    .core-viz.visible .core-ring:nth-child(4) { animation-delay: 0.6s; }
+    @keyframes ringPulse { 0%,100% { stroke-opacity: 0.3; } 50% { stroke-opacity: 0.7; } }
+    .core-center-dot { fill: var(--accent); filter: drop-shadow(0 0 20px rgba(99,102,241,0.6)); opacity: 0; transition: opacity 0.8s ease; }
+    .core-viz.visible .core-center-dot { opacity: 1; }
+    .core-label { font-family: var(--fb); font-size: 12px; fill: rgba(240,240,245,0.85); opacity: 0; transition: opacity 1s ease 0.8s; }
+    .core-viz.visible .core-label { opacity: 1; }
+
+    /* ========== SCREEN 5B: SIX MODES ========== */
+    .modes-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
+    .modes-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; text-align: center; }
+    .modes-subtitle { font-family: var(--fb); font-size: clamp(0.95rem,1.8vw,1.1rem); color: var(--muted); margin-bottom: 48px; }
+    .modes-viz { position: relative; width: 500px; height: 500px; margin: 0 auto 48px; }
+    .modes-viz svg { width: 100%; height: 100%; overflow: visible; }
+    .orbit-ring { fill: none; stroke: rgba(99,102,241,0.15); stroke-dasharray: 8 6; }
+    .mode-node { cursor: pointer; }
+    .mode-node:hover circle { filter: drop-shadow(0 0 12px rgba(99,102,241,0.7)); }
+    .mode-node text { font-family: var(--fm); font-size: 9px; fill: var(--text); text-anchor: middle; pointer-events: none; }
+    .mode-line { stroke: rgba(99,102,241,0.15); stroke-width: 1; }
+    .mode-tooltip { position: absolute; background: rgba(17,17,39,0.95); backdrop-filter: blur(12px); border: 1px solid rgba(99,102,241,0.3); border-radius: 12px; padding: 16px 20px; max-width: 280px; pointer-events: none; opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; z-index: 10; text-align: left; }
+    .mode-tooltip.active { opacity: 1; transform: translateY(0); }
+    .mode-tooltip h4 { font-family: var(--fh); font-size: 0.95rem; text-transform: uppercase; margin-bottom: 6px; color: var(--accent); }
+    .mode-tooltip p { font-size: 0.85rem; color: rgba(240,240,245,0.8); line-height: 1.5; }
+    .mode-tooltip .eeg-bar { height: 4px; border-radius: 2px; margin-top: 10px; }
+    .modes-list-mobile { display: none; }
+    .modes-list-mobile .mode-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; margin-bottom: 12px; text-align: left; }
+    .modes-list-mobile .mode-item h4 { font-family: var(--fh); font-size: 0.95rem; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .modes-list-mobile .mode-item p { font-size: 0.9rem; color: rgba(240,240,245,0.75); line-height: 1.5; }
+    .modes-metaphor { font-family: var(--fm); font-size: 0.9rem; color: var(--muted); margin-bottom: 40px; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .hero-orb { width: 130px; height: 130px; margin-bottom: 36px; }
+      .mnpi-nav { padding: 12px 20px; }
+      .mnpi-nav-logo { font-size: 17px; }
+      .timeline-section .inner { grid-template-columns: 1fr; gap: 40px; }
+      .timeline-river { height: 200px; }
+      .funnel-section .inner { grid-template-columns: 1fr; gap: 40px; }
+      .funnel-viz { height: 300px; }
+      .epochs-grid { grid-template-columns: 1fr 1fr; }
+      .core-viz { width: 300px; height: 300px; }
+      .modes-viz { display: none; }
+      .modes-list-mobile { display: block; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="page-orbs">
-  <span></span>
-  <span></span>
-</div>
+<!-- ===== STICKY NAV ===== -->
+<nav class="mnpi-nav" id="mnpiNav">
+  <a href="#" class="mnpi-nav-logo">MNPI</a>
+  <a href="../zapisatsya/" class="mnpi-nav-cta">Пройти чекап</a>
+</nav>
 
-<main>
-  <section class="page-hero s">
-    <div class="s-inner">
-      <span class="tag">продукт</span>
-      <h1>MNIP</h1>
-      <p>Описание продукта, технологии и возможностей платформы MNIP для работы с состояниями сознания.</p>
+<!-- ===== SCREEN 1: HERO ===== -->
+<section class="hero" id="hero">
+
+  <!-- Particles container (generated by JS) -->
+  <div class="hero-particles" id="heroParticles"></div>
+
+  <!-- Orb -->
+  <div class="hero-orb">
+    <div class="hero-orb-glow"></div>
+    <div class="hero-orb-core"></div>
+  </div>
+
+  <!-- Title with decode effect -->
+  <h1 class="hero-title" id="heroTitle">Шаман у костра делал то же самое, что делает нейробиолог в&nbsp;лаборатории</h1>
+
+  <!-- Subtitle -->
+  <p class="hero-subtitle" id="heroSubtitle">Разница — только в словах</p>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-hint-arrow"></div>
+  </div>
+</section>
+
+<!-- ===== SPACER ===== -->
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 2: 40 000 ЛЕТ ПРАКТИКИ ===== -->
+<section class="timeline-section" id="screen2">
+  <div class="inner">
+    <div class="timeline-text">
+      <h2 class="fade-up">40 000 лет назад человек уже умел намеренно менять состояние мозга</h2>
+      <p class="fade-up">Он собирался с другими людьми у огня. Включался ритм барабана — монотонный, повторяющийся, точно выверенный. Начиналось совместное дыхание. Пение. Движение тела. Через какое-то время что-то происходило внутри. Человек переставал быть тем, кем был до этого.</p>
+      <div class="accent-quote fade-up">Они не знали слов «альфа-волны». Но они точно знали одно — это работает.</div>
     </div>
-  </section>
-
-  <section class="s">
-    <div class="s-inner">
-      <div class="card">
-        <span class="tag">placeholder</span>
-        <h2 style="margin-top:12px;">О продукте</h2>
-        <p style="margin-top:16px;">Здесь будет подробное описание MNIP: функции, технические характеристики, сценарии использования.</p>
+    <div class="timeline-river" id="timelineRiver">
+      <svg viewBox="0 0 500 300">
+        <defs>
+          <linearGradient id="riverGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#F5DEB3"/>
+            <stop offset="100%" stop-color="#5F5FFF"/>
+          </linearGradient>
+        </defs>
+        <path class="river-path" d="M 30,250 C 100,250 100,80 200,100 S 350,250 400,120 S 450,50 480,60"/>
+      </svg>
+      <div class="timeline-milestone" style="left:4%; top:72%; transition-delay:0.5s">
+        <div class="milestone-dot"></div>
+        <span class="milestone-label">Ритм барабана</span>
+      </div>
+      <div class="timeline-milestone" style="left:32%; top:18%; transition-delay:0.9s">
+        <div class="milestone-dot"></div>
+        <span class="milestone-label">Совместное дыхание</span>
+      </div>
+      <div class="timeline-milestone" style="left:62%; top:62%; transition-delay:1.3s">
+        <div class="milestone-dot"></div>
+        <span class="milestone-label">Пение</span>
+      </div>
+      <div class="timeline-milestone" style="left:88%; top:8%; transition-delay:1.7s">
+        <div class="milestone-dot"></div>
+        <span class="milestone-label">Изменённое состояние</span>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
-<script src="../components/nav.js"></script>
-<script src="../components/footer.js"></script>
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 3: ЕСТЕСТВЕННЫЙ ОТБОР ===== -->
+<section class="funnel-section" id="screen3">
+  <div class="inner">
+    <div class="funnel-viz" id="funnelViz">
+      <svg viewBox="0 0 400 400">
+        <!-- Funnel shape -->
+        <polygon class="funnel-stage" points="40,30 360,30 300,160 100,160" style="transition-delay:0.2s"/>
+        <polygon class="funnel-stage" points="100,170 300,170 260,290 140,290" style="transition-delay:0.6s"/>
+        <polygon class="funnel-stage" points="140,300 260,300 230,380 170,380" style="transition-delay:1s"/>
+        <!-- Particles generated by JS -->
+      </svg>
+    </div>
+    <div>
+      <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:24px;">Жесточайший естественный отбор</h2>
+      <p class="fade-up" style="font-size:clamp(1rem,1.8vw,1.1rem);line-height:1.75;color:rgba(240,240,245,0.8);margin-bottom:20px;">Практика либо реально меняла состояние человека — либо исчезала. Не было маркетинга, который мог бы спасти то, что не работает. Была только одна валюта — реальный эффект.</p>
+      <div class="accent-quote fade-up">То, что дошло до нас — работает. Это не вопрос веры. Это результат многотысячелетней фильтрации.</div>
+    </div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 4: ПЕРЕУПАКОВКА ЧЕРЕЗ ЭПОХИ ===== -->
+<section class="epochs-section" id="screen4">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Каждая эпоха переупаковывала одно и то же в свои слова</h2>
+
+    <div class="epochs-grid" id="epochsGrid">
+      <div class="epoch-card fade-up" style="transition-delay:0.1s">
+        <div class="epoch-card-core"></div>
+        <span class="epoch-icon">🏛</span>
+        <h3>Религия</h3>
+      </div>
+      <div class="epoch-card fade-up" style="transition-delay:0.3s">
+        <div class="epoch-card-core"></div>
+        <span class="epoch-icon">📜</span>
+        <h3>Философия</h3>
+      </div>
+      <div class="epoch-card fade-up" style="transition-delay:0.5s">
+        <div class="epoch-card-core"></div>
+        <span class="epoch-icon">🧠</span>
+        <h3>Психология</h3>
+      </div>
+      <div class="epoch-card fade-up" style="transition-delay:0.7s">
+        <div class="epoch-card-core"></div>
+        <span class="epoch-icon">〰️</span>
+        <h3>Нейронаука</h3>
+      </div>
+    </div>
+
+    <div class="accent-quote fade-up">Оболочка менялась. Механика оставалась.</div>
+
+    <div class="accordion fade-up" style="margin-top:32px; max-width:600px;">
+      <div class="accordion-item">
+        <button class="accordion-btn">Медитация → Майндфулнесс в Google</button>
+        <div class="accordion-content"><p>Практика осознанного присутствия, которой тысячи лет, стала корпоративным инструментом продуктивности. Те же нейромеханизмы, новая упаковка.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn">Молитвенные ритуалы → Групповая терапия</button>
+        <div class="accordion-content"><p>Совместное проговаривание, ритмизация, ощущение принадлежности. Механика поддержки и трансформации через группу.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn">Религиозный пост → Интервальное голодание</button>
+        <div class="accordion-content"><p>Управление метаболизмом через ограничение. Те же физиологические процессы — аутофагия, кетоз, обновление.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn">Шаман → Коуч, фасилитатор</button>
+        <div class="accordion-content"><p>Человек, который помогает другим войти в изменённое состояние и получить из него то, что нужно. Роль не изменилась.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 5: ЕДИНАЯ МЕХАНИКА ===== -->
+<section class="core-section" id="screen5">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:16px;">Механика — везде одна</h2>
+    <div class="core-viz" id="coreViz">
+      <svg viewBox="0 0 420 420">
+        <!-- Center dot -->
+        <circle class="core-center-dot" cx="210" cy="210" r="18"/>
+        <text x="210" y="215" text-anchor="middle" font-family="Courier Prime" font-size="10" fill="#fff" opacity="0" class="core-label" style="transition-delay:0.4s">Изменённое состояние</text>
+        <!-- Ring 1 -->
+        <circle class="core-ring" cx="210" cy="210" r="80" stroke-width="1.5" stroke-opacity="0.35"/>
+        <text class="core-label" x="210" y="110" text-anchor="middle" style="transition-delay:0.8s">Мозг: активность сетей, баланс волн, химия</text>
+        <!-- Ring 2 -->
+        <circle class="core-ring" cx="210" cy="210" r="140" stroke-width="1" stroke-opacity="0.25"/>
+        <text class="core-label" x="210" y="52" text-anchor="middle" style="transition-delay:1.2s">Тело: дыхание, ритм сердца, тонус</text>
+        <!-- Ring 3 -->
+        <circle class="core-ring" cx="210" cy="210" r="195" stroke-width="0.8" stroke-opacity="0.15"/>
+        <text class="core-label" x="210" y="398" text-anchor="middle" style="transition-delay:1.6s">Ощущение: что-то сдвигается внутри</text>
+      </svg>
+    </div>
+    <div class="accent-quote fade-up" style="margin:0 auto;">Это и есть нейротехнология. Просто без этого слова.</div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ===== SCREEN 5B: ШЕСТЬ РЕЖИМОВ СОЗНАНИЯ ===== -->
+<section class="modes-section" id="screen5b">
+  <div class="inner">
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:12px;">Шесть режимов сознания — пульт управления мозгом</h2>
+    <p class="modes-subtitle fade-up">Все переключения идут через центральный хаб — состояние Nothing</p>
+    <p class="modes-metaphor fade-up">Клавиша Shift: сама ничего не печатает, но меняет функцию всех остальных клавиш</p>
+
+    <!-- Desktop: orbital viz -->
+    <div class="modes-viz" id="modesViz">
+      <svg viewBox="0 0 500 500" id="modesSvg"></svg>
+      <div class="mode-tooltip" id="modeTooltip">
+        <h4 id="ttTitle"></h4>
+        <p id="ttDesc"></p>
+        <div class="eeg-bar" id="ttBar"></div>
+      </div>
+    </div>
+
+    <!-- Mobile: list -->
+    <div class="modes-list-mobile fade-up" id="modesMobileList"></div>
+
+    <div class="accent-quote fade-up" style="margin:0 auto;">Все шесть верифицированы на ЭЭГ — холодными цифрами, которые не умеют врать.</div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+
+<script>
+/* ========================================
+   MNPI Landing — Screen 1 Scripts
+   ======================================== */
+
+// --- Nav scroll behavior ---
+const nav = document.getElementById('mnpiNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+// --- Particles ---
+(function initParticles() {
+  const container = document.getElementById('heroParticles');
+  const count = 18;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const angle = Math.random() * Math.PI * 2;
+    const radius = 70 + Math.random() * 30;
+    const cx = 90; // center of orb area
+    const cy = 90;
+    p.style.left = (cx + Math.cos(angle) * radius) + 'px';
+    p.style.top = (cy + Math.sin(angle) * radius) + 'px';
+    p.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+    p.style.animationDuration = (3 + Math.random() * 4) + 's';
+    p.style.animationDelay = (Math.random() * 5) + 's';
+    p.style.width = (2 + Math.random() * 2) + 'px';
+    p.style.height = p.style.width;
+    container.appendChild(p);
+  }
+})();
+
+// --- Decode (scramble → reveal) effect for title ---
+(function decodeTitle() {
+  const el = document.getElementById('heroTitle');
+  const finalText = el.textContent;
+  const chars = 'АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЭЮЯабвгдежзиклмнопрстуфхцчшщэюя0123456789@#$%&';
+  const len = finalText.length;
+
+  // Build span structure — group chars into words to prevent mid-word breaks
+  el.innerHTML = '';
+  const spans = [];
+  const words = finalText.split(/( |\u00A0)/);
+  words.forEach(word => {
+    if (word === ' ' || word === '\u00A0') {
+      const sp = document.createElement('span');
+      sp.innerHTML = ' ';
+      sp.dataset.space = 'true';
+      spans.push(sp);
+      el.appendChild(sp);
+      return;
+    }
+    const wordWrap = document.createElement('span');
+    wordWrap.style.whiteSpace = 'nowrap';
+    wordWrap.style.display = 'inline';
+    for (let i = 0; i < word.length; i++) {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.textContent = chars[Math.floor(Math.random() * chars.length)];
+      spans.push(span);
+      wordWrap.appendChild(span);
+    }
+    el.appendChild(wordWrap);
+  });
+
+  el.classList.add('revealed');
+
+  // Map spans to original characters for reveal
+  let charIndex = 0;
+  const charMap = []; // { span, finalChar }
+  spans.forEach(span => {
+    if (span.dataset.space) {
+      charIndex++; // skip the space in finalText
+      return;
+    }
+    charMap.push({ span, finalChar: finalText[charIndex] });
+    charIndex++;
+  });
+
+  // Scramble then reveal each char
+  const totalDuration = 1800;
+  const stagger = totalDuration / charMap.length;
+
+  charMap.forEach((item, i) => {
+    const revealAt = 600 + i * stagger;
+    const scrambleInterval = setInterval(() => {
+      item.span.textContent = chars[Math.floor(Math.random() * chars.length)];
+    }, 50);
+
+    setTimeout(() => {
+      clearInterval(scrambleInterval);
+      item.span.textContent = item.finalChar;
+    }, revealAt);
+  });
+
+  // Reveal subtitle after title
+  setTimeout(() => {
+    document.getElementById('heroSubtitle').classList.add('revealed');
+  }, totalDuration + 800);
+})();
+
+// --- Intersection Observer for fade-up elements ---
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      fadeObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+// --- Screen 2: Timeline river ---
+const timelineObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); timelineObs.unobserve(e.target); } });
+}, { threshold: 0.2 });
+const tlRiver = document.getElementById('timelineRiver');
+if (tlRiver) timelineObs.observe(tlRiver);
+
+// --- Screen 3: Funnel particles ---
+const funnelObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      initFunnelParticles();
+      funnelObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+const funnelViz = document.getElementById('funnelViz');
+if (funnelViz) funnelObs.observe(funnelViz);
+
+function initFunnelParticles() {
+  const svg = funnelViz.querySelector('svg');
+  const ns = 'http://www.w3.org/2000/svg';
+  for (let i = 0; i < 24; i++) {
+    const c = document.createElementNS(ns, 'circle');
+    const x = 80 + Math.random() * 240;
+    c.setAttribute('cx', x);
+    c.setAttribute('cy', 10 + Math.random() * 20);
+    c.setAttribute('r', 3 + Math.random() * 3);
+    const isSurvivor = i < 3;
+    c.classList.add('funnel-particle');
+    if (isSurvivor) c.classList.add('survivor');
+    c.style.animationDelay = (Math.random() * 1.5) + 's';
+    svg.appendChild(c);
+  }
+}
+
+// --- Screen 4: Accordion ---
+document.querySelectorAll('.accordion-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const content = item.querySelector('.accordion-content');
+    if (item.classList.contains('open')) {
+      item.classList.remove('open');
+      content.style.maxHeight = '0';
+    } else {
+      document.querySelectorAll('.accordion-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.accordion-content').style.maxHeight = '0';
+      });
+      item.classList.add('open');
+      content.style.maxHeight = content.scrollHeight + 'px';
+    }
+  });
+});
+
+// --- Screen 5: Core viz ---
+const coreObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); coreObs.unobserve(e.target); } });
+}, { threshold: 0.2 });
+const coreViz = document.getElementById('coreViz');
+if (coreViz) coreObs.observe(coreViz);
+
+// --- Screen 5B: Modes orbital visualization ---
+(function initModes() {
+  const modes = [
+    { name: 'Pure Nothing', orbit: 1, angle: -90, title: 'Pure Nothing — Системный ноль', desc: 'Альфа 55-70%. DMN выключена. Базовое состояние, из которого возможны все переключения.', color: '#5F5FFF' },
+    { name: 'Active Presence', orbit: 1, angle: 90, title: 'Active Presence — Присутствие', desc: 'Альфа с открытыми глазами. Осознанное присутствие в повседневной жизни.', color: '#6366F1' },
+    { name: 'Visceral Mind', orbit: 2, angle: -45, title: 'Visceral Mind — Телесный разум', desc: 'Внимание в теле. Островковая кора. Решения из тела, а не из головы.', color: '#00E5A0' },
+    { name: 'Quantum Genesis', orbit: 2, angle: 45, title: 'Quantum Genesis — Тета-глубина', desc: 'Окно нейропластичности. Перезапись паттернов. Максимальный вес в формуле MNPI.', color: '#F5DEB3' },
+    { name: 'Embodied Flow', orbit: 2, angle: 135, title: 'Embodied Flow — Поток', desc: 'Состояние потока по запросу. Тело действует само, разум не мешает.', color: '#A78BFA' },
+    { name: 'Transcendent Download', orbit: 2, angle: -135, title: 'Transcendent Download — Интеграция', desc: 'Глобальная интеграция. Гамма-вспышки. Стратегические инсайты.', color: '#F472B6' },
+  ];
+
+  const svg = document.getElementById('modesSvg');
+  if (!svg) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  const cx = 250, cy = 250, r1 = 100, r2 = 190;
+
+  // Orbits
+  [r1, r2].forEach(r => {
+    const c = document.createElementNS(ns, 'circle');
+    c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', r);
+    c.classList.add('orbit-ring');
+    svg.appendChild(c);
+  });
+
+  // Center node
+  const cg = document.createElementNS(ns, 'g');
+  const cc = document.createElementNS(ns, 'circle');
+  cc.setAttribute('cx', cx); cc.setAttribute('cy', cy); cc.setAttribute('r', 24);
+  cc.setAttribute('fill', '#5F5FFF');
+  cc.setAttribute('filter', 'url(#centerGlow)');
+  const defs = document.createElementNS(ns, 'defs');
+  const flt = document.createElementNS(ns, 'filter');
+  flt.id = 'centerGlow';
+  flt.innerHTML = '<feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>';
+  defs.appendChild(flt);
+  svg.appendChild(defs);
+  cg.appendChild(cc);
+  const ct = document.createElementNS(ns, 'text');
+  ct.setAttribute('x', cx); ct.setAttribute('y', cy + 4);
+  ct.setAttribute('text-anchor', 'middle');
+  ct.setAttribute('font-family', 'Courier Prime');
+  ct.setAttribute('font-size', '9');
+  ct.setAttribute('fill', '#fff');
+  ct.textContent = 'ONTO NOTHING';
+  cg.appendChild(ct);
+  svg.appendChild(cg);
+
+  // Mode nodes
+  const tooltip = document.getElementById('modeTooltip');
+  const ttTitle = document.getElementById('ttTitle');
+  const ttDesc = document.getElementById('ttDesc');
+  const ttBar = document.getElementById('ttBar');
+
+  modes.forEach((m, i) => {
+    const r = m.orbit === 1 ? r1 : r2;
+    const rad = m.angle * Math.PI / 180;
+    const mx = cx + r * Math.cos(rad);
+    const my = cy + r * Math.sin(rad);
+
+    // Connection line
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+    line.setAttribute('x2', mx); line.setAttribute('y2', my);
+    line.classList.add('mode-line');
+    svg.appendChild(line);
+
+    // Node group
+    const g = document.createElementNS(ns, 'g');
+    g.classList.add('mode-node');
+    g.style.opacity = '0';
+    g.style.transition = `opacity 0.6s ease ${0.3 + i * 0.15}s`;
+
+    const nc = document.createElementNS(ns, 'circle');
+    nc.setAttribute('cx', mx); nc.setAttribute('cy', my);
+    nc.setAttribute('r', m.orbit === 1 ? 18 : 16);
+    nc.setAttribute('fill', m.color);
+    nc.setAttribute('fill-opacity', '0.25');
+    nc.setAttribute('stroke', m.color);
+    nc.setAttribute('stroke-width', '1.5');
+    g.appendChild(nc);
+
+    const nt = document.createElementNS(ns, 'text');
+    nt.setAttribute('x', mx); nt.setAttribute('y', my + 3);
+    nt.setAttribute('font-size', m.orbit === 1 ? '8' : '7');
+    nt.textContent = m.name.split(' ')[0];
+    g.appendChild(nt);
+
+    // Hover
+    g.addEventListener('mouseenter', () => {
+      ttTitle.textContent = m.title;
+      ttDesc.textContent = m.desc;
+      ttBar.style.background = m.color;
+      const vizRect = document.getElementById('modesViz').getBoundingClientRect();
+      tooltip.style.left = (mx / 500 * vizRect.width - 140) + 'px';
+      tooltip.style.top = (my / 500 * vizRect.height + 20) + 'px';
+      tooltip.classList.add('active');
+    });
+    g.addEventListener('mouseleave', () => tooltip.classList.remove('active'));
+
+    svg.appendChild(g);
+  });
+
+  // Animate in on scroll
+  const modesObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        svg.querySelectorAll('.mode-node').forEach(n => n.style.opacity = '1');
+        modesObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  const modesViz = document.getElementById('modesViz');
+  if (modesViz) modesObs.observe(modesViz);
+
+  // Mobile list
+  const mobileList = document.getElementById('modesMobileList');
+  if (mobileList) {
+    modes.forEach(m => {
+      const item = document.createElement('div');
+      item.className = 'mode-item';
+      item.innerHTML = `<h4 style="color:${m.color}">${m.title}</h4><p>${m.desc}</p>`;
+      mobileList.appendChild(item);
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
