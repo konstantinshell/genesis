@@ -435,19 +435,19 @@
     /* ========== SCREEN 6: FLIP CARDS ========== */
     .flip-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; }
     .flip-section .inner { max-width: 1100px; width: 100%; margin: 0 auto; }
-    .flip-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin: 48px 0; perspective: 1200px; }
-    .flip-card { height: 340px; cursor: pointer; perspective: 1200px; }
+    .flip-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin: 48px 0; perspective: 1200px; }
+    .flip-card { height: 260px; cursor: pointer; perspective: 1200px; }
     .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
     .flip-card:hover .flip-card-inner, .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
     .flip-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 16px; padding: 32px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 1px solid rgba(255,255,255,0.08); }
     .flip-front { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); }
     .flip-back { background: rgba(17,17,39,0.95); backdrop-filter: blur(12px); transform: rotateY(180deg); }
-    .flip-icon { font-size: 48px; margin-bottom: 20px; }
-    .flip-front h3 { font-family: var(--fh); font-size: 1.3rem; font-weight: 600; text-transform: uppercase; }
-    .flip-back p { font-size: 0.95rem; line-height: 1.65; color: rgba(240,240,245,0.85); }
-    .flip-card:nth-child(1) .flip-face { box-shadow: inset 0 0 30px rgba(56,189,248,0.08); }
-    .flip-card:nth-child(2) .flip-face { box-shadow: inset 0 0 30px rgba(245,222,179,0.08); }
-    .flip-card:nth-child(3) .flip-face { box-shadow: inset 0 0 30px rgba(0,229,160,0.08); }
+    .flip-icon { font-size: 36px; margin-bottom: 14px; }
+    .flip-front h3 { font-family: var(--fh); font-size: 1.05rem; font-weight: 600; text-transform: uppercase; margin-bottom: 6px; }
+    .flip-tag { font-family: var(--fm); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.08em; opacity: 0.7; }
+    .flip-back { padding: 24px 20px; }
+    .flip-back p { font-size: 0.85rem; line-height: 1.55; color: rgba(240,240,245,0.85); }
+    .flip-back .flip-ref { font-family: var(--fm); font-size: 0.65rem; color: var(--accent); opacity: 0.6; margin-top: 10px; display: block; }
 
     /* ========== SCREEN 7: CONTRAST SPLIT ========== */
     .contrast-section { padding: 100px 24px; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
@@ -887,26 +887,62 @@
   <div class="inner">
     <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Практики, получившие научное подтверждение</h2>
     <div class="flip-grid">
+      <div class="flip-card fade-up" style="transition-delay:0.05s" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span class="flip-icon">❄️</span><h3>Метод Вим Хофа</h3><span class="flip-tag">дыхание + холод</span></div>
+          <div class="flip-face flip-back"><p>Контролируемая гипервентиляция + холодовое воздействие. Добровольное влияние на иммунный ответ и вегетативную нервную систему. Подтверждено рандомизированными исследованиями.</p><span class="flip-ref">PNAS 2014, Kox et al.</span></div>
+        </div>
+      </div>
       <div class="flip-card fade-up" style="transition-delay:0.1s" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-face flip-front"><span class="flip-icon">❄️</span><h3>Вим Хоф</h3></div>
-          <div class="flip-face flip-back"><p>Метод контролируемого дыхания и холода. Добровольное влияние на иммунный ответ. Рецензируемые исследования подтверждают: человек может сознательно модулировать вегетативную нервную систему.</p></div>
+          <div class="flip-face flip-front"><span class="flip-icon">🪷</span><h3>Випассана</h3><span class="flip-tag">медитация осознанности</span></div>
+          <div class="flip-face flip-back"><p>Мозг монахов с 10 000+ часами практики показывает гамма-активность, невозможную у обычных людей. Структурные изменения коры, увеличение серого вещества.</p><span class="flip-ref">Davidson et al., PNAS 2004</span></div>
+        </div>
+      </div>
+      <div class="flip-card fade-up" style="transition-delay:0.15s" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span class="flip-icon">〰️</span><h3>Протокол Пеннистона</h3><span class="flip-tag">альфа-тета нейрофидбек</span></div>
+          <div class="flip-face flip-back"><p>Альфа-тета нейробиоуправление для ветеранов с ПТСР и зависимостями. 80% ремиссия через 15 сессий. Один из первых протоколов «тренировки мозга».</p><span class="flip-ref">Peniston & Kulkosky, 1991</span></div>
+        </div>
+      </div>
+      <div class="flip-card fade-up" style="transition-delay:0.2s" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span class="flip-icon">🫁</span><h3>MBSR</h3><span class="flip-tag">снижение стресса</span></div>
+          <div class="flip-face flip-back"><p>Программа Джона Кабат-Зинна. 8 недель осознанности. Снижение кортизола, уменьшение объёма миндалины, рост префронтальной коры. Золотой стандарт клинической медитации.</p><span class="flip-ref">Hölzel et al., Psychiatry Res 2011</span></div>
+        </div>
+      </div>
+      <div class="flip-card fade-up" style="transition-delay:0.25s" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span class="flip-icon">🧘</span><h3>Йога-нидра</h3><span class="flip-tag">осознанный сон</span></div>
+          <div class="flip-face flip-back"><p>Управляемое погружение на границу сна. Увеличение дельта-волн при сохранении осознанности. Снижение тревожности, улучшение сна. Используется в военной медицине.</p><span class="flip-ref">Moszeik et al., PLOS ONE 2020</span></div>
         </div>
       </div>
       <div class="flip-card fade-up" style="transition-delay:0.3s" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-face flip-front"><span class="flip-icon">🪷</span><h3>Буддийская медитация</h3></div>
-          <div class="flip-face flip-back"><p>Тысячелетняя система работы с вниманием. Мозг монахов показывает структурные изменения, невозможные у обычных людей. Практика меняет архитектуру мозга.</p></div>
+          <div class="flip-face flip-front"><span class="flip-icon">🥁</span><h3>Ритмическая стимуляция</h3><span class="flip-tag">бинауральные ритмы</span></div>
+          <div class="flip-face flip-back"><p>Звуковое воздействие на частоте 40 Гц индуцирует гамма-синхронизацию. Барабанный ритм шамана — тета-энтрейнмент. Древнейший нейромодулятор человечества, подтверждённый ЭЭГ.</p><span class="flip-ref">Jirakittayakorn, Brain Res 2017</span></div>
         </div>
       </div>
-      <div class="flip-card fade-up" style="transition-delay:0.5s" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card fade-up" style="transition-delay:0.35s" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-face flip-front"><span class="flip-icon">〰️</span><h3>Протокол Пеннистона</h3></div>
-          <div class="flip-face flip-back"><p>Альфа-тета нейробиоуправление. Реабилитация ветеранов с ПТСР. Клинически значимые результаты по зависимостям. Мозг можно тренировать.</p></div>
+          <div class="flip-face flip-front"><span class="flip-icon">💨</span><h3>Холотропное дыхание</h3><span class="flip-tag">гипервентиляция</span></div>
+          <div class="flip-face flip-back"><p>Метод Грофа. Интенсивное дыхание вызывает изменённое состояние сознания без веществ. Снижение CO₂ меняет pH крови и активность мозга. Терапевтический катарсис.</p><span class="flip-ref">Rhinewine & Williams, J Altern Complement Med 2007</span></div>
+        </div>
+      </div>
+      <div class="flip-card fade-up" style="transition-delay:0.4s" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span class="flip-icon">🏃</span><h3>Состояние потока</h3><span class="flip-tag">flow state</span></div>
+          <div class="flip-face flip-back"><p>Чиксентмихайи описал, нейронаука подтвердила. Транзиторная гипофронтальность — снижение активности префронтальной коры. Дофамин + норадреналин + эндорфины. Пиковая производительность.</p><span class="flip-ref">Dietrich, Consciousness and Cognition 2004</span></div>
+        </div>
+      </div>
+      <div class="flip-card fade-up" style="transition-delay:0.45s" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span class="flip-icon">🔇</span><h3>Сенсорная депривация</h3><span class="flip-tag">флоатинг</span></div>
+          <div class="flip-face flip-back"><p>Камера Лилли. Полная изоляция от внешних стимулов. Мозг переключается на внутреннюю генерацию: тета-волны, снижение кортизола на 21%, усиление интероцепции.</p><span class="flip-ref">Feinstein et al., Biological Psychiatry 2018</span></div>
         </div>
       </div>
     </div>
-    <div class="accent-quote fade-up" style="max-width:600px;">Все три работают с одним — с состоянием мозга.</div>
+    <div class="accent-quote fade-up" style="max-width:700px;">Девять методов. Разные эпохи, традиции и языки. Одна механика — изменение состояния мозга.</div>
   </div>
 </section>
 
