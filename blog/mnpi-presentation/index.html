@@ -1180,33 +1180,49 @@
 <!-- ===== SCREEN 12: ПРОТОКОЛ ЧЕКАПА ===== -->
 <section class="protocol-section" id="screen12">
   <div class="inner">
-    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Как это выглядит на практике</h2>
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Одна сессия. Три фазы. Все потоки пишут одновременно.</h2>
+    <p class="fade-up" style="color:var(--muted);max-width:700px;margin:0 auto 16px;">Neiry на голове, Garmin на руке, планер в телефоне. 45 минут — и у тебя первый NPI-State.</p>
     <div class="protocol-steps" id="protocolSteps">
       <div class="protocol-step fade-up" style="transition-delay:0.1s">
         <div class="protocol-connector"></div>
         <div class="ps-circle">📡</div>
         <h4>T0 — Базовый замер</h4>
-        <p>10 мин. Спокойное бодрствование, закрытые глаза. Ваш «ноль».</p>
+        <p>10 мин. Закрытые глаза, спокойное бодрствование. Твоя персональная точка отсчёта.</p>
       </div>
       <div class="protocol-step fade-up" style="transition-delay:0.3s">
         <div class="protocol-connector"></div>
         <div class="ps-circle">〰️</div>
         <h4>T1 — Модуляция</h4>
-        <p>30 мин. Активация режимов под аудиоинструкции. Четыре фазы.</p>
+        <p>30 мин. Аудиоинструкции активируют режимы сознания. Мозг переключается, тело реагирует.</p>
       </div>
       <div class="protocol-step fade-up" style="transition-delay:0.5s">
         <div class="ps-circle">↩️</div>
         <h4>T2 — Восстановление</h4>
-        <p>5 мин. Возврат к спокойному состоянию. Резидуальный эффект.</p>
+        <p>5 мин. Возврат к покою. ИИ замеряет — что осталось после сессии?</p>
       </div>
     </div>
-    <div class="protocol-metrics fade-up">
-      <div class="pm-card"><h4>AL — Латентность входа</h4><p>Скорость переключения в секундах. Цель: &lt; 60 сек.</p></div>
-      <div class="pm-card"><h4>SI — Стабильность</h4><p>Коэффициент вариации α/β в последние 5 мин. Цель: &lt; 20%.</p></div>
-      <div class="pm-card"><h4>RE — Резидуальный эффект</h4><p>% сохранения изменений после завершения. Показатель нейропластичности.</p></div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px auto;max-width:900px;" class="fade-up">
+      <div style="border-left:3px solid var(--accent);padding:12px 16px;background:rgba(99,102,241,0.04);border-radius:0 8px 8px 0;">
+        <p style="font-family:var(--fm);font-size:0.7rem;color:var(--accent);margin-bottom:4px;">НЕЙРО ПИШЕТ</p>
+        <p style="font-size:0.78rem;color:rgba(240,240,245,0.6);line-height:1.4;">Альфа, тета, гамма, латентность входа, устойчивость ритма</p>
+      </div>
+      <div style="border-left:3px solid var(--neuro-green);padding:12px 16px;background:rgba(0,229,160,0.04);border-radius:0 8px 8px 0;">
+        <p style="font-family:var(--fm);font-size:0.7rem;color:var(--neuro-green);margin-bottom:4px;">ТЕЛО ПИШЕТ</p>
+        <p style="font-size:0.78rem;color:rgba(240,240,245,0.6);line-height:1.4;">HRV, пульс, стресс-индекс, дыхание, температура кожи</p>
+      </div>
+      <div style="border-left:3px solid var(--context-purple);padding:12px 16px;background:rgba(167,139,250,0.04);border-radius:0 8px 8px 0;">
+        <p style="font-family:var(--fm);font-size:0.7rem;color:var(--context-purple);margin-bottom:4px;">КОНТЕКСТ ПИШЕТ</p>
+        <p style="font-size:0.78rem;color:rgba(240,240,245,0.6);line-height:1.4;">Голосовой отчёт, самооценка глубины, телесные ощущения</p>
+      </div>
     </div>
-    <div class="accent-quote fade-up" style="max-width:500px;">Три числа — ваша нейрофизиологическая подпись.</div>
-    <p class="fade-up" style="color:var(--muted);margin-top:24px;font-size:0.9rem;max-width:700px;">MNPI не вычисляется за одну сессию. Полный индекс требует серию из шести структурированных сессий — каждая с уникальным режимом сознания и весовым коэффициентом.</p>
+
+    <div class="protocol-metrics fade-up">
+      <div class="pm-card"><h4>AL — Латентность входа</h4><p>За сколько секунд мозг переключился. Цель: &lt; 60 сек.</p></div>
+      <div class="pm-card"><h4>ST — Стабильность</h4><p>Насколько ровно держится состояние. CV α/β &lt; 20%.</p></div>
+      <div class="pm-card"><h4>RE — Резидуальный эффект</h4><p>% сохранения изменений после T2. Маркер нейропластичности.</p></div>
+    </div>
+    <div class="accent-quote fade-up" style="max-width:600px;">Одна сессия = один NPI-State. Шесть сессий = полный NPI-Trait — твоя нейропластическая подпись.</div>
   </div>
 </section>
 
@@ -1297,25 +1313,34 @@
 <!-- ===== SCREEN 14: ДЛЯ КОГО ===== -->
 <section class="whom-section" id="screen14">
   <div class="inner">
-    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Для кого</h2>
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Кому нужен MNPI</h2>
     <div class="whom-grid">
       <div class="whom-card fade-up" style="transition-delay:0.1s" onclick="this.classList.toggle('open')">
         <div class="wc-icon">🪷</div>
-        <h3>Для практикующих</h3>
-        <p class="wc-short">Йога, медитация, дыхание, телесные практики</p>
-        <div class="wc-expanded"><p>Вы чувствуете эффект, но не можете описать его тому, кто не практикует. MNPI даёт язык — объективную картину того, что ваша практика делает с мозгом и телом.</p></div>
+        <h3>Практикующим</h3>
+        <p class="wc-short">Йога, медитация, дыхание, холотропные техники</p>
+        <div class="wc-expanded">
+          <p>Ты чувствуешь — но не можешь доказать. MNPI переводит ощущения в числа.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:rgba(240,240,245,0.6);">→ Session Passport каждой практики<br>→ Сравнение методов на одном языке<br>→ Объективная динамика за месяцы</p>
+        </div>
       </div>
       <div class="whom-card fade-up" style="transition-delay:0.3s" onclick="this.classList.toggle('open')">
         <div class="wc-icon">👥</div>
-        <h3>Для тех, кто ведёт других</h3>
+        <h3>Ведущим</h3>
         <p class="wc-short">Психологи, коучи, преподаватели, фасилитаторы</p>
-        <div class="wc-expanded"><p>Верифицировать эффект работы объективно, показать динамику до и после — теперь возможно. Это открывает совершенно другой уровень доверия к вашей работе.</p></div>
+        <div class="wc-expanded">
+          <p>Показать клиенту объективный результат работы. Не «мне стало лучше», а графики, числа, динамика.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:rgba(240,240,245,0.6);">→ Отчёт до/после для каждого клиента<br>→ Верификация метода данными<br>→ Новый уровень доверия к вашей работе</p>
+        </div>
       </div>
       <div class="whom-card fade-up" style="transition-delay:0.5s" onclick="this.classList.toggle('open')">
         <div class="wc-icon">🧭</div>
-        <h3>Для тех, кто хочет понять себя</h3>
-        <p class="wc-short">Без практики, без метода — просто посмотреть</p>
-        <div class="wc-expanded"><p>Получить честный портрет своего состояния. Увидеть, где ресурс, а где истощение. Иметь точку отсчёта.</p></div>
+        <h3>Исследователям себя</h3>
+        <p class="wc-short">Без практики, без метода — посмотреть на себя объективно</p>
+        <div class="wc-expanded">
+          <p>Получить честный портрет: где ресурс, где истощение, как мозг реагирует на переключения.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:rgba(240,240,245,0.6);">→ Персональный NPI-Trait — твоя точка отсчёта<br>→ Рекомендации ИИ по практикам<br>→ Понимание себя через данные, а не гадание</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1326,9 +1351,21 @@
 <!-- ===== SCREEN 15: ПРИГЛАШЕНИЕ ===== -->
 <section class="portal-section" id="screen15">
   <div class="inner">
-    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:16px;">Исследование открыто</h2>
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:16px;">Что ты получаешь</h2>
     <div class="portal-oval fade-up"></div>
-    <p class="fade-up" style="color:rgba(240,240,245,0.8);max-width:560px;margin:0 auto;line-height:1.7;">Ты можешь пройти чекап. Надеть гарнитуру. Пройти протокол. Получить отчёт. Увидеть себя в этом зеркале — возможно, впервые так объёмно и честно.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:700px;margin:0 auto 32px;text-align:left;" class="fade-up">
+      <div style="padding:16px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;">
+        <p style="font-family:var(--fm);font-size:0.7rem;color:var(--accent);margin-bottom:6px;">ЧЕКАП ВКЛЮЧАЕТ</p>
+        <p style="font-size:0.82rem;color:rgba(240,240,245,0.7);line-height:1.6;">45-минутная сессия с ЭЭГ-гарнитурой Neiry + фитнес-трекер + протокол 6 режимов сознания</p>
+      </div>
+      <div style="padding:16px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;">
+        <p style="font-family:var(--fm);font-size:0.7rem;color:var(--neuro-green);margin-bottom:6px;">ТЫ ПОЛУЧАЕШЬ</p>
+        <p style="font-size:0.82rem;color:rgba(240,240,245,0.7);line-height:1.6;">Персональный NPI-State, Session Passport, ИИ-анализ всех потоков, рекомендации по практике</p>
+      </div>
+    </div>
+
+    <p class="fade-up" style="color:rgba(240,240,245,0.7);max-width:560px;margin:0 auto;line-height:1.7;">Увидеть себя в этом зеркале — возможно, впервые так объёмно и честно. 100+ субиндексов, сжатых ИИ в понятный портрет.</p>
     <div class="accent-quote fade-up" style="margin:24px auto 0;max-width:500px;">Начинается всё с одного шага — прийти и посмотреть.</div>
     <a href="../../zapisatsya/" class="cta-btn fade-up" style="margin-top:32px;">Пройти чекап →</a>
   </div>
@@ -1340,12 +1377,29 @@
 <section class="constellation-section" id="screen16">
   <div class="constellation-stars" id="constellationStars"></div>
   <div class="inner">
-    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Создать международный стандарт измерения нейропластичности</h2>
-    <p class="fade-up" style="color:rgba(240,240,245,0.7);max-width:650px;margin:0 auto 16px;">Единая метрика, которая позволяет сравнивать эффекты разных практик, разных методов, разных состояний — на одном языке.</p>
+    <h2 class="fade-up" style="font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;text-transform:uppercase;line-height:1.2;margin-bottom:8px;">Миссия: международный стандарт измерения нейропластичности</h2>
+    <p class="fade-up" style="color:rgba(240,240,245,0.7);max-width:700px;margin:0 auto 16px;">Единая метрика для сравнения практик, методов, состояний — на одном языке. С каждым участником модель ИИ становится точнее, а стандарт — сильнее.</p>
+
     <div class="constellation-viz" id="constellationViz">
       <svg viewBox="0 0 440 440" id="constellationSvg"></svg>
     </div>
-    <div class="accent-quote fade-up" style="max-width:600px;margin:0 auto;">Каждый участник вносит свой вклад в формирование этого стандарта.</div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:800px;margin:24px auto 0;" class="fade-up">
+      <div style="text-align:center;padding:16px;">
+        <p style="font-family:var(--fm);font-size:1.8rem;font-weight:700;color:var(--accent);">120–150</p>
+        <p style="font-size:0.8rem;color:var(--muted);">участников первой волны</p>
+      </div>
+      <div style="text-align:center;padding:16px;">
+        <p style="font-family:var(--fm);font-size:1.8rem;font-weight:700;color:var(--neuro-green);">6</p>
+        <p style="font-size:0.8rem;color:var(--muted);">сессий на каждого = полный NPI-Trait</p>
+      </div>
+      <div style="text-align:center;padding:16px;">
+        <p style="font-family:var(--fm);font-size:1.8rem;font-weight:700;color:var(--warm);">900+</p>
+        <p style="font-size:0.8rem;color:var(--muted);">сессий для обучения модели ИИ</p>
+      </div>
+    </div>
+
+    <div class="accent-quote fade-up" style="max-width:600px;margin:24px auto 0;">Каждый участник — не клиент, а соавтор стандарта. Твои данные делают MNPI точнее для всех.</div>
   </div>
 </section>
 
@@ -1356,8 +1410,16 @@
   <div class="final-spiral"><svg viewBox="0 0 800 800"><path d="M400,400 C400,200 600,200 600,400 S400,600 400,400 C400,150 650,150 650,400 S400,650 400,400 C400,100 700,100 700,400 S400,700 400,400" fill="none" stroke="rgba(99,102,241,0.5)" stroke-width="1"/></svg></div>
   <div class="inner">
     <h2 class="fade-up">Мы стоим в начале новой эры</h2>
-    <p class="final-subtitle fade-up">Эры объективного понимания внутреннего состояния человека</p>
-    <p class="fade-up" style="color:rgba(240,240,245,0.7);max-width:600px;margin:0 auto 32px;line-height:1.7;">Эры, где тысячелетний опыт человечества встречается с современными технологиями и перестаёт быть невидимым.</p>
+    <p class="final-subtitle fade-up">Эры, где 40 000 лет практики встречаются с ИИ, обработавшим 100+ субиндексов</p>
+    <p class="fade-up" style="color:rgba(240,240,245,0.7);max-width:640px;margin:0 auto 24px;line-height:1.7;">Шаман у костра не знал слова «альфа-волны». Но он знал, что это работает. Теперь мы можем это доказать — числами, которые не умеют врать.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:700px;margin:0 auto 32px;" class="fade-up">
+      <div style="text-align:center;"><p style="font-family:var(--fm);font-size:1.2rem;color:var(--accent);font-weight:700;">3</p><p style="font-size:0.7rem;color:var(--muted);">потока данных</p></div>
+      <div style="text-align:center;"><p style="font-family:var(--fm);font-size:1.2rem;color:var(--neuro-green);font-weight:700;">100+</p><p style="font-size:0.7rem;color:var(--muted);">субиндексов</p></div>
+      <div style="text-align:center;"><p style="font-family:var(--fm);font-size:1.2rem;color:var(--warm);font-weight:700;">4</p><p style="font-size:0.7rem;color:var(--muted);">ключевых индекса</p></div>
+      <div style="text-align:center;"><p style="font-family:var(--fm);font-size:1.2rem;color:var(--context-purple);font-weight:700;">1</p><p style="font-size:0.7rem;color:var(--muted);">MNPI</p></div>
+    </div>
+
     <div class="accent-quote fade-up" style="max-width:500px;margin:0 auto 40px;">Если вы хотите оказаться в этой точке — добро пожаловать.</div>
     <a href="../../zapisatsya/" class="cta-btn fade-up">Войти в исследование →</a>
     <div class="final-partners fade-up" style="margin-top:60px;">
