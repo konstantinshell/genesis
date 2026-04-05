@@ -56,9 +56,8 @@ body {
   margin-bottom: 12px;
   border-left: 3px solid #7c6fff;
 }
-.analysis-block.done {
-  border-left-color: #34c759;
-}
+.analysis-block:last-child { margin-bottom: 0; }
+.analysis-block.done { border-left-color: #34c759; }
 .analysis-label {
   font-size: 11px;
   text-transform: uppercase;
@@ -107,10 +106,7 @@ body {
   gap: 12px;
   margin-top: 8px;
 }
-.stat-item {
-  font-size: 11px;
-  color: #aaa;
-}
+.stat-item { font-size: 11px; color: #aaa; }
 .stat-item .val {
   font-weight: 700;
   color: #7c6fff;
@@ -160,9 +156,7 @@ body {
   border-radius: 14px;
   border: 1px solid #1e1e2e;
 }
-.stats-bar .stat {
-  text-align: center;
-}
+.stats-bar .stat { text-align: center; }
 .stats-bar .stat .num {
   font-size: 24px;
   font-weight: 700;
@@ -237,9 +231,7 @@ body {
   color: #888;
   margin-bottom: 4px;
 }
-.mood-label strong {
-  color: #e0e0e8;
-}
+.mood-label strong { color: #e0e0e8; }
 .mood-comment {
   font-size: 12px;
   color: #555;
@@ -247,6 +239,183 @@ body {
   margin-top: 8px;
   line-height: 1.5;
 }
+
+/* ═══ Health metrics ═══ */
+.health-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.health-card {
+  background: #1a1a2e;
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid #1e1e2e;
+}
+.health-card .h-icon { font-size: 20px; margin-bottom: 6px; }
+.health-card .h-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #666;
+  margin-bottom: 4px;
+}
+.health-card .h-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #e0e0e8;
+}
+.health-card .h-value.accent { color: #7c6fff; }
+.health-card .h-value.green { color: #34c759; }
+.health-card .h-value.orange { color: #f5a623; }
+.health-card .h-value.blue { color: #0a84ff; }
+.health-card .h-sub {
+  font-size: 11px;
+  color: #555;
+  margin-top: 2px;
+}
+.health-card .h-trend {
+  font-size: 11px;
+  margin-top: 4px;
+}
+.health-card .h-trend.up { color: #34c759; }
+.health-card .h-trend.down { color: #ff453a; }
+.health-card .h-trend.stable { color: #888; }
+.health-card.wide {
+  grid-column: 1 / -1;
+}
+
+/* PI meter */
+.pi-meter {
+  background: #1a1a2e;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid rgba(124,111,255,0.15);
+  margin-bottom: 14px;
+}
+.pi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.pi-title { font-size: 13px; font-weight: 600; color: #e0e0e8; }
+.pi-score {
+  font-size: 28px;
+  font-weight: 700;
+  color: #7c6fff;
+}
+.pi-score span { font-size: 14px; color: #555; font-weight: 400; }
+.pi-bars { display: flex; flex-direction: column; gap: 8px; }
+.pi-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pi-bar-label {
+  font-size: 11px;
+  color: #888;
+  width: 80px;
+  flex-shrink: 0;
+}
+.pi-bar-track {
+  flex: 1;
+  height: 6px;
+  background: #2a2a3a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.pi-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+.pi-bar-fill.depth { background: linear-gradient(90deg, #7c6fff, #a78bfa); }
+.pi-bar-fill.body { background: linear-gradient(90deg, #34c759, #6ee7b7); }
+.pi-bar-fill.tone { background: linear-gradient(90deg, #0a84ff, #60a5fa); }
+.pi-bar-fill.cognitive { background: linear-gradient(90deg, #f5a623, #fbbf24); }
+.pi-bar-val {
+  font-size: 11px;
+  color: #aaa;
+  width: 24px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Neiry metrics */
+.neiry-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.neiry-chip {
+  background: #1a1a2e;
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: 1px solid #1e1e2e;
+  flex: 1;
+  min-width: calc(33% - 6px);
+  text-align: center;
+}
+.neiry-chip .n-val {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e0e0e8;
+}
+.neiry-chip .n-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #555;
+  margin-top: 2px;
+}
+.neiry-chip.highlight { border-color: rgba(124,111,255,0.25); }
+.neiry-chip.highlight .n-val { color: #7c6fff; }
+
+/* Brain network pie (simplified bar) */
+.brain-bar {
+  display: flex;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+.brain-bar .dmn { background: #7c6fff; }
+.brain-bar .sn { background: #f5a623; }
+.brain-bar .cen { background: #34c759; }
+.brain-legend {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+.brain-legend .bl-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #888;
+}
+.brain-legend .bl-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.brain-legend .bl-dot.dmn { background: #7c6fff; }
+.brain-legend .bl-dot.sn { background: #f5a623; }
+.brain-legend .bl-dot.cen { background: #34c759; }
+.brain-legend .bl-val { font-weight: 600; color: #ccc; }
+
+/* No-data placeholder */
+.no-data {
+  text-align: center;
+  padding: 20px 16px;
+  color: #444;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.no-data .nd-icon { font-size: 32px; margin-bottom: 8px; opacity: 0.5; }
+.no-data .nd-hint { font-size: 11px; color: #333; margin-top: 4px; }
 
 /* Updated */
 .updated {
@@ -271,7 +440,7 @@ body.tg-webapp .back-link { display: none; }
 </head>
 <body>
 
-<a href="javascript:history.back()" class="back-link">← Назад в профиль</a>
+<a href="javascript:history.back()" class="back-link">&larr; Назад в профиль</a>
 
 <div class="team-header">
   <div class="emoji">🤝</div>
@@ -284,6 +453,10 @@ body.tg-webapp .back-link { display: none; }
   <div class="stat">
     <div class="num" id="total-entries">0</div>
     <div class="label">Записей</div>
+  </div>
+  <div class="stat">
+    <div class="num" id="total-sessions">0</div>
+    <div class="label">Сессий ЭЭГ</div>
   </div>
   <div class="stat">
     <div class="num" id="total-members">2</div>
@@ -308,6 +481,125 @@ body.tg-webapp .back-link { display: none; }
   </a>
 </div>
 
+<!-- ═══ PI INDEX — Командный ═══ -->
+<div class="section" id="pi-section">
+  <div class="section-title"><span class="icon">🧬</span> PI Index — Командный</div>
+  <div class="pi-meter" id="pi-meter">
+    <div class="pi-header">
+      <div class="pi-title">Phenomenological Index</div>
+      <div class="pi-score" id="pi-avg">—<span> /10</span></div>
+    </div>
+    <div class="pi-bars">
+      <div class="pi-bar-row">
+        <div class="pi-bar-label">Глубина</div>
+        <div class="pi-bar-track"><div class="pi-bar-fill depth" id="pi-depth" style="width:0%"></div></div>
+        <div class="pi-bar-val" id="pi-depth-val">—</div>
+      </div>
+      <div class="pi-bar-row">
+        <div class="pi-bar-label">Телесность</div>
+        <div class="pi-bar-track"><div class="pi-bar-fill body" id="pi-body" style="width:0%"></div></div>
+        <div class="pi-bar-val" id="pi-body-val">—</div>
+      </div>
+      <div class="pi-bar-row">
+        <div class="pi-bar-label">Тональность</div>
+        <div class="pi-bar-track"><div class="pi-bar-fill tone" id="pi-tone" style="width:0%"></div></div>
+        <div class="pi-bar-val" id="pi-tone-val">—</div>
+      </div>
+      <div class="pi-bar-row">
+        <div class="pi-bar-label">Когнитивное</div>
+        <div class="pi-bar-track"><div class="pi-bar-fill cognitive" id="pi-cognitive" style="width:0%"></div></div>
+        <div class="pi-bar-val" id="pi-cognitive-val">—</div>
+      </div>
+    </div>
+  </div>
+  <div id="pi-nodata" class="no-data" style="display:none;">
+    <div class="nd-icon">🧬</div>
+    PI формируется после первых ЭЭГ-сессий и рефлексий
+    <div class="nd-hint">Запишите голосовую рефлексию после сессии NEIRY</div>
+  </div>
+</div>
+
+<!-- ═══ NEIRY ЭЭГ Метрики ═══ -->
+<div class="section" id="neiry-section">
+  <div class="section-title"><span class="icon">🧠</span> NEIRY ЭЭГ — Средние по команде</div>
+  <div class="neiry-row" id="neiry-metrics">
+    <div class="neiry-chip highlight"><div class="n-val" id="n-cognitive">—</div><div class="n-label">Cognitive</div></div>
+    <div class="neiry-chip highlight"><div class="n-val" id="n-focus">—</div><div class="n-label">Focus</div></div>
+    <div class="neiry-chip"><div class="n-val" id="n-relaxation">—</div><div class="n-label">Relaxation</div></div>
+    <div class="neiry-chip"><div class="n-val" id="n-alpha">—</div><div class="n-label">Alpha</div></div>
+    <div class="neiry-chip"><div class="n-val" id="n-fatigue">—</div><div class="n-label">Fatigue</div></div>
+    <div class="neiry-chip"><div class="n-val" id="n-chill">—</div><div class="n-label">Chill</div></div>
+  </div>
+
+  <!-- Brain Networks -->
+  <div style="margin-top:16px;">
+    <div style="font-size:12px;color:#888;margin-bottom:4px;">Сети мозга — среднее распределение</div>
+    <div class="brain-bar" id="brain-bar">
+      <div class="dmn" style="width:33%"></div>
+      <div class="sn" style="width:33%"></div>
+      <div class="cen" style="width:34%"></div>
+    </div>
+    <div class="brain-legend">
+      <div class="bl-item"><div class="bl-dot dmn"></div>DMN <span class="bl-val" id="bn-dmn">—</span>%</div>
+      <div class="bl-item"><div class="bl-dot sn"></div>SN <span class="bl-val" id="bn-sn">—</span>%</div>
+      <div class="bl-item"><div class="bl-dot cen"></div>CEN <span class="bl-val" id="bn-cen">—</span>%</div>
+    </div>
+  </div>
+
+  <div id="neiry-nodata" class="no-data" style="display:none;">
+    <div class="nd-icon">🧠</div>
+    ЭЭГ-данные появятся после первых сессий с NEIRY
+    <div class="nd-hint">Загрузите CSV из приложения Capsule через бота</div>
+  </div>
+</div>
+
+<!-- ═══ Здоровье команды ═══ -->
+<div class="section" id="health-section">
+  <div class="section-title"><span class="icon">💚</span> Здоровье команды</div>
+  <div class="health-grid" id="health-grid">
+    <div class="health-card">
+      <div class="h-icon">😴</div>
+      <div class="h-label">Средний сон</div>
+      <div class="h-value blue" id="h-sleep">—</div>
+      <div class="h-sub">часов / ночь</div>
+    </div>
+    <div class="health-card">
+      <div class="h-icon">💓</div>
+      <div class="h-label">Средний HRV</div>
+      <div class="h-value green" id="h-hrv">—</div>
+      <div class="h-sub">мс</div>
+    </div>
+    <div class="health-card">
+      <div class="h-icon">⚡</div>
+      <div class="h-label">Средний стресс</div>
+      <div class="h-value orange" id="h-stress">—</div>
+      <div class="h-sub">баллов</div>
+    </div>
+    <div class="health-card">
+      <div class="h-icon">⌚</div>
+      <div class="h-label">С трекером</div>
+      <div class="h-value accent" id="h-trackers">0</div>
+      <div class="h-sub">участников</div>
+    </div>
+    <div class="health-card">
+      <div class="h-icon">🏥</div>
+      <div class="h-label">Прошли чекап</div>
+      <div class="h-value" id="h-checkup">0</div>
+      <div class="h-sub">участников</div>
+    </div>
+    <div class="health-card">
+      <div class="h-icon">🧬</div>
+      <div class="h-label">ДНК-тест</div>
+      <div class="h-value" id="h-dna">0</div>
+      <div class="h-sub">участников</div>
+    </div>
+  </div>
+  <div class="analysis-block" style="border-left-color:#34c759;">
+    <div class="analysis-label">AI-сводка по здоровью</div>
+    <div class="analysis-text" id="health-summary">Данные по здоровью формируются. Команда проходит начальный этап — сбор базовых метрик ЭЭГ и подключение трекеров.</div>
+  </div>
+</div>
+
 <!-- Настроение команды -->
 <div class="mood-section">
   <div class="mood-title">🌡️ Настроение команды</div>
@@ -326,8 +618,8 @@ body.tg-webapp .back-link { display: none; }
 <div class="section">
   <div class="section-title"><span class="icon">🎯</span> Команда хочет реализовать</div>
   <div class="analysis-block">
-    <div class="analysis-label">На основе всех рефлексий</div>
-    <div class="analysis-text" id="team-wants">Данные формируются... Оставьте первую рефлексию через бота.</div>
+    <div class="analysis-label">На основе всех записей</div>
+    <div class="analysis-text" id="team-wants">Данные формируются...</div>
   </div>
 </div>
 
@@ -345,16 +637,14 @@ body.tg-webapp .back-link { display: none; }
   <div class="section-title"><span class="icon">💬</span> Пожелания пользователей</div>
   <div class="analysis-block" style="border-left-color:#f5a623;">
     <div class="analysis-label">На основе обратной связи</div>
-    <div class="analysis-text" id="user-wishes">Данные формируются... Пользователи ещё не оставляли пожеланий.</div>
+    <div class="analysis-text" id="user-wishes">Данные формируются...</div>
   </div>
 </div>
 
 <!-- Участники команды -->
 <div class="section">
   <div class="section-title"><span class="icon">👥</span> Участники</div>
-  <div class="member-grid" id="members-grid">
-    <!-- заполняется из JSON -->
-  </div>
+  <div class="member-grid" id="members-grid"></div>
 </div>
 
 <div class="updated" id="updated-text">Обновлено: —</div>
@@ -366,30 +656,21 @@ if (tg) {
   tg.ready();
   tg.expand();
   document.body.classList.add('tg-webapp');
-
-  // Back button → вернуться в профиль
   tg.BackButton.show();
-  tg.BackButton.onClick(function() {
-    window.history.back();
-  });
+  tg.BackButton.onClick(function() { window.history.back(); });
 }
 
 function openBot(startParam) {
-  if (tg) {
-    tg.openTelegramLink('https://t.me/ritmnothingbot?start=' + startParam);
-    return false;
-  }
-  return true; // fallback — обычный переход по ссылке
+  if (tg) { tg.openTelegramLink('https://t.me/ritmnothingbot?start=' + startParam); return false; }
+  return true;
 }
 
 /* ═══ Data ═══ */
-const ANALYSIS_URL = 'analysis.json';
-
 async function init() {
   try {
-    const resp = await fetch(ANALYSIS_URL + '?t=' + Date.now());
+    var resp = await fetch('analysis.json?t=' + Date.now());
     if (!resp.ok) throw new Error('no data');
-    const data = await resp.json();
+    var data = await resp.json();
     render(data);
   } catch(e) {
     console.log('No analysis data yet:', e);
@@ -397,103 +678,139 @@ async function init() {
   }
 }
 
-function render(data) {
-  // Analysis texts
-  if (data.team_wants) {
-    document.getElementById('team-wants').textContent = data.team_wants;
-  }
-  if (data.team_done) {
-    document.getElementById('team-done').textContent = data.team_done;
-  }
-  if (data.user_wishes) {
-    document.getElementById('user-wishes').textContent = data.user_wishes;
-  }
+function fmt(v) { return v != null ? v : '—'; }
 
-  // Mood
+function render(data) {
+  // ═══ Analysis texts ═══
+  if (data.team_wants) document.getElementById('team-wants').textContent = data.team_wants;
+  if (data.team_done) document.getElementById('team-done').textContent = data.team_done;
+  if (data.user_wishes) document.getElementById('user-wishes').textContent = data.user_wishes;
+
+  // ═══ Mood ═══
   if (data.team_mood) {
-    var level = data.team_mood.level || 3; // 1-5
+    var level = data.team_mood.level || 3;
     var labels = {1:'Напряжение',2:'Нейтрально',3:'Нормально',4:'Хорошо',5:'На подъёме'};
     document.querySelectorAll('.mood-dot').forEach(function(dot) {
       if (parseInt(dot.dataset.level) === level) dot.classList.add('active');
     });
-    document.getElementById('mood-label').innerHTML = '<strong>' + (labels[level] || '—') + '</strong>';
-    if (data.team_mood.comment) {
-      document.getElementById('mood-comment').textContent = data.team_mood.comment;
-    }
+    document.getElementById('mood-label').innerHTML = '<strong>' + (labels[level]||'—') + '</strong>';
+    if (data.team_mood.comment) document.getElementById('mood-comment').textContent = data.team_mood.comment;
   }
 
-  // Stats
-  let totalIdeas = 0, totalTasks = 0, totalRefl = 0;
-  const members = data.members || {};
-  const memberKeys = Object.keys(members);
+  // ═══ PI Index ═══
+  var h = data.health || {};
+  if (h.pi_avg != null) {
+    document.getElementById('pi-avg').innerHTML = h.pi_avg.toFixed(1) + '<span> /10</span>';
+    var comps = h.pi_components || {};
+    ['depth','body','tone','cognitive'].forEach(function(k) {
+      var v = comps[k];
+      if (v != null) {
+        document.getElementById('pi-'+k).style.width = (v*10)+'%';
+        document.getElementById('pi-'+k+'-val').textContent = v.toFixed(1);
+      }
+    });
+    document.getElementById('pi-meter').style.display = '';
+    document.getElementById('pi-nodata').style.display = 'none';
+  } else {
+    document.getElementById('pi-meter').style.display = 'none';
+    document.getElementById('pi-nodata').style.display = '';
+  }
 
-  // Build member cards
-  const grid = document.getElementById('members-grid');
+  // ═══ NEIRY ЭЭГ ═══
+  var n = h.neiry || {};
+  var hasNeiry = n.sessions_total > 0;
+  if (hasNeiry) {
+    document.getElementById('n-cognitive').textContent = fmt(n.cognitive_avg);
+    document.getElementById('n-focus').textContent = fmt(n.focus_avg);
+    document.getElementById('n-relaxation').textContent = fmt(n.relaxation_avg);
+    document.getElementById('n-alpha').textContent = fmt(n.alpha_avg);
+    document.getElementById('n-fatigue').textContent = fmt(n.fatigue_avg);
+    document.getElementById('n-chill').textContent = fmt(n.chill_avg);
+    document.getElementById('neiry-metrics').style.display = '';
+    document.getElementById('neiry-nodata').style.display = 'none';
+  } else {
+    document.getElementById('neiry-metrics').style.display = 'none';
+    document.getElementById('neiry-nodata').style.display = '';
+  }
+
+  // Brain networks
+  var bn = h.brain_networks || {};
+  if (bn.dmn_avg != null) {
+    document.getElementById('bn-dmn').textContent = bn.dmn_avg;
+    document.getElementById('bn-sn').textContent = bn.sn_avg || 0;
+    document.getElementById('bn-cen').textContent = bn.cen_avg || 0;
+    var bar = document.getElementById('brain-bar');
+    bar.children[0].style.width = bn.dmn_avg + '%';
+    bar.children[1].style.width = (bn.sn_avg||0) + '%';
+    bar.children[2].style.width = (bn.cen_avg||0) + '%';
+  }
+
+  // ═══ Health cards ═══
+  var fit = h.fitness || {};
+  var clin = h.clinical || {};
+  document.getElementById('h-sleep').textContent = fmt(fit.avg_sleep);
+  document.getElementById('h-hrv').textContent = fmt(fit.avg_hrv);
+  document.getElementById('h-stress').textContent = fmt(fit.avg_stress);
+  document.getElementById('h-trackers').textContent = fit.members_with_tracker || 0;
+  document.getElementById('h-checkup').textContent = clin.members_with_checkup || 0;
+  document.getElementById('h-dna').textContent = clin.members_with_dna || 0;
+  if (h.ai_summary) document.getElementById('health-summary').textContent = h.ai_summary;
+
+  // ═══ Stats bar ═══
+  var totalIdeas=0, totalTasks=0, totalRefl=0;
+  var members = data.members || {};
+  var memberKeys = Object.keys(members);
+
+  document.getElementById('total-sessions').textContent = n.sessions_total || 0;
+
+  // ═══ Members ═══
+  var grid = document.getElementById('members-grid');
   grid.innerHTML = '';
-
-  for (const [tid, m] of Object.entries(members)) {
-    totalIdeas += (m.ideas || 0);
-    totalTasks += (m.tasks || 0);
-    totalRefl += (m.reflections || 0);
-    const initials = (m.name || '?').split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
-    const card = document.createElement('div');
+  for (var tid in members) {
+    var m = members[tid];
+    totalIdeas += (m.ideas||0);
+    totalTasks += (m.tasks||0);
+    totalRefl += (m.reflections||0);
+    var initials = (m.name||'?').split(' ').map(function(w){return w[0]}).join('').toUpperCase().slice(0,2);
+    var piHtml = m.pi != null ? '<div class="stat-item"><span class="val" style="color:#a78bfa;">' + m.pi.toFixed(1) + '</span>PI</div>' : '';
+    var card = document.createElement('div');
     card.className = 'member-card';
-    card.innerHTML = `
-      <div class="member-avatar">${initials}</div>
-      <div class="member-info">
-        <div class="member-name">${m.name || 'Участник'}</div>
-        <div class="member-role">${m.role || 'Участник'}</div>
-        <div class="member-stats">
-          <div class="stat-item"><span class="val">${m.ideas || 0}</span>идей</div>
-          <div class="stat-item"><span class="val">${m.tasks || 0}</span>задач</div>
-          <div class="stat-item"><span class="val">${m.reflections || 0}</span>рефлексий</div>
-        </div>
-      </div>
-    `;
+    card.innerHTML =
+      '<div class="member-avatar">' + initials + '</div>' +
+      '<div class="member-info">' +
+        '<div class="member-name">' + (m.name||'Участник') + '</div>' +
+        '<div class="member-role">' + (m.role||'Участник') + '</div>' +
+        '<div class="member-stats">' +
+          '<div class="stat-item"><span class="val">' + (m.ideas||0) + '</span>идей</div>' +
+          '<div class="stat-item"><span class="val">' + (m.tasks||0) + '</span>задач</div>' +
+          '<div class="stat-item"><span class="val">' + (m.reflections||0) + '</span>рефл.</div>' +
+          piHtml +
+        '</div>' +
+      '</div>';
     grid.appendChild(card);
   }
 
   document.getElementById('total-entries').textContent = totalIdeas + totalTasks + totalRefl;
   document.getElementById('total-members').textContent = memberKeys.length || 2;
 
-  // Days active
   if (data.created) {
-    const created = new Date(data.created);
-    const now = new Date();
-    const days = Math.floor((now - created) / 86400000) + 1;
+    var created = new Date(data.created);
+    var now = new Date();
+    var days = Math.floor((now - created) / 86400000) + 1;
     document.getElementById('days-active').textContent = days;
   }
-
-  // Updated
-  if (data.updated) {
-    document.getElementById('updated-text').textContent = 'Обновлено: ' + data.updated;
-  }
+  if (data.updated) document.getElementById('updated-text').textContent = 'Обновлено: ' + data.updated;
 }
 
 function renderDefault() {
-  const grid = document.getElementById('members-grid');
-  grid.innerHTML = `
-    <div class="member-card">
-      <div class="member-avatar">КШ</div>
-      <div class="member-info">
-        <div class="member-name">Константин Шель</div>
-        <div class="member-role">Капитан</div>
-        <div class="member-stats">
-          <div class="stat-item"><span class="val">0</span>рефлексий</div>
-        </div>
-      </div>
-    </div>
-    <div class="member-card">
-      <div class="member-avatar">НМ</div>
-      <div class="member-info">
-        <div class="member-name">Натали Морозова</div>
-        <div class="member-role">Партнёр</div>
-        <div class="member-stats">
-          <div class="stat-item"><span class="val">0</span>рефлексий</div>
-        </div>
-      </div>
-    </div>
-  `;
+  document.getElementById('pi-meter').style.display = 'none';
+  document.getElementById('pi-nodata').style.display = '';
+  document.getElementById('neiry-metrics').style.display = 'none';
+  document.getElementById('neiry-nodata').style.display = '';
+  var grid = document.getElementById('members-grid');
+  grid.innerHTML =
+    '<div class="member-card"><div class="member-avatar">КШ</div><div class="member-info"><div class="member-name">Константин Шель</div><div class="member-role">Капитан</div></div></div>' +
+    '<div class="member-card"><div class="member-avatar">НМ</div><div class="member-info"><div class="member-name">Натали Морозова</div><div class="member-role">Партнёр</div></div></div>';
   document.getElementById('total-members').textContent = '2';
   document.getElementById('days-active').textContent = '1';
 }

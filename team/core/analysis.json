@@ -1,5 +1,5 @@
 {
-  "updated": "05.04.2026",
+  "updated": "06.04.2026",
   "created": "2026-04-05",
   "team_wants": "Команда в начале пути — формирует инфраструктуру исследования, методологию и нейроинтерфейсы. Цель: создать платформу для самопознания через ЭЭГ, рефлексии и AI-анализ.",
   "team_done": "Запущена платформа: бот, личные профили, командный дашборд, система рефлексий и CRM. Инфраструктура готова к работе.",
@@ -23,5 +23,46 @@
   "team_mood": {
     "level": 4,
     "comment": "Команда на стадии запуска — энтузиазм и продуктивность в построении платформы."
+  },
+  "health": {
+    "pi_avg": null,
+    "pi_trend": null,
+    "pi_components": {
+      "depth": null,
+      "body": null,
+      "tone": null,
+      "cognitive": null
+    },
+    "neiry": {
+      "sessions_total": 0,
+      "cognitive_avg": null,
+      "relaxation_avg": null,
+      "focus_avg": null,
+      "alpha_avg": null,
+      "fatigue_avg": null,
+      "chill_avg": null
+    },
+    "brain_networks": {
+      "dmn_avg": null,
+      "sn_avg": null,
+      "cen_avg": null,
+      "dominant": null
+    },
+    "fitness": {
+      "members_with_tracker": 0,
+      "avg_sleep": null,
+      "avg_hrv": null,
+      "avg_stress": null
+    },
+    "clinical": {
+      "members_with_checkup": 2,
+      "members_with_dna": 0
+    },
+    "reflections": {
+      "total": 0,
+      "avg_per_member": 0.0,
+      "most_active": "Константин Шель"
+    },
+    "ai_summary": "Данные по здоровью формируются. Команда проходит начальный этап — сбор базовых метрик ЭЭГ и подключение трекеров."
   }
 }
