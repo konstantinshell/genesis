@@ -2,22 +2,24 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Команда Core — РИТМЫ NOTHING</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>РИТМЫ ЖИЗНИ — ONTO NOTHING · NEIRY · LQ LAB</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #0a0a10;
-  color: #e0e0e8;
+  background: var(--tg-theme-bg-color, #0a0a10);
+  color: var(--tg-theme-text-color, #e0e0e8);
   min-height: 100vh;
-  padding-bottom: 100px;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 40px);
 }
 
 /* Header */
 .team-header {
   background: linear-gradient(135deg, #1a1a2e 0%, #16162a 50%, #0f0f1a 100%);
-  padding: 32px 20px 24px;
+  padding: 20px 20px 24px;
   border-bottom: 1px solid rgba(124,111,255,0.15);
   text-align: center;
 }
@@ -166,7 +168,7 @@ body {
   padding: 12px;
 }
 
-/* Back link */
+/* Back link — hidden in TG Mini App, shown only in browser */
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -176,6 +178,7 @@ body {
   text-decoration: none;
   font-size: 13px;
 }
+body.tg-webapp .back-link { display: none; }
 </style>
 </head>
 <body>
@@ -184,8 +187,8 @@ body {
 
 <div class="team-header">
   <div class="emoji">🤝</div>
-  <h1>Команда Core</h1>
-  <div class="subtitle">Основная команда проекта РИТМЫ NOTHING</div>
+  <h1>РИТМЫ ЖИЗНИ</h1>
+  <div class="subtitle">ONTO NOTHING · NEIRY · LQ LAB</div>
 </div>
 
 <!-- Stats bar -->
@@ -205,7 +208,7 @@ body {
 </div>
 
 <!-- CTA — написать рефлексию -->
-<a href="https://t.me/ritmnothingbot?start=team_core" class="cta-btn" id="write-btn">
+<a href="https://t.me/ritmnothingbot?start=team_core" class="cta-btn" id="write-btn" onclick="return openBot('team_core');">
   ✍️ Написать рефлексию
   <div class="sub">Идеи, задачи, результаты по проекту</div>
 </a>
@@ -239,6 +242,29 @@ body {
 <div class="updated" id="updated-text">Обновлено: —</div>
 
 <script>
+/* ═══ Telegram Mini App ═══ */
+var tg = window.Telegram && window.Telegram.WebApp;
+if (tg) {
+  tg.ready();
+  tg.expand();
+  document.body.classList.add('tg-webapp');
+
+  // Back button → вернуться в профиль
+  tg.BackButton.show();
+  tg.BackButton.onClick(function() {
+    window.history.back();
+  });
+}
+
+function openBot(startParam) {
+  if (tg) {
+    tg.openTelegramLink('https://t.me/ritmnothingbot?start=' + startParam);
+    return false;
+  }
+  return true; // fallback — обычный переход по ссылке
+}
+
+/* ═══ Data ═══ */
 const ANALYSIS_URL = 'analysis.json';
 
 async function init() {
