@@ -256,6 +256,15 @@ body.tg-webapp .back-link { display: none; }
   </div>
 </div>
 
+<!-- Пожелания пользователей -->
+<div class="section">
+  <div class="section-title"><span class="icon">💬</span> Пожелания пользователей</div>
+  <div class="analysis-block" style="border-left-color:#f5a623;">
+    <div class="analysis-label">На основе обратной связи</div>
+    <div class="analysis-text" id="user-wishes">Данные формируются... Пользователи ещё не оставляли пожеланий.</div>
+  </div>
+</div>
+
 <!-- Участники команды -->
 <div class="section">
   <div class="section-title"><span class="icon">👥</span> Участники</div>
@@ -311,6 +320,9 @@ function render(data) {
   }
   if (data.team_done) {
     document.getElementById('team-done').textContent = data.team_done;
+  }
+  if (data.user_wishes) {
+    document.getElementById('user-wishes').textContent = data.user_wishes;
   }
 
   // Stats
