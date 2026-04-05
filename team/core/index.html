@@ -121,32 +121,34 @@ body {
 /* Action buttons row */
 .action-row {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   padding: 0 16px;
   margin: 16px 0;
 }
 .action-btn {
   flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 14px 8px;
-  border: none;
-  border-radius: 14px;
-  color: #fff;
-  font-size: 13px;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 6px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  color: #e0e0e8;
+  font-size: 12px;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  background: #1a1a2e;
   -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
 }
-.action-btn:active { opacity: 0.85; transform: scale(0.97); }
-.action-btn .ico { font-size: 22px; }
-.action-btn.idea { background: linear-gradient(135deg, #f5a623, #e08800); }
-.action-btn.task { background: linear-gradient(135deg, #34c759, #28a745); }
-.action-btn.refl { background: linear-gradient(135deg, #7c6fff, #5f5fdf); }
+.action-btn:active { background: #252540; transform: scale(0.97); }
+.action-btn .ico { font-size: 16px; }
+.action-btn.idea { border-color: rgba(245,166,35,0.3); color: #f5a623; }
+.action-btn.task { border-color: rgba(52,199,89,0.3); color: #34c759; }
+.action-btn.refl { border-color: rgba(124,111,255,0.3); color: #7c6fff; }
 
 /* Stats bar */
 .stats-bar {
