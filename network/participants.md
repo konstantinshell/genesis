@@ -1,6 +1,6 @@
 # Участники РИТМЫ NOTHING
 
-> Обновлено: 04.04.2026 14:42
+> Обновлено: 04.04.2026 23:49
 
 ## Основатели
 
@@ -9,34 +9,27 @@
 | Константин Шель | [@konstantinshell](https://t.me/konstantinshell) | [профиль](https://konstantinshell.github.io/genesis/profiles/41537154/) |
 | Натали Морозова | [@morozovanatalua](https://t.me/morozovanatalua) | [профиль](https://konstantinshell.github.io/genesis/profiles/8211648754/) |
 
-## Участники (12)
+## Участники (14)
 
 | # | Имя | Telegram | NDA | Админка | Условия бенда | Фитнес-трекер | Амбассадор | LQ Lab | Профиль |
 |---|-----|----------|-----|---------|---------------|---------------|------------|--------|---------|
-| 1 | Валентина | [@Vi_vittt](https://t.me/Vi_vittt) | ⚠️ Нет | ⏳ Не пропущен | ⭐ Промо | ⌚ Garmin | — | — | [профиль](https://konstantinshell.github.io/genesis/profiles/1067307749/) |
-| 2 | Константин НОВАТОР | — | ⚠️ Нет | ⏳ Не пропущен | — | — | — | — | [профиль](https://konstantinshell.github.io/genesis/profiles/8678544199/) |
-| 3 | Александр Новожилов | [@GoodWinZlo](https://t.me/GoodWinZlo) | ✅ Да | ✅ Пропущен | 🧠 Купил | — | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/221246992/) |
-| 4 | Алексей Смагажевский | [@AlSmag](https://t.me/AlSmag) | ✅ Да | ✅ Пропущен | — | ⌚ Apple Watch | ❌ Нет, я как участник | — | [профиль](https://konstantinshell.github.io/genesis/profiles/429205054/) |
-| 5 | Андрей Демчук | [@sky_world204](https://t.me/sky_world204) | ✅ Да | ✅ Пропущен | — | ⌚ Huawei Watch D2 | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/1610267716/) |
-| 6 | Вадим Гурьев | [@vadimolegich](https://t.me/vadimolegich) | ✅ Да | ✅ Пропущен | 🎁 Промо | ⌚ Garmin | — | — | [профиль](https://konstantinshell.github.io/genesis/profiles/1139648370/) |
+| 1 | Лиана Саунд | [@Liana_Sound](https://t.me/Liana_Sound) | ⚠️ Нет | ⏳ Не пропущен | — | — | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/479910423/) |
+| 2 | Александр Новожилов | [@GoodWinZlo](https://t.me/GoodWinZlo) | ✅ Да | ✅ Пропущен | 🧠 Купил | — | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/221246992/) |
+| 3 | Алексей Смагажевский | [@AlSmag](https://t.me/AlSmag) | ✅ Да | ✅ Пропущен | — | ⌚ Apple Watch | ❌ Нет, я как участник | — | [профиль](https://konstantinshell.github.io/genesis/profiles/429205054/) |
+| 4 | Андрей Демчук | [@sky_world204](https://t.me/sky_world204) | ✅ Да | ✅ Пропущен | — | ⌚ Huawei Watch D2 | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/1610267716/) |
+| 5 | Вадим Гурьев | [@vadimolegich](https://t.me/vadimolegich) | ✅ Да | ✅ Пропущен | 🎁 Промо | ⌚ Garmin | — | — | [профиль](https://konstantinshell.github.io/genesis/profiles/1139648370/) |
+| 6 | Валентина | [@Vi_vittt](https://t.me/Vi_vittt) | ✅ Да | ✅ Пропущен | ⭐ Промо | ⌚ Garmin | — | — | [профиль](https://konstantinshell.github.io/genesis/profiles/1067307749/) |
 | 7 | Виктория Левина | [@levina_victory](https://t.me/levina_victory) | ✅ Да | ✅ Пропущен | 🧠 Купил | ⌚ Apple Watch | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/424514495/) |
 | 8 | Вячеслав Фетисов | [@fetisov_vyacheslav](https://t.me/fetisov_vyacheslav) | ✅ Да | ✅ Пропущен | — | — | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/261261504/) |
 | 9 | Егор Андреев | [@Egor_iTao](https://t.me/Egor_iTao) | ✅ Да | ✅ Пропущен | 🎁 Промо | — | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/147991795/) |
 | 10 | Илья Новицкий | [@Ilya_novator](https://t.me/Ilya_novator) | ✅ Да | ✅ Пропущен | — | ⌚ HUAWEI WATCH D2 | ❌ Нет, я как участник | — | [профиль](https://konstantinshell.github.io/genesis/profiles/319756543/) |
-| 11 | Яна Шель | [@yankitstor](https://t.me/yankitstor) | ✅ Да | ✅ Пропущен | — | ⌚ Гармин | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/652364423/) |
-| 12 | 🆘 | [@Tatyana_699612](https://t.me/Tatyana_699612) | ✅ Да | ✅ Пропущен | — | ⌚ Garmin | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/407124980/) |
+| 11 | Ирик Габитов | [@IrikG](https://t.me/IrikG) | ✅ Да | ✅ Пропущен | — | — | наверно да, я еще тот болтун | — | [профиль](https://konstantinshell.github.io/genesis/profiles/57740229/) |
+| 12 | Константин НОВАТОР | — | ✅ Да | ✅ Пропущен | — | — | — | — | [профиль](https://konstantinshell.github.io/genesis/profiles/8678544199/) |
+| 13 | Яна Шель | [@yankitstor](https://t.me/yankitstor) | ✅ Да | ✅ Пропущен | — | ⌚ Гармин | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/652364423/) |
+| 14 | 🆘 | [@Tatyana_699612](https://t.me/Tatyana_699612) | ✅ Да | ✅ Пропущен | — | ⌚ Garmin | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/407124980/) |
 
 ## Не пропущены в админке
 
 | Имя | Telegram | Причина |
 |-----|----------|---------|
-| Валентина | [@Vi_vittt](https://t.me/Vi_vittt) | NDA не подписан |
-| Константин НОВАТОР | — | NDA не подписан |
-
-## Зашли в бота, не дошли до NDA
-
-| # | Имя | Telegram | Дата | Откуда | Статус |
-|---|-----|----------|------|--------|--------|
-| 1 | Станислав Орехов | [@StasOrekhov](https://t.me/StasOrekhov) | 2026-04-03 | org (прямой) | 🚫 Забанен |
-| 2 | Лиана Саунд | [@Liana_Sound](https://t.me/Liana_Sound) | 2026-04-04 | Егор Андреев | ⏳ Без NDA |
-| 3 | Ирик Габитов | [@IrikG](https://t.me/IrikG) | 2026-04-04 | org (прямой) | ⏳ Без NDA |
+| Лиана Саунд | [@Liana_Sound](https://t.me/Liana_Sound) | NDA не подписан |

@@ -411,7 +411,7 @@
       </p>
     </div>
 
-<div class="updated">Обновлено: 03.04.2026</div>
+<div class="updated">Обновлено: 05.04.2026</div>
     <div style="height:100px;"></div>
   </div>
 
@@ -541,15 +541,51 @@
 
       <div style="margin-top:16px;">
         <p style="font-size:13px; color:#aaa; font-weight:500; margin-bottom:10px;">Люди, которые пришли от вас:</p>
-        <div style="padding:20px;text-align:center;background:#12121a;border-radius:10px;"><div style="font-size:24px;margin-bottom:6px;">👥</div><div style="font-size:12px;color:#555;">Пока никого. Поделись ссылкой!</div></div>
+        <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#12121a;border-radius:8px;margin-bottom:6px;"><span style="color:#34c759;font-size:14px;">✦</span><span style="font-size:13px;color:#e0e0e8;">Лиана Саунд</span></div>
       </div>
     </div>
+  </div>
 
-    <div class="c">
-      <h2>💬 Связаться</h2>
-      <a href="https://t.me/Egor_iTao" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#0088cc,#0066aa);color:#fff;padding:14px;border-radius:10px;font-size:14px;text-decoration:none;font-weight:500;transition:opacity 0.2s;">
-        ✈️ Написать в Telegram
+  
+
+  
+  <div style="margin:24px 16px 0;">
+    <div onclick="document.getElementById('team-popup').style.display='flex'"
+      style="display:flex;align-items:center;gap:12px;padding:16px;background:linear-gradient(135deg,#1a1a2e,#16162a);
+      border-radius:14px;cursor:pointer;border:1px solid rgba(124,111,255,0.15);
+      -webkit-tap-highlight-color:transparent;">
+      <span style="font-size:28px;">🤝</span>
+      <div>
+        <div style="font-size:15px;font-weight:600;color:#e0e0e8;">Команда</div>
+        <div style="font-size:12px;color:#888;margin-top:2px;">Управляй командой исследователей</div>
+      </div>
+      <span style="margin-left:auto;font-size:18px;color:#555;">→</span>
+    </div>
+  </div>
+
+  <!-- Team Popup -->
+  <div id="team-popup" onclick="if(event.target===this)this.style.display='none'"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);
+    z-index:200;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#1a1a2e;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;
+      border:1px solid rgba(124,111,255,0.2);text-align:center;">
+      <div style="font-size:48px;margin-bottom:12px;">🚀</div>
+      <div style="font-size:18px;font-weight:700;color:#e0e0e8;margin-bottom:8px;">Команды — скоро</div>
+      <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:20px;">
+        Собирай свою команду исследователей.<br>
+        Веди учеников, партнёров или коллег<br>
+        в единой системе как капитан.<br><br>
+        Общий дашборд, совместные рефлексии,<br>
+        AI-анализ командной динамики.
+      </div>
+      <a href="https://t.me/ritmnothingbot?start=team_request"
+        style="display:block;padding:14px;background:linear-gradient(135deg,#7c6fff,#5f5fdf);
+        border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
+        margin-bottom:10px;">
+        ✍️ Оставить заявку
       </a>
+      <div onclick="document.getElementById('team-popup').style.display='none'"
+        style="font-size:13px;color:#666;cursor:pointer;padding:8px;">Закрыть</div>
     </div>
   </div>
 
