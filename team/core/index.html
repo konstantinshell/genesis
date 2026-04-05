@@ -118,25 +118,35 @@ body {
   display: block;
 }
 
-/* CTA Button */
-.cta-btn {
-  display: block;
-  width: calc(100% - 32px);
-  margin: 20px 16px;
-  padding: 16px;
-  background: linear-gradient(135deg, #7c6fff, #5f5fdf);
+/* Action buttons row */
+.action-row {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px;
+  margin: 16px 0;
+}
+.action-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 8px;
   border: none;
   border-radius: 14px;
   color: #fff;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.cta-btn:active { opacity: 0.85; transform: scale(0.98); }
-.cta-btn .sub { font-size: 12px; opacity: 0.8; margin-top: 4px; font-weight: 400; }
+.action-btn:active { opacity: 0.85; transform: scale(0.97); }
+.action-btn .ico { font-size: 22px; }
+.action-btn.idea { background: linear-gradient(135deg, #f5a623, #e08800); }
+.action-btn.task { background: linear-gradient(135deg, #34c759, #28a745); }
+.action-btn.refl { background: linear-gradient(135deg, #7c6fff, #5f5fdf); }
 
 /* Stats bar */
 .stats-bar {
@@ -196,6 +206,14 @@ body.tg-webapp .back-link { display: none; }
 <!-- Stats bar -->
 <div class="stats-bar" id="stats-bar">
   <div class="stat">
+    <div class="num" id="total-ideas">0</div>
+    <div class="label">Идей</div>
+  </div>
+  <div class="stat">
+    <div class="num" id="total-tasks">0</div>
+    <div class="label">Задач</div>
+  </div>
+  <div class="stat">
     <div class="num" id="total-reflections">0</div>
     <div class="label">Рефлексий</div>
   </div>
@@ -203,17 +221,20 @@ body.tg-webapp .back-link { display: none; }
     <div class="num" id="total-members">2</div>
     <div class="label">Участников</div>
   </div>
-  <div class="stat">
-    <div class="num" id="days-active">0</div>
-    <div class="label">Дней</div>
-  </div>
 </div>
 
-<!-- CTA — написать рефлексию -->
-<a href="https://t.me/ritmnothingbot?start=team_core" class="cta-btn" id="write-btn" onclick="return openBot('team_core');">
-  ✍️ Написать рефлексию
-  <div class="sub">Идеи, задачи, результаты по проекту</div>
-</a>
+<!-- Три кнопки действий -->
+<div class="action-row">
+  <a href="https://t.me/ritmnothingbot?start=team_core_idea" class="action-btn idea" onclick="return openBot('team_core_idea');">
+    <span class="ico">💡</span>ИДЕЯ
+  </a>
+  <a href="https://t.me/ritmnothingbot?start=team_core_task" class="action-btn task" onclick="return openBot('team_core_task');">
+    <span class="ico">✅</span>ЗАДАЧА
+  </a>
+  <a href="https://t.me/ritmnothingbot?start=team_core_refl" class="action-btn refl" onclick="return openBot('team_core_refl');">
+    <span class="ico">📝</span>РЕФЛЕКСИЯ
+  </a>
+</div>
 
 <!-- Команда хочет реализовать -->
 <div class="section">
@@ -291,7 +312,7 @@ function render(data) {
   }
 
   // Stats
-  let totalRefl = 0;
+  let totalIdeas = 0, totalTasks = 0, totalRefl = 0;
   const members = data.members || {};
   const memberKeys = Object.keys(members);
 
@@ -300,6 +321,8 @@ function render(data) {
   grid.innerHTML = '';
 
   for (const [tid, m] of Object.entries(members)) {
+    totalIdeas += (m.ideas || 0);
+    totalTasks += (m.tasks || 0);
     totalRefl += (m.reflections || 0);
     const initials = (m.name || '?').split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
     const card = document.createElement('div');
@@ -310,15 +333,17 @@ function render(data) {
         <div class="member-name">${m.name || 'Участник'}</div>
         <div class="member-role">${m.role || 'Участник'}</div>
         <div class="member-stats">
-          <div class="stat-item"><span class="val">${m.reflections || 0}</span>рефлексий</div>
           <div class="stat-item"><span class="val">${m.ideas || 0}</span>идей</div>
           <div class="stat-item"><span class="val">${m.tasks || 0}</span>задач</div>
+          <div class="stat-item"><span class="val">${m.reflections || 0}</span>рефлексий</div>
         </div>
       </div>
     `;
     grid.appendChild(card);
   }
 
+  document.getElementById('total-ideas').textContent = totalIdeas;
+  document.getElementById('total-tasks').textContent = totalTasks;
   document.getElementById('total-reflections').textContent = totalRefl;
   document.getElementById('total-members').textContent = memberKeys.length || 2;
 
