@@ -208,20 +208,16 @@ body.tg-webapp .back-link { display: none; }
 <!-- Stats bar -->
 <div class="stats-bar" id="stats-bar">
   <div class="stat">
-    <div class="num" id="total-ideas">0</div>
-    <div class="label">Идей</div>
-  </div>
-  <div class="stat">
-    <div class="num" id="total-tasks">0</div>
-    <div class="label">Задач</div>
-  </div>
-  <div class="stat">
-    <div class="num" id="total-reflections">0</div>
-    <div class="label">Рефлексий</div>
+    <div class="num" id="total-entries">0</div>
+    <div class="label">Записей</div>
   </div>
   <div class="stat">
     <div class="num" id="total-members">2</div>
     <div class="label">Участников</div>
+  </div>
+  <div class="stat">
+    <div class="num" id="days-active">1</div>
+    <div class="label">Дней</div>
   </div>
 </div>
 
@@ -356,9 +352,7 @@ function render(data) {
     grid.appendChild(card);
   }
 
-  document.getElementById('total-ideas').textContent = totalIdeas;
-  document.getElementById('total-tasks').textContent = totalTasks;
-  document.getElementById('total-reflections').textContent = totalRefl;
+  document.getElementById('total-entries').textContent = totalIdeas + totalTasks + totalRefl;
   document.getElementById('total-members').textContent = memberKeys.length || 2;
 
   // Days active
