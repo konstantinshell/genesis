@@ -482,11 +482,7 @@ function render(a, pt, net) {
     h += '<div style="flex:1;">';
     h += '<div class="m-name">' + (m.name || '—') + '</div>';
     h += '<div class="m-role">' + (m.role || '—') + '</div>';
-    h += '<div class="m-nums">';
-    h += '<span>💡 <strong>' + (m.ideas || 0) + '</strong></span>';
-    h += '<span>📋 <strong>' + (m.tasks || 0) + '</strong></span>';
-    h += '<span>🧘 <strong>' + (m.reflections || 0) + '</strong></span>';
-    h += '</div></div></div>';
+    h += '</div></div>';
   });
   h += '</div>';
   // MNPI Radar Chart
