@@ -192,48 +192,40 @@ if (tg) {
     var monthNames = ['дек','фев','мар','апр','июн','авг','сен','окт'];
     var dateLabel = p.start[1] + '.' + String(p.start[0]).padStart(2,'0');
 
-    var h = '<div style="flex:1;">';
-    // Card
-    h += '<div style="background:#1a1a2e;border-radius:10px;padding:14px;border:1px solid ' + (isCurrent ? 'rgba(124,111,255,0.25)' : 'rgba(80,80,100,0.15)') + ';">';
-    // Header with arrows
-    h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">';
-    h += '<div onclick="window._periodNav(-1)" style="padding:4px 10px;cursor:pointer;color:' + (idx > 0 ? '#7c6fff' : '#333') + ';font-size:16px;-webkit-tap-highlight-color:transparent;">‹</div>';
-    h += '<div style="text-align:center;">';
-    h += '<div style="font-size:9px;color:' + (isCurrent ? '#7c6fff' : '#666') + ';text-transform:uppercase;letter-spacing:1px;">Период ' + p.num + ' из 8</div>';
-    if (isCurrent) h += '<div style="font-size:8px;color:#34c759;margin-top:2px;">СЕЙЧАС</div>';
-    else {
-      var label = idx > currentIdx ? 'ВПЕРЕДИ' : 'ПРОШЁЛ';
-      h += '<div style="font-size:8px;color:#555;margin-top:2px;">' + label + '</div>';
-    }
+    var h = '';
+    // Single compact card
+    h += '<div style="flex:1;background:#1a1a2e;border-radius:10px;padding:12px;border:1px solid ' + (isCurrent ? 'rgba(124,111,255,0.2)' : 'rgba(80,80,100,0.12)') + ';">';
+    // Top row: arrows + title + week badge
+    h += '<div style="display:flex;align-items:center;gap:4px;">';
+    h += '<div onclick="window._periodNav(-1)" style="padding:6px;cursor:pointer;color:' + (idx > 0 ? '#7c6fff' : '#333') + ';font-size:18px;-webkit-tap-highlight-color:transparent;">‹</div>';
+    h += '<div style="flex:1;display:flex;align-items:center;gap:10px;">';
+    h += '<div style="font-size:24px;">' + p.icon + '</div>';
+    h += '<div>';
+    h += '<div style="font-size:13px;font-weight:600;color:#e0e0e8;">' + p.name + '</div>';
+    h += '<div style="font-size:10px;color:#888;">«' + p.world + '» · с ' + dateLabel + '</div>';
+    h += '</div></div>';
+    // Week mini-badge
+    h += '<div style="text-align:center;padding:4px 8px;background:#12121a;border-radius:8px;min-width:52px;">';
+    h += '<div style="font-size:8px;color:#666;text-transform:uppercase;">нед.</div>';
+    h += '<div style="font-family:Courier Prime,monospace;font-size:18px;font-weight:700;color:#7c6fff;">' + weekNum + '</div>';
     h += '</div>';
-    h += '<div onclick="window._periodNav(1)" style="padding:4px 10px;cursor:pointer;color:' + (idx < 7 ? '#7c6fff' : '#333') + ';font-size:16px;-webkit-tap-highlight-color:transparent;">›</div>';
+    h += '<div onclick="window._periodNav(1)" style="padding:6px;cursor:pointer;color:' + (idx < 7 ? '#7c6fff' : '#333') + ';font-size:18px;-webkit-tap-highlight-color:transparent;">›</div>';
     h += '</div>';
-    // Content
-    h += '<div style="text-align:center;margin-bottom:8px;">';
-    h += '<div style="font-size:28px;margin-bottom:4px;">' + p.icon + '</div>';
-    h += '<div style="font-size:16px;font-weight:600;color:#e0e0e8;">' + p.name + '</div>';
-    h += '<div style="font-size:12px;color:#888;margin-top:2px;">«' + p.world + '»</div>';
-    h += '<div style="font-size:10px;color:#555;margin-top:4px;">с ' + dateLabel + '</div>';
-    h += '</div>';
-    // Description (hidden, toggle on tap)
-    h += '<div onclick="var d=this.querySelector(\'.pd\');d.style.display=d.style.display===\'none\'?\'block\':\'none\';event.stopPropagation();" style="cursor:pointer;margin-top:8px;padding-top:8px;border-top:1px solid #2a2a35;">';
-    h += '<div style="font-size:10px;color:#555;text-align:center;">Подробнее ▼</div>';
-    h += '<div class="pd" style="display:none;margin-top:8px;font-size:12px;color:#aaa;line-height:1.7;">' + p.desc + '</div>';
-    h += '</div>';
-    // Dots indicator
-    h += '<div style="display:flex;justify-content:center;gap:5px;margin-top:10px;">';
+    // Status + dots
+    h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;padding:0 28px;">';
+    var statusLabel = isCurrent ? '<span style="color:#34c759;">сейчас</span>' : (idx > currentIdx ? '<span style="color:#666;">впереди</span>' : '<span style="color:#555;">прошёл</span>');
+    h += '<div style="font-size:9px;">Период ' + p.num + '/8 · ' + statusLabel + '</div>';
+    h += '<div style="display:flex;gap:4px;">';
     for (var d = 0; d < 8; d++) {
       var dotClr = d === idx ? '#7c6fff' : (d === currentIdx ? 'rgba(124,111,255,0.4)' : '#2a2a35');
-      h += '<div style="width:6px;height:6px;border-radius:50%;background:' + dotClr + ';"></div>';
+      h += '<div style="width:5px;height:5px;border-radius:50%;background:' + dotClr + ';"></div>';
     }
-    h += '</div>';
     h += '</div></div>';
-
-    // Week box
-    h += '<div style="background:#12121a;border-radius:10px;padding:12px;min-width:80px;text-align:center;align-self:flex-start;">';
-    h += '<div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Неделя</div>';
-    h += '<div style="font-family:Courier Prime,monospace;font-size:24px;font-weight:700;color:#7c6fff;">' + weekNum + '</div>';
-    h += '<div style="font-size:9px;color:#555;">из 52</div>';
+    // Expandable description
+    h += '<div onclick="var d=this.querySelector(\'.pd\');var a=this.querySelector(\'.pa\');if(d.style.display===\'none\'){d.style.display=\'block\';a.textContent=\'▲\';}else{d.style.display=\'none\';a.textContent=\'▼\';};event.stopPropagation();" style="cursor:pointer;margin-top:6px;padding-top:6px;border-top:1px solid #2a2a35;text-align:center;">';
+    h += '<div style="font-size:10px;color:#555;">Подробнее <span class="pa">▼</span></div>';
+    h += '<div class="pd" style="display:none;margin-top:6px;font-size:11px;color:#aaa;line-height:1.6;text-align:left;">' + p.desc + '</div>';
+    h += '</div>';
     h += '</div>';
 
     bar.innerHTML = h;
