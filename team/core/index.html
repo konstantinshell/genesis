@@ -50,12 +50,14 @@ body {
 .chart-legend .lg-m::before { background:#34c759; }
 
 /* Member cards */
-.member { display:flex; align-items:center; gap:14px; padding:16px; background:#12121a; border-radius:12px; margin-bottom:10px; }
-.member .m-av { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; color:#fff; flex-shrink:0; }
-.member .m-name { font-size:14px; font-weight:600; color:#e0e0e8; }
-.member .m-role { font-size:11px; color:#888; margin-top:2px; }
-.member .m-nums { display:flex; gap:12px; margin-top:6px; }
-.member .m-nums span { font-size:11px; color:#aaa; }
+/* Members — compact row */
+.members-row { display:flex; gap:8px; }
+.member { flex:1; padding:10px; background:#12121a; border-radius:10px; display:flex; align-items:center; gap:8px; }
+.member .m-av { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:#fff; flex-shrink:0; }
+.member .m-name { font-size:12px; font-weight:600; color:#e0e0e8; }
+.member .m-role { font-size:9px; color:#888; }
+.member .m-nums { display:flex; gap:6px; margin-top:3px; }
+.member .m-nums span { font-size:9px; color:#aaa; }
 .member .m-nums strong { color:#e0e0e8; font-family:'Courier Prime',monospace; }
 
 /* Goals */
@@ -470,7 +472,8 @@ function render(a, pt, net) {
   // ═══ BLOCK 3: MNPI КОМАНДЫ + RADAR ═══
   h += '<div class="c">';
   h += '<div class="s-label">MNPI КОМАНДЫ</div>';
-  // Member cards
+  // Member cards — compact row
+  h += '<div class="members-row">';
   Object.keys(members).forEach(function(id) {
     var m = members[id];
     var clr = ACLR[id] || '#7c6fff';
@@ -485,6 +488,7 @@ function render(a, pt, net) {
     h += '<span>🧘 <strong>' + (m.reflections || 0) + '</strong></span>';
     h += '</div></div></div>';
   });
+  h += '</div>';
   // MNPI Radar Chart
   var mnpi = a && a.health ? a.health : {};
   var si = mnpi.si || 0, pi = mnpi.pi_avg || 0, di = mnpi.di || 0, ri = mnpi.ri || 0;
