@@ -467,9 +467,10 @@ function render(a, pt, net) {
   h += '</div>';
   h += '</div>';
 
-  // ═══ BLOCK 3: MNPI КОМАНДЫ ═══
+  // ═══ BLOCK 3: MNPI КОМАНДЫ + RADAR ═══
   h += '<div class="c">';
   h += '<div class="s-label">MNPI КОМАНДЫ</div>';
+  // Member cards
   Object.keys(members).forEach(function(id) {
     var m = members[id];
     var clr = ACLR[id] || '#7c6fff';
@@ -484,6 +485,57 @@ function render(a, pt, net) {
     h += '<span>🧘 <strong>' + (m.reflections || 0) + '</strong></span>';
     h += '</div></div></div>';
   });
+  // MNPI Radar Chart
+  var mnpi = a && a.health ? a.health : {};
+  var si = mnpi.si || 0, pi = mnpi.pi_avg || 0, di = mnpi.di || 0, ri = mnpi.ri || 0;
+  var si2 = mnpi.si_after || si, pi2 = mnpi.pi_after || pi, di2 = mnpi.di_after || di, ri2 = mnpi.ri_after || ri;
+  var hasData = si > 0 || pi > 0 || di > 0 || ri > 0;
+  h += '<div style="margin-top:14px;padding:16px;background:#12121a;border-radius:12px;">';
+  h += '<div style="font-size:14px;font-weight:600;color:#e0e0e8;margin-bottom:12px;display:flex;align-items:center;gap:6px;">🧠 MNPI Index</div>';
+  // SVG Radar
+  var cx=150, cy=150, R=110, r2=R*0.65, r3=R*0.35;
+  function rp(val,max,angle) {
+    var r = (val/max)*R; if(r<5)r=5;
+    var rad = (angle-90)*Math.PI/180;
+    return [cx+r*Math.cos(rad), cy+r*Math.sin(rad)];
+  }
+  var max = 10;
+  var axes = [{a:0,l:'SI',c:'#7c6fff'},{a:90,l:'DI',c:'#daa040'},{a:180,l:'RI',c:'#34c759'},{a:270,l:'PI',c:'#ff453a'}];
+  var vals1 = [si,di,ri,pi], vals2 = [si2,di2,ri2,pi2];
+  h += '<div style="text-align:center;"><svg viewBox="0 0 300 300" width="100%" style="max-width:280px;">';
+  // Grid diamonds
+  [R,r2,r3].forEach(function(gr) {
+    var pts = axes.map(function(ax) { var rad=(ax.a-90)*Math.PI/180; return (cx+gr*Math.cos(rad))+','+(cy+gr*Math.sin(rad)); });
+    h += '<polygon points="'+pts.join(' ')+'" fill="none" stroke="#2a2a35" stroke-width="1"/>';
+  });
+  // Axis lines
+  axes.forEach(function(ax) {
+    var rad=(ax.a-90)*Math.PI/180;
+    h += '<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+R*Math.cos(rad))+'" y2="'+(cy+R*Math.sin(rad))+'" stroke="#2a2a35" stroke-width="1"/>';
+  });
+  // Data polygon — point A (gray)
+  var pts1 = vals1.map(function(v,i){ var p=rp(v,max,axes[i].a); return p[0]+','+p[1]; });
+  h += '<polygon points="'+pts1.join(' ')+'" fill="rgba(150,150,150,0.08)" stroke="#888" stroke-width="1.5"/>';
+  vals1.forEach(function(v,i){ var p=rp(v,max,axes[i].a); h+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.5" fill="#888"/>'; });
+  // Data polygon — after 3 months (gold)
+  if (si2!==si||pi2!==pi||di2!==di||ri2!==ri) {
+    var pts2 = vals2.map(function(v,i){ var p=rp(v,max,axes[i].a); return p[0]+','+p[1]; });
+    h += '<polygon points="'+pts2.join(' ')+'" fill="rgba(218,160,64,0.1)" stroke="#daa040" stroke-width="1.5"/>';
+    vals2.forEach(function(v,i){ var p=rp(v,max,axes[i].a); h+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.5" fill="#daa040"/>'; });
+  }
+  // Labels
+  var labelPos = [{x:cx,y:18},{x:282,y:cy+4},{x:cx,y:295},{x:18,y:cy+4}];
+  axes.forEach(function(ax,i) {
+    h += '<text x="'+labelPos[i].x+'" y="'+labelPos[i].y+'" text-anchor="middle" fill="'+ax.c+'" font-size="14" font-weight="700">'+ax.l+'</text>';
+  });
+  h += '</svg></div>';
+  // Legend
+  h += '<div style="display:flex;justify-content:center;gap:16px;margin-top:8px;">';
+  h += '<div style="display:flex;align-items:center;gap:4px;font-size:10px;color:#888;"><div style="width:8px;height:8px;border-radius:50%;background:#888;"></div>Точка А — начало</div>';
+  h += '<div style="display:flex;align-items:center;gap:4px;font-size:10px;color:#daa040;"><div style="width:8px;height:8px;border-radius:50%;background:#daa040;"></div>После трёх месяцев</div>';
+  h += '</div>';
+  if (!hasData) h += '<div style="font-size:11px;color:#555;text-align:center;margin-top:8px;font-style:italic;">Данные появятся после прохождения 6 сессий MNPI</div>';
+  h += '</div>';
   h += '</div>';
 
   // ═══ BLOCK 4: ЗАДАЧИ НА ГОД ═══
