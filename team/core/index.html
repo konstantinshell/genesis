@@ -149,14 +149,22 @@ if (tg) {
   var y = now.getFullYear();
   // 8 периодов по астрономическим точкам (из планера Натали)
   var periods = [
-    { start: [12,22], name: 'Мир смыслов', num: 1, icon: '🌑', world: 'Я есть' },
-    { start: [2,2],   name: 'Мир намерений', num: 2, icon: '🌒', world: 'Я желаю' },
-    { start: [3,20],  name: 'Мир возможностей', num: 3, icon: '🌓', world: 'Я имею' },
-    { start: [4,30],  name: 'Мир законов', num: 4, icon: '🌔', world: 'Я разрешаю' },
-    { start: [6,22],  name: 'Мир действий', num: 5, icon: '🌕', world: 'Я делаю' },
-    { start: [8,1],   name: 'Мир осознаний', num: 6, icon: '🌖', world: 'Я анализирую' },
-    { start: [9,21],  name: 'Мир наблюдений', num: 7, icon: '🌗', world: 'Я наблюдаю' },
-    { start: [10,31], name: 'Мир познаний', num: 8, icon: '🌘', world: 'Я знаю' }
+    { start: [12,22], name: 'Мир смыслов', num: 1, icon: '🌑', world: 'Я есть',
+      desc: 'Точка опоры между прошлым и будущим. Время отпустить старое и задать вектор замыслам, которые развернутся в материи. Пространство смыслов и намерений — фундамент всего цикла.' },
+    { start: [2,2],   name: 'Мир намерений', num: 2, icon: '🌒', world: 'Я желаю',
+      desc: 'Пространство энергии, желаний и целей. Создание образа результата. Время формулировать, чего ты хочешь, и наполнять намерения энергией.' },
+    { start: [3,20],  name: 'Мир возможностей', num: 3, icon: '🌓', world: 'Я имею',
+      desc: 'Весеннее равноденствие. Пространство действий и проявленности. Время реализовывать намерения — запускать проекты, открывать двери, собирать ресурсы.' },
+    { start: [4,30],  name: 'Мир законов', num: 4, icon: '🌔', world: 'Я разрешаю',
+      desc: 'Пространство убеждений, границ и правил. Время структурировать процессы, выстроить рамки и дать себе разрешение на масштаб.' },
+    { start: [6,22],  name: 'Мир действий', num: 5, icon: '🌕', world: 'Я делаю',
+      desc: 'Летнее солнцестояние — пик энергии. Внешний мир, сила и активность. Время максимальной реализации, видимых результатов и проявленности.' },
+    { start: [8,1],   name: 'Мир осознаний', num: 6, icon: '🌖', world: 'Я анализирую',
+      desc: 'Переход от действия к анализу. Внутренний мир и информация. Время оценить результаты, извлечь уроки и скорректировать курс.' },
+    { start: [9,21],  name: 'Мир наблюдений', num: 7, icon: '🌗', world: 'Я наблюдаю',
+      desc: 'Осеннее равноденствие. Единство духа, души, тела и ума. Время интеграции опыта — наблюдать без оценки, видеть целое.' },
+    { start: [10,31], name: 'Мир познаний', num: 8, icon: '🌘', world: 'Я знаю',
+      desc: 'Завершение цикла. Яснознание и ясночувствование — интеграция всех миров. Время подводить итоги и готовиться к новому витку.' }
   ];
   var current = periods[0];
   for (var i = periods.length - 1; i >= 0; i--) {
@@ -172,10 +180,11 @@ if (tg) {
   var bar = document.getElementById('period-bar');
   if (bar) {
     bar.innerHTML =
-      '<div style="flex:1;background:#1a1a2e;border-radius:10px;padding:12px;border:1px solid rgba(124,111,255,0.15);">' +
-      '<div style="font-size:9px;color:#7c6fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Период ' + current.num + ' из 8</div>' +
+      '<div id="period-card" onclick="var d=document.getElementById(\'period-desc\');d.style.display=d.style.display===\'none\'?\'block\':\'none\'" style="flex:1;background:#1a1a2e;border-radius:10px;padding:12px;border:1px solid rgba(124,111,255,0.15);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all 0.2s;">' +
+      '<div style="font-size:9px;color:#7c6fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Период ' + current.num + ' из 8 <span style="color:#555;">▼</span></div>' +
       '<div style="font-size:14px;font-weight:600;color:#e0e0e8;">' + current.icon + ' ' + current.name + '</div>' +
       '<div style="font-size:11px;color:#888;margin-top:2px;">«' + current.world + '»</div>' +
+      '<div id="period-desc" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #2a2a35;font-size:12px;color:#aaa;line-height:1.7;">' + current.desc + '</div>' +
       '</div>' +
       '<div style="background:#12121a;border-radius:10px;padding:12px;min-width:80px;text-align:center;">' +
       '<div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Неделя</div>' +
