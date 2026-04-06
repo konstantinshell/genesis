@@ -9,22 +9,22 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--tg-theme-bg-color, #0a0a10);
-  color: var(--tg-theme-text-color, #e0e0e8);
+  background: #121218 !important;
+  color: #e0e0e8 !important;
   min-height: 100vh;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 40px);
   max-width: 480px;
   margin: 0 auto;
 }
-.container { padding: 16px; }
+.container { padding: 12px; }
 
 /* Back link (browser only) */
 .back-link { display:inline-flex; align-items:center; gap:6px; color:#7c6fff; text-decoration:none; font-size:13px; padding:8px 0; margin-bottom:8px; }
 .tg-webapp .back-link { display:none; }
 
 /* Cards */
-.c { background:#1a1a22; border-radius:14px; padding:18px; margin-bottom:14px; }
+.c { background:#1a1a22; border-radius:14px; padding:18px; margin-bottom:10px; }
 .c h2 { font-family:'Oswald',sans-serif; font-size:16px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
 
 /* Section label */
@@ -75,14 +75,14 @@ body {
 .dl-btn { display:flex; align-items:center; justify-content:center; gap:6px; background:#7c6fff; color:#fff; padding:10px 16px; border-radius:8px; font-size:12px; font-weight:500; border:none; cursor:pointer; width:100%; margin-top:12px; -webkit-tap-highlight-color:transparent; }
 
 /* Header */
-.team-hdr { background:linear-gradient(135deg,#1a1a2e 0%,#16162a 50%,#0f0f1a 100%); padding:24px 20px; border-radius:14px; text-align:center; margin-bottom:14px; border:1px solid rgba(124,111,255,0.12); }
+.team-hdr { background:linear-gradient(135deg,#1a1a2e 0%,#16162a 50%,#0f0f1a 100%); padding:24px 20px; border-radius:14px; text-align:center; margin-bottom:10px; border:1px solid rgba(124,111,255,0.12); }
 .team-hdr h1 { font-size:22px; font-weight:700; margin-bottom:6px; }
 .team-hdr .sub { font-size:12px; color:#888; line-height:1.5; }
 .team-hdr .badges { display:flex; gap:6px; justify-content:center; margin-top:10px; flex-wrap:wrap; }
 .team-hdr .badge { font-size:10px; padding:3px 10px; border-radius:4px; background:rgba(124,111,255,0.12); color:#7c6fff; }
 
 /* Action buttons */
-.action-row { display:flex; gap:8px; margin-bottom:14px; }
+.action-row { display:flex; gap:8px; margin-bottom:10px; }
 .action-btn { flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:14px 8px; background:#1a1a22; border:1px solid rgba(124,111,255,0.15); border-radius:12px; text-decoration:none; font-size:12px; font-weight:600; transition:all 0.15s; -webkit-tap-highlight-color:transparent; cursor:pointer; }
 .action-btn:active { background:#252540; transform:scale(0.97); }
 .action-btn .ico { font-size:16px; }
@@ -138,6 +138,8 @@ body {
 var tg = window.Telegram && Telegram.WebApp;
 if (tg) {
   tg.ready(); tg.expand();
+  try { tg.setHeaderColor('#121218'); } catch(e) {}
+  try { tg.setBackgroundColor('#121218'); } catch(e) {}
   document.body.classList.add('tg-webapp');
   tg.BackButton.show();
   tg.BackButton.onClick(function() { history.back(); });
