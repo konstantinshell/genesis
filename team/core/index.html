@@ -366,6 +366,25 @@ function build7dayChart(net) {
   return days;
 }
 
+function countMonthJoins(net) {
+  if (!net) return 0;
+  var now = new Date();
+  var ago30 = new Date(now.getTime() - 30 * 24*60*60*1000);
+  var ago30str = ago30.toISOString().slice(0,10);
+  var count = 0;
+  if (net.pre_participants) {
+    net.pre_participants.forEach(function(p) {
+      if (p.registered && p.registered >= ago30str) count++;
+    });
+  }
+  function walk(node) {
+    if (node.nda_date && node.nda_date >= ago30str) count++;
+    if (node.children) node.children.forEach(function(ch) { if (ch.real) walk(ch); });
+  }
+  walk(net);
+  return count;
+}
+
 Promise.all([
   fetch('analysis.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
   fetch('../../partners/tasks.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
@@ -417,7 +436,8 @@ function render(a, pt, net) {
   h += '</div>';
   var weekSum = 0; chart7.forEach(function(d) { weekSum += d.count; });
   var weekAvg = (weekSum / 7).toFixed(1);
-  var monthAvg = net && net.total_real ? (net.total_real / 30).toFixed(1) : '—';
+  var monthTotal = countMonthJoins(net);
+  var monthAvg = (monthTotal / 30).toFixed(1);
   h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">';
   h += '<div style="font-size:10px;color:#888;">Сегодня: <strong style="color:#7c6fff;">' + today24 + '</strong> чел.</div>';
   h += '<div style="display:flex;align-items:center;gap:4px;font-size:10px;color:#555;"><div style="width:8px;height:8px;border-radius:2px;background:#7c6fff;"></div>Сегодня <div style="width:8px;height:8px;border-radius:2px;background:#5a5a9f;margin-left:6px;"></div>Ранее</div>';
