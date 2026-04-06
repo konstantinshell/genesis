@@ -143,7 +143,17 @@
           ]
         }
       ],
-      "band": "promo_member",
+      "band": "promo",
+      "band_type": "promo",
+      "band_paid": 0,
+      "band_remaining": 0,
+      "sales_required": 5,
+      "sales_done": 0,
+      "ambassador_level": 2,
+      "ambassador_ref": "Константин",
+      "ambassador_commission": "30%",
+      "promo_code": "822012",
+      "cooperation_form": "СЗ",
       "tracker": true,
       "tracker_model": "Garmin"
     },
@@ -209,6 +219,17 @@
           ]
         }
       ],
+      "band": "prepaid",
+      "band_type": "prepaid_promo",
+      "band_paid": 20000,
+      "band_remaining": 23000,
+      "sales_required": 5,
+      "sales_done": 0,
+      "ambassador_level": 2,
+      "ambassador_ref": "Константин",
+      "ambassador_commission": "30%",
+      "promo_code": "822158",
+      "cooperation_form": "СЗ",
       "tracker": true,
       "tracker_model": "Whoop 5.0",
       "ambassador": "✅ Да, хочу!"
@@ -243,6 +264,14 @@
           ]
         }
       ],
+      "band": "prepaid",
+      "band_type": "prepaid_promo",
+      "band_paid": 23000,
+      "band_remaining": 20000,
+      "sales_required": 5,
+      "sales_done": 0,
+      "ambassador_level": 2,
+      "ambassador_ref": "Константин",
       "tracker": true,
       "tracker_model": "Garmin vivoactive 5",
       "ambassador": "❌ Нет, я как участник"
@@ -277,6 +306,13 @@
           ]
         }
       ],
+      "band": "special_price",
+      "band_type": "special_price",
+      "ambassador_level": 2,
+      "ambassador_ref": "Наталья",
+      "ambassador_commission": "30%",
+      "promo_code": "821912",
+      "cooperation_form": "СЗ",
       "tracker": true,
       "tracker_model": "Garmin",
       "ambassador": "✅ Да, хочу!"
@@ -346,6 +382,12 @@
         }
       ],
       "band": "paid",
+      "band_type": "paid",
+      "ambassador_level": 2,
+      "ambassador_ref": "Наталья",
+      "ambassador_commission": "30%",
+      "promo_code": "821887",
+      "cooperation_form": "СЗ",
       "tracker": true,
       "tracker_model": "Apple Watch",
       "ambassador": "✅ Да, хочу!"
@@ -458,6 +500,7 @@
         }
       ],
       "band": "paid",
+      "band_type": "paid",
       "ambassador": "✅ Да, хочу!"
     },
     {
@@ -491,6 +534,16 @@
         }
       ],
       "band": "promo",
+      "band_type": "promo",
+      "band_paid": 0,
+      "band_remaining": 0,
+      "sales_required": 5,
+      "sales_done": 0,
+      "ambassador_level": 2,
+      "ambassador_ref": "Константин",
+      "ambassador_commission": "30%",
+      "promo_code": "822137",
+      "cooperation_form": "СЗ",
       "tracker": true,
       "tracker_model": "Garmin"
     },
@@ -524,6 +577,14 @@
           ]
         }
       ],
+      "band": "promo",
+      "band_type": "promo",
+      "band_paid": 0,
+      "band_remaining": 0,
+      "sales_required": 5,
+      "sales_done": 0,
+      "ambassador_level": 2,
+      "ambassador_ref": "Константин",
       "tracker": true,
       "tracker_model": "Apple Watch",
       "ambassador": "❌ Нет, я как участник"
@@ -558,6 +619,12 @@
           ]
         }
       ],
+      "band": "prepaid",
+      "band_type": "prepaid_promo",
+      "band_paid": 23000,
+      "band_remaining": 20000,
+      "ambassador_level": 2,
+      "ambassador_ref": "Наталья",
       "tracker": true,
       "tracker_model": "Polar",
       "ambassador": "Да"
@@ -593,6 +660,16 @@
         }
       ],
       "band": "promo",
+      "band_type": "promo",
+      "band_paid": 0,
+      "band_remaining": 0,
+      "sales_required": 5,
+      "sales_done": 0,
+      "ambassador_level": 2,
+      "ambassador_ref": "Константин",
+      "ambassador_commission": "30%",
+      "promo_code": "821927",
+      "cooperation_form": "СЗ",
       "ambassador": "✅ Да, хочу!"
     },
     {
@@ -638,6 +715,90 @@
       "tg": "Woman_Kompas",
       "registered": "2026-04-06",
       "ref": "org"
+    },
+    {
+      "name": "Солнечная Елена Сергеевна",
+      "registered": "2026-04-06",
+      "ref": "Наталья Морозова",
+      "band_type": "promo",
+      "band_note": "модель 2",
+      "ambassador_level": 2,
+      "ambassador_ref": "Наталья",
+      "ambassador_commission": "30%",
+      "promo_code": "822084",
+      "cooperation_form": "ИП",
+      "city": "Москва"
+    },
+    {
+      "name": "Романова Лидия Александровна",
+      "registered": "2026-04-06",
+      "ref": "Наталья Морозова",
+      "band_type": "prepaid_promo",
+      "band_paid": 23000,
+      "band_remaining": 20000,
+      "ambassador_level": 2,
+      "ambassador_ref": "Наталья",
+      "ambassador_commission": "30%",
+      "promo_code": "822155",
+      "cooperation_form": "СЗ",
+      "city": "Москва"
+    },
+    {
+      "name": "Симена Ирина Игоревна",
+      "registered": "2026-04-06",
+      "ref": "Наталья Морозова",
+      "band_type": "prepaid_promo",
+      "band_paid": 23000,
+      "band_remaining": 20000,
+      "ambassador_level": 2,
+      "ambassador_ref": "Наталья",
+      "ambassador_commission": "30%",
+      "promo_code": "822014",
+      "cooperation_form": "ИП",
+      "city": "Москва"
+    },
+    {
+      "name": "Ситникова Ирина Александровна",
+      "tg_note": "Стефа",
+      "registered": "2026-04-06",
+      "ref": "Наталья Морозова",
+      "band_type": "prepaid_promo",
+      "band_paid": 10000,
+      "band_remaining": 34000,
+      "ambassador_level": 2,
+      "ambassador_ref": "Наталья",
+      "city": "Москва"
+    },
+    {
+      "name": "Денисова Екатерина Владиславовна",
+      "registered": "2026-04-06",
+      "ref": "Наталья Морозова",
+      "band_type": "promo",
+      "ambassador_level": 2,
+      "ambassador_ref": "Наталья",
+      "city": "Москва"
+    },
+    {
+      "name": "Мозговой Дмитрий Владимирович",
+      "registered": "2026-04-06",
+      "ref": "Константин",
+      "band_type": "prepaid",
+      "ambassador_level": 2,
+      "ambassador_ref": "Константин",
+      "ambassador_commission": "30%",
+      "promo_code": "822104",
+      "cooperation_form": "СЗ"
+    },
+    {
+      "name": "Петрова Наталия Владимировна",
+      "registered": "2026-04-06",
+      "ref": "Наталья Морозова",
+      "band_type": "paid",
+      "ambassador_level": 2,
+      "ambassador_ref": "Наталья",
+      "ambassador_commission": "30%",
+      "promo_code": "822115",
+      "cooperation_form": "СЗ"
     }
   ]
 }

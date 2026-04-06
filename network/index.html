@@ -467,6 +467,7 @@
           <th>Telegram</th>
           <th>Дата регистрации</th>
           <th>Откуда</th>
+          <th>Нейробенд</th>
           <th>Статус</th>
         </tr>
       </thead>
@@ -591,9 +592,19 @@ function buildSummary(data) {
       ? '<span style="color:#34c759;">✅ Подписан</span>'
       : '<span style="color:#ff9f0a;">⚠️ Нет</span>';
     let band = '—';
-    if (p.band === 'paid') band = '🧠 Купил';
-    else if (p.band === 'promo') band = '🎁 Промо';
-    else if (p.band === 'promo_member') band = '⭐ Промо';
+    if (p.band_type === 'paid') {
+      band = '<span style="color:#34c759;">🧠 Оплачен</span>';
+    } else if (p.band_type === 'special_price') {
+      band = '<span style="color:#34c759;">🧠 Спеццена</span>';
+    } else if (p.band_type === 'prepaid_promo' || p.band_type === 'prepaid') {
+      const paid = p.band_paid ? (p.band_paid/1000) + 'к' : '?';
+      const rem = p.band_remaining ? (p.band_remaining/1000) + 'к' : '?';
+      band = '<span style="color:#ff9f0a;">💳 ' + paid + '</span> <span style="color:#ff453a;font-size:11px;">/ ост. ' + rem + '</span>';
+    } else if (p.band === 'promo' || p.band === 'promo_member' || p.band_type === 'promo') {
+      band = '<span style="color:#7c6fff;">🎁 Промо</span>';
+    } else if (p.band === 'paid') {
+      band = '<span style="color:#34c759;">🧠 Оплачен</span>';
+    }
     const tracker = p.tracker ? '⌚ ' + (p.tracker_model || 'Да') : '—';
     const ambassador = p.ambassador
       ? '<span style="color:#34c759;">✅ Да</span>'
@@ -627,11 +638,23 @@ function buildPreParticipants(list) {
     const ref = p.ref || '—';
     let status = '<span class="status-badge pre">⏳ Без NDA</span>';
     if (p.status === 'banned') status = '<span class="status-badge pre" style="color:#c44;">🚫 Забанен</span>';
+    let band = '—';
+    if (p.band_type === 'promo') {
+      band = '<span style="color:#7c6fff;font-size:11px;">Промо</span>';
+      if (p.band_note) band += ' <span style="color:#666;font-size:10px;">(' + p.band_note + ')</span>';
+    } else if (p.band_type === 'prepaid_promo' || p.band_type === 'prepaid') {
+      const paid = p.band_paid ? (p.band_paid/1000) + 'к' : '?';
+      const rem = p.band_remaining ? (p.band_remaining/1000) + 'к' : '?';
+      band = '<span style="color:#ff9f0a;font-size:11px;">Предоплата ' + paid + '</span><br><span style="color:#ff453a;font-size:10px;">Остаток: ' + rem + '</span>';
+    } else if (p.band_type === 'paid') {
+      band = '<span style="color:#34c759;font-size:11px;">Оплачен</span>';
+    }
     html += '<tr class="pre-participant-row">';
     html += '<td>' + p.name + '</td>';
     html += '<td>' + tg + '</td>';
     html += '<td>' + (p.registered || '—') + '</td>';
     html += '<td>' + ref + '</td>';
+    html += '<td>' + band + '</td>';
     html += '<td>' + status + '</td>';
     html += '</tr>';
   }
