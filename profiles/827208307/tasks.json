@@ -1,0 +1,172 @@
+{
+  "tasks": {
+    "updated_at": "2026-04-06T17:49:24",
+    "today": {
+      "date": "2026-04-06",
+      "physio": {
+        "hrv": 42,
+        "body_battery": 65,
+        "sleep_h": 6.5
+      },
+      "morning": [
+        {
+          "id": "task_001",
+          "text": "Утренний поток в бот",
+          "sphere": "awareness",
+          "reason": "каждый день",
+          "status": "pending",
+          "weight": 1
+        }
+      ],
+      "day": [
+        {
+          "id": "task_002",
+          "text": "Работа над проектом · 2 часа фокуса",
+          "sphere": "profession",
+          "reason": "приоритет",
+          "status": "pending",
+          "weight": 3
+        },
+        {
+          "id": "task_003",
+          "text": "Созвон с командой",
+          "sphere": "communication",
+          "reason": "по расписанию",
+          "status": "pending",
+          "weight": 2
+        },
+        {
+          "id": "task_004",
+          "text": "Прогулка 30 мин",
+          "sphere": "health",
+          "reason": "восстановление",
+          "status": "pending",
+          "weight": 1
+        }
+      ],
+      "evening": [
+        {
+          "id": "task_005",
+          "text": "Вечерний поток в бот",
+          "sphere": "awareness",
+          "reason": "каждый день",
+          "status": "pending",
+          "weight": 1
+        },
+        {
+          "id": "task_006",
+          "text": "Время с близкими",
+          "sphere": "relationships",
+          "reason": "баланс",
+          "status": "pending",
+          "weight": 2
+        }
+      ]
+    },
+    "week": [
+      {
+        "id": "task_w01",
+        "text": "Архитектура модуля планировщика",
+        "sphere": "profession",
+        "status": "pending"
+      },
+      {
+        "id": "task_w02",
+        "text": "Пробежка 3 раза",
+        "sphere": "health",
+        "status": "pending"
+      },
+      {
+        "id": "task_w03",
+        "text": "Встреча с командой Neiry",
+        "sphere": "communication",
+        "status": "pending"
+      },
+      {
+        "id": "task_w04",
+        "text": "Время с семьёй · выходные",
+        "sphere": "relationships",
+        "status": "pending"
+      },
+      {
+        "id": "task_w05",
+        "text": "Прочитать статью про нейропластичность",
+        "sphere": "knowledge",
+        "status": "pending"
+      },
+      {
+        "id": "task_w06",
+        "text": "Медитация 4 раза",
+        "sphere": "awareness",
+        "status": "pending"
+      },
+      {
+        "id": "task_w07",
+        "text": "Разобрать входящие сообщения",
+        "sphere": "communication",
+        "status": "pending"
+      }
+    ],
+    "season": {
+      "deadline": "2026-06-22",
+      "goals": [
+        {
+          "id": "goal_001",
+          "text": "Запустить Investigation Program · 10 участников",
+          "sphere": "profession",
+          "progress": 35
+        },
+        {
+          "id": "goal_002",
+          "text": "Опубликовать препринт MNPI",
+          "sphere": "knowledge",
+          "progress": 60
+        },
+        {
+          "id": "goal_003",
+          "text": "Восстановить режим сна и спорта",
+          "sphere": "health",
+          "progress": 15
+        }
+      ]
+    },
+    "week_report": {
+      "period": "31 мар – 6 апр",
+      "planned": 18,
+      "done": 11,
+      "moved": 5,
+      "deleted": 2,
+      "spheres": {
+        "profession": {
+          "planned": 10,
+          "done": 8
+        },
+        "communication": {
+          "planned": 8,
+          "done": 5
+        },
+        "health": {
+          "planned": 5,
+          "done": 1
+        },
+        "relationships": {
+          "planned": 6,
+          "done": 2
+        }
+      },
+      "physio_correlation": {
+        "high_hrv_done_pct": 78,
+        "low_hrv_done_pct": 31,
+        "threshold": 60
+      },
+      "patterns": [
+        {
+          "text": "Пробежка 3 раза",
+          "moved_weeks": 3,
+          "signal": "нереалистичная цель или нет ресурса"
+        }
+      ],
+      "state_summary": "Неделя была насыщенной но тяжёлой — много делал, мало восстанавливался. Физически держался, но к пятнице почувствовал что ресурс на нуле."
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Участники РИТМЫ NOTHING
 
-> Обновлено: 06.04.2026 17:25
+> Обновлено: 06.04.2026 17:49
 
 ## Основатели
 
@@ -9,7 +9,7 @@
 | Константин Шель | [@konstantinshell](https://t.me/konstantinshell) | [профиль](https://konstantinshell.github.io/genesis/profiles/41537154/) |
 | Натали Морозова | [@morozovanatalua](https://t.me/morozovanatalua) | [профиль](https://konstantinshell.github.io/genesis/profiles/8211648754/) |
 
-## Участники (17)
+## Участники (18)
 
 | # | Имя | Telegram | NDA | Админка | Условия бенда | Фитнес-трекер | Амбассадор | LQ Lab | Профиль |
 |---|-----|----------|-----|---------|---------------|---------------|------------|--------|---------|
@@ -28,8 +28,9 @@
 | 13 | Илья Новицкий | [@Ilya_novator](https://t.me/Ilya_novator) | ✅ Да | ✅ Пропущен | — | ⌚ HUAWEI WATCH D2 | ❌ Нет, я как участник | — | [профиль](https://konstantinshell.github.io/genesis/profiles/319756543/) |
 | 14 | Ирик Габитов | [@IrikG](https://t.me/IrikG) | ✅ Да | ✅ Пропущен | — | — | наверно да, я еще тот болтун | — | [профиль](https://konstantinshell.github.io/genesis/profiles/57740229/) |
 | 15 | Константин НОВАТОР | — | ✅ Да | ✅ Пропущен | — | — | — | — | [профиль](https://konstantinshell.github.io/genesis/profiles/8678544199/) |
-| 16 | Яна Шель | [@yankitstor](https://t.me/yankitstor) | ✅ Да | ✅ Пропущен | — | ⌚ Гармин | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/652364423/) |
-| 17 | 🆘 | [@Tatyana_699612](https://t.me/Tatyana_699612) | ✅ Да | ✅ Пропущен | — | ⌚ Garmin | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/407124980/) |
+| 16 | Михаил Антаков | [@Antakov_Mixail](https://t.me/Antakov_Mixail) | ✅ Да | ✅ Пропущен | — | ⌚ Whoop 5.0 | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/827208307/) |
+| 17 | Яна Шель | [@yankitstor](https://t.me/yankitstor) | ✅ Да | ✅ Пропущен | — | ⌚ Гармин | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/652364423/) |
+| 18 | 🆘 | [@Tatyana_699612](https://t.me/Tatyana_699612) | ✅ Да | ✅ Пропущен | — | ⌚ Garmin | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/407124980/) |
 
 ## Не пропущены в админке
 
