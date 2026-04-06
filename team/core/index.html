@@ -394,17 +394,68 @@ function render(a, pt, net) {
   }
   h += '</div>';
 
-  // ═══ BLOCK 5: ЗАДАЧИ НА НЕДЕЛЮ ═══
+  // ═══ BLOCK 5: ЗАДАЧИ НА НЕДЕЛЮ (по дням) ═══
   var now = new Date();
-  var weekAgo = new Date(now.getTime() - 7*24*60*60*1000);
+  var dayOfWeek = now.getDay(); // 0=Sun
+  var monday = new Date(now);
+  monday.setDate(now.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+  monday.setHours(0,0,0,0);
+  var sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  sunday.setHours(23,59,59,999);
+
+  var DAY_NAMES = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
+  var DAY_SHORT = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  var weekDays = [];
+  for (var di = 0; di < 7; di++) {
+    var dd = new Date(monday);
+    dd.setDate(monday.getDate() + di);
+    weekDays.push(dd.toISOString().slice(0,10));
+  }
+
   var weekTasks = tasks.filter(function(t) {
-    return t.status === 'active' && (t.priority === 'hot' || new Date(t.created) >= weekAgo);
+    if (t.status !== 'active') return false;
+    if (t.due) {
+      var d = new Date(t.due);
+      return d >= monday && d <= sunday;
+    }
+    return t.priority === 'hot';
+  });
+
+  var tasksByDay = {};
+  weekDays.forEach(function(d) { tasksByDay[d] = []; });
+  var noDate = [];
+  weekTasks.forEach(function(t) {
+    if (t.due && tasksByDay[t.due]) tasksByDay[t.due].push(t);
+    else noDate.push(t);
   });
 
   h += '<div class="c">';
   h += '<div class="s-label">ЗАДАЧИ НА НЕДЕЛЮ</div>';
-  if (weekTasks.length) {
-    weekTasks.forEach(function(t) { h += renderTask(t); });
+  var todayStr = now.toISOString().slice(0,10);
+  var hasAny = weekTasks.length > 0;
+
+  if (hasAny) {
+    weekDays.forEach(function(dayKey, idx) {
+      var dayTasks = tasksByDay[dayKey];
+      if (!dayTasks.length) return;
+      var isToday = dayKey === todayStr;
+      var dayNum = dayKey.slice(8,10) + '.' + dayKey.slice(5,7);
+      h += '<div style="margin-bottom:12px;">';
+      h += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">';
+      h += '<div style="font-size:12px;font-weight:600;color:' + (isToday ? '#7c6fff' : '#888') + ';">' + DAY_NAMES[idx] + '</div>';
+      h += '<div style="font-size:10px;color:#555;">' + dayNum + '</div>';
+      if (isToday) h += '<div style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(124,111,255,0.15);color:#7c6fff;">сегодня</div>';
+      h += '</div>';
+      dayTasks.forEach(function(t) { h += renderTask(t); });
+      h += '</div>';
+    });
+    if (noDate.length) {
+      h += '<div style="margin-bottom:12px;">';
+      h += '<div style="font-size:12px;font-weight:600;color:#f5a623;margin-bottom:6px;">Без даты (hot)</div>';
+      noDate.forEach(function(t) { h += renderTask(t); });
+      h += '</div>';
+    }
   } else {
     h += '<div style="padding:16px;text-align:center;color:#555;font-size:12px;">Нет задач на эту неделю</div>';
   }
