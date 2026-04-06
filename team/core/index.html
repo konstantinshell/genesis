@@ -114,6 +114,9 @@ body {
     </div>
   </div>
 
+  <!-- Period & Week -->
+  <div id="period-bar" style="display:flex;gap:8px;margin-bottom:14px;"></div>
+
   <!-- Action buttons -->
   <div class="action-row">
     <a href="https://t.me/ritmnothingbot?start=team_core_idea" class="action-btn idea" onclick="return openBot('team_core_idea');">
@@ -139,6 +142,48 @@ if (tg) {
   tg.BackButton.show();
   tg.BackButton.onClick(function() { history.back(); });
 }
+
+// ═══ PERIOD & WEEK ═══
+(function() {
+  var now = new Date();
+  var y = now.getFullYear();
+  // 8 периодов по астрономическим точкам (из планера Натали)
+  var periods = [
+    { start: [12,22], name: 'Мир смыслов', num: 1, icon: '🌑', world: 'Я есть' },
+    { start: [2,2],   name: 'Мир намерений', num: 2, icon: '🌒', world: 'Я желаю' },
+    { start: [3,20],  name: 'Мир возможностей', num: 3, icon: '🌓', world: 'Я имею' },
+    { start: [4,30],  name: 'Мир законов', num: 4, icon: '🌔', world: 'Я разрешаю' },
+    { start: [6,22],  name: 'Мир действий', num: 5, icon: '🌕', world: 'Я делаю' },
+    { start: [8,1],   name: 'Мир осознаний', num: 6, icon: '🌖', world: 'Я анализирую' },
+    { start: [9,21],  name: 'Мир наблюдений', num: 7, icon: '🌗', world: 'Я наблюдаю' },
+    { start: [10,31], name: 'Мир познаний', num: 8, icon: '🌘', world: 'Я знаю' }
+  ];
+  var current = periods[0];
+  for (var i = periods.length - 1; i >= 0; i--) {
+    var ps = periods[i].start;
+    var pDate = new Date(ps[0] === 12 ? y - 1 : y, ps[0] - 1, ps[1]);
+    if (now >= pDate) { current = periods[i]; break; }
+  }
+  // Неделя года (ISO)
+  var jan1 = new Date(y, 0, 1);
+  var dayOfYear = Math.floor((now - jan1) / 86400000) + 1;
+  var weekNum = Math.ceil(dayOfYear / 7);
+
+  var bar = document.getElementById('period-bar');
+  if (bar) {
+    bar.innerHTML =
+      '<div style="flex:1;background:#1a1a2e;border-radius:10px;padding:12px;border:1px solid rgba(124,111,255,0.15);">' +
+      '<div style="font-size:9px;color:#7c6fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Период ' + current.num + ' из 8</div>' +
+      '<div style="font-size:14px;font-weight:600;color:#e0e0e8;">' + current.icon + ' ' + current.name + '</div>' +
+      '<div style="font-size:11px;color:#888;margin-top:2px;">«' + current.world + '»</div>' +
+      '</div>' +
+      '<div style="background:#12121a;border-radius:10px;padding:12px;min-width:80px;text-align:center;">' +
+      '<div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Неделя</div>' +
+      '<div style="font-family:Courier Prime,monospace;font-size:24px;font-weight:700;color:#7c6fff;">' + weekNum + '</div>' +
+      '<div style="font-size:9px;color:#555;">из 52</div>' +
+      '</div>';
+  }
+})();
 
 var SPHERE = {
   'амбассадоры':  { bg:'#1a1a2e', text:'#9d97ff', bar:'#7c6fff', label:'Амбассадоры', weight:1 },
