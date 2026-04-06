@@ -16,7 +16,8 @@
       "role": "Партнёр",
       "ideas": 0,
       "tasks": 0,
-      "reflections": 0
+      "reflections": 0,
+      "lq_lab": true
     }
   },
   "user_wishes": "Пользователи пока не оставляли пожеланий.",

@@ -270,7 +270,9 @@ function render(a, pt, net) {
   h += '<div class="stats-grid">';
   h += '<div class="stat-box"><div class="sv" style="color:#e040a0;">' + ns.neiry + '</div><div class="sl">🧠 NEIRY</div></div>';
   h += '<div class="stat-box"><div class="sv" style="color:#0af;">' + ns.tracker + '</div><div class="sl">⌚ Трекеры</div></div>';
-  h += '<div class="stat-box"><div class="sv" style="color:#888;">0</div><div class="sl">🔬 LQ Lab</div></div>';
+  var lqCount = 0;
+  Object.keys(members).forEach(function(k) { if (members[k].lq_lab) lqCount++; });
+  h += '<div class="stat-box"><div class="sv" style="color:' + (lqCount > 0 ? '#34c759' : '#888') + ';">' + lqCount + '</div><div class="sl">🔬 LQ Lab</div></div>';
   h += '</div>';
   // Breakdown трекеров
   var models = ns.trackerModels || {};
