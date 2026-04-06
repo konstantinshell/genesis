@@ -484,6 +484,8 @@ async function init() {
     const d = await r.json();
     document.getElementById('s-real').textContent = d.total_real;
     document.getElementById('upd').textContent = 'Обновлено: ' + d.updated;
+    // Sort children: active recruiters (with real descendants) → center
+    if (d.children) d.children = centerActiveNodes(d.children);
     document.getElementById('tree').innerHTML = '<ul>' + renderNode(d, 0) + '</ul>';
     buildSummary(d);
     if (d.pre_participants && d.pre_participants.length) buildPreParticipants(d.pre_participants);
@@ -634,6 +636,43 @@ function buildPreParticipants(list) {
     html += '</tr>';
   }
   tbody.innerHTML = html;
+}
+
+// Count real descendants recursively
+function countReal(node) {
+  let n = 0;
+  if (node.children) {
+    for (const ch of node.children) {
+      if (ch.real && !(ch.role || '').includes('Организация')) n++;
+      n += countReal(ch);
+    }
+  }
+  return n;
+}
+
+// Sort children so active recruiters (most real descendants) go to center
+function centerActiveNodes(children) {
+  if (!children || children.length < 2) return children;
+
+  // Recursively sort grandchildren first
+  for (const ch of children) {
+    if (ch.children) ch.children = centerActiveNodes(ch.children);
+  }
+
+  // Score each child by real descendants count
+  const scored = children.map(function(ch) { return { node: ch, score: countReal(ch) + (ch.real ? 1 : 0) }; });
+  // Sort descending by score
+  scored.sort(function(a, b) { return b.score - a.score; });
+
+  // Place into center-out order: highest score in the middle
+  var result = new Array(scored.length);
+  var left = Math.floor((scored.length - 1) / 2);
+  var right = left + 1;
+  for (var i = 0; i < scored.length; i++) {
+    if (i % 2 === 0) { result[left] = scored[i].node; left--; }
+    else { result[right] = scored[i].node; right++; }
+  }
+  return result;
 }
 
 init();
