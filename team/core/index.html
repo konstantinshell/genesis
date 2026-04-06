@@ -152,15 +152,22 @@ var SPHERE = {
 var ACLR = { '41537154':'#7c6fff', '8211648754':'#f5a623' };
 
 function countNet(node) {
-  var r = { real:0, paid:0, totalPaid:0 };
+  var r = { real:0, paid:0, totalPaid:0, neiry:0, tracker:0, trackerModels:{} };
   function walk(n) {
     if (n.real) r.real++;
     if (n.band_paid > 0) { r.paid++; r.totalPaid += n.band_paid; }
+    if (n.band || n.band_type) r.neiry++;
+    if (n.tracker || n.tracker_model) {
+      r.tracker++;
+      var m = (n.tracker_model || 'Другой').replace(/\s*(vivoactive|WATCH|Watch).*/, '');
+      r.trackerModels[m] = (r.trackerModels[m] || 0) + 1;
+    }
     if (n.children) n.children.forEach(walk);
   }
   if (node.children) node.children.forEach(walk);
   if (node.pre_participants) node.pre_participants.forEach(function(p) {
     if (p.band_paid > 0) { r.paid++; r.totalPaid += p.band_paid; }
+    if (p.band_type) r.neiry++;
   });
   return r;
 }
@@ -244,6 +251,26 @@ function render(a, pt, net) {
   h += '<div class="stat-box"><div class="sv" style="color:#ff9f0a;">' + ns.paid + '</div><div class="sl">Продажи</div></div>';
   h += '<div class="stat-box"><div class="sv">' + (net ? net.total_real || ns.real : 0) + '</div><div class="sl">В боте</div></div>';
   h += '</div>';
+  h += '</div>';
+
+  // ═══ ГАДЖЕТЫ СЕТИ ═══
+  h += '<div class="c">';
+  h += '<div class="s-label">ГАДЖЕТЫ СЕТИ</div>';
+  h += '<div class="stats-grid">';
+  h += '<div class="stat-box"><div class="sv" style="color:#e040a0;">' + ns.neiry + '</div><div class="sl">🧠 NEIRY</div></div>';
+  h += '<div class="stat-box"><div class="sv" style="color:#0af;">' + ns.tracker + '</div><div class="sl">⌚ Трекеры</div></div>';
+  h += '<div class="stat-box"><div class="sv" style="color:#888;">0</div><div class="sl">🔬 LQ Lab</div></div>';
+  h += '</div>';
+  // Breakdown трекеров
+  var models = ns.trackerModels || {};
+  var modelKeys = Object.keys(models);
+  if (modelKeys.length) {
+    h += '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">';
+    modelKeys.forEach(function(m) {
+      h += '<span style="font-size:10px;padding:3px 8px;border-radius:4px;background:#12121a;color:#aaa;">⌚ ' + m + ' <strong style="color:#0af;">' + models[m] + '</strong></span>';
+    });
+    h += '</div>';
+  }
   h += '</div>';
 
   // ═══ BLOCK 2: ГРАФИК 7 ДНЕЙ — вступления в бота ═══
