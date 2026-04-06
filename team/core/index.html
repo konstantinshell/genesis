@@ -141,16 +141,16 @@ if (tg) {
 }
 
 var SPHERE = {
-  'продукт':      { bg:'#1a1a2e', text:'#9d97ff', bar:'#7c6fff', label:'Продукт' },
-  'IT':           { bg:'#1a202a', text:'#00bcd4', bar:'#00bcd4', label:'IT' },
-  'методология':  { bg:'#2a1a2a', text:'#e040a0', bar:'#e040a0', label:'Методология' },
-  'партнёрства':  { bg:'#2a2018', text:'#daa040', bar:'#daa040', label:'Партнёрства' },
-  'маркетинг':    { bg:'#2a1a18', text:'#e07850', bar:'#e07850', label:'Маркетинг' },
-  'операции':     { bg:'#182a24', text:'#3fc090', bar:'#3fc090', label:'Операции' },
-  'исследования': { bg:'#1a2030', text:'#6eaaee', bar:'#6eaaee', label:'Исследования' },
-  'юридическое':  { bg:'#2a2028', text:'#c090c0', bar:'#c090c0', label:'Юридическое' },
-  'финансы':      { bg:'#2a2a18', text:'#cca040', bar:'#cca040', label:'Финансы' }
+  'амбассадоры':  { bg:'#1a1a2e', text:'#9d97ff', bar:'#7c6fff', label:'Амбассадоры', weight:1 },
+  'IT':           { bg:'#1a202a', text:'#00bcd4', bar:'#00bcd4', label:'IT', weight:1 },
+  'методология':  { bg:'#2a1a2a', text:'#e040a0', bar:'#e040a0', label:'Методология', weight:1 },
+  'партнёрства':  { bg:'#2a2018', text:'#daa040', bar:'#daa040', label:'Партнёрства', weight:1 },
+  'маркетинг':    { bg:'#2a1a18', text:'#e07850', bar:'#e07850', label:'Маркетинг', weight:1 },
+  'юридическое':  { bg:'#2a2028', text:'#c090c0', bar:'#c090c0', label:'Юридическое', weight:2 },
+  'финансы':      { bg:'#2a2a18', text:'#cca040', bar:'#cca040', label:'Финансы', weight:2 }
 };
+// Маппинг старых сфер на новые
+var SPHERE_ALIAS = { 'продукт':'амбассадоры', 'операции':'IT', 'исследования':'методология' };
 var ACLR = { '41537154':'#7c6fff', '8211648754':'#f5a623' };
 
 function normalizeModel(raw) {
@@ -293,6 +293,7 @@ function render(a, pt, net) {
   Object.keys(SPHERE).forEach(function(k) { sphereCounts[k] = 0; });
   tasks.forEach(function(t) {
     var s = t.sphere || '';
+    if (SPHERE_ALIAS[s]) s = SPHERE_ALIAS[s];
     if (sphereCounts[s] !== undefined) sphereCounts[s]++;
     else sphereCounts[s] = 1;
   });
@@ -320,21 +321,17 @@ function render(a, pt, net) {
   });
   h += '</div>';
 
-  // Дисбаланс-подсказка
-  var topSphere = '', topPct = 0, emptySpheres = [];
-  Object.keys(SPHERE).forEach(function(k) {
-    var pct = Math.round(((sphereCounts[k] || 0) / totalSphTasks) * 100);
-    if (pct > topPct) { topPct = pct; topSphere = SPHERE[k].label; }
-    if ((sphereCounts[k] || 0) === 0) emptySpheres.push(SPHERE[k].label);
-  });
-  if (topPct > 40 || emptySpheres.length > 3) {
-    h += '<div style="background:rgba(255,159,10,0.1);border:1px solid rgba(255,159,10,0.2);border-radius:10px;padding:14px;margin-top:10px;">';
-    h += '<div style="font-size:12px;color:#f5a623;line-height:1.6;">';
-    if (topPct > 40) h += 'Фокус на «' + topSphere + '» (' + topPct + '%). ';
-    if (emptySpheres.length > 0) h += 'Пустые сферы: ' + emptySpheres.join(', ') + '.';
-    h += '</div></div>';
-  }
+  // AI-совет по балансу
+  h += '<div id="sphere-advice" style="margin-top:10px;"></div>';
   h += '</div>';
+  // Загрузить совет из MD
+  setTimeout(function() {
+    fetch('sphere-advice.md?t=' + Date.now()).then(function(r){ return r.ok ? r.text() : ''; }).then(function(txt) {
+      if (!txt) return;
+      var el = document.getElementById('sphere-advice');
+      if (el) el.innerHTML = '<div style="background:rgba(124,111,255,0.08);border-left:3px solid #7c6fff;border-radius:0 10px 10px 0;padding:14px;"><div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:6px;">AI-СОВЕТ ПО БАЛАНСУ</div><div style="font-size:12px;color:#ccc;line-height:1.7;">' + txt.replace(/\n/g,'<br>') + '</div></div>';
+    }).catch(function(){});
+  }, 500);
 
   // ═══ BLOCK 2: ГРАФИК 7 ДНЕЙ — вступления в бота ═══
   h += '<div class="c">';
@@ -432,13 +429,14 @@ function render(a, pt, net) {
 function renderTask(t) {
   var clr = ACLR[t.author_id] || '#888';
   var name = t.author ? t.author.split(' ')[0] : '—';
-  var sp = SPHERE[t.sphere] || { bg:'#1a1a2e', text:'#888' };
+  var sKey = SPHERE_ALIAS[t.sphere] || t.sphere;
+  var sp = SPHERE[sKey] || { bg:'#1a1a2e', text:'#888', label:t.sphere };
   var h = '<div class="task-row">';
   h += '<div class="t-dot" style="background:' + clr + ';"></div>';
   h += '<div class="t-body"><div class="t-text">' + t.text + '</div>';
   h += '<div class="t-tags">';
   h += '<span class="t-tag" style="background:' + clr + '22;color:' + clr + ';">' + name + '</span>';
-  h += '<span class="t-tag" style="background:' + sp.bg + ';color:' + sp.text + ';">' + (t.sphere || '') + '</span>';
+  h += '<span class="t-tag" style="background:' + sp.bg + ';color:' + sp.text + ';">' + (sp.label || t.sphere || '') + '</span>';
   if (t.priority === 'hot') h += '<span class="t-tag" style="background:#2a1818;color:#ff453a;">🔥 hot</span>';
   h += '</div></div></div>';
   return h;
