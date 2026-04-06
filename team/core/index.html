@@ -213,8 +213,11 @@ if (tg) {
     h += '<div style="font-size:12px;color:#888;margin-top:2px;">«' + p.world + '»</div>';
     h += '<div style="font-size:10px;color:#555;margin-top:4px;">с ' + dateLabel + '</div>';
     h += '</div>';
-    // Description
-    h += '<div style="padding-top:10px;border-top:1px solid #2a2a35;font-size:12px;color:#aaa;line-height:1.7;">' + p.desc + '</div>';
+    // Description (hidden, toggle on tap)
+    h += '<div onclick="var d=this.querySelector(\'.pd\');d.style.display=d.style.display===\'none\'?\'block\':\'none\';event.stopPropagation();" style="cursor:pointer;margin-top:8px;padding-top:8px;border-top:1px solid #2a2a35;">';
+    h += '<div style="font-size:10px;color:#555;text-align:center;">Подробнее ▼</div>';
+    h += '<div class="pd" style="display:none;margin-top:8px;font-size:12px;color:#aaa;line-height:1.7;">' + p.desc + '</div>';
+    h += '</div>';
     // Dots indicator
     h += '<div style="display:flex;justify-content:center;gap:5px;margin-top:10px;">';
     for (var d = 0; d < 8; d++) {
