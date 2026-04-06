@@ -406,11 +406,14 @@ function render(a, pt, net) {
 
   var DAY_NAMES = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
   var DAY_SHORT = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  function localDateStr(d) {
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
   var weekDays = [];
   for (var di = 0; di < 7; di++) {
     var dd = new Date(monday);
     dd.setDate(monday.getDate() + di);
-    weekDays.push(dd.toISOString().slice(0,10));
+    weekDays.push(localDateStr(dd));
   }
 
   var weekTasks = tasks.filter(function(t) {
@@ -432,7 +435,7 @@ function render(a, pt, net) {
 
   h += '<div class="c">';
   h += '<div class="s-label">ЗАДАЧИ НА НЕДЕЛЮ</div>';
-  var todayStr = now.toISOString().slice(0,10);
+  var todayStr = localDateStr(now);
   var hasAny = weekTasks.length > 0;
 
   if (hasAny) {
