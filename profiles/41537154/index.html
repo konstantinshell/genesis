@@ -521,6 +521,16 @@
       </div>
     </div>
 
+    <!-- Загрузить сессию 1 -->
+    <div class="session-card" id="uploadSession1Card" style="margin-bottom:14px;">
+      <div class="session-card-icon">📤</div>
+      <div class="session-card-text">
+        <strong>Загрузить сессию 1</strong>
+        <span>CSV от Neiry + аудио рефлексии</span>
+      </div>
+      <div class="session-card-arrow">›</div>
+    </div>
+
     <!-- Roadmap -->
     <a href="https://konstantinshell.github.io/genesis/roadmap/" style="text-decoration:none;color:inherit;">
     <div class="c" style="cursor:pointer;">
@@ -983,6 +993,34 @@ function loadTasks() {
   });
 }
 </script>
+
+  <!-- Upload Session 1 Modal -->
+  <div class="session-modal-overlay" id="uploadSession1Modal">
+    <div class="session-modal">
+      <div class="session-modal-icon">📤</div>
+      <h3 style="color:#7c6fff;">Загрузить сессию 1</h3>
+      <div class="session-modal-body">
+        Загрузите данные вашей первой сессии — CSV таблицу от Neiry и аудио запись рефлексии.
+      </div>
+      <div class="session-modal-actions">
+        <a href="https://disk.yandex.ru/d/XSw9BmEZQnSuhA" target="_blank" class="session-btn-disk" style="background:linear-gradient(135deg,#2a2a35,#1e1e2a);border:1px solid #7c6fff;color:#7c6fff;">
+          🎧 Слушать запись
+        </a>
+        <a href="#" onclick="(function(){if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink('https://t.me/ritmnothingbot?start=upload_session1');}else{window.open('https://t.me/ritmnothingbot?start=upload_session1','_blank');}return false;})()" class="session-btn-disk">
+          📤 Загрузить запись
+        </a>
+        <button class="session-btn-close" onclick="document.getElementById('uploadSession1Modal').classList.remove('open')">Закрыть</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('uploadSession1Card') && document.getElementById('uploadSession1Card').addEventListener('click', function(){
+      document.getElementById('uploadSession1Modal').classList.add('open');
+    });
+    document.getElementById('uploadSession1Modal').addEventListener('click', function(e){
+      if(e.target === this) this.classList.remove('open');
+    });
+  </script>
 
   <!-- Session 1 Modal -->
   <div class="session-modal-overlay" id="sessionModal">
