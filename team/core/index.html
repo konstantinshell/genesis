@@ -343,37 +343,66 @@ body {
   flex-shrink: 0;
 }
 
-/* Neiry metrics */
-.neiry-row {
+/* ⚡ NEIRY Power */
+.power-hero {
+  background: linear-gradient(135deg, #1a1a2e, #1e1630);
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid rgba(255,214,10,0.2);
+  margin-bottom: 14px;
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
 }
-.neiry-chip {
-  background: #1a1a2e;
-  border-radius: 10px;
-  padding: 10px 14px;
-  border: 1px solid #1e1e2e;
-  flex: 1;
-  min-width: calc(33% - 6px);
-  text-align: center;
+.power-hero .ph-icon { font-size: 36px; }
+.power-hero .ph-info { flex: 1; }
+.power-hero .ph-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+.power-hero .ph-val { font-size: 32px; font-weight: 700; color: #ffd60a; }
+.power-hero .ph-sub { font-size: 12px; color: #666; }
+.power-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
-.neiry-chip .n-val {
+.power-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.power-icon { font-size: 20px; width: 28px; text-align: center; flex-shrink: 0; }
+.power-info { flex: 1; }
+.power-label { font-size: 12px; color: #aaa; margin-bottom: 5px; font-weight: 500; }
+.power-track { height: 8px; background: #2a2a3a; border-radius: 4px; overflow: hidden; }
+.power-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s ease;
+  min-width: 2px;
+}
+.power-fill.cognitive { background: linear-gradient(90deg, #7c6fff, #a78bfa); }
+.power-fill.focus { background: linear-gradient(90deg, #0a84ff, #60a5fa); }
+.power-fill.relaxation { background: linear-gradient(90deg, #34c759, #6ee7b7); }
+.power-fill.energy { background: linear-gradient(90deg, #ff9500, #ff6b35); }
+.power-fill.chill { background: linear-gradient(90deg, #5ac8fa, #8dd4f0); }
+.power-val {
   font-size: 18px;
   font-weight: 700;
   color: #e0e0e8;
+  width: 40px;
+  text-align: right;
+  flex-shrink: 0;
 }
-.neiry-chip .n-label {
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.power-sessions {
+  text-align: center;
+  font-size: 12px;
   color: #555;
-  margin-top: 2px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #1e1e2e;
 }
-.neiry-chip.highlight { border-color: rgba(124,111,255,0.25); }
-.neiry-chip.highlight .n-val { color: #7c6fff; }
+.power-sessions span { color: #7c6fff; font-weight: 700; }
 
-/* Brain network pie (simplified bar) */
+/* Brain network bar */
 .brain-bar {
   display: flex;
   height: 10px;
@@ -519,36 +548,84 @@ body.tg-webapp .back-link { display: none; }
   </div>
 </div>
 
-<!-- ═══ NEIRY ЭЭГ Метрики ═══ -->
+<!-- ═══ СИЛА КОМАНДЫ — NEIRY ═══ -->
 <div class="section" id="neiry-section">
-  <div class="section-title"><span class="icon">🧠</span> NEIRY ЭЭГ — Средние по команде</div>
-  <div class="neiry-row" id="neiry-metrics">
-    <div class="neiry-chip highlight"><div class="n-val" id="n-cognitive">—</div><div class="n-label">Cognitive</div></div>
-    <div class="neiry-chip highlight"><div class="n-val" id="n-focus">—</div><div class="n-label">Focus</div></div>
-    <div class="neiry-chip"><div class="n-val" id="n-relaxation">—</div><div class="n-label">Relaxation</div></div>
-    <div class="neiry-chip"><div class="n-val" id="n-alpha">—</div><div class="n-label">Alpha</div></div>
-    <div class="neiry-chip"><div class="n-val" id="n-fatigue">—</div><div class="n-label">Fatigue</div></div>
-    <div class="neiry-chip"><div class="n-val" id="n-chill">—</div><div class="n-label">Chill</div></div>
-  </div>
+  <div class="section-title"><span class="icon">⚡</span> СИЛА КОМАНДЫ — NEIRY</div>
 
-  <!-- Brain Networks -->
-  <div style="margin-top:16px;">
-    <div style="font-size:12px;color:#888;margin-bottom:4px;">Сети мозга — среднее распределение</div>
-    <div class="brain-bar" id="brain-bar">
-      <div class="dmn" style="width:33%"></div>
-      <div class="sn" style="width:33%"></div>
-      <div class="cen" style="width:34%"></div>
+  <div id="neiry-power">
+    <div class="power-hero">
+      <div class="ph-icon">⚡</div>
+      <div class="ph-info">
+        <div class="ph-label">Сила Альфа-ритма</div>
+        <div class="ph-val" id="pw-alpha-val">—</div>
+        <div class="ph-sub">средняя по команде</div>
+      </div>
     </div>
-    <div class="brain-legend">
-      <div class="bl-item"><div class="bl-dot dmn"></div>DMN <span class="bl-val" id="bn-dmn">—</span>%</div>
-      <div class="bl-item"><div class="bl-dot sn"></div>SN <span class="bl-val" id="bn-sn">—</span>%</div>
-      <div class="bl-item"><div class="bl-dot cen"></div>CEN <span class="bl-val" id="bn-cen">—</span>%</div>
+
+    <div class="power-grid">
+      <div class="power-row">
+        <div class="power-icon">🧠</div>
+        <div class="power-info">
+          <div class="power-label">Когнитивная мощность</div>
+          <div class="power-track"><div class="power-fill cognitive" id="pw-cognitive" style="width:0%"></div></div>
+        </div>
+        <div class="power-val" id="pw-cognitive-val">—</div>
+      </div>
+      <div class="power-row">
+        <div class="power-icon">🎯</div>
+        <div class="power-info">
+          <div class="power-label">Фокус</div>
+          <div class="power-track"><div class="power-fill focus" id="pw-focus" style="width:0%"></div></div>
+        </div>
+        <div class="power-val" id="pw-focus-val">—</div>
+      </div>
+      <div class="power-row">
+        <div class="power-icon">🧘</div>
+        <div class="power-info">
+          <div class="power-label">Расслабление</div>
+          <div class="power-track"><div class="power-fill relaxation" id="pw-relaxation" style="width:0%"></div></div>
+        </div>
+        <div class="power-val" id="pw-relaxation-val">—</div>
+      </div>
+      <div class="power-row">
+        <div class="power-icon">🔋</div>
+        <div class="power-info">
+          <div class="power-label">Энергия</div>
+          <div class="power-track"><div class="power-fill energy" id="pw-energy" style="width:0%"></div></div>
+        </div>
+        <div class="power-val" id="pw-energy-val">—</div>
+      </div>
+      <div class="power-row">
+        <div class="power-icon">☯️</div>
+        <div class="power-info">
+          <div class="power-label">Спокойствие</div>
+          <div class="power-track"><div class="power-fill chill" id="pw-chill" style="width:0%"></div></div>
+        </div>
+        <div class="power-val" id="pw-chill-val">—</div>
+      </div>
     </div>
+
+    <!-- Brain Networks -->
+    <div style="margin-top:16px;">
+      <div style="font-size:12px;color:#888;margin-bottom:6px;">Сети мозга — баланс</div>
+      <div class="brain-bar" id="brain-bar">
+        <div class="dmn" style="width:33%"></div>
+        <div class="sn" style="width:33%"></div>
+        <div class="cen" style="width:34%"></div>
+      </div>
+      <div class="brain-legend">
+        <div class="bl-item"><div class="bl-dot dmn"></div>DMN <span class="bl-val" id="bn-dmn">—</span>%</div>
+        <div class="bl-item"><div class="bl-dot sn"></div>SN <span class="bl-val" id="bn-sn">—</span>%</div>
+        <div class="bl-item"><div class="bl-dot cen"></div>CEN <span class="bl-val" id="bn-cen">—</span>%</div>
+      </div>
+    </div>
+
+    <div class="power-sessions">Всего сессий: <span id="pw-sessions">0</span></div>
   </div>
 
   <div id="neiry-nodata" class="no-data" style="display:none;">
-    <div class="nd-icon">🧠</div>
-    ЭЭГ-данные появятся после первых сессий с NEIRY
+    <div class="nd-icon">⚡</div>
+    Данные силы появятся после первых ЭЭГ-сессий с NEIRY
     <div class="nd-hint">Загрузите CSV из приложения Capsule через бота</div>
   </div>
 </div>
@@ -716,20 +793,29 @@ function render(data) {
     document.getElementById('pi-nodata').style.display = '';
   }
 
-  // ═══ NEIRY ЭЭГ ═══
+  // ═══ NEIRY ⚡ Power ═══
   var n = h.neiry || {};
   var hasNeiry = n.sessions_total > 0;
   if (hasNeiry) {
-    document.getElementById('n-cognitive').textContent = fmt(n.cognitive_avg);
-    document.getElementById('n-focus').textContent = fmt(n.focus_avg);
-    document.getElementById('n-relaxation').textContent = fmt(n.relaxation_avg);
-    document.getElementById('n-alpha').textContent = fmt(n.alpha_avg);
-    document.getElementById('n-fatigue').textContent = fmt(n.fatigue_avg);
-    document.getElementById('n-chill').textContent = fmt(n.chill_avg);
-    document.getElementById('neiry-metrics').style.display = '';
+    document.getElementById('pw-alpha-val').textContent = n.alpha_avg != null ? Math.round(n.alpha_avg) : '—';
+    var pwMetrics = [
+      {id:'cognitive', val:n.cognitive_avg},
+      {id:'focus', val:n.focus_avg},
+      {id:'relaxation', val:n.relaxation_avg},
+      {id:'energy', val:n.fatigue_avg != null ? Math.max(0, 100 - n.fatigue_avg) : null},
+      {id:'chill', val:n.chill_avg}
+    ];
+    pwMetrics.forEach(function(m) {
+      if (m.val != null) {
+        document.getElementById('pw-'+m.id).style.width = m.val+'%';
+        document.getElementById('pw-'+m.id+'-val').textContent = Math.round(m.val);
+      }
+    });
+    document.getElementById('pw-sessions').textContent = n.sessions_total;
+    document.getElementById('neiry-power').style.display = '';
     document.getElementById('neiry-nodata').style.display = 'none';
   } else {
-    document.getElementById('neiry-metrics').style.display = 'none';
+    document.getElementById('neiry-power').style.display = 'none';
     document.getElementById('neiry-nodata').style.display = '';
   }
 
@@ -805,7 +891,7 @@ function render(data) {
 function renderDefault() {
   document.getElementById('pi-meter').style.display = 'none';
   document.getElementById('pi-nodata').style.display = '';
-  document.getElementById('neiry-metrics').style.display = 'none';
+  document.getElementById('neiry-power').style.display = 'none';
   document.getElementById('neiry-nodata').style.display = '';
   var grid = document.getElementById('members-grid');
   grid.innerHTML =
