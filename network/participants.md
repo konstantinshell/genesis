@@ -30,7 +30,7 @@
 | 15 | Константин НОВАТОР | — | ✅ Да | ✅ Пропущен | — | — | — | — | [профиль](https://konstantinshell.github.io/genesis/profiles/8678544199/) |
 | 16 | Михаил Антаков | [@Antakov_Mixail](https://t.me/Antakov_Mixail) | ✅ Да | ✅ Пропущен | — | ⌚ Whoop 5.0 | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/827208307/) |
 | 17 | Яна Шель | [@yankitstor](https://t.me/yankitstor) | ✅ Да | ✅ Пропущен | — | ⌚ Гармин | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/652364423/) |
-| 18 | 🆘 | [@Tatyana_699612](https://t.me/Tatyana_699612) | ✅ Да | ✅ Пропущен | — | ⌚ Garmin | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/407124980/) |
+| 18 | Татьяна | [@Tatyana_699612](https://t.me/Tatyana_699612) | ✅ Да | ✅ Пропущен | — | ⌚ Garmin | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/407124980/) |
 
 ## Не пропущены в админке
 
