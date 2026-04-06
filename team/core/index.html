@@ -13,7 +13,7 @@ body {
   color: #e0e0e8 !important;
   min-height: 100vh;
   padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 40px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 64px);
   max-width: 480px;
   margin: 0 auto;
 }
@@ -94,6 +94,19 @@ body {
 
 .updated { text-align:center; padding:16px; color:#333; font-size:11px; }
 
+/* Back button — fixed top-left */
+.back-fixed { position:fixed; top:12px; left:12px; z-index:100; width:36px; height:36px; border-radius:50%; background:rgba(26,26,34,0.9); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(124,111,255,0.15); display:flex; align-items:center; justify-content:center; text-decoration:none; color:#7c6fff; font-size:18px; transition:all 0.15s; }
+.back-fixed:active { transform:scale(0.9); background:rgba(124,111,255,0.15); }
+.tg-webapp .back-fixed { display:none; }
+
+/* Tab bar — fixed bottom */
+.tab-bar { position:fixed; bottom:0; left:0; right:0; z-index:100; display:flex; background:rgba(18,18,24,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-top:1px solid rgba(124,111,255,0.1); padding-bottom:env(safe-area-inset-bottom, 0px); max-width:480px; margin:0 auto; }
+.tab-btn { flex:1; display:flex; flex-direction:column; align-items:center; gap:2px; padding:8px 0 6px; background:none; border:none; color:#555; font-size:10px; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:color 0.15s; }
+.tab-btn .tab-ico { font-size:20px; }
+.tab-btn.active { color:#7c6fff; }
+.tab-btn:active { opacity:0.7; }
+.tg-webapp .tab-bar { display:none; }
+
 @media (max-width:360px) {
   .stats-grid { grid-template-columns:1fr 1fr; }
 }
@@ -101,9 +114,14 @@ body {
 </head>
 <body>
 
-<div class="container">
-  <a class="back-link" href="javascript:history.back()">← Назад</a>
+<a class="back-fixed" href="javascript:history.back();">‹</a>
 
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('main',this)"><span class="tab-ico">🏠</span>Главная</button>
+  <button class="tab-btn" onclick="switchTab('tasks',this)"><span class="tab-ico">📋</span>Задачи</button>
+</div>
+
+<div class="container">
   <!-- Header -->
   <div class="team-hdr">
     <div style="font-size:40px;margin-bottom:8px;">🤝</div>
@@ -138,7 +156,8 @@ body {
 <script>
 // Telegram
 var tg = window.Telegram && Telegram.WebApp;
-if (tg) {
+var isTg = tg && tg.initData && tg.initData.length > 0;
+if (isTg) {
   tg.ready(); tg.expand();
   try { tg.setHeaderColor('#121218'); } catch(e) {}
   try { tg.setBackgroundColor('#121218'); } catch(e) {}
@@ -297,6 +316,18 @@ function countNet(node) {
   return r;
 }
 
+function switchTab(tab, btn) {
+  var main = document.getElementById('tab-main');
+  var tasks = document.getElementById('tab-tasks');
+  if (!main || !tasks) return;
+  main.style.display = tab === 'main' ? '' : 'none';
+  tasks.style.display = tab === 'tasks' ? '' : 'none';
+  var btns = document.querySelectorAll('.tab-btn');
+  btns.forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
 function openBot(start) {
   var url = 'https://t.me/ritmnothingbot?start=' + start;
   if (tg) { tg.openTelegramLink(url); return false; }
@@ -362,6 +393,9 @@ function render(a, pt, net) {
   if (ratio > 100) ratio = 100;
 
   var h = '';
+
+  // ── TAB: ГЛАВНАЯ ──
+  h += '<div id="tab-main">';
 
   // ═══ BLOCK 1: РИТМЫ ПРОЕКТА ═══
   h += '<div class="c">';
@@ -604,6 +638,11 @@ function render(a, pt, net) {
     }).catch(function(){});
   }, 700);
 
+  h += '</div>'; // close tab-main
+
+  // ── TAB: ЗАДАЧИ ──
+  h += '<div id="tab-tasks" style="display:none;">';
+
   // ═══ BLOCK 4: ЗАДАЧИ НА ГОД ═══
   h += '<div class="c">';
   h += '<div class="s-label">ЗАДАЧИ НА ГОД</div>';
@@ -704,6 +743,7 @@ function render(a, pt, net) {
   }
   h += '</div>';
 
+  h += '</div>'; // close tab-tasks
   h += '<div class="updated">Обновлено: ' + (a && a.updated ? a.updated : '—') + '</div>';
   document.getElementById('dashboard').innerHTML = h;
 }
