@@ -151,6 +151,17 @@ var SPHERE = {
 };
 var ACLR = { '41537154':'#7c6fff', '8211648754':'#f5a623' };
 
+function normalizeModel(raw) {
+  var s = raw.toLowerCase();
+  if (s.indexOf('garmin') !== -1 || s === 'гармин') return 'Garmin';
+  if (s.indexOf('huawei') !== -1) return 'Huawei';
+  if (s.indexOf('apple') !== -1) return 'Apple Watch';
+  if (s.indexOf('whoop') !== -1) return 'Whoop';
+  if (s.indexOf('polar') !== -1) return 'Polar';
+  if (s.indexOf('samsung') !== -1) return 'Samsung';
+  return raw;
+}
+
 function countNet(node) {
   var r = { real:0, paid:0, totalPaid:0, neiry:0, tracker:0, trackerModels:{} };
   function walk(n) {
@@ -159,7 +170,7 @@ function countNet(node) {
     if (n.band || n.band_type) r.neiry++;
     if (n.tracker || n.tracker_model) {
       r.tracker++;
-      var m = (n.tracker_model || 'Другой').replace(/\s*(vivoactive|WATCH|Watch).*/, '');
+      var m = normalizeModel(n.tracker_model || 'Другой');
       r.trackerModels[m] = (r.trackerModels[m] || 0) + 1;
     }
     if (n.children) n.children.forEach(walk);
