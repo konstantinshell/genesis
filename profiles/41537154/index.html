@@ -160,6 +160,8 @@
     .session-card-text strong { display:block; font-size:15px; font-weight:600; color:#e0e0e8; margin-bottom:3px; }
     .session-card-text span { font-size:11px; color:#7c6fff; }
     .session-card-arrow { margin-left:auto; font-size:18px; color:#7c6fff; }
+    .upload-sess-btn { background:linear-gradient(135deg,#1a1a2e,#16162a); border:1px solid rgba(124,111,255,0.25); border-radius:10px; padding:12px; text-align:center; font-size:13px; font-weight:600; color:#e0e0e8; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+    .upload-sess-btn:active { opacity:0.8; }
   </style>
 </head>
 <body>
@@ -521,14 +523,18 @@
       </div>
     </div>
 
-    <!-- Загрузить сессию 1 -->
-    <div class="session-card" id="uploadSession1Card" style="margin-bottom:14px;">
-      <div class="session-card-icon">📤</div>
-      <div class="session-card-text">
-        <strong>Загрузить сессию 1</strong>
-        <span>CSV от Neiry + аудио рефлексии</span>
+    <!-- Загрузить сессии 1-6 -->
+    <div class="c">
+      <h2>📤 Загрузка сессий</h2>
+      <p style="font-size:12px;color:#666;margin-bottom:14px;">CSV от Neiry + аудио рефлексии. После загрузки — отдых минимум 5 часов.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;" id="sessionsGrid">
+        <div class="upload-sess-btn" data-n="1">📤 Сессия 1</div>
+        <div class="upload-sess-btn" data-n="2" style="opacity:0.4;pointer-events:none;">🔒 Сессия 2</div>
+        <div class="upload-sess-btn" data-n="3" style="opacity:0.4;pointer-events:none;">🔒 Сессия 3</div>
+        <div class="upload-sess-btn" data-n="4" style="opacity:0.4;pointer-events:none;">🔒 Сессия 4</div>
+        <div class="upload-sess-btn" data-n="5" style="opacity:0.4;pointer-events:none;">🔒 Сессия 5</div>
+        <div class="upload-sess-btn" data-n="6" style="opacity:0.4;pointer-events:none;">🔒 Сессия 6</div>
       </div>
-      <div class="session-card-arrow">›</div>
     </div>
 
     <!-- Roadmap -->
@@ -994,32 +1000,45 @@ function loadTasks() {
 }
 </script>
 
-  <!-- Upload Session 1 Modal -->
-  <div class="session-modal-overlay" id="uploadSession1Modal">
+  <!-- Upload Session Modal (universal) -->
+  <div class="session-modal-overlay" id="uploadSessionModal">
     <div class="session-modal">
       <div class="session-modal-icon">📤</div>
-      <h3 style="color:#7c6fff;">Загрузить сессию 1</h3>
+      <h3 style="color:#7c6fff;" id="uploadSessionTitle">Загрузить сессию</h3>
       <div class="session-modal-body">
-        Загрузите данные вашей первой сессии — CSV таблицу от Neiry и аудио запись рефлексии.
+        Загрузите CSV таблицу от Neiry и аудио запись рефлексии.
       </div>
       <div class="session-modal-actions">
         <a href="https://disk.yandex.ru/d/XSw9BmEZQnSuhA" target="_blank" class="session-btn-disk" style="background:linear-gradient(135deg,#2a2a35,#1e1e2a);border:1px solid #7c6fff;color:#7c6fff;">
           🎧 Слушать запись
         </a>
-        <a href="#" onclick="(function(){if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink('https://t.me/ritmnothingbot?start=upload_session1');}else{window.open('https://t.me/ritmnothingbot?start=upload_session1','_blank');}return false;})()" class="session-btn-disk">
+        <a href="#" id="uploadSessionBotLink" class="session-btn-disk">
           📤 Загрузить запись
         </a>
-        <button class="session-btn-close" onclick="document.getElementById('uploadSession1Modal').classList.remove('open')">Закрыть</button>
+        <button class="session-btn-close" onclick="document.getElementById('uploadSessionModal').classList.remove('open')">Закрыть</button>
       </div>
     </div>
   </div>
   <script>
-    document.getElementById('uploadSession1Card') && document.getElementById('uploadSession1Card').addEventListener('click', function(){
-      document.getElementById('uploadSession1Modal').classList.add('open');
+  (function(){
+    var modal = document.getElementById('uploadSessionModal');
+    var title = document.getElementById('uploadSessionTitle');
+    var botLink = document.getElementById('uploadSessionBotLink');
+    document.getElementById('sessionsGrid').addEventListener('click', function(e){
+      var btn = e.target.closest('.upload-sess-btn');
+      if(!btn) return;
+      var n = btn.getAttribute('data-n');
+      title.textContent = 'Загрузить сессию ' + n;
+      botLink.onclick = function(ev){
+        ev.preventDefault();
+        var url = 'https://t.me/ritmnothingbot?start=upload_session' + n;
+        if(window.Telegram && Telegram.WebApp) Telegram.WebApp.openTelegramLink(url);
+        else window.open(url, '_blank');
+      };
+      modal.classList.add('open');
     });
-    document.getElementById('uploadSession1Modal').addEventListener('click', function(e){
-      if(e.target === this) this.classList.remove('open');
-    });
+    modal.addEventListener('click', function(e){ if(e.target === this) this.classList.remove('open'); });
+  })();
   </script>
 
   <!-- Session 1 Modal -->
