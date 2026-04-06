@@ -225,40 +225,6 @@
       "ambassador": "✅ Да, хочу!"
     },
     {
-      "name": "Андрей Демчук",
-      "real": true,
-      "tg": "sky_world204",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/1610267716/",
-      "nda": true,
-      "children": [
-        {
-          "name": "Елена (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Дмитрий (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "Алексей (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Олеся (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        }
-      ],
-      "tracker": true,
-      "tracker_model": "Huawei Watch D2",
-      "ambassador": "✅ Да, хочу!"
-    },
-    {
       "name": "Илья Новицкий",
       "real": true,
       "tg": "Ilya_novator",
@@ -401,15 +367,26 @@
       "nda": true,
       "children": [
         {
-          "name": "Олеся (свободно)",
-          "real": false,
+          "name": "Андрей Демчук",
+          "real": true,
+          "tg": "sky_world204",
+          "profile": "https://konstantinshell.github.io/genesis/profiles/1610267716/",
+          "nda": true,
           "children": [
             {
-              "name": "Сергей (свободно)",
+              "name": "Елена (свободно)",
+              "real": false,
+              "children": []
+            },
+            {
+              "name": "Алексей (свободно)",
               "real": false,
               "children": []
             }
-          ]
+          ],
+          "tracker": true,
+          "tracker_model": "Huawei Watch D2",
+          "ambassador": "✅ Да, хочу!"
         },
         {
           "name": "Кирилл (свободно)",
