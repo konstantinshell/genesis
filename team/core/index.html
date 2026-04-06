@@ -74,6 +74,22 @@ body {
 .t-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:500; }
 .dl-btn { display:flex; align-items:center; justify-content:center; gap:6px; background:#7c6fff; color:#fff; padding:10px 16px; border-radius:8px; font-size:12px; font-weight:500; border:none; cursor:pointer; width:100%; margin-top:12px; -webkit-tap-highlight-color:transparent; }
 
+/* Header */
+.team-hdr { background:linear-gradient(135deg,#1a1a2e 0%,#16162a 50%,#0f0f1a 100%); padding:24px 20px; border-radius:14px; text-align:center; margin-bottom:14px; border:1px solid rgba(124,111,255,0.12); }
+.team-hdr h1 { font-size:22px; font-weight:700; margin-bottom:6px; }
+.team-hdr .sub { font-size:12px; color:#888; line-height:1.5; }
+.team-hdr .badges { display:flex; gap:6px; justify-content:center; margin-top:10px; flex-wrap:wrap; }
+.team-hdr .badge { font-size:10px; padding:3px 10px; border-radius:4px; background:rgba(124,111,255,0.12); color:#7c6fff; }
+
+/* Action buttons */
+.action-row { display:flex; gap:8px; margin-bottom:14px; }
+.action-btn { flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:14px 8px; background:#1a1a22; border:1px solid rgba(124,111,255,0.15); border-radius:12px; text-decoration:none; font-size:12px; font-weight:600; transition:all 0.15s; -webkit-tap-highlight-color:transparent; cursor:pointer; }
+.action-btn:active { background:#252540; transform:scale(0.97); }
+.action-btn .ico { font-size:16px; }
+.action-btn.idea { border-color:rgba(245,166,35,0.3); color:#f5a623; }
+.action-btn.task { border-color:rgba(52,199,89,0.3); color:#34c759; }
+.action-btn.refl { border-color:rgba(124,111,255,0.3); color:#7c6fff; }
+
 .updated { text-align:center; padding:16px; color:#333; font-size:11px; }
 
 @media (max-width:360px) {
@@ -85,6 +101,32 @@ body {
 
 <div class="container">
   <a class="back-link" href="javascript:history.back()">← Назад</a>
+
+  <!-- Header -->
+  <div class="team-hdr">
+    <div style="font-size:40px;margin-bottom:8px;">🤝</div>
+    <h1>РИТМЫ ЖИЗНИ</h1>
+    <div class="sub">Нейроисследование образа жизни.<br>Платформа для измерения, рефлексии и роста.</div>
+    <div class="badges">
+      <span class="badge">ONTO NOTHING</span>
+      <span class="badge">NEIRY</span>
+      <span class="badge">LQ LAB</span>
+    </div>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="action-row">
+    <a href="https://t.me/ritmnothingbot?start=team_core_idea" class="action-btn idea" onclick="return openBot('team_core_idea');">
+      <span class="ico">💡</span>ИДЕЯ
+    </a>
+    <a href="https://t.me/ritmnothingbot?start=team_core_task" class="action-btn task" onclick="return openBot('team_core_task');">
+      <span class="ico">✅</span>ЗАДАЧА
+    </a>
+    <a href="https://t.me/ritmnothingbot?start=team_core_refl" class="action-btn refl" onclick="return openBot('team_core_refl');">
+      <span class="ico">📝</span>РЕФЛЕКСИЯ
+    </a>
+  </div>
+
   <div id="dashboard"><div style="text-align:center;padding:60px 0;color:#555;">Загрузка...</div></div>
 </div>
 
