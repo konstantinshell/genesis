@@ -171,6 +171,38 @@ function openBot(start) {
   window.open(url, '_blank'); return false;
 }
 
+function build7dayChart(net) {
+  var days = [];
+  var now = new Date();
+  var monthNames = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+  for (var i = 6; i >= 0; i--) {
+    var d = new Date(now.getTime() - i * 24*60*60*1000);
+    var key = d.toISOString().slice(0, 10);
+    days.push({ key: key, label: d.getDate() + ' ' + monthNames[d.getMonth()], count: 0, isToday: i === 0 });
+  }
+  if (!net) return days;
+  // Count registered dates from pre_participants
+  if (net.pre_participants) {
+    net.pre_participants.forEach(function(p) {
+      if (!p.registered) return;
+      for (var j = 0; j < days.length; j++) {
+        if (days[j].key === p.registered) { days[j].count++; break; }
+      }
+    });
+  }
+  // Count NDA sign dates from real participants (walk tree)
+  function walkDates(node) {
+    if (node.nda_date) {
+      for (var j = 0; j < days.length; j++) {
+        if (days[j].key === node.nda_date) { days[j].count++; break; }
+      }
+    }
+    if (node.children) node.children.forEach(function(ch) { if (ch.real) walkDates(ch); });
+  }
+  walkDates(net);
+  return days;
+}
+
 Promise.all([
   fetch('analysis.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
   fetch('../../partners/tasks.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
@@ -212,34 +244,30 @@ function render(a, pt, net) {
   h += '<div class="stat-box"><div class="sv" style="color:#ff9f0a;">' + ns.paid + '</div><div class="sl">Продажи</div></div>';
   h += '<div class="stat-box"><div class="sv">' + (net ? net.total_real || ns.real : 0) + '</div><div class="sl">В боте</div></div>';
   h += '</div>';
-  h += '<div class="stat-box" style="margin-top:2px;">';
-  h += '<div class="sl" style="margin-bottom:2px;">Активность за 24ч</div>';
-  h += '<div class="sv">—</div>';
-  h += '<div style="font-size:9px;color:#444;">данные формируются</div>';
-  h += '</div>';
   h += '</div>';
 
-  // ═══ BLOCK 2: ГРАФИК 7 ДНЕЙ ═══
+  // ═══ BLOCK 2: ГРАФИК 7 ДНЕЙ — вступления в бота ═══
   h += '<div class="c">';
-  h += '<div class="s-label">ДИНАМИКА · 7 ДНЕЙ</div>';
-  var days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
-  var daily = a && a.daily_stats;
-  if (daily && daily.length) {
-    var maxU = 1, maxM = 1;
-    daily.forEach(function(d) { if (d.users > maxU) maxU = d.users; if (d.money > maxM) maxM = d.money; });
-    h += '<div class="chart-7d">';
-    daily.forEach(function(d, i) {
-      var hU = Math.round((d.users / maxU) * 80);
-      var hM = Math.round((d.money / maxM) * 80);
-      h += '<div class="chart-col"><div class="bar users" style="height:' + hU + 'px;"></div><div class="bar money" style="height:' + hM + 'px;"></div><div class="dlbl">' + (days[i] || '') + '</div></div>';
-    });
+  h += '<div class="s-label">ВСТУПЛЕНИЯ В БОТА · 7 ДНЕЙ</div>';
+  var chart7 = build7dayChart(net);
+  var maxV = 1;
+  chart7.forEach(function(d) { if (d.count > maxV) maxV = d.count; });
+  var today24 = chart7.length ? chart7[chart7.length - 1].count : 0;
+  h += '<div class="chart-7d">';
+  chart7.forEach(function(d) {
+    var barH = d.count > 0 ? Math.max(Math.round((d.count / maxV) * 90), 6) : 3;
+    var barClr = d.isToday ? '#7c6fff' : (d.count > 0 ? '#5a5a9f' : '#2a2a35');
+    h += '<div class="chart-col">';
+    h += '<div style="font-family:Courier Prime,monospace;font-size:12px;color:' + (d.count > 0 ? '#e0e0e8' : '#333') + ';margin-bottom:4px;font-weight:700;">' + d.count + '</div>';
+    h += '<div class="bar" style="height:' + barH + 'px;background:' + barClr + ';border-radius:3px;"></div>';
+    h += '<div class="dlbl">' + d.label + '</div>';
     h += '</div>';
-    h += '<div class="chart-legend"><span class="lg-u">Вошли в бота</span><span class="lg-m">Деньги</span></div>';
-  } else {
-    h += '<div style="height:120px;display:flex;align-items:center;justify-content:center;background:#12121a;border-radius:10px;">';
-    h += '<div style="text-align:center;"><div style="font-size:24px;margin-bottom:6px;">📊</div><div style="font-size:12px;color:#555;">Данные по дням формируются</div></div>';
-    h += '</div>';
-  }
+  });
+  h += '</div>';
+  h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">';
+  h += '<div style="font-size:10px;color:#888;">Сегодня: <strong style="color:#7c6fff;">' + today24 + '</strong> чел.</div>';
+  h += '<div style="display:flex;align-items:center;gap:4px;font-size:10px;color:#555;"><div style="width:8px;height:8px;border-radius:2px;background:#7c6fff;"></div>Сегодня <div style="width:8px;height:8px;border-radius:2px;background:#5a5a9f;margin-left:6px;"></div>Ранее</div>';
+  h += '</div>';
   h += '</div>';
 
   // ═══ BLOCK 3: MNPI КОМАНДЫ ═══
