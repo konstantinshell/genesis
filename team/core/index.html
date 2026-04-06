@@ -118,6 +118,7 @@ body {
 
 <div class="tab-bar">
   <button class="tab-btn active" onclick="switchTab('main',this)"><span class="tab-ico">🏠</span>Главная</button>
+  <button class="tab-btn" onclick="switchTab('mnpi',this)"><span class="tab-ico">🧠</span>MNPI</button>
   <button class="tab-btn" onclick="switchTab('tasks',this)"><span class="tab-ico">📋</span>Задачи</button>
 </div>
 
@@ -317,11 +318,10 @@ function countNet(node) {
 }
 
 function switchTab(tab, btn) {
-  var main = document.getElementById('tab-main');
-  var tasks = document.getElementById('tab-tasks');
-  if (!main || !tasks) return;
-  main.style.display = tab === 'main' ? '' : 'none';
-  tasks.style.display = tab === 'tasks' ? '' : 'none';
+  ['main','mnpi','tasks'].forEach(function(t) {
+    var el = document.getElementById('tab-' + t);
+    if (el) el.style.display = t === tab ? '' : 'none';
+  });
   var btns = document.querySelectorAll('.tab-btn');
   btns.forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');
@@ -530,6 +530,11 @@ function render(a, pt, net) {
     }).catch(function(){});
   }, 500);
 
+  h += '</div>'; // close tab-main
+
+  // ── TAB: MNPI ──
+  h += '<div id="tab-mnpi" style="display:none;">';
+
   // ═══ BLOCK 3: MNPI КОМАНДЫ + RADAR ═══
   h += '<div class="c">';
   h += '<div class="s-label">MNPI КОМАНДЫ</div>';
@@ -665,7 +670,7 @@ function render(a, pt, net) {
     }).catch(function(){});
   }, 700);
 
-  h += '</div>'; // close tab-main
+  h += '</div>'; // close tab-mnpi
 
   // ── TAB: ЗАДАЧИ ──
   h += '<div id="tab-tasks" style="display:none;">';
