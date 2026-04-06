@@ -397,6 +397,37 @@ function render(a, pt, net) {
   // ── TAB: ГЛАВНАЯ ──
   h += '<div id="tab-main">';
 
+  // ═══ ГРАФИК 7 ДНЕЙ — вступления в бота ═══
+  h += '<div class="c">';
+  h += '<div class="s-label">ВСТУПЛЕНИЯ В БОТА · 7 ДНЕЙ</div>';
+  var chart7 = build7dayChart(net);
+  var maxV = 1;
+  chart7.forEach(function(d) { if (d.count > maxV) maxV = d.count; });
+  var today24 = chart7.length ? chart7[chart7.length - 1].count : 0;
+  h += '<div class="chart-7d">';
+  chart7.forEach(function(d) {
+    var barH = d.count > 0 ? Math.max(Math.round((d.count / maxV) * 90), 6) : 3;
+    var barClr = d.isToday ? '#7c6fff' : (d.count > 0 ? '#5a5a9f' : '#2a2a35');
+    h += '<div class="chart-col">';
+    h += '<div style="font-family:Courier Prime,monospace;font-size:12px;color:' + (d.count > 0 ? '#e0e0e8' : '#333') + ';margin-bottom:4px;font-weight:700;">' + d.count + '</div>';
+    h += '<div class="bar" style="height:' + barH + 'px;background:' + barClr + ';border-radius:3px;"></div>';
+    h += '<div class="dlbl">' + d.label + '</div>';
+    h += '</div>';
+  });
+  h += '</div>';
+  var weekSum = 0; chart7.forEach(function(d) { weekSum += d.count; });
+  var weekAvg = (weekSum / 7).toFixed(1);
+  var monthAvg = net && net.total_real ? (net.total_real / 30).toFixed(1) : '—';
+  h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">';
+  h += '<div style="font-size:10px;color:#888;">Сегодня: <strong style="color:#7c6fff;">' + today24 + '</strong> чел.</div>';
+  h += '<div style="display:flex;align-items:center;gap:4px;font-size:10px;color:#555;"><div style="width:8px;height:8px;border-radius:2px;background:#7c6fff;"></div>Сегодня <div style="width:8px;height:8px;border-radius:2px;background:#5a5a9f;margin-left:6px;"></div>Ранее</div>';
+  h += '</div>';
+  h += '<div style="display:flex;gap:16px;margin-top:8px;padding-top:8px;border-top:1px solid #1e1e2a;">';
+  h += '<div style="font-size:10px;color:#888;">Среднее за неделю: <strong style="color:#e0e0e8;">' + weekAvg + '</strong></div>';
+  h += '<div style="font-size:10px;color:#888;">Среднее за месяц: <strong style="color:#e0e0e8;">' + monthAvg + '</strong></div>';
+  h += '</div>';
+  h += '</div>';
+
   // ═══ BLOCK 1: РИТМЫ ПРОЕКТА ═══
   h += '<div class="c">';
   h += '<div class="s-label">РИТМЫ ПРОЕКТА</div>';
@@ -478,30 +509,6 @@ function render(a, pt, net) {
       if (el) el.innerHTML = '<div style="background:rgba(124,111,255,0.08);border-left:3px solid #7c6fff;border-radius:0 10px 10px 0;padding:14px;"><div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:6px;">AI-СОВЕТ ПО БАЛАНСУ</div><div style="font-size:12px;color:#ccc;line-height:1.7;">' + txt.replace(/\n/g,'<br>') + '</div></div>';
     }).catch(function(){});
   }, 500);
-
-  // ═══ BLOCK 2: ГРАФИК 7 ДНЕЙ — вступления в бота ═══
-  h += '<div class="c">';
-  h += '<div class="s-label">ВСТУПЛЕНИЯ В БОТА · 7 ДНЕЙ</div>';
-  var chart7 = build7dayChart(net);
-  var maxV = 1;
-  chart7.forEach(function(d) { if (d.count > maxV) maxV = d.count; });
-  var today24 = chart7.length ? chart7[chart7.length - 1].count : 0;
-  h += '<div class="chart-7d">';
-  chart7.forEach(function(d) {
-    var barH = d.count > 0 ? Math.max(Math.round((d.count / maxV) * 90), 6) : 3;
-    var barClr = d.isToday ? '#7c6fff' : (d.count > 0 ? '#5a5a9f' : '#2a2a35');
-    h += '<div class="chart-col">';
-    h += '<div style="font-family:Courier Prime,monospace;font-size:12px;color:' + (d.count > 0 ? '#e0e0e8' : '#333') + ';margin-bottom:4px;font-weight:700;">' + d.count + '</div>';
-    h += '<div class="bar" style="height:' + barH + 'px;background:' + barClr + ';border-radius:3px;"></div>';
-    h += '<div class="dlbl">' + d.label + '</div>';
-    h += '</div>';
-  });
-  h += '</div>';
-  h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">';
-  h += '<div style="font-size:10px;color:#888;">Сегодня: <strong style="color:#7c6fff;">' + today24 + '</strong> чел.</div>';
-  h += '<div style="display:flex;align-items:center;gap:4px;font-size:10px;color:#555;"><div style="width:8px;height:8px;border-radius:2px;background:#7c6fff;"></div>Сегодня <div style="width:8px;height:8px;border-radius:2px;background:#5a5a9f;margin-left:6px;"></div>Ранее</div>';
-  h += '</div>';
-  h += '</div>';
 
   // ═══ BLOCK 3: MNPI КОМАНДЫ + RADAR ═══
   h += '<div class="c">';
