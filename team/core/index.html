@@ -536,7 +536,73 @@ function render(a, pt, net) {
   h += '</div>';
   if (!hasData) h += '<div style="font-size:11px;color:#555;text-align:center;margin-top:8px;font-style:italic;">Данные появятся после прохождения 6 сессий MNPI</div>';
   h += '</div>';
+
+  // ── Team MNPI итог ──
+  h += '<div id="team-mnpi-block" style="margin-top:14px;padding:16px;background:#12121a;border-radius:12px;text-align:center;">';
+  h += '<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;">';
+  h += '<div style="font-size:14px;font-weight:600;color:#e0e0e8;">Team MNPI</div>';
+  h += '<div id="mnpi-tooltip-btn" style="width:18px;height:18px;border-radius:50%;background:#2a2a35;color:#888;font-size:11px;display:flex;align-items:center;justify-content:center;cursor:pointer;" title="Как считается Team MNPI?\n\nTeam MNPI = VB × TE × CF\n\n🧠 VB (Витальная база) — среднее личных MNPI участников\n✅ TE (Операционный КПД) — выполненные задачи / поставленные\n📈 CF (Коммерческий фактор) — продажи + рост бота">?</div>';
   h += '</div>';
+  h += '<div id="mnpi-value" style="font-size:48px;font-weight:700;color:#555;line-height:1;">—</div>';
+  h += '<div id="mnpi-status" style="font-size:11px;color:#555;margin-top:4px;"></div>';
+  h += '<div id="mnpi-bars" style="display:flex;justify-content:center;gap:16px;margin-top:12px;"></div>';
+  h += '<div id="mnpi-explanation" style="margin-top:12px;"></div>';
+  h += '<div id="mnpi-advice" style="margin-top:12px;"></div>';
+  h += '</div>';
+
+  h += '</div>';
+
+  // Загрузить Team MNPI из JSON
+  setTimeout(function() {
+    fetch('team-mnpi.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).then(function(d) {
+      if (!d) return;
+      var valEl = document.getElementById('mnpi-value');
+      var statusEl = document.getElementById('mnpi-status');
+      var barsEl = document.getElementById('mnpi-bars');
+      var explEl = document.getElementById('mnpi-explanation');
+      if (!valEl) return;
+
+      if (d.value !== null && d.value !== undefined) {
+        var clr = d.color || '#555';
+        valEl.style.color = clr;
+        valEl.textContent = d.value.toFixed(3);
+        var statusMap = { synergy:'Синергия', working:'Рабочий режим', tension:'Напряжение', dysfunction:'Дисфункция', no_data:'Нет данных' };
+        statusEl.textContent = statusMap[d.status] || d.status || '';
+        statusEl.style.color = clr;
+
+        // Mini bars for VB, TE, CF
+        var items = [
+          { label:'VB', val:d.vb, max:1, color:'#7c6fff' },
+          { label:'TE', val:d.te, max:1.2, color:'#34c759' },
+          { label:'CF', val:d.cf, max:1.25, color:'#daa040' }
+        ];
+        var bh = '';
+        items.forEach(function(it) {
+          var pct = it.val !== null ? Math.round((it.val / it.max) * 100) : 0;
+          if (pct > 100) pct = 100;
+          bh += '<div style="flex:1;max-width:80px;">';
+          bh += '<div style="font-size:10px;color:#888;margin-bottom:3px;">' + it.label + '</div>';
+          bh += '<div style="background:#2a2a35;border-radius:2px;height:4px;"><div style="height:4px;border-radius:2px;background:' + it.color + ';width:' + pct + '%;"></div></div>';
+          bh += '<div style="font-size:11px;color:' + it.color + ';margin-top:2px;font-weight:600;">' + (it.val !== null ? it.val.toFixed(2) : '—') + '</div>';
+          bh += '</div>';
+        });
+        barsEl.innerHTML = bh;
+      }
+
+      if (d.explanation) {
+        explEl.innerHTML = '<div style="background:rgba(124,111,255,0.08);border-left:3px solid #7c6fff;border-radius:0 10px 10px 0;padding:12px;text-align:left;"><div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:4px;">AI-ЛОГИКА РАСЧЁТА</div><div style="font-size:12px;color:#ccc;line-height:1.7;">' + d.explanation.replace(/\n/g,'<br>') + '</div></div>';
+      }
+    }).catch(function(){});
+  }, 600);
+
+  // Загрузить AI-совет по MNPI из MD
+  setTimeout(function() {
+    fetch('mnpi-advice.md?t=' + Date.now()).then(function(r){ return r.ok ? r.text() : ''; }).then(function(txt) {
+      if (!txt) return;
+      var el = document.getElementById('mnpi-advice');
+      if (el) el.innerHTML = '<div style="background:rgba(52,199,89,0.08);border-left:3px solid #34c759;border-radius:0 10px 10px 0;padding:12px;text-align:left;"><div style="font-size:10px;color:#34c759;font-weight:600;margin-bottom:4px;">AI-СОВЕТНИК · ЧТО СДЕЛАТЬ СЕГОДНЯ</div><div style="font-size:12px;color:#ccc;line-height:1.7;">' + txt.replace(/\n/g,'<br>') + '</div></div>';
+    }).catch(function(){});
+  }, 700);
 
   // ═══ BLOCK 4: ЗАДАЧИ НА ГОД ═══
   h += '<div class="c">';
