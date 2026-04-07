@@ -259,18 +259,6 @@ function render(net) {
     if (p.band || p.band_type) withBand++; else withoutBand++;
   });
 
-  h += '<div class="c">';
-  h += '<div class="s-label">ОБЗОР</div>';
-  h += '<div class="stats-grid">';
-  h += '<div class="stat-box"><div class="sv">' + totalReal + '</div><div class="sl">В приложении</div></div>';
-  h += '<div class="stat-box"><div class="sv">' + withTracker + '</div><div class="sl">С трекером</div></div>';
-  h += '<div class="stat-box"><div class="sv">' + withBand + '</div><div class="sl">С бендом</div></div>';
-  h += '</div>';
-  h += '<div style="display:flex;gap:8px;margin-top:4px;">';
-  h += '<div style="flex:1;text-align:center;font-size:10px;color:#888;">Без трекера: <strong style="color:#ff453a;">' + withoutTracker + '</strong></div>';
-  h += '<div style="flex:1;text-align:center;font-size:10px;color:#888;">Без бенда: <strong style="color:#ff453a;">' + withoutBand + '</strong></div>';
-  h += '</div>';
-  h += '</div>';
 
   // Who brought how many people
   h += '<div class="c">';
