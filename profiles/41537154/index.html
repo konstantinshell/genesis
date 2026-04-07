@@ -1141,8 +1141,8 @@ function loadTasks() {
     var els = document.querySelectorAll('#tab-tasks [style*="olive"], #tab-tasks [style*="#6b6b00"]');
     els.forEach(function(e){ e.style.display='none'; });
     // Also hide by text content
-    document.querySelectorAll('#tab-tasks > div, #tasks-root > div').forEach(function(el){
-      if (el.textContent && el.textContent.indexOf('устарели')>-1 && el.className!=='c') el.style.display='none';
+    document.querySelectorAll('#tasks-root > .stale-banner').forEach(function(el){
+      el.style.display='none';
     });
   });
   var root = document.getElementById('tasks-root');
