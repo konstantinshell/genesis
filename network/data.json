@@ -13,22 +13,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Ирина (свободно)",
+          "name": "Олеся (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Андрей (свободно)",
+              "name": "Сергей (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Сергей (свободно)",
+          "name": "Кирилл (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Елена (свободно)",
+              "name": "Татьяна (свободно)",
               "real": false,
               "children": []
             }
@@ -37,22 +37,22 @@
       ]
     },
     {
-      "name": "Татьяна (свободно)",
+      "name": "Кирилл (свободно)",
       "real": false,
       "children": [
         {
-          "name": "Алексей (свободно)",
+          "name": "Татьяна (свободно)",
           "real": false,
           "children": []
         }
       ]
     },
     {
-      "name": "Андрей (свободно)",
+      "name": "Олеся (свободно)",
       "real": false,
       "children": [
         {
-          "name": "Мария (свободно)",
+          "name": "Сергей (свободно)",
           "real": false,
           "children": []
         }
@@ -98,22 +98,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Андрей (свободно)",
+          "name": "Кирилл (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Мария (свободно)",
+              "name": "Татьяна (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Елена (свободно)",
+          "name": "Ирина (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Дмитрий (свободно)",
+              "name": "Андрей (свободно)",
               "real": false,
               "children": []
             }
@@ -132,22 +132,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Мария (свободно)",
+          "name": "Дмитрий (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Кирилл (свободно)",
+              "name": "Ирина (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Дмитрий (свободно)",
+          "name": "Олеся (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Ирина (свободно)",
+              "name": "Сергей (свободно)",
               "real": false,
               "children": []
             }
@@ -166,22 +166,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Татьяна (свободно)",
+          "name": "Дмитрий (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Алексей (свободно)",
+              "name": "Ирина (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Андрей (свободно)",
+          "name": "Олеся (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Мария (свободно)",
+              "name": "Сергей (свободно)",
               "real": false,
               "children": []
             }
@@ -198,22 +198,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Елена (свободно)",
+          "name": "Олеся (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Дмитрий (свободно)",
+              "name": "Сергей (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Алексей (свободно)",
+          "name": "Кирилл (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Олеся (свободно)",
+              "name": "Татьяна (свободно)",
               "real": false,
               "children": []
             }
@@ -232,22 +232,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Елена (свободно)",
+          "name": "Алексей (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Дмитрий (свободно)",
+              "name": "Олеся (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Алексей (свободно)",
+          "name": "Мария (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Олеся (свободно)",
+              "name": "Кирилл (свободно)",
               "real": false,
               "children": []
             }
@@ -264,22 +264,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Мария (свободно)",
+          "name": "Ирина (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Кирилл (свободно)",
+              "name": "Андрей (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Дмитрий (свободно)",
+          "name": "Сергей (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Ирина (свободно)",
+              "name": "Елена (свободно)",
               "real": false,
               "children": []
             }
@@ -298,22 +298,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Алексей (свободно)",
+          "name": "Андрей (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Олеся (свободно)",
+              "name": "Мария (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Мария (свободно)",
+          "name": "Елена (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Кирилл (свободно)",
+              "name": "Дмитрий (свободно)",
               "real": false,
               "children": []
             }
@@ -332,22 +332,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Елена (свободно)",
+          "name": "Алексей (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Дмитрий (свободно)",
+              "name": "Олеся (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Алексей (свободно)",
+          "name": "Мария (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Олеся (свободно)",
+              "name": "Кирилл (свободно)",
               "real": false,
               "children": []
             }
@@ -401,22 +401,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Олеся (свободно)",
+          "name": "Ирина (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Сергей (свободно)",
+              "name": "Андрей (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Кирилл (свободно)",
+          "name": "Сергей (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Татьяна (свободно)",
+              "name": "Елена (свободно)",
               "real": false,
               "children": []
             }
@@ -433,22 +433,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Андрей (свободно)",
+          "name": "Мария (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Мария (свободно)",
+              "name": "Кирилл (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Елена (свободно)",
+          "name": "Дмитрий (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Дмитрий (свободно)",
+              "name": "Ирина (свободно)",
               "real": false,
               "children": []
             }
@@ -474,12 +474,12 @@
           "nda": true,
           "children": [
             {
-              "name": "Ирина (свободно)",
+              "name": "Алексей (свободно)",
               "real": false,
               "children": []
             },
             {
-              "name": "Сергей (свободно)",
+              "name": "Мария (свободно)",
               "real": false,
               "children": []
             }
@@ -489,11 +489,11 @@
           "ambassador": "✅ Да, хочу!"
         },
         {
-          "name": "Андрей (свободно)",
+          "name": "Татьяна (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Мария (свободно)",
+              "name": "Алексей (свободно)",
               "real": false,
               "children": []
             }
@@ -511,22 +511,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Мария (свободно)",
+          "name": "Кирилл (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Кирилл (свободно)",
+              "name": "Татьяна (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Дмитрий (свободно)",
+          "name": "Ирина (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Ирина (свободно)",
+              "name": "Андрей (свободно)",
               "real": false,
               "children": []
             }
@@ -545,22 +545,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Мария (свободно)",
+          "name": "Дмитрий (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Кирилл (свободно)",
+              "name": "Ирина (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Дмитрий (свободно)",
+          "name": "Олеся (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Ирина (свободно)",
+              "name": "Сергей (свободно)",
               "real": false,
               "children": []
             }
@@ -579,22 +579,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Андрей (свободно)",
+          "name": "Дмитрий (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Мария (свободно)",
+              "name": "Ирина (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Елена (свободно)",
+          "name": "Олеся (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Дмитрий (свободно)",
+              "name": "Сергей (свободно)",
               "real": false,
               "children": []
             }
@@ -612,22 +612,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Елена (свободно)",
+          "name": "Олеся (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Дмитрий (свободно)",
+              "name": "Сергей (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Алексей (свободно)",
+          "name": "Кирилл (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Олеся (свободно)",
+              "name": "Татьяна (свободно)",
               "real": false,
               "children": []
             }
@@ -646,22 +646,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Алексей (свободно)",
+          "name": "Татьяна (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Олеся (свободно)",
+              "name": "Алексей (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Мария (свободно)",
+          "name": "Андрей (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Кирилл (свободно)",
+              "name": "Мария (свободно)",
               "real": false,
               "children": []
             }
