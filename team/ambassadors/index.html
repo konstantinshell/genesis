@@ -71,7 +71,7 @@ body {
 <div class="tab-bar">
   <button class="tab-btn active" onclick="switchTab('main',this)"><span class="tab-ico">🏠</span>Главная</button>
   <button class="tab-btn" onclick="switchTab('network',this)"><span class="tab-ico">🌐</span>Сеть</button>
-  <button class="tab-btn" onclick="switchTab('sales',this)"><span class="tab-ico">💰</span>Продажи</button>
+  <button class="tab-btn" onclick="switchTab('stats',this)"><span class="tab-ico">📊</span>Статистика</button>
 </div>
 
 <div class="container">
@@ -97,7 +97,7 @@ if (isTg) {
 }
 
 function switchTab(tab, btn) {
-  ['main','network','sales'].forEach(function(t) {
+  ['main','network','stats'].forEach(function(t) {
     var el = document.getElementById('tab-' + t);
     if (el) el.style.display = t === tab ? '' : 'none';
   });
@@ -229,58 +229,81 @@ function render(net) {
   h += '</div>';
   h += '</div>'; // close tab-network
 
-  // ── TAB: ПРОДАЖИ ──
-  h += '<div id="tab-sales" style="display:none;">';
+  // ── TAB: СТАТИСТИКА ──
+  h += '<div id="tab-stats" style="display:none;">';
 
-  h += '<div class="c">';
-  h += '<div class="s-label">ПРОДАЖИ И КОМИССИИ</div>';
-
-  // Collect all promo codes
-  var promos = [];
-  function collectPromos(node) {
-    if (node.promo_code && node.real) {
-      promos.push({ name: node.name, code: node.promo_code, commission: node.ambassador_commission, form: node.cooperation_form, sales_done: node.sales_done || 0, sales_required: node.sales_required || 5 });
-    }
-    if (node.children) node.children.forEach(function(ch) { collectPromos(ch); });
-  }
-  if (net.children) net.children.forEach(function(ch) { collectPromos(ch); });
-  // Also from pre_participants
-  pre.forEach(function(p) {
-    if (p.promo_code) {
-      promos.push({ name: p.name, code: p.promo_code, commission: p.ambassador_commission, form: p.cooperation_form, sales_done: 0, sales_required: 5 });
-    }
+  // Count trackers and bands
+  var withTracker = 0, withoutTracker = 0, withBand = 0, withoutBand = 0;
+  allReal.forEach(function(p) {
+    if (p.tracker) withTracker++; else withoutTracker++;
+    if (p.band || p.band_type) withBand++; else withoutBand++;
   });
 
-  // Band stats
-  var bandCount = 0, totalPaid = 0;
-  function countBands(node) {
-    if (node.band_type && node.real) { bandCount++; totalPaid += node.band_paid || 0; }
-    if (node.children) node.children.forEach(function(ch) { countBands(ch); });
-  }
-  if (net.children) net.children.forEach(function(ch) { countBands(ch); });
-  pre.forEach(function(p) { if (p.band_type) { bandCount++; totalPaid += p.band_paid || 0; } });
-
-  h += '<div class="stats-grid">';
-  h += '<div class="stat-box"><div class="sv">' + bandCount + '</div><div class="sl">Бендов</div></div>';
-  h += '<div class="stat-box"><div class="sv" style="color:#daa040;">' + (totalPaid > 0 ? Math.round(totalPaid/1000) + 'к' : '0') + '</div><div class="sl">Оплачено ₽</div></div>';
-  h += '<div class="stat-box"><div class="sv">' + promos.length + '</div><div class="sl">Промокодов</div></div>';
-  h += '</div>';
-  h += '</div>';
-
-  // Promo codes list
   h += '<div class="c">';
-  h += '<div class="s-label">РЕЕСТР ПРОМОКОДОВ</div>';
-  promos.forEach(function(p) {
-    h += '<div class="promo-row">';
-    h += '<div><div class="promo-name">' + p.name + '</div>';
-    h += '<div style="font-size:9px;color:#888;">' + (p.commission || '—') + ' · ' + (p.form || '—') + ' · продажи: ' + p.sales_done + '/' + p.sales_required + '</div></div>';
-    h += '<div class="promo-code">' + p.code + '</div>';
+  h += '<div class="s-label">ОБЗОР</div>';
+  h += '<div class="stats-grid">';
+  h += '<div class="stat-box"><div class="sv">' + totalReal + '</div><div class="sl">В приложении</div></div>';
+  h += '<div class="stat-box"><div class="sv">' + withTracker + '</div><div class="sl">С трекером</div></div>';
+  h += '<div class="stat-box"><div class="sv">' + withBand + '</div><div class="sl">С бендом</div></div>';
+  h += '</div>';
+  h += '<div style="display:flex;gap:8px;margin-top:4px;">';
+  h += '<div style="flex:1;text-align:center;font-size:10px;color:#888;">Без трекера: <strong style="color:#ff453a;">' + withoutTracker + '</strong></div>';
+  h += '<div style="flex:1;text-align:center;font-size:10px;color:#888;">Без бенда: <strong style="color:#ff453a;">' + withoutBand + '</strong></div>';
+  h += '</div>';
+  h += '</div>';
+
+  // Who brought how many people
+  h += '<div class="c">';
+  h += '<div class="s-label">КТО СКОЛЬКО ПРИВЁЛ</div>';
+  var referrals = {};
+  allReal.forEach(function(p) {
+    if (p.children) {
+      var cnt = 0;
+      p.children.forEach(function(ch) { if (ch.real) cnt++; });
+      if (cnt > 0) referrals[p.name] = cnt;
+    }
+  });
+  // Also count pre_participants refs
+  pre.forEach(function(p) {
+    if (p.status === 'banned' || !p.ref) return;
+    var refName = p.ref;
+    if (refName === 'org') return;
+    referrals[refName] = (referrals[refName] || 0) + 1;
+  });
+  var refList = Object.keys(referrals).map(function(k) { return { name:k, count:referrals[k] }; });
+  refList.sort(function(a,b) { return b.count - a.count; });
+  if (refList.length) {
+    refList.forEach(function(r) {
+      h += '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #1e1e2a;">';
+      h += '<div style="font-size:13px;color:#e0e0e8;">' + r.name + '</div>';
+      h += '<div style="font-size:14px;font-weight:700;color:#34c759;">' + r.count + '</div>';
+      h += '</div>';
+    });
+  } else {
+    h += '<div style="text-align:center;color:#555;font-size:12px;padding:16px;">Пока никто не привёл</div>';
+  }
+  h += '</div>';
+
+  // Who earned how much
+  h += '<div class="c">';
+  h += '<div class="s-label">СКОЛЬКО ЗАРАБОТАЛИ</div>';
+  var earnings = [];
+  ambassadors.forEach(function(a) {
+    var sales = a.sales_done || 0;
+    var commPct = parseInt(a.ambassador_commission) || 30;
+    var earned = sales * 43000 * commPct / 100; // 43000 = цена бенда, commPct% комиссия
+    earnings.push({ name: a.name, earned: earned, sales: sales });
+  });
+  earnings.sort(function(a,b) { return b.earned - a.earned; });
+  earnings.forEach(function(e) {
+    h += '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #1e1e2a;">';
+    h += '<div style="font-size:13px;color:#e0e0e8;">' + e.name + '</div>';
+    h += '<div style="font-size:14px;font-weight:700;color:#daa040;">' + (e.earned > 0 ? e.earned.toLocaleString('ru') + ' ₽' : '0 ₽') + '</div>';
     h += '</div>';
   });
-  if (!promos.length) h += '<div style="text-align:center;color:#555;font-size:12px;padding:16px;">Нет промокодов</div>';
   h += '</div>';
 
-  h += '</div>'; // close tab-sales
+  h += '</div>'; // close tab-stats
 
   h += '<div class="updated">Обновлено: ' + (net.updated || '—') + '</div>';
   document.getElementById('dashboard').innerHTML = h;
