@@ -261,9 +261,44 @@
         <a href="https://t.me/ritmnothingbot?start=morning" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌅 Утренняя рефлексия · 0</a>
         <a href="https://t.me/ritmnothingbot?start=evening" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌙 Вечерняя рефлексия · 0</a>
       </div>
-      <div style="background:#12121a;border-radius:8px;padding:10px;text-align:center;">
-        <span style="font-size:11px;color:#555;">EEG · HRV · Анализы — данные появятся по мере прохождения чекапа</span>
+      <div style="background:#12121a;border-radius:8px;padding:10px 10px 6px;">
+        <div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Активность рефлексий · 30 дней</div>
+        <svg id="eeg-personal" width="100%" height="52" style="display:block;overflow:visible;"></svg>
+        <div id="eeg-personal-label" style="font-size:10px;color:#555;text-align:right;margin-top:3px;"></div>
       </div>
+      <script>
+      (function(){
+        var data = [["2026-03-09", 0], ["2026-03-10", 0], ["2026-03-11", 0], ["2026-03-12", 0], ["2026-03-13", 0], ["2026-03-14", 0], ["2026-03-15", 0], ["2026-03-16", 0], ["2026-03-17", 0], ["2026-03-18", 0], ["2026-03-19", 0], ["2026-03-20", 0], ["2026-03-21", 0], ["2026-03-22", 0], ["2026-03-23", 0], ["2026-03-24", 0], ["2026-03-25", 0], ["2026-03-26", 0], ["2026-03-27", 0], ["2026-03-28", 0], ["2026-03-29", 0], ["2026-03-30", 0], ["2026-03-31", 0], ["2026-04-01", 0], ["2026-04-02", 0], ["2026-04-03", 0], ["2026-04-04", 0], ["2026-04-05", 0], ["2026-04-06", 0], ["2026-04-07", 0]];
+        var svg = document.getElementById('eeg-personal');
+        var W = svg.parentElement.offsetWidth - 20 || 280;
+        var H = 52;
+        var base = H - 8;
+        var maxC = Math.max(1, Math.max.apply(null, data.map(function(d){return d[1];})));
+        var n = data.length;
+        var step = W / n;
+        var path = '';
+        var prev = base;
+        for (var i = 0; i < n; i++) {
+          var x = i * step;
+          var c = data[i][1];
+          if (c === 0) {
+            path += (i===0?'M':'L') + x.toFixed(1) + ',' + base + ' ';
+          } else {
+            var h = 6 + (c / maxC) * (base - 10);
+            path += 'L' + x.toFixed(1) + ',' + base + ' ';
+            path += 'L' + (x + step*0.3).toFixed(1) + ',' + base + ' ';
+            path += 'L' + (x + step*0.45).toFixed(1) + ',' + (base - h).toFixed(1) + ' ';
+            path += 'L' + (x + step*0.6).toFixed(1) + ',' + base + ' ';
+          }
+        }
+        path += 'L' + W.toFixed(1) + ',' + base;
+        var total = data.reduce(function(a,d){return a+d[1];},0);
+        svg.innerHTML = '<path d="' + path + '" fill="none" stroke="#34c759" stroke-width="1.5" stroke-linejoin="round"/>'
+          + '<line x1="0" y1="' + base + '" x2="' + W + '" y2="' + base + '" stroke="#1e1e2a" stroke-width="1"/>';
+        svg.setAttribute('viewBox','0 0 ' + W + ' ' + H);
+        document.getElementById('eeg-personal-label').textContent = total + ' записей за 30 дней';
+      })();
+      </script>
     </div>
 
     <!-- Набор исследователя -->

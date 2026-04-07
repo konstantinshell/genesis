@@ -447,14 +447,50 @@ function countMonthJoins(net) {
 Promise.all([
   fetch('analysis.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
   fetch('../../partners/tasks.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
-  fetch('../../network/data.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
+  fetch('../../network/data.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+  fetch('../../network/reflections_timeline.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
 ]).then(function(res) {
-  render(res[0], res[1], res[2]);
+  render(res[0], res[1], res[2], res[3]);
 }).catch(function() {
   document.getElementById('dashboard').innerHTML = '<div class="c" style="text-align:center;padding:30px;color:#555;">Ошибка загрузки</div>';
 });
 
-function render(a, pt, net) {
+function renderEEG(containerId, data) {
+  var container = document.getElementById(containerId);
+  if (!container || !data || !data.length) return;
+  var W = container.offsetWidth || 300;
+  var H = 56;
+  var base = H - 8;
+  var maxC = Math.max(1, Math.max.apply(null, data.map(function(d){ return d[1]; })));
+  var n = data.length;
+  var step = W / n;
+  var path = 'M0,' + base;
+  for (var i = 0; i < n; i++) {
+    var x = i * step;
+    var c = data[i][1];
+    if (c === 0) {
+      path += ' L' + x.toFixed(1) + ',' + base;
+    } else {
+      var h = 6 + (c / maxC) * (base - 12);
+      path += ' L' + x.toFixed(1) + ',' + base;
+      path += ' L' + (x + step*0.3).toFixed(1) + ',' + base;
+      path += ' L' + (x + step*0.45).toFixed(1) + ',' + (base - h).toFixed(1);
+      path += ' L' + (x + step*0.6).toFixed(1) + ',' + base;
+    }
+  }
+  path += ' L' + W + ',' + base;
+  var total = data.reduce(function(a, d){ return a + d[1]; }, 0);
+  var lastDate = data[data.length - 1] ? data[data.length - 1][0] : '';
+  container.innerHTML =
+    '<div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Активность рефлексий · 30 дней</div>' +
+    '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" style="display:block;overflow:visible;">' +
+      '<line x1="0" y1="' + base + '" x2="' + W + '" y2="' + base + '" stroke="#1e1e2a" stroke-width="1"/>' +
+      '<path d="' + path + '" fill="none" stroke="#34c759" stroke-width="1.5" stroke-linejoin="round"/>' +
+    '</svg>' +
+    '<div style="font-size:10px;color:#555;text-align:right;margin-top:2px;">' + total + ' записей · обновлено ' + lastDate + '</div>';
+}
+
+function render(a, pt, net, rtl) {
   var members = a && a.members ? a.members : {};
   var tasks = pt && pt.tasks ? pt.tasks : [];
   var ns = net ? countNet(net) : { real:0, paid:0, totalPaid:0 };
@@ -521,6 +557,9 @@ function render(a, pt, net) {
   h += '<div class="stat-box"><div class="sv">' + (net ? net.total_real || ns.real : 0) + '</div><div class="sl">В боте</div></div>';
   h += '</div>';
   h += '</div>';
+
+  // ═══ EEG РЕФЛЕКСИЙ ═══
+  h += '<div class="c" id="eeg-system-wrap" style="padding:14px 14px 10px;"></div>';
 
   // ═══ ГАДЖЕТЫ СЕТИ ═══
   h += '<div class="c">';
@@ -976,6 +1015,11 @@ function render(a, pt, net) {
   h += '</div>'; // close tab-tasks
   h += '<div class="updated">Обновлено: ' + (a && a.updated ? a.updated : '—') + '</div>';
   document.getElementById('dashboard').innerHTML = h;
+
+  // Рендерим EEG после вставки в DOM
+  if (rtl && rtl.timeline) {
+    renderEEG('eeg-system-wrap', rtl.timeline);
+  }
 }
 
 function renderTask(t) {
