@@ -393,13 +393,21 @@ function openBot(start) {
   window.open(url, '_blank'); return false;
 }
 
+function localDateKey(d) {
+  /* Возвращает YYYY-MM-DD по локальному времени (не UTC) */
+  var y = d.getFullYear();
+  var m = String(d.getMonth() + 1).padStart(2, '0');
+  var dd = String(d.getDate()).padStart(2, '0');
+  return y + '-' + m + '-' + dd;
+}
+
 function build7dayChart(net) {
   var days = [];
   var now = new Date();
   var monthNames = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
   for (var i = 6; i >= 0; i--) {
     var d = new Date(now.getTime() - i * 24*60*60*1000);
-    var key = d.toISOString().slice(0, 10);
+    var key = localDateKey(d);  /* локальная дата, не UTC */
     days.push({ key: key, label: d.getDate() + ' ' + monthNames[d.getMonth()], count: 0, isToday: i === 0 });
   }
   if (!net) return days;
@@ -429,7 +437,7 @@ function countMonthJoins(net) {
   if (!net) return 0;
   var now = new Date();
   var ago30 = new Date(now.getTime() - 30 * 24*60*60*1000);
-  var ago30str = ago30.toISOString().slice(0,10);
+  var ago30str = localDateKey(ago30);
   var count = 0;
   if (net.pre_participants) {
     net.pre_participants.forEach(function(p) {
@@ -520,8 +528,9 @@ function render(a, pt, net, rtl) {
   var today24 = chart7.length ? chart7[chart7.length - 1].count : 0;
   h += '<div class="chart-7d">';
   chart7.forEach(function(d) {
-    var barH = d.count > 0 ? Math.max(Math.round((d.count / maxV) * 90), 6) : 3;
-    var barClr = d.isToday ? '#7c6fff' : (d.count > 0 ? '#5a5a9f' : '#2a2a35');
+    var barH = d.count > 0 ? Math.max(Math.round((d.count / maxV) * 90), 8) : 3;
+    /* сегодня: цвет только если есть данные; без данных — такой же серый */
+    var barClr = (d.isToday && d.count > 0) ? '#7c6fff' : (d.count > 0 ? '#5a5a9f' : '#2a2a35');
     h += '<div class="chart-col">';
     h += '<div style="font-family:Courier Prime,monospace;font-size:12px;color:' + (d.count > 0 ? '#e0e0e8' : '#333') + ';margin-bottom:4px;font-weight:700;">' + d.count + '</div>';
     h += '<div class="bar" style="height:' + barH + 'px;background:' + barClr + ';border-radius:3px;"></div>';
