@@ -1,6 +1,6 @@
 # Участники РИТМЫ NOTHING
 
-> Обновлено: 07.04.2026 12:41
+> Обновлено: 07.04.2026 13:15
 
 ## Основатели
 
@@ -9,7 +9,7 @@
 | Константин Шель | [@konstantinshell](https://t.me/konstantinshell) | [профиль](https://konstantinshell.github.io/genesis/profiles/41537154/) |
 | Натали Морозова | [@morozovanatalua](https://t.me/morozovanatalua) | [профиль](https://konstantinshell.github.io/genesis/profiles/8211648754/) |
 
-## Участники (21)
+## Участники (22)
 
 | # | Имя | Telegram | NDA | Админка | Условия бенда | Фитнес-трекер | Амбассадор | LQ Lab | Профиль |
 |---|-----|----------|-----|---------|---------------|---------------|------------|--------|---------|
@@ -32,8 +32,9 @@
 | 17 | Карина Никитина | [@KYK80](https://t.me/KYK80) | ✅ Да | ✅ Пропущен | — | ⌚ Garmin | ❌ Нет, я как участник | — | [профиль](https://konstantinshell.github.io/genesis/profiles/1983391922/) |
 | 18 | Константин НОВАТОР | — | ✅ Да | ✅ Пропущен | — | — | — | — | [профиль](https://konstantinshell.github.io/genesis/profiles/8678544199/) |
 | 19 | Михаил Антаков | [@Antakov_Mixail](https://t.me/Antakov_Mixail) | ✅ Да | ✅ Пропущен | — | ⌚ Whoop 5.0 | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/827208307/) |
-| 20 | Татьяна | [@Tatyana_699612](https://t.me/Tatyana_699612) | ✅ Да | ✅ Пропущен | — | ⌚ Garmin | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/407124980/) |
-| 21 | Яна Шель | [@yankitstor](https://t.me/yankitstor) | ✅ Да | ✅ Пропущен | — | ⌚ Гармин | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/652364423/) |
+| 20 | Наталия Петрова | [@Top_Natali](https://t.me/Top_Natali) | ✅ Да | ✅ Пропущен | — | — | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/248175087/) |
+| 21 | Татьяна | [@Tatyana_699612](https://t.me/Tatyana_699612) | ✅ Да | ✅ Пропущен | — | ⌚ Garmin | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/407124980/) |
+| 22 | Яна Шель | [@yankitstor](https://t.me/yankitstor) | ✅ Да | ✅ Пропущен | — | ⌚ Гармин | ✅ Да, хочу! | — | [профиль](https://konstantinshell.github.io/genesis/profiles/652364423/) |
 
 ## Не пропущены в админке
 
