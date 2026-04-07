@@ -164,15 +164,18 @@ function render(net) {
   h += '<div class="stat-box"><div class="sv">' + totalReal + '</div><div class="sl">База сети</div></div>';
   h += '</div>';
 
+  function statRow(icon, label, val, total) {
+    var pct = total > 0 ? val/total : 0;
+    var clr = val === 0 ? '#555' : pct >= 0.5 ? '#34c759' : '#ff9f0a';
+    return '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">' + icon + ' ' + label + '</span><span style="font-size:13px;font-weight:700;"><span style="color:' + clr + ';">' + val + '</span><span style="color:#555;">/' + total + '</span></span></div>';
+  }
   h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;">';
-  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">🧠 С бендом</span><span style="font-size:13px;font-weight:700;color:#34c759;">' + withBand + '</span></div>';
-  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">Без бенда</span><span style="font-size:13px;font-weight:700;color:#ff453a;">' + noBand + '</span></div>';
-  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">⌚ С трекером</span><span style="font-size:13px;font-weight:700;color:#34c759;">' + withTracker + '</span></div>';
-  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">Без трекера</span><span style="font-size:13px;font-weight:700;color:#ff453a;">' + noTracker + '</span></div>';
-  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">🔬 LQ ВСР</span><span style="font-size:13px;font-weight:700;color:#e040a0;">' + withLQ + '</span></div>';
-  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">🧬 ДНК-тест</span><span style="font-size:13px;font-weight:700;color:#daa040;">0</span></div>';
-  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">🏥 Клинический чекап</span><span style="font-size:13px;font-weight:700;color:#daa040;">0</span></div>';
-  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">📊 Управление MNPI</span><span style="font-size:13px;font-weight:700;color:#7c6fff;">0</span></div>';
+  h += statRow('🧠', 'Neiry бенд', withBand, totalReal);
+  h += statRow('⌚', 'Фитнес-трекер', withTracker, totalReal);
+  h += statRow('🔬', 'LQ ВСР', withLQ, totalReal);
+  h += statRow('🧬', 'ДНК-тест', 0, totalReal);
+  h += statRow('🏥', 'Клин. чекап', 0, totalReal);
+  h += statRow('📊', 'MNPI', 0, totalReal);
   h += '</div>';
 
   h += '</div>';
