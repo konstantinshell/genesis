@@ -1133,7 +1133,30 @@ function loadTasks() {
     wrap.style.marginBottom = '10px';
 
     var h = '';
-    h += '<h2>🧬 Сессии MNPI</h2>';
+    // Popup overlay for instructions
+    if (!document.getElementById('mnpi-session-popup')) {
+      var overlay = document.createElement('div');
+      overlay.id = 'mnpi-session-popup';
+      overlay.style.cssText = 'display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px;';
+      overlay.innerHTML = '<div style="background:#1a1a22;border-radius:16px;padding:20px;max-width:400px;width:100%;border:1px solid rgba(124,111,255,0.2);position:relative;">'
+        + '<div style="font-size:14px;font-weight:700;color:#e0e0e8;margin-bottom:14px;">📌 Подготовка к сессии</div>'
+        + '<div style="font-size:13px;color:#aaa;line-height:1.8;">'
+        + '<div style="margin-bottom:8px;">1. Подготовьте диктофон на компьютере или телефоне</div>'
+        + '<div style="margin-bottom:8px;">2. Включите на капсуле NEIRY запись цифрой <strong style="color:#e0e0e8;">2</strong> в момент включения аудио-сессии</div>'
+        + '<div style="margin-bottom:8px;">3. Выполняйте задания сессии, держите диктофон постоянно включённым для записи всех ваших ответов</div>'
+        + '<div style="margin-bottom:8px;">4. После прохождения сессии аудио запись транскрибируйте в текст</div>'
+        + '<div>5. Загрузите в бота: таблицу CSV из приложения NEIRY и транскрибацию текста из аудио файла</div>'
+        + '</div>'
+        + '<button onclick="document.getElementById('mnpi-session-popup').style.display='none'" style="margin-top:16px;width:100%;padding:12px;background:#7c6fff;border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;">Понятно</button>'
+        + '</div>';
+      overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.style.display='none'; });
+      document.body.appendChild(overlay);
+    }
+
+    h += '<h2 style="display:flex;align-items:center;gap:8px;">🧬 Сессии MNPI'
+      + '<span onclick="document.getElementById('mnpi-session-popup').style.display='flex'" '
+      + 'style="width:20px;height:20px;border-radius:50%;background:#2a2a35;color:#888;font-size:11px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;">?</span>'
+      + '</h2>';
 
     // Progress bar
     var pct = Math.round((done/6)*100);
