@@ -151,12 +151,6 @@ body {
       <span class="ico">📝</span>РЕФЛЕКСИЯ
     </a>
   </div>
-  <div style="margin-bottom:10px;">
-    <a href="../ambassadors/" class="action-btn" style="border-color:rgba(52,199,89,0.3);color:#34c759;width:100%;justify-content:center;">
-      <span class="ico">🤝</span>АМБАССАДОРЫ
-    </a>
-  </div>
-
   <div id="dashboard"><div style="text-align:center;padding:60px 0;color:#555;">Загрузка...</div></div>
 </div>
 
@@ -681,34 +675,115 @@ function render(a, pt, net) {
   // ── TAB: ПРОДАЖИ ──
   h += '<div id="tab-sales" style="display:none;">';
 
-  // Collect promo codes and band stats from network
+  // Собираем данные о продажах из network/data.json
   var promos = [];
-  var bandCount = 0, totalPaid = 0;
+  var salesParticipants = []; // все реальные участники с деталями
   function collectSalesData(node) {
+    if (node.real) {
+      var bandVal = node.band || false;
+      var isPaid = bandVal === 'paid';
+      var isPromo = bandVal === 'promo' || bandVal === 'promo_member';
+      var hasTracker = !!(node.tracker || node.tracker_model);
+      var ambRaw = node.ambassador || false;
+      var isAmb = ambRaw && ambRaw !== false && ambRaw !== '❌ Нет, я как участник';
+      salesParticipants.push({
+        name: node.name || '',
+        tg: node.tg || '',
+        profile: node.profile || '',
+        paid: isPaid,
+        promo: isPromo,
+        noBand: !isPaid && !isPromo,
+        hasTracker: hasTracker,
+        isAmb: isAmb
+      });
+    }
     if (node.promo_code && node.real) {
       promos.push({ name: node.name, code: node.promo_code, commission: node.ambassador_commission, form: node.cooperation_form, sales_done: node.sales_done || 0, sales_required: node.sales_required || 5, profile: node.profile || '', tg: node.tg || '' });
     }
-    if (node.band_type && node.real) { bandCount++; totalPaid += node.band_paid || 0; }
     if (node.children) node.children.forEach(function(ch) { collectSalesData(ch); });
   }
   if (net) {
     if (net.children) net.children.forEach(function(ch) { collectSalesData(ch); });
-    var prePart = net.pre_participants || [];
-    prePart.forEach(function(p) {
-      if (p.promo_code) promos.push({ name: p.name, code: p.promo_code, commission: p.ambassador_commission, form: p.cooperation_form, sales_done: 0, sales_required: 5, profile: '', tg: p.tg || '' });
-      if (p.band_type) { bandCount++; totalPaid += p.band_paid || 0; }
-    });
   }
 
+  var totalPart = salesParticipants.length;
+  var paidCount = salesParticipants.filter(function(p){ return p.paid; }).length;
+  var promoCount = salesParticipants.filter(function(p){ return p.promo; }).length;
+  var noBandCount = salesParticipants.filter(function(p){ return p.noBand; }).length;
+  var hotAudience = salesParticipants.filter(function(p){ return p.noBand && p.hasTracker; });
+  var ambNoBand = salesParticipants.filter(function(p){ return p.noBand && p.isAmb; });
+  var paidRevenue = paidCount * 42000;
+  var potentialRevenue = noBandCount * 42000;
+
+  // ── Воронка ──
   h += '<div class="c">';
-  h += '<div class="s-label">ПРОДАЖИ И КОМИССИИ</div>';
-  h += '<div class="stats-grid">';
-  h += '<div class="stat-box"><div class="sv">' + bandCount + '</div><div class="sl">Бендов</div></div>';
-  h += '<div class="stat-box"><div class="sv" style="color:#daa040;">' + (totalPaid > 0 ? Math.round(totalPaid/1000) + 'к' : '0') + '</div><div class="sl">Оплачено ₽</div></div>';
-  h += '<div class="stat-box"><div class="sv">' + promos.length + '</div><div class="sl">Промокодов</div></div>';
+  h += '<div class="s-label">ВОРОНКА ПРОДАЖ</div>';
+  var funnelItems = [
+    { label: 'Всего участников', val: totalPart, clr: '#7c6fff', pct: 100 },
+    { label: 'Промо (спец. условия)', val: promoCount, clr: '#888', pct: totalPart ? Math.round(promoCount/totalPart*100) : 0 },
+    { label: 'Оплатили бенд', val: paidCount, clr: '#34c759', pct: totalPart ? Math.round(paidCount/totalPart*100) : 0 },
+    { label: 'Без бенда', val: noBandCount, clr: '#ff453a', pct: totalPart ? Math.round(noBandCount/totalPart*100) : 0 }
+  ];
+  funnelItems.forEach(function(f) {
+    h += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">';
+    h += '<div style="width:36px;font-family:Courier Prime,monospace;font-size:16px;font-weight:700;color:' + f.clr + ';text-align:right;">' + f.val + '</div>';
+    h += '<div style="flex:1;">';
+    h += '<div style="font-size:11px;color:#aaa;margin-bottom:3px;">' + f.label + '</div>';
+    h += '<div style="background:#2a2a35;border-radius:2px;height:5px;">';
+    h += '<div style="height:5px;border-radius:2px;background:' + f.clr + ';width:' + f.pct + '%;"></div>';
+    h += '</div></div>';
+    h += '<div style="font-size:11px;color:#555;width:28px;text-align:right;">' + f.pct + '%</div>';
+    h += '</div>';
+  });
+  h += '<div style="display:flex;gap:8px;margin-top:4px;padding-top:10px;border-top:1px solid #1e1e2a;">';
+  h += '<div style="flex:1;background:#12121a;border-radius:10px;padding:12px;text-align:center;">';
+  h += '<div style="font-family:Courier Prime,monospace;font-size:18px;font-weight:700;color:#34c759;">' + Math.round(paidRevenue/1000) + 'к ₽</div>';
+  h += '<div style="font-size:9px;color:#666;margin-top:2px;">Оплачено</div></div>';
+  h += '<div style="flex:1;background:#12121a;border-radius:10px;padding:12px;text-align:center;">';
+  h += '<div style="font-family:Courier Prime,monospace;font-size:18px;font-weight:700;color:#ff9f0a;">' + Math.round(potentialRevenue/1000) + 'к ₽</div>';
+  h += '<div style="font-size:9px;color:#666;margin-top:2px;">Потенциал</div></div>';
   h += '</div>';
   h += '</div>';
 
+  // ── Горячая аудитория ──
+  h += '<div class="c">';
+  h += '<div class="s-label">🔥 ГОРЯЧАЯ АУДИТОРИЯ · ' + hotAudience.length + ' чел.</div>';
+  h += '<div style="font-size:11px;color:#888;margin-bottom:10px;">Без бенда, но с трекером — уже вложились в гаджет</div>';
+  hotAudience.forEach(function(p) {
+    var firstName = p.name.split(' ')[0];
+    h += '<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #1e1e2a;">';
+    h += '<div style="width:28px;height:28px;border-radius:50%;background:#2a1a18;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#ff9f0a;">' + (firstName.charAt(0)||'?') + '</div>';
+    h += '<div style="flex:1;">';
+    if (p.profile) h += '<a href="' + p.profile + '" style="font-size:12px;color:#e0e0e8;text-decoration:none;">' + firstName + '</a>';
+    else h += '<span style="font-size:12px;color:#e0e0e8;">' + firstName + '</span>';
+    if (p.tg) h += ' <a href="https://t.me/' + p.tg + '" style="font-size:10px;color:#0af;text-decoration:none;">@' + p.tg + '</a>';
+    h += '</div>';
+    h += '<div style="font-size:10px;padding:3px 8px;border-radius:4px;background:rgba(255,149,10,0.12);color:#ff9f0a;">⌚ трекер</div>';
+    h += '</div>';
+  });
+  if (!hotAudience.length) h += '<div style="text-align:center;color:#555;font-size:12px;padding:12px;">Все с бендом 🎉</div>';
+  h += '</div>';
+
+  // ── Амбассадоры без бенда ──
+  h += '<div class="c">';
+  h += '<div class="s-label">⚠️ АМБАССАДОРЫ БЕЗ БЕНДА · ' + ambNoBand.length + ' чел.</div>';
+  h += '<div style="font-size:11px;color:#888;margin-bottom:10px;">Продают продукт, сами не купили</div>';
+  ambNoBand.forEach(function(p) {
+    var firstName = p.name.split(' ')[0];
+    h += '<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #1e1e2a;">';
+    h += '<div style="width:28px;height:28px;border-radius:50%;background:#2a1a1a;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#ff453a;">' + (firstName.charAt(0)||'?') + '</div>';
+    h += '<div style="flex:1;">';
+    if (p.profile) h += '<a href="' + p.profile + '" style="font-size:12px;color:#e0e0e8;text-decoration:none;">' + firstName + '</a>';
+    else h += '<span style="font-size:12px;color:#e0e0e8;">' + firstName + '</span>';
+    if (p.tg) h += ' <a href="https://t.me/' + p.tg + '" style="font-size:10px;color:#0af;text-decoration:none;">@' + p.tg + '</a>';
+    h += '</div>';
+    h += '<div style="font-size:10px;padding:3px 8px;border-radius:4px;background:rgba(255,69,58,0.12);color:#ff453a;">нет бенда</div>';
+    h += '</div>';
+  });
+  if (!ambNoBand.length) h += '<div style="text-align:center;color:#555;font-size:12px;padding:12px;">Все амбассадоры с бендом 🎉</div>';
+  h += '</div>';
+
+  // ── Реестр промокодов ──
   h += '<div class="c">';
   h += '<div class="s-label">РЕЕСТР ПРОМОКОДОВ</div>';
   promos.forEach(function(p) {
@@ -716,13 +791,19 @@ function render(a, pt, net) {
     h += '<div>';
     if (p.profile) h += '<a href="' + p.profile + '" style="font-size:12px;color:#7c6fff;text-decoration:none;font-weight:600;">' + p.name + '</a>';
     else h += '<div style="font-size:12px;color:#e0e0e8;">' + p.name + '</div>';
-    h += '<div style="font-size:9px;color:#888;">' + (p.commission || '—') + ' · ' + (p.form || '—') + ' · продажи: ' + p.sales_done + '/' + p.sales_required;
+    h += '<div style="font-size:9px;color:#888;">' + (p.commission || '—') + ' · продажи: ' + p.sales_done + '/' + p.sales_required;
     if (p.tg) h += ' · <a href="https://t.me/' + p.tg + '" style="color:#0af;text-decoration:none;">@' + p.tg + '</a>';
     h += '</div></div>';
     h += '<div style="font-family:Courier Prime,monospace;font-size:14px;font-weight:700;color:#34c759;">' + p.code + '</div>';
     h += '</div>';
   });
   if (!promos.length) h += '<div style="text-align:center;color:#555;font-size:12px;padding:16px;">Нет промокодов</div>';
+  h += '</div>';
+
+  // ── Ссылка на дашборд амбассадоров ──
+  h += '<div style="padding:8px 0 4px;">';
+  h += '<a href="../ambassadors/" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:#1a1a22;border:1px solid rgba(52,199,89,0.2);border-radius:12px;text-decoration:none;font-size:12px;font-weight:600;color:#34c759;">';
+  h += '<span style="font-size:16px;">🤝</span>Дашборд амбассадоров</a>';
   h += '</div>';
 
   h += '</div>'; // close tab-sales
