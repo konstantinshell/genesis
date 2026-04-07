@@ -261,8 +261,9 @@
         <a href="https://t.me/ritmnothingbot?start=morning" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌅 Утренняя рефлексия · 0</a>
         <a href="https://t.me/ritmnothingbot?start=evening" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌙 Вечерняя рефлексия · 0</a>
       </div>
-      <div style="background:#12121a;border-radius:8px;padding:10px;text-align:center;">
-        <span style="font-size:11px;color:#555;">EEG · HRV · Анализы — данные появятся по мере прохождения чекапа</span>
+      <div id="personal-advice" style="background:rgba(124,111,255,0.08);border-left:3px solid #7c6fff;border-radius:0 10px 10px 0;padding:12px;">
+        <div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:4px;">AI-СОВЕТ</div>
+        <div style="font-size:12px;color:#ccc;line-height:1.7;">Загрузка...</div>
       </div>
     </div>
 
@@ -1199,6 +1200,20 @@ function loadTasks() {
   var root = document.getElementById('tasks-root');
   if (root) observer.observe(root, {childList:true, subtree:true});
 })();
+</script>
+<script id="personal-advice-loader">
+setTimeout(function(){
+  fetch('./advice.md?t='+Date.now()).then(function(r){return r.ok?r.text():''}).then(function(txt){
+    var el = document.getElementById('personal-advice');
+    if (!el) return;
+    if (txt) {
+      el.innerHTML = '<div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:4px;">AI-СОВЕТ</div><div style="font-size:12px;color:#ccc;line-height:1.7;">' + txt.replace(/
+/g,'<br>') + '</div>';
+    } else {
+      el.innerHTML = '<div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:4px;">AI-СОВЕТ</div><div style="font-size:12px;color:#555;line-height:1.7;">Совет появится после первых данных — рефлексий, сессий или анкеты.</div>';
+    }
+  }).catch(function(){});
+}, 1500);
 </script>
 </body>
 </html>
