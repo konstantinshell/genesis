@@ -70,7 +70,6 @@ body {
 
 <div class="tab-bar">
   <button class="tab-btn active" onclick="switchTab('main',this)"><span class="tab-ico">🏠</span>Главная</button>
-  <button class="tab-btn" onclick="switchTab('network',this)"><span class="tab-ico">🌐</span>Сеть</button>
   <button class="tab-btn" onclick="switchTab('stats',this)"><span class="tab-ico">📊</span>Статистика</button>
 </div>
 
@@ -97,7 +96,7 @@ if (isTg) {
 }
 
 function switchTab(tab, btn) {
-  ['main','network','stats'].forEach(function(t) {
+  ['main','stats'].forEach(function(t) {
     var el = document.getElementById('tab-' + t);
     if (el) el.style.display = t === tab ? '' : 'none';
   });
