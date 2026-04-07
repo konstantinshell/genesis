@@ -2,6 +2,7 @@
   "name": "РИТМЫ NOTHING",
   "role": "Организация",
   "real": true,
+  "timezone": "Asia/Ho_Chi_Minh",
   "updated": "07.04.2026 08:00",
   "total_real": 19,
   "children": [
@@ -11,6 +12,7 @@
       "tg": "WalWerty",
       "profile": "https://konstantinshell.github.io/genesis/profiles/5056234108/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Андрей (свободно)",
@@ -43,6 +45,7 @@
       "tg": "KYK80",
       "profile": "https://konstantinshell.github.io/genesis/profiles/1983391922/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Олеся (свободно)",
@@ -77,6 +80,7 @@
       "tg": "Vi_vittt",
       "profile": "https://konstantinshell.github.io/genesis/profiles/1067307749/",
       "nda": true,
+      "timezone": "Asia/Makassar",
       "children": [
         {
           "name": "Кирилл (свободно)",
@@ -111,6 +115,7 @@
       "tg": "IrikG",
       "profile": "https://konstantinshell.github.io/genesis/profiles/57740229/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Андрей (свободно)",
@@ -143,6 +148,7 @@
       "tg": "Antakov_Mixail",
       "profile": "https://konstantinshell.github.io/genesis/profiles/827208307/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Кирилл (свободно)",
@@ -177,6 +183,7 @@
       "tg": "space_nika",
       "profile": "https://konstantinshell.github.io/genesis/profiles/446777127/",
       "nda": true,
+      "timezone": "Asia/Yekaterinburg",
       "children": [
         {
           "name": "Алексей (свободно)",
@@ -211,6 +218,7 @@
       "tg": "Tatyana_699612",
       "profile": "https://konstantinshell.github.io/genesis/profiles/407124980/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Дмитрий (свободно)",
@@ -245,6 +253,7 @@
       "tg": "Ilya_novator",
       "profile": "https://konstantinshell.github.io/genesis/profiles/319756543/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Татьяна (свободно)",
@@ -279,6 +288,7 @@
       "tg": "levina_victory",
       "profile": "https://konstantinshell.github.io/genesis/profiles/424514495/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Алексей (свободно)",
@@ -314,6 +324,7 @@
       "tg": "fetisov_vyacheslav",
       "profile": "https://konstantinshell.github.io/genesis/profiles/261261504/",
       "nda": true,
+      "timezone": "Asia/Colombo",
       "children": [
         {
           "name": "Дмитрий (свободно)",
@@ -346,6 +357,7 @@
       "tg": "yankitstor",
       "profile": "https://konstantinshell.github.io/genesis/profiles/652364423/",
       "nda": true,
+      "timezone": "Asia/Ho_Chi_Minh",
       "children": [
         {
           "name": "Олеся (свободно)",
@@ -380,6 +392,7 @@
       "tg": "GoodWinZlo",
       "profile": "https://konstantinshell.github.io/genesis/profiles/221246992/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Андрей Демчук",
@@ -387,6 +400,7 @@
           "tg": "sky_world204",
           "profile": "https://konstantinshell.github.io/genesis/profiles/1610267716/",
           "nda": true,
+          "timezone": "Europe/Moscow",
           "children": [
             {
               "name": "Андрей (свободно)",
@@ -424,6 +438,7 @@
       "tg": "vadimolegich",
       "profile": "https://konstantinshell.github.io/genesis/profiles/1139648370/",
       "nda": true,
+      "timezone": "Asia/Yekaterinburg",
       "children": [
         {
           "name": "Ирина (свободно)",
@@ -458,6 +473,7 @@
       "tg": "AlSmag",
       "profile": "https://konstantinshell.github.io/genesis/profiles/429205054/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Алексей (свободно)",
@@ -492,6 +508,7 @@
       "tg": "Igor_Bright",
       "profile": "https://konstantinshell.github.io/genesis/profiles/334165104/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Кирилл (свободно)",
@@ -525,6 +542,7 @@
       "tg": "Katyabra",
       "profile": "https://konstantinshell.github.io/genesis/profiles/39937232/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Дмитрий (свободно)",
@@ -559,6 +577,7 @@
       "tg": "Egor_iTao",
       "profile": "https://konstantinshell.github.io/genesis/profiles/147991795/",
       "nda": true,
+      "timezone": "Europe/Moscow",
       "children": [
         {
           "name": "Кирилл (свободно)",
@@ -592,6 +611,7 @@
       "tg": "",
       "profile": "https://konstantinshell.github.io/genesis/profiles/8678544199/",
       "nda": true,
+      "timezone": "Asia/Ho_Chi_Minh",
       "children": [
         {
           "name": "Мария (свободно)",
@@ -656,6 +676,7 @@
       "name": "Лиана Саунд",
       "tg": "Liana_Sound",
       "registered": "2026-04-04",
+      "timezone": "Europe/Moscow",
       "ref": "Егор Андреев",
       "ref_id": 147991795
     },
@@ -663,6 +684,7 @@
       "name": "Станислав Орехов",
       "tg": "StasOrekhov",
       "registered": "2026-04-03",
+      "timezone": "Europe/Moscow",
       "ref": "org",
       "status": "banned"
     },
@@ -670,6 +692,7 @@
       "name": "Надежда Компас",
       "tg": "Woman_Kompas",
       "registered": "2026-04-06",
+      "timezone": "Europe/Moscow",
       "ref": "org"
     }
   ]
