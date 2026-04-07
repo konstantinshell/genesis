@@ -1052,5 +1052,107 @@ function downloadTasks() {
   });
 }
 </script>
+
+<script>
+/* ── Animated Ø-logo → EEG ── */
+window.addEventListener('load', function() {
+  var cvs = document.getElementById('logo-canvas');
+  if (!cvs) return;
+  var ctx = cvs.getContext('2d');
+
+  /* Canvas size = container width */
+  var W = cvs.parentElement.offsetWidth || 260;
+  var H = 72;
+  cvs.width = W; cvs.height = H;
+
+  /* Logo geometry — circle left-center, EEG tail runs to right edge */
+  var cx = Math.round(W * 0.30), cy = 36, r = 24;
+  var lw = 2.6, green = '#34c759';
+  var lx1 = 4,              ly1 = cy + r * 0.58;   /* left end of bottom horiz */
+  var lx2 = cx - r * 0.70, ly2 = ly1;               /* enter circle */
+  var lx3 = cx + r * 0.70, ly3 = cy - r * 0.58;    /* exit circle */
+  var lx4 = W - 4,          ly4 = ly3;               /* right end = EEG tail */
+
+  var seg1 = lx2 - lx1;
+  var seg2 = Math.sqrt(Math.pow(lx3-lx2,2) + Math.pow(ly3-ly2,2));
+  var seg3 = lx4 - lx3;
+  var circ  = 2 * Math.PI * r;
+  var total = circ + seg1 + seg2 + seg3;
+
+  var DRAW_MS = 1400, startTs = null, eegT = 0;
+
+  function stroke(fn) {
+    ctx.beginPath(); ctx.strokeStyle = green;
+    ctx.lineWidth = lw; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    fn(); ctx.stroke();
+  }
+
+  function drawProgress(p) {
+    ctx.clearRect(0, 0, W, H);
+    var d = p * total;
+
+    /* circle */
+    var cd = Math.min(d, circ);
+    stroke(function(){ ctx.arc(cx, cy, r, -Math.PI*0.75, -Math.PI*0.75 + cd/r); });
+    d -= circ; if (d <= 0) return;
+
+    /* left horiz */
+    stroke(function(){
+      ctx.moveTo(lx1, ly1);
+      ctx.lineTo(d <= seg1 ? lx1 + d : lx2, ly1);
+    });
+    if (d <= seg1) return; d -= seg1;
+
+    /* diagonal */
+    var dt = Math.min(d, seg2) / seg2;
+    stroke(function(){
+      ctx.moveTo(lx2, ly2);
+      ctx.lineTo(lx2 + dt*(lx3-lx2), ly2 + dt*(ly3-ly2));
+    });
+    if (d <= seg2) return; d -= seg2;
+
+    /* right straight tail */
+    stroke(function(){
+      ctx.moveTo(lx3, ly3);
+      ctx.lineTo(Math.min(lx3 + d, lx4), ly3);
+    });
+  }
+
+  function drawEEG() {
+    ctx.clearRect(0, 0, W, H);
+    /* static: circle */
+    stroke(function(){ ctx.arc(cx, cy, r, 0, 2*Math.PI); });
+    /* static: left horiz + diagonal */
+    stroke(function(){
+      ctx.moveTo(lx1, ly1); ctx.lineTo(lx2, ly2); ctx.lineTo(lx3, ly3);
+    });
+    /* animated EEG tail */
+    var period = 13, amp = 14;
+    stroke(function(){
+      ctx.moveTo(lx3, ly3);
+      for (var i = 0; i <= lx4 - lx3; i++) {
+        var ph = ((i + eegT) % period) / period;
+        var y = ly3;
+        if      (ph < 0.08) y = ly3 - amp * (ph / 0.08);
+        else if (ph < 0.16) y = ly3 - amp + amp * 2.5 * ((ph-0.08)/0.08);
+        else if (ph < 0.22) y = ly3 + amp * 1.5 * (1-(ph-0.16)/0.06);
+        else if (ph < 0.30) y = ly3 + amp * 0.4 * (1-(ph-0.22)/0.08);
+        else                y = ly3;
+        ctx.lineTo(lx3 + i, y);
+      }
+    });
+    eegT += 1.6;
+  }
+
+  function frame(ts) {
+    if (!startTs) startTs = ts;
+    var el = ts - startTs;
+    if (el < DRAW_MS) { drawProgress(el / DRAW_MS); }
+    else               { drawEEG(); }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+});
+</script>
 </body>
 </html>
