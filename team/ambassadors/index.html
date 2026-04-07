@@ -140,9 +140,16 @@ function render(net) {
   // Stats
   var totalReal = allReal.length;
   var totalNda = allReal.filter(function(p) { return p.nda; }).length;
-  var totalBands = allReal.filter(function(p) { return p.band || p.band_type; }).length;
+  var withBand = allReal.filter(function(p) { return p.band || p.band_type; }).length;
+  var noBand = totalReal - withBand;
+  var withTracker = allReal.filter(function(p) { return p.tracker; }).length;
+  var noTracker = totalReal - withTracker;
+  var withLQ = allReal.filter(function(p) { return p.lq_lab; }).length;
   var totalSales = 0;
   ambassadors.forEach(function(a) { totalSales += a.sales_done || 0; });
+  // Clinical data from analysis.json (if available)
+  var clinDna = 0, clinCheckup = 0;
+  // Will be loaded separately
 
   var h = '';
 
@@ -153,10 +160,20 @@ function render(net) {
   h += '<div class="c">';
   h += '<div class="s-label">ПОКАЗАТЕЛИ СЕТИ</div>';
   h += '<div class="stats-grid">';
-  h += '<div class="stat-box"><div class="sv">' + ambassadors.length + '</div><div class="sl">Амбассадоры</div></div>';
-  h += '<div class="stat-box"><div class="sv">' + totalReal + '</div><div class="sl">В сети</div></div>';
-  h += '<div class="stat-box"><div class="sv">' + totalBands + '</div><div class="sl">С бендами</div></div>';
+  h += '<div class="stat-box"><div class="sv" style="color:#f5a623;">' + ambassadors.length + '</div><div class="sl">Топ-лидеры 1й линии</div></div>';
+  h += '<div class="stat-box"><div class="sv">' + totalReal + '</div><div class="sl">База сети</div></div>';
   h += '</div>';
+
+  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;">';
+  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">🧠 С бендом</span><span style="font-size:13px;font-weight:700;color:#34c759;">' + withBand + '</span></div>';
+  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">Без бенда</span><span style="font-size:13px;font-weight:700;color:#ff453a;">' + noBand + '</span></div>';
+  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">⌚ С трекером</span><span style="font-size:13px;font-weight:700;color:#34c759;">' + withTracker + '</span></div>';
+  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">Без трекера</span><span style="font-size:13px;font-weight:700;color:#ff453a;">' + noTracker + '</span></div>';
+  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">🔬 LQ ВСР</span><span style="font-size:13px;font-weight:700;color:#e040a0;">' + withLQ + '</span></div>';
+  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#888;">🧬 ДНК-тест</span><span style="font-size:13px;font-weight:700;color:#daa040;">0</span></div>';
+  h += '<div style="background:#12121a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;grid-column:span 2;"><span style="font-size:11px;color:#888;">🏥 Клинический чекап</span><span style="font-size:13px;font-weight:700;color:#daa040;">0</span></div>';
+  h += '</div>';
+
   h += '</div>';
 
   // Ambassador cards
@@ -193,7 +210,7 @@ function render(net) {
   h += '<div class="stats-grid" style="margin-bottom:14px;">';
   h += '<div class="stat-box"><div class="sv">' + totalReal + '</div><div class="sl">Всего</div></div>';
   h += '<div class="stat-box"><div class="sv">' + totalNda + '</div><div class="sl">С NDA</div></div>';
-  h += '<div class="stat-box"><div class="sv">' + totalBands + '</div><div class="sl">С бендом</div></div>';
+  h += '<div class="stat-box"><div class="sv">' + withBand + '</div><div class="sl">С бендом</div></div>';
   h += '</div>';
 
   allReal.forEach(function(p) {
