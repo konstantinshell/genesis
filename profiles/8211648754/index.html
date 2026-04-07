@@ -177,7 +177,7 @@
 
   
   <div style="margin:12px 16px 0;display:flex;gap:8px;">
-    <a href="https://konstantinshell.github.io/genesis/team/core/"
+    <a href="https://konstantinshell.github.io/genesis/team/core/" onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openLink('https://konstantinshell.github.io/genesis/team/core/');return false;}return true;"
           style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
           border-radius:14px;text-decoration:none;border:1px solid rgba(124,111,255,0.25);
           -webkit-tap-highlight-color:transparent;">
@@ -261,9 +261,8 @@
         <a href="https://t.me/ritmnothingbot?start=morning" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌅 Утренняя рефлексия · 0</a>
         <a href="https://t.me/ritmnothingbot?start=evening" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌙 Вечерняя рефлексия · 0</a>
       </div>
-      <div id="personal-advice" style="background:rgba(124,111,255,0.08);border-left:3px solid #7c6fff;border-radius:0 10px 10px 0;padding:12px;">
-        <div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:4px;">AI-СОВЕТ</div>
-        <div style="font-size:12px;color:#ccc;line-height:1.7;">Загрузка...</div>
+      <div style="background:#12121a;border-radius:8px;padding:10px;text-align:center;">
+        <span style="font-size:11px;color:#555;">EEG · HRV · Анализы — данные появятся по мере прохождения чекапа</span>
       </div>
     </div>
 
@@ -934,10 +933,9 @@ var _plannerData = null;
 
 function renderLevel0Banner() {
   var h = '<div class="c" style="border:1px solid #2a2a35;background:linear-gradient(135deg,#12121a,#1a1a2e);text-align:center;padding:24px 18px;">';
-  h += '<div style="font-size:28px;margin-bottom:10px;">🔒</div>';
-  h += '<div style="font-family:Oswald,sans-serif;font-size:16px;font-weight:600;margin-bottom:10px;">Управление MNPI</div>';
-  h += '<p style="font-size:13px;color:#888;line-height:1.6;">Этот модуль откроется на этапе Управления MNPI.</p>';
-  h += '<div onclick="this.querySelector(\'span\').style.display=this.querySelector(\'span\').style.display===\'none\'?\'block\':\'none\'" style="margin-top:12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;"><div style="width:20px;height:20px;border-radius:50%;background:#2a2a35;color:#888;font-size:11px;display:flex;align-items:center;justify-content:center;">?</div><span style="display:none;font-size:12px;color:#aaa;">Пройдите чекап MNPI чтобы перейти к следующему этапу.</span></div>';
+  h += '<div style="font-size:28px;margin-bottom:10px;">📡</div>';
+  h += '<div style="font-family:Oswald,sans-serif;font-size:16px;font-weight:600;margin-bottom:10px;">Данные собираются</div>';
+  h += '<p style="font-size:13px;color:#888;line-height:1.6;">Веди рефлексию в боте — утро, вечер, поток мыслей. После прохождения чекапа MNPI здесь появятся задачи и планы.</p>';
   h += '</div>';
   return h;
 }
@@ -1016,152 +1014,5 @@ function loadTasks() {
     });
   </script>
 
-<script id="mnpi-collapse">
-(function(){
-  var h2s = document.querySelectorAll('h2');
-  var mnpiH2 = null;
-  for (var i=0;i<h2s.length;i++) { if (h2s[i].textContent.indexOf('Исследование MNPI')>-1) { mnpiH2=h2s[i]; break; } }
-  if (!mnpiH2) return;
-  var card = mnpiH2.parentElement;
-  var items = [];
-  var el = mnpiH2.nextElementSibling;
-  while (el) { items.push(el); el = el.nextElementSibling; }
-  if (items.length < 2) return;
-  // Hide all except first paragraph
-  for (var i=1;i<items.length;i++) items[i].style.display='none';
-
-  var topBtn = document.createElement('span');
-  topBtn.style.cssText = 'font-size:11px;color:#7c6fff;cursor:pointer;margin-left:8px;';
-  topBtn.textContent = '▼';
-  mnpiH2.appendChild(topBtn);
-
-  var botBtn = document.createElement('div');
-  botBtn.style.cssText = 'padding:12px 0;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;border-top:1px solid #2a2a35;margin-top:4px;';
-  botBtn.innerHTML = '<span style="font-size:12px;color:#7c6fff;">Показать шаги ▼</span>';
-  card.appendChild(botBtn);
-
-  var open = false;
-  function toggle(){
-    open = !open;
-    for (var i=1;i<items.length;i++) items[i].style.display = open ? '' : 'none';
-    topBtn.textContent = open ? '▲' : '▼';
-    botBtn.innerHTML = open ? '<span style="font-size:12px;color:#7c6fff;">Свернуть ▲</span>' : '<span style="font-size:12px;color:#7c6fff;">Показать шаги ▼</span>';
-    if (!open) mnpiH2.scrollIntoView({block:'start',behavior:'smooth'});
-  }
-  topBtn.onclick = toggle;
-  botBtn.onclick = toggle;
-})();
-</script>
-<script id="sessions-panel">
-(function(){
-  // Find user ID from URL
-  var parts = location.pathname.split('/');
-  var uid = null;
-  for (var i=0;i<parts.length;i++) { if (parts[i]==='profiles' && parts[i+1]) { uid=parts[i+1]; break; } }
-  if (!uid) return;
-
-  // Find Roadmap h2 to insert before it
-  var h2s = document.querySelectorAll('h2');
-  var roadmapH2 = null;
-  for (var i=0;i<h2s.length;i++) { if (h2s[i].textContent.indexOf('Роадмэп')>-1) { roadmapH2=h2s[i]; break; } }
-  if (!roadmapH2) return;
-  var roadmapCard = roadmapH2.closest('.c') || roadmapH2.parentElement;
-  var roadmapLink = roadmapCard.parentElement.tagName === 'A' ? roadmapCard.parentElement : roadmapCard;
-
-  fetch('./planner.json?t='+Date.now()).then(function(r){return r.ok?r.json():null}).then(function(pl){
-    if (!pl || !pl.checklist) return;
-    var cl = pl.checklist;
-
-    // Count completed sessions
-    var done = 0;
-    for (var i=1;i<=6;i++) { if (cl['session_'+i]) done++; }
-
-    var wrap = document.createElement('div');
-    wrap.className = 'c';
-    wrap.style.marginBottom = '10px';
-
-    var h = '';
-    h += '<h2>🧬 Сессии MNPI</h2>';
-
-    // Progress bar
-    var pct = Math.round((done/6)*100);
-    var pclr = done===0?'#555':done<3?'#ff9f0a':done<6?'#daa040':'#34c759';
-    h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">';
-    h += '<span style="font-size:12px;color:#888;">Выгружено:</span>';
-    h += '<span style="font-size:14px;font-weight:700;color:'+pclr+';">'+done+'/6 сессий</span>';
-    h += '</div>';
-    h += '<div style="background:#2a2a35;border-radius:3px;height:6px;margin-bottom:14px;">';
-    h += '<div style="height:6px;border-radius:3px;background:'+pclr+';width:'+pct+'%;transition:width 0.3s;"></div>';
-    h += '</div>';
-
-    // Session cards
-    for (var i=1;i<=6;i++) {
-      var isDone = cl['session_'+i];
-      var bg = isDone ? 'rgba(52,199,89,0.08)' : '#12121a';
-      var border = isDone ? '1px solid rgba(52,199,89,0.2)' : '1px solid #2a2a35';
-      var icon = isDone ? '✅' : '⬜';
-
-      h += '<div style="background:'+bg+';border:'+border+';border-radius:10px;padding:12px;margin-bottom:8px;">';
-      h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">';
-      h += '<div style="display:flex;align-items:center;gap:8px;">';
-      h += '<span style="font-size:16px;">'+icon+'</span>';
-      h += '<span style="font-size:13px;font-weight:600;color:#e0e0e8;">Сессия '+i+'</span>';
-      h += '</div>';
-      if (isDone) h += '<span style="font-size:10px;color:#34c759;">загружено</span>';
-      h += '</div>';
-
-      if (!isDone) {
-        h += '<div style="display:flex;gap:6px;">';
-        // Audio button
-        h += '<a href="https://disk.yandex.ru/d/XSw9BmEZQnSuhA" target="_blank" style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a1a2e;border:1px solid rgba(124,111,255,0.2);border-radius:8px;text-decoration:none;color:#7c6fff;font-size:11px;font-weight:500;">🎧 Аудио</a>';
-        // Upload CSV button
-        var botLink = "https://t.me/ritmnothingbot?start=upload_session_"+i+"_"+uid;
-        h += '<a href="'+botLink+'" ';
-        h += 'onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;" ';
-        h += 'style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a2a1a;border:1px solid rgba(52,199,89,0.2);border-radius:8px;text-decoration:none;color:#34c759;font-size:11px;font-weight:500;">📤 Загрузить CSV</a>';
-        h += '</div>';
-      }
-      h += '</div>';
-    }
-
-    // Recommendation
-    h += '<div style="font-size:11px;color:#555;text-align:center;margin-top:6px;font-style:italic;">Минимум 5 часов отдыха между сессиями</div>';
-
-    wrap.innerHTML = h;
-    roadmapLink.parentElement.insertBefore(wrap, roadmapLink);
-  }).catch(function(){});
-})();
-</script>
-<script id="hide-stale-banner">
-(function(){
-  // Hide 'Данные устарели' banner and '+ поток' button when level 0
-  var observer = new MutationObserver(function(){
-    var links = document.querySelectorAll('.stream-btn');
-    links.forEach(function(l){ l.style.display='none'; });
-    var els = document.querySelectorAll('#tab-tasks [style*="olive"], #tab-tasks [style*="#6b6b00"]');
-    els.forEach(function(e){ e.style.display='none'; });
-    // Also hide by text content
-    document.querySelectorAll('#tasks-root > .stale-banner').forEach(function(el){
-      el.style.display='none';
-    });
-  });
-  var root = document.getElementById('tasks-root');
-  if (root) observer.observe(root, {childList:true, subtree:true});
-})();
-</script>
-<script id="personal-advice-loader">
-setTimeout(function(){
-  fetch('./advice.md?t='+Date.now()).then(function(r){return r.ok?r.text():''}).then(function(txt){
-    var el = document.getElementById('personal-advice');
-    if (!el) return;
-    if (txt) {
-      el.innerHTML = '<div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:4px;">AI-СОВЕТ</div><div style="font-size:12px;color:#ccc;line-height:1.7;">' + txt.replace(/
-/g,'<br>') + '</div>';
-    } else {
-      el.innerHTML = '<div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:4px;">AI-СОВЕТ</div><div style="font-size:12px;color:#555;line-height:1.7;">Совет появится после первых данных — рефлексий, сессий или анкеты.</div>';
-    }
-  }).catch(function(){});
-}, 1500);
-</script>
 </body>
 </html>
