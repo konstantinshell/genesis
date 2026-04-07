@@ -1107,5 +1107,16 @@ function loadTasks() {
   botBtn.onclick = toggle;
 })();
 </script>
+<script id="investments-hide">
+(function(){
+  var h2s = document.querySelectorAll('h2');
+  for (var i=0;i<h2s.length;i++) {
+    if (h2s[i].textContent.indexOf('инвестиции')>-1) {
+      h2s[i].parentElement.style.display='none';
+      break;
+    }
+  }
+})();
+</script>
 </body>
 </html>
