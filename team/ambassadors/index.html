@@ -262,7 +262,7 @@ function render(net) {
 
   // Who brought how many people
   h += '<div class="c">';
-  h += '<div class="s-label">КТО СКОЛЬКО ПРИВЁЛ</div>';
+  h += '<div class="s-label">КТО СКОЛЬКО ПРИВЁЛ В ЧАТ-БОТА</div>';
   var referrals = {};
   allReal.forEach(function(p) {
     if (p.children) {
@@ -284,7 +284,8 @@ function render(net) {
     refList.forEach(function(r) {
       h += '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #1e1e2a;">';
       h += '<div style="font-size:13px;color:#e0e0e8;">' + r.name + '</div>';
-      h += '<div style="font-size:14px;font-weight:700;color:#34c759;">' + r.count + '</div>';
+      var lw = r.count === 1 ? 'лид' : r.count < 5 ? 'лида' : 'лидов';
+      h += '<div style="text-align:right;"><span style="font-size:14px;font-weight:700;color:#34c759;">' + r.count + '</span> <span style="font-size:10px;color:#888;">' + lw + '</span></div>';
       h += '</div>';
     });
   } else {
