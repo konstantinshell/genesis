@@ -1074,5 +1074,30 @@ function loadTasks() {
   }).catch(function(){});
 })();
 </script>
+<script id="anketa-collapse">
+(function(){
+  var h2s = document.querySelectorAll('h2');
+  var anketaH2 = null;
+  for (var i=0;i<h2s.length;i++) { if (h2s[i].textContent.indexOf('Анкета')>-1) { anketaH2=h2s[i]; break; } }
+  if (!anketaH2) return;
+  var wrap = anketaH2.nextElementSibling;
+  if (!wrap) return;
+  var items = wrap.children;
+  if (items.length < 2) return;
+  // Hide all items after the first one
+  for (var i=1;i<items.length;i++) items[i].style.display='none';
+  // Add toggle button
+  var btn = document.createElement('div');
+  btn.style.cssText = 'padding:10px 0;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;';
+  btn.innerHTML = '<span style="font-size:12px;color:#7c6fff;">Показать всё ▼</span>';
+  var open = false;
+  btn.onclick = function(){
+    open = !open;
+    for (var i=1;i<items.length;i++) items[i].style.display = open ? '' : 'none';
+    btn.innerHTML = open ? '<span style="font-size:12px;color:#7c6fff;">Свернуть ▲</span>' : '<span style="font-size:12px;color:#7c6fff;">Показать всё ▼</span>';
+  };
+  wrap.appendChild(btn);
+})();
+</script>
 </body>
 </html>
