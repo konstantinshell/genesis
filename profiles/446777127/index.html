@@ -303,6 +303,15 @@
       </div>
     </div>
 
+    <!-- Сессия 1 -->
+    <div class="session-card" id="sessionCard">
+      <div class="session-card-icon">🧬</div>
+      <div class="session-card-text">
+        <strong>Сессия 1</strong>
+        <span>Запустить сессию выгрузки данных</span>
+      </div>
+      <div class="session-card-arrow">›</div>
+    </div>
 
     <!-- NEIRY · 3 показателя -->
     <div class="c">
@@ -479,7 +488,7 @@
       </p>
     </div>
 
-<div class="updated">Обновлено: 06.04.2026</div>
+<div class="updated">Обновлено: 07.04.2026</div>
     <div style="height:100px;"></div>
   </div>
 
@@ -595,47 +604,6 @@
           <span style="font-size:11px; color:#666;">Опыт в исследованиях</span>
           <span style="font-size:13px; color:#e0e0e8;">Да, в прошлый раз в таком же исследовании</span>
         </div>
-      </div>
-    </div>
-
-    <div class="c">
-      <h2>💰 Ваши инвестиции</h2>
-      <div style="background:#12121a; border-radius:10px; padding:14px; margin-bottom:12px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="font-size:14px; color:#e0e0e8; font-weight:600;">Нейробенд Neiry</span>
-          <span style="font-size:11px; padding:3px 10px; border-radius:4px; background:rgba(255,159,10,0.15); color:#ff9f0a;">Предоплата</span>
-        </div>
-        <div style="display:flex; gap:20px; margin-bottom:12px;">
-          <div>
-            <div style="font-size:10px; color:#666; margin-bottom:2px;">Оплачено</div>
-            <div style="font-family:'Courier Prime',monospace; font-size:18px; color:#34c759; font-weight:700;">23 000 ₽</div>
-          </div>
-          <div>
-            <div style="font-size:10px; color:#666; margin-bottom:2px;">Остаток</div>
-            <div style="font-family:'Courier Prime',monospace; font-size:18px; color:#ff453a; font-weight:700;">20 000 ₽</div>
-          </div>
-        </div>
-        <div style="background:#2a2a35; border-radius:3px; height:6px; overflow:hidden; margin-bottom:6px;">
-          <div style="height:6px; border-radius:3px; background:#ff9f0a; width:53%;"></div>
-        </div>
-        <div style="font-size:11px; color:#888;">Доплата в течение 30 дней с момента получения</div>
-      </div>
-      <div style="background:#12121a; border-radius:10px; padding:14px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <span style="font-size:13px; color:#e0e0e8; font-weight:500;">Обязательство по продажам</span>
-          <span style="font-family:'Courier Prime',monospace; font-size:14px; color:#7c6fff; font-weight:700;">0 / 5</span>
-        </div>
-        <div style="background:#2a2a35; border-radius:3px; height:6px; overflow:hidden; margin-bottom:6px;">
-          <div style="height:6px; border-radius:3px; background:#7c6fff; width:0%;"></div>
-        </div>
-        <div style="font-size:11px; color:#888;">Продать 5 нейробендов или выкупить за 42 000 ₽ к 4–5 месяцу</div>
-      </div>
-    </div>
-
-    <div class="c">
-      <h2>🤝 Амбассадор</h2>
-      <div style="font-size:13px; line-height:2.2; color:#aaa;">
-        <div style="display:flex; justify-content:space-between;"><span>Уровень</span><span style="color:#e0e0e8;">2-й (от Константина)</span></div>
       </div>
     </div>
 
@@ -1046,77 +1014,5 @@ function loadTasks() {
     });
   </script>
 
-<script id="tg-btn-inject">
-(function(){
-  var parts = location.pathname.split('/');
-  var pid = null;
-  for (var i=0;i<parts.length;i++) { if (parts[i]==='profiles' && parts[i+1]) { pid=parts[i+1]; break; } }
-  if (!pid) return;
-  var bp = location.hostname.indexOf('github.io') > -1 ? '/genesis/' : '/';
-  fetch(bp + 'network/data.json?t=' + Date.now()).then(function(r){return r.json()}).then(function(net){
-    function findTg(node) {
-      if (node.profile && node.profile.indexOf(pid) > -1 && node.tg) return node.tg;
-      if (node.children) for (var i=0;i<node.children.length;i++) { var r=findTg(node.children[i]); if(r) return r; }
-      return null;
-    }
-    var tg = findTg(net);
-    if (!tg) return;
-    var tab = document.getElementById('tab-profile');
-    if (!tab) return;
-    var btn = document.createElement('div');
-    btn.className = 'c';
-    btn.style.marginTop = '10px';
-    btn.innerHTML = '<a href="https://t.me/' + tg + '" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:#1a2a2e;border:1px solid rgba(0,172,238,0.2);border-radius:12px;text-decoration:none;color:#0af;font-size:14px;font-weight:600;"><span style="font-size:18px;">✈️</span>Мой Telegram</a>';
-    tab.appendChild(btn);
-  }).catch(function(){});
-})();
-</script>
-<script id="anketa-collapse">
-(function(){
-  var h2s = document.querySelectorAll('h2');
-  var anketaH2 = null;
-  for (var i=0;i<h2s.length;i++) { if (h2s[i].textContent.indexOf('Анкета')>-1) { anketaH2=h2s[i]; break; } }
-  if (!anketaH2) return;
-  var wrap = anketaH2.nextElementSibling;
-  if (!wrap) return;
-  var items = wrap.children;
-  if (items.length < 2) return;
-  for (var i=1;i<items.length;i++) items[i].style.display='none';
-
-  // Top toggle - inline with h2
-  var topBtn = document.createElement('span');
-  topBtn.style.cssText = 'font-size:11px;color:#7c6fff;cursor:pointer;margin-left:8px;';
-  topBtn.textContent = '▼';
-  anketaH2.appendChild(topBtn);
-
-  // Bottom toggle
-  var botBtn = document.createElement('div');
-  botBtn.style.cssText = 'padding:12px 0;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;border-top:1px solid #2a2a35;margin-top:4px;';
-  botBtn.innerHTML = '<span style="font-size:12px;color:#7c6fff;">Показать всё ▼</span>';
-  wrap.parentElement.insertBefore(botBtn, wrap.nextSibling);
-
-  var open = false;
-  function toggle(){
-    open = !open;
-    for (var i=1;i<items.length;i++) items[i].style.display = open ? '' : 'none';
-    topBtn.textContent = open ? '▲' : '▼';
-    botBtn.innerHTML = open ? '<span style="font-size:12px;color:#7c6fff;">Свернуть ▲</span>' : '<span style="font-size:12px;color:#7c6fff;">Показать всё ▼</span>';
-    if (!open) anketaH2.scrollIntoView({block:'start',behavior:'smooth'});
-  }
-  topBtn.onclick = toggle;
-  botBtn.onclick = toggle;
-})();
-</script>
-<script id="investments-hide">
-(function(){
-  var h2s = document.querySelectorAll('h2');
-  for (var i=0;i<h2s.length;i++) {
-    if (h2s[i].textContent.indexOf('инвестиции')>-1) {
-      h2s[i].parentElement.style.display='none';
-      break;
-    }
-  }
-})();
-</script>
 </body>
 </html>
