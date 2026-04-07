@@ -94,6 +94,58 @@ body {
 
 .updated { text-align:center; padding:16px; color:#333; font-size:11px; }
 
+/* Ambassadors button */
+.amb-btn { transition: border-color 0.3s; -webkit-tap-highlight-color:transparent; }
+.amb-btn:active { opacity:0.8; transform:scale(0.96); }
+.amb-btn:hover { border-color:rgba(52,199,89,0.4); }
+
+/* Rhythm pulse lines */
+.amb-rhythm {
+  position:absolute; inset:0; z-index:1;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(52,199,89,0.04) 3px,
+    rgba(52,199,89,0.04) 4px
+  );
+  animation: rhythmScroll 1.8s linear infinite;
+}
+@keyframes rhythmScroll {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 40px; }
+}
+
+/* Glitch emoji */
+.amb-glitch {
+  animation: glitchPop 4s ease-in-out infinite;
+}
+@keyframes glitchPop {
+  0%,90%,100% { transform:none; filter:none; }
+  91%   { transform:translate(-2px,0) skewX(-4deg); filter:hue-rotate(90deg); }
+  92%   { transform:translate(2px,0) skewX(4deg);  filter:hue-rotate(-90deg); }
+  93%   { transform:translate(0,1px); filter:none; }
+  94%   { transform:translate(-1px,-1px) skewX(2deg); filter:hue-rotate(45deg); }
+  95%   { transform:none; filter:none; }
+}
+
+/* Green scan line */
+.amb-btn::after {
+  content:'';
+  position:absolute;
+  left:0; right:0;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(52,199,89,0.6), transparent);
+  animation: scanLine 2.4s ease-in-out infinite;
+  z-index:3;
+}
+@keyframes scanLine {
+  0%   { top:-2px; opacity:0; }
+  10%  { opacity:1; }
+  90%  { opacity:1; }
+  100% { top:102%; opacity:0; }
+}
+
 /* Back button — fixed top-left */
 .back-fixed { position:fixed; top:12px; left:12px; z-index:100; width:36px; height:36px; border-radius:50%; background:rgba(26,26,34,0.9); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(124,111,255,0.15); display:flex; align-items:center; justify-content:center; text-decoration:none; color:#7c6fff; font-size:18px; transition:all 0.15s; }
 .back-fixed:active { transform:scale(0.9); background:rgba(124,111,255,0.15); }
@@ -136,8 +188,15 @@ body {
     </div>
   </div>
 
-  <!-- Period & Week -->
-  <div id="period-bar" style="display:flex;gap:8px;margin-bottom:14px;"></div>
+  <!-- Period & Week + Ambassadors -->
+  <div style="display:flex;gap:8px;margin-bottom:14px;align-items:stretch;">
+    <div id="period-bar" style="flex:1;display:flex;"></div>
+    <a href="../ambassadors/" class="amb-btn" style="width:72px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#12121a;border-radius:10px;text-decoration:none;position:relative;overflow:hidden;border:1px solid rgba(52,199,89,0.15);">
+      <div class="amb-rhythm"></div>
+      <span style="font-size:22px;position:relative;z-index:2;" class="amb-glitch" data-text="🤝">🤝</span>
+      <span style="font-size:9px;font-weight:600;color:#34c759;text-transform:uppercase;letter-spacing:0.5px;position:relative;z-index:2;line-height:1.3;text-align:center;">АМБ-<br>АССА-<br>ДОРЫ</span>
+    </a>
+  </div>
 
   <!-- Action buttons -->
   <div class="action-row">
