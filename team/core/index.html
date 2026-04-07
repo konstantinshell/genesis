@@ -1126,22 +1126,23 @@ window.addEventListener('load', function() {
     stroke(function(){
       ctx.moveTo(lx1, ly1); ctx.lineTo(lx2, ly2); ctx.lineTo(lx3, ly3);
     });
-    /* animated EEG tail */
-    var period = 13, amp = 14;
+    /* animated EEG tail — плавные пики, движение слева направо */
+    var period = 28, amp = 11;
     stroke(function(){
       ctx.moveTo(lx3, ly3);
       for (var i = 0; i <= lx4 - lx3; i++) {
-        var ph = ((i + eegT) % period) / period;
+        /* eegT растёт → фаза смещается вправо → волна бежит слева направо */
+        var ph = ((i - eegT + period * 200) % period) / period; /* 0..1 */
         var y = ly3;
-        if      (ph < 0.08) y = ly3 - amp * (ph / 0.08);
-        else if (ph < 0.16) y = ly3 - amp + amp * 2.5 * ((ph-0.08)/0.08);
-        else if (ph < 0.22) y = ly3 + amp * 1.5 * (1-(ph-0.16)/0.06);
-        else if (ph < 0.30) y = ly3 + amp * 0.4 * (1-(ph-0.22)/0.08);
-        else                y = ly3;
+        if (ph < 0.40) {
+          y = ly3 - amp * Math.sin(ph / 0.40 * Math.PI);
+        } else if (ph < 0.65) {
+          y = ly3 + amp * 0.35 * Math.sin((ph-0.40) / 0.25 * Math.PI);
+        }
         ctx.lineTo(lx3 + i, y);
       }
     });
-    eegT += 1.6;
+    eegT += 0.7;
   }
 
   function frame(ts) {
