@@ -1066,5 +1066,41 @@ function loadTasks() {
   botBtn.onclick = toggle;
 })();
 </script>
+<script id="mnpi-collapse">
+(function(){
+  var h2s = document.querySelectorAll('h2');
+  var mnpiH2 = null;
+  for (var i=0;i<h2s.length;i++) { if (h2s[i].textContent.indexOf('Исследование MNPI')>-1) { mnpiH2=h2s[i]; break; } }
+  if (!mnpiH2) return;
+  var card = mnpiH2.parentElement;
+  var items = [];
+  var el = mnpiH2.nextElementSibling;
+  while (el) { items.push(el); el = el.nextElementSibling; }
+  if (items.length < 2) return;
+  // Hide all except first paragraph
+  for (var i=1;i<items.length;i++) items[i].style.display='none';
+
+  var topBtn = document.createElement('span');
+  topBtn.style.cssText = 'font-size:11px;color:#7c6fff;cursor:pointer;margin-left:8px;';
+  topBtn.textContent = '▼';
+  mnpiH2.appendChild(topBtn);
+
+  var botBtn = document.createElement('div');
+  botBtn.style.cssText = 'padding:12px 0;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;border-top:1px solid #2a2a35;margin-top:4px;';
+  botBtn.innerHTML = '<span style="font-size:12px;color:#7c6fff;">Показать шаги ▼</span>';
+  card.appendChild(botBtn);
+
+  var open = false;
+  function toggle(){
+    open = !open;
+    for (var i=1;i<items.length;i++) items[i].style.display = open ? '' : 'none';
+    topBtn.textContent = open ? '▲' : '▼';
+    botBtn.innerHTML = open ? '<span style="font-size:12px;color:#7c6fff;">Свернуть ▲</span>' : '<span style="font-size:12px;color:#7c6fff;">Показать шаги ▼</span>';
+    if (!open) mnpiH2.scrollIntoView({block:'start',behavior:'smooth'});
+  }
+  topBtn.onclick = toggle;
+  botBtn.onclick = toggle;
+})();
+</script>
 </body>
 </html>
