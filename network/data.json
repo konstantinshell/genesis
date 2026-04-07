@@ -2,14 +2,46 @@
   "name": "РИТМЫ NOTHING",
   "role": "Организация",
   "real": true,
-  "updated": "07.04.2026 12:21",
+  "updated": "07.04.2026 12:26",
   "total_real": 19,
   "children": [
     {
-      "name": "Константин НОВАТОР",
+      "name": "Владимир Подгорный",
       "real": true,
-      "tg": "",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/8678544199/",
+      "tg": "WalWerty",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/5056234108/",
+      "nda": true,
+      "children": [
+        {
+          "name": "Татьяна (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Алексей (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Андрей (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Мария (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        }
+      ],
+      "ambassador": "✅ Да, хочу!"
+    },
+    {
+      "name": "Карина Никитина",
+      "real": true,
+      "tg": "KYK80",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/1983391922/",
       "nda": true,
       "children": [
         {
@@ -34,78 +66,16 @@
             }
           ]
         }
-      ]
-    },
-    {
-      "name": "Сергей (свободно)",
-      "real": false,
-      "children": [
-        {
-          "name": "Елена (свободно)",
-          "real": false,
-          "children": []
-        }
-      ]
-    },
-    {
-      "name": "Татьяна (свободно)",
-      "real": false,
-      "children": [
-        {
-          "name": "Алексей (свободно)",
-          "real": false,
-          "children": []
-        }
-      ]
-    },
-    {
-      "name": "Андрей (свободно)",
-      "real": false,
-      "children": [
-        {
-          "name": "Мария (свободно)",
-          "real": false,
-          "children": []
-        }
-      ]
-    },
-    {
-      "name": "Владимир Подгорный",
-      "real": true,
-      "tg": "WalWerty",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/5056234108/",
-      "nda": true,
-      "children": [
-        {
-          "name": "Ирина (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Андрей (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "Сергей (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Елена (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        }
       ],
-      "ambassador": "✅ Да, хочу!"
+      "tracker": true,
+      "tracker_model": "Garmin",
+      "ambassador": "❌ Нет, я как участник"
     },
     {
-      "name": "Карина Никитина",
+      "name": "Валентина",
       "real": true,
-      "tg": "KYK80",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/1983391922/",
+      "tg": "Vi_vittt",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/1067307749/",
       "nda": true,
       "children": [
         {
@@ -131,15 +101,81 @@
           ]
         }
       ],
+      "band": "promo_member",
       "tracker": true,
-      "tracker_model": "Garmin",
-      "ambassador": "❌ Нет, я как участник"
+      "tracker_model": "Garmin"
     },
     {
-      "name": "Валентина",
+      "name": "Ирик Габитов",
       "real": true,
-      "tg": "Vi_vittt",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/1067307749/",
+      "tg": "IrikG",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/57740229/",
+      "nda": true,
+      "children": [
+        {
+          "name": "Мария (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Кирилл (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Дмитрий (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Ирина (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        }
+      ],
+      "ambassador": "наверно да, я еще тот болтун"
+    },
+    {
+      "name": "Михаил Антаков",
+      "real": true,
+      "tg": "Antakov_Mixail",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/827208307/",
+      "nda": true,
+      "children": [
+        {
+          "name": "Елена (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Дмитрий (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Алексей (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Олеся (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        }
+      ],
+      "tracker": true,
+      "tracker_model": "Whoop 5.0",
+      "ambassador": "✅ Да, хочу!"
+    },
+    {
+      "name": "Вероника Блощицына",
+      "real": true,
+      "tg": "space_nika",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/446777127/",
       "nda": true,
       "children": [
         {
@@ -165,47 +201,15 @@
           ]
         }
       ],
-      "band": "promo_member",
       "tracker": true,
-      "tracker_model": "Garmin"
+      "tracker_model": "Garmin vivoactive 5",
+      "ambassador": "❌ Нет, я как участник"
     },
     {
-      "name": "Ирик Габитов",
+      "name": "Татьяна",
       "real": true,
-      "tg": "IrikG",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/57740229/",
-      "nda": true,
-      "children": [
-        {
-          "name": "Алексей (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Олеся (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "Мария (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Кирилл (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        }
-      ],
-      "ambassador": "наверно да, я еще тот болтун"
-    },
-    {
-      "name": "Михаил Антаков",
-      "real": true,
-      "tg": "Antakov_Mixail",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/827208307/",
+      "tg": "Tatyana_699612",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/407124980/",
       "nda": true,
       "children": [
         {
@@ -232,74 +236,6 @@
         }
       ],
       "tracker": true,
-      "tracker_model": "Whoop 5.0",
-      "ambassador": "✅ Да, хочу!"
-    },
-    {
-      "name": "Вероника Блощицына",
-      "real": true,
-      "tg": "space_nika",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/446777127/",
-      "nda": true,
-      "children": [
-        {
-          "name": "Алексей (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Олеся (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "Мария (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Кирилл (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        }
-      ],
-      "tracker": true,
-      "tracker_model": "Garmin vivoactive 5",
-      "ambassador": "❌ Нет, я как участник"
-    },
-    {
-      "name": "Татьяна",
-      "real": true,
-      "tg": "Tatyana_699612",
-      "profile": "https://konstantinshell.github.io/genesis/profiles/407124980/",
-      "nda": true,
-      "children": [
-        {
-          "name": "Мария (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Кирилл (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "Дмитрий (свободно)",
-          "real": false,
-          "children": [
-            {
-              "name": "Ирина (свободно)",
-              "real": false,
-              "children": []
-            }
-          ]
-        }
-      ],
-      "tracker": true,
       "tracker_model": "Garmin",
       "ambassador": "✅ Да, хочу!"
     },
@@ -311,22 +247,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Мария (свободно)",
+          "name": "Кирилл (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Кирилл (свободно)",
+              "name": "Татьяна (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Дмитрий (свободно)",
+          "name": "Ирина (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Ирина (свободно)",
+              "name": "Андрей (свободно)",
               "real": false,
               "children": []
             }
@@ -345,22 +281,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Олеся (свободно)",
+          "name": "Кирилл (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Сергей (свободно)",
+              "name": "Татьяна (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Кирилл (свободно)",
+          "name": "Ирина (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Татьяна (свободно)",
+              "name": "Андрей (свободно)",
               "real": false,
               "children": []
             }
@@ -380,22 +316,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Олеся (свободно)",
+          "name": "Елена (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Сергей (свободно)",
+              "name": "Дмитрий (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Кирилл (свободно)",
+          "name": "Алексей (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Татьяна (свободно)",
+              "name": "Олеся (свободно)",
               "real": false,
               "children": []
             }
@@ -412,22 +348,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Мария (свободно)",
+          "name": "Елена (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Кирилл (свободно)",
+              "name": "Дмитрий (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Дмитрий (свободно)",
+          "name": "Алексей (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Ирина (свободно)",
+              "name": "Олеся (свободно)",
               "real": false,
               "children": []
             }
@@ -453,12 +389,12 @@
           "nda": true,
           "children": [
             {
-              "name": "Алексей (свободно)",
+              "name": "Мария (свободно)",
               "real": false,
               "children": []
             },
             {
-              "name": "Мария (свободно)",
+              "name": "Дмитрий (свободно)",
               "real": false,
               "children": []
             }
@@ -490,22 +426,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Дмитрий (свободно)",
+          "name": "Алексей (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Ирина (свободно)",
+              "name": "Олеся (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Олеся (свободно)",
+          "name": "Мария (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Сергей (свободно)",
+              "name": "Кирилл (свободно)",
               "real": false,
               "children": []
             }
@@ -524,22 +460,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Сергей (свободно)",
+          "name": "Мария (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Елена (свободно)",
+              "name": "Кирилл (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Татьяна (свободно)",
+          "name": "Дмитрий (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Алексей (свободно)",
+              "name": "Ирина (свободно)",
               "real": false,
               "children": []
             }
@@ -558,22 +494,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Кирилл (свободно)",
+          "name": "Мария (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Татьяна (свободно)",
+              "name": "Кирилл (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Ирина (свободно)",
+          "name": "Дмитрий (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Андрей (свободно)",
+              "name": "Ирина (свободно)",
               "real": false,
               "children": []
             }
@@ -625,22 +561,22 @@
       "nda": true,
       "children": [
         {
-          "name": "Андрей (свободно)",
+          "name": "Кирилл (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Мария (свободно)",
+              "name": "Татьяна (свободно)",
               "real": false,
               "children": []
             }
           ]
         },
         {
-          "name": "Елена (свободно)",
+          "name": "Ирина (свободно)",
           "real": false,
           "children": [
             {
-              "name": "Дмитрий (свободно)",
+              "name": "Андрей (свободно)",
               "real": false,
               "children": []
             }
@@ -649,6 +585,70 @@
       ],
       "band": "promo",
       "ambassador": "✅ Да, хочу!"
+    },
+    {
+      "name": "Татьяна (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Алексей (свободно)",
+          "real": false,
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Андрей (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Мария (свободно)",
+          "real": false,
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Константин НОВАТОР",
+      "real": true,
+      "tg": "",
+      "profile": "https://konstantinshell.github.io/genesis/profiles/8678544199/",
+      "nda": true,
+      "children": [
+        {
+          "name": "Ирина (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Андрей (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Сергей (свободно)",
+          "real": false,
+          "children": [
+            {
+              "name": "Елена (свободно)",
+              "real": false,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Мария (свободно)",
+      "real": false,
+      "children": [
+        {
+          "name": "Кирилл (свободно)",
+          "real": false,
+          "children": []
+        }
+      ]
     }
   ],
   "pre_participants": [

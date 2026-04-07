@@ -1107,8 +1107,8 @@ function loadTasks() {
       h += '</div>';
       if (!isDone) {
         h += '<div style="display:flex;gap:6px;">';
-        h += '<a href="https://disk.yandex.ru/d/XSw9BmEZQnSuhA" target="_blank" style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a1a2e;border:1px solid rgba(124,111,255,0.2);border-radius:8px;text-decoration:none;color:#7c6fff;font-size:11px;font-weight:500;">🎧 Аудио</a>';
-        h += '<a href="https://t.me/ritmnothingbot?start=upload_session_'+i+'_'+uid+'" onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;" style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a2a1a;border:1px solid rgba(52,199,89,0.2);border-radius:8px;text-decoration:none;color:#34c759;font-size:11px;font-weight:500;">📤 Загрузить CSV</a>';
+        h += '<a href="https://disk.yandex.ru/d/XSw9BmEZQnSuhA" target="_blank" style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a1a2e;border:1px solid rgba(124,111,255,0.2);border-radius:8px;text-decoration:none;color:#7c6fff;font-size:11px;font-weight:500;">🎧 Слушать аудио '+i+'</a>';
+        h += '<a href="https://t.me/ritmnothingbot?start=upload_session_'+i+'_'+uid+'" onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;" style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a2a1a;border:1px solid rgba(52,199,89,0.2);border-radius:8px;text-decoration:none;color:#34c759;font-size:10px;font-weight:500;text-align:center;">📤 CSV + диктофон</a>';
         h += '</div>';
       }
       h += '</div>';
