@@ -1036,5 +1036,30 @@ function loadTasks() {
     });
   </script>
 
+<script id="tg-btn-inject">
+(function(){
+  var parts = location.pathname.split('/');
+  var pid = null;
+  for (var i=0;i<parts.length;i++) { if (parts[i]==='profiles' && parts[i+1]) { pid=parts[i+1]; break; } }
+  if (!pid) return;
+  var bp = location.hostname.indexOf('github.io') > -1 ? '/genesis/' : '/';
+  fetch(bp + 'network/data.json?t=' + Date.now()).then(function(r){return r.json()}).then(function(net){
+    function findTg(node) {
+      if (node.profile && node.profile.indexOf(pid) > -1 && node.tg) return node.tg;
+      if (node.children) for (var i=0;i<node.children.length;i++) { var r=findTg(node.children[i]); if(r) return r; }
+      return null;
+    }
+    var tg = findTg(net);
+    if (!tg) return;
+    var tab = document.getElementById('tab-profile');
+    if (!tab) return;
+    var btn = document.createElement('div');
+    btn.className = 'c';
+    btn.style.marginTop = '10px';
+    btn.innerHTML = '<a href="https://t.me/' + tg + '" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:#1a2a2e;border:1px solid rgba(0,172,238,0.2);border-radius:12px;text-decoration:none;color:#0af;font-size:14px;font-weight:600;"><span style="font-size:18px;">✈️</span>Мой Telegram</a>';
+    tab.appendChild(btn);
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>

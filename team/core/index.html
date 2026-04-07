@@ -686,7 +686,7 @@ function render(a, pt, net) {
   var bandCount = 0, totalPaid = 0;
   function collectSalesData(node) {
     if (node.promo_code && node.real) {
-      promos.push({ name: node.name, code: node.promo_code, commission: node.ambassador_commission, form: node.cooperation_form, sales_done: node.sales_done || 0, sales_required: node.sales_required || 5 });
+      promos.push({ name: node.name, code: node.promo_code, commission: node.ambassador_commission, form: node.cooperation_form, sales_done: node.sales_done || 0, sales_required: node.sales_required || 5, profile: node.profile || '', tg: node.tg || '' });
     }
     if (node.band_type && node.real) { bandCount++; totalPaid += node.band_paid || 0; }
     if (node.children) node.children.forEach(function(ch) { collectSalesData(ch); });
@@ -695,7 +695,7 @@ function render(a, pt, net) {
     if (net.children) net.children.forEach(function(ch) { collectSalesData(ch); });
     var prePart = net.pre_participants || [];
     prePart.forEach(function(p) {
-      if (p.promo_code) promos.push({ name: p.name, code: p.promo_code, commission: p.ambassador_commission, form: p.cooperation_form, sales_done: 0, sales_required: 5 });
+      if (p.promo_code) promos.push({ name: p.name, code: p.promo_code, commission: p.ambassador_commission, form: p.cooperation_form, sales_done: 0, sales_required: 5, profile: '', tg: p.tg || '' });
       if (p.band_type) { bandCount++; totalPaid += p.band_paid || 0; }
     });
   }
@@ -713,8 +713,12 @@ function render(a, pt, net) {
   h += '<div class="s-label">РЕЕСТР ПРОМОКОДОВ</div>';
   promos.forEach(function(p) {
     h += '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #1e1e2a;">';
-    h += '<div><div style="font-size:12px;color:#e0e0e8;">' + p.name + '</div>';
-    h += '<div style="font-size:9px;color:#888;">' + (p.commission || '—') + ' · ' + (p.form || '—') + ' · продажи: ' + p.sales_done + '/' + p.sales_required + '</div></div>';
+    h += '<div>';
+    if (p.profile) h += '<a href="' + p.profile + '" style="font-size:12px;color:#7c6fff;text-decoration:none;font-weight:600;">' + p.name + '</a>';
+    else h += '<div style="font-size:12px;color:#e0e0e8;">' + p.name + '</div>';
+    h += '<div style="font-size:9px;color:#888;">' + (p.commission || '—') + ' · ' + (p.form || '—') + ' · продажи: ' + p.sales_done + '/' + p.sales_required;
+    if (p.tg) h += ' · <a href="https://t.me/' + p.tg + '" style="color:#0af;text-decoration:none;">@' + p.tg + '</a>';
+    h += '</div></div>';
     h += '<div style="font-family:Courier Prime,monospace;font-size:14px;font-weight:700;color:#34c759;">' + p.code + '</div>';
     h += '</div>';
   });
