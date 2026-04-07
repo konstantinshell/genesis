@@ -1050,5 +1050,85 @@ function loadTasks() {
   botBtn.onclick = toggle;
 })();
 </script>
+<script id="sessions-panel">
+(function(){
+  // Find user ID from URL
+  var parts = location.pathname.split('/');
+  var uid = null;
+  for (var i=0;i<parts.length;i++) { if (parts[i]==='profiles' && parts[i+1]) { uid=parts[i+1]; break; } }
+  if (!uid) return;
+
+  // Find Roadmap h2 to insert before it
+  var h2s = document.querySelectorAll('h2');
+  var roadmapH2 = null;
+  for (var i=0;i<h2s.length;i++) { if (h2s[i].textContent.indexOf('Роадмэп')>-1) { roadmapH2=h2s[i]; break; } }
+  if (!roadmapH2) return;
+  var roadmapCard = roadmapH2.closest('.c') || roadmapH2.parentElement;
+  var roadmapLink = roadmapCard.parentElement.tagName === 'A' ? roadmapCard.parentElement : roadmapCard;
+
+  fetch('./planner.json?t='+Date.now()).then(function(r){return r.ok?r.json():null}).then(function(pl){
+    if (!pl || !pl.checklist) return;
+    var cl = pl.checklist;
+
+    // Count completed sessions
+    var done = 0;
+    for (var i=1;i<=6;i++) { if (cl['session_'+i]) done++; }
+
+    var wrap = document.createElement('div');
+    wrap.className = 'c';
+    wrap.style.marginBottom = '10px';
+
+    var h = '';
+    h += '<h2>🧬 Сессии MNPI</h2>';
+
+    // Progress bar
+    var pct = Math.round((done/6)*100);
+    var pclr = done===0?'#555':done<3?'#ff9f0a':done<6?'#daa040':'#34c759';
+    h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">';
+    h += '<span style="font-size:12px;color:#888;">Выгружено:</span>';
+    h += '<span style="font-size:14px;font-weight:700;color:'+pclr+';">'+done+'/6 сессий</span>';
+    h += '</div>';
+    h += '<div style="background:#2a2a35;border-radius:3px;height:6px;margin-bottom:14px;">';
+    h += '<div style="height:6px;border-radius:3px;background:'+pclr+';width:'+pct+'%;transition:width 0.3s;"></div>';
+    h += '</div>';
+
+    // Session cards
+    for (var i=1;i<=6;i++) {
+      var isDone = cl['session_'+i];
+      var bg = isDone ? 'rgba(52,199,89,0.08)' : '#12121a';
+      var border = isDone ? '1px solid rgba(52,199,89,0.2)' : '1px solid #2a2a35';
+      var icon = isDone ? '✅' : '⬜';
+
+      h += '<div style="background:'+bg+';border:'+border+';border-radius:10px;padding:12px;margin-bottom:8px;">';
+      h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">';
+      h += '<div style="display:flex;align-items:center;gap:8px;">';
+      h += '<span style="font-size:16px;">'+icon+'</span>';
+      h += '<span style="font-size:13px;font-weight:600;color:#e0e0e8;">Сессия '+i+'</span>';
+      h += '</div>';
+      if (isDone) h += '<span style="font-size:10px;color:#34c759;">загружено</span>';
+      h += '</div>';
+
+      if (!isDone) {
+        h += '<div style="display:flex;gap:6px;">';
+        // Audio button
+        h += '<a href="https://disk.yandex.ru/d/XSw9BmEZQnSuhA" target="_blank" style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a1a2e;border:1px solid rgba(124,111,255,0.2);border-radius:8px;text-decoration:none;color:#7c6fff;font-size:11px;font-weight:500;">🎧 Аудио</a>';
+        // Upload CSV button
+        var botLink = "https://t.me/ritmnothingbot?start=upload_session_"+i+"_"+uid;
+        h += '<a href="'+botLink+'" ';
+        h += 'onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;" ';
+        h += 'style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a2a1a;border:1px solid rgba(52,199,89,0.2);border-radius:8px;text-decoration:none;color:#34c759;font-size:11px;font-weight:500;">📤 Загрузить CSV</a>';
+        h += '</div>';
+      }
+      h += '</div>';
+    }
+
+    // Recommendation
+    h += '<div style="font-size:11px;color:#555;text-align:center;margin-top:6px;font-style:italic;">Минимум 5 часов отдыха между сессиями</div>';
+
+    wrap.innerHTML = h;
+    roadmapLink.parentElement.insertBefore(wrap, roadmapLink);
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>
