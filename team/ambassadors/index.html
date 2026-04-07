@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Амбассадоры — ONTO NOTHING</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #121218 !important;
+  color: #e0e0e8 !important;
+  min-height: 100vh;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 64px);
+  max-width: 480px;
+  margin: 0 auto;
+}
+.container { padding: 12px; }
+.c { background:#1a1a22; border-radius:14px; padding:18px; margin-bottom:10px; }
+.s-label { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#34c759; margin-bottom:10px; font-weight:600; }
+.stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:10px; }
+.stat-box { background:#12121a; border-radius:10px; padding:12px 8px; text-align:center; }
+.stat-box .sv { font-family:'Courier Prime',monospace; font-size:20px; font-weight:700; color:#34c759; }
+.stat-box .sl { font-size:9px; color:#666; margin-top:3px; }
+
+/* Header */
+.amb-hdr { background:linear-gradient(135deg,#1a2e1a 0%,#162a16 50%,#0f1a0f 100%); padding:24px 20px; border-radius:14px; text-align:center; margin-bottom:10px; border:1px solid rgba(52,199,89,0.15); }
+.amb-hdr h1 { font-size:22px; font-weight:700; margin-bottom:6px; }
+.amb-hdr .sub { font-size:12px; color:#888; line-height:1.5; }
+
+/* Ambassador card */
+.amb-card { background:#12121a; border-radius:10px; padding:12px; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
+.amb-av { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#fff; flex-shrink:0; }
+.amb-info { flex:1; }
+.amb-name { font-size:13px; font-weight:600; color:#e0e0e8; }
+.amb-meta { font-size:10px; color:#888; margin-top:2px; }
+.amb-badge { font-size:9px; padding:2px 8px; border-radius:4px; display:inline-block; margin-top:4px; }
+
+/* Network list */
+.net-item { display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid #1e1e2a; }
+.net-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.net-name { font-size:12px; color:#e0e0e8; flex:1; }
+.net-tag { font-size:9px; padding:2px 6px; border-radius:3px; }
+
+/* Promo code */
+.promo-row { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid #1e1e2a; }
+.promo-name { font-size:12px; color:#e0e0e8; }
+.promo-code { font-family:'Courier Prime',monospace; font-size:14px; font-weight:700; color:#34c759; }
+
+/* Back button */
+.back-fixed { position:fixed; top:12px; left:12px; z-index:100; width:36px; height:36px; border-radius:50%; background:rgba(26,26,34,0.9); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(52,199,89,0.15); display:flex; align-items:center; justify-content:center; text-decoration:none; color:#34c759; font-size:18px; transition:all 0.15s; }
+.back-fixed:active { transform:scale(0.9); }
+.tg-webapp .back-fixed { display:none; }
+
+/* Tab bar */
+.tab-bar { position:fixed; bottom:0; left:0; right:0; z-index:100; display:flex; background:rgba(18,18,24,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-top:1px solid rgba(52,199,89,0.1); padding-bottom:env(safe-area-inset-bottom, 0px); max-width:480px; margin:0 auto; }
+.tab-btn { flex:1; display:flex; flex-direction:column; align-items:center; gap:2px; padding:8px 0 6px; background:none; border:none; color:#555; font-size:10px; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:color 0.15s; }
+.tab-btn .tab-ico { font-size:20px; }
+.tab-btn.active { color:#34c759; }
+.tg-webapp .tab-bar { display:none; }
+
+.updated { text-align:center; padding:16px; color:#333; font-size:11px; }
+</style>
+</head>
+<body>
+
+<a class="back-fixed" href="../core/">‹</a>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('main',this)"><span class="tab-ico">🏠</span>Главная</button>
+  <button class="tab-btn" onclick="switchTab('network',this)"><span class="tab-ico">🌐</span>Сеть</button>
+  <button class="tab-btn" onclick="switchTab('sales',this)"><span class="tab-ico">💰</span>Продажи</button>
+</div>
+
+<div class="container">
+  <div class="amb-hdr">
+    <div style="font-size:40px;margin-bottom:8px;">🤝</div>
+    <h1>АМБАССАДОРЫ</h1>
+    <div class="sub">Команда Константина Шель<br>Реферальная сеть ONTO NOTHING</div>
+  </div>
+
+  <div id="dashboard"><div style="text-align:center;padding:60px 0;color:#555;">Загрузка...</div></div>
+</div>
+
+<script>
+var tg = window.Telegram && Telegram.WebApp;
+var isTg = tg && tg.initData && tg.initData.length > 0;
+if (isTg) {
+  tg.ready(); tg.expand();
+  try { tg.setHeaderColor('#121218'); } catch(e) {}
+  try { tg.setBackgroundColor('#121218'); } catch(e) {}
+  document.body.classList.add('tg-webapp');
+  tg.BackButton.show();
+  tg.BackButton.onClick(function() { history.back(); });
+}
+
+function switchTab(tab, btn) {
+  ['main','network','sales'].forEach(function(t) {
+    var el = document.getElementById('tab-' + t);
+    if (el) el.style.display = t === tab ? '' : 'none';
+  });
+  var btns = document.querySelectorAll('.tab-btn');
+  btns.forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// Амбассадоры Константина (tg handles)
+var AMB_LIST = ['Egor_iTao','vadimolegich','Vi_vittt','AlSmag'];
+var AMB_COLORS = { 'Egor_iTao':'#7c6fff', 'vadimolegich':'#daa040', 'Vi_vittt':'#e040a0', 'AlSmag':'#0af' };
+
+fetch('../../network/data.json?t=' + Date.now())
+  .then(function(r){ return r.ok ? r.json() : null; })
+  .catch(function(){ return null; })
+  .then(function(net) { render(net); });
+
+function render(net) {
+  if (!net) {
+    document.getElementById('dashboard').innerHTML = '<div class="c" style="text-align:center;padding:30px;color:#555;">Ошибка загрузки данных</div>';
+    return;
+  }
+
+  // Collect all real participants and ambassadors
+  var allReal = [];
+  var ambassadors = [];
+  function walk(node, depth) {
+    if (!node.real) return;
+    allReal.push(node);
+    if (node.tg && AMB_LIST.indexOf(node.tg) !== -1) {
+      ambassadors.push(node);
+    }
+    if (node.children) node.children.forEach(function(ch) { walk(ch, depth+1); });
+  }
+  if (net.children) net.children.forEach(function(ch) { walk(ch, 1); });
+
+  // Also check pre_participants for ambassador data
+  var pre = net.pre_participants || [];
+
+  // Stats
+  var totalReal = allReal.length;
+  var totalNda = allReal.filter(function(p) { return p.nda; }).length;
+  var totalBands = allReal.filter(function(p) { return p.band || p.band_type; }).length;
+  var totalSales = 0;
+  ambassadors.forEach(function(a) { totalSales += a.sales_done || 0; });
+
+  var h = '';
+
+  // ── TAB: ГЛАВНАЯ ──
+  h += '<div id="tab-main">';
+
+  // Stats
+  h += '<div class="c">';
+  h += '<div class="s-label">ПОКАЗАТЕЛИ СЕТИ</div>';
+  h += '<div class="stats-grid">';
+  h += '<div class="stat-box"><div class="sv">' + ambassadors.length + '</div><div class="sl">Амбассадоры</div></div>';
+  h += '<div class="stat-box"><div class="sv">' + totalReal + '</div><div class="sl">В сети</div></div>';
+  h += '<div class="stat-box"><div class="sv">' + totalBands + '</div><div class="sl">С бендами</div></div>';
+  h += '</div>';
+  h += '</div>';
+
+  // Ambassador cards
+  h += '<div class="c">';
+  h += '<div class="s-label">КОМАНДА АМБАССАДОРОВ</div>';
+  ambassadors.forEach(function(a) {
+    var clr = AMB_COLORS[a.tg] || '#34c759';
+    var initial = a.name ? a.name.charAt(0) : '?';
+    var slots = 0;
+    if (a.children) a.children.forEach(function(ch) { if (!ch.real) slots++; });
+    h += '<div class="amb-card">';
+    h += '<div class="amb-av" style="background:' + clr + ';">' + initial + '</div>';
+    h += '<div class="amb-info">';
+    h += '<div class="amb-name">' + a.name + '</div>';
+    h += '<div class="amb-meta">@' + a.tg + ' · ' + (a.ambassador_commission || '—') + ' комиссия</div>';
+    if (a.promo_code) h += '<span class="amb-badge" style="background:rgba(52,199,89,0.12);color:#34c759;">Код: ' + a.promo_code + '</span> ';
+    if (a.band_type) h += '<span class="amb-badge" style="background:rgba(124,111,255,0.12);color:#7c6fff;">' + a.band_type + '</span> ';
+    h += '<span class="amb-badge" style="background:rgba(218,160,64,0.12);color:#daa040;">Продажи: ' + (a.sales_done || 0) + '/' + (a.sales_required || 5) + '</span>';
+    if (slots > 0) h += ' <span class="amb-badge" style="background:rgba(255,69,58,0.12);color:#ff453a;">' + slots + ' свободных слотов</span>';
+    h += '</div></div>';
+  });
+  h += '</div>';
+
+  // AI advice
+  h += '<div id="amb-advice" style="margin-bottom:10px;"></div>';
+
+  h += '</div>'; // close tab-main
+
+  // ── TAB: СЕТЬ ──
+  h += '<div id="tab-network" style="display:none;">';
+
+  h += '<div class="c">';
+  h += '<div class="s-label">ВСЕ УЧАСТНИКИ СЕТИ</div>';
+  h += '<div class="stats-grid" style="margin-bottom:14px;">';
+  h += '<div class="stat-box"><div class="sv">' + totalReal + '</div><div class="sl">Всего</div></div>';
+  h += '<div class="stat-box"><div class="sv">' + totalNda + '</div><div class="sl">С NDA</div></div>';
+  h += '<div class="stat-box"><div class="sv">' + totalBands + '</div><div class="sl">С бендом</div></div>';
+  h += '</div>';
+
+  allReal.forEach(function(p) {
+    var isAmb = p.tg && AMB_LIST.indexOf(p.tg) !== -1;
+    h += '<div class="net-item">';
+    h += '<div class="net-dot" style="background:' + (isAmb ? '#34c759' : '#7c6fff') + ';"></div>';
+    h += '<div class="net-name">' + p.name;
+    if (p.tg) h += ' <span style="color:#555;font-size:10px;">@' + p.tg + '</span>';
+    h += '</div>';
+    if (isAmb) h += '<span class="net-tag" style="background:rgba(52,199,89,0.12);color:#34c759;">амбассадор</span>';
+    else if (p.nda) h += '<span class="net-tag" style="background:rgba(124,111,255,0.12);color:#7c6fff;">NDA</span>';
+    if (p.band_type) h += '<span class="net-tag" style="background:rgba(218,160,64,0.12);color:#daa040;margin-left:4px;">' + p.tracker_model || p.band_type + '</span>';
+    h += '</div>';
+  });
+
+  // Pre-participants
+  if (pre.length) {
+    h += '<div style="margin-top:14px;padding-top:10px;border-top:1px solid #2a2a35;">';
+    h += '<div style="font-size:10px;color:#888;margin-bottom:8px;">ПРЕДВАРИТЕЛЬНЫЕ УЧАСТНИКИ</div>';
+    pre.forEach(function(p) {
+      if (p.status === 'banned') return;
+      h += '<div class="net-item">';
+      h += '<div class="net-dot" style="background:#f5a623;"></div>';
+      h += '<div class="net-name">' + p.name;
+      if (p.tg) h += ' <span style="color:#555;font-size:10px;">@' + p.tg + '</span>';
+      h += '</div>';
+      if (p.ref) h += '<span style="font-size:9px;color:#555;">от ' + p.ref + '</span>';
+      h += '</div>';
+    });
+    h += '</div>';
+  }
+  h += '</div>';
+  h += '</div>'; // close tab-network
+
+  // ── TAB: ПРОДАЖИ ──
+  h += '<div id="tab-sales" style="display:none;">';
+
+  h += '<div class="c">';
+  h += '<div class="s-label">ПРОДАЖИ И КОМИССИИ</div>';
+
+  // Collect all promo codes
+  var promos = [];
+  function collectPromos(node) {
+    if (node.promo_code && node.real) {
+      promos.push({ name: node.name, code: node.promo_code, commission: node.ambassador_commission, form: node.cooperation_form, sales_done: node.sales_done || 0, sales_required: node.sales_required || 5 });
+    }
+    if (node.children) node.children.forEach(function(ch) { collectPromos(ch); });
+  }
+  if (net.children) net.children.forEach(function(ch) { collectPromos(ch); });
+  // Also from pre_participants
+  pre.forEach(function(p) {
+    if (p.promo_code) {
+      promos.push({ name: p.name, code: p.promo_code, commission: p.ambassador_commission, form: p.cooperation_form, sales_done: 0, sales_required: 5 });
+    }
+  });
+
+  // Band stats
+  var bandCount = 0, totalPaid = 0;
+  function countBands(node) {
+    if (node.band_type && node.real) { bandCount++; totalPaid += node.band_paid || 0; }
+    if (node.children) node.children.forEach(function(ch) { countBands(ch); });
+  }
+  if (net.children) net.children.forEach(function(ch) { countBands(ch); });
+  pre.forEach(function(p) { if (p.band_type) { bandCount++; totalPaid += p.band_paid || 0; } });
+
+  h += '<div class="stats-grid">';
+  h += '<div class="stat-box"><div class="sv">' + bandCount + '</div><div class="sl">Бендов</div></div>';
+  h += '<div class="stat-box"><div class="sv" style="color:#daa040;">' + (totalPaid > 0 ? Math.round(totalPaid/1000) + 'к' : '0') + '</div><div class="sl">Оплачено ₽</div></div>';
+  h += '<div class="stat-box"><div class="sv">' + promos.length + '</div><div class="sl">Промокодов</div></div>';
+  h += '</div>';
+  h += '</div>';
+
+  // Promo codes list
+  h += '<div class="c">';
+  h += '<div class="s-label">РЕЕСТР ПРОМОКОДОВ</div>';
+  promos.forEach(function(p) {
+    h += '<div class="promo-row">';
+    h += '<div><div class="promo-name">' + p.name + '</div>';
+    h += '<div style="font-size:9px;color:#888;">' + (p.commission || '—') + ' · ' + (p.form || '—') + ' · продажи: ' + p.sales_done + '/' + p.sales_required + '</div></div>';
+    h += '<div class="promo-code">' + p.code + '</div>';
+    h += '</div>';
+  });
+  if (!promos.length) h += '<div style="text-align:center;color:#555;font-size:12px;padding:16px;">Нет промокодов</div>';
+  h += '</div>';
+
+  h += '</div>'; // close tab-sales
+
+  h += '<div class="updated">Обновлено: ' + (net.updated || '—') + '</div>';
+  document.getElementById('dashboard').innerHTML = h;
+
+  // Load AI advice
+  fetch('ambassador-advice.md?t=' + Date.now())
+    .then(function(r){ return r.ok ? r.text() : ''; })
+    .then(function(txt) {
+      if (!txt) return;
+      var el = document.getElementById('amb-advice');
+      if (el) el.innerHTML = '<div class="c" style="padding:0;"><div style="background:rgba(52,199,89,0.08);border-left:3px solid #34c759;border-radius:0 10px 10px 0;padding:14px;"><div style="font-size:10px;color:#34c759;font-weight:600;margin-bottom:6px;">AI-СОВЕТНИК · РОСТ СЕТИ</div><div style="font-size:12px;color:#ccc;line-height:1.7;">' + txt.replace(/\n/g,'<br>') + '</div></div></div>';
+    }).catch(function(){});
+}
+</script>
+</body>
+</html>
