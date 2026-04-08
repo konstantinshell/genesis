@@ -1099,14 +1099,14 @@ function loadTasks() {
         + '<div style="margin-bottom:8px;">4. После прохождения сессии аудио запись транскрибируйте в текст</div>'
         + '<div>5. Загрузите в бота: таблицу CSV из приложения NEIRY и транскрибацию текста из аудио файла</div>'
         + '</div>'
-        + '<button onclick="document.getElementById('mnpi-session-popup').style.display='none'" style="margin-top:16px;width:100%;padding:12px;background:#7c6fff;border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;">Понятно</button>'
+        + '<button onclick="document.getElementById(&#39;mnpi-session-popup&#39;).style.display=&#39;none&#39;" style="margin-top:16px;width:100%;padding:12px;background:#7c6fff;border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;">Понятно</button>'
         + '</div>';
       overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.style.display='none'; });
       document.body.appendChild(overlay);
     }
 
     h += '<h2 style="display:flex;align-items:center;gap:8px;">🧬 Сессии MNPI'
-      + '<span onclick="document.getElementById('mnpi-session-popup').style.display='flex'" '
+      + '<span onclick="document.getElementById(&#39;mnpi-session-popup&#39;).style.display=&#39;flex&#39;" '
       + 'style="width:20px;height:20px;border-radius:50%;background:#2a2a35;color:#888;font-size:11px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;">?</span>'
       + '</h2>';
 
