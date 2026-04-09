@@ -1074,7 +1074,11 @@ function renderWheel(values) {
 }
 
 function renderVectors(values) {
-  var h = '<div class="c"><div class="dash-section-title">ВЕКТОРЫ <span class="dash-section-hint">▼ нажмите для раскрытия</span></div>';
+  var h = '<div class="c">';
+  h += '<div class="wheel-title-row dash-section-title">';
+  h += '<span>ВЕКТОРЫ <span class="dash-section-hint">▼ нажмите для раскрытия</span></span>';
+  h += '<button class="cycle-help" onclick="event.stopPropagation();toggleVectorsHelp()" aria-label="О векторах">?</button>';
+  h += '</div>';
   for (var i = 0; i < VECTORS.length; i++) {
     var v = VECTORS[i];
     var va = values[v.a] || 0, vb = values[v.b] || 0;
@@ -1102,8 +1106,39 @@ function renderVectors(values) {
     h += '</div>';
     h += '</div></div>';
   }
+
+  // Попап «О векторах»
+  h += '<div class="cycle-help-popup" id="vectors-help-popup" style="display:none;">';
+  h += '<div class="chp-inner">';
+  h += '<div class="chp-title">4 вектора действия</div>';
+  h += '<div class="chp-motto">Инь ↔ Ян · внутренний ↔ внешний мир</div>';
+  h += '<div class="chp-text">Колесо Баланса состоит из <b>4 противоположных векторов</b>. Каждый вектор соединяет две сферы из разных полюсов — <b>внешнего мира (Ян)</b> и <b>внутреннего мира (Инь)</b>. Когда обе сферы наполнены действиями в равной мере — вектор замкнут и ты в балансе. Когда одна сфера перегружена, а вторая пуста — вектор разорван, это сигнал к корректировке.</div>';
+
+  h += '<div class="chp-section">🟡 Вектор Энергии</div>';
+  h += '<div class="chp-text">Наполняет и поддерживает наше пространство. Ресурс для всех остальных действий.<br><b>Изобилие</b> (внешний поток ресурсов) ↔ <b>ЗОЖ</b> (тело как источник энергии).<br>Когда внешний ресурс растёт, но тело не получает заботы — энергия генерируется, но не присваивается. И наоборот.</div>';
+
+  h += '<div class="chp-section">🟣 Вектор Силы</div>';
+  h += '<div class="chp-text">Внимание на духовном росте. Поле внутренней работы и её проявления вовне.<br><b>Осознанность</b> (практика, тишина, присутствие) ↔ <b>Творчество</b> (самовыражение, воплощение).<br>Без осознанности творчество хаотично; без творчества осознанность замыкается в себе.</div>';
+
+  h += '<div class="chp-section">🟢 Вектор Информации</div>';
+  h += '<div class="chp-text">Новые смыслы и знания. Как мы их получаем и как передаём.<br><b>Знания</b> (учёба, чтение, исследование) ↔ <b>Общение</b> (диалог, обмен идеями, нетворк).<br>Знания без общения остаются мёртвыми; общение без знаний — болтовня.</div>';
+
+  h += '<div class="chp-section">🌸 Вектор Пространства</div>';
+  h += '<div class="chp-text">Поле наших границ. Где мы проявляемся и как себя позиционируем.<br><b>Отношения</b> (близкие, семья, любовь) ↔ <b>Профессия</b> (дело, работа, призвание).<br>Профессия без отношений — выгорание; отношения без дела — зависимость.</div>';
+
+  h += '<div class="chp-text" style="margin-top:14px;padding:10px 12px;background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.18);border-radius:8px;"><b style="color:#A5B4FC;">Все вектора наполняют твою жизнь смыслами</b> для баланса и гармонии. Следи, чтобы разрыв между полюсами любого вектора был не больше 4 пунктов — это зона нормы.</div>';
+
+  h += '<button class="chp-close" onclick="toggleVectorsHelp()">Понятно</button>';
+  h += '</div></div>';
+
   h += '</div>';
   return h;
+}
+
+function toggleVectorsHelp() {
+  var p = document.getElementById('vectors-help-popup');
+  if (!p) return;
+  p.style.display = (p.style.display === 'none' || !p.style.display) ? 'flex' : 'none';
 }
 
 function toggleVector(key) {
