@@ -236,7 +236,12 @@
     .chp-roman { width:22px; color:#6366F1; font-weight:700; font-size:10px; }
     .chp-row.chp-active { color:#A5B4FC; font-weight:600; }
     .chp-row.chp-active .chp-roman { color:#A855F7; }
+    .chp-row b { color:#fff; font-weight:600; }
+    .chp-color { width:10px; height:10px; border-radius:50%; flex-shrink:0; box-shadow:0 0 6px currentColor; }
+    .chp-section { font-size:9px; font-weight:700; color:rgba(255,255,255,0.45); letter-spacing:1.2px; text-transform:uppercase; margin:14px 0 8px; }
     .chp-close { width:100%; padding:11px; background:#6366F1; border:none; border-radius:10px; color:#fff; font-size:12px; font-weight:600; cursor:pointer; }
+    .wheel-title-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .wheel-title-row span { flex:1; }
 
     .day-task { display:flex; align-items:center; gap:8px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
     .day-task:last-child { border-bottom:none; }
@@ -467,7 +472,7 @@
       </p>
     </div>
 
-<div class="updated">Обновлено: 09.04.2026</div>
+<div class="updated">Обновлено: 10.04.2026</div>
     <div style="height:100px;"></div>
   </div>
 
@@ -904,7 +909,11 @@ function renderHeader(profileName, week, level) {
 }
 
 function renderWheel(values) {
-  var h = '<div class="c"><div class="dash-section-title">КОЛЕСО БАЛАНСА · 8 сфер · 4 вектора</div>';
+  var h = '<div class="c">';
+  h += '<div class="dash-section-title wheel-title-row">';
+  h += '<span>КОЛЕСО БАЛАНСА · 8 сфер · 4 вектора</span>';
+  h += '<button class="cycle-help" onclick="event.stopPropagation();toggleWheelHelp()" aria-label="О колесе баланса">?</button>';
+  h += '</div>';
   // ЯН / ИНЬ заголовок над колесом
   h += '<div class="wheel-yin-yang">';
   h += '<div class="wyy-side wyy-yang"><div class="wyy-label">ЯН</div><div class="wyy-sub">внешний мир</div></div>';
@@ -1006,6 +1015,38 @@ function renderWheel(values) {
     h += '<div class="wl-item"><span class="wl-dot" style="background:'+lv.color+';"></span><span style="color:'+lv.color+';font-weight:600;">'+lv.label+'</span></div>';
   }
   h += '</div>';
+
+  // Попап с описанием Колеса Баланса
+  h += '<div class="cycle-help-popup" id="wheel-help-popup" style="display:none;">';
+  h += '<div class="chp-inner">';
+  h += '<div class="chp-title">Колесо Баланса</div>';
+  h += '<div class="chp-motto">8 сфер · 4 вектора · Ян и Инь</div>';
+  h += '<div class="chp-text">Колесо Баланса — это пространство твоей реализации, проявленности, выборов и действий, совершаемых в миру. Оно наполнено <b>8 сферами жизни</b> и состоит из <b>4 противоположных векторов действия</b>. Каждый вектор соединяет две сферы из разных миров — внешнего (Ян) и внутреннего (Инь) — и должен быть в балансе.</div>';
+
+  h += '<div class="chp-section">8 сфер жизни</div>';
+  h += '<div class="chp-list">';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#F59E0B;"></span><b>Изобилие</b> — ресурсы, материальный поток</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#8B5CF6;"></span><b>Осознанность</b> — внутренняя тишина, практика</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#3B82F6;"></span><b>Знания</b> — учёба, новые смыслы</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#F97316;"></span><b>Отношения</b> — близкие, семья, любовь</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#EF4444;"></span><b>ЗОЖ</b> — тело, движение, сон, питание</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#A855F7;"></span><b>Творчество</b> — самовыражение, искусство</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#22C55E;"></span><b>Общение</b> — друзья, нетворк, диалог</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#84CC16;"></span><b>Профессия</b> — работа, призвание, дело</div>';
+  h += '</div>';
+
+  h += '<div class="chp-section">4 вектора действия</div>';
+  h += '<div class="chp-list">';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#FBBF24;"></span><b>Энергия</b> — наполняет и поддерживает наше пространство (Изобилие ↔ ЗОЖ)</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#A78BFA;"></span><b>Сила</b> — внимание на духовном росте (Осознанность ↔ Творчество)</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#5EEAD4;"></span><b>Информация</b> — новые смыслы и знания (Знания ↔ Общение)</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#FDA4AF;"></span><b>Пространство</b> — поле наших границ (Отношения ↔ Профессия)</div>';
+  h += '</div>';
+
+  h += '<div class="chp-text" style="margin-top:14px;">Все вектора наполняют твою жизнь смыслами и должны быть в балансе. Когда задачи копятся в одном полюсе вектора, второй полюс «голодает» — это создаёт перекос. Цель — равномерное распределение внимания и действий по всем сферам.</div>';
+
+  h += '<button class="chp-close" onclick="toggleWheelHelp()">Понятно</button>';
+  h += '</div></div>';
 
   // AI-подсказка
   var maxVal = 0, maxKey = '';
@@ -1225,6 +1266,12 @@ function renderGoals(season, week_goal) {
 
 function toggleCycleHelp() {
   var p = document.getElementById('cycle-help-popup');
+  if (!p) return;
+  p.style.display = (p.style.display === 'none' || !p.style.display) ? 'flex' : 'none';
+}
+
+function toggleWheelHelp() {
+  var p = document.getElementById('wheel-help-popup');
   if (!p) return;
   p.style.display = (p.style.display === 'none' || !p.style.display) ? 'flex' : 'none';
 }
