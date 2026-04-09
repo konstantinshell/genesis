@@ -855,8 +855,8 @@ function renderHeader(profileName, week, level) {
 
 function renderWheel(values) {
   var h = '<div class="c"><div class="dash-section-title">КОЛЕСО БАЛАНСА</div>';
-  h += '<svg viewBox="0 0 280 280" class="dash-wheel" id="dash-wheel-svg">';
-  var cx = 140, cy = 140, R = 110;
+  h += '<svg viewBox="0 0 320 320" class="dash-wheel" id="dash-wheel-svg">';
+  var cx = 160, cy = 160, R = 105;
   var keys = ['abundance','awareness','knowledge','relationships','health','creativity','communication','profession'];
   var n = 8;
   // Сохраняем для подсветки векторов
@@ -912,9 +912,9 @@ function renderWheel(values) {
     var rv2 = R * (v2Display/10);
     var dx = cx + rv2*Math.cos(ang2), dy = cy + rv2*Math.sin(ang2);
     h += '<circle id="wheel-dot-'+keys[m]+'" cx="'+dx+'" cy="'+dy+'" r="4" fill="'+sc2.dot+'" stroke="#0A0A12" stroke-width="1"/>';
-    var lx = cx + (R+18)*Math.cos(ang2), ly = cy + (R+18)*Math.sin(ang2);
+    var lx = cx + (R+16)*Math.cos(ang2), ly = cy + (R+16)*Math.sin(ang2);
     var anc = Math.abs(Math.cos(ang2)) < 0.3 ? 'middle' : (Math.cos(ang2) > 0 ? 'start' : 'end');
-    h += '<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="'+anc+'" fill="'+sc2.dot+'" font-size="9" font-family="Jost,sans-serif">'+sc2.label+'</text>';
+    h += '<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="'+anc+'" fill="'+sc2.dot+'" font-size="10" font-family="Jost,sans-serif" font-weight="500">'+sc2.label+'</text>';
   }
   // Слой подсветки активного вектора (рисуется поверх всего)
   h += '<g id="wheel-vec-overlay"></g>';
