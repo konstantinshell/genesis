@@ -143,6 +143,72 @@
     .sphere-bar-pct { font-size:11px; color:#888; width:36px; text-align:right; }
     .stale-banner { background:#2a2a1a; border:1px solid #444420; border-radius:10px; padding:12px; text-align:center; font-size:12px; color:#aa9944; margin-bottom:14px; }
 
+    /* === Dashboard «Баланс сфер» === */
+    .dash-header { padding:18px 16px 14px; background:#12121E; border:1px solid rgba(255,255,255,0.08); border-radius:14px; margin-bottom:12px; }
+    .dash-user { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+    .dash-avatar { width:34px; height:34px; border-radius:50%; background:#6366F1; color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; flex-shrink:0; }
+    .dash-user-info { flex:1; min-width:0; }
+    .dash-name { font-size:13px; font-weight:600; color:#fff; }
+    .dash-status { font-size:10px; color:rgba(255,255,255,0.55); margin-top:1px; }
+    .dash-week { background:rgba(99,102,241,0.15); color:#8B8AFF; font-size:10px; font-weight:600; padding:4px 10px; border-radius:999px; flex-shrink:0; }
+    .dash-add-btn { display:flex; align-items:center; gap:8px; background:#0A0A12; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:12px 14px; text-decoration:none; color:#fff; font-size:13px; font-weight:500; }
+    .dash-add-icon { font-size:18px; color:#6366F1; font-weight:300; }
+    .dash-add-text { flex:1; }
+    .dash-add-mic { font-size:14px; }
+    .dash-add-hint { font-size:10px; color:rgba(255,255,255,0.45); text-align:center; margin-top:6px; }
+
+    .dash-section-title { font-size:10px; font-weight:700; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:1.2px; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; }
+    .dash-section-hint { font-size:9px; color:rgba(255,255,255,0.35); font-weight:400; text-transform:none; letter-spacing:0; }
+
+    .dash-wheel { width:100%; max-width:280px; height:auto; display:block; margin:0 auto; }
+    .dash-ai-hint { display:flex; align-items:flex-start; gap:8px; background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.18); border-radius:10px; padding:10px 12px; margin-top:12px; font-size:11px; color:rgba(255,255,255,0.75); line-height:1.5; }
+    .dash-ai-dot { width:6px; height:6px; border-radius:50%; background:#6366F1; flex-shrink:0; margin-top:5px; }
+
+    .vec-card { display:flex; gap:0; background:#0A0A12; border:1px solid rgba(255,255,255,0.08); border-radius:12px; margin-bottom:8px; overflow:hidden; cursor:pointer; transition:border-color 0.2s; }
+    .vec-card.open { border-color:rgba(99,102,241,0.45); }
+    .vec-bar { width:3px; flex-shrink:0; }
+    .vec-body { flex:1; padding:10px 12px; min-width:0; }
+    .vec-row { display:flex; align-items:center; gap:8px; }
+    .vec-name { font-size:13px; font-weight:600; color:#fff; flex:1; }
+    .vec-badge { font-size:9px; font-weight:600; padding:2px 7px; border-radius:999px; }
+    .vec-badge.broken { background:rgba(239,68,68,0.18); color:#FCA5A5; }
+    .vec-badge.ok { background:rgba(34,197,94,0.18); color:#86EFAC; }
+    .vec-arrow { font-size:11px; color:rgba(255,255,255,0.4); }
+    .vec-sub { font-size:10px; color:rgba(255,255,255,0.5); margin-top:2px; }
+    .vec-expand { display:none; margin-top:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); }
+    .vec-pole { display:flex; align-items:center; gap:6px; font-size:10px; margin-bottom:5px; }
+    .vec-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .vec-pole-name { width:80px; color:rgba(255,255,255,0.7); font-size:10px; }
+    .vec-pole-bar { flex:1; background:rgba(255,255,255,0.06); border-radius:2px; height:5px; overflow:hidden; }
+    .vec-pole-fill { height:100%; border-radius:2px; }
+    .vec-pole-pct { font-size:10px; color:rgba(255,255,255,0.5); width:32px; text-align:right; }
+    .vec-insight { font-size:10px; color:rgba(245,158,11,0.85); font-style:italic; margin-top:6px; padding:6px 8px; background:rgba(245,158,11,0.08); border-radius:6px; }
+
+    .dash-diag { border:1px solid rgba(245,158,11,0.4); }
+    .diag-item { margin-bottom:8px; }
+    .diag-line { font-size:12px; color:#FCD34D; font-weight:500; }
+    .diag-text { font-size:11px; color:rgba(255,255,255,0.6); margin-top:3px; line-height:1.5; }
+
+    .goal-block { margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .goal-block:last-of-type { border-bottom:none; padding-bottom:0; }
+    .goal-period-line { font-size:10px; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+    .goal-world { font-size:11px; color:#8B5CF6; font-style:italic; margin-bottom:6px; }
+    .goal-text-main { font-size:13px; color:#fff; line-height:1.45; margin-bottom:8px; }
+    .goal-meta { font-size:10px; color:rgba(255,255,255,0.5); margin-top:5px; }
+
+    .day-task { display:flex; align-items:center; gap:8px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .day-task:last-child { border-bottom:none; }
+    .day-task-circle { width:14px; height:14px; border:1.5px solid rgba(255,255,255,0.25); border-radius:50%; flex-shrink:0; }
+    .day-task-tag { font-size:9px; font-weight:600; padding:2px 7px; border-radius:4px; flex-shrink:0; }
+    .day-task-bolt { font-size:11px; flex-shrink:0; }
+    .day-task-text { font-size:12px; color:#fff; flex:1; }
+    .dash-empty { text-align:center; color:rgba(255,255,255,0.4); padding:18px; font-size:12px; }
+
+    .dash-refl { display:flex; flex-direction:column; gap:8px; }
+    .refl-btn { display:block; text-align:center; padding:14px; background:#12121E; border-radius:12px; text-decoration:none; font-size:13px; font-weight:600; }
+    .refl-morning { border:1px solid rgba(99,102,241,0.35); color:#A5B4FC; }
+    .refl-evening { border:1px solid rgba(168,85,247,0.35); color:#C4B5FD; }
+
     @media (max-width:400px) {
       .stats { grid-template-columns:1fr 1fr; }
       .neiry-grid, .fit-grid { flex-wrap:wrap; }
@@ -364,6 +430,7 @@
 
   <!-- TAB: ЗАДАЧИ -->
   <div id="tab-tasks" class="tab">
+    <script>window.PROFILE_NAME = "\u041d\u0430\u0434\u0435\u0436\u0434\u0430 \u041a\u043e\u043c\u043f\u0430\u0441";</script>
     <div id="tasks-root"><div style="text-align:center;padding:40px;color:#555;">Загрузка задач...</div></div>
   </div>
 
@@ -646,16 +713,27 @@ function switchTab(name, el) {
 }
 
 /* ═══ TASKS ENGINE ═══ */
+// 8 сфер по спецификации, позиции 0..7 на колесе (0=12:00, по часовой)
 var SPHERE_COLORS = {
-  profession:    { bg:'#1a1a2e', text:'#9d97ff', dot:'#7F77DD', label:'Профессия' },
-  communication: { bg:'#1a2030', text:'#6eaaee', dot:'#378ADD', label:'Общение' },
-  knowledge:     { bg:'#1a2518', text:'#8aba55', dot:'#639922', label:'Знания' },
-  abundance:     { bg:'#2a2018', text:'#daa040', dot:'#BA7517', label:'Изобилие' },
-  health:        { bg:'#182a24', text:'#3fc090', dot:'#1D9E75', label:'ЗОЖ' },
-  creativity:    { bg:'#2a1a18', text:'#e07850', dot:'#D85A30', label:'Творчество' },
-  relationships: { bg:'#2a2018', text:'#daa040', dot:'#BA7517', label:'Отношения' },
-  awareness:     { bg:'#182a24', text:'#3fc090', dot:'#1D9E75', label:'Осознанность' }
+  abundance:     { pos:0, bg:'rgba(245,158,11,0.12)',  text:'#F59E0B', dot:'#F59E0B', label:'Изобилие' },
+  awareness:     { pos:1, bg:'rgba(139,92,246,0.12)',  text:'#8B5CF6', dot:'#8B5CF6', label:'Осознанность' },
+  knowledge:     { pos:2, bg:'rgba(59,130,246,0.12)',  text:'#3B82F6', dot:'#3B82F6', label:'Знания' },
+  relationships: { pos:3, bg:'rgba(249,115,22,0.12)',  text:'#F97316', dot:'#F97316', label:'Отношения' },
+  health:        { pos:4, bg:'rgba(239,68,68,0.12)',   text:'#EF4444', dot:'#EF4444', label:'ЗОЖ' },
+  creativity:    { pos:5, bg:'rgba(168,85,247,0.12)',  text:'#A855F7', dot:'#A855F7', label:'Творчество' },
+  communication: { pos:6, bg:'rgba(34,197,94,0.12)',   text:'#22C55E', dot:'#22C55E', label:'Общение' },
+  profession:    { pos:7, bg:'rgba(132,204,22,0.12)',  text:'#84CC16', dot:'#84CC16', label:'Профессия' },
+  // alias
+  relations:     { pos:3, bg:'rgba(249,115,22,0.12)',  text:'#F97316', dot:'#F97316', label:'Отношения' }
 };
+
+// Векторы (4 пары полюсов)
+var VECTORS = [
+  { key:'energy',  label:'Энергия',     a:'abundance',     b:'health' },
+  { key:'power',   label:'Сила',        a:'awareness',     b:'creativity' },
+  { key:'info',    label:'Информация',  a:'knowledge',     b:'communication' },
+  { key:'space',   label:'Пространство',a:'relationships', b:'profession' }
+];
 
 var SEASON_DATES = ['02-02','20-03','01-05','22-06','01-08','22-09','01-11','22-12'];
 
@@ -729,6 +807,276 @@ function renderPeriod(label, dotClass, tasks) {
   if (!tasks || !tasks.length) return '';
   var h = '<div class="tasks-period-title"><span class="pdot ' + dotClass + '"></span>' + label + '</div>';
   for (var i = 0; i < tasks.length; i++) h += renderTaskRow(tasks[i]);
+  return h;
+}
+
+// ── Балансовый дашборд ──────────────────────────────────────────────────────
+var _activeVector = null;
+
+function getSphereValues(today) {
+  // Считает значения сфер 0..10 на основе кол-ва задач в today.
+  // Если в tasks.json есть готовые sphere_values — берёт их.
+  if (today && today.sphere_values) return today.sphere_values;
+  var allTasks = [].concat((today&&today.morning)||[], (today&&today.day)||[], (today&&today.evening)||[]);
+  var counts = {};
+  var max = 0;
+  for (var i = 0; i < allTasks.length; i++) {
+    var s = allTasks[i].sphere;
+    counts[s] = (counts[s]||0) + 1;
+    if (counts[s] > max) max = counts[s];
+  }
+  var values = {};
+  var keys = ['abundance','awareness','knowledge','relationships','health','creativity','communication','profession'];
+  for (var k = 0; k < keys.length; k++) {
+    var c = counts[keys[k]] || 0;
+    values[keys[k]] = max > 0 ? +(c / max * 10).toFixed(1) : 0;
+  }
+  return values;
+}
+
+function renderHeader(profileName, week, level) {
+  var inits = profileName ? profileName.split(' ').map(function(p){return p[0]||'';}).join('').slice(0,2).toUpperCase() : '?';
+  var h = '<div class="dash-header">';
+  h += '<div class="dash-user">';
+  h += '<div class="dash-avatar">'+inits+'</div>';
+  h += '<div class="dash-user-info"><div class="dash-name">'+(profileName||'Участник')+'</div>';
+  h += '<div class="dash-status">'+(level||'Мастер')+' · апрель 2026</div></div>';
+  h += '<div class="dash-week">Неделя '+(week||1)+'</div>';
+  h += '</div>';
+  h += '<a href="https://t.me/ritmnothingbot?start=stream" class="dash-add-btn">';
+  h += '<span class="dash-add-icon">+</span>';
+  h += '<span class="dash-add-text">Добавить задачу</span>';
+  h += '<span class="dash-add-mic">🎤</span>';
+  h += '</a>';
+  h += '<div class="dash-add-hint">ИИ разнесёт по сферам</div>';
+  h += '</div>';
+  return h;
+}
+
+function renderWheel(values) {
+  var h = '<div class="c"><div class="dash-section-title">КОЛЕСО БАЛАНСА</div>';
+  h += '<svg viewBox="0 0 280 280" class="dash-wheel" id="dash-wheel-svg">';
+  var cx = 140, cy = 140, R = 110;
+  var keys = ['abundance','awareness','knowledge','relationships','health','creativity','communication','profession'];
+  var n = 8;
+
+  // Фоновые секторы
+  for (var i = 0; i < n; i++) {
+    var sc = SPHERE_COLORS[keys[i]];
+    var a1 = (Math.PI*2*i/n) - Math.PI/2 - Math.PI/n;
+    var a2 = (Math.PI*2*i/n) - Math.PI/2 + Math.PI/n;
+    var x1 = cx + R*Math.cos(a1), y1 = cy + R*Math.sin(a1);
+    var x2 = cx + R*Math.cos(a2), y2 = cy + R*Math.sin(a2);
+    h += '<path d="M'+cx+','+cy+' L'+x1+','+y1+' A'+R+','+R+' 0 0 1 '+x2+','+y2+' Z" fill="'+sc.dot+'" fill-opacity="0.06" stroke="none"/>';
+  }
+
+  // Сетка — концентрические октагоны 2,4,6,8,10
+  for (var lvl = 1; lvl <= 5; lvl++) {
+    var rr = R * (lvl/5);
+    var pts = '';
+    for (var j = 0; j < n; j++) {
+      var a = (Math.PI*2*j/n) - Math.PI/2;
+      var px = cx + rr*Math.cos(a), py = cy + rr*Math.sin(a);
+      pts += px+','+py+' ';
+    }
+    h += '<polygon points="'+pts+'" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.7"/>';
+  }
+
+  // Оси
+  for (var i2 = 0; i2 < n; i2++) {
+    var a3 = (Math.PI*2*i2/n) - Math.PI/2;
+    var x3 = cx + R*Math.cos(a3), y3 = cy + R*Math.sin(a3);
+    h += '<line x1="'+cx+'" y1="'+cy+'" x2="'+x3+'" y2="'+y3+'" stroke="rgba(255,255,255,0.08)" stroke-width="0.7"/>';
+  }
+
+  // Заполненная область значений
+  var poly = '';
+  for (var k = 0; k < n; k++) {
+    var v = values[keys[k]] || 0;
+    var ang = (Math.PI*2*k/n) - Math.PI/2;
+    var rv = R * (v/10);
+    var vx = cx + rv*Math.cos(ang), vy = cy + rv*Math.sin(ang);
+    poly += vx+','+vy+' ';
+  }
+  h += '<polygon points="'+poly+'" fill="rgba(99,102,241,0.18)" stroke="#6366F1" stroke-width="1.5"/>';
+
+  // Точки на значениях + подписи
+  for (var m = 0; m < n; m++) {
+    var sc2 = SPHERE_COLORS[keys[m]];
+    var v2 = values[keys[m]] || 0;
+    var ang2 = (Math.PI*2*m/n) - Math.PI/2;
+    var rv2 = R * (v2/10);
+    var dx = cx + rv2*Math.cos(ang2), dy = cy + rv2*Math.sin(ang2);
+    h += '<circle cx="'+dx+'" cy="'+dy+'" r="4" fill="'+sc2.dot+'" stroke="#0A0A12" stroke-width="1"/>';
+    var lx = cx + (R+18)*Math.cos(ang2), ly = cy + (R+18)*Math.sin(ang2);
+    var anc = Math.abs(Math.cos(ang2)) < 0.3 ? 'middle' : (Math.cos(ang2) > 0 ? 'start' : 'end');
+    h += '<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="'+anc+'" fill="'+sc2.dot+'" font-size="9" font-family="Jost,sans-serif">'+sc2.label+'</text>';
+  }
+  h += '</svg>';
+
+  // AI-подсказка
+  var maxVal = 0, maxKey = '';
+  var emptySpheres = [];
+  for (var p in values) {
+    if (values[p] > maxVal) { maxVal = values[p]; maxKey = p; }
+    if (values[p] < 2) emptySpheres.push(SPHERE_COLORS[p].label);
+  }
+  if (maxKey) {
+    var hint = 'Перекос в '+SPHERE_COLORS[maxKey].label;
+    if (emptySpheres.length) hint += '. ' + emptySpheres.slice(0,3).join(', ') + ' почти пусты.';
+    h += '<div class="dash-ai-hint"><span class="dash-ai-dot"></span>'+hint+'</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderVectors(values) {
+  var h = '<div class="c"><div class="dash-section-title">ВЕКТОРЫ <span class="dash-section-hint">▼ нажмите для раскрытия</span></div>';
+  for (var i = 0; i < VECTORS.length; i++) {
+    var v = VECTORS[i];
+    var va = values[v.a] || 0, vb = values[v.b] || 0;
+    var sum = va + vb;
+    var pa = sum > 0 ? Math.round(va/sum*100) : 0;
+    var pb = sum > 0 ? Math.round(vb/sum*100) : 0;
+    var diff = Math.abs(va - vb);
+    var isBroken = diff > 4;
+    var ca = SPHERE_COLORS[v.a], cb = SPHERE_COLORS[v.b];
+    var dominantColor = va >= vb ? ca.dot : cb.dot;
+
+    h += '<div class="vec-card" data-vec="'+v.key+'" onclick="toggleVector(\''+v.key+'\')">';
+    h += '<div class="vec-bar" style="background:'+dominantColor+';"></div>';
+    h += '<div class="vec-body">';
+    h += '<div class="vec-row">';
+    h += '<div class="vec-name">'+v.label+'</div>';
+    h += '<div class="vec-badge '+(isBroken?'broken':'ok')+'">'+(isBroken?'Разрыв '+diff.toFixed(1)+'пт':'Норма ✓')+'</div>';
+    h += '<span class="vec-arrow">˅</span>';
+    h += '</div>';
+    h += '<div class="vec-sub">'+(va>=vb?ca.label:cb.label)+(isBroken?' · доминирует':'')+'</div>';
+    h += '<div class="vec-expand" id="vec-exp-'+v.key+'">';
+    h += '<div class="vec-pole"><span class="vec-dot" style="background:'+ca.dot+';"></span><span class="vec-pole-name">'+ca.label+'</span><div class="vec-pole-bar"><div class="vec-pole-fill" style="width:'+pa+'%;background:'+ca.dot+';"></div></div><span class="vec-pole-pct">'+pa+'%</span></div>';
+    h += '<div class="vec-pole"><span class="vec-dot" style="background:'+cb.dot+';"></span><span class="vec-pole-name">'+cb.label+'</span><div class="vec-pole-bar"><div class="vec-pole-fill" style="width:'+pb+'%;background:'+cb.dot+';"></div></div><span class="vec-pole-pct">'+pb+'%</span></div>';
+    if (isBroken) h += '<div class="vec-insight">Перекос — задачи копятся в одном полюсе</div>';
+    h += '</div>';
+    h += '</div></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function toggleVector(key) {
+  var all = document.querySelectorAll('.vec-card');
+  for (var i = 0; i < all.length; i++) {
+    var k = all[i].getAttribute('data-vec');
+    var exp = document.getElementById('vec-exp-'+k);
+    if (k === key && _activeVector !== key) {
+      all[i].classList.add('open');
+      if (exp) exp.style.display = 'block';
+    } else {
+      all[i].classList.remove('open');
+      if (exp) exp.style.display = 'none';
+    }
+  }
+  _activeVector = (_activeVector === key) ? null : key;
+}
+
+function renderDiagnostics(values) {
+  var broken = [];
+  for (var i = 0; i < VECTORS.length; i++) {
+    var v = VECTORS[i];
+    var va = values[v.a] || 0, vb = values[v.b] || 0;
+    var diff = Math.abs(va - vb);
+    if (diff > 4) broken.push({vec:v, va:va, vb:vb, diff:diff});
+  }
+  if (!broken.length) return '';
+  var h = '<div class="c dash-diag"><div class="dash-section-title">ДИАГНОСТИКА</div>';
+  for (var j = 0; j < broken.length; j++) {
+    var b = broken[j];
+    var ca = SPHERE_COLORS[b.vec.a], cb = SPHERE_COLORS[b.vec.b];
+    h += '<div class="diag-item">';
+    h += '<div class="diag-line">⚠️ '+b.vec.label+': '+ca.label+' '+(b.va*10).toFixed(0)+'% vs '+cb.label+' '+(b.vb*10).toFixed(0)+'%</div>';
+    h += '<div class="diag-text">Сферы расходятся — нужно подкормить слабый полюс.</div>';
+    h += '</div>';
+  }
+  // AI рекомендация
+  var weak = [];
+  for (var k2 = 0; k2 < broken.length; k2++) {
+    var bb = broken[k2];
+    weak.push(bb.va < bb.vb ? SPHERE_COLORS[bb.vec.a].label : SPHERE_COLORS[bb.vec.b].label);
+  }
+  if (weak.length) {
+    h += '<div class="dash-ai-hint"><span class="dash-ai-dot"></span>+1 задача в '+weak.join(' и ')+' — замкнёт вектор</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderGoals(season, week_goal) {
+  var h = '<div class="c"><div class="dash-section-title">ЦЕЛИ</div>';
+  // Цикл
+  if (season && season.goals && season.goals.length) {
+    var g = season.goals[0];
+    h += '<div class="goal-block">';
+    h += '<div class="goal-period-line">Цикл '+(season.cycle||3)+' · '+(season.start||'20 марта')+' → '+(season.end||'30 апреля')+'</div>';
+    h += '<div class="goal-world">'+(season.world_name||'Мир действий')+' — «'+(season.world_motto||'Я делаю')+'»</div>';
+    h += '<div class="goal-text-main">'+g.text+'</div>';
+    var clr = g.progress > 50 ? '#22C55E' : (g.progress >= 20 ? '#F59E0B' : '#EF4444');
+    h += '<div class="goal-bar"><div class="goal-fill" style="width:'+g.progress+'%;background:'+clr+';"></div></div>';
+    h += '<div class="goal-meta">'+g.progress+'% · '+(season.days_left||19)+' дней из '+(season.days_total||40)+'</div>';
+    h += '</div>';
+  }
+  // Неделя
+  if (week_goal) {
+    h += '<div class="goal-block">';
+    h += '<div class="goal-period-line">Неделя '+(week_goal.number||1)+' · '+(week_goal.dates||'07–13 апреля')+'</div>';
+    h += '<div class="goal-text-main">'+(week_goal.text||'Цель недели')+'</div>';
+    var clr2 = week_goal.progress > 50 ? '#22C55E' : (week_goal.progress >= 20 ? '#F59E0B' : '#EF4444');
+    h += '<div class="goal-bar"><div class="goal-fill" style="width:'+(week_goal.progress||0)+'%;background:'+clr2+';"></div></div>';
+    h += '<div class="goal-meta">'+(week_goal.progress||0)+'%</div>';
+    h += '</div>';
+  }
+  h += '<div class="dash-ai-hint"><span class="dash-ai-dot"></span>Задачи недели идут к цели цикла ✓</div>';
+  h += '</div>';
+  return h;
+}
+
+function renderDayTasks(today, values) {
+  var h = '<div class="c">';
+  h += '<div class="dash-section-title">ЗАДАЧИ ДНЯ · '+fmtDateFull(today.date)+'</div>';
+  var allTasks = [].concat(today.morning||[], today.day||[], today.evening||[]);
+  // Определяем разорванные векторы → отметка ⚡
+  var brokenSpheres = {};
+  for (var i = 0; i < VECTORS.length; i++) {
+    var v = VECTORS[i];
+    var va = values[v.a] || 0, vb = values[v.b] || 0;
+    if (Math.abs(va-vb) > 4) {
+      brokenSpheres[v.a] = true;
+      brokenSpheres[v.b] = true;
+    }
+  }
+  if (!allTasks.length) {
+    h += '<div class="dash-empty">Нет задач на сегодня</div>';
+  } else {
+    for (var j = 0; j < allTasks.length; j++) {
+      var t = allTasks[j];
+      var sc = SPHERE_COLORS[t.sphere] || { dot:'#555', text:'#888', label:t.sphere, bg:'#222' };
+      var urgent = brokenSpheres[t.sphere];
+      h += '<div class="day-task">';
+      h += '<span class="day-task-circle"></span>';
+      h += '<span class="day-task-tag" style="background:'+sc.bg+';color:'+sc.text+';">'+sc.label+'</span>';
+      if (urgent) h += '<span class="day-task-bolt">⚡</span>';
+      h += '<span class="day-task-text">'+t.text+'</span>';
+      h += '</div>';
+    }
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderReflectionButtons() {
+  var h = '<div class="c dash-refl">';
+  h += '<a href="https://t.me/ritmnothingbot?start=morning" class="refl-btn refl-morning">🌅 Утренняя рефлексия</a>';
+  h += '<a href="https://t.me/ritmnothingbot?start=evening" class="refl-btn refl-evening">🌙 Вечерняя рефлексия</a>';
+  h += '</div>';
   return h;
 }
 
@@ -933,11 +1281,6 @@ function loadTasks() {
 
     var h = '';
 
-    // Level 0 banner
-    if (_plannerLevel === 0) {
-      h += renderLevel0Banner();
-    }
-
     // Stale check
     if (t.updated_at) {
       var updMs = new Date(t.updated_at).getTime();
@@ -946,11 +1289,19 @@ function loadTasks() {
       }
     }
 
-    if (t.today) h += renderSec1(t.today);
-    if (_plannerLevel >= 1 && t.today) h += renderSec2(t.today);
-    h += renderSec3(t.week);
-    if (_plannerLevel >= 1) h += renderSec4(t.season);
-    if (_plannerLevel >= 1) h += renderSec5(t.week_report);
+    // Новый дашборд «Баланс сфер» (level >= 1)
+    var values = getSphereValues(t.today || {});
+    var profileName = (window.PROFILE_NAME || '');
+    var weekNum = (t.week_goal && t.week_goal.number) || 1;
+    var levelLabel = (_plannerData && _plannerData.role) || 'Мастер';
+
+    h += renderHeader(profileName, weekNum, levelLabel);
+    h += renderWheel(values);
+    h += renderVectors(values);
+    h += renderDiagnostics(values);
+    h += renderGoals(t.season, t.week_goal);
+    if (t.today) h += renderDayTasks(t.today, values);
+    h += renderReflectionButtons();
 
     root.innerHTML = h;
     _tasksLoaded = true;
