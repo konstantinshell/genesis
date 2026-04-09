@@ -859,6 +859,8 @@ function renderWheel(values) {
   var cx = 140, cy = 140, R = 110;
   var keys = ['abundance','awareness','knowledge','relationships','health','creativity','communication','profession'];
   var n = 8;
+  // Сохраняем для подсветки векторов
+  window._wheelGeom = { cx:cx, cy:cy, R:R, keys:keys, values:values };
 
   // Фоновые секторы
   for (var i = 0; i < n; i++) {
@@ -889,12 +891,13 @@ function renderWheel(values) {
     h += '<line x1="'+cx+'" y1="'+cy+'" x2="'+x3+'" y2="'+y3+'" stroke="rgba(255,255,255,0.08)" stroke-width="0.7"/>';
   }
 
-  // Заполненная область значений
+  // Заполненная область значений (минимум 1.5 для визуала, чтобы не схлопывалось в центр)
   var poly = '';
   for (var k = 0; k < n; k++) {
     var v = values[keys[k]] || 0;
+    var vDisplay = Math.max(v, 1.5);
     var ang = (Math.PI*2*k/n) - Math.PI/2;
-    var rv = R * (v/10);
+    var rv = R * (vDisplay/10);
     var vx = cx + rv*Math.cos(ang), vy = cy + rv*Math.sin(ang);
     poly += vx+','+vy+' ';
   }
@@ -904,14 +907,17 @@ function renderWheel(values) {
   for (var m = 0; m < n; m++) {
     var sc2 = SPHERE_COLORS[keys[m]];
     var v2 = values[keys[m]] || 0;
+    var v2Display = Math.max(v2, 1.5);
     var ang2 = (Math.PI*2*m/n) - Math.PI/2;
-    var rv2 = R * (v2/10);
+    var rv2 = R * (v2Display/10);
     var dx = cx + rv2*Math.cos(ang2), dy = cy + rv2*Math.sin(ang2);
-    h += '<circle cx="'+dx+'" cy="'+dy+'" r="4" fill="'+sc2.dot+'" stroke="#0A0A12" stroke-width="1"/>';
+    h += '<circle id="wheel-dot-'+keys[m]+'" cx="'+dx+'" cy="'+dy+'" r="4" fill="'+sc2.dot+'" stroke="#0A0A12" stroke-width="1"/>';
     var lx = cx + (R+18)*Math.cos(ang2), ly = cy + (R+18)*Math.sin(ang2);
     var anc = Math.abs(Math.cos(ang2)) < 0.3 ? 'middle' : (Math.cos(ang2) > 0 ? 'start' : 'end');
     h += '<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="'+anc+'" fill="'+sc2.dot+'" font-size="9" font-family="Jost,sans-serif">'+sc2.label+'</text>';
   }
+  // Слой подсветки активного вектора (рисуется поверх всего)
+  h += '<g id="wheel-vec-overlay"></g>';
   h += '</svg>';
 
   // AI-подсказка
@@ -977,6 +983,68 @@ function toggleVector(key) {
     }
   }
   _activeVector = (_activeVector === key) ? null : key;
+  drawVectorOverlay(_activeVector);
+}
+
+function drawVectorOverlay(vecKey) {
+  var overlay = document.getElementById('wheel-vec-overlay');
+  if (!overlay) return;
+  overlay.innerHTML = '';
+  // Сброс точек
+  if (window._wheelGeom) {
+    var allKeys = window._wheelGeom.keys;
+    for (var i = 0; i < allKeys.length; i++) {
+      var dot = document.getElementById('wheel-dot-'+allKeys[i]);
+      if (dot) {
+        var sc = SPHERE_COLORS[allKeys[i]];
+        dot.setAttribute('r', '4');
+        dot.setAttribute('fill', sc.dot);
+        dot.setAttribute('stroke', '#0A0A12');
+        dot.setAttribute('stroke-width', '1');
+      }
+    }
+  }
+  if (!vecKey || !window._wheelGeom) return;
+  var vec = null;
+  for (var v = 0; v < VECTORS.length; v++) if (VECTORS[v].key === vecKey) { vec = VECTORS[v]; break; }
+  if (!vec) return;
+
+  var g = window._wheelGeom;
+  var ca = SPHERE_COLORS[vec.a], cb = SPHERE_COLORS[vec.b];
+  var idxA = g.keys.indexOf(vec.a), idxB = g.keys.indexOf(vec.b);
+  var n = g.keys.length;
+
+  var va = Math.max(g.values[vec.a]||0, 1.5);
+  var vb = Math.max(g.values[vec.b]||0, 1.5);
+  var angA = (Math.PI*2*idxA/n) - Math.PI/2;
+  var angB = (Math.PI*2*idxB/n) - Math.PI/2;
+  var ra = g.R * (va/10), rb = g.R * (vb/10);
+  var ax = g.cx + ra*Math.cos(angA), ay = g.cy + ra*Math.sin(angA);
+  var bx = g.cx + rb*Math.cos(angB), by = g.cy + rb*Math.sin(angB);
+
+  // Свечение по сектору вектора
+  var glowGrad = '<defs><linearGradient id="vec-glow-grad" x1="'+ax+'" y1="'+ay+'" x2="'+bx+'" y2="'+by+'" gradientUnits="userSpaceOnUse">';
+  glowGrad += '<stop offset="0%" stop-color="'+ca.dot+'" stop-opacity="0.95"/>';
+  glowGrad += '<stop offset="50%" stop-color="#fff" stop-opacity="0.85"/>';
+  glowGrad += '<stop offset="100%" stop-color="'+cb.dot+'" stop-opacity="0.95"/>';
+  glowGrad += '</linearGradient></defs>';
+  overlay.insertAdjacentHTML('beforeend', glowGrad);
+
+  // Линия через центр от полюса к полюсу
+  var line = '<line x1="'+ax+'" y1="'+ay+'" x2="'+bx+'" y2="'+by+'" stroke="url(#vec-glow-grad)" stroke-width="2.5" stroke-linecap="round"/>';
+  overlay.insertAdjacentHTML('beforeend', line);
+
+  // Точки полюсов — увеличенные с белым контуром
+  var dotA = '<circle cx="'+ax+'" cy="'+ay+'" r="6" fill="'+ca.dot+'" stroke="#fff" stroke-width="1.5" style="filter:drop-shadow(0 0 5px '+ca.dot+');"/>';
+  var dotB = '<circle cx="'+bx+'" cy="'+by+'" r="6" fill="'+cb.dot+'" stroke="#fff" stroke-width="1.5" style="filter:drop-shadow(0 0 5px '+cb.dot+');"/>';
+  overlay.insertAdjacentHTML('beforeend', dotA);
+  overlay.insertAdjacentHTML('beforeend', dotB);
+
+  // Прячем оригинальные точки полюсов
+  var origA = document.getElementById('wheel-dot-'+vec.a);
+  var origB = document.getElementById('wheel-dot-'+vec.b);
+  if (origA) origA.setAttribute('r', '0');
+  if (origB) origB.setAttribute('r', '0');
 }
 
 function renderDiagnostics(values) {
