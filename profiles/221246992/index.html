@@ -1295,7 +1295,6 @@ function loadTasks() {
     var weekNum = (t.week_goal && t.week_goal.number) || 1;
     var levelLabel = (_plannerData && _plannerData.role) || 'Мастер';
 
-    h += renderHeader(profileName, weekNum, levelLabel);
     h += renderWheel(values);
     h += renderVectors(values);
     h += renderDiagnostics(values);
