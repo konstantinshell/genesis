@@ -11,6 +11,14 @@
     body { font-family:"Jost",sans-serif; background:#0f0f14; color:#e0e0e8; min-height:100vh; padding-bottom:120px; }
     .container { max-width:480px; margin:0 auto; padding:16px; }
 
+    /* Brand Header */
+    .brand-hdr { background:linear-gradient(135deg,#1a1a2e 0%,#16162a 50%,#0f0f1a 100%); padding:24px 20px; border-radius:14px; text-align:center; margin-top:16px; margin-bottom:10px; border:1px solid rgba(124,111,255,0.12); }
+    .brand-hdr canvas { display:block; margin:0 auto 10px; }
+    .brand-hdr h1 { font-family:"Oswald",sans-serif; font-size:22px; font-weight:700; margin-bottom:6px; }
+    .brand-hdr .sub { font-size:12px; color:#888; line-height:1.5; }
+    .brand-hdr .badges { display:flex; gap:6px; justify-content:center; margin-top:10px; flex-wrap:wrap; }
+    .brand-hdr .badges .badge { font-size:10px; padding:3px 10px; border-radius:4px; background:rgba(124,111,255,0.12); color:#7c6fff; margin-top:0; }
+
     /* Header */
     .hdr { display:flex; align-items:center; gap:14px; padding:20px 0 16px; }
     .hdr-av { width:50px; height:50px; border-radius:50%; background:#1e1e2a; display:flex; align-items:center; justify-content:center; font-size:24px; }
@@ -146,6 +154,18 @@
 <body>
 
 <div class="container">
+  <!-- ═══ BRAND HEADER ═══ -->
+  <div class="brand-hdr">
+    <canvas id="logo-canvas" width="260" height="72"></canvas>
+    <h1>ex nihilo</h1>
+    <div class="sub">AI Research Lab · ИИ платформа для исследований.<br>Метод «Ритмы жизни» — долговременное исследование через планинг.</div>
+    <div class="badges">
+      <span class="badge">ONTO NOTHING</span>
+      <span class="badge">NEIRY</span>
+      <span class="badge">LQ LAB</span>
+    </div>
+  </div>
+
   <!-- ═══ HEADER ═══ -->
   <div class="hdr">
     <div class="hdr-av">👤</div>
@@ -1132,6 +1152,86 @@ setTimeout(function(){
     }
   }).catch(function(){});
 }, 1500);
+</script>
+<script id="brand-logo-eeg">
+/* Animated Ø-logo → EEG (брендированная шапка) */
+window.addEventListener('load', function() {
+  var cvs = document.getElementById('logo-canvas');
+  if (!cvs) return;
+  var ctx = cvs.getContext('2d');
+  var W = cvs.parentElement.offsetWidth || 260;
+  var H = 72;
+  cvs.width = W; cvs.height = H;
+  var cx = Math.round(W * 0.30), cy = 36, r = 24;
+  var lw = 2.6, green = '#34c759';
+  var lx1 = 4,              ly1 = cy + r * 0.58;
+  var lx2 = cx - r * 0.70, ly2 = ly1;
+  var lx3 = cx + r * 0.70, ly3 = cy - r * 0.58;
+  var lx4 = W - 4,          ly4 = ly3;
+  var seg1 = lx2 - lx1;
+  var seg2 = Math.sqrt(Math.pow(lx3-lx2,2) + Math.pow(ly3-ly2,2));
+  var seg3 = lx4 - lx3;
+  var circ = 2 * Math.PI * r;
+  var total = circ + seg1 + seg2 + seg3;
+  var DRAW_MS = 1400, startTs = null, eegT = 0;
+  function stroke(fn) {
+    ctx.beginPath(); ctx.strokeStyle = green;
+    ctx.lineWidth = lw; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    fn(); ctx.stroke();
+  }
+  function drawProgress(p) {
+    ctx.clearRect(0, 0, W, H);
+    var d = p * total;
+    var cd = Math.min(d, circ);
+    stroke(function(){ ctx.arc(cx, cy, r, -Math.PI*0.75, -Math.PI*0.75 + cd/r); });
+    d -= circ; if (d <= 0) return;
+    stroke(function(){
+      ctx.moveTo(lx1, ly1);
+      ctx.lineTo(d <= seg1 ? lx1 + d : lx2, ly1);
+    });
+    if (d <= seg1) return; d -= seg1;
+    var dt = Math.min(d, seg2) / seg2;
+    stroke(function(){
+      ctx.moveTo(lx2, ly2);
+      ctx.lineTo(lx2 + dt*(lx3-lx2), ly2 + dt*(ly3-ly2));
+    });
+    if (d <= seg2) return; d -= seg2;
+    stroke(function(){
+      ctx.moveTo(lx3, ly3);
+      ctx.lineTo(Math.min(lx3 + d, lx4), ly3);
+    });
+  }
+  function drawEEG() {
+    ctx.clearRect(0, 0, W, H);
+    stroke(function(){ ctx.arc(cx, cy, r, 0, 2*Math.PI); });
+    stroke(function(){
+      ctx.moveTo(lx1, ly1); ctx.lineTo(lx2, ly2); ctx.lineTo(lx3, ly3);
+    });
+    var period = 28, amp = 11;
+    stroke(function(){
+      ctx.moveTo(lx3, ly3);
+      for (var i = 0; i <= lx4 - lx3; i++) {
+        var ph = ((i - eegT + period * 200) % period) / period;
+        var y = ly3;
+        if (ph < 0.40) {
+          y = ly3 - amp * Math.sin(ph / 0.40 * Math.PI);
+        } else if (ph < 0.65) {
+          y = ly3 + amp * 0.35 * Math.sin((ph-0.40) / 0.25 * Math.PI);
+        }
+        ctx.lineTo(lx3 + i, y);
+      }
+    });
+    eegT += 0.7;
+  }
+  function frame(ts) {
+    if (!startTs) startTs = ts;
+    var el = ts - startTs;
+    if (el < DRAW_MS) { drawProgress(el / DRAW_MS); }
+    else               { drawEEG(); }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+});
 </script>
 </body>
 </html>
