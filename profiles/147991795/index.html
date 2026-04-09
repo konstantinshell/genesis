@@ -258,13 +258,20 @@
     .day-task-text { font-size:12px; color:#fff; flex:1; }
     .dash-empty { text-align:center; color:rgba(255,255,255,0.4); padding:18px; font-size:12px; }
 
-    .dash-refl { display:flex; flex-direction:column; gap:8px; }
-    .refl-hint { font-size:11px; color:rgba(255,255,255,0.55); line-height:1.5; padding:10px 12px; background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.15); border-radius:10px; margin-bottom:4px; }
+    .dash-refl { display:flex; flex-direction:column; gap:10px; }
+    .day-timeline { width:100%; max-width:360px; height:auto; display:block; margin:4px auto 8px; }
+    .refl-cols { display:flex; align-items:stretch; gap:10px; margin-top:4px; }
+    .refl-col { flex:1; min-width:0; padding:12px 10px; background:rgba(255,255,255,0.025); border-radius:10px; }
+    .refl-col-morning { border-left:3px solid #F59E0B; }
+    .refl-col-evening { border-left:3px solid #A855F7; }
+    .rc-title { font-size:11px; font-weight:700; margin-bottom:6px; }
+    .refl-col-morning .rc-title { color:#FBBF24; }
+    .refl-col-evening .rc-title { color:#C4B5FD; }
+    .rc-text { font-size:10.5px; color:rgba(255,255,255,0.65); line-height:1.5; }
+    .rc-text b { color:#fff; font-weight:600; }
+    .refl-divider { width:1px; background:rgba(255,255,255,0.06); flex-shrink:0; }
+    .refl-hint { font-size:11px; color:rgba(255,255,255,0.55); line-height:1.5; padding:10px 12px; background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.15); border-radius:10px; margin-top:4px; }
     .refl-hint b { color:#A5B4FC; font-weight:600; }
-    .refl-btn { display:flex; flex-direction:column; align-items:center; gap:3px; text-align:center; padding:14px; background:#12121E; border-radius:12px; text-decoration:none; font-size:13px; font-weight:600; }
-    .refl-sub { font-size:10px; font-weight:400; color:rgba(255,255,255,0.45); }
-    .refl-morning { border:1px solid rgba(99,102,241,0.35); color:#A5B4FC; }
-    .refl-evening { border:1px solid rgba(168,85,247,0.35); color:#C4B5FD; }
     /* Howto banner — над задачами дня */
     .howto-banner { display:flex; align-items:center; gap:10px; padding:10px 12px; background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.18); border-radius:10px; margin-bottom:12px; cursor:pointer; transition:background 0.2s; }
     .howto-banner:hover { background:rgba(99,102,241,0.1); }
@@ -356,7 +363,7 @@
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧘</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Рефлексия в бот</div>
-          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 4 записей</div>
+          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 5 записей</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🫀</div>
@@ -1408,9 +1415,74 @@ function renderDayTasks(today, values) {
 
 function renderReflectionButtons() {
   var h = '<div class="c dash-refl">';
-  h += '<div class="refl-hint">Говори голосом, помечай контекст: <b>«это задача»</b>, <b>«это событие»</b>, <b>«это мысль»</b> — так ИИ точнее разнесёт по сферам</div>';
-  h += '<a href="https://t.me/ritmnothingbot?start=morning" class="refl-btn refl-morning">🌅 Утренняя рефлексия<span class="refl-sub">расскажи что берёшь на день</span></a>';
-  h += '<a href="https://t.me/ritmnothingbot?start=evening" class="refl-btn refl-evening">🌙 Вечерняя рефлексия<span class="refl-sub">отчёт за день + задачи на завтра</span></a>';
+  h += '<div class="wheel-title-row dash-section-title"><span>РИТМ ДНЯ · 2 РЕФЛЕКСИИ</span></div>';
+
+  // SVG-таймлайн: от восхода (слева) к закату (справа)
+  h += '<svg viewBox="0 0 320 110" class="day-timeline" preserveAspectRatio="xMidYMid meet">';
+  // Градиент фона
+  h += '<defs>';
+  h += '<linearGradient id="day-grad" x1="0%" y1="0%" x2="100%" y2="0%">';
+  h += '<stop offset="0%" stop-color="#F59E0B" stop-opacity="0.25"/>';
+  h += '<stop offset="35%" stop-color="#3B82F6" stop-opacity="0.18"/>';
+  h += '<stop offset="65%" stop-color="#6366F1" stop-opacity="0.18"/>';
+  h += '<stop offset="100%" stop-color="#A855F7" stop-opacity="0.28"/>';
+  h += '</linearGradient>';
+  h += '<linearGradient id="day-line" x1="0%" y1="0%" x2="100%" y2="0%">';
+  h += '<stop offset="0%" stop-color="#F59E0B"/>';
+  h += '<stop offset="50%" stop-color="#6366F1"/>';
+  h += '<stop offset="100%" stop-color="#A855F7"/>';
+  h += '</linearGradient>';
+  h += '</defs>';
+
+  // Дуга дня — от солнца до луны
+  h += '<path d="M 20 75 Q 160 5 300 75" fill="none" stroke="url(#day-line)" stroke-width="2.5" stroke-linecap="round"/>';
+  h += '<path d="M 20 75 Q 160 5 300 75 L 300 95 L 20 95 Z" fill="url(#day-grad)" stroke="none"/>';
+
+  // Солнце (утро) слева
+  h += '<g>';
+  h += '<circle cx="20" cy="75" r="14" fill="#F59E0B" fill-opacity="0.15" stroke="#F59E0B" stroke-width="1.5"/>';
+  h += '<circle cx="20" cy="75" r="7" fill="#F59E0B"/>';
+  // Лучи
+  for (var ri = 0; ri < 8; ri++) {
+    var ra = Math.PI * 2 * ri / 8;
+    var r1x = 20 + 10 * Math.cos(ra), r1y = 75 + 10 * Math.sin(ra);
+    var r2x = 20 + 13 * Math.cos(ra), r2y = 75 + 13 * Math.sin(ra);
+    h += '<line x1="'+r1x+'" y1="'+r1y+'" x2="'+r2x+'" y2="'+r2y+'" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"/>';
+  }
+  h += '<text x="20" y="108" text-anchor="middle" fill="#F59E0B" font-size="9" font-family="Jost,sans-serif" font-weight="700">🌅 УТРО</text>';
+  h += '</g>';
+
+  // Полдень — звёздочка контекста
+  h += '<circle cx="160" cy="15" r="3" fill="#fff" fill-opacity="0.7"/>';
+  h += '<text x="160" y="38" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Jost,sans-serif">день идёт</text>';
+
+  // Луна (вечер) справа
+  h += '<g>';
+  h += '<circle cx="300" cy="75" r="14" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1.5"/>';
+  h += '<path d="M 305 68 A 7 7 0 1 0 305 82 A 5.5 5.5 0 1 1 305 68 Z" fill="#A855F7"/>';
+  // Звёздочки
+  h += '<circle cx="286" cy="62" r="0.8" fill="#A855F7"/>';
+  h += '<circle cx="316" cy="68" r="0.8" fill="#A855F7"/>';
+  h += '<circle cx="293" cy="88" r="0.6" fill="#A855F7"/>';
+  h += '<text x="300" y="108" text-anchor="middle" fill="#A855F7" font-size="9" font-family="Jost,sans-serif" font-weight="700">ВЕЧЕР 🌙</text>';
+  h += '</g>';
+  h += '</svg>';
+
+  // Две колонки с описанием
+  h += '<div class="refl-cols">';
+  h += '<div class="refl-col refl-col-morning">';
+  h += '<div class="rc-title">🌅 Утренняя рефлексия</div>';
+  h += '<div class="rc-text">Открой планер, посмотри что предложил ИИ. Проговори голосом: какие задачи <b>берёшь</b> сегодня, какое состояние, настрой на день.</div>';
+  h += '</div>';
+  h += '<div class="refl-divider"></div>';
+  h += '<div class="refl-col refl-col-evening">';
+  h += '<div class="rc-title">🌙 Вечерняя рефлексия</div>';
+  h += '<div class="rc-text">Расскажи, что сделал за день, какие <b>инсайты</b> были. Продиктуй задачи на завтра — ИИ разнесёт их по сферам за ночь.</div>';
+  h += '</div>';
+  h += '</div>';
+
+  // Подсказка про контекст
+  h += '<div class="refl-hint">💬 Говори голосом, помечай контекст: <b>«это задача»</b>, <b>«это событие»</b>, <b>«это мысль»</b> — так ИИ точнее разнесёт по сферам</div>';
   h += '</div>';
 
   // Попап «Как пользоваться планером»
