@@ -876,8 +876,8 @@ function renderWheel(values) {
   h += '<div class="wyy-side wyy-yang"><div class="wyy-label">ЯН</div><div class="wyy-sub">внешний мир</div></div>';
   h += '<div class="wyy-side wyy-yin"><div class="wyy-label">ИНЬ</div><div class="wyy-sub">внутренний мир</div></div>';
   h += '</div>';
-  h += '<svg viewBox="0 0 360 360" class="dash-wheel" id="dash-wheel-svg">';
-  var cx = 180, cy = 175, R = 100;
+  h += '<svg viewBox="0 0 380 380" class="dash-wheel" id="dash-wheel-svg">';
+  var cx = 190, cy = 190, R = 100;
   // Вертикальный разделитель Ян/Инь
   h += '<line x1="'+cx+'" y1="'+(cy-R-30)+'" x2="'+cx+'" y2="'+(cy+R+30)+'" stroke="rgba(255,255,255,0.08)" stroke-width="0.7" stroke-dasharray="2,3"/>';
   var keys = ['abundance','awareness','knowledge','relationships','health','creativity','communication','profession'];
@@ -885,14 +885,27 @@ function renderWheel(values) {
   // Сохраняем для подсветки векторов
   window._wheelGeom = { cx:cx, cy:cy, R:R, keys:keys, values:values };
 
-  // Фоновые секторы
+  // Фоновые секторы — более насыщенные, как в оригинале
   for (var i = 0; i < n; i++) {
     var sc = SPHERE_COLORS[keys[i]];
     var a1 = (Math.PI*2*i/n) - Math.PI/2 - Math.PI/n;
     var a2 = (Math.PI*2*i/n) - Math.PI/2 + Math.PI/n;
     var x1 = cx + R*Math.cos(a1), y1 = cy + R*Math.sin(a1);
     var x2 = cx + R*Math.cos(a2), y2 = cy + R*Math.sin(a2);
-    h += '<path d="M'+cx+','+cy+' L'+x1+','+y1+' A'+R+','+R+' 0 0 1 '+x2+','+y2+' Z" fill="'+sc.dot+'" fill-opacity="0.06" stroke="none"/>';
+    h += '<path d="M'+cx+','+cy+' L'+x1+','+y1+' A'+R+','+R+' 0 0 1 '+x2+','+y2+' Z" fill="'+sc.dot+'" fill-opacity="0.13" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>';
+  }
+  // Внешнее кольцо для векторов — рисуется ДО точек, под названиями сфер
+  for (var vi = 0; vi < n; vi++) {
+    var vec0 = getVectorForSphere(keys[vi]);
+    if (!vec0) continue;
+    var av1 = (Math.PI*2*vi/n) - Math.PI/2 - Math.PI/n;
+    var av2 = (Math.PI*2*vi/n) - Math.PI/2 + Math.PI/n;
+    var Ro = R + 6, Ri = R + 1;
+    var ox1 = cx + Ro*Math.cos(av1), oy1 = cy + Ro*Math.sin(av1);
+    var ox2 = cx + Ro*Math.cos(av2), oy2 = cy + Ro*Math.sin(av2);
+    var ix1 = cx + Ri*Math.cos(av2), iy1 = cy + Ri*Math.sin(av2);
+    var ix2 = cx + Ri*Math.cos(av1), iy2 = cy + Ri*Math.sin(av1);
+    h += '<path d="M'+ox1+','+oy1+' A'+Ro+','+Ro+' 0 0 1 '+ox2+','+oy2+' L'+ix1+','+iy1+' A'+Ri+','+Ri+' 0 0 0 '+ix2+','+iy2+' Z" fill="'+vec0.color+'" fill-opacity="0.55"/>';
   }
 
   // Сетка — концентрические октагоны 2,4,6,8,10
@@ -938,18 +951,24 @@ function renderWheel(values) {
     var lx = cx + (R+16)*Math.cos(ang2), ly = cy + (R+16)*Math.sin(ang2);
     var anc = Math.abs(Math.cos(ang2)) < 0.3 ? 'middle' : (Math.cos(ang2) > 0 ? 'start' : 'end');
     h += '<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="'+anc+'" fill="'+sc2.dot+'" font-size="10" font-family="Jost,sans-serif" font-weight="500">'+sc2.label+'</text>';
-    // Подпись вектора — с цветом и плашкой
-    var vec = getVectorForSphere(keys[m]);
-    if (vec) {
-      var vecName = vec.label.toUpperCase();
-      var vyOffset = (Math.sin(ang2) <= 0) ? -11 : 15;
-      var bgWidth = vecName.length * 4.5 + 8;
-      var bgX = lx;
-      if (anc === 'middle') bgX = lx - bgWidth/2;
-      else if (anc === 'end') bgX = lx - bgWidth;
-      h += '<rect x="'+bgX+'" y="'+(ly+vyOffset-6)+'" width="'+bgWidth+'" height="10" rx="2" fill="'+vec.color+'" fill-opacity="0.15" stroke="'+vec.color+'" stroke-opacity="0.4" stroke-width="0.5"/>';
-      h += '<text x="'+lx+'" y="'+(ly+vyOffset+1)+'" text-anchor="'+anc+'" fill="'+vec.color+'" font-size="6.5" font-family="Jost,sans-serif" font-weight="700" letter-spacing="0.6">'+vecName+'</text>';
-    }
+  }
+  // Подписи 4 векторов — на 4 крайних точках кольца (12, 3, 6, 9)
+  // Энергия — вертикаль (Изобилие↔ЗОЖ): 12:00 и 6:00
+  // Информация — горизонталь (Знания↔Общение): 3:00 и 9:00
+  // Сила и Пространство — диагонали
+  var vecLabels = [
+    { vec:VECTORS[0], x:cx,         y:cy-R-22, anc:'middle' }, // Энергия — сверху
+    { vec:VECTORS[0], x:cx,         y:cy+R+30, anc:'middle' }, // Энергия — снизу
+    { vec:VECTORS[2], x:cx+R+22,    y:cy+3,     anc:'start'  }, // Информация — справа
+    { vec:VECTORS[2], x:cx-R-22,    y:cy+3,     anc:'end'    }, // Информация — слева
+    { vec:VECTORS[1], x:cx+R*0.71+18,y:cy-R*0.71-12, anc:'start' }, // Сила — верх-право
+    { vec:VECTORS[1], x:cx-R*0.71-18,y:cy+R*0.71+18, anc:'end'  }, // Сила — низ-лево
+    { vec:VECTORS[3], x:cx+R*0.71+18,y:cy+R*0.71+18, anc:'start' }, // Пространство — низ-право
+    { vec:VECTORS[3], x:cx-R*0.71-18,y:cy-R*0.71-12, anc:'end'  }  // Пространство — верх-лево
+  ];
+  for (var vL = 0; vL < vecLabels.length; vL++) {
+    var vlbl = vecLabels[vL];
+    h += '<text x="'+vlbl.x+'" y="'+vlbl.y+'" text-anchor="'+vlbl.anc+'" fill="'+vlbl.vec.color+'" font-size="8" font-family="Jost,sans-serif" font-weight="700" letter-spacing="1.2">'+vlbl.vec.label.toUpperCase()+'</text>';
   }
   // Слой подсветки активного вектора (рисуется поверх всего)
   h += '<g id="wheel-vec-overlay"></g>';
@@ -992,10 +1011,10 @@ function renderVectors(values) {
     var dominantColor = va >= vb ? ca.dot : cb.dot;
 
     h += '<div class="vec-card" data-vec="'+v.key+'" onclick="toggleVector(\''+v.key+'\')">';
-    h += '<div class="vec-bar" style="background:'+dominantColor+';"></div>';
+    h += '<div class="vec-bar" style="background:'+v.color+';"></div>';
     h += '<div class="vec-body">';
     h += '<div class="vec-row">';
-    h += '<div class="vec-name">'+v.label+'</div>';
+    h += '<div class="vec-name" style="color:'+v.color+';">'+v.label+'</div>';
     h += '<div class="vec-badge '+(isBroken?'broken':'ok')+'">'+(isBroken?'Разрыв '+diff.toFixed(1)+'пт':'Норма ✓')+'</div>';
     h += '<span class="vec-arrow">˅</span>';
     h += '</div>';
