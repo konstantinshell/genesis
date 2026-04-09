@@ -1109,7 +1109,7 @@ function renderDiagnostics(values) {
     if (diff > 4) broken.push({vec:v, va:va, vb:vb, diff:diff});
   }
   if (!broken.length) return '';
-  var h = '<div class="c dash-diag"><div class="dash-section-title">ДИАГНОСТИКА</div>';
+  var h = '<div class="c dash-diag"><div class="dash-section-title">🤖 AI ДИАГНОСТИКА</div>';
   for (var j = 0; j < broken.length; j++) {
     var b = broken[j];
     var ca = SPHERE_COLORS[b.vec.a], cb = SPHERE_COLORS[b.vec.b];
