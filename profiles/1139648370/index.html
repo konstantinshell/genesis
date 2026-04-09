@@ -894,18 +894,26 @@ function renderWheel(values) {
     var x2 = cx + R*Math.cos(a2), y2 = cy + R*Math.sin(a2);
     h += '<path d="M'+cx+','+cy+' L'+x1+','+y1+' A'+R+','+R+' 0 0 1 '+x2+','+y2+' Z" fill="'+sc.dot+'" fill-opacity="0.13" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>';
   }
-  // Внешнее кольцо для векторов — рисуется ДО точек, под названиями сфер
+  // Внешнее кольцо для векторов — широкое, яркое, как в оригинале
   for (var vi = 0; vi < n; vi++) {
     var vec0 = getVectorForSphere(keys[vi]);
     if (!vec0) continue;
     var av1 = (Math.PI*2*vi/n) - Math.PI/2 - Math.PI/n;
     var av2 = (Math.PI*2*vi/n) - Math.PI/2 + Math.PI/n;
-    var Ro = R + 6, Ri = R + 1;
+    var Ro = R + 14, Ri = R + 2;
     var ox1 = cx + Ro*Math.cos(av1), oy1 = cy + Ro*Math.sin(av1);
     var ox2 = cx + Ro*Math.cos(av2), oy2 = cy + Ro*Math.sin(av2);
     var ix1 = cx + Ri*Math.cos(av2), iy1 = cy + Ri*Math.sin(av2);
     var ix2 = cx + Ri*Math.cos(av1), iy2 = cy + Ri*Math.sin(av1);
-    h += '<path d="M'+ox1+','+oy1+' A'+Ro+','+Ro+' 0 0 1 '+ox2+','+oy2+' L'+ix1+','+iy1+' A'+Ri+','+Ri+' 0 0 0 '+ix2+','+iy2+' Z" fill="'+vec0.color+'" fill-opacity="0.55"/>';
+    h += '<path d="M'+ox1+','+oy1+' A'+Ro+','+Ro+' 0 0 1 '+ox2+','+oy2+' L'+ix1+','+iy1+' A'+Ri+','+Ri+' 0 0 0 '+ix2+','+iy2+' Z" fill="'+vec0.color+'" fill-opacity="0.32" stroke="'+vec0.color+'" stroke-opacity="0.6" stroke-width="0.5"/>';
+    // Подпись вектора по центру дуги
+    var ac = (av1+av2)/2;
+    var Rt = R + 8;
+    var tx = cx + Rt*Math.cos(ac);
+    var ty = cy + Rt*Math.sin(ac);
+    var rotDeg = (ac * 180/Math.PI) + 90;
+    if (rotDeg > 90 && rotDeg < 270) rotDeg += 180;
+    h += '<text x="'+tx+'" y="'+(ty+2)+'" text-anchor="middle" fill="'+vec0.color+'" font-size="6" font-family="Jost,sans-serif" font-weight="700" letter-spacing="0.8" transform="rotate('+rotDeg+' '+tx+' '+ty+')">'+vec0.label.toUpperCase()+'</text>';
   }
 
   // Сетка — концентрические октагоны 2,4,6,8,10
@@ -948,28 +956,12 @@ function renderWheel(values) {
     var rv2 = R * (v2Display/10);
     var dx = cx + rv2*Math.cos(ang2), dy = cy + rv2*Math.sin(ang2);
     h += '<circle id="wheel-dot-'+keys[m]+'" cx="'+dx+'" cy="'+dy+'" r="4" fill="'+sc2.dot+'" stroke="#0A0A12" stroke-width="1"/>';
-    var lx = cx + (R+16)*Math.cos(ang2), ly = cy + (R+16)*Math.sin(ang2);
+    var lx = cx + (R+24)*Math.cos(ang2), ly = cy + (R+24)*Math.sin(ang2);
     var anc = Math.abs(Math.cos(ang2)) < 0.3 ? 'middle' : (Math.cos(ang2) > 0 ? 'start' : 'end');
     h += '<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="'+anc+'" fill="'+sc2.dot+'" font-size="10" font-family="Jost,sans-serif" font-weight="500">'+sc2.label+'</text>';
   }
-  // Подписи 4 векторов — на 4 крайних точках кольца (12, 3, 6, 9)
-  // Энергия — вертикаль (Изобилие↔ЗОЖ): 12:00 и 6:00
-  // Информация — горизонталь (Знания↔Общение): 3:00 и 9:00
-  // Сила и Пространство — диагонали
-  var vecLabels = [
-    { vec:VECTORS[0], x:cx,         y:cy-R-22, anc:'middle' }, // Энергия — сверху
-    { vec:VECTORS[0], x:cx,         y:cy+R+30, anc:'middle' }, // Энергия — снизу
-    { vec:VECTORS[2], x:cx+R+22,    y:cy+3,     anc:'start'  }, // Информация — справа
-    { vec:VECTORS[2], x:cx-R-22,    y:cy+3,     anc:'end'    }, // Информация — слева
-    { vec:VECTORS[1], x:cx+R*0.71+18,y:cy-R*0.71-12, anc:'start' }, // Сила — верх-право
-    { vec:VECTORS[1], x:cx-R*0.71-18,y:cy+R*0.71+18, anc:'end'  }, // Сила — низ-лево
-    { vec:VECTORS[3], x:cx+R*0.71+18,y:cy+R*0.71+18, anc:'start' }, // Пространство — низ-право
-    { vec:VECTORS[3], x:cx-R*0.71-18,y:cy-R*0.71-12, anc:'end'  }  // Пространство — верх-лево
-  ];
-  for (var vL = 0; vL < vecLabels.length; vL++) {
-    var vlbl = vecLabels[vL];
-    h += '<text x="'+vlbl.x+'" y="'+vlbl.y+'" text-anchor="'+vlbl.anc+'" fill="'+vlbl.vec.color+'" font-size="8" font-family="Jost,sans-serif" font-weight="700" letter-spacing="1.2">'+vlbl.vec.label.toUpperCase()+'</text>';
-  }
+  // Подписи векторов вынесены за пределы графика — в легенду внизу.
+  // Внешнее кольцо колеса уже окрашено по векторам, легенда расшифровывает цвета.
   // Слой подсветки активного вектора (рисуется поверх всего)
   h += '<g id="wheel-vec-overlay"></g>';
   h += '</svg>';
