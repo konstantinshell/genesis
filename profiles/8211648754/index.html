@@ -1685,27 +1685,33 @@ window.addEventListener('load', function() {
     stroke(function(){
       ctx.moveTo(lx1, ly1); ctx.lineTo(lx2, ly2); ctx.lineTo(lx3, ly3);
     });
-    // Реалистичная ЭЭГ — суперпозиция нескольких ритмов разной частоты + случайные пики
-    stroke(function(){
-      ctx.moveTo(lx3, ly3);
-      var width = lx4 - lx3;
-      for (var i = 0; i <= width; i++) {
-        var x = i + eegT;
-        // Альфа ритм (~10Hz эквивалент)
-        var alpha = Math.sin(x * 0.18) * 4.5;
-        // Бета ритм (быстрый)
-        var beta = Math.sin(x * 0.42 + 1.3) * 2.2;
-        // Тета (медленный, плавный)
-        var theta = Math.sin(x * 0.07 + 0.5) * 3.5;
-        // Дельта (огибающая, очень медленная)
-        var delta = Math.sin(x * 0.025) * 2.0;
-        // Случайные пики (псевдо-случайные через sin композицию)
-        var spike = Math.sin(x * 1.7 + Math.sin(x * 0.31) * 2) * 1.4;
-        var y = ly3 + alpha + beta + theta + delta + spike;
-        ctx.lineTo(lx3 + i, y);
-      }
-    });
-    eegT += 0.55;
+    // Плавная ЭЭГ — медленные синусоиды, движение слева направо (сдвиг −eegT по x)
+    ctx.beginPath();
+    ctx.strokeStyle = green;
+    ctx.lineWidth = lw;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.moveTo(lx3, ly3);
+    var width = lx4 - lx3;
+    var step = 2; // шаг по x — сглаживание через quadraticCurveTo
+    var prevX = lx3, prevY = ly3;
+    for (var i = step; i <= width; i += step) {
+      // Сдвиг отрицательный → волны движутся слева направо
+      var x = i - eegT;
+      var theta = Math.sin(x * 0.045) * 4.0;
+      var alpha = Math.sin(x * 0.085 + 0.7) * 3.0;
+      var slow  = Math.sin(x * 0.018 + 0.3) * 2.5;
+      var y = ly3 + theta + alpha + slow;
+      // Сглаженная кривая через mid-point
+      var mx = (prevX + lx3 + i) / 2;
+      var my = (prevY + y) / 2;
+      ctx.quadraticCurveTo(prevX, prevY, mx, my);
+      prevX = lx3 + i;
+      prevY = y;
+    }
+    ctx.lineTo(lx4, prevY);
+    ctx.stroke();
+    eegT += 0.45;
   }
   function frame(ts) {
     if (!startTs) startTs = ts;
