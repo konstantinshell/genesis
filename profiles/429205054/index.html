@@ -12,13 +12,13 @@
     .container { max-width:480px; margin:0 auto; padding:16px; }
 
     /* Brand Header */
-    .brand-hdr { background:linear-gradient(135deg,#1a1a2e 0%,#16162a 50%,#0f0f1a 100%); padding:24px 20px; border-radius:14px; text-align:center; margin-top:16px; margin-bottom:10px; border:1px solid rgba(124,111,255,0.12); }
-    .brand-hdr canvas { display:block; margin:0 auto 12px; }
-    .brand-hdr .brand-title { font-family:"Oswald",sans-serif; font-size:36px; font-weight:700; margin-bottom:4px; letter-spacing:1px; line-height:1; }
-    .brand-hdr .brand-tagline { font-size:11px; color:#7c6fff; font-weight:600; text-transform:uppercase; letter-spacing:1.8px; margin-bottom:10px; }
-    .brand-hdr .sub { font-size:12px; color:#888; line-height:1.5; }
-    .brand-hdr .badges { display:flex; gap:6px; justify-content:center; margin-top:10px; flex-wrap:wrap; }
-    .brand-hdr .badges .badge { font-size:10px; padding:3px 10px; border-radius:4px; background:rgba(124,111,255,0.12); color:#7c6fff; margin-top:0; }
+    .brand-hdr { background:linear-gradient(135deg,#1a1a2e 0%,#16162a 50%,#0f0f1a 100%); padding:14px 16px; border-radius:12px; text-align:center; margin-top:12px; margin-bottom:10px; border:1px solid rgba(124,111,255,0.12); }
+    .brand-hdr canvas { display:block; margin:0 auto 6px; max-width:200px; height:46px; }
+    .brand-hdr .brand-title { font-family:"Oswald",sans-serif; font-size:24px; font-weight:700; margin-bottom:2px; letter-spacing:0.5px; line-height:1; }
+    .brand-hdr .brand-tagline { font-size:9px; color:#7c6fff; font-weight:600; text-transform:uppercase; letter-spacing:1.4px; margin-bottom:6px; }
+    .brand-hdr .sub { font-size:11px; color:#888; line-height:1.45; }
+    .brand-hdr .badges { display:flex; gap:5px; justify-content:center; margin-top:8px; flex-wrap:wrap; }
+    .brand-hdr .badges .badge { font-size:9px; padding:2px 8px; border-radius:4px; background:rgba(124,111,255,0.12); color:#7c6fff; margin-top:0; }
 
     /* Header */
     .hdr { display:flex; align-items:center; gap:14px; padding:20px 0 16px; }
@@ -1637,11 +1637,13 @@ window.addEventListener('load', function() {
   var cvs = document.getElementById('logo-canvas');
   if (!cvs) return;
   var ctx = cvs.getContext('2d');
-  var W = cvs.parentElement.offsetWidth || 260;
-  var H = 72;
+  var W = 200;
+  var H = 46;
   cvs.width = W; cvs.height = H;
-  var cx = Math.round(W * 0.30), cy = 36, r = 24;
-  var lw = 2.6, green = '#34c759';
+  cvs.style.width = W + 'px';
+  cvs.style.height = H + 'px';
+  var cx = Math.round(W * 0.30), cy = H/2, r = 16;
+  var lw = 2.2, green = '#34c759';
   var lx1 = 4,              ly1 = cy + r * 0.58;
   var lx2 = cx - r * 0.70, ly2 = ly1;
   var lx3 = cx + r * 0.70, ly3 = cy - r * 0.58;
