@@ -813,10 +813,7 @@ function renderSec3(week) {
       h += '<div class="week-task">' + sphereDot(week[j].sphere) + '<div class="week-text">' + week[j].text + '</div>' + sphereTag(week[j].sphere) + '</div>';
     }
     h += '</div>';
-    h += '<div id="week-btns" style="display:flex;gap:8px;margin-top:8px;">';
-    h += '<button class="expand-btn" style="flex:1;" onclick="var e=document.getElementById(\'week-extra\');var b=document.getElementById(\'week-tasklist-btn\');if(e.style.display===\'none\'){e.style.display=\'block\';b.style.display=\'block\';this.textContent=\'свернуть\';}else{e.style.display=\'none\';b.style.display=\'none\';this.textContent=\'ещё ' + (week.length-5) + ' задач\';}">ещё ' + (week.length-5) + ' задач</button>';
-    h += '<a id="week-tasklist-btn" href="https://t.me/ritmnothingbot?start=tasklist" class="expand-btn" style="flex:1;display:none;text-align:center;text-decoration:none;color:#7c6fff;border-color:#7c6fff;">все задачи списком</a>';
-    h += '</div>';
+    h += '<button class="expand-btn" style="margin-top:8px;width:100%;" onclick="var e=document.getElementById(\'week-extra\');if(e.style.display===\'none\'){e.style.display=\'block\';this.textContent=\'свернуть\';}else{e.style.display=\'none\';this.textContent=\'ещё ' + (week.length-5) + ' задач\';}">ещё ' + (week.length-5) + ' задач</button>';
   }
   h += '</div>';
   return h;
