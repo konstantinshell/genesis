@@ -252,9 +252,18 @@
     .dash-empty { text-align:center; color:rgba(255,255,255,0.4); padding:18px; font-size:12px; }
 
     .dash-refl { display:flex; flex-direction:column; gap:8px; }
-    .refl-btn { display:block; text-align:center; padding:14px; background:#12121E; border-radius:12px; text-decoration:none; font-size:13px; font-weight:600; }
+    .refl-hint { font-size:11px; color:rgba(255,255,255,0.55); line-height:1.5; padding:10px 12px; background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.15); border-radius:10px; margin-bottom:4px; }
+    .refl-hint b { color:#A5B4FC; font-weight:600; }
+    .refl-btn { display:flex; flex-direction:column; align-items:center; gap:3px; text-align:center; padding:14px; background:#12121E; border-radius:12px; text-decoration:none; font-size:13px; font-weight:600; }
+    .refl-sub { font-size:10px; font-weight:400; color:rgba(255,255,255,0.45); }
     .refl-morning { border:1px solid rgba(99,102,241,0.35); color:#A5B4FC; }
     .refl-evening { border:1px solid rgba(168,85,247,0.35); color:#C4B5FD; }
+    /* Howto banner — над задачами дня */
+    .howto-banner { display:flex; align-items:center; gap:10px; padding:10px 12px; background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.18); border-radius:10px; margin-bottom:12px; cursor:pointer; transition:background 0.2s; }
+    .howto-banner:hover { background:rgba(99,102,241,0.1); }
+    .hb-icon { font-size:16px; flex-shrink:0; }
+    .hb-text { font-size:11px; color:rgba(255,255,255,0.7); line-height:1.5; }
+    .hb-text b { color:#A5B4FC; font-weight:600; }
 
     @media (max-width:400px) {
       .stats { grid-template-columns:1fr 1fr; }
@@ -1278,7 +1287,15 @@ function toggleWheelHelp() {
 
 function renderDayTasks(today, values) {
   var h = '<div class="c">';
-  h += '<div class="dash-section-title">ЗАДАЧИ ДНЯ · '+fmtDateFull(today.date)+'</div>';
+  h += '<div class="wheel-title-row dash-section-title">';
+  h += '<span>ЗАДАЧИ ДНЯ · '+fmtDateFull(today.date)+'</span>';
+  h += '<button class="cycle-help" onclick="event.stopPropagation();toggleHowtoHelp()" aria-label="Как работать с планером">?</button>';
+  h += '</div>';
+  // Краткая инструкция-баннер
+  h += '<div class="howto-banner" onclick="toggleHowtoHelp()">';
+  h += '<div class="hb-icon">💡</div>';
+  h += '<div class="hb-text">Эти задачи предложил <b>ИИ</b> на основе твоих рефлексий. Утром выбери что берёшь — расскажи в утренней рефлексии. Подробнее →</div>';
+  h += '</div>';
   var allTasks = [].concat(today.morning||[], today.day||[], today.evening||[]);
   // Определяем разорванные векторы → отметка ⚡
   var brokenSpheres = {};
@@ -1311,10 +1328,45 @@ function renderDayTasks(today, values) {
 
 function renderReflectionButtons() {
   var h = '<div class="c dash-refl">';
-  h += '<a href="https://t.me/ritmnothingbot?start=morning" class="refl-btn refl-morning">🌅 Утренняя рефлексия</a>';
-  h += '<a href="https://t.me/ritmnothingbot?start=evening" class="refl-btn refl-evening">🌙 Вечерняя рефлексия</a>';
+  h += '<div class="refl-hint">Говори голосом, помечай контекст: <b>«это задача»</b>, <b>«это событие»</b>, <b>«это мысль»</b> — так ИИ точнее разнесёт по сферам</div>';
+  h += '<a href="https://t.me/ritmnothingbot?start=morning" class="refl-btn refl-morning">🌅 Утренняя рефлексия<span class="refl-sub">расскажи что берёшь на день</span></a>';
+  h += '<a href="https://t.me/ritmnothingbot?start=evening" class="refl-btn refl-evening">🌙 Вечерняя рефлексия<span class="refl-sub">отчёт за день + задачи на завтра</span></a>';
   h += '</div>';
+
+  // Попап «Как пользоваться планером»
+  h += '<div class="cycle-help-popup" id="howto-help-popup" style="display:none;">';
+  h += '<div class="chp-inner">';
+  h += '<div class="chp-title">Как работать с планером</div>';
+  h += '<div class="chp-motto">всё через голос · 2 рефлексии в день</div>';
+
+  h += '<div class="chp-section">🌙 Вечерняя рефлексия</div>';
+  h += '<div class="chp-text">Расскажи, что сделал за день — отметь задачи как <b>выполненные</b>. Затем продиктуй задачи на <b>завтра</b>. ИИ за ночь разнесёт их по 8 сферам и сбалансирует с твоими векторами.</div>';
+
+  h += '<div class="chp-section">🌅 Утром — открой планер</div>';
+  h += '<div class="chp-text">В блоке <b>«Задачи дня»</b> увидишь то, что предложил ИИ. Часть — твои задачи с вечера, часть — рекомендации для слабых сфер (отмечены ⚡).</div>';
+
+  h += '<div class="chp-section">🌅 Утренняя рефлексия</div>';
+  h += '<div class="chp-text">Голосом проговори, какие из предложенных задач ты <b>берёшь</b> на день, что добавляешь сверху и какое у тебя состояние. ИИ зафиксирует выбор.</div>';
+
+  h += '<div class="chp-section">⚠ Важное правило для ИИ</div>';
+  h += '<div class="chp-text">Когда говоришь голосом — помечай контекст словами:</div>';
+  h += '<div class="chp-list">';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#84CC16;"></span><b>«Это задача»</b> — конкретное действие, попадёт в план</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#F59E0B;"></span><b>«Это событие»</b> — встреча, дедлайн, дата</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#8B5CF6;"></span><b>«Это мысль»</b> — рефлексия, идея, наблюдение</div>';
+  h += '<div class="chp-row"><span class="chp-color" style="background:#3B82F6;"></span><b>«Это намерение»</b> — то, к чему стремишься (в цели)</div>';
+  h += '</div>';
+  h += '<div class="chp-text" style="margin-top:10px;">Без меток ИИ всё равно разберёт — но с метками точнее и быстрее.</div>';
+
+  h += '<button class="chp-close" onclick="toggleHowtoHelp()">Понятно</button>';
+  h += '</div></div>';
   return h;
+}
+
+function toggleHowtoHelp() {
+  var p = document.getElementById('howto-help-popup');
+  if (!p) return;
+  p.style.display = (p.style.display === 'none' || !p.style.display) ? 'flex' : 'none';
 }
 
 function renderSec1(today) {
