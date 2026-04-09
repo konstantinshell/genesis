@@ -513,81 +513,82 @@
       </div>
     </div>
 
-    <div style="display:flex;gap:8px;margin-bottom:14px;">
-      <a href="https://konstantinshell.github.io/genesis/team/core/"
-            style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
-            border-radius:14px;text-decoration:none;border:1px solid rgba(124,111,255,0.25);
-            -webkit-tap-highlight-color:transparent;">
-            <span style="font-size:24px;">🤝</span>
-            <div>
-              <div style="font-size:14px;font-weight:600;color:#e0e0e8;">Моя команда</div>
-              <div style="font-size:11px;color:#7c6fff;margin-top:2px;">Дашборд →</div>
-            </div>
-          </a>
-      <div onclick="document.getElementById('msg-popup').style.display='flex'"
-        style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
-        border-radius:14px;cursor:pointer;border:1px solid rgba(52,199,89,0.2);
-        -webkit-tap-highlight-color:transparent;">
-        <span style="font-size:24px;">💬</span>
-        <div>
-          <div style="font-size:14px;font-weight:600;color:#e0e0e8;">Послание</div>
-          <div style="font-size:11px;color:#34c759;margin-top:2px;">Написать →</div>
-        </div>
+    
+  <div style="display:flex;gap:8px;margin-bottom:14px;">
+    <a href="https://konstantinshell.github.io/genesis/team/core/"
+          style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
+          border-radius:14px;text-decoration:none;border:1px solid rgba(124,111,255,0.25);
+          -webkit-tap-highlight-color:transparent;">
+          <span style="font-size:24px;">🤝</span>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:#e0e0e8;">Моя команда</div>
+            <div style="font-size:11px;color:#7c6fff;margin-top:2px;">Дашборд →</div>
+          </div>
+        </a>
+    <div onclick="document.getElementById('msg-popup').style.display='flex'"
+      style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
+      border-radius:14px;cursor:pointer;border:1px solid rgba(52,199,89,0.2);
+      -webkit-tap-highlight-color:transparent;">
+      <span style="font-size:24px;">💬</span>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:#e0e0e8;">Послание</div>
+        <div style="font-size:11px;color:#34c759;margin-top:2px;">Написать →</div>
       </div>
     </div>
+  </div>
   
-    <!-- Team Popup -->
-    <div id="team-popup" onclick="if(event.target===this)this.style.display='none'"
-      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);
-      z-index:1000;align-items:center;justify-content:center;padding:20px;">
-      <div style="background:#1a1a2e;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;
-        border:1px solid rgba(124,111,255,0.2);text-align:center;">
-        <div style="font-size:48px;margin-bottom:12px;">🚀</div>
-        <div style="font-size:18px;font-weight:700;color:#e0e0e8;margin-bottom:8px;">Команды — скоро</div>
-        <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:20px;">
-          Собирай свою команду исследователей.<br>
-          Веди учеников, партнёров или коллег<br>
-          в единой системе как капитан.<br><br>
-          Общий дашборд, совместные рефлексии,<br>
-          AI-анализ командной динамики.
-        </div>
-        <a href="https://t.me/ritmnothingbot?start=team_request"
-          onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;"
-          style="display:block;padding:14px;background:linear-gradient(135deg,#7c6fff,#5f5fdf);
-          border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
-          margin-bottom:10px;">
-          ✍️ Оставить заявку
-        </a>
-        <div onclick="document.getElementById('team-popup').style.display='none'"
-          style="font-size:13px;color:#666;cursor:pointer;padding:8px;">Закрыть</div>
+  <!-- Team Popup -->
+  <div id="team-popup" onclick="if(event.target===this)this.style.display='none'"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);
+    z-index:1000;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#1a1a2e;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;
+      border:1px solid rgba(124,111,255,0.2);text-align:center;">
+      <div style="font-size:48px;margin-bottom:12px;">🚀</div>
+      <div style="font-size:18px;font-weight:700;color:#e0e0e8;margin-bottom:8px;">Команды — скоро</div>
+      <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:20px;">
+        Собирай свою команду исследователей.<br>
+        Веди учеников, партнёров или коллег<br>
+        в единой системе как капитан.<br><br>
+        Общий дашборд, совместные рефлексии,<br>
+        AI-анализ командной динамики.
       </div>
+      <a href="https://t.me/ritmnothingbot?start=team_request"
+        onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;"
+        style="display:block;padding:14px;background:linear-gradient(135deg,#7c6fff,#5f5fdf);
+        border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
+        margin-bottom:10px;">
+        ✍️ Оставить заявку
+      </a>
+      <div onclick="document.getElementById('team-popup').style.display='none'"
+        style="font-size:13px;color:#666;cursor:pointer;padding:8px;">Закрыть</div>
     </div>
+  </div>
 
-    <!-- Message Popup -->
-    <div id="msg-popup" onclick="if(event.target===this)this.style.display='none'"
-      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);
-      z-index:1000;align-items:center;justify-content:center;padding:20px;">
-      <div style="background:#1a1a2e;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;
-        border:1px solid rgba(52,199,89,0.2);text-align:center;">
-        <div style="font-size:48px;margin-bottom:12px;">💬</div>
-        <div style="font-size:18px;font-weight:700;color:#e0e0e8;margin-bottom:8px;">Послание команде</div>
-        <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:20px;">
-          Напишите команде разработчиков<br>
-          платформы или методологам проекта<br>
-          свои пожелания или предложения.<br><br>
-          Мы рассматриваем все сообщения.
-        </div>
-        <a href="https://t.me/ritmnothingbot?start=message_team"
-          onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;"
-          style="display:block;padding:14px;background:linear-gradient(135deg,#34c759,#28a745);
-          border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
-          margin-bottom:10px;">
-          ✍️ Оставить послание команде проекта
-        </a>
-        <div onclick="document.getElementById('msg-popup').style.display='none'"
-          style="font-size:13px;color:#666;cursor:pointer;padding:8px;">Закрыть</div>
+  <!-- Message Popup -->
+  <div id="msg-popup" onclick="if(event.target===this)this.style.display='none'"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);
+    z-index:1000;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#1a1a2e;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;
+      border:1px solid rgba(52,199,89,0.2);text-align:center;">
+      <div style="font-size:48px;margin-bottom:12px;">💬</div>
+      <div style="font-size:18px;font-weight:700;color:#e0e0e8;margin-bottom:8px;">Послание команде</div>
+      <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:20px;">
+        Напишите команде разработчиков<br>
+        платформы или методологам проекта<br>
+        свои пожелания или предложения.<br><br>
+        Мы рассматриваем все сообщения.
       </div>
+      <a href="https://t.me/ritmnothingbot?start=message_team"
+        onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;"
+        style="display:block;padding:14px;background:linear-gradient(135deg,#34c759,#28a745);
+        border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
+        margin-bottom:10px;">
+        ✍️ Оставить послание команде проекта
+      </a>
+      <div onclick="document.getElementById('msg-popup').style.display='none'"
+        style="font-size:13px;color:#666;cursor:pointer;padding:8px;">Закрыть</div>
     </div>
+  </div>
 
     <div class="c">
       <h2>📋 Анкета</h2>

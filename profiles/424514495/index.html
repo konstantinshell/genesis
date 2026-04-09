@@ -162,7 +162,7 @@
     <!-- Рефлексии + загрузки -->
     <div class="c" style="padding:14px;">
       <div style="display:flex;gap:8px;margin-bottom:10px;">
-        <a href="https://t.me/ritmnothingbot?start=morning" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌅 Утренняя рефлексия · 2</a>
+        <a href="https://t.me/ritmnothingbot?start=morning" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌅 Утренняя рефлексия · 3</a>
         <a href="https://t.me/ritmnothingbot?start=evening" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌙 Вечерняя рефлексия · 2</a>
       </div>
       <div style="background:#12121a;border-radius:8px;padding:10px 10px 6px;">
@@ -172,7 +172,7 @@
       </div>
       <script>
       (function(){
-        var data = [["2026-03-11", 0], ["2026-03-12", 0], ["2026-03-13", 0], ["2026-03-14", 0], ["2026-03-15", 0], ["2026-03-16", 0], ["2026-03-17", 0], ["2026-03-18", 0], ["2026-03-19", 0], ["2026-03-20", 0], ["2026-03-21", 0], ["2026-03-22", 0], ["2026-03-23", 0], ["2026-03-24", 0], ["2026-03-25", 0], ["2026-03-26", 0], ["2026-03-27", 0], ["2026-03-28", 0], ["2026-03-29", 0], ["2026-03-30", 0], ["2026-03-31", 0], ["2026-04-01", 0], ["2026-04-02", 0], ["2026-04-03", 0], ["2026-04-04", 0], ["2026-04-05", 1], ["2026-04-06", 0], ["2026-04-07", 2], ["2026-04-08", 2], ["2026-04-09", 0]];
+        var data = [["2026-03-11", 0], ["2026-03-12", 0], ["2026-03-13", 0], ["2026-03-14", 0], ["2026-03-15", 0], ["2026-03-16", 0], ["2026-03-17", 0], ["2026-03-18", 0], ["2026-03-19", 0], ["2026-03-20", 0], ["2026-03-21", 0], ["2026-03-22", 0], ["2026-03-23", 0], ["2026-03-24", 0], ["2026-03-25", 0], ["2026-03-26", 0], ["2026-03-27", 0], ["2026-03-28", 0], ["2026-03-29", 0], ["2026-03-30", 0], ["2026-03-31", 0], ["2026-04-01", 0], ["2026-04-02", 0], ["2026-04-03", 0], ["2026-04-04", 0], ["2026-04-05", 1], ["2026-04-06", 0], ["2026-04-07", 2], ["2026-04-08", 2], ["2026-04-09", 1]];
         var svg = document.getElementById('eeg-personal');
         var W = svg.parentElement.offsetWidth - 20 || 280;
         var H = 52;
@@ -232,7 +232,7 @@
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧘</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Рефлексия в бот</div>
-          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 5 записей</div>
+          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 6 записей</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🫀</div>
@@ -513,81 +513,82 @@
       </div>
     </div>
 
-    <div style="display:flex;gap:8px;margin-bottom:14px;">
-      <a href="../../team/ambassadors/"
-            style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
-            border-radius:14px;text-decoration:none;border:1px solid rgba(124,111,255,0.25);
-            -webkit-tap-highlight-color:transparent;">
-            <span style="font-size:24px;">🤝</span>
-            <div>
-              <div style="font-size:14px;font-weight:600;color:#e0e0e8;">Команда</div>
-              <div style="font-size:11px;color:#7c6fff;margin-top:2px;">Дашборд →</div>
-            </div>
-          </a>
-      <div onclick="document.getElementById('msg-popup').style.display='flex'"
-        style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
-        border-radius:14px;cursor:pointer;border:1px solid rgba(52,199,89,0.2);
-        -webkit-tap-highlight-color:transparent;">
-        <span style="font-size:24px;">💬</span>
-        <div>
-          <div style="font-size:14px;font-weight:600;color:#e0e0e8;">Послание</div>
-          <div style="font-size:11px;color:#34c759;margin-top:2px;">Написать →</div>
-        </div>
+    
+  <div style="display:flex;gap:8px;margin-bottom:14px;">
+    <a href="../../team/ambassadors/"
+          style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
+          border-radius:14px;text-decoration:none;border:1px solid rgba(124,111,255,0.25);
+          -webkit-tap-highlight-color:transparent;">
+          <span style="font-size:24px;">🤝</span>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:#e0e0e8;">Команда</div>
+            <div style="font-size:11px;color:#7c6fff;margin-top:2px;">Дашборд →</div>
+          </div>
+        </a>
+    <div onclick="document.getElementById('msg-popup').style.display='flex'"
+      style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
+      border-radius:14px;cursor:pointer;border:1px solid rgba(52,199,89,0.2);
+      -webkit-tap-highlight-color:transparent;">
+      <span style="font-size:24px;">💬</span>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:#e0e0e8;">Послание</div>
+        <div style="font-size:11px;color:#34c759;margin-top:2px;">Написать →</div>
       </div>
     </div>
+  </div>
   
-    <!-- Team Popup -->
-    <div id="team-popup" onclick="if(event.target===this)this.style.display='none'"
-      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);
-      z-index:1000;align-items:center;justify-content:center;padding:20px;">
-      <div style="background:#1a1a2e;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;
-        border:1px solid rgba(124,111,255,0.2);text-align:center;">
-        <div style="font-size:48px;margin-bottom:12px;">🚀</div>
-        <div style="font-size:18px;font-weight:700;color:#e0e0e8;margin-bottom:8px;">Команды — скоро</div>
-        <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:20px;">
-          Собирай свою команду исследователей.<br>
-          Веди учеников, партнёров или коллег<br>
-          в единой системе как капитан.<br><br>
-          Общий дашборд, совместные рефлексии,<br>
-          AI-анализ командной динамики.
-        </div>
-        <a href="https://t.me/ritmnothingbot?start=team_request"
-          onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;"
-          style="display:block;padding:14px;background:linear-gradient(135deg,#7c6fff,#5f5fdf);
-          border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
-          margin-bottom:10px;">
-          ✍️ Оставить заявку
-        </a>
-        <div onclick="document.getElementById('team-popup').style.display='none'"
-          style="font-size:13px;color:#666;cursor:pointer;padding:8px;">Закрыть</div>
+  <!-- Team Popup -->
+  <div id="team-popup" onclick="if(event.target===this)this.style.display='none'"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);
+    z-index:1000;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#1a1a2e;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;
+      border:1px solid rgba(124,111,255,0.2);text-align:center;">
+      <div style="font-size:48px;margin-bottom:12px;">🚀</div>
+      <div style="font-size:18px;font-weight:700;color:#e0e0e8;margin-bottom:8px;">Команды — скоро</div>
+      <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:20px;">
+        Собирай свою команду исследователей.<br>
+        Веди учеников, партнёров или коллег<br>
+        в единой системе как капитан.<br><br>
+        Общий дашборд, совместные рефлексии,<br>
+        AI-анализ командной динамики.
       </div>
+      <a href="https://t.me/ritmnothingbot?start=team_request"
+        onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;"
+        style="display:block;padding:14px;background:linear-gradient(135deg,#7c6fff,#5f5fdf);
+        border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
+        margin-bottom:10px;">
+        ✍️ Оставить заявку
+      </a>
+      <div onclick="document.getElementById('team-popup').style.display='none'"
+        style="font-size:13px;color:#666;cursor:pointer;padding:8px;">Закрыть</div>
     </div>
+  </div>
 
-    <!-- Message Popup -->
-    <div id="msg-popup" onclick="if(event.target===this)this.style.display='none'"
-      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);
-      z-index:1000;align-items:center;justify-content:center;padding:20px;">
-      <div style="background:#1a1a2e;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;
-        border:1px solid rgba(52,199,89,0.2);text-align:center;">
-        <div style="font-size:48px;margin-bottom:12px;">💬</div>
-        <div style="font-size:18px;font-weight:700;color:#e0e0e8;margin-bottom:8px;">Послание команде</div>
-        <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:20px;">
-          Напишите команде разработчиков<br>
-          платформы или методологам проекта<br>
-          свои пожелания или предложения.<br><br>
-          Мы рассматриваем все сообщения.
-        </div>
-        <a href="https://t.me/ritmnothingbot?start=message_team"
-          onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;"
-          style="display:block;padding:14px;background:linear-gradient(135deg,#34c759,#28a745);
-          border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
-          margin-bottom:10px;">
-          ✍️ Оставить послание команде проекта
-        </a>
-        <div onclick="document.getElementById('msg-popup').style.display='none'"
-          style="font-size:13px;color:#666;cursor:pointer;padding:8px;">Закрыть</div>
+  <!-- Message Popup -->
+  <div id="msg-popup" onclick="if(event.target===this)this.style.display='none'"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);
+    z-index:1000;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#1a1a2e;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;
+      border:1px solid rgba(52,199,89,0.2);text-align:center;">
+      <div style="font-size:48px;margin-bottom:12px;">💬</div>
+      <div style="font-size:18px;font-weight:700;color:#e0e0e8;margin-bottom:8px;">Послание команде</div>
+      <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:20px;">
+        Напишите команде разработчиков<br>
+        платформы или методологам проекта<br>
+        свои пожелания или предложения.<br><br>
+        Мы рассматриваем все сообщения.
       </div>
+      <a href="https://t.me/ritmnothingbot?start=message_team"
+        onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;"
+        style="display:block;padding:14px;background:linear-gradient(135deg,#34c759,#28a745);
+        border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
+        margin-bottom:10px;">
+        ✍️ Оставить послание команде проекта
+      </a>
+      <div onclick="document.getElementById('msg-popup').style.display='none'"
+        style="font-size:13px;color:#666;cursor:pointer;padding:8px;">Закрыть</div>
     </div>
+  </div>
 
     <div class="c">
       <h2>📋 Анкета</h2>
