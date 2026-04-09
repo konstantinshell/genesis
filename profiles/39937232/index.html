@@ -931,14 +931,14 @@ function renderWheel(values) {
     var lx = cx + (R+16)*Math.cos(ang2), ly = cy + (R+16)*Math.sin(ang2);
     var anc = Math.abs(Math.cos(ang2)) < 0.3 ? 'middle' : (Math.cos(ang2) > 0 ? 'start' : 'end');
     h += '<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="'+anc+'" fill="'+sc2.dot+'" font-size="10" font-family="Jost,sans-serif" font-weight="500">'+sc2.label+'</text>';
-    // Подпись вектора, к которому относится сфера — на R+38
+    // Подпись вектора — над названием сферы (верхняя половина) или под (нижняя)
     var vecName = '';
     for (var vv = 0; vv < VECTORS.length; vv++) {
       if (VECTORS[vv].a === keys[m] || VECTORS[vv].b === keys[m]) { vecName = VECTORS[vv].label.toUpperCase(); break; }
     }
     if (vecName) {
-      var vlx = cx + (R+34)*Math.cos(ang2), vly = cy + (R+34)*Math.sin(ang2);
-      h += '<text x="'+vlx+'" y="'+(vly+3)+'" text-anchor="'+anc+'" fill="rgba(255,255,255,0.32)" font-size="7" font-family="Jost,sans-serif" font-weight="600" letter-spacing="0.5">'+vecName+'</text>';
+      var vyOffset = (Math.sin(ang2) <= 0) ? -10 : 14;
+      h += '<text x="'+lx+'" y="'+(ly+vyOffset)+'" text-anchor="'+anc+'" fill="rgba(255,255,255,0.32)" font-size="7" font-family="Jost,sans-serif" font-weight="600" letter-spacing="0.5">'+vecName+'</text>';
     }
   }
   // Слой подсветки активного вектора (рисуется поверх всего)
