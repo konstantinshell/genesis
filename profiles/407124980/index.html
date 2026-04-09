@@ -225,6 +225,13 @@
     .ct-date { color:rgba(255,255,255,0.85); font-weight:600; font-size:11px; }
     .ct-tag { color:rgba(255,255,255,0.4); font-size:9px; text-transform:uppercase; letter-spacing:0.5px; margin-top:1px; }
     .cycle-intent-label { font-size:9px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1px; margin-bottom:6px; }
+    .intent-locked { background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(168,85,247,0.05)); border:1px dashed rgba(99,102,241,0.35); border-radius:12px; padding:14px; margin-top:4px; }
+    .il-head { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+    .il-icon { font-size:14px; }
+    .il-title { font-size:12px; font-weight:700; color:#A5B4FC; flex:1; text-transform:uppercase; letter-spacing:0.8px; }
+    .il-text { font-size:11px; color:rgba(255,255,255,0.7); line-height:1.55; margin-bottom:12px; }
+    .il-text b { color:#A5B4FC; font-weight:600; }
+    .il-cta { display:block; text-align:center; padding:11px; background:#6366F1; color:#fff; font-size:12px; font-weight:600; border-radius:10px; text-decoration:none; box-shadow:0 0 14px rgba(99,102,241,0.25); }
     .cycle-help-popup { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); z-index:9999; align-items:center; justify-content:center; padding:20px; }
     .chp-inner { background:#12121E; border:1px solid rgba(99,102,241,0.3); border-radius:16px; padding:22px 20px; max-width:380px; width:100%; max-height:85vh; overflow-y:auto; }
     .chp-title { font-size:16px; font-weight:700; color:#fff; }
@@ -1282,10 +1289,42 @@ function renderGoals(season, week_goal) {
     h += '<div class="ct-end"><div class="ct-date">'+endStr+'</div><div class="ct-tag">финиш</div></div></div>';
     h += '</div>';
 
-    // Намерение цикла
-    h += '<div class="cycle-intent-label">НАМЕРЕНИЕ ЦИКЛА</div>';
-    h += '<div class="goal-text-main">'+g.text+'</div>';
+    // Намерение цикла — заблокировано до прохождения чекапа
+    h += '<div class="intent-locked">';
+    h += '<div class="il-head"><span class="il-icon">🔒</span><span class="il-title">Намерение цикла</span><button class="cycle-help" onclick="event.stopPropagation();toggleIntentHelp()" aria-label="Об индивидуальной программе">?</button></div>';
+    h += '<div class="il-text">Появится после прохождения <b>чекапа MNPI</b>. На его основе ИИ сформирует индивидуальную программу цикла — твоё уникальное намерение, цели и план задач по сферам.</div>';
+    h += '<a href="https://t.me/ritmnothingbot?start=checkup" class="il-cta">🧠 Пройти чекап MNPI</a>';
     h += '</div>';
+    h += '</div>';
+
+    // Попап с описанием индивидуальной программы
+    h += '<div class="cycle-help-popup" id="intent-help-popup" style="display:none;">';
+    h += '<div class="chp-inner">';
+    h += '<div class="chp-title">Индивидуальная программа цикла</div>';
+    h += '<div class="chp-motto">формируется после чекапа MNPI</div>';
+    h += '<div class="chp-text">После прохождения чекапа ИИ собирает твой <b>нейро-психологический профиль</b>: данные ЭЭГ, фитнес-трекера, рефлексий, клинических анализов и результатов 6 аудио-сессий. На основе этого формируется <b>индивидуальная программа цикла</b>.</div>';
+
+    h += '<div class="chp-section">Что появится в этом блоке</div>';
+    h += '<div class="chp-list">';
+    h += '<div class="chp-row"><span class="chp-color" style="background:#8B5CF6;"></span><b>Намерение цикла</b> — твоя главная цель на ~40 дней, выведенная из твоих паттернов и дефицитов</div>';
+    h += '<div class="chp-row"><span class="chp-color" style="background:#3B82F6;"></span><b>Задачи по сферам</b> — персональный набор для балансировки векторов</div>';
+    h += '<div class="chp-row"><span class="chp-color" style="background:#22C55E;"></span><b>Практики и рекомендации</b> — подобранные под твои нейро-показатели</div>';
+    h += '<div class="chp-row"><span class="chp-color" style="background:#F59E0B;"></span><b>Отслеживание прогресса</b> — тайм-лайн, корреляции с физиологией</div>';
+    h += '</div>';
+
+    h += '<div class="chp-section">Шаги до активации</div>';
+    h += '<div class="chp-list">';
+    h += '<div class="chp-row"><span class="chp-roman">1</span>Тестовая сессия Neiry + CSV</div>';
+    h += '<div class="chp-row"><span class="chp-roman">2</span>Базовая рефлексия</div>';
+    h += '<div class="chp-row"><span class="chp-roman">3</span>Фитнес-данные (Garmin/Whoop)</div>';
+    h += '<div class="chp-row"><span class="chp-roman">4</span>Клинические данные</div>';
+    h += '<div class="chp-row"><span class="chp-roman">5</span>6 аудио-сессий MNPI с NEIRY</div>';
+    h += '</div>';
+
+    h += '<div class="chp-text" style="margin-top:14px;">После загрузки всех данных ИИ за сутки формирует программу. До этого в блоке показан общий контекст цикла — дата, девиз и тайм-лайн природного ритма.</div>';
+
+    h += '<button class="chp-close" onclick="toggleIntentHelp()">Понятно</button>';
+    h += '</div></div>';
 
     // Поп-ап с описанием цикла
     h += '<div class="cycle-help-popup" id="cycle-help-popup" style="display:none;">';
@@ -1316,6 +1355,12 @@ function toggleCycleHelp() {
 
 function toggleWheelHelp() {
   var p = document.getElementById('wheel-help-popup');
+  if (!p) return;
+  p.style.display = (p.style.display === 'none' || !p.style.display) ? 'flex' : 'none';
+}
+
+function toggleIntentHelp() {
+  var p = document.getElementById('intent-help-popup');
   if (!p) return;
   p.style.display = (p.style.display === 'none' || !p.style.display) ? 'flex' : 'none';
 }
