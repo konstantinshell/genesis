@@ -738,11 +738,18 @@ var SPHERE_COLORS = {
 
 // Векторы (4 пары полюсов)
 var VECTORS = [
-  { key:'energy',  label:'Энергия',     a:'abundance',     b:'health' },
-  { key:'power',   label:'Сила',        a:'awareness',     b:'creativity' },
-  { key:'info',    label:'Информация',  a:'knowledge',     b:'communication' },
-  { key:'space',   label:'Пространство',a:'relationships', b:'profession' }
+  { key:'energy',  label:'Энергия',     color:'#FBBF24', a:'abundance',     b:'health' },
+  { key:'power',   label:'Сила',        color:'#A78BFA', a:'awareness',     b:'creativity' },
+  { key:'info',    label:'Информация',  color:'#5EEAD4', a:'knowledge',     b:'communication' },
+  { key:'space',   label:'Пространство',color:'#FDA4AF', a:'relationships', b:'profession' }
 ];
+
+function getVectorForSphere(sphereKey) {
+  for (var i = 0; i < VECTORS.length; i++) {
+    if (VECTORS[i].a === sphereKey || VECTORS[i].b === sphereKey) return VECTORS[i];
+  }
+  return null;
+}
 
 var SEASON_DATES = ['02-02','20-03','01-05','22-06','01-08','22-09','01-11','22-12'];
 
@@ -931,14 +938,17 @@ function renderWheel(values) {
     var lx = cx + (R+16)*Math.cos(ang2), ly = cy + (R+16)*Math.sin(ang2);
     var anc = Math.abs(Math.cos(ang2)) < 0.3 ? 'middle' : (Math.cos(ang2) > 0 ? 'start' : 'end');
     h += '<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="'+anc+'" fill="'+sc2.dot+'" font-size="10" font-family="Jost,sans-serif" font-weight="500">'+sc2.label+'</text>';
-    // Подпись вектора — над названием сферы (верхняя половина) или под (нижняя)
-    var vecName = '';
-    for (var vv = 0; vv < VECTORS.length; vv++) {
-      if (VECTORS[vv].a === keys[m] || VECTORS[vv].b === keys[m]) { vecName = VECTORS[vv].label.toUpperCase(); break; }
-    }
-    if (vecName) {
-      var vyOffset = (Math.sin(ang2) <= 0) ? -10 : 14;
-      h += '<text x="'+lx+'" y="'+(ly+vyOffset)+'" text-anchor="'+anc+'" fill="rgba(255,255,255,0.32)" font-size="7" font-family="Jost,sans-serif" font-weight="600" letter-spacing="0.5">'+vecName+'</text>';
+    // Подпись вектора — с цветом и плашкой
+    var vec = getVectorForSphere(keys[m]);
+    if (vec) {
+      var vecName = vec.label.toUpperCase();
+      var vyOffset = (Math.sin(ang2) <= 0) ? -11 : 15;
+      var bgWidth = vecName.length * 4.5 + 8;
+      var bgX = lx;
+      if (anc === 'middle') bgX = lx - bgWidth/2;
+      else if (anc === 'end') bgX = lx - bgWidth;
+      h += '<rect x="'+bgX+'" y="'+(ly+vyOffset-6)+'" width="'+bgWidth+'" height="10" rx="2" fill="'+vec.color+'" fill-opacity="0.15" stroke="'+vec.color+'" stroke-opacity="0.4" stroke-width="0.5"/>';
+      h += '<text x="'+lx+'" y="'+(ly+vyOffset+1)+'" text-anchor="'+anc+'" fill="'+vec.color+'" font-size="6.5" font-family="Jost,sans-serif" font-weight="700" letter-spacing="0.6">'+vecName+'</text>';
     }
   }
   // Слой подсветки активного вектора (рисуется поверх всего)
@@ -946,10 +956,10 @@ function renderWheel(values) {
   h += '</svg>';
   // Легенда векторов
   h += '<div class="wheel-legend">';
-  h += '<div class="wl-item"><span class="wl-dot" style="background:linear-gradient(90deg,#F59E0B,#EF4444);"></span>Энергия</div>';
-  h += '<div class="wl-item"><span class="wl-dot" style="background:linear-gradient(90deg,#8B5CF6,#A855F7);"></span>Сила</div>';
-  h += '<div class="wl-item"><span class="wl-dot" style="background:linear-gradient(90deg,#3B82F6,#22C55E);"></span>Информация</div>';
-  h += '<div class="wl-item"><span class="wl-dot" style="background:linear-gradient(90deg,#F97316,#84CC16);"></span>Пространство</div>';
+  for (var lg = 0; lg < VECTORS.length; lg++) {
+    var lv = VECTORS[lg];
+    h += '<div class="wl-item"><span class="wl-dot" style="background:'+lv.color+';"></span><span style="color:'+lv.color+';font-weight:600;">'+lv.label+'</span></div>';
+  }
   h += '</div>';
 
   // AI-подсказка
