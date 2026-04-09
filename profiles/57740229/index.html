@@ -204,6 +204,38 @@
     .goal-world { font-size:11px; color:#8B5CF6; font-style:italic; margin-bottom:6px; }
     .goal-text-main { font-size:13px; color:#fff; line-height:1.45; margin-bottom:8px; }
     .goal-meta { font-size:10px; color:rgba(255,255,255,0.5); margin-top:5px; }
+    /* Cycle timeline */
+    .cycle-head { display:flex; align-items:center; gap:8px; margin-bottom:2px; }
+    .cycle-title { font-size:13px; font-weight:700; color:#A5B4FC; flex:1; }
+    .cycle-help { width:18px; height:18px; border-radius:50%; background:rgba(99,102,241,0.18); border:1px solid rgba(99,102,241,0.4); color:#A5B4FC; font-size:11px; font-weight:700; cursor:pointer; padding:0; line-height:1; }
+    .cycle-motto { font-size:11px; color:#8B5CF6; font-style:italic; margin-bottom:14px; }
+    .cycle-timeline { background:rgba(255,255,255,0.025); border-radius:10px; padding:18px 14px 12px; margin-bottom:14px; }
+    .ct-bar { position:relative; height:6px; background:rgba(255,255,255,0.08); border-radius:3px; margin-bottom:30px; }
+    .ct-fill { position:absolute; top:0; left:0; height:100%; background:linear-gradient(90deg,#6366F1,#A855F7); border-radius:3px; box-shadow:0 0 10px rgba(99,102,241,0.5); }
+    .ct-marker { position:absolute; top:-4px; transform:translateX(-50%); }
+    .ct-marker-dot { width:14px; height:14px; border-radius:50%; background:#A855F7; border:3px solid #0A0A12; box-shadow:0 0 12px rgba(168,85,247,0.7); }
+    .ct-marker-pct { position:absolute; top:18px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:700; color:#A855F7; white-space:nowrap; }
+    .ct-labels { display:flex; justify-content:space-between; align-items:flex-start; }
+    .ct-start, .ct-end, .ct-now { font-size:10px; line-height:1.3; }
+    .ct-start { text-align:left; }
+    .ct-end { text-align:right; }
+    .ct-now { text-align:center; color:#A5B4FC; font-weight:600; }
+    .ct-now-sub { font-size:9px; color:rgba(255,255,255,0.4); font-weight:400; }
+    .ct-date { color:rgba(255,255,255,0.85); font-weight:600; font-size:11px; }
+    .ct-tag { color:rgba(255,255,255,0.4); font-size:9px; text-transform:uppercase; letter-spacing:0.5px; margin-top:1px; }
+    .cycle-intent-label { font-size:9px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1px; margin-bottom:6px; }
+    .cycle-help-popup { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); z-index:9999; align-items:center; justify-content:center; padding:20px; }
+    .chp-inner { background:#12121E; border:1px solid rgba(99,102,241,0.3); border-radius:16px; padding:22px 20px; max-width:380px; width:100%; max-height:85vh; overflow-y:auto; }
+    .chp-title { font-size:16px; font-weight:700; color:#fff; }
+    .chp-motto { font-size:12px; color:#8B5CF6; font-style:italic; margin-bottom:14px; }
+    .chp-text { font-size:12px; color:rgba(255,255,255,0.75); line-height:1.6; margin-bottom:14px; }
+    .chp-text b { color:#A5B4FC; }
+    .chp-list { background:rgba(255,255,255,0.03); border-radius:10px; padding:10px 12px; margin-bottom:16px; }
+    .chp-row { display:flex; align-items:center; gap:10px; padding:5px 0; font-size:11px; color:rgba(255,255,255,0.6); }
+    .chp-roman { width:22px; color:#6366F1; font-weight:700; font-size:10px; }
+    .chp-row.chp-active { color:#A5B4FC; font-weight:600; }
+    .chp-row.chp-active .chp-roman { color:#A855F7; }
+    .chp-close { width:100%; padding:11px; background:#6366F1; border:none; border-radius:10px; color:#fff; font-size:12px; font-weight:600; cursor:pointer; }
 
     .day-task { display:flex; align-items:center; gap:8px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
     .day-task:last-child { border-bottom:none; }
@@ -1136,28 +1168,63 @@ function renderGoals(season, week_goal) {
   // Цикл
   if (season && season.goals && season.goals.length) {
     var g = season.goals[0];
+    var cycleNum = season.cycle||3;
+    var worldName = season.world_name||'Мир действий';
+    var worldMotto = season.world_motto||'Я делаю';
+    var startStr = season.start||'20 марта';
+    var endStr = season.end||'30 апреля';
+    var daysLeft = season.days_left||19;
+    var daysTotal = season.days_total||40;
+    var pct = g.progress;
+
     h += '<div class="goal-block">';
-    h += '<div class="goal-period-line">Цикл '+(season.cycle||3)+' · '+(season.start||'20 марта')+' → '+(season.end||'30 апреля')+'</div>';
-    h += '<div class="goal-world">'+(season.world_name||'Мир действий')+' — «'+(season.world_motto||'Я делаю')+'»</div>';
+    // Заголовок цикла + кнопка-вопрос
+    h += '<div class="cycle-head">';
+    h += '<div class="cycle-title">Цикл '+cycleNum+' · '+worldName+'</div>';
+    h += '<button class="cycle-help" onclick="event.stopPropagation();toggleCycleHelp()" aria-label="О цикле">?</button>';
+    h += '</div>';
+    h += '<div class="cycle-motto">«'+worldMotto+'»</div>';
+
+    // Тайм-лайн с маркерами начала/конца и текущей точкой
+    h += '<div class="cycle-timeline">';
+    h += '<div class="ct-bar"><div class="ct-fill" style="width:'+pct+'%;"></div>';
+    h += '<div class="ct-marker" style="left:'+pct+'%;"><div class="ct-marker-dot"></div><div class="ct-marker-pct">'+pct+'%</div></div>';
+    h += '</div>';
+    h += '<div class="ct-labels"><div class="ct-start"><div class="ct-date">'+startStr+'</div><div class="ct-tag">старт</div></div>';
+    h += '<div class="ct-now">'+daysLeft+' дн осталось<br><span class="ct-now-sub">'+(daysTotal-daysLeft)+' из '+daysTotal+' пройдено</span></div>';
+    h += '<div class="ct-end"><div class="ct-date">'+endStr+'</div><div class="ct-tag">финиш</div></div></div>';
+    h += '</div>';
+
+    // Намерение цикла
+    h += '<div class="cycle-intent-label">НАМЕРЕНИЕ ЦИКЛА</div>';
     h += '<div class="goal-text-main">'+g.text+'</div>';
-    var clr = g.progress > 50 ? '#22C55E' : (g.progress >= 20 ? '#F59E0B' : '#EF4444');
-    h += '<div class="goal-bar"><div class="goal-fill" style="width:'+g.progress+'%;background:'+clr+';"></div></div>';
-    h += '<div class="goal-meta">'+g.progress+'% · '+(season.days_left||19)+' дней из '+(season.days_total||40)+'</div>';
     h += '</div>';
-  }
-  // Неделя
-  if (week_goal) {
-    h += '<div class="goal-block">';
-    h += '<div class="goal-period-line">Неделя '+(week_goal.number||1)+' · '+(week_goal.dates||'07–13 апреля')+'</div>';
-    h += '<div class="goal-text-main">'+(week_goal.text||'Цель недели')+'</div>';
-    var clr2 = week_goal.progress > 50 ? '#22C55E' : (week_goal.progress >= 20 ? '#F59E0B' : '#EF4444');
-    h += '<div class="goal-bar"><div class="goal-fill" style="width:'+(week_goal.progress||0)+'%;background:'+clr2+';"></div></div>';
-    h += '<div class="goal-meta">'+(week_goal.progress||0)+'%</div>';
+
+    // Поп-ап с описанием цикла
+    h += '<div class="cycle-help-popup" id="cycle-help-popup" style="display:none;">';
+    h += '<div class="chp-inner">';
+    h += '<div class="chp-title">Цикл '+cycleNum+' · '+worldName+'</div>';
+    h += '<div class="chp-motto">«'+worldMotto+'»</div>';
+    h += '<div class="chp-text">Цикл — это период природного ритма (~40 дней между астрономическими точками: солнцестояниями и равноденствиями). Каждый цикл связан с одним из миров познания. Сейчас идёт <b>'+worldName+'</b> — фаза реализации намерений, когда замыслы воплощаются в действия.</div>';
+    h += '<div class="chp-list">';
+    h += '<div class="chp-row"><span class="chp-roman">I</span> Мир смыслов — Я есть</div>';
+    h += '<div class="chp-row"><span class="chp-roman">II</span> Мир намерений — Я желаю</div>';
+    h += '<div class="chp-row"><span class="chp-roman">III</span> Мир возможностей — Я имею</div>';
+    h += '<div class="chp-row"><span class="chp-roman">IV</span> Мир законов — Я разрешаю</div>';
+    h += '<div class="chp-row chp-active"><span class="chp-roman">V</span> Мир действий — Я делаю</div>';
+    h += '<div class="chp-row"><span class="chp-roman">VI</span> Мир осознаний — Я анализирую</div>';
     h += '</div>';
+    h += '<button class="chp-close" onclick="toggleCycleHelp()">Понятно</button>';
+    h += '</div></div>';
   }
-  h += '<div class="dash-ai-hint"><span class="dash-ai-dot"></span>Задачи недели идут к цели цикла ✓</div>';
   h += '</div>';
   return h;
+}
+
+function toggleCycleHelp() {
+  var p = document.getElementById('cycle-help-popup');
+  if (!p) return;
+  p.style.display = (p.style.display === 'none' || !p.style.display) ? 'flex' : 'none';
 }
 
 function renderDayTasks(today, values) {
