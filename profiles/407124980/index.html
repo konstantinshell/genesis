@@ -162,7 +162,7 @@
     <!-- Рефлексии + загрузки -->
     <div class="c" style="padding:14px;">
       <div style="display:flex;gap:8px;margin-bottom:10px;">
-        <a href="https://t.me/ritmnothingbot?start=morning" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌅 Утренняя рефлексия · 1</a>
+        <a href="https://t.me/ritmnothingbot?start=morning" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌅 Утренняя рефлексия · 2</a>
         <a href="https://t.me/ritmnothingbot?start=evening" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌙 Вечерняя рефлексия · 0</a>
       </div>
       <div style="background:#12121a;border-radius:10px;padding:14px;border:1px solid rgba(124,111,255,0.18);">
@@ -204,7 +204,7 @@
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧘</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Рефлексия в бот</div>
-          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 2 записей</div>
+          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 3 записей</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🫀</div>
@@ -248,53 +248,6 @@
         <div class="fit-m"><div class="icon">❤️</div><div class="label">Пульс</div><div class="val">—</div></div>
         <div class="fit-m"><div class="icon">💓</div><div class="label">HRV</div><div class="val">—</div></div>
         <div class="fit-m"><div class="icon">😴</div><div class="label">Сон Качество</div><div class="val">—</div></div>
-      </div>
-    </div>
-
-    <!-- Баланс сфер -->
-    <div class="c">
-      <div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">БАЛАНС СФЕР · НЕДЕЛЯ 1</div>
-      <div style="font-size:12px;color:#666;margin-bottom:14px;">Из потока задач и феноменологии</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#2a2a35;border-radius:10px;overflow:hidden;">
-        <div style="background:#1a1a24;padding:14px;">
-          <div style="font-size:12px;color:#aaa;margin-bottom:8px;">Профессия</div>
-          <div style="background:#2a2a35;border-radius:2px;height:3px;margin-bottom:8px;"><div style="background:#0a84ff;height:3px;border-radius:2px;width:83%;"></div></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:#777;">12 задач</span><span style="color:#0a84ff;">83%</span></div>
-        </div>
-        <div style="background:#1a1a24;padding:14px;">
-          <div style="font-size:12px;color:#aaa;margin-bottom:8px;">ЗОЖ</div>
-          <div style="background:#2a2a35;border-radius:2px;height:3px;margin-bottom:8px;"><div style="background:#ff453a;height:3px;border-radius:2px;width:20%;"></div></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:#777;">1 задача</span><span style="color:#ff453a;">20%</span></div>
-        </div>
-        <div style="background:#1a1a24;padding:14px;border-top:1px solid #2a2a35;">
-          <div style="font-size:12px;color:#aaa;margin-bottom:8px;">Общение</div>
-          <div style="background:#2a2a35;border-radius:2px;height:3px;margin-bottom:8px;"><div style="background:#34c759;height:3px;border-radius:2px;width:60%;"></div></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:#777;">5 задач</span><span style="color:#34c759;">60%</span></div>
-        </div>
-        <div style="background:#1a1a24;padding:14px;border-top:1px solid #2a2a35;">
-          <div style="font-size:12px;color:#aaa;margin-bottom:8px;">Творчество</div>
-          <div style="background:#2a2a35;border-radius:2px;height:3px;margin-bottom:8px;"><div style="background:#ff453a;height:3px;border-radius:2px;width:5%;"></div></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:#777;">0 задач</span><span style="color:#ff453a;">—</span></div>
-        </div>
-        <div style="background:#1a1a24;padding:14px;border-top:1px solid #2a2a35;">
-          <div style="font-size:12px;color:#aaa;margin-bottom:8px;">Знания</div>
-          <div style="background:#2a2a35;border-radius:2px;height:3px;margin-bottom:8px;"><div style="background:#7c6fff;height:3px;border-radius:2px;width:45%;"></div></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:#777;">3 задачи</span><span style="color:#7c6fff;">45%</span></div>
-        </div>
-        <div style="background:#1a1a24;padding:14px;border-top:1px solid #2a2a35;">
-          <div style="font-size:12px;color:#aaa;margin-bottom:8px;">Отношения</div>
-          <div style="background:#2a2a35;border-radius:2px;height:3px;margin-bottom:8px;"><div style="background:#ff9f0a;height:3px;border-radius:2px;width:30%;"></div></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:#777;">2 задачи</span><span style="color:#ff9f0a;">30%</span></div>
-        </div>
-      </div>
-      <div style="margin-top:10px;background:#1a1500;border-radius:10px;padding:14px;">
-        <div style="font-size:13px;color:#aa8800;line-height:1.6;">Дисбаланс: Профессия перегружена (83%), ЗОЖ и Творчество почти пустые. На неделе с HRV &lt;60 — это сигнал истощения.</div>
-      </div>
-      <div style="margin-top:8px;background:#12121a;border-left:3px solid #7c6fff;border-radius:0 8px 8px 0;padding:14px;">
-        <div style="font-size:13px;color:#888;line-height:1.6;">Натали: "При формировании задач важно чтобы были задействованы все сферы жизни"</div>
-      </div>
-      <div style="margin-top:10px;text-align:center;">
-        <div style="font-size:11px;color:#444;font-style:italic;">* Данные обновятся на ваши после первой выгрузки данных</div>
       </div>
     </div>
 
