@@ -160,7 +160,16 @@
     .dash-section-title { font-size:10px; font-weight:700; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:1.2px; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; }
     .dash-section-hint { font-size:9px; color:rgba(255,255,255,0.35); font-weight:400; text-transform:none; letter-spacing:0; }
 
-    .dash-wheel { width:100%; max-width:280px; height:auto; display:block; margin:0 auto; }
+    .dash-wheel { width:100%; max-width:300px; height:auto; display:block; margin:0 auto; }
+    .wheel-yin-yang { display:flex; justify-content:space-between; align-items:flex-start; padding:0 20px; margin-bottom:-8px; position:relative; z-index:2; }
+    .wyy-side { text-align:center; }
+    .wyy-label { font-family:'Oswald',sans-serif; font-size:12px; font-weight:700; letter-spacing:1.5px; }
+    .wyy-sub { font-size:9px; color:rgba(255,255,255,0.4); margin-top:2px; }
+    .wyy-yang .wyy-label { color:#FCD34D; }
+    .wyy-yin .wyy-label { color:#A5B4FC; }
+    .wheel-legend { display:grid; grid-template-columns:1fr 1fr; gap:6px 12px; margin-top:10px; padding:10px 12px; background:rgba(255,255,255,0.025); border-radius:10px; }
+    .wl-item { display:flex; align-items:center; gap:6px; font-size:10px; color:rgba(255,255,255,0.65); }
+    .wl-dot { width:14px; height:6px; border-radius:3px; flex-shrink:0; }
     .dash-ai-hint { display:flex; align-items:flex-start; gap:8px; background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.18); border-radius:10px; padding:10px 12px; margin-top:12px; font-size:11px; color:rgba(255,255,255,0.75); line-height:1.5; }
     .dash-ai-dot { width:6px; height:6px; border-radius:50%; background:#6366F1; flex-shrink:0; margin-top:5px; }
 
@@ -854,9 +863,16 @@ function renderHeader(profileName, week, level) {
 }
 
 function renderWheel(values) {
-  var h = '<div class="c"><div class="dash-section-title">КОЛЕСО БАЛАНСА</div>';
-  h += '<svg viewBox="0 0 340 320" class="dash-wheel" id="dash-wheel-svg">';
-  var cx = 170, cy = 160, R = 100;
+  var h = '<div class="c"><div class="dash-section-title">КОЛЕСО БАЛАНСА · 8 сфер · 4 вектора</div>';
+  // ЯН / ИНЬ заголовок над колесом
+  h += '<div class="wheel-yin-yang">';
+  h += '<div class="wyy-side wyy-yang"><div class="wyy-label">ЯН</div><div class="wyy-sub">внешний мир</div></div>';
+  h += '<div class="wyy-side wyy-yin"><div class="wyy-label">ИНЬ</div><div class="wyy-sub">внутренний мир</div></div>';
+  h += '</div>';
+  h += '<svg viewBox="0 0 360 360" class="dash-wheel" id="dash-wheel-svg">';
+  var cx = 180, cy = 175, R = 100;
+  // Вертикальный разделитель Ян/Инь
+  h += '<line x1="'+cx+'" y1="'+(cy-R-30)+'" x2="'+cx+'" y2="'+(cy+R+30)+'" stroke="rgba(255,255,255,0.08)" stroke-width="0.7" stroke-dasharray="2,3"/>';
   var keys = ['abundance','awareness','knowledge','relationships','health','creativity','communication','profession'];
   var n = 8;
   // Сохраняем для подсветки векторов
@@ -915,10 +931,26 @@ function renderWheel(values) {
     var lx = cx + (R+16)*Math.cos(ang2), ly = cy + (R+16)*Math.sin(ang2);
     var anc = Math.abs(Math.cos(ang2)) < 0.3 ? 'middle' : (Math.cos(ang2) > 0 ? 'start' : 'end');
     h += '<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="'+anc+'" fill="'+sc2.dot+'" font-size="10" font-family="Jost,sans-serif" font-weight="500">'+sc2.label+'</text>';
+    // Подпись вектора, к которому относится сфера — на R+38
+    var vecName = '';
+    for (var vv = 0; vv < VECTORS.length; vv++) {
+      if (VECTORS[vv].a === keys[m] || VECTORS[vv].b === keys[m]) { vecName = VECTORS[vv].label.toUpperCase(); break; }
+    }
+    if (vecName) {
+      var vlx = cx + (R+34)*Math.cos(ang2), vly = cy + (R+34)*Math.sin(ang2);
+      h += '<text x="'+vlx+'" y="'+(vly+3)+'" text-anchor="'+anc+'" fill="rgba(255,255,255,0.32)" font-size="7" font-family="Jost,sans-serif" font-weight="600" letter-spacing="0.5">'+vecName+'</text>';
+    }
   }
   // Слой подсветки активного вектора (рисуется поверх всего)
   h += '<g id="wheel-vec-overlay"></g>';
   h += '</svg>';
+  // Легенда векторов
+  h += '<div class="wheel-legend">';
+  h += '<div class="wl-item"><span class="wl-dot" style="background:linear-gradient(90deg,#F59E0B,#EF4444);"></span>Энергия</div>';
+  h += '<div class="wl-item"><span class="wl-dot" style="background:linear-gradient(90deg,#8B5CF6,#A855F7);"></span>Сила</div>';
+  h += '<div class="wl-item"><span class="wl-dot" style="background:linear-gradient(90deg,#3B82F6,#22C55E);"></span>Информация</div>';
+  h += '<div class="wl-item"><span class="wl-dot" style="background:linear-gradient(90deg,#F97316,#84CC16);"></span>Пространство</div>';
+  h += '</div>';
 
   // AI-подсказка
   var maxVal = 0, maxKey = '';
