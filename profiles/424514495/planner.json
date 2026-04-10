@@ -15,6 +15,6 @@
     "session_7": false,
     "neiry_csv": false,
     "garmin_2weeks": false,
-    "reflection_stream": false
+    "reflection_stream": true
   }
 }
