@@ -318,11 +318,14 @@
   <!-- TAB: ГЛАВНАЯ -->
   <div id="tab-main" class="tab active">
 
-    <!-- Рефлексии + загрузки -->
+    <!-- Активность + AI рефлексия -->
     <div class="c" style="padding:14px;">
-      <div style="display:flex;gap:8px;margin-bottom:10px;">
-        <a href="https://t.me/ritmnothingbot?start=morning" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌅 Утренняя рефлексия · 3</a>
-        <a href="https://t.me/ritmnothingbot?start=evening" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7c6fff,#5f4fdf);border-radius:10px;padding:10px;text-decoration:none;color:#fff;font-size:12px;font-weight:500;flex:1;">🌙 Вечерняя рефлексия · 2</a>
+      <div style="background:#12121a;border-radius:10px;padding:14px;border:1px solid rgba(124,111,255,0.12);margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span style="font-size:11px;color:#7c6fff;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Активность · 7 дней</span>
+          <span style="margin-left:auto;font-size:11px;color:#555;">5 записей</span>
+        </div>
+        <canvas id="eeg-activity" height="70" style="width:100%;display:block;"></canvas>
       </div>
       <div style="background:#12121a;border-radius:10px;padding:14px;border:1px solid rgba(124,111,255,0.18);">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
@@ -1979,6 +1982,85 @@ window.addEventListener('load', function() {
   }
   requestAnimationFrame(frame);
 });
+
+/* EEG Activity Graph — 7 days */
+(function() {
+  var c = document.getElementById('eeg-activity');
+  if (!c) return;
+  var ctx = c.getContext('2d');
+  var data = [0, 0, 0, 2, 1, 2, 0];
+  var labels = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+  var W = c.width = c.parentElement.offsetWidth - 28;
+  var H = c.height;
+  var mid = H * 0.48;
+  var maxV = Math.max.apply(null, data.concat([1]));
+  var segW = W / data.length;
+  ctx.strokeStyle = 'rgba(124,111,255,0.06)';
+  ctx.lineWidth = 1;
+  for (var i = 1; i < data.length; i++) {
+    ctx.beginPath();
+    ctx.moveTo(i * segW, 4);
+    ctx.lineTo(i * segW, H - 16);
+    ctx.stroke();
+  }
+  var pts = [];
+  for (var d = 0; d < data.length; d++) {
+    var amp = (data[d] / maxV) * (H * 0.36);
+    var bx = d * segW;
+    for (var s = 0; s < 20; s++) {
+      var x = bx + (s / 20) * segW;
+      var y;
+      if (data[d] > 0) {
+        var t = s / 20;
+        var spike = Math.exp(-Math.pow((t - 0.35) * 7, 2)) * amp;
+        var w2 = Math.exp(-Math.pow((t - 0.6) * 9, 2)) * amp * 0.35;
+        var dip = Math.exp(-Math.pow((t - 0.18) * 10, 2)) * amp * 0.15;
+        y = mid - spike - w2 + dip;
+      } else {
+        y = mid + Math.sin(d * 5.7 + s * 0.9) * 1.5;
+      }
+      pts.push([x, y]);
+    }
+  }
+  pts.push([W, mid]);
+  ctx.shadowColor = '#7c6fff';
+  ctx.shadowBlur = 8;
+  ctx.strokeStyle = '#7c6fff';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (var i = 1; i < pts.length; i++) {
+    var cpx = (pts[i-1][0] + pts[i][0]) / 2;
+    var cpy = (pts[i-1][1] + pts[i][1]) / 2;
+    ctx.quadraticCurveTo(pts[i-1][0], pts[i-1][1], cpx, cpy);
+  }
+  ctx.stroke();
+  ctx.shadowBlur = 12;
+  for (var d = 0; d < data.length; d++) {
+    if (data[d] > 0) {
+      var a2 = (data[d] / maxV) * (H * 0.36);
+      var px = (d + 0.35) * segW;
+      var py = mid - a2;
+      ctx.fillStyle = '#7c6fff';
+      ctx.beginPath();
+      ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = '#9a8fff';
+      ctx.font = '9px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(data[d], px, py - 7);
+      ctx.shadowBlur = 12;
+    }
+  }
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = '#444';
+  ctx.font = '9px sans-serif';
+  ctx.textAlign = 'center';
+  for (var i = 0; i < labels.length; i++) {
+    ctx.fillText(labels[i], (i + 0.5) * segW, H - 2);
+  }
+})();
 </script>
 </body>
 </html>
