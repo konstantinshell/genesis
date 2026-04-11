@@ -1988,21 +1988,30 @@ window.addEventListener('load', function() {
   var c = document.getElementById('eeg-activity');
   if (!c) return;
   var ctx = c.getContext('2d');
-  var data = [0, 0, 0, 1, 0, 0, 0];
-  var labels = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+  var data = [0, 0, 1, 0, 0, 0, 0];
+  var labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+  var todayIdx = 5;
   var W = c.width = c.parentElement.offsetWidth - 28;
   var H = c.height;
   var mid = H * 0.48;
   var maxV = Math.max.apply(null, data.concat([1]));
   var segW = W / data.length;
-  ctx.strokeStyle = 'rgba(124,111,255,0.06)';
-  ctx.lineWidth = 1;
-  for (var i = 1; i < data.length; i++) {
-    ctx.beginPath();
-    ctx.moveTo(i * segW, 4);
-    ctx.lineTo(i * segW, H - 16);
-    ctx.stroke();
+  /* Grid + today highlight */
+  for (var i = 0; i < data.length; i++) {
+    if (i === todayIdx) {
+      ctx.fillStyle = 'rgba(124,111,255,0.06)';
+      ctx.fillRect(i * segW, 0, segW, H - 16);
+    }
+    if (i > 0) {
+      ctx.strokeStyle = 'rgba(124,111,255,0.06)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(i * segW, 4);
+      ctx.lineTo(i * segW, H - 16);
+      ctx.stroke();
+    }
   }
+  /* Build points */
   var pts = [];
   for (var d = 0; d < data.length; d++) {
     var amp = (data[d] / maxV) * (H * 0.36);
@@ -2019,22 +2028,38 @@ window.addEventListener('load', function() {
       } else {
         y = mid + Math.sin(d * 5.7 + s * 0.9) * 1.5;
       }
-      pts.push([x, y]);
+      pts.push([x, y, d]);
     }
   }
-  pts.push([W, mid]);
+  pts.push([W, mid, 6]);
+  /* Draw line — solid for past/today, dashed for future */
   ctx.shadowColor = '#7c6fff';
   ctx.shadowBlur = 8;
-  ctx.strokeStyle = '#7c6fff';
   ctx.lineWidth = 1.5;
-  ctx.beginPath();
-  ctx.moveTo(pts[0][0], pts[0][1]);
-  for (var i = 1; i < pts.length; i++) {
-    var cpx = (pts[i-1][0] + pts[i][0]) / 2;
-    var cpy = (pts[i-1][1] + pts[i][1]) / 2;
-    ctx.quadraticCurveTo(pts[i-1][0], pts[i-1][1], cpx, cpy);
+  ctx.lineCap = 'round';
+  var drawing = false;
+  var lastFuture = false;
+  for (var i = 0; i < pts.length; i++) {
+    var future = pts[i][2] > todayIdx;
+    if (i === 0 || future !== lastFuture) {
+      if (drawing) ctx.stroke();
+      ctx.beginPath();
+      ctx.strokeStyle = future ? 'rgba(124,111,255,0.25)' : '#7c6fff';
+      ctx.setLineDash(future ? [4, 4] : []);
+      if (i > 0) ctx.moveTo(pts[i-1][0], pts[i-1][1]);
+      else ctx.moveTo(pts[0][0], pts[0][1]);
+      drawing = true;
+      lastFuture = future;
+    }
+    if (i > 0) {
+      var cpx = (pts[i-1][0] + pts[i][0]) / 2;
+      var cpy = (pts[i-1][1] + pts[i][1]) / 2;
+      ctx.quadraticCurveTo(pts[i-1][0], pts[i-1][1], cpx, cpy);
+    }
   }
-  ctx.stroke();
+  if (drawing) ctx.stroke();
+  ctx.setLineDash([]);
+  /* Dots + counts on active days */
   ctx.shadowBlur = 12;
   for (var d = 0; d < data.length; d++) {
     if (data[d] > 0) {
@@ -2053,11 +2078,12 @@ window.addEventListener('load', function() {
       ctx.shadowBlur = 12;
     }
   }
+  /* Day labels — today highlighted */
   ctx.shadowBlur = 0;
-  ctx.fillStyle = '#444';
   ctx.font = '9px sans-serif';
   ctx.textAlign = 'center';
   for (var i = 0; i < labels.length; i++) {
+    ctx.fillStyle = i === todayIdx ? '#7c6fff' : (i > todayIdx ? '#333' : '#444');
     ctx.fillText(labels[i], (i + 0.5) * segW, H - 2);
   }
 })();
