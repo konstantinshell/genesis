@@ -468,6 +468,8 @@
           <th>Дата регистрации</th>
           <th>Откуда</th>
           <th>Нейробенд</th>
+          <th>Трекер</th>
+          <th>Амбассадор</th>
           <th>Статус</th>
         </tr>
       </thead>
@@ -606,9 +608,14 @@ function buildSummary(data) {
       band = '<span style="color:#34c759;">🧠 Оплачен</span>';
     }
     const tracker = p.tracker ? '⌚ ' + (p.tracker_model || 'Да') : '—';
-    const ambassador = p.ambassador
-      ? '<span style="color:#34c759;">✅ Да</span>'
-      : '<span style="color:#aaa;">—</span>';
+    let ambassador;
+    if (!p.ambassador) {
+      ambassador = '<span style="color:#aaa;">—</span>';
+    } else if (String(p.ambassador).startsWith('❌')) {
+      ambassador = '<span style="color:#ff453a;">❌ Нет</span>';
+    } else {
+      ambassador = '<span style="color:#34c759;">✅ Да</span>';
+    }
     const lqLab = p.lq_lab
       ? '<span style="color:#34c759;">✅ Да</span>'
       : '<span style="color:#aaa;">—</span>';
@@ -649,12 +656,23 @@ function buildPreParticipants(list) {
     } else if (p.band_type === 'paid') {
       band = '<span style="color:#34c759;font-size:11px;">Оплачен</span>';
     }
+    const tracker = p.tracker ? '⌚ ' + (p.tracker_model || 'Да') : '—';
+    let preAmbassador;
+    if (!p.ambassador) {
+      preAmbassador = '<span style="color:#aaa;">—</span>';
+    } else if (String(p.ambassador).startsWith('❌')) {
+      preAmbassador = '<span style="color:#ff453a;">❌ Нет</span>';
+    } else {
+      preAmbassador = '<span style="color:#34c759;">✅ Да</span>';
+    }
     html += '<tr class="pre-participant-row">';
     html += '<td>' + p.name + '</td>';
     html += '<td>' + tg + '</td>';
     html += '<td>' + (p.registered || '—') + '</td>';
     html += '<td>' + ref + '</td>';
     html += '<td>' + band + '</td>';
+    html += '<td>' + tracker + '</td>';
+    html += '<td>' + preAmbassador + '</td>';
     html += '<td>' + status + '</td>';
     html += '</tr>';
   }
