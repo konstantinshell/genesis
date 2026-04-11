@@ -1803,11 +1803,9 @@ function loadTasks() {
   if (!roadmapH2) return;
   var roadmapCard = roadmapH2.closest('.c') || roadmapH2.parentElement;
   var roadmapLink = roadmapCard.parentElement.tagName === 'A' ? roadmapCard.parentElement : roadmapCard;
-  fetch('./planner.json?t='+Date.now()).then(function(r){return r.ok?r.json():null}).then(function(pl){
-    if (!pl || !pl.checklist) return;
-    var cl = pl.checklist;
-    var done = 0;
-    for (var i=1;i<=6;i++) { if (cl['session_'+i]) done++; }
+  (function(){
+    var sessDone = [false, false, false, false, false, false];
+    var done = sessDone.filter(Boolean).length;
     if (!document.getElementById('mnpi-session-popup')) {
       var overlay = document.createElement('div');
       overlay.id = 'mnpi-session-popup';
@@ -1843,7 +1841,7 @@ function loadTasks() {
     h += '<div style="height:6px;border-radius:3px;background:'+pclr+';width:'+pct+'%;transition:width 0.3s;"></div>';
     h += '</div>';
     for (var i=1;i<=6;i++) {
-      var isDone = cl['session_'+i];
+      var isDone = sessDone[i-1];
       h += '<div style="background:'+(isDone?'rgba(52,199,89,0.08)':'#12121a')+';border:'+(isDone?'1px solid rgba(52,199,89,0.2)':'1px solid #2a2a35')+';border-radius:10px;padding:12px;margin-bottom:8px;">';
       h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">';
       h += '<div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">'+(isDone?'✅':'⬜')+'</span>';
@@ -1863,7 +1861,7 @@ function loadTasks() {
     h += '<div style="font-size:11px;color:#555;text-align:center;margin-top:6px;font-style:italic;">Минимум 5 часов отдыха между сессиями</div>';
     wrap.innerHTML = h;
     roadmapLink.parentElement.insertBefore(wrap, roadmapLink);
-  }).catch(function(){});
+  })();
 })();
 </script>
 <script id="hide-stale-banner">

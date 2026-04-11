@@ -3,18 +3,5 @@
   "level_changed_at": null,
   "pre_checkup_entries": 0,
   "weeks_in_program": 0,
-  "first_correlation_ready": false,
-  "checklist": {
-    "anketa": true,
-    "session_1": false,
-    "session_2": false,
-    "session_3": false,
-    "session_4": false,
-    "session_5": false,
-    "session_6": false,
-    "session_7": false,
-    "neiry_csv": false,
-    "garmin_2weeks": false,
-    "reflection_stream": false
-  }
+  "first_correlation_ready": false
 }
