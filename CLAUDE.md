@@ -149,6 +149,37 @@ genesis/
 
 ---
 
+## Правила при создании страниц для блога
+
+> **ОБЯЗАТЕЛЬНО:** Когда пользователь просит создать страницу для блога — **всегда** выполняй ВСЕ шаги:
+
+1. **Создать папку** в `blog/` (например, `blog/название-поста/`)
+2. **Создать `index.html`** в этой папке с контентом
+3. **Подключить навигацию и подвал** — добавить перед `</body>`:
+   ```html
+   <script src="../../components/nav.js"></script>
+   <script src="../../components/footer.js"></script>
+   ```
+4. **Подключить стили навигации** в `<head>`:
+   ```html
+   <link rel="stylesheet" href="../../css/nav.css">
+   ```
+5. **Добавить карточку в `blog/index.html`** — вставить `<a class="post-card">` в начало `#grid-articles` с датой, заголовком и описанием. Если статья свежая — добавить плашку `<span class="post-badge-new">NEW</span>`
+
+Пример карточки:
+```html
+<a href="./название-поста/index.html" class="post-card">
+  <span class="post-badge-new">NEW</span>
+  <div class="post-date">2026-04-06</div>
+  <div class="post-title">Заголовок статьи</div>
+  <p class="post-excerpt">Краткое описание статьи для карточки в блоге.</p>
+</a>
+```
+
+> **Не забывай!** Без карточки в `blog/index.html` страница будет существовать, но до неё нельзя будет добраться из блога.
+
+---
+
 ## Стек
 
 - Чистый HTML + CSS + JavaScript

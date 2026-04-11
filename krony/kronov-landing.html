@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КРОНОВЪ — Деревянные беседки от производителя в Беларуси</title>
+<meta name="description" content="КРОНОВЪ — производитель деревянных беседок премиум-класса. Полный цикл: от леса до монтажа. Гарантия 20 лет. Бесплатный 3D-проект.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --c-dark: #1E1410;
+  --c-dark2: #3A2518;
+  --c-brown: #5C3A28;
+  --c-brown-mid: #8B6040;
+  --c-sand: #D4B896;
+  --c-cream: #F2EBE0;
+  --c-bordo: #7A2E38;
+  --c-bronze: #B8965A;
+  --c-text: #2A1C0E;
+  --c-text-light: #6B5540;
+  --c-white: #FFFFFF;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Montserrat', 'Helvetica Neue', sans-serif;
+  --max-w: 1200px;
+  --section-py: 80px;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-text);
+  background: var(--c-cream);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width:100%; display:block; }
+a { text-decoration:none; color:inherit; }
+button { cursor:pointer; border:none; font-family:inherit; }
+input { font-family:inherit; }
+
+/* ===== UTILITY ===== */
+.container { max-width:var(--max-w); margin:0 auto; padding:0 24px; }
+.section-pad { padding: var(--section-py) 0; }
+.text-center { text-align:center; }
+
+/* ===== TYPOGRAPHY ===== */
+.heading-xl {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--c-dark);
+}
+.heading-lg {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--c-dark);
+}
+.heading-md {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--c-dark);
+}
+.heading-sm {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--c-dark);
+}
+.subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--c-bordo);
+}
+.body-text {
+  font-size: 16px;
+  color: var(--c-text-light);
+  line-height: 1.7;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  background: var(--c-bordo);
+  color: var(--c-white);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  transition: all .3s;
+}
+.btn-primary:hover { background: #8E3542; transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  background: transparent;
+  color: var(--c-dark);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1.5px solid var(--c-bronze);
+  border-radius: 4px;
+  transition: all .3s;
+}
+.btn-secondary:hover { background: var(--c-bronze); color: var(--c-white); }
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  background: var(--c-bronze);
+  color: var(--c-dark);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all .3s;
+}
+.btn-gold:hover { background: #C9A76A; transform: translateY(-1px); }
+
+/* ===== HEADER (Sticky) ===== */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(30,20,16,.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,184,150,.1);
+  transition: all .3s;
+}
+.header-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.header-logo svg { width: 32px; height: 32px; }
+.header-logo-text {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--c-sand);
+  letter-spacing: 3px;
+}
+.header-nav { display:flex; gap:28px; align-items:center; }
+.header-nav a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-sand);
+  letter-spacing: 0.5px;
+  opacity: .7;
+  transition: opacity .3s;
+}
+.header-nav a:hover { opacity:1; }
+.header-cta {
+  padding: 10px 24px;
+  background: var(--c-bordo);
+  color: var(--c-white);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background .3s;
+}
+.header-cta:hover { background: #8E3542; }
+
+/* Mobile menu */
+.burger { display:none; flex-direction:column; gap:5px; background:none; padding:8px; }
+.burger span { display:block; width:22px; height:2px; background:var(--c-sand); border-radius:2px; transition:all .3s; }
+@media(max-width:768px) {
+  .header-nav { display:none; }
+  .burger { display:flex; }
+  .header-nav.open {
+    display:flex; flex-direction:column;
+    position:absolute; top:64px; left:0; right:0;
+    background:rgba(30,20,16,.98); padding:24px;
+    border-bottom:1px solid rgba(212,184,150,.1);
+  }
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--c-dark);
+  overflow: hidden;
+  padding-top: 64px;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(30,20,16,.85), rgba(58,37,24,.7)),
+              url('images/hero-bg.jpg') center/cover no-repeat;
+  /* PLACEHOLDER: замените hero-bg.jpg на фото беседки в золотой час */
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(30,20,16,.9));
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 60px 24px;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 60px;
+  align-items: center;
+}
+.hero-left { }
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(122,46,56,.3);
+  border: 1px solid rgba(122,46,56,.5);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--c-sand);
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--c-cream);
+  margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--c-bronze);
+}
+.hero-sub {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 20px);
+  font-style: italic;
+  color: var(--c-sand);
+  opacity: .8;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+.hero-btns { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:40px; }
+.hero-trust {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.hero-trust-item {
+  font-size: 13px;
+  color: var(--c-sand);
+  opacity: .6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-trust-item strong {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-bronze);
+  opacity: 1;
+}
+/* Hero form card */
+.hero-form-card {
+  background: rgba(242,235,224,.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212,184,150,.15);
+  border-radius: 12px;
+  padding: 32px;
+}
+.hero-form-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--c-cream);
+  margin-bottom: 6px;
+}
+.hero-form-card p {
+  font-size: 14px;
+  color: var(--c-sand);
+  opacity: .6;
+  margin-bottom: 20px;
+}
+.hero-form-card .manager-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.manager-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--c-brown);
+  display: flex; align-items:center; justify-content:center;
+  font-size: 18px; color: var(--c-sand); font-weight:600;
+  /* PLACEHOLDER: замените на реальное фото Алёны */
+}
+.manager-info { font-size:13px; color:var(--c-sand); }
+.manager-info strong { display:block; color:var(--c-cream); font-size:15px; }
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(212,184,150,.2);
+  border-radius: 6px;
+  color: var(--c-cream);
+  font-size: 15px;
+  margin-bottom: 12px;
+  outline: none;
+  transition: border-color .3s;
+}
+.form-input::placeholder { color: rgba(212,184,150,.4); }
+.form-input:focus { border-color: var(--c-bronze); }
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--c-bordo);
+  color: var(--c-white);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background .3s;
+  margin-bottom: 12px;
+}
+.form-submit:hover { background: #8E3542; }
+.form-note { font-size:12px; color:var(--c-sand); opacity:.4; text-align:center; }
+
+@media(max-width:900px) {
+  .hero-content { grid-template-columns:1fr; gap:40px; }
+  .hero-form-card { max-width:440px; }
+}
+
+/* ===== SECTION: VIDEO REVIEW ===== */
+.sec-video { background: var(--c-dark); }
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.video-placeholder {
+  aspect-ratio: 16/9;
+  background: var(--c-dark2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(212,184,150,.1);
+}
+.play-btn {
+  width: 72px; height: 72px;
+  background: rgba(122,46,56,.8);
+  border-radius: 50%;
+  display: flex; align-items:center; justify-content:center;
+  transition: transform .3s;
+}
+.play-btn:hover { transform:scale(1.1); }
+.play-btn svg { width:28px; height:28px; fill:var(--c-cream); margin-left:4px; }
+.video-info h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--c-cream);
+  margin-bottom: 16px;
+}
+.video-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--c-sand);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  border-left: 2px solid var(--c-bordo);
+}
+.video-client {
+  font-size: 14px;
+  color: var(--c-sand);
+  opacity: .6;
+}
+.stars { color: var(--c-bronze); font-size:18px; margin-bottom:12px; letter-spacing:2px; }
+@media(max-width:768px) { .video-grid { grid-template-columns:1fr; } }
+
+/* ===== SECTION: WHY US ===== */
+.sec-why { background: var(--c-cream); }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.why-card {
+  background: var(--c-white);
+  border: 1px solid rgba(139,96,64,.1);
+  border-radius: 12px;
+  padding: 32px 28px;
+  transition: transform .3s, box-shadow .3s;
+}
+.why-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(30,20,16,.08);
+}
+.why-icon {
+  width: 48px; height: 48px;
+  background: rgba(122,46,56,.08);
+  border-radius: 10px;
+  display: flex; align-items:center; justify-content:center;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+.why-card h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--c-dark);
+  margin-bottom: 10px;
+}
+.why-card p {
+  font-size: 14px;
+  color: var(--c-text-light);
+  line-height: 1.6;
+}
+/* Counters */
+.counters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(139,96,64,.15);
+}
+.counter-item { text-align:center; }
+.counter-num {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--c-bordo);
+}
+.counter-label {
+  font-size: 13px;
+  color: var(--c-text-light);
+  margin-top: 4px;
+}
+@media(max-width:768px) {
+  .why-grid { grid-template-columns:1fr; }
+  .counters { grid-template-columns: repeat(2,1fr); }
+}
+
+/* ===== SECTION: CATALOG ===== */
+.sec-catalog { background: var(--c-white); }
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+.catalog-card {
+  background: var(--c-cream);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .3s, box-shadow .3s;
+  border: 1px solid rgba(139,96,64,.08);
+}
+.catalog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(30,20,16,.1);
+}
+.catalog-img {
+  aspect-ratio: 4/3;
+  background: var(--c-sand);
+  position: relative;
+  overflow: hidden;
+  /* PLACEHOLDER: каждая карточка получит фото модели */
+}
+.catalog-img-placeholder {
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; color:var(--c-brown); opacity:.5;
+  background: linear-gradient(135deg, var(--c-sand), var(--c-cream));
+}
+.catalog-body { padding: 24px; }
+.catalog-article {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--c-bordo);
+  margin-bottom: 6px;
+}
+.catalog-name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--c-dark);
+  margin-bottom: 8px;
+}
+.catalog-desc {
+  font-size: 14px;
+  color: var(--c-text-light);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.catalog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.catalog-price {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--c-dark);
+}
+.catalog-price span {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--c-text-light);
+}
+.catalog-btn {
+  padding: 10px 20px;
+  background: var(--c-bordo);
+  color: var(--c-white);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background .3s;
+}
+.catalog-btn:hover { background:#8E3542; }
+.catalog-cta {
+  text-align: center;
+  margin-top: 48px;
+  padding: 32px;
+  background: var(--c-cream);
+  border-radius: 12px;
+}
+
+/* ===== SECTION: PROCESS ===== */
+.sec-process { background: var(--c-cream); }
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: linear-gradient(to right, var(--c-bordo), var(--c-bronze));
+  z-index: 0;
+}
+.step {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.step-num {
+  width: 48px; height: 48px;
+  background: var(--c-bordo);
+  color: var(--c-white);
+  border-radius: 50%;
+  display: flex; align-items:center; justify-content:center;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 auto 16px;
+  border: 3px solid var(--c-cream);
+}
+.step h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--c-dark);
+  margin-bottom: 6px;
+}
+.step p {
+  font-size: 13px;
+  color: var(--c-text-light);
+  line-height: 1.5;
+}
+.process-note {
+  text-align: center;
+  margin-top: 40px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--c-brown);
+}
+@media(max-width:768px) {
+  .timeline { grid-template-columns:1fr; gap:24px; }
+  .timeline::before { display:none; }
+  .step { display:flex; gap:16px; text-align:left; }
+  .step-num { flex-shrink:0; margin:0; }
+}
+
+/* ===== SECTION: OBJECTIONS ===== */
+.sec-objections { background: var(--c-dark); }
+.objections-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 48px;
+}
+.objection-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(212,184,150,.08);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color .3s;
+}
+.objection-card:hover { border-color: rgba(212,184,150,.2); }
+.objection-q {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--c-cream);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.objection-q::before {
+  content: '—';
+  color: var(--c-bordo);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.objection-a {
+  font-size: 14px;
+  color: var(--c-sand);
+  opacity: .7;
+  line-height: 1.7;
+  padding-left: 26px;
+}
+@media(max-width:768px) { .objections-grid { grid-template-columns:1fr; } }
+
+/* ===== SECTION: GALLERY ===== */
+.sec-gallery { background: var(--c-white); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 48px;
+}
+.gallery-item {
+  aspect-ratio: 1;
+  background: var(--c-sand);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: transform .3s;
+  /* PLACEHOLDER: замените на реальные фото */
+}
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: 1; }
+.gallery-item:hover { transform: scale(1.02); }
+.gallery-placeholder {
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; color:var(--c-brown); opacity:.4;
+  background: linear-gradient(135deg, var(--c-sand), var(--c-cream));
+}
+@media(max-width:768px) {
+  .gallery-grid { grid-template-columns: repeat(2,1fr); }
+  .gallery-item:nth-child(1) { grid-column:span 2; }
+}
+
+/* ===== SECTION: FAQ ===== */
+.sec-faq { background: var(--c-cream); }
+.faq-list { max-width:800px; margin:48px auto 0; }
+.faq-item {
+  border-bottom: 1px solid rgba(139,96,64,.12);
+}
+.faq-q {
+  width: 100%;
+  padding: 20px 0;
+  background: none;
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--c-dark);
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  transition: color .3s;
+}
+.faq-q:hover { color: var(--c-bordo); }
+.faq-q::after {
+  content: '+';
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--c-bordo);
+  flex-shrink: 0;
+  transition: transform .3s;
+}
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease, padding .3s;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
+.faq-a p {
+  font-size: 15px;
+  color: var(--c-text-light);
+  line-height: 1.7;
+}
+
+/* ===== SECTION: REVIEWS ===== */
+.sec-reviews { background: var(--c-white); }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+.review-card {
+  background: var(--c-cream);
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid rgba(139,96,64,.08);
+}
+.review-stars { color: var(--c-bronze); font-size:16px; margin-bottom:12px; letter-spacing:2px; }
+.review-text {
+  font-size: 15px;
+  color: var(--c-text);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.review-author {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-dark);
+}
+.review-meta { font-size:13px; color:var(--c-text-light); }
+.trust-badges {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+.trust-badge {
+  padding: 12px 24px;
+  background: var(--c-cream);
+  border: 1px solid rgba(139,96,64,.12);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-dark);
+}
+
+/* ===== SECTION: FINAL CTA ===== */
+.sec-cta {
+  background: linear-gradient(135deg, var(--c-dark), var(--c-dark2));
+  position: relative;
+  overflow: hidden;
+}
+.sec-cta::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(122,46,56,.15), transparent 70%);
+  border-radius: 50%;
+}
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.cta-left h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  color: var(--c-cream);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.cta-left p {
+  font-size: 16px;
+  color: var(--c-sand);
+  opacity: .7;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.cta-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
+}
+.cta-stat-num {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--c-bronze);
+}
+.cta-stat-label {
+  font-size: 13px;
+  color: var(--c-sand);
+  opacity: .5;
+}
+.cta-form {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(212,184,150,.1);
+  border-radius: 16px;
+  padding: 40px;
+}
+.cta-form h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--c-cream);
+  margin-bottom: 20px;
+}
+@media(max-width:768px) {
+  .cta-grid { grid-template-columns:1fr; gap:40px; }
+  .cta-stats { gap:24px; }
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--c-dark);
+  border-top: 1px solid rgba(212,184,150,.08);
+  padding: 48px 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--c-sand);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.footer-desc {
+  font-size: 14px;
+  color: var(--c-sand);
+  opacity: .5;
+  line-height: 1.6;
+}
+.footer h5 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--c-sand);
+  margin-bottom: 16px;
+}
+.footer a {
+  display: block;
+  font-size: 14px;
+  color: var(--c-sand);
+  opacity: .5;
+  padding: 4px 0;
+  transition: opacity .3s;
+}
+.footer a:hover { opacity:1; }
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(212,184,150,.06);
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--c-sand);
+  opacity: .3;
+}
+@media(max-width:768px) {
+  .footer-grid { grid-template-columns:1fr 1fr; }
+}
+
+/* ===== STICKY MOBILE BAR ===== */
+.sticky-bar {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 999;
+  background: var(--c-dark);
+  border-top: 1px solid rgba(212,184,150,.1);
+  padding: 10px 16px;
+}
+.sticky-bar-inner {
+  display: flex;
+  gap: 10px;
+}
+.sticky-bar a {
+  flex: 1;
+  padding: 14px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.sticky-call { background: var(--c-bordo); color: var(--c-white); }
+.sticky-wa { background: #25D366; color: var(--c-white); }
+@media(max-width:768px) { .sticky-bar { display:block; } body { padding-bottom:76px; } }
+
+/* ===== EXIT POPUP ===== */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(30,20,16,.7);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+.popup-overlay.active { display:flex; }
+.popup {
+  background: var(--c-cream);
+  border-radius: 16px;
+  padding: 48px;
+  max-width: 480px;
+  width: 90%;
+  position: relative;
+}
+.popup-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  background: none;
+  font-size: 24px;
+  color: var(--c-brown);
+  display: flex; align-items:center; justify-content:center;
+}
+.popup h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--c-dark);
+  margin-bottom: 12px;
+}
+.popup p {
+  font-size: 15px;
+  color: var(--c-text-light);
+  margin-bottom: 24px;
+}
+.popup .form-input {
+  background: var(--c-white);
+  border-color: rgba(139,96,64,.15);
+  color: var(--c-text);
+}
+.popup .form-submit { margin-bottom:0; }
+
+/* ===== QUIZ SECTION ===== */
+.sec-quiz {
+  background: var(--c-cream);
+  border-top: 1px solid rgba(139,96,64,.1);
+  border-bottom: 1px solid rgba(139,96,64,.1);
+}
+.quiz-card {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+.quiz-card p {
+  font-size: 16px;
+  color: var(--c-text-light);
+  margin-bottom: 24px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.animate { opacity:0; }
+.animate.visible { animation: fadeUp .6s ease forwards; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#" class="header-logo">
+      <svg viewBox="0 0 52 52" fill="none">
+        <circle cx="26" cy="18" r="14" stroke="#D4B896" stroke-width="1.8"/>
+        <circle cx="18" cy="14" r="6" stroke="#D4B896" stroke-width="1.2" opacity=".5"/>
+        <circle cx="34" cy="14" r="6" stroke="#D4B896" stroke-width="1.2" opacity=".5"/>
+        <circle cx="26" cy="22" r="5" stroke="#D4B896" stroke-width="1.2" opacity=".5"/>
+        <line x1="26" y1="32" x2="26" y2="50" stroke="#D4B896" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="header-logo-text">КРОНОВЪ</span>
+    </a>
+    <nav class="header-nav" id="nav">
+      <a href="#catalog">Каталог</a>
+      <a href="#process">Как работаем</a>
+      <a href="#gallery">Работы</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#cta" class="header-cta">Получить предложение</a>
+    </nav>
+    <button class="burger" onclick="document.getElementById('nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge">Производитель полного цикла</div>
+      <h1>Деревянные беседки <em>ручной работы</em> — без посредников</h1>
+      <p class="hero-sub">«КРОНОВЪ — это не постройка. Это архитектура вашего отдыха»</p>
+      <div class="hero-btns">
+        <a href="#cta" class="btn-primary">Получить коммерческое предложение</a>
+        <a href="#catalog" class="btn-secondary">Смотреть каталог</a>
+      </div>
+      <div class="hero-trust">
+        <div class="hero-trust-item"><strong>100+</strong> реализованных проектов</div>
+        <div class="hero-trust-item"><strong>20</strong> лет гарантии</div>
+        <div class="hero-trust-item"><strong>13</strong> этапов контроля</div>
+      </div>
+    </div>
+    <div class="hero-form-card">
+      <div class="manager-row">
+        <div class="manager-avatar">А</div>
+        <div class="manager-info">
+          <strong>Алёна</strong>
+          Ответит лично
+        </div>
+      </div>
+      <h3>Бесплатный 3D-проект</h3>
+      <p>Оставьте номер — перезвоним через 60 секунд</p>
+      <input type="tel" class="form-input" placeholder="+375 (__) ___-__-__" id="hero-phone">
+      <button class="form-submit" onclick="submitForm('hero')">Перезвоните мне</button>
+      <p class="form-note">Никакого спама. Только один звонок.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VIDEO ===== -->
+<section class="sec-video section-pad" id="video">
+  <div class="container">
+    <div class="video-grid">
+      <div class="video-placeholder">
+        <!-- PLACEHOLDER: embed YouTube/Vimeo -->
+        <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
+      </div>
+      <div class="video-info">
+        <div class="subtitle" style="margin-bottom:16px;">Отзыв клиента</div>
+        <h3 style="color:var(--c-cream);">Что говорят семьи, которые уже живут с КРОНОВЪ</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote class="video-quote">
+          «Мы долго выбирали и не пожалели. Беседка стоит уже третий сезон — как новая. Соседи завидуют.»
+        </blockquote>
+        <p class="video-client">Андрей и Марина, Минский район<br>Модель КР-001 «Резиденция»</p>
+        <a href="#cta" class="btn-primary" style="margin-top:24px;">Хочу такую же</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section class="sec-why section-pad" id="why">
+  <div class="container">
+    <div class="text-center">
+      <div class="subtitle">Преимущества</div>
+      <h2 class="heading-lg" style="margin-top:12px;">Почему 100+ семей выбрали КРОНОВЪ</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card animate">
+        <div class="why-icon">&#9881;</div>
+        <h4>Производитель полного цикла</h4>
+        <p>От бревна до монтажа на вашем участке. Без посредников, без наценок, без рисков.</p>
+      </div>
+      <div class="why-card animate">
+        <div class="why-icon">&#9745;</div>
+        <h4>13 этапов контроля</h4>
+        <p>Каждая деталь проходит проверку: сушка, строгание, шлифовка, покраска, приёмка мастером.</p>
+      </div>
+      <div class="why-card animate">
+        <div class="why-icon">&#9711;</div>
+        <h4>Гарантия 20 лет</h4>
+        <p>Лучшая гарантия в отрасли. Фиксируется в договоре. Массив дерева, заводская обработка.</p>
+      </div>
+      <div class="why-card animate">
+        <div class="why-icon">&#9201;</div>
+        <h4>Монтаж за 1 день</h4>
+        <p>Никакой стройки и грязи. Наша бригада приезжает, собирает и убирает за собой.</p>
+      </div>
+      <div class="why-card animate">
+        <div class="why-icon">&#9634;</div>
+        <h4>Бесплатный 3D-эскиз</h4>
+        <p>Увидите беседку на своём участке до принятия решения. Визуализация за 24 часа.</p>
+      </div>
+      <div class="why-card animate">
+        <div class="why-icon">&#9752;</div>
+        <h4>Собственная пилорама</h4>
+        <p>Контроль качества древесины на входе. Знаем каждое бревно, из которого делаем ваш проект.</p>
+      </div>
+    </div>
+    <div class="counters">
+      <div class="counter-item animate">
+        <div class="counter-num" data-target="100">0</div>
+        <div class="counter-label">реализованных проектов</div>
+      </div>
+      <div class="counter-item animate">
+        <div class="counter-num" data-target="13">0</div>
+        <div class="counter-label">лет опыта</div>
+      </div>
+      <div class="counter-item animate">
+        <div class="counter-num" data-target="10">0</div>
+        <div class="counter-label">моделей беседок</div>
+      </div>
+      <div class="counter-item animate">
+        <div class="counter-num" data-target="20">0</div>
+        <div class="counter-label">лет гарантии</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CATALOG ===== -->
+<section class="sec-catalog section-pad" id="catalog">
+  <div class="container">
+    <div class="text-center">
+      <div class="subtitle">Каталог</div>
+      <h2 class="heading-lg" style="margin-top:12px;">Найдите беседку для вашей семьи</h2>
+    </div>
+    <div class="catalog-grid">
+
+      <div class="catalog-card animate">
+        <div class="catalog-img"><div class="catalog-img-placeholder">Фото КР-001</div></div>
+        <div class="catalog-body">
+          <div class="catalog-article">КР-001</div>
+          <div class="catalog-name">Резиденция</div>
+          <div class="catalog-desc">Вечер. Длинный стол. Вся семья собралась под одной крышей — и эта крыша в вашем саду. Флагманская модель с безупречной геометрией.</div>
+          <div class="catalog-footer">
+            <div class="catalog-price">от 4 900 <span>BYN</span></div>
+            <button class="catalog-btn" onclick="scrollTo('#cta')">Узнать стоимость</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card animate">
+        <div class="catalog-img"><div class="catalog-img-placeholder">Фото КР-002</div></div>
+        <div class="catalog-body">
+          <div class="catalog-article">КР-002</div>
+          <div class="catalog-name">Эстетъ</div>
+          <div class="catalog-desc">Свет играет на гранях. Необычная форма притягивает взгляд. Беседка, которая становится архитектурным акцентом вашего участка.</div>
+          <div class="catalog-footer">
+            <div class="catalog-price">от 5 200 <span>BYN</span></div>
+            <button class="catalog-btn" onclick="scrollTo('#cta')">Узнать стоимость</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card animate">
+        <div class="catalog-img"><div class="catalog-img-placeholder">Фото КР-003</div></div>
+        <div class="catalog-body">
+          <div class="catalog-article">КР-003</div>
+          <div class="catalog-name">Патриархъ</div>
+          <div class="catalog-desc">Три поколения за одним столом. Массивная конструкция для большой семьи — места хватит каждому, включая внуков.</div>
+          <div class="catalog-footer">
+            <div class="catalog-price">от 6 800 <span>BYN</span></div>
+            <button class="catalog-btn" onclick="scrollTo('#cta')">Узнать стоимость</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card animate">
+        <div class="catalog-img"><div class="catalog-img-placeholder">Фото КР-004</div></div>
+        <div class="catalog-body">
+          <div class="catalog-article">КР-004</div>
+          <div class="catalog-name">Привилегия</div>
+          <div class="catalog-desc">Тёплый плед. Чай с мятой. Тишина вечера. Премиальная комплектация для тех, кто привык к лучшему.</div>
+          <div class="catalog-footer">
+            <div class="catalog-price">от 7 500 <span>BYN</span></div>
+            <button class="catalog-btn" onclick="scrollTo('#cta')">Узнать стоимость</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card animate">
+        <div class="catalog-img"><div class="catalog-img-placeholder">Фото КР-006</div></div>
+        <div class="catalog-body">
+          <div class="catalog-article">КР-006</div>
+          <div class="catalog-name">Ротонда</div>
+          <div class="catalog-desc">Классическая форма. Восемь граней, выверенные пропорции. Беседка, которая выглядит так, будто стояла здесь всегда.</div>
+          <div class="catalog-footer">
+            <div class="catalog-price">от 5 600 <span>BYN</span></div>
+            <button class="catalog-btn" onclick="scrollTo('#cta')">Узнать стоимость</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card animate">
+        <div class="catalog-img"><div class="catalog-img-placeholder">Фото КР-008</div></div>
+        <div class="catalog-body">
+          <div class="catalog-article">КР-008</div>
+          <div class="catalog-name">Дворъ</div>
+          <div class="catalog-desc">Мангал потрескивает. Друзья рядом. Разговоры, которые не хочется заканчивать. Мужской характер, мощная конструкция.</div>
+          <div class="catalog-footer">
+            <div class="catalog-price">от 4 400 <span>BYN</span></div>
+            <button class="catalog-btn" onclick="scrollTo('#cta')">Узнать стоимость</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="catalog-cta">
+      <p class="heading-sm">Не нашли подходящую?</p>
+      <p class="body-text" style="margin:8px 0 20px;">Разработаем беседку по вашему индивидуальному проекту</p>
+      <a href="#cta" class="btn-primary">Обсудить проект</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="sec-process section-pad" id="process">
+  <div class="container">
+    <div class="text-center">
+      <div class="subtitle">Процесс</div>
+      <h2 class="heading-lg" style="margin-top:12px;">6 шагов от звонка до первого вечера в беседке</h2>
+    </div>
+    <div class="timeline">
+      <div class="step animate">
+        <div class="step-num">1</div>
+        <div><h4>Звонок</h4><p>Алёна ответит на вопросы и поможет выбрать</p></div>
+      </div>
+      <div class="step animate">
+        <div class="step-num">2</div>
+        <div><h4>Замер</h4><p>Бесплатный выезд на участок</p></div>
+      </div>
+      <div class="step animate">
+        <div class="step-num">3</div>
+        <div><h4>3D-проект</h4><p>Визуализация за 24 часа</p></div>
+      </div>
+      <div class="step animate">
+        <div class="step-num">4</div>
+        <div><h4>Договор</h4><p>Фиксируем цену и сроки</p></div>
+      </div>
+      <div class="step animate">
+        <div class="step-num">5</div>
+        <div><h4>Производство</h4><p>13 этапов контроля качества</p></div>
+      </div>
+      <div class="step animate">
+        <div class="step-num">6</div>
+        <div><h4>Монтаж</h4><p>Один день. Уборка за нами.</p></div>
+      </div>
+    </div>
+    <p class="process-note">От заявки до готовой беседки — от 14 до 30 дней</p>
+  </div>
+</section>
+
+<!-- ===== OBJECTIONS ===== -->
+<section class="sec-objections section-pad" id="objections">
+  <div class="container">
+    <div class="text-center">
+      <div class="subtitle" style="color:var(--c-bronze);">Честные ответы</div>
+      <h2 class="heading-lg" style="margin-top:12px;color:var(--c-cream);">Мы знаем, о чём вы думаете</h2>
+    </div>
+    <div class="objections-grid">
+      <div class="objection-card">
+        <div class="objection-q">Это дорого</div>
+        <p class="objection-a">Беседка КРОНОВЪ — вложение на 20+ лет. Стоимость одного семейного вечера обойдётся дешевле ужина в ресторане. Плюс рассрочка без переплат.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">Сгниёт через 3 года</div>
+        <p class="objection-a">Массив дерева, заводская сушка до 12% влажности, пропитка антисептиком в 3 слоя. Гарантия 20 лет — и это в договоре.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">Не знаю, какую выбрать</div>
+        <p class="objection-a">Делаем бесплатный замер и 3D-эскиз. Вы увидите беседку на своём участке до принятия решения. Никаких обязательств.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">А вдруг не впишется в участок?</div>
+        <p class="objection-a">Именно для этого бесплатно приезжаем на замер. Плюс делаем беседки под любые нестандартные размеры — подгоним под ваш ландшафт.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">Долго ждать</div>
+        <p class="objection-a">Стандартные модели — от 14 дней. Монтаж — 1 день. Нет долгостроя. Сроки фиксируем в договоре.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">Непонятно, во сколько обойдётся в итоге</div>
+        <p class="objection-a">Фиксируем стоимость в договоре. Никаких доплат в процессе. Цена, которую назвали — цена, которую заплатите.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">Сам не разберусь с установкой</div>
+        <p class="objection-a">Наша бригада монтирует беседку от начала до конца. Вы только принимаете готовую работу и подписываете акт.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">Покупал деревянное — всё рассохлось</div>
+        <p class="objection-a">Мы — производители, контролируем влажность на каждом этапе. Заводская камерная сушка, а не «высохнет на складе».</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">Хочу необычное, а не типовое</div>
+        <p class="objection-a">Разрабатываем беседки по индивидуальным проектам. Всё начинается с бесплатного эскиза — расскажите, что хотите.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">Боюсь, что обманут</div>
+        <p class="objection-a">Мы производители с многолетним опытом. Юридический договор. Акт приёмки. 100+ реальных объектов с фото и видео.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="sec-gallery section-pad" id="gallery">
+  <div class="container">
+    <div class="text-center">
+      <div class="subtitle">Портфолио</div>
+      <h2 class="heading-lg" style="margin-top:12px;">Наши беседки на реальных участках</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><div class="gallery-placeholder">Фото 1 (большое)</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Фото 2</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Фото 3</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Фото 4</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Фото 5</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Фото 6</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Фото 7</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Фото 8</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Фото 9</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec-faq section-pad" id="faq">
+  <div class="container">
+    <div class="text-center">
+      <div class="subtitle">Вопросы</div>
+      <h2 class="heading-lg" style="margin-top:12px;">Отвечаем на ваши вопросы</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Из какой древесины делаете беседки?</button>
+        <div class="faq-a"><p>Работаем с массивом сосны и ели камерной сушки. Влажность доводим до 12% — это исключает деформацию и растрескивание. По запросу — лиственница и дуб.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Сколько времени занимает монтаж?</button>
+        <div class="faq-a"><p>Стандартная беседка монтируется за 1 день. Сложные индивидуальные проекты — до 3 дней. Бригада приезжает с полным комплектом инструмента и убирает за собой.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Делаете ли вы беседки под индивидуальный размер?</button>
+        <div class="faq-a"><p>Да. Разрабатываем проект под ваши размеры и пожелания. Начинаем с бесплатного 3D-эскиза — вы увидите результат до начала работ.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Какая гарантия на беседку?</button>
+        <div class="faq-a"><p>Гарантия 20 лет на конструктив. Фиксируется в договоре. Мы уверены в своём продукте, потому что контролируем каждый этап — от леса до монтажа.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Как происходит оплата?</button>
+        <div class="faq-a"><p>Предоплата 50% при подписании договора, остаток — после монтажа и подписания акта приёмки. Доступна рассрочка без переплат.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Работаете ли вы по всей Беларуси?</button>
+        <div class="faq-a"><p>Да, доставляем и монтируем по всей Республике Беларусь. Стоимость доставки зависит от расстояния — рассчитаем индивидуально.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Что входит в стоимость монтажа?</button>
+        <div class="faq-a"><p>Полная сборка на вашем участке, включая крепёж, подгонку, финальную обработку стыков. Уборка территории после монтажа — тоже наша забота.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Можно ли обшить беседку поликарбонатом или стеклом?</button>
+        <div class="faq-a"><p>Да, предлагаем несколько вариантов остекления и обшивки. Покажем примеры на 3D-визуализации — выберете оптимальный вариант.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Делаете ли фундамент под беседку?</button>
+        <div class="faq-a"><p>Рекомендуем и устанавливаем свайно-винтовой или блочный фундамент. Тип подбираем после замера вашего грунта. Стоимость рассчитывается отдельно.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Как ухаживать за деревянной беседкой?</button>
+        <div class="faq-a"><p>Раз в 3-5 лет обновлять защитное покрытие — это 1 день работы. Мы предоставляем инструкцию по уходу и рекомендуем конкретные средства.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="sec-reviews section-pad" id="reviews">
+  <div class="container">
+    <div class="text-center">
+      <div class="subtitle">Отзывы</div>
+      <h2 class="heading-lg" style="margin-top:12px;">Что говорят семьи КРОНОВЪ</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card animate">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">«Заказывали беседку для дачи — результат превзошёл ожидания. Качество дерева отличное, монтаж за один день. Теперь каждые выходные там.»</p>
+        <p class="review-author">Андрей К.</p>
+        <p class="review-meta">Минский район · КР-001 «Резиденция»</p>
+      </div>
+      <div class="review-card animate">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">«Долго сомневалась — не пожалела. Алёна всё объяснила, показали 3D-проект. Теперь это любимое место семьи.»</p>
+        <p class="review-author">Елена М.</p>
+        <p class="review-meta">Брестская область · КР-006 «Ротонда»</p>
+      </div>
+      <div class="review-card animate">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">«Второй сезон стоит — ни одной трещины, ни одного скрипа. Друзья уже двое заказали после того, как нашу увидели.»</p>
+        <p class="review-author">Дмитрий П.</p>
+        <p class="review-meta">Гродненская область · КР-008 «Дворъ»</p>
+      </div>
+      <div class="review-card animate">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">«Сделали по индивидуальному проекту — учли каждое наше пожелание. Цена не менялась с момента договора. Рекомендую.»</p>
+        <p class="review-author">Сергей и Ольга В.</p>
+        <p class="review-meta">Могилёвская область · Индивидуальный проект</p>
+      </div>
+      <div class="review-card animate">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">«Муж подарил на годовщину. Лучший подарок за 15 лет брака. Дети не вылезают — завтракаем, обедаем, ужинаем в беседке.»</p>
+        <p class="review-author">Наталья Д.</p>
+        <p class="review-meta">Витебская область · КР-004 «Привилегия»</p>
+      </div>
+      <div class="review-card animate">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">«Профессиональный подход на каждом этапе. От замера до монтажа — всё чётко, в срок, без сюрпризов. Приятно работать с такими людьми.»</p>
+        <p class="review-author">Игорь Л.</p>
+        <p class="review-meta">Гомельская область · КР-003 «Патриархъ»</p>
+      </div>
+    </div>
+    <div class="trust-badges">
+      <div class="trust-badge">&#9733; 4.9 из 5</div>
+      <div class="trust-badge">100+ установленных беседок</div>
+      <div class="trust-badge">Производитель с 2013 года</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="sec-cta section-pad" id="cta">
+  <div class="container">
+    <div class="cta-grid">
+      <div class="cta-left">
+        <div class="subtitle" style="color:var(--c-bronze);margin-bottom:16px;">Начните прямо сейчас</div>
+        <h2>Получите бесплатный 3D-проект вашей беседки</h2>
+        <p>Оставьте номер — Алёна перезвонит через 60 секунд и ответит на все вопросы. Никаких обязательств.</p>
+        <div class="cta-stats">
+          <div><div class="cta-stat-num">20</div><div class="cta-stat-label">лет гарантии</div></div>
+          <div><div class="cta-stat-num">1</div><div class="cta-stat-label">день монтажа</div></div>
+          <div><div class="cta-stat-num">100+</div><div class="cta-stat-label">семей</div></div>
+        </div>
+      </div>
+      <div class="cta-form">
+        <h3>Оставьте заявку</h3>
+        <input type="text" class="form-input" placeholder="Ваше имя">
+        <input type="tel" class="form-input" placeholder="+375 (__) ___-__-__">
+        <select class="form-input" style="appearance:auto;">
+          <option value="" disabled selected>Удобное время звонка</option>
+          <option>Утро (9:00–12:00)</option>
+          <option>День (12:00–17:00)</option>
+          <option>Вечер (17:00–20:00)</option>
+        </select>
+        <button class="form-submit" onclick="submitForm('cta')">Хочу беседку</button>
+        <p class="form-note">Никакого спама. Только один звонок — договоримся о бесплатном замере.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">КРОНОВЪ</div>
+        <p class="footer-desc">Деревянные изделия ручной работы.<br>Производитель полного цикла в Беларуси.</p>
+        <p style="margin-top:16px;">
+          <a href="tel:+375296888629" style="opacity:1;color:var(--c-sand);font-size:16px;font-weight:600;">+375 (29) 688-86-29</a>
+        </p>
+      </div>
+      <div>
+        <h5>Каталог</h5>
+        <a href="#catalog">Все модели</a>
+        <a href="#catalog">Резиденция</a>
+        <a href="#catalog">Эстетъ</a>
+        <a href="#catalog">Патриархъ</a>
+        <a href="#catalog">Ротонда</a>
+      </div>
+      <div>
+        <h5>Компания</h5>
+        <a href="#why">О производстве</a>
+        <a href="#process">Как работаем</a>
+        <a href="#gallery">Портфолио</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+      <div>
+        <h5>Контакты</h5>
+        <a href="tel:+375296888629">+375 (29) 688-86-29</a>
+        <a href="https://wa.me/375296888629">WhatsApp</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>КРОНОВЪ · Республика Беларусь · 2026</span>
+      <a href="#" style="opacity:.3;">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== STICKY MOBILE BAR ===== -->
+<div class="sticky-bar">
+  <div class="sticky-bar-inner">
+    <a href="tel:+375296888629" class="sticky-call">Позвонить</a>
+    <a href="https://wa.me/375296888629" class="sticky-wa">WhatsApp</a>
+  </div>
+</div>
+
+<!-- ===== EXIT POPUP ===== -->
+<div class="popup-overlay" id="exitPopup">
+  <div class="popup">
+    <button class="popup-close" onclick="closePopup()">&times;</button>
+    <h3>Подождите!</h3>
+    <p>Получите каталог беседок и 3D-примеры бесплатно — просто оставьте номер</p>
+    <input type="tel" class="form-input" placeholder="+375 (__) ___-__-__">
+    <button class="form-submit" onclick="submitForm('popup');closePopup();">Получить каталог</button>
+  </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// Scroll to section
+function scrollTo(sel) {
+  document.querySelector(sel)?.scrollIntoView({behavior:'smooth'});
+}
+
+// Exit intent popup
+let popupShown = false;
+document.addEventListener('mouseout', function(e) {
+  if (!popupShown && e.clientY < 5) {
+    document.getElementById('exitPopup').classList.add('active');
+    popupShown = true;
+  }
+});
+function closePopup() {
+  document.getElementById('exitPopup').classList.remove('active');
+}
+document.getElementById('exitPopup').addEventListener('click', function(e) {
+  if (e.target === this) closePopup();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePopup();
+});
+
+// Counter animation
+function animateCounters() {
+  document.querySelectorAll('.counter-num').forEach(el => {
+    const target = +el.dataset.target;
+    let current = 0;
+    const step = Math.ceil(target / 40);
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = current + (target >= 100 ? '+' : '');
+    }, 40);
+  });
+}
+
+// Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+// Counter trigger
+const counterObs = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) { animateCounters(); counterObs.disconnect(); }
+}, { threshold: 0.3 });
+const countersEl = document.querySelector('.counters');
+if (countersEl) counterObs.observe(countersEl);
+
+// Form submission placeholder
+function submitForm(source) {
+  // PLACEHOLDER: подключить к CRM / webhook / email
+  alert('Заявка отправлена! Алёна перезвонит в течение 60 секунд.\n\nИсточник формы: ' + source);
+}
+
+// Phone mask
+document.querySelectorAll('input[type="tel"]').forEach(input => {
+  input.addEventListener('input', function(e) {
+    let v = this.value.replace(/\D/g, '');
+    if (v.startsWith('375')) v = v.slice(3);
+    if (v.length > 9) v = v.slice(0,9);
+    if (v.length > 0) {
+      let f = '+375 (';
+      f += v.slice(0,2);
+      if (v.length > 2) f += ') ' + v.slice(2,5);
+      if (v.length > 5) f += '-' + v.slice(5,7);
+      if (v.length > 7) f += '-' + v.slice(7,9);
+      this.value = f;
+    }
+  });
+});
+</script>
+
+</body>
+</html>

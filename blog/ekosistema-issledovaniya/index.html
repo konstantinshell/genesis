@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Экосистема программы исследования — ONTO NOTHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/nav.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080808;padding:16px;font-family:'DM Sans',sans-serif}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
+
+.card{background:#111;border-radius:22px;border:0.5px solid #222;overflow:hidden;padding:20px;animation:fadeUp .5s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.1s}
+.card:nth-child(3){animation-delay:.15s}.card:nth-child(4){animation-delay:.2s}
+.card:nth-child(5){animation-delay:.25s}.card:nth-child(6){animation-delay:.3s}
+
+.lbl{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#444;font-family:'DM Mono',monospace;margin-bottom:10px}
+.ttl{font-size:17px;font-weight:500;line-height:1.2;margin-bottom:5px}
+.sub{font-size:11px;color:#444;line-height:1.5}
+
+.c-human{grid-column:span 3;grid-row:span 2;background:linear-gradient(160deg,#130d28 0%,#0e0e0e 70%);border-color:#2a1860;display:flex;flex-direction:column;min-height:300px}
+.human-center{flex:1;display:flex;align-items:center;justify-content:center}
+@keyframes dotPulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.c-gadgets{grid-column:span 3;background:#0d0d0d;border-color:#222}
+.gd-row{display:flex;gap:8px;margin-top:12px}
+.gd{flex:1;background:#171717;border-radius:12px;padding:11px;border:0.5px solid #252525}
+.gd-name{font-size:12px;font-weight:500;margin-bottom:6px}
+.gd-tag{display:inline-block;font-size:9px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:10px;border:0.5px solid;margin:2px 2px 0 0;line-height:1.6}
+
+.c-onto{grid-column:span 3;background:#0c0a1e;border-color:#261854}
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+.pill{font-size:9px;font-family:'DM Mono',monospace;padding:4px 10px;border-radius:20px;border:0.5px solid;white-space:nowrap}
+
+.c-mnpi{grid-column:span 3;background:#091a10;border-color:#163020}
+.mnpi-big{font-size:56px;font-weight:300;font-family:'DM Mono',monospace;color:#2ecc71;line-height:1;margin:10px 0 4px}
+.bars{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.bar-r{display:flex;align-items:center;gap:8px}
+.bar-lbl{font-size:10px;font-family:'DM Mono',monospace;width:16px;flex-shrink:0}
+.bar-tr{flex:1;height:2px;background:#1a1a1a;border-radius:2px}
+.bar-fl{height:100%;border-radius:2px}
+
+.c-rhythms{grid-column:span 3;background:#091a10;border-color:#163020}
+
+.c-platform{grid-column:span 9;background:#100808;border-color:#2a1010;min-height:160px}
+.platform-inner{display:flex;gap:16px;align-items:stretch;margin-top:14px;height:110px}
+.stream{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px}
+.stream-lbl{font-size:9px;font-family:'DM Mono',monospace;color:#444;text-align:center;line-height:1.3}
+.stream-bar{width:22px;border-radius:4px 4px 0 0;background:#1e1e1e;position:relative;overflow:hidden}
+.stream-fill{position:absolute;bottom:0;left:0;right:0;border-radius:4px 4px 0 0}
+.box-platform{width:190px;background:#1a0a0a;border:0.5px solid #3d1515;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;padding:16px}
+.box-name{font-size:22px;font-weight:500;color:#fb923c;letter-spacing:-.03em;text-align:center;line-height:1.1}
+.box-sub{font-size:9px;color:#555;margin-top:6px;font-family:'DM Mono',monospace;text-align:center}
+.output{flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.out-row{display:flex;align-items:center;gap:8px}
+.out-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.out-txt{font-size:11px;color:#555;font-family:'DM Mono',monospace}
+.out-val{font-size:11px;font-family:'DM Mono',monospace;margin-left:auto;flex-shrink:0}
+
+@keyframes streamAnim{0%{opacity:.3}50%{opacity:1}100%{opacity:.3}}
+.s1{animation:streamAnim 2.1s ease-in-out infinite}
+.s2{animation:streamAnim 2.4s ease-in-out infinite .3s}
+.s3{animation:streamAnim 2.7s ease-in-out infinite .6s}
+.s4{animation:streamAnim 2.2s ease-in-out infinite .9s}
+.s5{animation:streamAnim 2.5s ease-in-out infinite 1.2s}
+
+/* Mobile */
+@media(max-width:900px){
+  body{padding:10px}
+  .grid{grid-template-columns:1fr 1fr;gap:8px}
+  .c-human{grid-column:span 2;grid-row:span 1;min-height:auto}
+  .c-gadgets{grid-column:span 1}
+  .c-onto{grid-column:span 1}
+  .c-mnpi{grid-column:span 1}
+  .c-rhythms{grid-column:span 1}
+  .c-platform{grid-column:span 2}
+  .platform-inner{flex-wrap:wrap;height:auto;gap:12px}
+  .box-platform{width:100%;order:-1}
+  .output{width:100%}
+  .stream-bar{height:50px!important}
+}
+@media(max-width:560px){
+  body{padding:8px}
+  .grid{grid-template-columns:1fr;gap:8px}
+  .c-human,.c-gadgets,.c-onto,.c-mnpi,.c-rhythms,.c-platform{grid-column:span 1}
+  .c-human{min-height:auto}
+  .human-center svg{width:120px;height:150px}
+  .mnpi-big{font-size:40px}
+  .platform-inner{flex-direction:column;height:auto}
+  .platform-inner>div[style*="font-size:20px"]{display:none}
+  .box-platform{width:100%}
+  .output{width:100%}
+  .out-txt{font-size:10px}
+  .out-val{font-size:10px}
+  .gd-row{flex-direction:column}
+  .pills{gap:4px}
+  .pill{font-size:8px;padding:3px 8px}
+}
+</style>
+</head>
+<body>
+<div class="grid">
+
+<!-- 1. ЧЕЛОВЕК -->
+<div class="card c-human">
+  <div class="lbl">субъект · центр системы</div>
+  <div class="human-center">
+    <svg width="160" height="200" viewBox="0 0 160 200">
+      <ellipse cx="80" cy="110" rx="72" ry="72" fill="none" stroke="#2a1860" stroke-width="0.5" stroke-dasharray="2 5"/>
+      <ellipse cx="80" cy="110" rx="50" ry="50" fill="none" stroke="#3b2280" stroke-width="0.5" stroke-dasharray="1 4"/>
+      <circle cx="80" cy="44" r="18" fill="none" stroke="#a78bfa" stroke-width="1"/>
+      <path d="M68 42 Q71 36 75 42 Q79 48 83 42 Q87 36 92 42" fill="none" stroke="#a78bfa" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M70 47 Q74 43 78 47 Q82 43 86 47 Q89 43 91 47" fill="none" stroke="#a78bfa" stroke-width=".7" stroke-linecap="round" opacity=".4"/>
+      <line x1="80" y1="62" x2="80" y2="110" stroke="#555" stroke-width="1"/>
+      <line x1="80" y1="76" x2="56" y2="92" stroke="#555" stroke-width="1"/>
+      <line x1="80" y1="76" x2="104" y2="92" stroke="#555" stroke-width="1"/>
+      <line x1="80" y1="110" x2="64" y2="138" stroke="#555" stroke-width="1"/>
+      <line x1="80" y1="110" x2="96" y2="138" stroke="#555" stroke-width="1"/>
+      <circle cx="80" cy="60" r="3" fill="#a78bfa" style="animation:dotPulse 2s ease-in-out infinite"/>
+      <circle cx="130" cy="100" r="3" fill="#2ecc71" style="animation:dotPulse 2s ease-in-out infinite .5s"/>
+      <circle cx="110" cy="150" r="3" fill="#fbbf24" style="animation:dotPulse 2s ease-in-out infinite 1s"/>
+      <circle cx="50" cy="150" r="3" fill="#60a5fa" style="animation:dotPulse 2s ease-in-out infinite 1.5s"/>
+      <circle cx="30" cy="100" r="3" fill="#fb923c" style="animation:dotPulse 2s ease-in-out infinite 2s"/>
+    </svg>
+  </div>
+  <div class="ttl" style="color:#c4b5fd">Человек<br>в центре</div>
+  <div class="sub">мозг · тело · жизнь · состояние</div>
+</div>
+
+<!-- 2. ГАДЖЕТЫ: NEIRY + NEYROX -->
+<div class="card c-gadgets">
+  <div class="lbl">носимые устройства</div>
+  <div class="ttl" style="color:#e0e0e0">Биометрика<br>в реальном времени</div>
+  <div class="gd-row">
+    <div class="gd">
+      <div class="gd-name" style="color:#a78bfa">NEIRY</div>
+      <span class="gd-tag" style="border-color:#a78bfa;color:#a78bfa">EEG</span>
+      <span class="gd-tag" style="border-color:#555;color:#555">Alpha</span>
+      <span class="gd-tag" style="border-color:#555;color:#555">Chill</span>
+      <div class="sub" style="margin-top:8px">нейробанд<br>мозговые волны</div>
+    </div>
+    <div class="gd">
+      <div class="gd-name" style="color:#60a5fa">NEYROX</div>
+      <span class="gd-tag" style="border-color:#60a5fa;color:#60a5fa">HRV</span>
+      <span class="gd-tag" style="border-color:#555;color:#555">EDA</span>
+      <span class="gd-tag" style="border-color:#555;color:#555">Temp</span>
+      <div class="sub" style="margin-top:8px">нейро-трекер<br>лаборатория на руке</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. ONTO NOTHING -->
+<div class="card c-onto">
+  <div class="lbl">методология</div>
+  <div class="ttl" style="color:#c4b5fd">ONTO NOTHING<br>7 состояний</div>
+  <div class="pills">
+    <span class="pill" style="border-color:#a78bfa;color:#a78bfa;background:#1e1040">Pure Nothing</span>
+    <span class="pill" style="border-color:#2ecc71;color:#2ecc71;background:#04150a">Embodied Flow</span>
+    <span class="pill" style="border-color:#60a5fa;color:#60a5fa;background:#041326">Visceral Mind</span>
+    <span class="pill" style="border-color:#fbbf24;color:#fbbf24;background:#150f00">Active Presence</span>
+    <span class="pill" style="border-color:#e879f9;color:#e879f9;background:#180520">Quantum Genesis</span>
+    <span class="pill" style="border-color:#f472b6;color:#f472b6;background:#1a0510">Transcendent</span>
+    <span class="pill" style="border-color:#555;color:#666;background:#161616">DMN baseline</span>
+  </div>
+  <div class="sub" style="margin-top:10px">остановка внутреннего диалога · управляемый переход</div>
+</div>
+
+<!-- 4. MNPI -->
+<div class="card c-mnpi">
+  <div class="lbl">мультимодальный индекс</div>
+  <div style="display:flex;align-items:baseline;gap:6px">
+    <div class="mnpi-big">78</div>
+    <div style="font-size:11px;color:#2ecc71;font-family:'DM Mono',monospace">/100</div>
+  </div>
+  <div class="bars">
+    <div class="bar-r">
+      <span class="bar-lbl" style="color:#a78bfa">SI</span>
+      <div class="bar-tr"><div class="bar-fl" style="width:72%;background:#a78bfa"></div></div>
+      <span style="font-size:9px;font-family:'DM Mono',monospace;color:#a78bfa">72</span>
+    </div>
+    <div class="bar-r">
+      <span class="bar-lbl" style="color:#2ecc71">DI</span>
+      <div class="bar-tr"><div class="bar-fl" style="width:85%;background:#2ecc71"></div></div>
+      <span style="font-size:9px;font-family:'DM Mono',monospace;color:#2ecc71">85</span>
+    </div>
+    <div class="bar-r">
+      <span class="bar-lbl" style="color:#fbbf24">RI</span>
+      <div class="bar-tr"><div class="bar-fl" style="width:63%;background:#fbbf24"></div></div>
+      <span style="font-size:9px;font-family:'DM Mono',monospace;color:#fbbf24">63</span>
+    </div>
+    <div class="bar-r">
+      <span class="bar-lbl" style="color:#60a5fa">PI</span>
+      <div class="bar-tr"><div class="bar-fl" style="width:91%;background:#60a5fa"></div></div>
+      <span style="font-size:9px;font-family:'DM Mono',monospace;color:#60a5fa">91</span>
+    </div>
+  </div>
+</div>
+
+<!-- 5. РИТМЫ ЖИЗНИ -->
+<div class="card c-rhythms">
+  <div class="lbl">планинг · Наталья Морозова</div>
+  <div class="ttl" style="color:#2ecc71">Ритмы Жизни</div>
+  <div style="display:flex;align-items:center;justify-content:center;margin-top:10px">
+    <svg width="120" height="120" viewBox="0 0 120 120">
+      <g transform="translate(60,60)">
+        <path d="M0,0 L0,-52 A52,52 0 0,1 36.8,-36.8 Z" fill="#0d2018" stroke="#163020" stroke-width="0.5"/>
+        <path d="M0,0 L36.8,-36.8 A52,52 0 0,1 52,0 Z" fill="#0a1a10" stroke="#163020" stroke-width="0.5"/>
+        <path d="M0,0 L52,0 A52,52 0 0,1 36.8,36.8 Z" fill="#0d2018" stroke="#163020" stroke-width="0.5"/>
+        <path d="M0,0 L36.8,36.8 A52,52 0 0,1 0,52 Z" fill="#0a1a10" stroke="#163020" stroke-width="0.5"/>
+        <path d="M0,0 L0,52 A52,52 0 0,1 -36.8,36.8 Z" fill="#0d2018" stroke="#163020" stroke-width="0.5"/>
+        <path d="M0,0 L-36.8,36.8 A52,52 0 0,1 -52,0 Z" fill="#0a1a10" stroke="#163020" stroke-width="0.5"/>
+        <path d="M0,0 L-52,0 A52,52 0 0,1 -36.8,-36.8 Z" fill="#0d2018" stroke="#163020" stroke-width="0.5"/>
+        <path d="M0,0 L-36.8,-36.8 A52,52 0 0,1 0,-52 Z" fill="#0a1a10" stroke="#163020" stroke-width="0.5"/>
+        <path d="M0,0 L0,-38 A38,38 0 0,1 26.9,-26.9 Z" fill="#2ecc71" opacity=".25"/>
+        <path d="M0,0 L26.9,-26.9 A38,38 0 0,1 38,0 Z" fill="#2ecc71" opacity=".4"/>
+        <path d="M0,0 L38,0 A38,38 0 0,1 26.9,26.9 Z" fill="#2ecc71" opacity=".2"/>
+        <path d="M0,0 L26.9,26.9 A38,38 0 0,1 0,38 Z" fill="#2ecc71" opacity=".5"/>
+        <path d="M0,0 L0,38 A38,38 0 0,1 -26.9,26.9 Z" fill="#2ecc71" opacity=".3"/>
+        <path d="M0,0 L-26.9,26.9 A38,38 0 0,1 -38,0 Z" fill="#2ecc71" opacity=".45"/>
+        <path d="M0,0 L-38,0 A38,38 0 0,1 -26.9,-26.9 Z" fill="#2ecc71" opacity=".2"/>
+        <path d="M0,0 L-26.9,-26.9 A38,38 0 0,1 0,-38 Z" fill="#2ecc71" opacity=".35"/>
+        <text font-size="7" fill="#2ecc71" text-anchor="middle" font-family="DM Mono,monospace" x="0" y="-57">Проф</text>
+        <text font-size="7" fill="#2ecc71" text-anchor="start" font-family="DM Mono,monospace" x="40" y="-36">Общ</text>
+        <text font-size="7" fill="#2ecc71" text-anchor="start" font-family="DM Mono,monospace" x="55" y="4">Знан</text>
+        <text font-size="7" fill="#2ecc71" text-anchor="start" font-family="DM Mono,monospace" x="39" y="44">Изоб</text>
+        <text font-size="7" fill="#2ecc71" text-anchor="middle" font-family="DM Mono,monospace" x="0" y="62">ЗОЖ</text>
+        <text font-size="7" fill="#2ecc71" text-anchor="end" font-family="DM Mono,monospace" x="-39" y="44">Твор</text>
+        <text font-size="7" fill="#2ecc71" text-anchor="end" font-family="DM Mono,monospace" x="-55" y="4">Отн</text>
+        <text font-size="7" fill="#2ecc71" text-anchor="end" font-family="DM Mono,monospace" x="-40" y="-36">Осоз</text>
+        <circle r="6" fill="#163020" stroke="#2ecc71" stroke-width="0.5"/>
+      </g>
+    </svg>
+  </div>
+  <div class="sub" style="text-align:center">8 сфер жизни · колесо баланса</div>
+</div>
+
+<!-- 6. ПЛАТФОРМА -->
+<div class="card c-platform">
+  <div class="lbl">платформа · обработка · выход</div>
+  <div class="platform-inner">
+    <div class="stream s1">
+      <div class="stream-bar" style="height:80px"><div class="stream-fill" style="height:65%;background:#a78bfa;opacity:.7"></div></div>
+      <div class="stream-lbl">EEG<br>NEIRY</div>
+    </div>
+    <div class="stream s2">
+      <div class="stream-bar" style="height:80px"><div class="stream-fill" style="height:80%;background:#60a5fa;opacity:.7"></div></div>
+      <div class="stream-lbl">HRV<br>NEYROX</div>
+    </div>
+    <div class="stream s3">
+      <div class="stream-bar" style="height:80px"><div class="stream-fill" style="height:50%;background:#fbbf24;opacity:.7"></div></div>
+      <div class="stream-lbl">ВСР<br>LQ Lab</div>
+    </div>
+    <div class="stream s4">
+      <div class="stream-bar" style="height:80px"><div class="stream-fill" style="height:90%;background:#2ecc71;opacity:.7"></div></div>
+      <div class="stream-lbl">Жизнь<br>Ритмы</div>
+    </div>
+    <div class="stream s5">
+      <div class="stream-bar" style="height:80px"><div class="stream-fill" style="height:70%;background:#e879f9;opacity:.7"></div></div>
+      <div class="stream-lbl">Голос<br>PI</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:0 8px;color:#333;font-size:20px">→</div>
+    <div class="box-platform">
+      <div class="box-name">ex<br>NIHILO<br>ai</div>
+      <div class="box-sub">ИИ · анализ · синтез</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:0 8px;color:#333;font-size:20px">→</div>
+    <div class="output">
+      <div class="out-row">
+        <div class="out-dot" style="background:#a78bfa"></div>
+        <span class="out-txt">EEG-профиль сессии</span>
+        <span class="out-val" style="color:#a78bfa">Alpha ↑ 34%</span>
+      </div>
+      <div class="out-row">
+        <div class="out-dot" style="background:#2ecc71"></div>
+        <span class="out-txt">MNPI сводный балл</span>
+        <span class="out-val" style="color:#2ecc71">78 / 100</span>
+      </div>
+      <div class="out-row">
+        <div class="out-dot" style="background:#fbbf24"></div>
+        <span class="out-txt">Феноменология (PI)</span>
+        <span class="out-val" style="color:#fbbf24">depth 4.2</span>
+      </div>
+      <div class="out-row">
+        <div class="out-dot" style="background:#60a5fa"></div>
+        <span class="out-txt">HRV динамика</span>
+        <span class="out-val" style="color:#60a5fa">62 мс</span>
+      </div>
+      <div class="out-row">
+        <div class="out-dot" style="background:#fb923c"></div>
+        <span class="out-txt">ИИ-инсайт участника</span>
+        <span class="out-val" style="color:#fb923c">готов</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>

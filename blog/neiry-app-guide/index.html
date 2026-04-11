@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neiry Mind Tracker — полный гайд по приложению — ONTO NOTHING</title>
+<meta name="description" content="Полный гайд по мобильному приложению Neiry Mind Tracker BCI: мониторинг, трекинг, БОС-тренинги, комбинации метрик и пресеты.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/nav.css">
+<style>
+:root {
+  --bg: #0D0D12;
+  --bg2: #16161E;
+  --bg3: #1E1E2A;
+  --glass: rgba(255,255,255,0.04);
+  --glass2: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --text: #F0F0F5;
+  --text2: #A0A4B8;
+  --text3: #6B7080;
+  --accent: #7C5CFC;
+  --accent2: #5F5FFF;
+  --green: #34D399;
+  --amber: #FBBF24;
+  --rose: #FB7185;
+  --blue: #60A5FA;
+  --cyan: #22D3EE;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;font-weight:400;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none;transition:.2s}
+a:hover{color:var(--blue)}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;line-height:1.2}
+table{border-collapse:collapse;width:100%}
+img{max-width:100%;height:auto;border-radius:16px}
+code{font-family:'DM Mono',monospace;background:var(--glass2);padding:2px 7px;border-radius:5px;font-size:0.9em;color:var(--cyan)}
+strong{color:var(--text);font-weight:600}
+
+/* ══════════════ HERO ══════════════ */
+.hero{
+  position:relative;min-height:480px;display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;padding:80px 24px 50px;
+  background:
+    radial-gradient(ellipse 700px 500px at 30% 40%, rgba(124,92,252,0.12), transparent),
+    radial-gradient(ellipse 600px 400px at 70% 60%, rgba(96,165,250,0.08), transparent),
+    radial-gradient(ellipse 500px 350px at 50% 90%, rgba(52,211,153,0.06), transparent),
+    var(--bg);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;max-width:780px}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;font-size:12px;letter-spacing:4px;
+  color:var(--text3);margin-bottom:20px;text-transform:uppercase;
+}
+.hero h1{
+  font-size:clamp(32px,6vw,56px);font-weight:800;margin-bottom:18px;
+  background:linear-gradient(135deg,#F0F0F5 0%,#7C5CFC 45%,#60A5FA 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--text2);max-width:580px;margin:0 auto 30px}
+
+/* wave deco */
+.hero-wave{width:100%;max-width:500px;height:60px;margin:0 auto;opacity:0.3}
+.hero-wave path{fill:none;stroke-width:1.5}
+
+/* ══════════════ TOC ══════════════ */
+.toc{
+  max-width:820px;margin:-30px auto 50px;position:relative;z-index:2;
+  background:var(--bg2);border:1px solid var(--border);border-radius:20px;
+  padding:28px 32px;
+}
+.toc summary{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:18px;cursor:pointer;
+  list-style:none;display:flex;align-items:center;gap:10px;
+}
+.toc summary::before{content:'';display:none}
+.toc summary .icon{font-size:22px}
+.toc[open] summary{margin-bottom:16px}
+.toc ol{padding-left:24px;columns:2;column-gap:40px}
+.toc li{margin-bottom:8px;font-size:14px;color:var(--text2);break-inside:avoid}
+.toc li a{color:var(--text2);border-bottom:1px solid transparent}
+.toc li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+@media(max-width:600px){.toc ol{columns:1}}
+
+/* ══════════════ LAYOUT ══════════════ */
+.wrap{max-width:820px;margin:0 auto;padding:0 24px}
+.section{margin-bottom:80px}
+.section h2{
+  font-size:clamp(24px,4vw,36px);margin-bottom:10px;
+  padding-bottom:12px;border-bottom:2px solid var(--border2);
+}
+.section h3{font-size:clamp(18px,3vw,24px);margin:36px 0 12px;color:var(--blue)}
+.section h4{font-size:18px;margin:24px 0 8px;color:var(--green);font-family:'DM Sans',sans-serif;font-weight:600}
+.section p{color:var(--text2);margin-bottom:16px}
+
+.section-num{
+  font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);
+  letter-spacing:2px;margin-bottom:8px;display:block;
+}
+
+/* ══════════════ CARDS ══════════════ */
+.card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:20px;
+  padding:28px;margin:24px 0;
+}
+.card-accent{border-color:rgba(124,92,252,0.3);background:linear-gradient(135deg,rgba(124,92,252,0.06),rgba(96,165,250,0.04))}
+.card-green{border-color:rgba(52,211,153,0.3);background:linear-gradient(135deg,rgba(52,211,153,0.06),rgba(34,211,238,0.04))}
+.card-amber{border-color:rgba(251,191,36,0.25);background:linear-gradient(135deg,rgba(251,191,36,0.06),rgba(251,113,133,0.03))}
+.card-rose{border-color:rgba(251,113,133,0.3);background:linear-gradient(135deg,rgba(251,113,133,0.06),rgba(124,92,252,0.04))}
+
+/* ══════════════ TABLES ══════════════ */
+.table-wrap{overflow-x:auto;margin:20px 0;border-radius:14px;border:1px solid var(--border)}
+table{font-size:14px}
+th{
+  background:var(--bg3);color:var(--text);font-weight:600;text-align:left;
+  padding:12px 16px;border-bottom:1px solid var(--border2);font-size:13px;
+  letter-spacing:0.5px;text-transform:uppercase;font-family:'DM Mono',monospace;
+}
+td{padding:10px 16px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--glass)}
+
+/* ══════════════ SCREENSHOTS ══════════════ */
+.screenshot{margin:24px 0;text-align:center}
+.screenshot img{
+  border-radius:20px;border:1px solid var(--border2);
+  box-shadow:0 8px 40px rgba(0,0,0,0.4);
+  max-width:380px;width:100%;
+  transition:transform .3s, box-shadow .3s;
+}
+.screenshot img:hover{transform:translateY(-4px);box-shadow:0 16px 60px rgba(0,0,0,0.5)}
+.screenshot-wide img{max-width:700px}
+.screenshot-caption{
+  font-size:13px;color:var(--text3);margin-top:10px;font-style:italic;
+  max-width:500px;margin-left:auto;margin-right:auto;
+}
+
+/* two screenshots side by side */
+.screenshots-row{
+  display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:24px 0;
+}
+.screenshots-row .screenshot{margin:0;flex:1;min-width:200px;max-width:380px}
+
+/* ══════════════ CALLOUT ══════════════ */
+.callout{
+  border-left:3px solid var(--accent);padding:16px 20px;margin:20px 0;
+  background:var(--glass);border-radius:0 12px 12px 0;
+  color:var(--text2);font-size:15px;
+}
+.callout strong{color:var(--accent)}
+.callout-green{border-left-color:var(--green)}
+.callout-green strong{color:var(--green)}
+.callout-amber{border-left-color:var(--amber)}
+.callout-amber strong{color:var(--amber)}
+
+/* ══════════════ BADGES ══════════════ */
+.badge{
+  display:inline-block;padding:3px 10px;border-radius:6px;font-size:12px;
+  font-family:'DM Mono',monospace;font-weight:500;
+}
+.badge-purple{background:rgba(124,92,252,0.15);color:#B794F6}
+.badge-green{background:rgba(52,211,153,0.15);color:#6EE7B7}
+.badge-amber{background:rgba(251,191,36,0.15);color:#FCD34D}
+.badge-blue{background:rgba(96,165,250,0.15);color:#93C5FD}
+.badge-rose{background:rgba(251,113,133,0.15);color:#FDA4AF}
+
+/* ══════════════ STEPS ══════════════ */
+.steps{counter-reset:step}
+.step{
+  position:relative;padding:0 0 0 56px;margin:20px 0;counter-increment:step;
+}
+.step::before{
+  content:counter(step);position:absolute;left:0;top:0;
+  width:40px;height:40px;border-radius:12px;
+  background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;
+  font-size:18px;display:flex;align-items:center;justify-content:center;
+}
+.step h4{margin-top:0;color:var(--text)}
+.step p{font-size:14px}
+
+/* ══════════════ CHEAT SHEET ══════════════ */
+.cheat{
+  background:linear-gradient(135deg,rgba(124,92,252,0.08),rgba(96,165,250,0.06));
+  border:1px solid rgba(124,92,252,0.2);border-radius:20px;
+  padding:32px;margin:40px 0;
+}
+.cheat h3{color:var(--accent);margin-top:0}
+
+/* ══════════════ FOOTER ══════════════ */
+footer{
+  text-align:center;padding:60px 24px;border-top:1px solid var(--border);
+  color:var(--text3);font-size:13px;
+}
+
+/* ══════════════ RESPONSIVE ══════════════ */
+@media(max-width:600px){
+  .hero{padding:60px 16px 40px}
+  .wrap{padding:0 16px}
+  .card{padding:20px}
+  .screenshot img{max-width:100%}
+  .toc{margin:-20px 16px 40px;padding:20px}
+  .cheat{padding:20px}
+}
+
+/* scroll animations */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease, transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ══════════════ NAV OVERRIDE for dark theme ══════════════ */
+.site-nav{background:rgba(13,13,18,0.95)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)!important}
+.site-nav .nav-logo{color:var(--text)!important}
+.site-nav .nav-links a{color:var(--text2)!important}
+.site-nav .nav-links a:hover,.site-nav .nav-links a.active{color:var(--text)!important}
+.site-nav .nav-burger span{background:var(--text)!important}
+body{padding-top:60px}
+
+/* footer dark override */
+.site-footer{background:var(--bg)!important;border-top:1px solid var(--border)!important;color:var(--text3)!important}
+.site-footer a{color:var(--text2)!important}
+.site-footer a:hover{color:var(--accent)!important}
+.footer-copy,.footer-legal a{color:var(--text3)!important}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Mind Tracker BCI v2.4.0</p>
+    <h1>Neiry Mind Tracker</h1>
+    <p class="hero-sub">Полный гайд по мобильному приложению: мониторинг, трекинг, тренинги и комбинации метрик для управления состоянием мозга</p>
+    <svg class="hero-wave" viewBox="0 0 500 60">
+      <path d="M0,30 Q50,10 100,30 Q150,50 200,30 Q250,10 300,30 Q350,50 400,30 Q450,10 500,30" stroke="#7C5CFC"/>
+      <path d="M0,30 Q60,45 120,30 Q180,15 240,30 Q300,45 360,30 Q420,15 480,30" stroke="#60A5FA"/>
+      <path d="M0,30 Q70,15 140,30 Q210,45 280,30 Q350,15 420,30 Q460,40 500,30" stroke="#34D399"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════ TOC ═══════════════════════════════════════ -->
+<details class="toc" open>
+  <summary><span class="icon">&#9776;</span> Содержание</summary>
+  <ol>
+    <li><a href="#s1">Первый запуск: iAF и ваш психотип</a></li>
+    <li><a href="#s2">Главная: статистика и iAPF</a></li>
+    <li><a href="#s3">Мониторинг: 3 графика в реальном времени</a></li>
+    <li><a href="#s4">Комбинации 3 графиков</a></li>
+    <li><a href="#s5">Трекинг: пресеты и средние значения</a></li>
+    <li><a href="#s6">Создание собственного пресета</a></li>
+    <li><a href="#s7">Комбинации для трекинга</a></li>
+    <li><a href="#s8">Звуковая обратная связь</a></li>
+    <li><a href="#s9">Усталость и режим отдыха</a></li>
+    <li><a href="#s10">Слоты рабочего дня</a></li>
+    <li><a href="#s11">Тренинги (БОС-нейрофидбек)</a></li>
+    <li><a href="#s12">Быстрый старт</a></li>
+    <li><a href="#s13">Шпаргалка: все комбинации</a></li>
+  </ol>
+</details>
+
+<div class="wrap">
+
+<!-- ═══════════════ 1. iAF ═══════════════ -->
+<section id="s1" class="section reveal">
+  <span class="section-num">01</span>
+  <h2>Первый запуск: iAF и ваш психотип</h2>
+  <p>При первом подключении устройства приложение проводит <strong>калибровку</strong> — определяет вашу индивидуальную альфа-частоту (iAF). Это занимает ~30 секунд с закрытыми глазами.</p>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 12.51.59.png" alt="Экран iAF: шкала и психотип">
+    <p class="screenshot-caption">Шкала 7–13 Гц и определение психотипа. В примере — «Менеджер» (9.5 Гц)</p>
+  </div>
+
+  <p><strong>iAF</strong> — это генетический «отпечаток» мозга, который определяет ваш когнитивный стиль:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Диапазон iAF</th><th>Психотип</th><th>Описание</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-green">7 – 9.5 Гц</span></td><td>Создатель</td><td>Творческое, образное мышление</td></tr>
+        <tr><td><span class="badge badge-amber">9.5 – 10.5 Гц</span></td><td>Менеджер / Предприниматель</td><td>Управленческие способности, аналитика</td></tr>
+        <tr><td><span class="badge badge-blue">10.5 – 13 Гц</span></td><td>Инженер / Учёный</td><td>Техническое, структурное мышление</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 12.52.11.png" alt="Что такое iAF — подсказка">
+    <p class="screenshot-caption">iAF — относительно стабильный показатель, характеризующий ваш поведенческий паттерн</p>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. Главная ═══════════════ -->
+<section id="s2" class="section reveal">
+  <span class="section-num">02</span>
+  <h2>Главная: статистика и iAPF</h2>
+  <p>На главном экране отображается динамика вашего <strong>iAPF</strong> (пиковая альфа-частота) — насколько текущие значения отклоняются от вашего среднего.</p>
+
+  <div class="screenshots-row">
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 12.51.17.png" alt="Главная: статистика iAF и iAPF">
+      <p class="screenshot-caption">Статистика iAF и iAPF, отклонения от базового состояния</p>
+    </div>
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 12.51.30.png" alt="График отклонений и рекомендации">
+      <p class="screenshot-caption">График отклонений + рекомендуемый тренинг</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Цветовая индикация:</strong> Зелёный = норма, жёлтый = стоит обратить внимание, красный = сильное отклонение. Приложение автоматически рекомендует тренинг на основе данных.
+  </div>
+</section>
+
+<!-- ═══════════════ 3. Мониторинг ═══════════════ -->
+<section id="s3" class="section reveal">
+  <span class="section-num">03</span>
+  <h2>Мониторинг: 3 графика в реальном времени</h2>
+  <p>Раздел <strong>«Мониторинг»</strong> — живая панель состояния мозга. Одновременно отображаются <strong>3 графика</strong>, которые вы выбираете сами.</p>
+
+  <div class="screenshot screenshot-wide">
+    <img src="Снимок экрана 2026-04-06 в 12.56.33.png" alt="Описание метрик мониторинга">
+    <p class="screenshot-caption">Описание раздела «Мониторинг» и основных метрик в приложении</p>
+  </div>
+
+  <h3>Выбор 3 показателей для графиков</h3>
+  <p>В настройках мониторинга выберите <strong>любые 3 из 6 доступных метрик:</strong></p>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 12.56.48.png" alt="Выбор 3 показателей">
+    <p class="screenshot-caption">Экран выбора: галочками отмечаем нужные показатели</p>
+  </div>
+
+  <div class="card card-accent">
+    <h4 style="margin-top:0;color:var(--accent)">6 доступных метрик для графиков</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Метрика</th><th>Что показывает</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Когнитивная нагрузка</strong></td><td>Насколько мозг загружен текущей задачей</td></tr>
+          <tr><td><strong>Фокус</strong></td><td>Концентрация на определённом объекте или задаче</td></tr>
+          <tr><td><strong>Расслабление</strong></td><td>Состояние спокойствия, без сильных эмоций</td></tr>
+          <tr><td><strong>Самоконтроль</strong></td><td>Способность подавлять отвлечения</td></tr>
+          <tr><td><strong>Азарт</strong></td><td>Внутреннее напряжение или растущее возбуждение</td></tr>
+          <tr><td><strong>Напряжение</strong></td><td>Эмоции, которые мешают успокоиться</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="screenshots-row">
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 12.52.33.png" alt="3 графика: масштаб 1 мин">
+      <p class="screenshot-caption">Масштаб 1 мин: Нагрузка 63%, Фокус 40%, Расслабление 46%</p>
+    </div>
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 12.52.46.png" alt="3 графика: масштаб 15 мин">
+      <p class="screenshot-caption">Масштаб 15 мин: динамика за более длинный период</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 4. Комбинации графиков ═══════════════ -->
+<section id="s4" class="section reveal">
+  <span class="section-num">04</span>
+  <h2>Рекомендуемые комбинации 3 графиков</h2>
+
+  <div class="card card-accent">
+    <h4 style="margin-top:0">&#127919; Комбинация 1: «Рабочий режим» <span class="badge badge-purple">по умолчанию</span></h4>
+    <p><strong>Когнитивная нагрузка + Фокус + Расслабление</strong></p>
+    <p>Повседневная работа, созвоны, задачи. Показывает баланс нагрузки, концентрации и отдыха. Если нагрузка высокая, а фокус падает — пора на перерыв.</p>
+  </div>
+
+  <div class="card card-green">
+    <h4 style="margin-top:0">&#129504; Комбинация 2: «Антистресс»</h4>
+    <p><strong>Расслабление + Напряжение + Самоконтроль</strong></p>
+    <p>Стрессовые ситуации, переговоры, конфликты. Видите в реальном времени, насколько вы напряжены и удаётся ли самоконтроль.</p>
+  </div>
+
+  <div class="card card-amber">
+    <h4 style="margin-top:0">&#127912; Комбинация 3: «Креативная сессия»</h4>
+    <p><strong>Фокус + Расслабление + Азарт</strong></p>
+    <p>Мозговые штурмы, творческие задачи, генерация идей. Баланс расслабления и фокуса — ключ к состоянию «потока». Азарт показывает внутренний драйв.</p>
+  </div>
+
+  <div class="card card-rose">
+    <h4 style="margin-top:0">&#128187; Комбинация 4: «Deep Work»</h4>
+    <p><strong>Когнитивная нагрузка + Фокус + Самоконтроль</strong></p>
+    <p>Программирование, аналитика, написание текстов. Самоконтроль важнее расслабления — он показывает, удаётся ли подавлять отвлечения.</p>
+  </div>
+
+  <div class="card">
+    <h4 style="margin-top:0">&#128164; Комбинация 5: «Восстановление»</h4>
+    <p><strong>Расслабление + Напряжение + Когнитивная нагрузка</strong></p>
+    <p>Перерывы, медитации, вечерние сессии. Цель — расслабление вверх, напряжение и нагрузка вниз.</p>
+  </div>
+
+  <h3>Круговая диаграмма состояний</h3>
+  <p>Помимо 3 графиков, приложение формирует общую круговую диаграмму распределения состояний за сессию:</p>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 12.52.59.png" alt="Круговая диаграмма состояний">
+    <p class="screenshot-caption">66% Вовлечение, 10% Концентрация, 5% Усталость, 4% Расслабление, 0% Стресс. Кнопка «Скачать CSV» для экспорта</p>
+  </div>
+</section>
+
+<!-- ═══════════════ 5. Трекинг ═══════════════ -->
+<section id="s5" class="section reveal">
+  <span class="section-num">05</span>
+  <h2>Трекинг: пресеты и средние значения</h2>
+  <p>Раздел <strong>«Трекинг»</strong> — умный режим отслеживания. Следит за состоянием и сигнализирует, когда показатели выходят за установленные пороги.</p>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 12.59.22.png" alt="Экран трекинга">
+    <p class="screenshot-caption">Трекинг: пресет Effectivity. Нагрузка 17%, Фокус 52%, Расслабление 30%. Усталость 43% (лёгкая)</p>
+  </div>
+
+  <h3>Готовые пресеты</h3>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 12.59.33.png" alt="Выбор пресета">
+    <p class="screenshot-caption">Выбор пресета: Effectivity, Productivity, Education (стрелки переключают)</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Пресет</th><th>Назначение</th><th>Ключевые метрики</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-blue">Effectivity</span></td><td>Контроль эффективности</td><td>Когнитивная нагрузка, Фокус, Расслабление</td></tr>
+        <tr><td><span class="badge badge-green">Productivity</span></td><td>Контроль продуктивности</td><td>Нагрузка, Фокус, Усталость</td></tr>
+        <tr><td><span class="badge badge-amber">Education</span></td><td>Режим обучения</td><td>Фокус, Вовлечённость, Концентрация</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Пресет Effectivity: средние значения</h3>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 13.00.54.png" alt="Значения пресета Effectivity">
+    <p class="screenshot-caption">Пресет Effectivity: ползунки метрик с порогами</p>
+  </div>
+
+  <div class="card card-accent">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Метрика</th><th>Нижний порог</th><th>Верхний порог</th><th>Что значит</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Когнитивная нагрузка</strong></td><td>40%</td><td>80%</td><td>Ниже 40% — мозг недогружен; выше 80% — перегрузка</td></tr>
+          <tr><td><strong>Фокус</strong></td><td>50%</td><td>80%</td><td>Оптимальная зона концентрации</td></tr>
+          <tr><td><strong>Расслабление</strong></td><td>60%</td><td>100%</td><td>Уровень покоя и отсутствия стресса</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout callout-green">
+    <strong>Принцип работы:</strong> Когда любой показатель выходит за границы — приложение подаёт звуковой сигнал. Так вы учитесь удерживать состояние в оптимальной зоне.
+  </div>
+</section>
+
+<!-- ═══════════════ 6. Создание пресета ═══════════════ -->
+<section id="s6" class="section reveal">
+  <span class="section-num">06</span>
+  <h2>Создание собственного пресета</h2>
+
+  <div class="screenshots-row">
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 12.59.58.png" alt="Создать пресет">
+      <p class="screenshot-caption">Кнопка «Создать пресет»</p>
+    </div>
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 13.00.09.png" alt="Форма создания пресета">
+      <p class="screenshot-caption">Форма: название, описание, выбор 3 метрик</p>
+    </div>
+  </div>
+
+  <h3>Все доступные метрики для пресетов</h3>
+  <p>При создании пресета доступны <strong>11 метрик</strong>, каждая с настраиваемым диапазоном:</p>
+
+  <div class="screenshots-row">
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 13.00.19.png" alt="Метрики: экран 1">
+      <p class="screenshot-caption">Когнитивная нагрузка, Расслабление, Фокус, Напряжение</p>
+    </div>
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 13.00.26.png" alt="Метрики: экран 2">
+      <p class="screenshot-caption">Азарт, Самоконтроль, Расслабление (норм.), Концентрация</p>
+    </div>
+  </div>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 13.00.36.png" alt="Метрики: экран 3">
+    <p class="screenshot-caption">Утомление, Работоспособность, Состояние потока + выбор цвета</p>
+  </div>
+
+  <h3>Полная таблица метрик с рекомендуемыми значениями</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Метрика</th><th>Шкала</th><th>Рекомендуемый мин.</th><th>Рекомендуемый макс.</th><th>Описание</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Когнитивная нагрузка</strong></td><td>0–100%</td><td>40%</td><td>80%</td><td>Загруженность мозга задачей</td></tr>
+        <tr><td>2</td><td><strong>Расслабление (%)</strong></td><td>0–100%</td><td>0%</td><td>30%</td><td>Спокойствие без сильных эмоций</td></tr>
+        <tr><td>3</td><td><strong>Фокус</strong></td><td>0–100%</td><td>50%</td><td>80%</td><td>Сосредоточенность на задаче</td></tr>
+        <tr><td>4</td><td><strong>Напряжение</strong></td><td>0–100%</td><td>60%</td><td>80%</td><td>Эмоции, мешающие расслабиться</td></tr>
+        <tr><td>5</td><td><strong>Азарт</strong></td><td>0–100%</td><td>60%</td><td>80%</td><td>Внутреннее возбуждение</td></tr>
+        <tr><td>6</td><td><strong>Самоконтроль</strong></td><td>0–100%</td><td>60%</td><td>80%</td><td>Подавление отвлечений</td></tr>
+        <tr><td>7</td><td><strong>Расслабление (норм.)</strong></td><td>1.0–4.0</td><td>1.0</td><td>4.0</td><td>Нормированные единицы</td></tr>
+        <tr><td>8</td><td><strong>Концентрация</strong></td><td>—</td><td>—</td><td>—</td><td>Уровень при выполнении задачи</td></tr>
+        <tr><td>9</td><td><strong>Утомление</strong></td><td>0.0–3.0</td><td>0.0</td><td>3.0</td><td>Усталость во время задачи</td></tr>
+        <tr><td>10</td><td><strong>Работоспособность</strong></td><td>0.0–3.0</td><td>0.0</td><td>3.0</td><td>Расход когнитивных ресурсов</td></tr>
+        <tr><td>11</td><td><strong>Состояние потока</strong></td><td>4.0–6.0</td><td>4.0</td><td>6.0</td><td>Вовлечённость в деятельность</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════ 7. Комбинации для трекинга ═══════════════ -->
+<section id="s7" class="section reveal">
+  <span class="section-num">07</span>
+  <h2>Рекомендуемые комбинации для трекинга</h2>
+
+  <div class="card card-accent">
+    <h4 style="margin-top:0">&#128188; Пресет «Рабочий день» (Effectivity)</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Метрика</th><th>Минимум</th><th>Максимум</th></tr></thead>
+        <tbody>
+          <tr><td>Когнитивная нагрузка</td><td>40%</td><td>80%</td></tr>
+          <tr><td>Фокус</td><td>50%</td><td>80%</td></tr>
+          <tr><td>Расслабление (%)</td><td>60%</td><td>100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px;font-size:14px">Универсальный пресет для офисной работы. Сигнал, если перегружен или расфокусирован.</p>
+  </div>
+
+  <div class="card card-rose">
+    <h4 style="margin-top:0">&#128293; Пресет «Глубокая работа»</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Метрика</th><th>Минимум</th><th>Максимум</th></tr></thead>
+        <tbody>
+          <tr><td>Когнитивная нагрузка</td><td>60%</td><td>80%</td></tr>
+          <tr><td>Фокус</td><td>60%</td><td>80%</td></tr>
+          <tr><td>Самоконтроль</td><td>60%</td><td>80%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px;font-size:14px">Для программирования, аналитики, написания текстов. Высокие пороги — мозг полностью в задаче.</p>
+  </div>
+
+  <div class="card card-green">
+    <h4 style="margin-top:0">&#129528; Пресет «Антистресс / Восстановление»</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Метрика</th><th>Минимум</th><th>Максимум</th></tr></thead>
+        <tbody>
+          <tr><td>Расслабление (%)</td><td>60%</td><td>100%</td></tr>
+          <tr><td>Напряжение</td><td>0%</td><td>30%</td></tr>
+          <tr><td>Утомление</td><td>0.0</td><td>1.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px;font-size:14px">Для перерывов и вечерних сессий. Максимум расслабления, минимум напряжения.</p>
+  </div>
+
+  <div class="card card-amber">
+    <h4 style="margin-top:0">&#10024; Пресет «Состояние потока»</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Метрика</th><th>Минимум</th><th>Максимум</th></tr></thead>
+        <tbody>
+          <tr><td>Состояние потока</td><td>4.0</td><td>6.0</td></tr>
+          <tr><td>Работоспособность</td><td>1.5</td><td>3.0</td></tr>
+          <tr><td>Фокус</td><td>50%</td><td>80%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px;font-size:14px">Для поиска и удержания «flow». Когда все три в зелёной зоне — вы в потоке.</p>
+  </div>
+
+  <div class="card">
+    <h4 style="margin-top:0">&#128218; Пресет «Обучение и запоминание»</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Метрика</th><th>Минимум</th><th>Максимум</th></tr></thead>
+        <tbody>
+          <tr><td>Концентрация</td><td>50%</td><td>80%</td></tr>
+          <tr><td>Когнитивная нагрузка</td><td>40%</td><td>70%</td></tr>
+          <tr><td>Расслабление (%)</td><td>30%</td><td>60%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px;font-size:14px">Для учёбы, курсов, чтения. Умеренная нагрузка + концентрация.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ 8. Звук ═══════════════ -->
+<section id="s8" class="section reveal">
+  <span class="section-num">08</span>
+  <h2>Звуковая обратная связь</h2>
+  <p>При трекинге можно настроить звуковые сигналы, которые срабатывают при выходе за пороги:</p>
+
+  <div class="screenshots-row">
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 13.01.03.png" alt="Верхний порог: звук">
+      <p class="screenshot-caption">Верхний порог: звук, громкость, задержка</p>
+    </div>
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 13.01.12.png" alt="Нижний порог: звук">
+      <p class="screenshot-caption">Нижний порог: Пение птиц, Мурчание кота, Беспокойная музыка и др.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h4 style="margin-top:0">Логика звуков:</h4>
+    <ul style="padding-left:20px;color:var(--text2)">
+      <li><strong>Верхний порог</strong> — срабатывает, когда показатель <em>выше</em> установленного значения (перегрузка)</li>
+      <li><strong>Нижний порог</strong> — срабатывает, когда показатель <em>ниже</em> нормы (потеря фокуса)</li>
+      <li>Громкость и задержку можно настроить отдельно для каждого порога</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════ 9. Усталость ═══════════════ -->
+<section id="s9" class="section reveal">
+  <span class="section-num">09</span>
+  <h2>Усталость и режим отдыха</h2>
+  <p>Приложение отслеживает накопленную усталость и сигнализирует, когда пора отдохнуть.</p>
+
+  <h3>Настройка порогов усталости</h3>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 13.01.30.png" alt="Пороги усталости">
+    <p class="screenshot-caption">Средняя усталость: 30%, Сильная усталость: 60%, Буфер данных</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Параметр</th><th>По умолчанию</th><th>Описание</th></tr></thead>
+      <tbody>
+        <tr><td>Средняя усталость</td><td>30%</td><td>Переход от «слабой» к «средней»</td></tr>
+        <tr><td>Сильная усталость</td><td>60%</td><td>Переход от «средней» к «сильной»</td></tr>
+        <tr><td>Буфер данных</td><td>10 Items</td><td>Плавность изменения показателей</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Как выглядит усталость в трекинге</h3>
+
+  <div class="screenshot screenshot-wide">
+    <img src="Снимок экрана 2026-04-06 в 13.01.48.png" alt="Блок усталости">
+    <p class="screenshot-caption">52% (Лёгкая) — рекомендация отдохнуть 2 мин, текущий слот 10 мин</p>
+  </div>
+
+  <h3>Режим отдыха</h3>
+
+  <div class="screenshots-row">
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 13.01.54.png" alt="Выбор времени отдыха">
+      <p class="screenshot-caption">Выбор длительности (1–3 мин)</p>
+    </div>
+    <div class="screenshot">
+      <img src="Снимок экрана 2026-04-06 в 13.02.03.png" alt="Режим отдыха запущен">
+      <p class="screenshot-caption">Таймер обратного отсчёта. Глубокий отдых = громкая музыка</p>
+    </div>
+  </div>
+
+  <h3>Настройки для режима отдыха</h3>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 13.01.21.png" alt="Настройки отдыха">
+    <p class="screenshot-caption">Мелодия, громкость, периодичность оповещений. Если 0 — функция отключена</p>
+  </div>
+</section>
+
+<!-- ═══════════════ 10. Слоты ═══════════════ -->
+<section id="s10" class="section reveal">
+  <span class="section-num">10</span>
+  <h2>Слоты рабочего дня</h2>
+  <p>Приложение автоматически делит время работы на <strong>слоты</strong> — периоды между перерывами:</p>
+
+  <div class="screenshot screenshot-wide">
+    <img src="Снимок экрана 2026-04-06 в 13.02.16.png" alt="Слоты рабочего дня">
+    <p class="screenshot-caption">1 слот за день (0ч 10м). Слот 01: 12:51–13:01, 10 мин, скорость утомления «Быстро»</p>
+  </div>
+
+  <div class="card card-green">
+    <h4 style="margin-top:0">Что дают слоты:</h4>
+    <ul style="padding-left:20px;color:var(--text2)">
+      <li>Видите, как долго можете работать до усталости</li>
+      <li>Определяете свои пиковые часы продуктивности</li>
+      <li>Отслеживаете, помогают ли перерывы восстанавливаться</li>
+      <li>Формируете индивидуальный рабочий ритм</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════ 11. Тренинги ═══════════════ -->
+<section id="s11" class="section reveal">
+  <span class="section-num">11</span>
+  <h2>Тренинги (БОС-нейрофидбек)</h2>
+  <p>Раздел с тренировками на управление состоянием мозга через биологическую обратную связь:</p>
+
+  <div class="screenshot">
+    <img src="Снимок экрана 2026-04-06 в 12.59.12.png" alt="Список тренингов">
+    <p class="screenshot-caption">Курсовой тренинг (25x9 мин), Короткий тренинг (6 мин), Управляемая медитация</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Тренинг</th><th>Длительность</th><th>Для кого / когда</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Курсовой тренинг стрессоустойчивости</strong></td>
+          <td>25 сессий x 9 мин</td>
+          <td>Системная работа со стрессом. Результат через 2–4 недели</td>
+        </tr>
+        <tr>
+          <td><strong>Короткий тренинг расслабления</strong></td>
+          <td>6 мин, 3 уровня</td>
+          <td>Быстрый сброс напряжения между задачами</td>
+        </tr>
+        <tr>
+          <td><strong>Управляемая медитация</strong></td>
+          <td>На ваш выбор</td>
+          <td>Голосовой инструктор + объективная оценка глубины</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Как работает БОС-тренинг:</strong> Запускаете сессию, закрываете глаза, слушаете звуки. Мозг расслабляется — звук усиливается, становится приятнее. Отвлекаетесь — звук ослабевает. Мозг инстинктивно учится входить в нужное состояние.
+  </div>
+</section>
+
+<!-- ═══════════════ 12. Быстрый старт ═══════════════ -->
+<section id="s12" class="section reveal">
+  <span class="section-num">12</span>
+  <h2>Быстрый старт</h2>
+  <p>Что делать после покупки устройства Neiry:</p>
+
+  <div class="steps">
+    <div class="step">
+      <h4>Подключение</h4>
+      <p>Скачайте <strong>Mind Tracker BCI</strong> из App Store / Google Play. Наденьте устройство (электроды к коже), включите (зелёный индикатор). В приложении: Bluetooth &rarr; Search &rarr; Connect. Дождитесь 4 зелёных индикаторов.</p>
+    </div>
+    <div class="step">
+      <h4>Калибровка</h4>
+      <p>Сядьте спокойно, закройте глаза на 30 секунд. Приложение определит ваш iAF и покажет психотип.</p>
+    </div>
+    <div class="step">
+      <h4>Первый мониторинг</h4>
+      <p>Перейдите во вкладку <strong>Мониторинг</strong>. Наблюдайте 3 графика. Попробуйте расслабиться — график пойдёт вверх. Сфокусируйтесь — график фокуса поднимется.</p>
+    </div>
+    <div class="step">
+      <h4>Первый тренинг</h4>
+      <p>Перейдите в <strong>Тренинги</strong>. Начните с «Короткого тренинга для расслабления» (6 мин). Следуйте звуковым подсказкам.</p>
+    </div>
+    <div class="step">
+      <h4>Настройка трекинга</h4>
+      <p>Перейдите в <strong>Трекинг</strong>, выберите пресет <strong>Effectivity</strong>. Работайте — приложение будет следить за состоянием и подскажет, когда отдохнуть.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 13. Шпаргалка ═══════════════ -->
+<section id="s13" class="section reveal">
+  <span class="section-num">13</span>
+  <h2>Шпаргалка: все комбинации на одной странице</h2>
+
+  <div class="cheat">
+    <h3>Мониторинг — какие 3 графика выбрать</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Задача</th><th>Метрика 1</th><th>Метрика 2</th><th>Метрика 3</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Обычная работа</strong></td><td>Когнитивная нагрузка</td><td>Фокус</td><td>Расслабление</td></tr>
+          <tr><td><strong>Антистресс</strong></td><td>Расслабление</td><td>Напряжение</td><td>Самоконтроль</td></tr>
+          <tr><td><strong>Творчество</strong></td><td>Фокус</td><td>Расслабление</td><td>Азарт</td></tr>
+          <tr><td><strong>Deep Work</strong></td><td>Когнитивная нагрузка</td><td>Фокус</td><td>Самоконтроль</td></tr>
+          <tr><td><strong>Восстановление</strong></td><td>Расслабление</td><td>Напряжение</td><td>Когнитивная нагрузка</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="cheat" style="margin-top:30px">
+    <h3>Трекинг — средние пороги для пресетов</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Пресет</th><th>Метрика 1 (мин–макс)</th><th>Метрика 2 (мин–макс)</th><th>Метрика 3 (мин–макс)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Рабочий день</strong></td><td>Нагрузка 40–80%</td><td>Фокус 50–80%</td><td>Расслабление 60–100%</td></tr>
+          <tr><td><strong>Глубокая работа</strong></td><td>Нагрузка 60–80%</td><td>Фокус 60–80%</td><td>Самоконтроль 60–80%</td></tr>
+          <tr><td><strong>Антистресс</strong></td><td>Расслабление 60–100%</td><td>Напряжение 0–30%</td><td>Утомление 0–1.0</td></tr>
+          <tr><td><strong>Состояние потока</strong></td><td>Поток 4.0–6.0</td><td>Работоспособность 1.5–3.0</td><td>Фокус 50–80%</td></tr>
+          <tr><td><strong>Обучение</strong></td><td>Концентрация 50–80%</td><td>Нагрузка 40–70%</td><td>Расслабление 30–60%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <p>Гайд составлен на основе приложения Mind Tracker BCI v2.4.0</p>
+  <p>Скриншоты от 06.04.2026</p>
+</footer>
+
+<!-- scroll reveal -->
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>

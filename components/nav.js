@@ -14,10 +14,9 @@
   // ── Определяем корень сайта ──────────────────────────────────────
   const path = window.location.pathname;
 
-  // Формируем относительный путь до корня
-  // (работает при открытии файлов напрямую через file://)
-  const depth = (path.match(/\//g) || []).length - 1;
-  const root = depth <= 1 ? './' : '../'.repeat(depth - 1);
+  // Вычисляем root из src самого скрипта:
+  // ../components/nav.js → ../    ../../components/nav.js → ../../
+  const root = document.currentScript.getAttribute('src').replace('components/nav.js', '');
 
   // ── Пункты меню ─────────────────────────────────────────────────
   const navItems = [
