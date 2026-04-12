@@ -26,7 +26,7 @@
   const legalLinks = [
     { label: 'Политика конфиденциальности',                  href: root + 'privacy/index.html' },
     { label: 'Согласие на обработку персональных данных',    href: '#' },
-    { label: 'Пользовательское соглашение',                  href: '#' },
+    { label: 'Пользовательское соглашение',                  href: root + 'terms/index.html' },
   ];
 
   const navHtml = navLinks.map(item =>
