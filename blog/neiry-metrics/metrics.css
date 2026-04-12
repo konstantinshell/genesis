@@ -108,9 +108,11 @@ h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;line-height:1.15}
 
 /* ── HUB CARDS ── */
 .hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:32px 0}
-.hub-card{background:var(--bg2);border-radius:16px;border:1px solid var(--border);padding:24px;transition:transform .2s,box-shadow .2s;display:block;position:relative;overflow:hidden}
+.hub-card{background:var(--bg2);border-radius:16px;border:1px solid var(--border);padding:24px 24px 48px;transition:transform .2s,box-shadow .2s;display:block;position:relative;overflow:hidden;cursor:pointer}
 .hub-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08);text-decoration:none}
 .hub-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
+.hub-card::after{content:'Подробнее →';position:absolute;bottom:16px;right:20px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.5px;color:var(--text3);transition:color .2s,transform .2s}
+.hub-card:hover::after{color:var(--text);transform:translateX(3px)}
 .hub-card .hub-count{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:1px;margin-bottom:6px}
 .hub-card h3{font-size:18px;margin-bottom:8px;color:var(--text)}
 .hub-card p{font-size:0.85rem;color:var(--text2);line-height:1.5}
@@ -145,9 +147,11 @@ h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;line-height:1.15}
 .metric-nav .next{text-align:right;margin-left:auto}
 
 /* ── METRIC SUMMARY CARD (section hub) ── */
-.metric-summary{background:var(--bg2);border-radius:16px;border:1px solid var(--border);padding:20px 24px;transition:transform .2s,box-shadow .2s;display:block;position:relative;overflow:hidden}
+.metric-summary{background:var(--bg2);border-radius:16px;border:1px solid var(--border);padding:20px 24px 48px;transition:transform .2s,box-shadow .2s;display:block;position:relative;overflow:hidden;cursor:pointer}
 .metric-summary:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.07);text-decoration:none}
 .metric-summary::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:16px 0 0 16px}
+.metric-summary::after{content:'Читать подробнее →';position:absolute;bottom:14px;right:18px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.5px;color:var(--text3);transition:color .2s,transform .2s}
+.metric-summary:hover::after{color:var(--text);transform:translateX(3px)}
 .metric-summary h3{font-size:17px;margin-bottom:4px;color:var(--text)}
 .metric-summary .metric-formula{margin-bottom:8px;font-size:12px}
 .metric-summary p{font-size:0.85rem;color:var(--text2);line-height:1.5;margin:0}
