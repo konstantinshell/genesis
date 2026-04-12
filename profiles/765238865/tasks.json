@@ -1,8 +1,8 @@
 {
   "tasks": {
-    "updated_at": "2026-04-04T23:49:59",
+    "updated_at": "2026-04-12T14:44:52",
     "today": {
-      "date": "2026-04-04",
+      "date": "2026-04-12",
       "physio": {
         "hrv": 42,
         "body_battery": 65,
@@ -108,27 +108,28 @@
       }
     ],
     "season": {
-      "deadline": "2026-06-22",
+      "deadline": "2026-04-30",
+      "cycle": 3,
+      "start": "20 марта",
+      "end": "30 апреля",
+      "world_name": "Мир действий",
+      "world_motto": "Я делаю",
+      "days_left": 19,
+      "days_total": 40,
       "goals": [
         {
           "id": "goal_001",
-          "text": "Запустить Investigation Program · 10 участников",
+          "text": "Запустить программу с первыми 5 участниками и верифицировать методологию MNPI",
           "sphere": "profession",
-          "progress": 35
-        },
-        {
-          "id": "goal_002",
-          "text": "Опубликовать препринт MNPI",
-          "sphere": "knowledge",
-          "progress": 60
-        },
-        {
-          "id": "goal_003",
-          "text": "Восстановить режим сна и спорта",
-          "sphere": "health",
-          "progress": 15
+          "progress": 52
         }
       ]
+    },
+    "week_goal": {
+      "number": 1,
+      "dates": "07–13 апреля",
+      "text": "Провести 3 сессии, собрать данные по участникам",
+      "progress": 30
     },
     "week_report": {
       "period": "31 мар – 6 апр",

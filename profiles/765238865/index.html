@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Вячеслав Фетисов — ONTO NOTHING</title>
+  <title>Алёна Журавкова — ONTO NOTHING</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -332,9 +332,9 @@
   <div class="hdr">
     <div class="hdr-av">👤</div>
     <div>
-      <h1>Вячеслав Фетисов</h1>
-      <div class="hdr-meta">Шри-Ланка, Полхена · Привет, я Вячеслав Фетисов. Предприниматель, ментор, визионер, инфлюенсер, инвестор, меценат.</div>
-      <span class="badge">Все сразу</span>
+      <h1>Алёна Журавкова</h1>
+      <div class="hdr-meta">Электросталь РФ · Совладелец компании по деревообработки.</div>
+      <span class="badge">Участник про</span>
     </div>
   </div>
 
@@ -346,7 +346,7 @@
       <div style="background:#12121a;border-radius:10px;padding:14px;border:1px solid rgba(124,111,255,0.12);margin-bottom:10px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
           <span style="font-size:11px;color:#7c6fff;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Активность · 7 дней</span>
-          <span style="margin-left:auto;font-size:11px;color:#555;">1 записей</span>
+          <span style="margin-left:auto;font-size:11px;color:#555;">0 записей</span>
         </div>
         <canvas id="eeg-activity" height="70" style="width:100%;display:block;"></canvas>
       </div>
@@ -354,11 +354,10 @@
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
           <span style="font-size:18px;">🧠</span>
           <span style="font-size:11px;color:#7c6fff;text-transform:uppercase;letter-spacing:1px;font-weight:600;">AI Рефлексия</span>
-          <span style="margin-left:auto;font-size:9px;color:#444;">обновлено 10.04.2026</span>
+          <span style="margin-left:auto;font-size:9px;color:#444;">обновляется раз в сутки</span>
         </div>
         <div style="font-size:13px;color:#bbb;line-height:1.65;">
-          <p>Вячеслав, у тебя одна из самых цельных картин — ты подошёл к программе с установкой «никаких ожиданий, просто исследую», и это самая честная стартовая позиция, которая возможна. Ты уже в форме, уже в ресурсе, уже практикуешь — поэтому интересен не результат измерений, а то, что ты сможешь увидеть в себе, чего раньше не замечал. Главное напряжение ты сам назвал — в теме денег: «сверхважность, недостаток из детства».</p>
-<p>Попробуй в ближайшую рефлексию задать себе один вопрос: «если бы я на 100% доверял денежному потоку, какое одно действие я сделал бы сегодня по-другому?». И зафиксируй свой инсайт про горы конкретным физическим вызовом на цикл — это даст ясную метрику.</p>
+          <p style="color:#555;font-style:italic;">ИИ ещё не сформировал твою рефлексию. Появится здесь после первых записей — обновляется раз в сутки.</p>
         </div>
       </div>
     </div>
@@ -370,17 +369,17 @@
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧠</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">NEIRY бэнд</div>
-          <div style="font-size:11px; color:{'#34c759' if 'да' in profile.get('has_neiry','').lower() or '✅' in profile.get('has_neiry','') else '#ff453a'}; margin-top:4px; font-weight:500;">❌ Нет</div>
+          <div style="font-size:11px; color:{'#34c759' if 'да' in profile.get('has_neiry','').lower() or '✅' in profile.get('has_neiry','') else '#ff453a'}; margin-top:4px; font-weight:500;">✅ Есть</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">⌚</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Фитнес-трекер</div>
-          <div style="font-size:11px; color:{'#34c759' if profile.get('fitness_tracker','—') not in ('—','Нет','нет','❌ Нет') else '#ff453a'}; margin-top:4px; font-weight:500;">❌ Нет</div>
+          <div style="font-size:11px; color:{'#34c759' if profile.get('fitness_tracker','—') not in ('—','Нет','нет','❌ Нет') else '#ff453a'}; margin-top:4px; font-weight:500;">✅ Whoop</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧬</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">ДНК тест</div>
-          <div style="font-size:11px; color:{'#34c759' if profile.get('dna_test','—') not in ('—','❌ Нет','нет','Нет') else '#ff453a'}; margin-top:4px; font-weight:500;">❌ Нет</div>
+          <div style="font-size:11px; color:{'#34c759' if profile.get('dna_test','—') not in ('—','❌ Нет','нет','Нет') else '#ff453a'}; margin-top:4px; font-weight:500;">✅ Да</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🏥</div>
@@ -390,7 +389,7 @@
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧘</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Рефлексия в бот</div>
-          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 4 записей</div>
+          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">❌ Не записано</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🫀</div>
@@ -528,7 +527,7 @@
 
   <!-- TAB: ЗАДАЧИ -->
   <div id="tab-tasks" class="tab">
-    <script>window.PROFILE_NAME = "\u0412\u044f\u0447\u0435\u0441\u043b\u0430\u0432 \u0424\u0435\u0442\u0438\u0441\u043e\u0432";</script>
+    <script>window.PROFILE_NAME = "\u0410\u043b\u0451\u043d\u0430 \u0416\u0443\u0440\u0430\u0432\u043a\u043e\u0432\u0430";</script>
     <div id="tasks-root"><div style="text-align:center;padding:40px;color:#555;">Загрузка задач...</div></div>
   </div>
 
@@ -609,13 +608,13 @@
     <div class="c">
       <h2>👤 Профиль</h2>
       <div style="font-size:13px; line-height:2; color:#aaa;">
-        <div>📍 Город: Шри-Ланка, Полхена</div>
-        <div>🎂 Дата рождения: 18.06.1992</div>
-        <div>💼 Деятельность: Привет, я Вячеслав Фетисов. Предприниматель, ментор, визионер, инфлюенсер, инвестор, меценат.</div>
-        <div>🎓 Образование: Первое образование - химик. 7 лет в нефтяных корпорациях. Далее ушел и открыл свой бизнес и параллельно начал духовно расти, ученик Садхгуру обучался в Индии и Дубай, инструктор по медитациям, бизнес тренер</div>
-        <div>📧 Email: slaffetisov88@gmail.com</div>
-        <div>📅 Регистрация: 2026-04-03 14:20</div>
-        <div>📄 Соглашение: 03.04.2026 14:37</div>
+        <div>📍 Город: Электросталь РФ</div>
+        <div>🎂 Дата рождения: 06.12.1988</div>
+        <div>💼 Деятельность: Совладелец компании по деревообработки.</div>
+        <div>🎓 Образование: Не оконченное высшее « экономика и управление на предприятии «</div>
+        <div>📧 Email: zuravkova88@gmail.com</div>
+        <div>📅 Регистрация: 2026-04-12 12:37</div>
+        <div>📄 Соглашение: —</div>
       </div>
     </div>
 
@@ -701,27 +700,27 @@
       <div style="display:flex; flex-direction:column; gap:0;">
         <div style="padding:10px 0; border-bottom:1px solid #2a2a35;">
           <div style="font-size:11px; color:#666; margin-bottom:4px;">Цель исследования</div>
-          <div style="font-size:13px; color:#e0e0e8; line-height:1.5;">Хочу ежедневно отслеживать динамику изменения своих клиентов</div>
+          <div style="font-size:13px; color:#e0e0e8; line-height:1.5;">Мне очень интересно как это работает, как я могу применять это в жизни. И раскрыть новые грани своей личности.</div>
         </div>
         <div style="padding:10px 0; border-bottom:1px solid #2a2a35;">
           <div style="font-size:11px; color:#666; margin-bottom:4px;">Что хочет изменить</div>
-          <div style="font-size:13px; color:#e0e0e8; line-height:1.5;">Все сразу</div>
+          <div style="font-size:13px; color:#e0e0e8; line-height:1.5;">Изменить нет. А вот улучшить можно всегда и всё. Нет приделов совершенства.</div>
         </div>
         <div style="padding:10px 0; border-bottom:1px solid #2a2a35;">
           <div style="font-size:11px; color:#666; margin-bottom:4px;">Свой метод / практика</div>
-          <div style="font-size:13px; color:#e0e0e8; line-height:1.5;">Есть</div>
+          <div style="font-size:13px; color:#e0e0e8; line-height:1.5;">Нет</div>
         </div>
         <div style="padding:10px 0; border-bottom:1px solid #2a2a35;">
           <div style="font-size:11px; color:#666; margin-bottom:4px;">Показатели и метрики</div>
-          <div style="font-size:13px; color:#e0e0e8; line-height:1.5;">Ничего не замеряю. Показатели до медитации и после медитации</div>
+          <div style="font-size:13px; color:#e0e0e8; line-height:1.5;">Замеряю все показатели которые дает whoop. Из нового это узнать на что я способна. И биоэнергетика</div>
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #2a2a35;">
           <span style="font-size:11px; color:#666;">ДНК-тест</span>
-          <span style="font-size:13px; color:#e0e0e8;">Нет</span>
+          <span style="font-size:13px; color:#e0e0e8;">✅ Да</span>
         </div>
         <div style="padding:10px 0; border-bottom:1px solid #2a2a35;">
           <div style="font-size:11px; color:#666; margin-bottom:4px;">Последний чекап</div>
-          <div style="font-size:13px; color:#e0e0e8;">Никогда</div>
+          <div style="font-size:13px; color:#e0e0e8;">Анализы 13.02.2026</div>
         </div>
         <div style="padding:10px 0; border-bottom:1px solid #2a2a35;">
           <div style="font-size:11px; color:#666; margin-bottom:4px;">Другие гаджеты</div>
@@ -729,36 +728,36 @@
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #2a2a35;">
           <span style="font-size:11px; color:#666;">Амбассадор</span>
-          <span style="font-size:13px; color:#e0e0e8;">✅ Да, хочу!</span>
+          <span style="font-size:13px; color:#e0e0e8;">❌ Нет, я как участник</span>
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #2a2a35;">
           <span style="font-size:11px; color:#666;">Лидер сообщества</span>
-          <span style="font-size:13px; color:#e0e0e8;">✅ Да</span>
+          <span style="font-size:13px; color:#e0e0e8;">❌ Нет</span>
         </div>
         <div style="padding:10px 0; border-bottom:1px solid #2a2a35;">
           <div style="font-size:11px; color:#666; margin-bottom:4px;">Каналы связи</div>
-          <div style="font-size:13px; color:#e0e0e8;">Телеграм</div>
+          <div style="font-size:13px; color:#e0e0e8;">—</div>
         </div>
         <div style="padding:10px 0; border-bottom:1px solid #2a2a35;">
           <div style="font-size:11px; color:#666; margin-bottom:4px;">Тематика / аудитория</div>
-          <div style="font-size:13px; color:#e0e0e8;">Тематика: работа с мышлением, состоянием, здоровьем, отношениями, финансами</div>
-          <div style="font-size:11px; color:#555; margin-top:4px; line-height:1.5;">В канале 551 человек, в сообщество в котором состою, там провожу медитации на 100+ человек</div>
+          <div style="font-size:13px; color:#e0e0e8;">—</div>
+          <div style="font-size:11px; color:#555; margin-top:4px; line-height:1.5;">—</div>
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0;">
           <span style="font-size:11px; color:#666;">Опыт в исследованиях</span>
-          <span style="font-size:13px; color:#e0e0e8;">Первый опыт</span>
+          <span style="font-size:13px; color:#e0e0e8;">Да, принимала</span>
         </div>
       </div>
     </div>
 
     <div class="c">
       <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:12px;">
-        <a href="https://t.me/fetisov_vyacheslav" style="display:flex; align-items:center; justify-content:center; width:60px; height:60px; background:linear-gradient(135deg, #7c6fff, #5f4fdf); border-radius:10px; text-decoration:none; color:#fff; font-size:24px; font-weight:600; box-shadow:0 0 10px rgba(124,111,255,0.3); flex-shrink:0; transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 0 15px rgba(124,111,255,0.5)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 10px rgba(124,111,255,0.3)';">💬</a>
+        <a href="https://t.me/alenazhuravkova" style="display:flex; align-items:center; justify-content:center; width:60px; height:60px; background:linear-gradient(135deg, #7c6fff, #5f4fdf); border-radius:10px; text-decoration:none; color:#fff; font-size:24px; font-weight:600; box-shadow:0 0 10px rgba(124,111,255,0.3); flex-shrink:0; transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 0 15px rgba(124,111,255,0.5)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 10px rgba(124,111,255,0.3)';">💬</a>
         <h2>🔗 Твоя реферальная ссылка</h2>
       </div>
       <p style="font-size:12px; color:#888; margin-bottom:12px;">Приглашайте только серьёзно настроенных людей, готовых пройти программу исследования до конца. Нажми чтобы скопировать:</p>
       <div id="ref-link" onclick="copyRef()" style="background:#12121a; border-radius:10px; padding:14px; cursor:pointer; text-align:center; transition:background 0.2s;">
-        <div style="font-family:'Courier Prime',monospace; font-size:13px; color:#7c6fff; word-break:break-all;">https://t.me/ritmnothingbot?start=261261504</div>
+        <div style="font-family:'Courier Prime',monospace; font-size:13px; color:#7c6fff; word-break:break-all;">https://t.me/ritmnothingbot?start=765238865</div>
         <div id="ref-copied" style="font-size:11px; color:#34c759; margin-top:6px; display:none;">✅ Скопировано!</div>
         <div id="ref-hint" style="font-size:11px; color:#555; margin-top:6px;">Нажми чтобы скопировать</div>
       </div>
@@ -791,7 +790,7 @@ if (window.Telegram && window.Telegram.WebApp) {
 }
 
 function copyRef() {
-  var link = 'https://t.me/ritmnothingbot?start=261261504';
+  var link = 'https://t.me/ritmnothingbot?start=765238865';
   navigator.clipboard.writeText(link).then(function() {
     document.getElementById('ref-copied').style.display = 'block';
     document.getElementById('ref-hint').style.display = 'none';
@@ -2116,7 +2115,7 @@ window.addEventListener('load', function() {
   var c = document.getElementById('eeg-activity');
   if (!c) return;
   var ctx = c.getContext('2d');
-  var data = [0, 0, 0, 1, 0, 0, 0];
+  var data = [0, 0, 0, 0, 0, 0, 0];
   var labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
   var todayIdx = 6;
   var W = c.width = c.parentElement.offsetWidth - 28;

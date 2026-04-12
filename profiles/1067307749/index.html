@@ -231,7 +231,30 @@
     .il-title { font-size:12px; font-weight:700; color:#A5B4FC; flex:1; text-transform:uppercase; letter-spacing:0.8px; }
     .il-text { font-size:11px; color:rgba(255,255,255,0.7); line-height:1.55; margin-bottom:12px; }
     .il-text b { color:#A5B4FC; font-weight:600; }
-    .il-cta { display:block; text-align:center; padding:11px; background:#6366F1; color:#fff; font-size:12px; font-weight:600; border-radius:10px; text-decoration:none; box-shadow:0 0 14px rgba(99,102,241,0.25); }
+    .il-cta { display:block; width:100%; text-align:center; padding:11px; background:#6366F1; color:#fff; font-size:12px; font-weight:600; border-radius:10px; text-decoration:none; box-shadow:0 0 14px rgba(99,102,241,0.25); cursor:pointer; border:none; }
+    /* Попап — связаться с администратором */
+    .mnpi-contact-popup { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; padding:20px; }
+    .mnpi-contact-inner { background:#16161f; border:1px solid rgba(99,102,241,0.35); border-radius:16px; padding:24px 20px; max-width:320px; width:100%; text-align:center; }
+    .mnpi-contact-title { font-family:Oswald,sans-serif; font-size:16px; font-weight:600; color:#fff; margin-bottom:10px; }
+    .mnpi-contact-text { font-size:13px; color:#999; line-height:1.6; margin-bottom:16px; }
+    .mnpi-contact-link { display:inline-block; padding:10px 20px; background:#6366F1; color:#fff; font-weight:600; border-radius:10px; text-decoration:none; font-size:13px; margin-bottom:12px; }
+    .mnpi-contact-close { font-size:12px; color:#555; cursor:pointer; }
+    /* Все задачи пользователя */
+    .user-tasks-block { margin-top:4px; }
+    .ut-item { display:flex; align-items:flex-start; gap:8px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .ut-date { font-size:10px; color:#555; flex-shrink:0; margin-top:2px; white-space:nowrap; }
+    .ut-text { font-size:13px; color:#d0d0d8; line-height:1.4; flex:1; }
+    .ut-voice { font-size:10px; color:#7c6fff; flex-shrink:0; }
+    /* План-Факт блок */
+    .pf-block { }
+    .pf-row { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .pf-label { font-size:11px; width:80px; flex-shrink:0; color:#aaa; }
+    .pf-bars { flex:1; display:flex; flex-direction:column; gap:3px; }
+    .pf-bar-row { display:flex; align-items:center; gap:4px; }
+    .pf-bar-bg { flex:1; background:#2a2a35; border-radius:3px; height:6px; overflow:hidden; }
+    .pf-bar-fill { height:6px; border-radius:3px; }
+    .pf-nums { font-size:10px; color:#666; width:44px; text-align:right; flex-shrink:0; }
+    .pf-gap { font-size:11px; flex-shrink:0; width:36px; text-align:right; }
     .cycle-help-popup { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); z-index:9999; align-items:center; justify-content:center; padding:20px; }
     .chp-inner { background:#12121E; border:1px solid rgba(99,102,241,0.3); border-radius:16px; padding:22px 20px; max-width:380px; width:100%; max-height:85vh; overflow-y:auto; }
     .chp-title { font-size:16px; font-weight:700; color:#fff; }
@@ -323,7 +346,7 @@
       <div style="background:#12121a;border-radius:10px;padding:14px;border:1px solid rgba(124,111,255,0.12);margin-bottom:10px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
           <span style="font-size:11px;color:#7c6fff;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Активность · 7 дней</span>
-          <span style="margin-left:auto;font-size:11px;color:#555;">5 записей</span>
+          <span style="margin-left:auto;font-size:11px;color:#555;">7 записей</span>
         </div>
         <canvas id="eeg-activity" height="70" style="width:100%;display:block;"></canvas>
       </div>
@@ -367,7 +390,7 @@
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧘</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Рефлексия в бот</div>
-          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 5 записей</div>
+          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 6 записей</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🫀</div>
@@ -1307,9 +1330,17 @@ function renderGoals(season, week_goal) {
     h += '<div class="intent-locked">';
     h += '<div class="il-head"><span class="il-icon">🔒</span><span class="il-title">Намерение цикла</span><button class="cycle-help" onclick="event.stopPropagation();toggleIntentHelp()" aria-label="Об индивидуальной программе">?</button></div>';
     h += '<div class="il-text">Появится после прохождения <b>чекапа MNPI</b>. На его основе ИИ сформирует индивидуальную программу цикла — твоё уникальное намерение, цели и план задач по сферам.</div>';
-    h += '<a href="https://t.me/ritmnothingbot?start=checkup" class="il-cta">🧠 Пройти чекап MNPI</a>';
+    h += '<button onclick="toggleMnpiContact()" class="il-cta">🧠 Пройти чекап MNPI</button>';
     h += '</div>';
     h += '</div>';
+    // Попап — связаться с администратором
+    h += '<div class="mnpi-contact-popup" id="mnpi-contact-popup">';
+    h += '<div class="mnpi-contact-inner">';
+    h += '<div class="mnpi-contact-title">🧠 Участие в MNPI</div>';
+    h += '<div class="mnpi-contact-text">Для участия в чекапе MNPI обратитесь к администратору проекта. Чекап проводится индивидуально.</div>';
+    h += '<a href="https://t.me/Konstantinshel" class="mnpi-contact-link" target="_blank">✉️ @Konstantinshel</a><br>';
+    h += '<span class="mnpi-contact-close" onclick="toggleMnpiContact()">Закрыть</span>';
+    h += '</div></div>';
 
     // Попап с описанием индивидуальной программы
     h += '<div class="cycle-help-popup" id="intent-help-popup" style="display:none;">';
@@ -1377,6 +1408,68 @@ function toggleIntentHelp() {
   var p = document.getElementById('intent-help-popup');
   if (!p) return;
   p.style.display = (p.style.display === 'none' || !p.style.display) ? 'flex' : 'none';
+}
+
+function toggleMnpiContact() {
+  var p = document.getElementById('mnpi-contact-popup');
+  if (!p) return;
+  p.style.display = (p.style.display === 'none' || !p.style.display) ? 'flex' : 'none';
+}
+
+function renderUserTasks(items) {
+  if (!items || !items.length) return '';
+  var h = '<div class="c user-tasks-block">';
+  h += '<div class="wheel-title-row dash-section-title"><span>ВСЕ ЗАДАЧИ · ' + items.length + '</span></div>';
+  for (var i = items.length - 1; i >= 0; i--) {
+    var it = items[i];
+    h += '<div class="ut-item">';
+    h += '<div class="ut-date">' + (it.date || '') + '</div>';
+    h += '<div class="ut-text">' + (it.text || '') + '</div>';
+    if (it.voice) h += '<div class="ut-voice">🎙</div>';
+    h += '</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderPlanFact(rp) {
+  if (!rp || !rp.spheres) return '';
+  var h = '<div class="c pf-block">';
+  h += '<div class="wheel-title-row dash-section-title"><span>ПЛАН · ФАКТ</span></div>';
+  h += '<div style="font-size:11px;color:#555;margin-bottom:12px;">' + (rp.period || '') + ' · разрыв между планом и реализацией</div>';
+  for (var key in rp.spheres) {
+    var s = rp.spheres[key];
+    var sc = SPHERE_COLORS[key] || { dot:'#555', label:key, text:'#888' };
+    var planPct = 100;
+    var donePct = s.planned > 0 ? Math.round(s.done / s.planned * 100) : 0;
+    var gap = s.planned - s.done;
+    var gapColor = donePct >= 80 ? '#34c759' : donePct >= 50 ? '#f59e0b' : '#ff453a';
+    h += '<div class="pf-row">';
+    h += '<div class="pf-label" style="color:' + sc.text + ';">' + sc.label + '</div>';
+    h += '<div class="pf-bars">';
+    h += '<div class="pf-bar-row">';
+    h += '<div style="font-size:9px;color:#555;width:28px;flex-shrink:0;">план</div>';
+    h += '<div class="pf-bar-bg"><div class="pf-bar-fill" style="width:100%;background:rgba(99,102,241,0.4);"></div></div>';
+    h += '<div class="pf-nums" style="color:#7c6fff;">' + s.planned + '</div>';
+    h += '</div>';
+    h += '<div class="pf-bar-row">';
+    h += '<div style="font-size:9px;color:#555;width:28px;flex-shrink:0;">факт</div>';
+    h += '<div class="pf-bar-bg"><div class="pf-bar-fill" style="width:' + donePct + '%;background:' + sc.dot + ';"></div></div>';
+    h += '<div class="pf-nums" style="color:' + gapColor + ';">' + s.done + '</div>';
+    h += '</div>';
+    h += '</div>';
+    h += '<div class="pf-gap" style="color:' + gapColor + ';">' + (gap > 0 ? '−' + gap : '✓') + '</div>';
+    h += '</div>';
+  }
+  // Итого
+  var totalPct = rp.planned > 0 ? Math.round(rp.done / rp.planned * 100) : 0;
+  var totColor = totalPct >= 80 ? '#34c759' : totalPct >= 50 ? '#f59e0b' : '#ff453a';
+  h += '<div style="border-top:1px solid #2a2a35;padding-top:10px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;">';
+  h += '<span style="font-size:11px;color:#666;">Итого за неделю</span>';
+  h += '<span style="font-family:Courier Prime,monospace;font-size:14px;color:' + totColor + ';font-weight:700;">' + rp.done + ' / ' + rp.planned + ' (' + totalPct + '%)</span>';
+  h += '</div>';
+  h += '</div>';
+  return h;
 }
 
 function renderDayTasks(today, values) {
@@ -1748,6 +1841,8 @@ function loadTasks() {
     h += renderDiagnostics(values);
     h += renderGoals(t.season, t.week_goal);
     if (t.today) h += renderDayTasks(t.today, values);
+    if (t.week_report) h += renderPlanFact(t.week_report);
+    if (t.user_tasks && t.user_tasks.length) h += renderUserTasks(t.user_tasks);
     h += renderReflectionButtons();
 
     root.innerHTML = h;
@@ -2021,7 +2116,7 @@ window.addEventListener('load', function() {
   var c = document.getElementById('eeg-activity');
   if (!c) return;
   var ctx = c.getContext('2d');
-  var data = [0, 0, 1, 2, 1, 1, 0];
+  var data = [0, 0, 1, 2, 1, 1, 2];
   var labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
   var todayIdx = 6;
   var W = c.width = c.parentElement.offsetWidth - 28;
