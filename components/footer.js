@@ -44,7 +44,7 @@
   <div class="footer-inner">
 
     <div class="footer-col footer-col--brand">
-      <div class="footer-brand">RHYTHMS OF NOTHING × NEIRY</div>
+      <div class="footer-brand">ex NIHILO · NEIRY · NEYROX</div>
       <p class="footer-desc">Исследование состояний сознания через технологии и практику.</p>
     </div>
 
@@ -67,7 +67,7 @@
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
       <div class="footer-copy-row">
-        <p class="footer-copy">© ${year} Индивидуальный предприниматель Шель Константин. Проект RHYTHMS OF NOTHING × NEIRY. Все права защищены.</p>
+        <p class="footer-copy">© ${year} Индивидуальный предприниматель Шель Константин. Проект ex NIHILO · NEIRY · NEYROX. Все права защищены.</p>
         <a href="#" class="footer-neiry-badge">
           <span class="badge-label">Neurotech Partner</span>
           <span class="badge-name">NEIRY</span>

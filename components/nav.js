@@ -35,7 +35,7 @@
 
   const navHtml = `
 <nav class="site-nav" id="site-nav">
-  <a href="${root}blog/programma-issledovaniya/index.html" class="nav-logo">RHYTHMS OF NOTHING × NEIRY</a>
+  <a href="${root}blog/programma-issledovaniya/index.html" class="nav-logo">ex NIHILO · NEIRY · NEYROX</a>
   <ul class="nav-links" id="nav-links">
     ${linksHtml}
   </ul>
