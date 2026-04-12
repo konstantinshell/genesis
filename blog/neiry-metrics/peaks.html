@@ -11,71 +11,37 @@
 <link rel="stylesheet" href="./metrics.css">
 </head>
 <body>
-<nav class="sticky-header"><div class="block-nav"><div class="block-nav-inner">
-<a href="./index.html" class="block-nav-btn" style="font-weight:500;color:var(--text)">← Все метрики</a>
-<a href="./rhythms.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#7C3AED"></span>Ритмы мозга</a>
-<a href="./peaks.html" class="block-nav-btn" style="font-weight:600;color:var(--text)"><span class="block-nav-dot" style="background:#3B82F6"></span>Пиковые частоты</a>
-<a href="./alpha-profile.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#8B5CF6"></span>Альфа-профиль</a>
-<a href="./cognitive.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EC4899"></span>Когнитивные метрики</a>
-<a href="./indices.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#F59E0B"></span>Производные индексы</a>
-<a href="./ppg.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EF4444"></span>Сердечно-сосудистые (PPG)</a>
-<a href="./states.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#10B981"></span>Итоговые статусы</a>
-<a href="./technical.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#6B7280"></span>Технические метрики</a>
-</div></div></nav>
 
 <div class="content">
-<a href="./index.html" class="back-link">← Все метрики</a>
-
+<div class="breadcrumbs">
+<a href="./index.html">Все метрики</a> <span class="sep">→</span> <span>Пиковые частоты</span>
+</div>
 <div class="section-intro">
 <h2 style="font-size:clamp(24px,4vw,36px)">Пиковые частоты</h2>
-<p>В отличие от ритмов (Rhythms), которые показывают «громкость» каждого диапазона, пиковые частоты показывают <strong>качество</strong> ритма — на какой конкретной частоте внутри диапазона находится максимум энергии. Это более тонкий диагностический инструмент.<br><br><em>Критическое правило: Не интерпретируйте пик, если мощность соответствующего ритма &lt; 0.05. Это фантомный пик в шуме, у него нет физиологического смысла.</em></p>
+<p style='color:var(--text2);margin-top:8px'>Пиковые частоты показывают качество ритма — на какой конкретной частоте находится максимум энергии. Не интерпретируйте пик, если мощность ритма &lt; 0.05.</p>
 </div>
-<nav style="background:var(--bg3);border-radius:12px;padding:16px 20px;margin-bottom:32px">
-<div style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">СОДЕРЖАНИЕ</div>
-<a href="#в-отличие-от-ритмов-rhythms-которые-показывают-гро" style="display:inline-block;font-size:0.88rem;color:#3B82F6;margin:3px 12px 3px 0">В отличие от ритмов (Rhythms), которые показывают «громкость» каждого диапазона, пиковые частоты показывают **качество** ритма — на какой конкретной частоте внутри диапазона находится максимум энергии. Это более тонкий диагностический инструмент.</a>
-<a href="#alpha-peak" style="display:inline-block;font-size:0.88rem;color:#3B82F6;margin:3px 12px 3px 0">Alpha Peak</a>
-<a href="#beta-peak" style="display:inline-block;font-size:0.88rem;color:#3B82F6;margin:3px 12px 3px 0">Beta Peak</a>
-<a href="#theta-peak" style="display:inline-block;font-size:0.88rem;color:#3B82F6;margin:3px 12px 3px 0">Theta Peak</a>
-</nav>
-<div class="metric c-peaks" id="в-отличие-от-ритмов-rhythms-которые-показывают-гро">
-<h3 class="metric-name">В отличие от ритмов (Rhythms), которые показывают «громкость» каждого диапазона, пиковые частоты показывают **качество** ритма — на какой конкретной частоте внутри диапазона находится максимум энергии. Это более тонкий диагностический инструмент.</h3>
 
+<div class="metrics-grid">
+<a href="./peaks/alpha-peak.html" class="metric-summary c-peaks">
+<h3>Alpha Peak</h3>
 
-</div><div class="metric c-peaks" id="alpha-peak">
-<h3 class="metric-name">Alpha Peak</h3>
+<p>Мгновенная частота максимума альфа-активности в диапазоне 8–13 Гц.</p>
+<div class="ranges"><span class="badge yellow">8–9.5 Гц</span> <span class="badge green">9.5–11 Гц</span> <span class="badge gray">11–13 Гц</span></div>
+</a>
+<a href="./peaks/beta-peak.html" class="metric-summary c-peaks">
+<h3>Beta Peak</h3>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Мгновенная частота максимума альфа-активности в диапазоне 8–13 Гц. Это «отпечаток пальца» текущего состояния — тонкое смещение альфа-пика относительно индивидуальной базовой частоты (IAPF).</p></div><div class="msub"><div class="msub-label">ЧТО ИЗМЕРЯЕТ</div><p>Стейтовое (зависящее от текущего состояния) смещение альфа-ритма. Показывает, в какой зоне внутри альфа-диапазона «работает» мозг прямо сейчас.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge yellow">8–9.5 Гц</span> <span class="badge green">9.5–11 Гц</span> <span class="badge green">11–13 Гц</span> </div>
-<ul><li><strong>8–9.5 Гц</strong> — сонливость, заторможенность, снижение бдительности</li>
-<li><strong>9.5–11 Гц</strong> — нейтральное состояние, спокойное бодрствование</li>
-<li><strong>11–13 Гц</strong> — ясная готовность, высокая бдительность, мобилизация</li>
-</ul>
-</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Смещение альфа-пика вниз от индивидуальной нормы — усталость или сонливость. Смещение вверх — бодрость, мобилизация, кофеин. Стабильный пик в центре — ровное спокойное состояние.</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>В динамике на протяжении сессии — для отслеживания «дрейфа» состояния. При сравнении утренних и вечерних значений. После кофе, сна, стресса.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Пик стабилен, близок к IAPF (индивидуальной частоте). Колебания минимальны.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Пик может смещаться вверх (11–12.5 Гц) при активной работе, что сочетание с Beta Peak 13–15 Гц считается признаком продуктивной работы.</p></div>
-</div><div class="metric c-peaks" id="beta-peak">
-<h3 class="metric-name">Beta Peak</h3>
+<p>Мгновенная частота максимума бета-активности в диапазоне 13–30 Гц.</p>
+<div class="ranges"><span class="badge yellow">13–16 Гц</span> <span class="badge gray">16–21 Гц</span> <span class="badge yellow">21–30 Гц</span></div>
+</a>
+<a href="./peaks/theta-peak.html" class="metric-summary c-peaks">
+<h3>Theta Peak</h3>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Мгновенная частота максимума бета-активности в диапазоне 13–30 Гц. Отражает качество когнитивной обработки и характер внутренней речи.</p></div><div class="msub"><div class="msub-label">ЧТО ИЗМЕРЯЕТ</div><p>Тип когнитивной активности, доминирующий в данный момент: спокойный фокус, активный анализ или тревожная гиперактивация.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge yellow">13–16 Гц</span> <span class="badge gray">16–21 Гц</span> <span class="badge yellow">21–30 Гц</span> </div>
-<ul><li><strong>13–16 Гц</strong> — тихий фокус, устойчивое внимание без напряжения</li>
-<li><strong>16–21 Гц</strong> — активная аналитика, решение задач, интенсивная внутренняя речь</li>
-<li><strong>21–30 Гц</strong> — напряжение, тревога, «гонка мыслей»</li>
-</ul>
-</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Beta Peak > 21 Гц — тревожная гиперактивация, «мозг крутит мысли на высоких оборотах». Beta Peak 13–15 Гц + Alpha Peak 11–12.5 Гц = идеальная комбинация продуктивной работы.</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>При стрессовых ситуациях — для различения продуктивного напряжения и тревоги. При работе, требующей аналитики vs. творчества.</p></div><div class="msub"><div class="msub-label">МИФЫ</div><p>- <em>«Высокий Beta Peak = хорошая работа».</em> Нет. Выше 21 Гц — это уже тревога, а не продуктивность.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Beta Peak нестабилен, «прыгает» — в покое бета-ритм слаб, и пик определяется шумом. Интерпретировать не нужно при мощности бета < 0.05.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Стабильный пик в 13–18 Гц — здоровая когнитивная работа. Пик дрейфует к 21+ — нарастает напряжение.</p></div>
-</div><div class="metric c-peaks" id="theta-peak">
-<h3 class="metric-name">Theta Peak</h3>
-
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Мгновенная частота максимума тета-активности в диапазоне 4–8 Гц. Позволяет различить принципиально разные состояния: засыпание, инсайт и мечтательность.</p></div><div class="msub"><div class="msub-label">ЧТО ИЗМЕРЯЕТ</div><p>Тип «тета-процесса», активного в данный момент — от физиологического засыпания до продуктивных инсайтов.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge gray">4–5.5 Гц</span> <span class="badge gray">5.5–6.5 Гц</span> <span class="badge gray">6.5–8 Гц</span> </div>
-<ul><li><strong>4–5.5 Гц</strong> — засыпание, потеря бдительности</li>
-<li><strong>5.5–6.5 Гц</strong> — зона инсайтов, «Ага!»-моментов</li>
-<li><strong>6.5–8 Гц</strong> — мечтательность, блуждающий ум, дневные грёзы</li>
-</ul>
-</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Нестабильный низкий пик (4–5.5) — человек засыпает. Стабильный средний пик (5.5–6.5) — медитативное состояние или творческое озарение. Высокий пик (6.5–8) — мечтательность, DMN активен.</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>При оценке утомления (дрейф пика вниз к 4–5 Гц). В медитации (стабильность среднего пика). В творческих задачах.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Тета-пик при успешном «выключении мыслей» стремится к средней зоне (5.5–6.5 Гц) и становится стабильным. Это маркер глубокого расслабления без засыпания.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Тета-мощность обычно низкая, пик нестабилен. При задачах на рабочую память может появиться фронтальный тета в верхней зоне (6.5–8 Гц).</p></div>
-</div></div>
-
+<p>Мгновенная частота максимума тета-активности в диапазоне 4–8 Гц.</p>
+<div class="ranges"><span class="badge gray">4–5.5 Гц</span> <span class="badge gray">5.5–6.5 Гц</span> <span class="badge gray">6.5–8 Гц</span></div>
+</a>
+</div>
+</div>
 <script src="../../components/nav.js"></script>
 <script src="../../components/footer.js"></script>
 </body>

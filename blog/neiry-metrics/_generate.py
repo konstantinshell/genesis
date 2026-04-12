@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-"""Generate Neiry Metrics HTML pages from markdown source."""
-import re, os, html as h
+"""Generate Neiry Metrics HTML pages — 3-level structure:
+   Hub (index.html) → Section hubs (rhythms.html) → Metric pages (rhythms/alpha.html)
+"""
+import re, os, html as h, shutil
 
 SRC = "/Users/konstantin/Documents/Obsidian Vault/neiry-metrics-guide.md"
 OUT = "/Users/konstantin/Documents/nihilo-site/blog/neiry-metrics"
@@ -8,56 +10,98 @@ OUT = "/Users/konstantin/Documents/nihilo-site/blog/neiry-metrics"
 with open(SRC, "r") as f:
     raw = f.read()
 
-# ── PARSE SECTIONS AND METRICS ──
-sections_order = [
-    ("rhythms", "Ритмы мозга", "c-rhythms", "#7C3AED"),
-    ("peaks", "Пиковые частоты", "c-peaks", "#3B82F6"),
-    ("alpha-profile", "Альфа-профиль", "c-alpha", "#8B5CF6"),
-    ("cognitive", "Когнитивные метрики", "c-cognitive", "#EC4899"),
-    ("indices", "Производные индексы", "c-indices", "#F59E0B"),
-    ("ppg", "Сердечно-сосудистые (PPG)", "c-ppg", "#EF4444"),
-    ("states", "Итоговые статусы", "c-states", "#10B981"),
-    ("technical", "Технические метрики", "c-tech", "#6B7280"),
+# ══════════════════════════════════════════════
+# CONFIGURATION
+# ══════════════════════════════════════════════
+sections = [
+    {
+        "slug": "rhythms",
+        "name": "Ритмы мозга",
+        "css": "c-rhythms",
+        "color": "#7C3AED",
+        "header": "## Ритмы мозга (Rhythms)",
+        "intro": "Значения ритмов нормализованы от 0 до 1, их сумма ≈ 1.0. Ритмы конкурируют друг с другом в общем спектре: если один растёт — другие уступают.",
+        "has_subpages": True,
+    },
+    {
+        "slug": "peaks",
+        "name": "Пиковые частоты",
+        "css": "c-peaks",
+        "color": "#3B82F6",
+        "header": "## Мгновенные пиковые частоты (Instant Frequency Peaks)",
+        "intro": "Пиковые частоты показывают качество ритма — на какой конкретной частоте находится максимум энергии. Не интерпретируйте пик, если мощность ритма &lt; 0.05.",
+        "has_subpages": True,
+    },
+    {
+        "slug": "alpha-profile",
+        "name": "Альфа-профиль",
+        "css": "c-alpha",
+        "color": "#8B5CF6",
+        "header": "## Индивидуальный альфа-профиль (Individual Alpha Range)",
+        "intro": "Персональный нейрофизиологический паспорт. Эти метрики определяются при калибровке и остаются стабильными на протяжении жизни.",
+        "has_subpages": True,
+    },
+    {
+        "slug": "cognitive",
+        "name": "Когнитивные метрики",
+        "css": "c-cognitive",
+        "color": "#EC4899",
+        "header": "## Когнитивно-эмоциональные метрики (Emotions)",
+        "intro": "Составные метрики, интегрирующие данные ЭЭГ, HRV и персональный baseline — самые высокоуровневые показатели.",
+        "has_subpages": True,
+    },
+    {
+        "slug": "indices",
+        "name": "Производные индексы",
+        "css": "c-indices",
+        "color": "#F59E0B",
+        "header": "## Производные индексы",
+        "intro": "Производные от спектральных мощностей ритмов. Персонализируются через baseline после калибровки.",
+        "has_subpages": True,
+    },
+    {
+        "slug": "ppg",
+        "name": "Сердечно-сосудистые (PPG)",
+        "css": "c-ppg",
+        "color": "#EF4444",
+        "header": "## Сердечно-сосудистые метрики (PPG)",
+        "intro": "Метрики из фотоплетизмографии (PPG) — оптического датчика, измеряющего пульсацию крови в сосудах.",
+        "has_subpages": True,
+    },
+    {
+        "slug": "states",
+        "name": "Итоговые статусы",
+        "css": "c-states",
+        "color": "#10B981",
+        "header": "## Итоговые статусы (State Characteristics)",
+        "intro": "",
+        "has_subpages": True,
+    },
+    {
+        "slug": "technical",
+        "name": "Технические метрики",
+        "css": "c-tech",
+        "color": "#6B7280",
+        "header": "## Технические метрики (для владельцев Neiry и работающих в капсуле)",
+        "intro": "Для технических специалистов и владельцев устройств. Отражают состояние оборудования и качество данных.",
+        "has_subpages": False,
+    },
 ]
 
-# Section boundaries in MD
-section_headers = [
-    "## Ритмы мозга (Rhythms)",
-    "## Мгновенные пиковые частоты (Instant Frequency Peaks)",
-    "## Индивидуальный альфа-профиль (Individual Alpha Range)",
-    "## Когнитивно-эмоциональные метрики (Emotions)",
-    "## Производные индексы",
-    "## Сердечно-сосудистые метрики (PPG)",
-    "## Итоговые статусы (State Characteristics)",
-    "## Технические метрики (для владельцев Neiry и работающих в капсуле)",
-]
-
-# Section intro texts (text after ## header before first ###)
-section_intros = {
-    0: "Значения ритмов нормализованы от 0 до 1, их сумма ≈ 1.0. Ритмы конкурируют друг с другом в общем спектре: если один растёт — другие уступают. Это фундаментальный принцип для понимания всех производных индексов.",
-    1: 'В отличие от ритмов (Rhythms), которые показывают «громкость» каждого диапазона, пиковые частоты показывают <strong>качество</strong> ритма — на какой конкретной частоте внутри диапазона находится максимум энергии. Это более тонкий диагностический инструмент.<br><br><em>Критическое правило: Не интерпретируйте пик, если мощность соответствующего ритма &lt; 0.05. Это фантомный пик в шуме, у него нет физиологического смысла.</em>',
-    2: "Блок персонального нейрофизиологического паспорта. Эти метрики определяются при калибровке и остаются относительно стабильными на протяжении жизни.",
-    3: "Составные метрики, интегрирующие данные ЭЭГ, HRV и персональный baseline. Это самые «высокоуровневые» показатели — они уже интерпретированы для конкретного пользователя.",
-    4: "Все индексы — производные от спектральных мощностей ритмов. Они персонализируются через baseline после калибровки.",
-    5: "Метрики, получаемые из фотоплетизмографии (PPG) — оптического датчика, измеряющего пульсацию крови в сосудах.",
-    6: "",
-    7: "Этот раздел предназначен для технических специалистов, владельцев устройств Neiry и тех, кто работает непосредственно в капсуле. Эти метрики не отражают состояние человека — они отражают состояние оборудования и качество данных.",
-}
-
-# Extract section content
-def get_section_content(idx):
-    start_h = section_headers[idx]
-    start_pos = raw.find(start_h)
+# ══════════════════════════════════════════════
+# PARSING
+# ══════════════════════════════════════════════
+def get_section_content(sec):
+    start_pos = raw.find(sec["header"])
     if start_pos == -1:
         return ""
-    start_pos += len(start_h)
-    if idx + 1 < len(section_headers):
-        end_h = section_headers[idx + 1]
-        end_pos = raw.find(end_h)
+    start_pos += len(sec["header"])
+    idx = next(i for i, s in enumerate(sections) if s["slug"] == sec["slug"])
+    if idx + 1 < len(sections):
+        end_pos = raw.find(sections[idx + 1]["header"])
         if end_pos == -1:
             end_pos = len(raw)
     else:
-        # Last section - go to hierarchy or end
         end_pos = raw.find("## Иерархия доверия")
         if end_pos == -1:
             end_pos = len(raw)
@@ -69,10 +113,58 @@ def slugify(text):
     text = re.sub(r'[\s]+', '-', text)
     return text[:50]
 
-def parse_metrics(content, is_technical=False):
-    """Parse ### metric blocks from section content."""
+SLUG_MAP = {
+    "Alpha (8–13 Гц)": "alpha",
+    "Beta (13–30 Гц)": "beta",
+    "Theta (4–8 Гц)": "theta",
+    "SMR — сенсомоторный ритм (12–15 Гц)": "smr",
+    "Alpha Peak": "alpha-peak",
+    "Beta Peak": "beta-peak",
+    "Theta Peak": "theta-peak",
+    "IAF — индивидуальная альфа-частота": "iaf",
+    "IAPF — частота максимального альфа-пика": "iapf",
+    "IAPF Power — мощность альфа-пика": "iapf-power",
+    "IABW — ширина альфа-диапазона": "iabw",
+    "IAPF Suppression — коэффициент подавления": "iapf-suppression",
+    "Attention": "attention",
+    "Relaxation": "relaxation",
+    "Cognitive Load": "cognitive-load",
+    "Cognitive Control": "cognitive-control",
+    "Relaxation Index": "relaxation-index",
+    "Concentration Index": "concentration-index",
+    "Fatigue Score": "fatigue-score",
+    "Reverse Fatigue": "reverse-fatigue",
+    "Accumulated Fatigue": "accumulated-fatigue",
+    "Productivity Score": "productivity-score",
+    "Alpha Gravity": "alpha-gravity",
+    "HR — частота сердечных сокращений": "hr",
+    "RR(M) — средний кардиоинтервал": "rrm",
+    "Mo — мода кардиоинтервалов": "mo",
+    "SDNN": "sdnn",
+    "CV — коэффициент вариации": "cv",
+    "AMo — амплитуда моды": "amo",
+    "MxdMn — вариационный размах": "mxdmn",
+    "SI — стресс-индекс Баевского": "si",
+    "SAT — индекс Каплана": "sat",
+    "Perfusion — индекс перфузии": "perfusion",
+    "Stress": "stress",
+    "Recommendation": "recommendation",
+    "State": "state",
+}
+
+def metric_file_slug(name):
+    if name in SLUG_MAP:
+        return SLUG_MAP[name]
+    # Fallback
+    s = name.lower()
+    for old, new in [("—", ""), ("(", ""), (")", ""), ("  ", " ")]:
+        s = s.replace(old, new)
+    s = re.sub(r'[^a-z0-9\s-]', '', s)
+    s = re.sub(r'[\s]+', '-', s.strip())
+    return s[:40] or "metric"
+
+def parse_metrics(content):
     metrics = []
-    # Split by ### headers
     parts = re.split(r'\n### ', content)
     for part in parts:
         if not part.strip():
@@ -82,23 +174,130 @@ def parse_metrics(content, is_technical=False):
         body = '\n'.join(lines[1:]).strip()
         if not name:
             continue
-        metrics.append((name, body))
+        # Skip if name looks like intro text (too long, no metric-like pattern)
+        if len(name) > 80:
+            continue
+        # Skip intro paragraphs that have no body content at all
+        if not body.strip():
+            continue
+        metrics.append({"name": name, "body": body, "slug": metric_file_slug(name)})
     return metrics
 
-def md_to_html_block(name, body, css_class):
-    """Convert a metric's markdown body to HTML card."""
-    slug = slugify(name)
+def extract_first_sentence(body):
+    """Extract first sentence from 'Что это за метрика' field."""
+    m = re.search(r'\*\*Что это за метрика[\.\:]*\*\*\s*(.+?)(?:\.|$)', body)
+    if m:
+        return m.group(1).strip() + "."
+    # Fallback: first non-empty line
+    for line in body.split('\n'):
+        line = line.strip()
+        if line and not line.startswith('**') and not line.startswith('---'):
+            return line[:120]
+    return ""
 
-    # Parse fields from body
-    formula = ""
+def extract_formula(body):
+    m = re.search(r'\*\*Формула\.\*\*\s*(.+)', body)
+    return m.group(1).strip() if m else ""
+
+def extract_ranges_badges(body):
+    """Extract range badges for summary cards."""
+    m = re.search(r'\*\*Диапазоны значений[\.\:]*\*\*\s*([\s\S]*?)(?=\n\*\*[А-ЯA-Z]|\n---|\Z)', body)
+    if not m:
+        return ""
+    content = m.group(1).strip()
+    badges = []
+    for line in content.split('\n'):
+        line = line.strip()
+        if line.startswith('- '):
+            parts = line[2:].split(':', 1)
+            if len(parts) == 2:
+                range_val = parts[0].strip()
+                desc = parts[1].strip().lower()
+                color = "gray"
+                if any(w in desc for w in ['норма', 'отлич', 'хорош', 'бодр', 'оптим', 'баланс', 'глубок']):
+                    color = "green"
+                elif any(w in desc for w in ['умерен', 'средн', 'рабоч', 'обычн', 'лёгк', 'фонов']):
+                    color = "blue"
+                elif any(w in desc for w in ['снижен', 'напряж', 'устал', 'выражен', 'повышен', 'рассеян', 'скука', 'перегрузка', 'гипер', 'импульс', 'низк', 'слаб']):
+                    color = "yellow"
+                elif any(w in desc for w in ['критич', 'стресс', 'тахикард', 'необходим', 'ненадёжн', 'проблем']):
+                    color = "red"
+                badges.append(f'<span class="badge {color}">{h.escape(range_val)}</span>')
+    return ' '.join(badges[:4])
+
+# ══════════════════════════════════════════════
+# HTML HELPERS
+# ══════════════════════════════════════════════
+def process_inline(text):
+    text = text.replace('\n', ' ')
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
+    text = re.sub(r'`(.+?)`', r'<code>\1</code>', text)
+    return text
+
+def convert_field_content(content, label, field_key):
+    if field_key == "Мифы":
+        myths = re.findall(r'- \*[«"](.+?)[»"]\*\s*(.+?)(?=\n- \*|$)', content, re.DOTALL)
+        if myths:
+            myth_html = ""
+            for myth_text, answer in myths:
+                myth_html += f'<div class="myth"><em>«{h.escape(myth_text)}»</em> <strong>{h.escape(answer.strip())}</strong></div>\n'
+            return f'<div class="msub"><div class="msub-label">{label}</div>{myth_html}</div>'
+
+    if "Закрытые глаза" in field_key:
+        return f'<div class="state-block eyes-closed"><div class="msub-label">{label}</div><p>{process_inline(content)}</p></div>'
+    if "Открытые глаза" in field_key:
+        return f'<div class="state-block eyes-open"><div class="msub-label">{label}</div><p>{process_inline(content)}</p></div>'
+
+    if field_key == "Диапазоны значений":
+        range_lines = content.strip().split('\n')
+        badges_html = ""
+        text_html = ""
+        for line in range_lines:
+            line = line.strip()
+            if line.startswith('- '):
+                line = line[2:]
+                parts = line.split(':', 1)
+                if len(parts) == 2:
+                    range_val = parts[0].strip()
+                    desc = parts[1].strip()
+                    color = "gray"
+                    lower = desc.lower()
+                    if any(w in lower for w in ['норма', 'отлич', 'хорош', 'бодр', 'оптим', 'баланс', 'глубок', 'высок']):
+                        color = "green"
+                    elif any(w in lower for w in ['умерен', 'средн', 'рабоч', 'обычн', 'лёгк', 'фонов']):
+                        color = "blue"
+                    elif any(w in lower for w in ['снижен', 'напряж', 'устал', 'выражен', 'повышен', 'внимание', 'рассеян', 'скука', 'высокая нагрузка', 'гипер', 'импульс', 'низк', 'слаб', 'перенапр', 'сниж']):
+                        color = "yellow"
+                    elif any(w in lower for w in ['критич', 'стресс', 'тахикард', 'необходим', 'ненадёжн', 'проблем', 'опасн']):
+                        color = "red"
+                    badges_html += f'<span class="badge {color}">{h.escape(range_val)}</span> '
+                    text_html += f'<li><strong>{h.escape(range_val)}</strong> — {process_inline(desc)}</li>\n'
+                else:
+                    text_html += f'<li>{process_inline(line)}</li>\n'
+            elif line:
+                text_html += f'<p>{process_inline(line)}</p>\n'
+        return f'<div class="msub"><div class="msub-label">{label}</div><div class="ranges">{badges_html}</div><ul>{text_html}</ul></div>'
+
+    if '\n- ' in content:
+        items = content.split('\n- ')
+        first = items[0].strip()
+        list_items = items[1:]
+        out = f'<div class="msub"><div class="msub-label">{label}</div>'
+        if first:
+            out += f'<p>{process_inline(first)}</p>'
+        out += '<ul>' + ''.join(f'<li>{process_inline(item.strip())}</li>' for item in list_items) + '</ul></div>'
+        return out
+
+    paragraphs = content.strip().split('\n\n')
+    p_html = ''.join(f'<p>{process_inline(p.strip())}</p>' for p in paragraphs if p.strip())
+    return f'<div class="msub"><div class="msub-label">{label}</div>{p_html}</div>'
+
+def build_metric_html(metric, css_class):
+    body = metric["body"]
+    formula = extract_formula(body)
     sections_html = []
 
-    # Extract formula
-    fm = re.search(r'\*\*Формула\.\*\*\s*(.+)', body)
-    if fm:
-        formula = fm.group(1).strip()
-
-    # Field mappings
     field_map = [
         ("Что это за метрика", "ЧТО ЭТО"),
         ("Кто придумал", "КТО ПРИДУМАЛ"),
@@ -128,111 +327,19 @@ def md_to_html_block(name, body, css_class):
         match = re.search(pattern, body)
         if not match:
             continue
-
         content = match.group(1).strip()
         if not content or field_key == "Формула":
             continue
+        sections_html.append(convert_field_content(content, label, field_key))
 
-        # Convert content to HTML
-        content_html = convert_field_content(content, label, field_key)
-        sections_html.append(content_html)
-
-    # Build card HTML
     formula_html = f'<div class="metric-formula">{h.escape(formula)}</div>' if formula else ''
-
-    return f'''<div class="metric {css_class}" id="{slug}">
-<h3 class="metric-name">{h.escape(name)}</h3>
+    return f'''<div class="metric {css_class}">
+<h3 class="metric-name">{h.escape(metric["name"])}</h3>
 {formula_html}
 {''.join(sections_html)}
 </div>'''
 
-def convert_field_content(content, label, field_key):
-    """Convert a field's content to HTML."""
-    # Handle myths specially
-    if field_key == "Мифы":
-        myths = re.findall(r'- \*[«"](.+?)[»"]\*\s*(.+?)(?=\n- \*|$)', content, re.DOTALL)
-        if myths:
-            myth_html = ""
-            for myth_text, answer in myths:
-                myth_html += f'<div class="myth"><em>«{h.escape(myth_text)}»</em> <strong>{h.escape(answer.strip())}</strong></div>\n'
-            return f'<div class="msub"><div class="msub-label">{label}</div>{myth_html}</div>'
-
-    # Handle closed/open eyes
-    if "Закрытые глаза" in field_key:
-        return f'<div class="state-block eyes-closed"><div class="msub-label">{label}</div><p>{process_inline(content)}</p></div>'
-    if "Открытые глаза" in field_key:
-        return f'<div class="state-block eyes-open"><div class="msub-label">{label}</div><p>{process_inline(content)}</p></div>'
-
-    # Handle ranges with badges
-    if field_key == "Диапазоны значений":
-        range_lines = content.strip().split('\n')
-        badges_html = ""
-        text_html = ""
-        for line in range_lines:
-            line = line.strip()
-            if line.startswith('- '):
-                line = line[2:]
-                # Try to extract range and description
-                parts = line.split(':', 1)
-                if len(parts) == 2:
-                    range_val = parts[0].strip()
-                    desc = parts[1].strip()
-                    # Determine badge color
-                    color = "gray"
-                    lower = desc.lower()
-                    if any(w in lower for w in ['норма', 'отлич', 'хорош', 'бодр', 'оптим', 'баланс', 'глубок', 'высок']):
-                        color = "green"
-                    elif any(w in lower for w in ['умерен', 'средн', 'рабоч', 'обычн', 'лёгк', 'фонов']):
-                        color = "blue"
-                    elif any(w in lower for w in ['снижен', 'напряж', 'устал', 'выражен', 'повышен', 'внимание', 'рассеян', 'скука', 'высокая нагрузка', 'гипер', 'импульс', 'низк', 'слаб', 'перегрузка', 'перенапр', 'сниж']):
-                        color = "yellow"
-                    elif any(w in lower for w in ['критич', 'стресс', 'тахикард', 'необходим', 'ненадёжн', 'проблем', 'опасн']):
-                        color = "red"
-                    badges_html += f'<span class="badge {color}">{h.escape(range_val)}</span> '
-                    text_html += f'<li><strong>{h.escape(range_val)}</strong> — {process_inline(desc)}</li>\n'
-                else:
-                    text_html += f'<li>{process_inline(line)}</li>\n'
-            else:
-                if line:
-                    text_html += f'<p>{process_inline(line)}</p>\n'
-
-        return f'''<div class="msub">
-<div class="msub-label">{label}</div>
-<div class="ranges">{badges_html}</div>
-<ul>{text_html}</ul>
-</div>'''
-
-    # Handle bullet lists
-    if '\n- ' in content:
-        items = content.split('\n- ')
-        first = items[0].strip()
-        list_items = items[1:]
-        out = '<div class="msub"><div class="msub-label">' + label + '</div>'
-        if first:
-            out += f'<p>{process_inline(first)}</p>'
-        out += '<ul>'
-        for item in list_items:
-            out += f'<li>{process_inline(item.strip())}</li>'
-        out += '</ul></div>'
-        return out
-
-    # Default paragraph
-    paragraphs = content.strip().split('\n\n')
-    p_html = ''.join(f'<p>{process_inline(p.strip())}</p>' for p in paragraphs if p.strip())
-    return f'<div class="msub"><div class="msub-label">{label}</div>{p_html}</div>'
-
-def process_inline(text):
-    """Convert inline markdown to HTML."""
-    text = text.replace('\n', ' ')
-    # Bold
-    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
-    # Italic
-    text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
-    # Code
-    text = re.sub(r'`(.+?)`', r'<code>\1</code>', text)
-    return text
-
-def page_head(title):
+def page_head(title, css_path="./metrics.css", nav_path="../../css/nav.css"):
     return f'''<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -242,154 +349,156 @@ def page_head(title):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../css/nav.css">
-<link rel="stylesheet" href="./metrics.css">
+<link rel="stylesheet" href="{nav_path}">
+<link rel="stylesheet" href="{css_path}">
 </head>
 <body>
 '''
 
-def page_foot():
-    return '''
-<script src="../../components/nav.js"></script>
-<script src="../../components/footer.js"></script>
+def page_foot(nav_script="../../components/nav.js", footer_script="../../components/footer.js"):
+    return f'''
+<script src="{nav_script}"></script>
+<script src="{footer_script}"></script>
 </body>
 </html>'''
 
-def section_nav_html(current_idx):
-    """Generate sticky nav for section page."""
-    nav = '<nav class="sticky-header"><div class="block-nav"><div class="block-nav-inner">\n'
-    nav += '<a href="./index.html" class="block-nav-btn" style="font-weight:500;color:var(--text)">← Все метрики</a>\n'
-    for i, (slug, name, css, color) in enumerate(sections_order):
-        style = 'font-weight:600;color:var(--text)' if i == current_idx else ''
-        nav += f'<a href="./{slug}.html" class="block-nav-btn" style="{style}"><span class="block-nav-dot" style="background:{color}"></span>{h.escape(name)}</a>\n'
-    nav += '</div></div></nav>\n'
-    return nav
+# ══════════════════════════════════════════════
+# GENERATE SECTION HUB PAGES
+# ══════════════════════════════════════════════
+for sec in sections:
+    content = get_section_content(sec)
+    metrics = parse_metrics(content)
+    sec["metrics"] = metrics
 
-# ═══════════════════════════════════════════════
-# GENERATE HUB PAGE
-# ═══════════════════════════════════════════════
-hub_html = page_head("Справочник метрик Neiry Capsule")
-hub_html += '''
-<section class="hero">
-<div class="hero-inner">
-<div class="hero-eyebrow">справочник</div>
-<h1>Метрики Neiry Capsule</h1>
-<p class="hero-sub">Подробный справочник по всем метрикам экосистемы Neiry Capsule — для исследователей, практиков, нейрофизиологов и владельцев устройства.</p>
-</div>
-</section>
-
+    if not sec["has_subpages"]:
+        # Technical page — keep as flat list
+        page = page_head(f"{sec['name']} — Справочник метрик")
+        page += f'''
 <div class="content">
-<div class="hub-grid">
-'''
-
-hub_descriptions = {
-    0: ("4 метрики", "Alpha, Beta, Theta, SMR — нормализованные мощности мозговых ритмов от 0 до 1."),
-    1: ("3 метрики", "Alpha Peak, Beta Peak, Theta Peak — мгновенные пиковые частоты внутри каждого диапазона."),
-    2: ("5 метрик", "IAF, IAPF, IAPF Power, IABW, IAPF Suppression — персональный нейрофизиологический паспорт."),
-    3: ("4 метрики", "Attention, Relaxation, Cognitive Load, Cognitive Control — высокоуровневые составные показатели."),
-    4: ("7 метрик", "Relaxation Index, Concentration Index, Fatigue Score, Reverse Fatigue, Accumulated Fatigue, Productivity Score, Alpha Gravity."),
-    5: ("10 метрик", "HR, RR(M), Mo, SDNN, CV, AMo, MxdMn, SI Баевского, SAT Каплана, Perfusion."),
-    6: ("3 метрики", "Stress, Recommendation, State — итоговые бинарные и текстовые статусы."),
-    7: ("13 метрик", "IsConnected, Battery, Serial, Firmware, Mode, Session, Data Markup, импеданс, Artifacts и др."),
-}
-
-for i, (slug, name, css, color) in enumerate(sections_order):
-    count, desc = hub_descriptions[i]
-    hub_html += f'''<a href="./{slug}.html" class="hub-card {css}">
-<div class="hub-count">{count}</div>
-<h3>{h.escape(name)}</h3>
-<p>{h.escape(desc)}</p>
-</a>
-'''
-
-hub_html += '</div>\n'
-
-# Trust hierarchy
-hub_html += '''
-<h2 style="margin-top:48px;font-size:24px">Иерархия доверия к данным</h2>
-<p style="color:var(--text2);margin:8px 0 16px">При анализе данных Neiry придерживайтесь следующего порядка проверки:</p>
-
-<div class="trust-level trust-1">
-<h4>Уровень 1 — абсолютный приоритет (проверять первым)</h4>
-<p>Valid State, Artifacts, Perfusion, PPG quality, Average µV, импеданс электродов. Если здесь проблемы — остальные данные не интерпретируются.</p>
+<div class="breadcrumbs">
+<a href="./index.html">Все метрики</a> <span class="sep">→</span> <span>{h.escape(sec["name"])}</span>
 </div>
-<div class="trust-level trust-2">
-<h4>Уровень 2 — высокая надёжность</h4>
-<p>SDNN, SI, Alpha Peak vs IAPF, Accumulated Fatigue. Эти метрики хорошо изучены и надёжны при чистых данных.</p>
-</div>
-<div class="trust-level trust-3">
-<h4>Уровень 3 — средняя надёжность</h4>
-<p>Concentration, Relaxation, Fatigue Score. Требуют корректной калибровки для точности.</p>
-</div>
-<div class="trust-level trust-4">
-<h4>Уровень 4 — динамические</h4>
-<p>Instant Frequency Peaks, Emotions. Значимы только при устойчивости 2+ минуты. Кратковременные скачки — шум, не сигнал.</p>
-</div>
-
-<p style="color:var(--text3);font-size:0.85rem;margin-top:32px;font-style:italic">Этот справочник основан на данных, доступных через экосистему Neiry Capsule. Для профессиональной медицинской диагностики обратитесь к специалисту.</p>
-</div>
-'''
-hub_html += page_foot()
-
-with open(os.path.join(OUT, "index.html"), "w") as f:
-    f.write(hub_html)
-print("✓ index.html")
-
-# ═══════════════════════════════════════════════
-# GENERATE SECTION PAGES
-# ═══════════════════════════════════════════════
-for idx, (slug, sec_name, css_class, color) in enumerate(sections_order):
-    content = get_section_content(idx)
-    metrics = parse_metrics(content, is_technical=(idx == 7))
-    intro = section_intros.get(idx, "")
-
-    html = page_head(f"{sec_name} — Справочник метрик")
-    html += section_nav_html(idx)
-
-    html += f'''
-<div class="content">
-<a href="./index.html" class="back-link">← Все метрики</a>
-
 <div class="section-intro">
-<h2 style="font-size:clamp(24px,4vw,36px)">{h.escape(sec_name)}</h2>
-{"<p>" + intro + "</p>" if intro else ""}
+<h2 style="font-size:clamp(24px,4vw,36px)">{h.escape(sec["name"])}</h2>
+{"<p>" + sec["intro"] + "</p>" if sec["intro"] else ""}
 </div>
 '''
-
-    # Metrics mini-toc
-    if metrics:
-        html += '<nav style="background:var(--bg3);border-radius:12px;padding:16px 20px;margin-bottom:32px">\n'
-        html += '<div style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">СОДЕРЖАНИЕ</div>\n'
-        for name, _ in metrics:
-            s = slugify(name)
-            html += f'<a href="#{s}" style="display:inline-block;font-size:0.88rem;color:{color};margin:3px 12px 3px 0">{h.escape(name)}</a>\n'
-        html += '</nav>\n'
-
-    # Technical section has simpler format
-    if idx == 7:
-        for name, body in metrics:
-            slug_m = slugify(name)
-            # Simpler rendering for tech metrics
-            body_html = process_inline(body.replace('\n\n', '</p><p>').replace('\n- ', '</li><li>'))
+        for m in metrics:
+            body_html = process_inline(m["body"].replace('\n\n', '</p><p>').replace('\n- ', '</li><li>'))
             if '<li>' in body_html:
                 body_html = '<ul><li>' + body_html + '</li></ul>'
             else:
                 body_html = '<p>' + body_html + '</p>'
-            html += f'''<div class="metric c-tech" id="{slug_m}" style="padding:20px 24px">
-<h3 class="metric-name" style="font-size:18px">{h.escape(name)}</h3>
+            page += f'''<div class="metric c-tech" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">{h.escape(m["name"])}</h3>
 {body_html}
 </div>
 '''
-    else:
-        for name, body in metrics:
-            html += md_to_html_block(name, body, css_class)
+        page += '</div>'
+        page += page_foot()
+        with open(os.path.join(OUT, f"{sec['slug']}.html"), "w") as f:
+            f.write(page)
+        print(f"✓ {sec['slug']}.html (flat, {len(metrics)} metrics)")
+        continue
 
-    html += '</div>\n'
-    html += page_foot()
+    # Section hub page — grid of metric summary cards
+    page = page_head(f"{sec['name']} — Справочник метрик")
+    page += f'''
+<div class="content">
+<div class="breadcrumbs">
+<a href="./index.html">Все метрики</a> <span class="sep">→</span> <span>{h.escape(sec["name"])}</span>
+</div>
+<div class="section-intro">
+<h2 style="font-size:clamp(24px,4vw,36px)">{h.escape(sec["name"])}</h2>
+{"<p style='color:var(--text2);margin-top:8px'>" + sec["intro"] + "</p>" if sec["intro"] else ""}
+</div>
 
-    filepath = os.path.join(OUT, f"{slug}.html")
-    with open(filepath, "w") as f:
-        f.write(html)
-    print(f"✓ {slug}.html ({len(metrics)} metrics)")
+<div class="metrics-grid">
+'''
+    for m in metrics:
+        summary = extract_first_sentence(m["body"])
+        formula = extract_formula(m["body"])
+        badges = extract_ranges_badges(m["body"])
+        formula_html = f'<div class="metric-formula">{h.escape(formula)}</div>' if formula else ''
+        badges_html = f'<div class="ranges">{badges}</div>' if badges else ''
+
+        page += f'''<a href="./{sec["slug"]}/{m["slug"]}.html" class="metric-summary {sec["css"]}">
+<h3>{h.escape(m["name"])}</h3>
+{formula_html}
+<p>{process_inline(summary)}</p>
+{badges_html}
+</a>
+'''
+
+    page += '</div>\n</div>'
+    page += page_foot()
+
+    with open(os.path.join(OUT, f"{sec['slug']}.html"), "w") as f:
+        f.write(page)
+    print(f"✓ {sec['slug']}.html (hub, {len(metrics)} cards)")
+
+# ══════════════════════════════════════════════
+# GENERATE INDIVIDUAL METRIC PAGES
+# ══════════════════════════════════════════════
+for sec in sections:
+    if not sec["has_subpages"]:
+        continue
+
+    metrics = sec["metrics"]
+    subdir = os.path.join(OUT, sec["slug"])
+    os.makedirs(subdir, exist_ok=True)
+
+    for i, m in enumerate(metrics):
+        # Build prev/next navigation
+        prev_link = ""
+        next_link = ""
+        if i > 0:
+            prev_m = metrics[i - 1]
+            prev_link = f'''<a href="./{prev_m["slug"]}.html">
+<span class="nav-dir">← Назад</span>
+<span class="nav-name">{h.escape(prev_m["name"])}</span>
+</a>'''
+        if i < len(metrics) - 1:
+            next_m = metrics[i + 1]
+            next_link = f'''<a href="./{next_m["slug"]}.html" class="next">
+<span class="nav-dir">Далее →</span>
+<span class="nav-name">{h.escape(next_m["name"])}</span>
+</a>'''
+
+        metric_content = build_metric_html(m, sec["css"])
+
+        page = page_head(
+            f'{m["name"]} — {sec["name"]}',
+            css_path="../metrics.css",
+            nav_path="../../../css/nav.css"
+        )
+        page += f'''
+<div class="content">
+<div class="breadcrumbs">
+<a href="../index.html">Все метрики</a>
+<span class="sep">→</span>
+<a href="../{sec["slug"]}.html">{h.escape(sec["name"])}</a>
+<span class="sep">→</span>
+<span>{h.escape(m["name"])}</span>
+</div>
+
+{metric_content}
+
+<div class="metric-nav">
+{prev_link}
+{next_link}
+</div>
+</div>
+'''
+        page += page_foot(
+            nav_script="../../../components/nav.js",
+            footer_script="../../../components/footer.js"
+        )
+
+        filepath = os.path.join(subdir, f"{m['slug']}.html")
+        with open(filepath, "w") as f:
+            f.write(page)
+
+    print(f"  ✓ {sec['slug']}/ ({len(metrics)} metric pages)")
 
 print("\nDone! All pages generated.")

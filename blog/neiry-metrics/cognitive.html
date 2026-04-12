@@ -11,88 +11,43 @@
 <link rel="stylesheet" href="./metrics.css">
 </head>
 <body>
-<nav class="sticky-header"><div class="block-nav"><div class="block-nav-inner">
-<a href="./index.html" class="block-nav-btn" style="font-weight:500;color:var(--text)">← Все метрики</a>
-<a href="./rhythms.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#7C3AED"></span>Ритмы мозга</a>
-<a href="./peaks.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#3B82F6"></span>Пиковые частоты</a>
-<a href="./alpha-profile.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#8B5CF6"></span>Альфа-профиль</a>
-<a href="./cognitive.html" class="block-nav-btn" style="font-weight:600;color:var(--text)"><span class="block-nav-dot" style="background:#EC4899"></span>Когнитивные метрики</a>
-<a href="./indices.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#F59E0B"></span>Производные индексы</a>
-<a href="./ppg.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EF4444"></span>Сердечно-сосудистые (PPG)</a>
-<a href="./states.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#10B981"></span>Итоговые статусы</a>
-<a href="./technical.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#6B7280"></span>Технические метрики</a>
-</div></div></nav>
 
 <div class="content">
-<a href="./index.html" class="back-link">← Все метрики</a>
-
+<div class="breadcrumbs">
+<a href="./index.html">Все метрики</a> <span class="sep">→</span> <span>Когнитивные метрики</span>
+</div>
 <div class="section-intro">
 <h2 style="font-size:clamp(24px,4vw,36px)">Когнитивные метрики</h2>
-<p>Составные метрики, интегрирующие данные ЭЭГ, HRV и персональный baseline. Это самые «высокоуровневые» показатели — они уже интерпретированы для конкретного пользователя.</p>
+<p style='color:var(--text2);margin-top:8px'>Составные метрики, интегрирующие данные ЭЭГ, HRV и персональный baseline — самые высокоуровневые показатели.</p>
 </div>
-<nav style="background:var(--bg3);border-radius:12px;padding:16px 20px;margin-bottom:32px">
-<div style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">СОДЕРЖАНИЕ</div>
-<a href="#составные-метрики-интегрирующие-данные-ээг-hrv-и-п" style="display:inline-block;font-size:0.88rem;color:#EC4899;margin:3px 12px 3px 0">Составные метрики, интегрирующие данные ЭЭГ, HRV и персональный baseline. Это самые «высокоуровневые» показатели — они уже интерпретированы для конкретного пользователя.</a>
-<a href="#attention" style="display:inline-block;font-size:0.88rem;color:#EC4899;margin:3px 12px 3px 0">Attention</a>
-<a href="#relaxation" style="display:inline-block;font-size:0.88rem;color:#EC4899;margin:3px 12px 3px 0">Relaxation</a>
-<a href="#cognitive-load" style="display:inline-block;font-size:0.88rem;color:#EC4899;margin:3px 12px 3px 0">Cognitive Load</a>
-<a href="#cognitive-control" style="display:inline-block;font-size:0.88rem;color:#EC4899;margin:3px 12px 3px 0">Cognitive Control</a>
-</nav>
-<div class="metric c-cognitive" id="составные-метрики-интегрирующие-данные-ээг-hrv-и-п">
-<h3 class="metric-name">Составные метрики, интегрирующие данные ЭЭГ, HRV и персональный baseline. Это самые «высокоуровневые» показатели — они уже интерпретированы для конкретного пользователя.</h3>
 
+<div class="metrics-grid">
+<a href="./cognitive/attention.html" class="metric-summary c-cognitive">
+<h3>Attention</h3>
 
-</div><div class="metric c-cognitive" id="attention">
-<h3 class="metric-name">Attention</h3>
+<p>Качество фокуса внимания в данный момент.</p>
+<div class="ranges"><span class="badge yellow">&lt; 30</span> <span class="badge blue">30–60</span> <span class="badge green">60–80</span> <span class="badge yellow">&gt; 85</span></div>
+</a>
+<a href="./cognitive/relaxation.html" class="metric-summary c-cognitive">
+<h3>Relaxation</h3>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Качество фокуса внимания в данный момент. Отражает активность дорсолатеральной префронтальной коры (длПФК) — главного «диспетчера внимания» в мозге. Не путать с Concentration Index — Attention более комплексная, учитывает не только соотношение ритмов, но и baseline пользователя.</p></div><div class="msub"><div class="msub-label">ЧТО ИЗМЕРЯЕТ</div><p>Степень, в которой мозг направляет ресурсы на текущую задачу vs. рассеивает внимание.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge yellow">&lt; 30</span> <span class="badge blue">30–60</span> <span class="badge green">60–80</span> <span class="badge green">&gt; 85</span> </div>
-<ul><li><strong>&lt; 30</strong> — рассеянность, блуждающий ум, внимание не удерживается</li>
-<li><strong>30–60</strong> — обычное внимание, может быть достаточно для рутинных задач</li>
-<li><strong>60–80</strong> — глубокий фокус, высокая эффективность</li>
-<li><strong>&gt; 85</strong> — гиперфокус — высокая эффективность, но риск истощения</li>
-</ul>
-</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Стабильный Attention 60–80 в течение длительного времени — признак мастерства и хорошей когнитивной формы. Скачки Attention — норма, абсолютная стабильность невозможна и не нужна.</p></div><div class="msub"><div class="msub-label">ИССЛЕДОВАНИЯ</div><p>Исследования СДВГ, оценка эффективности обучения, нейрофидбек для внимания, спортивная психология.</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>При любой целенаправленной работе. Перед важными решениями — низкий Attention = плохое время для решений. При обучении — корреляция с усвоением материала.</p></div><div class="msub"><div class="msub-label">МИФЫ</div><p>- <em>«Attention всегда должен быть максимальным».</em> Нет. Гиперфокус (> 85) истощает ресурсы мозга. Оптимум — 60–80 с периодическими «провалами» для восстановления.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Attention низкий (< 30) — это нормально и ожидаемо, мозг не фокусируется ни на чём.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Attention должен расти до 50–80 в зависимости от сложности и вовлечённости.</p></div>
-</div><div class="metric c-cognitive" id="relaxation">
-<h3 class="metric-name">Relaxation</h3>
+<p>Глубина психофизиологического расслабления.</p>
+<div class="ranges"><span class="badge yellow">&lt; 30</span> <span class="badge green">30–55</span> <span class="badge green">55–75</span> <span class="badge green">&gt; 75</span></div>
+</a>
+<a href="./cognitive/cognitive-load.html" class="metric-summary c-cognitive">
+<h3>Cognitive Load</h3>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Глубина психофизиологического расслабления. Это интегральная метрика, которая учитывает не только ЭЭГ (альфа-мощность), но и HRV (вариабельность сердечного ритма) и персональный baseline. Поэтому она надёжнее, чем простой Relaxation Index.</p></div><div class="msub"><div class="msub-label">ЧТО ИЗМЕРЯЕТ</div><p>Насколько глубоко расслаблены и тело (автономная нервная система), и ум (кортикальная активность) одновременно.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge yellow">&lt; 30</span> <span class="badge green">30–55</span> <span class="badge green">55–75</span> <span class="badge green">&gt; 75</span> </div>
-<ul><li><strong>&lt; 30</strong> — стресс, напряжение, тело и/или ум не расслаблены</li>
-<li><strong>30–55</strong> — лёгкое расслабление, обычное бодрствование</li>
-<li><strong>55–75</strong> — хорошее расслабление</li>
-<li><strong>&gt; 75</strong> — глубокий покой, медитативное состояние</li>
-</ul>
-</div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>При практиках расслабления и медитации. После стрессовых событий — скорость возвращения Relaxation к норме показывает резилиентность. Перед сном.</p></div><div class="msub"><div class="msub-label">МИФЫ</div><p>- <em>«Relaxation = бездействие».</em> Нет. Можно быть расслабленным и бдительным одновременно (SMR-состояние). Relaxation отражает отсутствие напряжения, не отсутствие внимания.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Relaxation высокий (60–80+) — оба компонента (мозг и тело) в покое.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Relaxation снижается до 30–50. Это нормально — фокусировка требует мобилизации.</p></div>
-</div><div class="metric c-cognitive" id="cognitive-load">
-<h3 class="metric-name">Cognitive Load</h3>
+<p>Интенсивность использования рабочей памяти и когнитивных ресурсов в данный момент.</p>
+<div class="ranges"><span class="badge yellow">&lt; 30</span> <span class="badge blue">30–50</span> <span class="badge green">50–70</span> <span class="badge gray">70–80</span></div>
+</a>
+<a href="./cognitive/cognitive-control.html" class="metric-summary c-cognitive">
+<h3>Cognitive Control</h3>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Интенсивность использования рабочей памяти и когнитивных ресурсов в данный момент. Следует перевёрнутой U-кривой Йеркса-Додсона: есть оптимальный уровень нагрузки, при котором эффективность максимальна.</p></div><div class="msub"><div class="msub-label">КТО ОПИСАЛ</div><p>Роберт Йеркс и Джон Додсон в 1908 году описали связь между возбуждением и продуктивностью. Их закон применяется здесь: слишком мало нагрузки = скука, слишком много = перегрузка, оптимум посередине.</p></div><div class="msub"><div class="msub-label">ЧТО ИЗМЕРЯЕТ</div><p>Сколько когнитивных ресурсов задействовано — от недогрузки (скука) до перегрузки (коллапс).</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge yellow">&lt; 30</span> <span class="badge blue">30–50</span> <span class="badge green">50–70</span> <span class="badge green">70–80</span> <span class="badge yellow">&gt; 80</span> </div>
-<ul><li><strong>&lt; 30</strong> — скука, недогрузка, мозг «бездействует»</li>
-<li><strong>30–50</strong> — лёгкая нагрузка, рутинные задачи</li>
-<li><strong>50–70</strong> — оптимум — зона максимальной продуктивности</li>
-<li><strong>70–80</strong> — высокая нагрузка, работает, но на пределе</li>
-<li><strong>&gt; 80</strong> — перегрузка, эффективность падает</li>
-</ul>
-</div><div class="msub"><div class="msub-label">КРИТИЧЕСКИЕ КОМБИНАЦИИ</div><p>- Cognitive Load > 80 + Cognitive Control < 30 = <strong>когнитивный коллапс</strong> — мозг перегружен и не может регулировать себя. Необходим перерыв.</p><ul><li>Cognitive Load 50–65 + Cognitive Control 65–80 = <strong>зона мастерства</strong> — оптимальная нагрузка при хорошей регуляции.</li></ul></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Cognitive Load минимален (< 20). Мозг не обрабатывает задачу.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Cognitive Load растёт пропорционально сложности задачи. Оптимум — 50–70.</p></div>
-</div><div class="metric c-cognitive" id="cognitive-control">
-<h3 class="metric-name">Cognitive Control</h3>
-
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Исполнительный контроль — способность префронтальной коры (ПФК) регулировать и направлять когнитивные процессы. Это «менеджер проектов» мозга: насколько хорошо мозг управляет своими ресурсами, подавляет импульсы и сохраняет целенаправленность.</p></div><div class="msub"><div class="msub-label">ЧТО ИЗМЕРЯЕТ</div><p>Качество регуляции ПФК — баланс между импульсивностью и гиперконтролем.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge yellow">&lt; 25</span> <span class="badge blue">25–55</span> <span class="badge green">55–80</span> <span class="badge yellow">&gt; 80</span> </div>
-<ul><li><strong>&lt; 25</strong> — импульсивность, ПФК не справляется с регуляцией</li>
-<li><strong>25–55</strong> — средний контроль</li>
-<li><strong>55–80</strong> — высокий контроль, хорошая саморегуляция</li>
-<li><strong>&gt; 80</strong> — гиперконтроль — может быть признаком ригидности, перфекционизма</li>
-</ul>
-</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Когнитивный контроль — метрика «взрослости» мозга. ПФК созревает последней (к 25 годам), и именно она отвечает за сдерживание импульсов, планирование, стратегическое мышление.</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>При принятии решений — низкий Cognitive Control = решения могут быть импульсивными. При стрессе — контроль часто падает первым. При утомлении — нарастание усталости снижает контроль.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Cognitive Control на среднем уровне — ПФК не нагружена задачей, но и не нужна.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Cognitive Control должен быть 55–80 для эффективной работы.</p></div>
-</div></div>
-
+<p>Исполнительный контроль — способность префронтальной коры (ПФК) регулировать и направлять когнитивные процессы.</p>
+<div class="ranges"><span class="badge yellow">&lt; 25</span> <span class="badge blue">25–55</span> <span class="badge green">55–80</span> <span class="badge yellow">&gt; 80</span></div>
+</a>
+</div>
+</div>
 <script src="../../components/nav.js"></script>
 <script src="../../components/footer.js"></script>
 </body>

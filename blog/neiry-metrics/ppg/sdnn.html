@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDNN — Сердечно-сосудистые (PPG) — ONTO NOTHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../css/nav.css">
+<link rel="stylesheet" href="../metrics.css">
+</head>
+<body>
+
+<div class="content">
+<div class="breadcrumbs">
+<a href="../index.html">Все метрики</a>
+<span class="sep">→</span>
+<a href="../ppg.html">Сердечно-сосудистые (PPG)</a>
+<span class="sep">→</span>
+<span>SDNN</span>
+</div>
+
+<div class="metric c-ppg">
+<h3 class="metric-name">SDNN</h3>
+<div class="metric-formula">√(1/N × Σ(RRᵢ − RR̄)²)</div>
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Стандартное отклонение всех RR-интервалов за период записи. Это <strong>золотой стандарт</strong> оценки вариабельности сердечного ритма (HRV), рекомендованный European Society of Cardiology и North American Society of Pacing and Electrophysiology (1996).</p></div><div class="msub"><div class="msub-label">ДИАПАЗОНЫ</div><div class="ranges"><span class="badge green">&gt; 100 мс</span> <span class="badge green">50–100 мс</span> <span class="badge yellow">&lt; 50 мс</span> </div><ul><li><strong>&gt; 100 мс</strong> — отличная вариабельность, здоровая автономная нервная система</li>
+<li><strong>50–100 мс</strong> — норма</li>
+<li><strong>&lt; 50 мс</strong> — сниженная вариабельность, повышенный кардиоваскулярный риск</li>
+</ul></div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Высокая SDNN = гибкая автономная нервная система, хорошая адаптивность к стрессу. Низкая SDNN = ригидная система, плохая адаптация. SDNN снижается с возрастом, при стрессе, недосыпании, после алкоголя.</p></div><div class="msub"><div class="msub-label">ИССЛЕДОВАНИЯ</div><p>Кардиология, стресс-исследования, спортивная медицина, психофизиология, оценка восстановления, прогнозирование кардиоваскулярных событий.</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>Нужна запись минимум 5 минут для надёжного SDNN. Утром натощак — для отслеживания базовой вариабельности. После стресса — для оценки восстановления.</p></div><div class="msub"><div class="msub-label">МИФЫ</div><p>- <em>«Высокий SDNN = здоровое сердце».</em> В целом да, но экстремально высокий SDNN (> 300 мс) может указывать на аритмии. Контекст важен.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>SDNN обычно выше — парасимпатика доминирует, ритм более вариабельный.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>SDNN может снижаться — симпатика активируется, ритм становится более «жёстким».</p></div>
+</div>
+
+<div class="metric-nav">
+<a href="./mo.html">
+<span class="nav-dir">← Назад</span>
+<span class="nav-name">Mo — мода кардиоинтервалов</span>
+</a>
+<a href="./cv.html" class="next">
+<span class="nav-dir">Далее →</span>
+<span class="nav-name">CV — коэффициент вариации</span>
+</a>
+</div>
+</div>
+
+<script src="../../../components/nav.js"></script>
+<script src="../../../components/footer.js"></script>
+</body>
+</html>

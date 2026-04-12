@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatigue Score — Производные индексы — ONTO NOTHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../css/nav.css">
+<link rel="stylesheet" href="../metrics.css">
+</head>
+<body>
+
+<div class="content">
+<div class="breadcrumbs">
+<a href="../index.html">Все метрики</a>
+<span class="sep">→</span>
+<a href="../indices.html">Производные индексы</a>
+<span class="sep">→</span>
+<span>Fatigue Score</span>
+</div>
+
+<div class="metric c-indices">
+<h3 class="metric-name">Fatigue Score</h3>
+<div class="metric-formula">(Alpha + Theta) / Beta</div>
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Моментальный уровень когнитивной усталости. Основан на том, что усталость проявляется ростом «медленных» ритмов (альфа + тета) и падением «быстрого» бета.</p></div><div class="msub"><div class="msub-label">ДИАПАЗОНЫ</div><div class="ranges"><span class="badge green">0.3–0.8</span> <span class="badge green">0.8–1.0</span> <span class="badge yellow">1.0–2.0</span> <span class="badge yellow">2.0–3.0</span> <span class="badge yellow">&gt; 3.0</span> </div><ul><li><strong>0.3–0.8</strong> — бодрость, мозг полностью работоспособен</li>
+<li><strong>0.8–1.0</strong> — нормальная зона</li>
+<li><strong>1.0–2.0</strong> — усталость, снижение эффективности</li>
+<li><strong>2.0–3.0</strong> — выраженная усталость</li>
+<li><strong>&gt; 3.0</strong> — критическая усталость, необходим перерыв</li>
+</ul></div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Fatigue Score > 2.0 в рабочее время — необходим перерыв. Мозг не справляется с подавлением медленных ритмов, когнитивная обработка деградирует.</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>В динамике в течение рабочего дня. Нарастание Fatigue Score — предиктор ошибок и снижения качества решений.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Fatigue Score высокий (> 2.0) — это нормально, мозг в режиме покоя.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Fatigue Score должен быть 0.5–1.0. Если выше 1.5 во время работы — человек утомлён.</p></div>
+</div>
+
+<div class="metric-nav">
+<a href="./concentration-index.html">
+<span class="nav-dir">← Назад</span>
+<span class="nav-name">Concentration Index</span>
+</a>
+<a href="./reverse-fatigue.html" class="next">
+<span class="nav-dir">Далее →</span>
+<span class="nav-name">Reverse Fatigue</span>
+</a>
+</div>
+</div>
+
+<script src="../../../components/nav.js"></script>
+<script src="../../../components/footer.js"></script>
+</body>
+</html>

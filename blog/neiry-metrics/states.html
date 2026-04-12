@@ -11,50 +11,37 @@
 <link rel="stylesheet" href="./metrics.css">
 </head>
 <body>
-<nav class="sticky-header"><div class="block-nav"><div class="block-nav-inner">
-<a href="./index.html" class="block-nav-btn" style="font-weight:500;color:var(--text)">← Все метрики</a>
-<a href="./rhythms.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#7C3AED"></span>Ритмы мозга</a>
-<a href="./peaks.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#3B82F6"></span>Пиковые частоты</a>
-<a href="./alpha-profile.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#8B5CF6"></span>Альфа-профиль</a>
-<a href="./cognitive.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EC4899"></span>Когнитивные метрики</a>
-<a href="./indices.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#F59E0B"></span>Производные индексы</a>
-<a href="./ppg.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EF4444"></span>Сердечно-сосудистые (PPG)</a>
-<a href="./states.html" class="block-nav-btn" style="font-weight:600;color:var(--text)"><span class="block-nav-dot" style="background:#10B981"></span>Итоговые статусы</a>
-<a href="./technical.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#6B7280"></span>Технические метрики</a>
-</div></div></nav>
 
 <div class="content">
-<a href="./index.html" class="back-link">← Все метрики</a>
-
+<div class="breadcrumbs">
+<a href="./index.html">Все метрики</a> <span class="sep">→</span> <span>Итоговые статусы</span>
+</div>
 <div class="section-intro">
 <h2 style="font-size:clamp(24px,4vw,36px)">Итоговые статусы</h2>
 
 </div>
-<nav style="background:var(--bg3);border-radius:12px;padding:16px 20px;margin-bottom:32px">
-<div style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">СОДЕРЖАНИЕ</div>
-<a href="#---" style="display:inline-block;font-size:0.88rem;color:#10B981;margin:3px 12px 3px 0">---</a>
-<a href="#stress" style="display:inline-block;font-size:0.88rem;color:#10B981;margin:3px 12px 3px 0">Stress</a>
-<a href="#recommendation" style="display:inline-block;font-size:0.88rem;color:#10B981;margin:3px 12px 3px 0">Recommendation</a>
-<a href="#state" style="display:inline-block;font-size:0.88rem;color:#10B981;margin:3px 12px 3px 0">State</a>
-</nav>
-<div class="metric c-states" id="---">
-<h3 class="metric-name">---</h3>
 
+<div class="metrics-grid">
+<a href="./states/stress.html" class="metric-summary c-states">
+<h3>Stress</h3>
 
-</div><div class="metric c-states" id="stress">
-<h3 class="metric-name">Stress</h3>
+<p>Бинарная итоговая оценка: «No stress» или «Stress detected».</p>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Бинарная итоговая оценка: «No stress» или «Stress detected». Формируется по совокупности PPG + ЭЭГ данных.</p></div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Это упрощённый индикатор для быстрого понимания. Для детального анализа используйте SI и SAT.</p></div>
-</div><div class="metric c-states" id="recommendation">
-<h3 class="metric-name">Recommendation</h3>
+</a>
+<a href="./states/recommendation.html" class="metric-summary c-states">
+<h3>Recommendation</h3>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Системная рекомендация по текущему состоянию — может предложить перерыв, дыхательное упражнение, смену активности или отсутствие рекомендации.</p></div>
-</div><div class="metric c-states" id="state">
-<h3 class="metric-name">State</h3>
+<p>Системная рекомендация по текущему состоянию — может предложить перерыв, дыхательное упражнение, смену активности или отсутствие рекомендации.</p>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Valid State / Invalid State — <strong>абсолютный приоритет</strong> среди всех метрик. Показывает, можно ли доверять остальным данным.</p></div><div class="msub"><div class="msub-label">INVALID STATE</div><p>Данные ненадёжны — возможны проблемы с контактом электродов, артефакты, плохой PPG-сигнал. При Invalid State <strong>все остальные метрики не интерпретируются</strong>.</p></div><div class="msub"><div class="msub-label">ЧТО ДЕЛАТЬ</div><p>Проверить электроды, убедиться в контакте с кожей, уменьшить движения, проверить перфузию.</p></div>
-</div></div>
+</a>
+<a href="./states/state.html" class="metric-summary c-states">
+<h3>State</h3>
 
+<p>Valid State / Invalid State — <strong>абсолютный приоритет</strong> среди всех метрик.</p>
+
+</a>
+</div>
+</div>
 <script src="../../components/nav.js"></script>
 <script src="../../components/footer.js"></script>
 </body>

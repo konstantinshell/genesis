@@ -11,147 +11,79 @@
 <link rel="stylesheet" href="./metrics.css">
 </head>
 <body>
-<nav class="sticky-header"><div class="block-nav"><div class="block-nav-inner">
-<a href="./index.html" class="block-nav-btn" style="font-weight:500;color:var(--text)">← Все метрики</a>
-<a href="./rhythms.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#7C3AED"></span>Ритмы мозга</a>
-<a href="./peaks.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#3B82F6"></span>Пиковые частоты</a>
-<a href="./alpha-profile.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#8B5CF6"></span>Альфа-профиль</a>
-<a href="./cognitive.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EC4899"></span>Когнитивные метрики</a>
-<a href="./indices.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#F59E0B"></span>Производные индексы</a>
-<a href="./ppg.html" class="block-nav-btn" style="font-weight:600;color:var(--text)"><span class="block-nav-dot" style="background:#EF4444"></span>Сердечно-сосудистые (PPG)</a>
-<a href="./states.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#10B981"></span>Итоговые статусы</a>
-<a href="./technical.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#6B7280"></span>Технические метрики</a>
-</div></div></nav>
 
 <div class="content">
-<a href="./index.html" class="back-link">← Все метрики</a>
-
+<div class="breadcrumbs">
+<a href="./index.html">Все метрики</a> <span class="sep">→</span> <span>Сердечно-сосудистые (PPG)</span>
+</div>
 <div class="section-intro">
 <h2 style="font-size:clamp(24px,4vw,36px)">Сердечно-сосудистые (PPG)</h2>
-<p>Метрики, получаемые из фотоплетизмографии (PPG) — оптического датчика, измеряющего пульсацию крови в сосудах.</p>
+<p style='color:var(--text2);margin-top:8px'>Метрики из фотоплетизмографии (PPG) — оптического датчика, измеряющего пульсацию крови в сосудах.</p>
 </div>
-<nav style="background:var(--bg3);border-radius:12px;padding:16px 20px;margin-bottom:32px">
-<div style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">СОДЕРЖАНИЕ</div>
-<a href="#метрики-получаемые-из-фотоплетизмографии-ppg-оптич" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">Метрики, получаемые из фотоплетизмографии (PPG) — оптического датчика, измеряющего пульсацию крови в сосудах.</a>
-<a href="#hr-частота-сердечных-сокращений" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">HR — частота сердечных сокращений</a>
-<a href="#rrm-средний-кардиоинтервал" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">RR(M) — средний кардиоинтервал</a>
-<a href="#mo-мода-кардиоинтервалов" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">Mo — мода кардиоинтервалов</a>
-<a href="#sdnn" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">SDNN</a>
-<a href="#cv-коэффициент-вариации" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">CV — коэффициент вариации</a>
-<a href="#amo-амплитуда-моды" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">AMo — амплитуда моды</a>
-<a href="#mxdmn-вариационный-размах" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">MxdMn — вариационный размах</a>
-<a href="#si-стресс-индекс-баевского" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">SI — стресс-индекс Баевского</a>
-<a href="#sat-индекс-каплана" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">SAT — индекс Каплана</a>
-<a href="#perfusion-индекс-перфузии" style="display:inline-block;font-size:0.88rem;color:#EF4444;margin:3px 12px 3px 0">Perfusion — индекс перфузии</a>
-</nav>
-<div class="metric c-ppg" id="метрики-получаемые-из-фотоплетизмографии-ppg-оптич">
-<h3 class="metric-name">Метрики, получаемые из фотоплетизмографии (PPG) — оптического датчика, измеряющего пульсацию крови в сосудах.</h3>
 
-
-</div><div class="metric c-ppg" id="hr-частота-сердечных-сокращений">
-<h3 class="metric-name">HR — частота сердечных сокращений</h3>
+<div class="metrics-grid">
+<a href="./ppg/hr.html" class="metric-summary c-ppg">
+<h3>HR — частота сердечных сокращений</h3>
 <div class="metric-formula">60 / mean(RR)</div>
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Количество ударов сердца в минуту. Самый базовый и интуитивно понятный показатель сердечно-сосудистой системы.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge green">Покой</span> <span class="badge gray">Спортсмены</span> <span class="badge yellow">&gt; 100 bpm в покое</span> </div>
-<ul><li><strong>Покой</strong> — 55–85 bpm — норма для большинства людей</li>
-<li><strong>Спортсмены</strong> — 35–50 bpm — тренированное сердце качает больше крови за удар</li>
-<li><strong>&gt; 100 bpm в покое</strong> — тахикардия, стоит обратить внимание</li>
-</ul>
-</div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>HR снижается, парасимпатическая нервная система доминирует.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>HR может незначительно расти (на 5–10 bpm) при когнитивной нагрузке из-за активации симпатической системы.</p></div>
-</div><div class="metric c-ppg" id="rrm-средний-кардиоинтервал">
-<h3 class="metric-name">RR(M) — средний кардиоинтервал</h3>
+<p>Количество ударов сердца в минуту.</p>
+<div class="ranges"><span class="badge green">Покой</span> <span class="badge gray">Спортсмены</span> <span class="badge red">&gt; 100 bpm в покое</span></div>
+</a>
+<a href="./ppg/rrm.html" class="metric-summary c-ppg">
+<h3>RR(M) — средний кардиоинтервал</h3>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Среднее время между последовательными ударами сердца в секундах. Обратная величина HR, но в более удобной для анализа форме.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"></div>
-<ul><p>Покой: 0.7–1.2 с.</p>
-</ul>
-</div>
-</div><div class="metric c-ppg" id="mo-мода-кардиоинтервалов">
-<h3 class="metric-name">Mo — мода кардиоинтервалов</h3>
+<p>Среднее время между последовательными ударами сердца в секундах.</p>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Наиболее часто встречающийся RR-интервал в записи. Показывает «центр притяжения» сердечного ритма — на какой длительности «любит сидеть» сердце.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"></div>
-<ul><p>Покой: 0.75–1.0 с.</p>
-</ul>
-</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Mo используется в формуле стресс-индекса Баевского и отражает стабильность автономной регуляции.</p></div>
-</div><div class="metric c-ppg" id="sdnn">
-<h3 class="metric-name">SDNN</h3>
+</a>
+<a href="./ppg/mo.html" class="metric-summary c-ppg">
+<h3>Mo — мода кардиоинтервалов</h3>
+
+<p>Наиболее часто встречающийся RR-интервал в записи.</p>
+
+</a>
+<a href="./ppg/sdnn.html" class="metric-summary c-ppg">
+<h3>SDNN</h3>
 <div class="metric-formula">√(1/N × Σ(RRᵢ − RR̄)²)</div>
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Стандартное отклонение всех RR-интервалов за период записи. Это <strong>золотой стандарт</strong> оценки вариабельности сердечного ритма (HRV), рекомендованный European Society of Cardiology и North American Society of Pacing and Electrophysiology (1996).</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge green">&gt; 100 мс</span> <span class="badge green">50–100 мс</span> <span class="badge yellow">&lt; 50 мс</span> </div>
-<ul><li><strong>&gt; 100 мс</strong> — отличная вариабельность, здоровая автономная нервная система</li>
-<li><strong>50–100 мс</strong> — норма</li>
-<li><strong>&lt; 50 мс</strong> — сниженная вариабельность, повышенный кардиоваскулярный риск</li>
-</ul>
-</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Высокая SDNN = гибкая автономная нервная система, хорошая адаптивность к стрессу. Низкая SDNN = ригидная система, плохая адаптация. SDNN снижается с возрастом, при стрессе, недосыпании, после алкоголя.</p></div><div class="msub"><div class="msub-label">ИССЛЕДОВАНИЯ</div><p>Кардиология, стресс-исследования, спортивная медицина, психофизиология, оценка восстановления, прогнозирование кардиоваскулярных событий.</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>Нужна запись минимум 5 минут для надёжного SDNN. Утром натощак — для отслеживания базовой вариабельности. После стресса — для оценки восстановления.</p></div><div class="msub"><div class="msub-label">МИФЫ</div><p>- <em>«Высокий SDNN = здоровое сердце».</em> В целом да, но экстремально высокий SDNN (> 300 мс) может указывать на аритмии. Контекст важен.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>SDNN обычно выше — парасимпатика доминирует, ритм более вариабельный.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>SDNN может снижаться — симпатика активируется, ритм становится более «жёстким».</p></div>
-</div><div class="metric c-ppg" id="cv-коэффициент-вариации">
-<h3 class="metric-name">CV — коэффициент вариации</h3>
+<p>Стандартное отклонение всех RR-интервалов за период записи.</p>
+<div class="ranges"><span class="badge green">&gt; 100 мс</span> <span class="badge green">50–100 мс</span> <span class="badge yellow">&lt; 50 мс</span></div>
+</a>
+<a href="./ppg/cv.html" class="metric-summary c-ppg">
+<h3>CV — коэффициент вариации</h3>
 <div class="metric-formula">(SDNN / mean(RR)) × 100</div>
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Нормализованная версия SDNN — деление на среднее RR. Это позволяет сравнивать вариабельность у людей с разной ЧСС.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"></div>
-<ul><p>5–15%.</p>
-</ul>
-</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>CV решает проблему SDNN: у человека с HR 60 и у человека с HR 90 одинаковый SDNN значит разные вещи. CV нормализует это.</p></div>
-</div><div class="metric c-ppg" id="amo-амплитуда-моды">
-<h3 class="metric-name">AMo — амплитуда моды</h3>
+<p>Нормализованная версия SDNN — деление на среднее RR.</p>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Процент RR-интервалов, попадающих в модальный (самый частый) диапазон. Показывает, насколько «однообразно» бьётся сердце — много ли интервалов одинаковой длительности.</p></div><div class="msub"><div class="msub-label">ЧТО ИЗМЕРЯЕТ</div><p>Степень централизации управления ритмом. Высокая AMo — сердце бьётся «как метроном» под жёстким контролем симпатической системы.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge green">Покой</span> <span class="badge gray">Стресс</span> </div>
-<ul><li><strong>Покой</strong> — 30–50% — нормальный разброс</li>
-<li><strong>Стресс</strong> — 50–60%+ — ритм становится жёстким, однообразным</li>
-</ul>
-</div>
-</div><div class="metric c-ppg" id="mxdmn-вариационный-размах">
-<h3 class="metric-name">MxdMn — вариационный размах</h3>
+</a>
+<a href="./ppg/amo.html" class="metric-summary c-ppg">
+<h3>AMo — амплитуда моды</h3>
+
+<p>Процент RR-интервалов, попадающих в модальный (самый частый) диапазон.</p>
+<div class="ranges"><span class="badge green">Покой</span> <span class="badge gray">Стресс</span></div>
+</a>
+<a href="./ppg/mxdmn.html" class="metric-summary c-ppg">
+<h3>MxdMn — вариационный размах</h3>
 <div class="metric-formula">max(RR) − min(RR)</div>
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Разница между самым длинным и самым коротким RR-интервалом за период записи. Самый простой, но грубый показатель вариабельности.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"></div>
-<ul><p>Покой: 200–500+ мс.</p>
-</ul>
-</div>
-</div><div class="metric c-ppg" id="si-стресс-индекс-баевского">
-<h3 class="metric-name">SI — стресс-индекс Баевского</h3>
+<p>Разница между самым длинным и самым коротким RR-интервалом за период записи.</p>
+
+</a>
+<a href="./ppg/si.html" class="metric-summary c-ppg">
+<h3>SI — стресс-индекс Баевского</h3>
 <div class="metric-formula">AMo / (2 × Mo × MxdMn)</div>
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Стресс-индекс (SI) — один из самых известных показателей вегетативной регуляции. Разработан советским космическим физиологом Романом Марковичем Баевским для мониторинга состояния космонавтов в условиях невесомости и стресса. Отражает степень централизации управления сердечным ритмом — насколько жёстко симпатическая нервная система «зажимает» сердце.</p></div><div class="msub"><div class="msub-label">КТО ПРИДУМАЛ</div><p>Р.М. Баевский, 1960–1970-е годы, в рамках программы медицинского обеспечения космических полётов СССР. Методика Баевского до сих пор используется в Роскосмосе.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge green">50–150</span> <span class="badge yellow">150–300</span> <span class="badge yellow">300–500</span> <span class="badge red">&gt; 500</span> </div>
-<ul><li><strong>50–150</strong> — норма, сбалансированная регуляция</li>
-<li><strong>150–300</strong> — напряжение, симпатика доминирует</li>
-<li><strong>300–500</strong> — выраженное напряжение</li>
-<li><strong>&gt; 500</strong> — критический стресс</li>
-</ul>
-</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>SI реагирует на <strong>любую</strong> активацию симпатической системы — стресс, физическая нагрузка, кофе, жара. Это не специфичный показатель психологического стресса. Высокий SI после кофе не значит, что человек нервничает.</p></div><div class="msub"><div class="msub-label">ИССЛЕДОВАНИЯ</div><p>Космическая медицина, спортивная медицина, профессиональный стресс, военная медицина, оценка перетренированности.</p></div><div class="msub"><div class="msub-label">SI VS SAT</div><p>SI реагирует на любую активацию (физика, кофе, стресс). SAT специализирован на психологическом стрессе. Высокий SI + нормальный SAT = физическая нагрузка. Нормальный SI + высокий SAT = тревога без видимой причины.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>SI снижается (50–100) — парасимпатика доминирует, ритм вариабельный.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>SI может расти до 100–200 — нормальная реакция на когнитивную нагрузку.</p></div>
-</div><div class="metric c-ppg" id="sat-индекс-каплана">
-<h3 class="metric-name">SAT — индекс Каплана</h3>
+<p>Стресс-индекс (SI) — один из самых известных показателей вегетативной регуляции.</p>
+<div class="ranges"><span class="badge green">50–150</span> <span class="badge yellow">150–300</span> <span class="badge yellow">300–500</span> <span class="badge red">&gt; 500</span></div>
+</a>
+<a href="./ppg/sat.html" class="metric-summary c-ppg">
+<h3>SAT — индекс Каплана</h3>
 
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Индекс психоэмоционального стресса, разработанный на основе проприетарного алгоритма. В 3–4 раза чувствительнее SI к тревоге и эмоциональному напряжению. SAT «видит» психологический стресс даже тогда, когда SI остаётся в норме.</p></div><div class="msub"><div class="msub-label">ЧТО ИЗМЕРЯЕТ</div><p>Специфически психоэмоциональное напряжение, отделяя его от физиологической активации.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge green">60–120</span> <span class="badge blue">120–200</span> <span class="badge yellow">&gt; 200</span> </div>
-<ul><li><strong>60–120</strong> — норма</li>
-<li><strong>120–200</strong> — умеренный психоэмоциональный стресс</li>
-<li><strong>&gt; 200</strong> — выраженный стресс</li>
-</ul>
-</div><div class="msub"><div class="msub-label">ВАЖНО</div><p>Для достоверного SAT необходима калибровка (Is Calibrated = Yes). Без калибровки значения SAT ненадёжны.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>SAT в норме (60–100) — психологическое спокойствие.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>SAT может незначительно расти (100–140) при напряжённой работе, но сильный рост указывает на тревожность, а не на продуктивное напряжение.</p></div>
-</div><div class="metric c-ppg" id="perfusion-индекс-перфузии">
-<h3 class="metric-name">Perfusion — индекс перфузии</h3>
+<p>Индекс психоэмоционального стресса, разработанный на основе проприетарного алгоритма.</p>
+<div class="ranges"><span class="badge green">60–120</span> <span class="badge blue">120–200</span> <span class="badge yellow">&gt; 200</span></div>
+</a>
+<a href="./ppg/perfusion.html" class="metric-summary c-ppg">
+<h3>Perfusion — индекс перфузии</h3>
 <div class="metric-formula">AC/DC × 100%</div>
-<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Индекс периферической перфузии — сила пульсации крови в месте расположения PPG-датчика. Показывает, насколько хорошо кровь «прокачивается» через периферические сосуды.</p></div><div class="msub">
-<div class="msub-label">ДИАПАЗОНЫ</div>
-<div class="ranges"><span class="badge yellow">&lt; 0.5%</span> <span class="badge blue">0.5–1%</span> <span class="badge green">1–10%</span> </div>
-<ul><li><strong>&lt; 0.5%</strong> — слабый сигнал, данные PPG ненадёжны</li>
-<li><strong>0.5–1%</strong> — рабочий уровень, данные приемлемы</li>
-<li><strong>1–10%</strong> — хороший сигнал</li>
-</ul>
-</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Перфузия — это прежде всего показатель качества данных. Низкая перфузия (< 0.5%) означает, что все PPG-метрики (HR, HRV, SI, SAT) могут быть неточными. Причины низкой перфузии: холодные руки, плохой контакт датчика, сужение сосудов при стрессе.</p></div>
-</div></div>
-
+<p>Индекс периферической перфузии — сила пульсации крови в месте расположения PPG-датчика.</p>
+<div class="ranges"><span class="badge yellow">&lt; 0.5%</span> <span class="badge blue">0.5–1%</span> <span class="badge green">1–10%</span></div>
+</a>
+</div>
+</div>
 <script src="../../components/nav.js"></script>
 <script src="../../components/footer.js"></script>
 </body>
