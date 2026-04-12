@@ -11,7 +11,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#080808;padding:16px;font-family:'DM Sans',sans-serif}
+body{background:#080808;padding:16px;padding-top:80px;font-family:'DM Sans',sans-serif}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
 
 .card{background:#111;border-radius:22px;border:0.5px solid #222;overflow:hidden;padding:20px;animation:fadeUp .5s ease both}
@@ -79,7 +79,7 @@ body{background:#080808;padding:16px;font-family:'DM Sans',sans-serif}
   .c-onto{grid-column:span 1}
   .c-mnpi{grid-column:span 1}
   .c-rhythms{grid-column:span 1}
-  .c-platform{grid-column:span 2}
+  .c-platform{grid-column:span 2!important}
   .platform-inner{flex-wrap:wrap;height:auto;gap:12px}
   .box-platform{width:100%;order:-1}
   .output{width:100%}
@@ -133,26 +133,43 @@ body{background:#080808;padding:16px;font-family:'DM Sans',sans-serif}
   <div class="sub">мозг · тело · жизнь · состояние</div>
 </div>
 
-<!-- 2. ГАДЖЕТЫ: NEIRY + NEYROX -->
-<div class="card c-gadgets">
-  <div class="lbl">носимые устройства</div>
-  <div class="ttl" style="color:#e0e0e0">Биометрика<br>в реальном времени</div>
-  <div class="gd-row">
-    <div class="gd">
-      <div class="gd-name" style="color:#a78bfa">NEIRY</div>
-      <span class="gd-tag" style="border-color:#a78bfa;color:#a78bfa">EEG</span>
-      <span class="gd-tag" style="border-color:#555;color:#555">Alpha</span>
-      <span class="gd-tag" style="border-color:#555;color:#555">Chill</span>
-      <div class="sub" style="margin-top:8px">нейробанд<br>мозговые волны</div>
-    </div>
-    <div class="gd">
-      <div class="gd-name" style="color:#60a5fa">NEYROX</div>
-      <span class="gd-tag" style="border-color:#60a5fa;color:#60a5fa">HRV</span>
-      <span class="gd-tag" style="border-color:#555;color:#555">EDA</span>
-      <span class="gd-tag" style="border-color:#555;color:#555">Temp</span>
-      <div class="sub" style="margin-top:8px">нейро-трекер<br>лаборатория на руке</div>
-    </div>
+<!-- 2. NEIRY -->
+<div class="card c-gadgets" style="grid-column:span 3">
+  <div class="lbl">нейробанд · EEG</div>
+  <div class="ttl" style="color:#a78bfa">NEIRY</div>
+  <div style="display:flex;align-items:center;justify-content:center;margin:16px 0 12px">
+    <svg width="80" height="50" viewBox="0 0 80 50">
+      <path d="M10,40 Q20,10 40,25 Q60,40 70,10" fill="none" stroke="#a78bfa" stroke-width="1.5" opacity=".8"/>
+      <path d="M10,35 Q25,15 40,30 Q55,45 70,15" fill="none" stroke="#a78bfa" stroke-width="1" opacity=".4"/>
+      <circle cx="40" cy="25" r="3" fill="#a78bfa" style="animation:dotPulse 2s ease-in-out infinite"/>
+    </svg>
   </div>
+  <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">
+    <span class="gd-tag" style="border-color:#a78bfa;color:#a78bfa">EEG</span>
+    <span class="gd-tag" style="border-color:#555;color:#555">Alpha</span>
+    <span class="gd-tag" style="border-color:#555;color:#555">Theta</span>
+    <span class="gd-tag" style="border-color:#555;color:#555">Chill</span>
+  </div>
+  <div class="sub" style="margin-top:10px">Мозговые волны в реальном времени.<br>Запись сессий медитации и концентрации.</div>
+</div>
+
+<!-- 3. NEYROX -->
+<div class="card c-gadgets" style="grid-column:span 3;border-color:#1a2540">
+  <div class="lbl">нейро-трекер · тело</div>
+  <div class="ttl" style="color:#60a5fa">NEYROX</div>
+  <div style="display:flex;align-items:center;justify-content:center;margin:16px 0 12px">
+    <svg width="80" height="50" viewBox="0 0 80 50">
+      <path d="M5,25 L15,25 L20,10 L25,38 L30,18 L35,30 L40,25 L75,25" fill="none" stroke="#60a5fa" stroke-width="1.5" opacity=".8"/>
+      <circle cx="25" cy="38" r="2.5" fill="#60a5fa" style="animation:dotPulse 2s ease-in-out infinite .5s"/>
+    </svg>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">
+    <span class="gd-tag" style="border-color:#60a5fa;color:#60a5fa">HRV</span>
+    <span class="gd-tag" style="border-color:#555;color:#555">EDA</span>
+    <span class="gd-tag" style="border-color:#555;color:#555">Temp</span>
+    <span class="gd-tag" style="border-color:#555;color:#555">SpO2</span>
+  </div>
+  <div class="sub" style="margin-top:10px">Лаборатория на руке.<br>HRV, стресс, температура, проводимость кожи.</div>
 </div>
 
 <!-- 3. ONTO NOTHING -->
@@ -240,7 +257,52 @@ body{background:#080808;padding:16px;font-family:'DM Sans',sans-serif}
   <div class="sub" style="text-align:center">8 сфер жизни · колесо баланса</div>
 </div>
 
-<!-- 6. ПЛАТФОРМА -->
+<!-- 6. ЧЕКАП -->
+<div class="card" style="grid-column:span 3;background:#0d1520;border-color:#1a3050">
+  <div class="lbl">диагностика · 7 сессий</div>
+  <div class="ttl" style="color:#38bdf8">Чекап</div>
+  <div style="display:flex;flex-direction:column;gap:5px;margin-top:14px">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:100%;height:4px;background:#1a1a2a;border-radius:2px;overflow:hidden">
+        <div style="width:0%;height:100%;background:#38bdf8;border-radius:2px"></div>
+      </div>
+      <span style="font-size:10px;font-family:'DM Mono',monospace;color:#38bdf8;white-space:nowrap">0 / 7</span>
+    </div>
+    <div style="display:flex;gap:4px;margin-top:6px">
+      <span class="pill" style="border-color:#38bdf8;color:#38bdf8;background:#0a1a2a">CSV Neiry</span>
+      <span class="pill" style="border-color:#555;color:#555;background:#111">Аудио</span>
+      <span class="pill" style="border-color:#555;color:#555;background:#111">Отчёт</span>
+    </div>
+  </div>
+  <div class="sub" style="margin-top:10px">Мультимодальная нейродиагностика.<br>EEG + рефлексия + фитнес + клиника.</div>
+</div>
+
+<!-- 7. ПЛАНИНГ -->
+<div class="card" style="grid-column:span 3;background:#0d1008;border-color:#1a3010">
+  <div class="lbl">планирование · цели · задачи</div>
+  <div class="ttl" style="color:#4ade80">Планинг</div>
+  <div style="margin-top:14px">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <span style="color:#4ade80;font-size:13px">✓</span>
+      <span style="font-size:11px;color:#666;text-decoration:line-through">Утренняя рефлексия</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <span style="color:#4ade80;font-size:13px">✓</span>
+      <span style="font-size:11px;color:#666;text-decoration:line-through">Сессия Neiry #3</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <span style="color:#555;font-size:13px">○</span>
+      <span style="font-size:11px;color:#888">Вечерняя рефлексия</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <span style="color:#555;font-size:13px">○</span>
+      <span style="font-size:11px;color:#888">Загрузить фитнес данные</span>
+    </div>
+  </div>
+  <div class="sub" style="margin-top:10px">Персональные задачи и цели.<br>ИИ формирует план по 8 сферам жизни.</div>
+</div>
+
+<!-- 8. ПЛАТФОРМА -->
 <div class="card c-platform">
   <div class="lbl">платформа · обработка · выход</div>
   <div class="platform-inner">
