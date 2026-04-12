@@ -658,7 +658,7 @@
         Общий дашборд, совместные рефлексии,<br>
         AI-анализ командной динамики.
       </div>
-      <a href="https://t.me/ritmnothingbot?start=team_request"
+      <a href="https://t.me/NihiloAI_bot?start=team_request"
         onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;"
         style="display:block;padding:14px;background:linear-gradient(135deg,#7c6fff,#5f5fdf);
         border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
@@ -684,7 +684,7 @@
         свои пожелания или предложения.<br><br>
         Мы рассматриваем все сообщения.
       </div>
-      <a href="https://t.me/ritmnothingbot?start=message_team"
+      <a href="https://t.me/NihiloAI_bot?start=message_team"
         onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;"
         style="display:block;padding:14px;background:linear-gradient(135deg,#34c759,#28a745);
         border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
@@ -758,7 +758,7 @@
       </div>
       <p style="font-size:12px; color:#888; margin-bottom:12px;">Приглашайте только серьёзно настроенных людей, готовых пройти программу исследования до конца. Нажми чтобы скопировать:</p>
       <div id="ref-link" onclick="copyRef()" style="background:#12121a; border-radius:10px; padding:14px; cursor:pointer; text-align:center; transition:background 0.2s;">
-        <div style="font-family:'Courier Prime',monospace; font-size:13px; color:#7c6fff; word-break:break-all;">https://t.me/ritmnothingbot?start=1139648370</div>
+        <div style="font-family:'Courier Prime',monospace; font-size:13px; color:#7c6fff; word-break:break-all;">https://t.me/NihiloAI_bot?start=1139648370</div>
         <div id="ref-copied" style="font-size:11px; color:#34c759; margin-top:6px; display:none;">✅ Скопировано!</div>
         <div id="ref-hint" style="font-size:11px; color:#555; margin-top:6px;">Нажми чтобы скопировать</div>
       </div>
@@ -791,7 +791,7 @@ if (window.Telegram && window.Telegram.WebApp) {
 }
 
 function copyRef() {
-  var link = 'https://t.me/ritmnothingbot?start=1139648370';
+  var link = 'https://t.me/NihiloAI_bot?start=1139648370';
   navigator.clipboard.writeText(link).then(function() {
     document.getElementById('ref-copied').style.display = 'block';
     document.getElementById('ref-hint').style.display = 'none';
@@ -951,7 +951,7 @@ function renderHeader(profileName, week, level) {
   h += '<div class="dash-status">'+(level||'Мастер')+' · апрель 2026</div></div>';
   h += '<div class="dash-week">Неделя '+(week||1)+'</div>';
   h += '</div>';
-  h += '<a href="https://t.me/ritmnothingbot?start=stream" class="dash-add-btn">';
+  h += '<a href="https://t.me/NihiloAI_bot?start=stream" class="dash-add-btn">';
   h += '<span class="dash-add-icon">+</span>';
   h += '<span class="dash-add-text">Добавить задачу</span>';
   h += '<span class="dash-add-mic">🎤</span>';
@@ -1631,7 +1631,7 @@ function renderSec1(today) {
     if (today.physio.sleep_h) h += '<div>Сон <span style="color:#e0e0e8;font-family:Courier Prime,monospace;">' + today.physio.sleep_h + 'ч</span></div>';
     h += '</div>';
   }
-  h += '<a href="https://t.me/ritmnothingbot?start=stream" class="stream-btn" style="margin-bottom:14px;display:inline-flex;">+ поток</a>';
+  h += '<a href="https://t.me/NihiloAI_bot?start=stream" class="stream-btn" style="margin-bottom:14px;display:inline-flex;">+ поток</a>';
   h += renderPeriod('Утро', 'morning', today.morning);
   h += renderPeriod('День', 'day', today.day);
   h += renderPeriod('Вечер', 'evening', today.evening);
@@ -1948,7 +1948,7 @@ function loadTasks() {
         var audioUrl = "https://disk.yandex.ru/d/XSw9BmEZQnSuhA";
         if (i === 2) audioUrl = "https://t.me/c/3513066903/98";
         h += '<a href="'+audioUrl+'" target="_blank" style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a1a2e;border:1px solid rgba(124,111,255,0.2);border-radius:8px;text-decoration:none;color:#7c6fff;font-size:11px;font-weight:500;">🎧 Слушать аудио '+i+'</a>';
-        h += '<a href="https://t.me/ritmnothingbot?start=upload_session_'+i+'_'+uid+'" onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;" style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a2a1a;border:1px solid rgba(52,199,89,0.2);border-radius:8px;text-decoration:none;color:#34c759;font-size:10px;font-weight:500;text-align:center;">📤 CSV + диктофон</a>';
+        h += '<a href="https://t.me/NihiloAI_bot?start=upload_session_'+i+'_'+uid+'" onclick="if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.openTelegramLink(this.href);return false;}return true;" style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;background:#1a2a1a;border:1px solid rgba(52,199,89,0.2);border-radius:8px;text-decoration:none;color:#34c759;font-size:10px;font-weight:500;text-align:center;">📤 CSV + диктофон</a>';
         h += '</div>';
       }
       h += '</div>';
@@ -1976,7 +1976,7 @@ function loadTasks() {
       fh += '<div style="padding-left:14px;color:#888;margin-bottom:14px;">• ЧСС · Сон · Стресс · Шаги · SpO₂</div>';
       fh += '<div style="margin-bottom:0;">📤 Нажми кнопку — откроется бот, отправь скриншоты туда</div>';
       fh += '</div>';
-      fh += '<a href="https://t.me/ritmnothingbot?start=upload_fitness_'+uid+'"'
+      fh += '<a href="https://t.me/NihiloAI_bot?start=upload_fitness_'+uid+'"'
           + ' onclick="'
           + 'var link=this.href;'
           + 'if(window.Telegram&&Telegram.WebApp&&Telegram.WebApp.openTelegramLink)'

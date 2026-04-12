@@ -200,13 +200,13 @@ body {
 
   <!-- Action buttons -->
   <div class="action-row">
-    <a href="https://t.me/ritmnothingbot?start=team_core_idea" class="action-btn idea" onclick="return openBot('team_core_idea');">
+    <a href="https://t.me/NihiloAI_bot?start=team_core_idea" class="action-btn idea" onclick="return openBot('team_core_idea');">
       <span class="ico">💡</span>ИДЕЯ
     </a>
-    <a href="https://t.me/ritmnothingbot?start=team_core_task" class="action-btn task" onclick="return openBot('team_core_task');">
+    <a href="https://t.me/NihiloAI_bot?start=team_core_task" class="action-btn task" onclick="return openBot('team_core_task');">
       <span class="ico">✅</span>ЗАДАЧА
     </a>
-    <a href="https://t.me/ritmnothingbot?start=team_core_refl" class="action-btn refl" onclick="return openBot('team_core_refl');">
+    <a href="https://t.me/NihiloAI_bot?start=team_core_refl" class="action-btn refl" onclick="return openBot('team_core_refl');">
       <span class="ico">📝</span>РЕФЛЕКСИЯ
     </a>
   </div>
@@ -388,7 +388,7 @@ function switchTab(tab, btn) {
 }
 
 function openBot(start) {
-  var url = 'https://t.me/ritmnothingbot?start=' + start;
+  var url = 'https://t.me/NihiloAI_bot?start=' + start;
   if (tg) { tg.openTelegramLink(url); return false; }
   window.open(url, '_blank'); return false;
 }
@@ -935,7 +935,7 @@ function render(a, pt, net, rtl) {
     h += '<div style="padding:24px 16px;text-align:center;background:#12121a;border-radius:10px;">';
     h += '<div style="font-size:28px;margin-bottom:10px;">🎯</div>';
     h += '<div style="font-size:13px;color:#ccc;line-height:1.7;margin-bottom:14px;">Итоговые цели будут составлены исходя из вашего видения будущего проекта. Запишите аудио о том, каким вы видите проект через год.</div>';
-    h += '<a href="https://t.me/ritmnothingbot?start=team_core_vision" class="action-btn refl" onclick="return openBot(\'team_core_vision\');" style="display:inline-flex;padding:10px 20px;border-radius:10px;font-size:12px;text-decoration:none;">';
+    h += '<a href="https://t.me/NihiloAI_bot?start=team_core_vision" class="action-btn refl" onclick="return openBot(\'team_core_vision\');" style="display:inline-flex;padding:10px 20px;border-radius:10px;font-size:12px;text-decoration:none;">';
     h += '<span class="ico">🎙</span>Записать видение</a>';
     h += '</div>';
   }
