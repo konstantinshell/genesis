@@ -499,7 +499,7 @@
       </p>
     </div>
 
-<div class="updated">Обновлено: 11.04.2026</div>
+<div class="updated">Обновлено: 12.04.2026</div>
     <div style="height:100px;"></div>
   </div>
 
@@ -598,16 +598,16 @@
 
     
   <div style="display:flex;gap:8px;margin-bottom:14px;">
-    <a href="https://konstantinshell.github.io/genesis/team/core/"
+    <div onclick="document.getElementById('team-popup').style.display='flex'"
           style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
-          border-radius:14px;text-decoration:none;border:1px solid rgba(124,111,255,0.25);
+          border-radius:14px;cursor:pointer;border:1px solid rgba(124,111,255,0.15);
           -webkit-tap-highlight-color:transparent;">
           <span style="font-size:24px;">🤝</span>
           <div>
             <div style="font-size:14px;font-weight:600;color:#e0e0e8;">Моя команда</div>
-            <div style="font-size:11px;color:#7c6fff;margin-top:2px;">Дашборд →</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">Скоро</div>
           </div>
-        </a>
+        </div>
     <div onclick="document.getElementById('msg-popup').style.display='flex'"
       style="flex:1;display:flex;align-items:center;gap:10px;padding:14px;background:#1a1a2e;
       border-radius:14px;cursor:pointer;border:1px solid rgba(52,199,89,0.2);
@@ -2023,7 +2023,7 @@ window.addEventListener('load', function() {
   var ctx = c.getContext('2d');
   var data = [0, 3, 0, 0, 1, 0, 0];
   var labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-  var todayIdx = 5;
+  var todayIdx = 6;
   var W = c.width = c.parentElement.offsetWidth - 28;
   var H = c.height;
   var mid = H * 0.48;
