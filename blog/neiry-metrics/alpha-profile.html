@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Альфа-профиль — Справочник метрик — ONTO NOTHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/nav.css">
+<link rel="stylesheet" href="./metrics.css">
+</head>
+<body>
+<nav class="sticky-header"><div class="block-nav"><div class="block-nav-inner">
+<a href="./index.html" class="block-nav-btn" style="font-weight:500;color:var(--text)">← Все метрики</a>
+<a href="./rhythms.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#7C3AED"></span>Ритмы мозга</a>
+<a href="./peaks.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#3B82F6"></span>Пиковые частоты</a>
+<a href="./alpha-profile.html" class="block-nav-btn" style="font-weight:600;color:var(--text)"><span class="block-nav-dot" style="background:#8B5CF6"></span>Альфа-профиль</a>
+<a href="./cognitive.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EC4899"></span>Когнитивные метрики</a>
+<a href="./indices.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#F59E0B"></span>Производные индексы</a>
+<a href="./ppg.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EF4444"></span>Сердечно-сосудистые (PPG)</a>
+<a href="./states.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#10B981"></span>Итоговые статусы</a>
+<a href="./technical.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#6B7280"></span>Технические метрики</a>
+</div></div></nav>
+
+<div class="content">
+<a href="./index.html" class="back-link">← Все метрики</a>
+
+<div class="section-intro">
+<h2 style="font-size:clamp(24px,4vw,36px)">Альфа-профиль</h2>
+<p>Блок персонального нейрофизиологического паспорта. Эти метрики определяются при калибровке и остаются относительно стабильными на протяжении жизни.</p>
+</div>
+<nav style="background:var(--bg3);border-radius:12px;padding:16px 20px;margin-bottom:32px">
+<div style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">СОДЕРЖАНИЕ</div>
+<a href="#блок-персонального-нейрофизиологического-паспорта-" style="display:inline-block;font-size:0.88rem;color:#8B5CF6;margin:3px 12px 3px 0">Блок персонального нейрофизиологического паспорта. Эти метрики определяются при калибровке и остаются относительно стабильными на протяжении жизни.</a>
+<a href="#iaf-индивидуальная-альфа-частота" style="display:inline-block;font-size:0.88rem;color:#8B5CF6;margin:3px 12px 3px 0">IAF — индивидуальная альфа-частота</a>
+<a href="#iapf-частота-максимального-альфа-пика" style="display:inline-block;font-size:0.88rem;color:#8B5CF6;margin:3px 12px 3px 0">IAPF — частота максимального альфа-пика</a>
+<a href="#iapf-power-мощность-альфа-пика" style="display:inline-block;font-size:0.88rem;color:#8B5CF6;margin:3px 12px 3px 0">IAPF Power — мощность альфа-пика</a>
+<a href="#iabw-ширина-альфа-диапазона" style="display:inline-block;font-size:0.88rem;color:#8B5CF6;margin:3px 12px 3px 0">IABW — ширина альфа-диапазона</a>
+<a href="#iapf-suppression-коэффициент-подавления" style="display:inline-block;font-size:0.88rem;color:#8B5CF6;margin:3px 12px 3px 0">IAPF Suppression — коэффициент подавления</a>
+</nav>
+<div class="metric c-alpha" id="блок-персонального-нейрофизиологического-паспорта-">
+<h3 class="metric-name">Блок персонального нейрофизиологического паспорта. Эти метрики определяются при калибровке и остаются относительно стабильными на протяжении жизни.</h3>
+
+
+</div><div class="metric c-alpha" id="iaf-индивидуальная-альфа-частота">
+<h3 class="metric-name">IAF — индивидуальная альфа-частота</h3>
+
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>IAF (Individual Alpha Frequency) — центр масс альфа-спектра конкретного человека. Это главная «паспортная» характеристика мозга — как рост или размер обуви, только для нейрофизиологии. IAF генетически детерминирована на 70–80% и остаётся стабильной на протяжении всей взрослой жизни.</p></div><div class="msub"><div class="msub-label">КТО ПРИДУМАЛ</div><p>Концепцию индивидуальной альфа-частоты разработал Вольфганг Клаймеш (Wolfgang Klimesch) в серии работ 1990–2000-х годов. Он показал, что стандартные диапазоны ЭЭГ (8–13 Гц для альфа) — это грубое приближение, и у каждого человека альфа-диапазон сдвинут индивидуально.</p></div><div class="msub"><div class="msub-label">ЧТО ИЗМЕРЯЕТ</div><p>Среднюю частоту пика альфа-активности при закрытых глазах в покое. Это отражает скорость таламо-кортикальных осцилляций — по сути, «тактовую частоту» мозга.</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"></div>
+<ul><li>9.5–11.5 Гц — типичная норма для взрослых</li>
+<li>Снижается примерно на 0.1 Гц за каждые 10 лет после 30 лет</li>
+<li>У детей может быть ниже (7–9 Гц), созревает к 16–20 годам</li>
+</ul>
+</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Более высокая IAF коррелирует с лучшей скоростью обработки информации и рабочей памятью. Но это не «интеллект» — это скорость, а не глубина мышления. IAF ниже 8.5 Гц у взрослого может указывать на когнитивные проблемы (деменция, последствия ЧМТ).</p></div><div class="msub"><div class="msub-label">ИССЛЕДОВАНИЯ</div><p>Когнитивное старение, исследования интеллекта и рабочей памяти, персонализация нейрофидбека, фармакологические исследования (эффекты ноотропов).</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>При калибровке — один раз в начале. Далее — для контроля: IAF не должна меняться день ото дня. Если IAF изменилась > 1 Гц — перекалибровка или проблема с записью.</p></div><div class="msub"><div class="msub-label">ЭФФЕКТЫ СРЕДЫ</div><p>Кофеин повышает IAF на 0.2–0.5 Гц на 2–3 часа. IAF выше утром на 0.5–1 Гц по сравнению с вечером. После бессонной ночи IAF может упасть на 1–2 Гц.</p></div><div class="msub"><div class="msub-label">МИФЫ</div><p>- <em>«Можно натренировать IAF и стать умнее».</em> Нет. IAF на 70–80% генетически обусловлена. Нейрофидбек может временно сдвинуть её, но не изменяет навсегда.</p><ul><li><em>«IAF = IQ».</em> Нет. Корреляция существует, но слабая. Много других факторов определяют когнитивные способности.</li></ul></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Именно в этом состоянии IAF определяется наиболее чётко. Это «домашнее» условие для измерения.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Альфа подавляется, и IAF как стабильная характеристика становится труднее определить (меньше материала для расчёта).</p></div>
+</div><div class="metric c-alpha" id="iapf-частота-максимального-альфа-пика">
+<h3 class="metric-name">IAPF — частота максимального альфа-пика</h3>
+
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>IAPF (Individual Alpha Peak Frequency) — частота, на которой альфа-ритм достигает абсолютного максимума мощности. В отличие от IAF (центр масс), IAPF — это «острие» пика. Разница между IAF и IAPF обычно не превышает 0.5 Гц, но IAPF используется для разделения альфа-ритма на верхнюю (A2) и нижнюю (A1) поддиапазоны.</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"></div>
+<ul><p>9.5–11.5 Гц, отличается от IAF ≤ 0.5 Гц.</p>
+</ul>
+</div><div class="msub"><div class="msub-label">ПРИМЕНЕНИЕ</div><p>IAPF — опорная точка для персонализации всех остальных ритмов. Всё что ниже IAPF — нижняя альфа (A1, связана с DMN и вниманием), всё что выше — верхняя альфа (A2, связана с семантической памятью и обработкой).</p></div>
+</div><div class="metric c-alpha" id="iapf-power-мощность-альфа-пика">
+<h3 class="metric-name">IAPF Power — мощность альфа-пика</h3>
+
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Абсолютная мощность альфа-ритма на частоте IAPF. Отражает количество нейронов, синхронизированных на этой частоте — «громкость» доминирующего альфа-генератора.</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"><span class="badge gray">18–30 лет</span> </div>
+<ul><li><strong>18–30 лет</strong> — 15–50 µV²</li>
+<li>Снижается с возрастом</li>
+<li>Может временно меняться от сессии к сессии</li>
+</ul>
+</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Высокая IAPF Power — много нейронов работают синхронно, мозг хорошо «организован» в покое. Снижение с возрастом — нормальный процесс. Резкое снижение — возможный маркер проблем.</p></div>
+</div><div class="metric c-alpha" id="iabw-ширина-альфа-диапазона">
+<h3 class="metric-name">IABW — ширина альфа-диапазона</h3>
+
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Ширина индивидуального альфа-диапазона — сколько герц «покрывает» альфа-пик от его подножия до подножия.</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"></div>
+<ul><p>3–7 Гц.</p>
+</ul>
+</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Узкий диапазон (3–4 Гц) — чёткий, выраженный ритм, стабильный «метроном». Широкий диапазон (5–7 Гц) — более пластичный мозг, способный работать в большем частотном «окне». Оба варианта — норма, это индивидуальная особенность.</p></div>
+</div><div class="metric c-alpha" id="iapf-suppression-коэффициент-подавления">
+<h3 class="metric-name">IAPF Suppression — коэффициент подавления</h3>
+
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Насколько сильно альфа-ритм подавляется при переходе от покоя к задаче. Рассчитывается как отношение альфа-мощности в покое к альфа-мощности при работе.</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"></div>
+<ul><li>< 1.2 — слабая реактивность, альфа почти не подавляется. Возможный признак выгорания — мозг не может мобилизоваться.</li>
+<li>~2.0 — норма. Альфа снижается примерно вдвое при задаче.</li>
+<li>> 3.5 — гиперактивация. Мозг слишком резко «включается», возможна тревожность.</li>
+</ul>
+</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Это ключевая метрика реактивности мозга. IAPF Suppression < 1.2 — тревожный сигнал о когнитивном выгорании или хронической усталости: мозг «застрял» в одном режиме и не может переключиться.</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>При калибровке и периодически для оценки «гибкости» мозга. После длительных периодов стресса — для выявления выгорания.</p></div>
+</div></div>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>

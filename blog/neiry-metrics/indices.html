@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Производные индексы — Справочник метрик — ONTO NOTHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/nav.css">
+<link rel="stylesheet" href="./metrics.css">
+</head>
+<body>
+<nav class="sticky-header"><div class="block-nav"><div class="block-nav-inner">
+<a href="./index.html" class="block-nav-btn" style="font-weight:500;color:var(--text)">← Все метрики</a>
+<a href="./rhythms.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#7C3AED"></span>Ритмы мозга</a>
+<a href="./peaks.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#3B82F6"></span>Пиковые частоты</a>
+<a href="./alpha-profile.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#8B5CF6"></span>Альфа-профиль</a>
+<a href="./cognitive.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EC4899"></span>Когнитивные метрики</a>
+<a href="./indices.html" class="block-nav-btn" style="font-weight:600;color:var(--text)"><span class="block-nav-dot" style="background:#F59E0B"></span>Производные индексы</a>
+<a href="./ppg.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EF4444"></span>Сердечно-сосудистые (PPG)</a>
+<a href="./states.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#10B981"></span>Итоговые статусы</a>
+<a href="./technical.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#6B7280"></span>Технические метрики</a>
+</div></div></nav>
+
+<div class="content">
+<a href="./index.html" class="back-link">← Все метрики</a>
+
+<div class="section-intro">
+<h2 style="font-size:clamp(24px,4vw,36px)">Производные индексы</h2>
+<p>Все индексы — производные от спектральных мощностей ритмов. Они персонализируются через baseline после калибровки.</p>
+</div>
+<nav style="background:var(--bg3);border-radius:12px;padding:16px 20px;margin-bottom:32px">
+<div style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">СОДЕРЖАНИЕ</div>
+<a href="#все-индексы-производные-от-спектральных-мощностей-" style="display:inline-block;font-size:0.88rem;color:#F59E0B;margin:3px 12px 3px 0">Все индексы — производные от спектральных мощностей ритмов. Они персонализируются через baseline после калибровки.</a>
+<a href="#relaxation-index" style="display:inline-block;font-size:0.88rem;color:#F59E0B;margin:3px 12px 3px 0">Relaxation Index</a>
+<a href="#concentration-index" style="display:inline-block;font-size:0.88rem;color:#F59E0B;margin:3px 12px 3px 0">Concentration Index</a>
+<a href="#fatigue-score" style="display:inline-block;font-size:0.88rem;color:#F59E0B;margin:3px 12px 3px 0">Fatigue Score</a>
+<a href="#reverse-fatigue" style="display:inline-block;font-size:0.88rem;color:#F59E0B;margin:3px 12px 3px 0">Reverse Fatigue</a>
+<a href="#accumulated-fatigue" style="display:inline-block;font-size:0.88rem;color:#F59E0B;margin:3px 12px 3px 0">Accumulated Fatigue</a>
+<a href="#productivity-score" style="display:inline-block;font-size:0.88rem;color:#F59E0B;margin:3px 12px 3px 0">Productivity Score</a>
+<a href="#alpha-gravity" style="display:inline-block;font-size:0.88rem;color:#F59E0B;margin:3px 12px 3px 0">Alpha Gravity</a>
+</nav>
+<div class="metric c-indices" id="все-индексы-производные-от-спектральных-мощностей-">
+<h3 class="metric-name">Все индексы — производные от спектральных мощностей ритмов. Они персонализируются через baseline после калибровки.</h3>
+
+
+</div><div class="metric c-indices" id="relaxation-index">
+<h3 class="metric-name">Relaxation Index</h3>
+<div class="metric-formula">Alpha / Beta</div>
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Простое соотношение Alpha / Beta. Показывает баланс между расслаблением (альфа) и когнитивной активацией (бета).</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"><span class="badge yellow">&lt; 0.5</span> <span class="badge green">0.5–1.5</span> <span class="badge yellow">&gt; 2.0</span> </div>
+<ul><li><strong>&lt; 0.5</strong> — выраженная когнитивная активация</li>
+<li><strong>0.5–1.5</strong> — рабочее состояние, баланс</li>
+<li><strong>&gt; 2.0</strong> — покой, расслабленность</li>
+</ul>
+</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Это быстрый индикатор «расслаблен или напряжён». Прост в интерпретации, но менее точен, чем составная метрика Relaxation.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Relaxation Index высокий (> 2.0) — альфа доминирует над бетой.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Relaxation Index падает ниже 1.0 — бета превышает альфу.</p></div>
+</div><div class="metric c-indices" id="concentration-index">
+<h3 class="metric-name">Concentration Index</h3>
+<div class="metric-formula">Beta / Alpha</div>
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Обратная величина Relaxation Index: Beta / Alpha. Показывает степень когнитивной активации относительно расслабления.</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"><span class="badge yellow">&lt; 1.0</span> <span class="badge blue">1.0–2.0</span> <span class="badge green">2.0–3.5</span> <span class="badge green">3.5–6.0</span> <span class="badge yellow">&gt; 6.0</span> </div>
+<ul><li><strong>&lt; 1.0</strong> — рассеянность, преобладание альфы</li>
+<li><strong>1.0–2.0</strong> — умеренная концентрация</li>
+<li><strong>2.0–3.5</strong> — хорошая концентрация</li>
+<li><strong>3.5–6.0</strong> — высокая концентрация</li>
+<li><strong>&gt; 6.0</strong> — перенапряжение, когнитивная перегрузка</li>
+</ul>
+</div><div class="msub"><div class="msub-label">МИФЫ</div><p>- <em>«Чем выше Concentration Index, тем лучше».</em> Нет. Выше 6.0 — это перенапряжение, эффективность начинает падать.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Concentration Index низкий (< 1.0) — бета минимальна, альфа доминирует.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Concentration Index растёт до 2.0–4.0 при нормальной работе.</p></div>
+</div><div class="metric c-indices" id="fatigue-score">
+<h3 class="metric-name">Fatigue Score</h3>
+<div class="metric-formula">(Alpha + Theta) / Beta</div>
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Моментальный уровень когнитивной усталости. Основан на том, что усталость проявляется ростом «медленных» ритмов (альфа + тета) и падением «быстрого» бета.</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"><span class="badge green">0.3–0.8</span> <span class="badge green">0.8–1.0</span> <span class="badge yellow">1.0–2.0</span> <span class="badge yellow">2.0–3.0</span> <span class="badge yellow">&gt; 3.0</span> </div>
+<ul><li><strong>0.3–0.8</strong> — бодрость, мозг полностью работоспособен</li>
+<li><strong>0.8–1.0</strong> — нормальная зона</li>
+<li><strong>1.0–2.0</strong> — усталость, снижение эффективности</li>
+<li><strong>2.0–3.0</strong> — выраженная усталость</li>
+<li><strong>&gt; 3.0</strong> — критическая усталость, необходим перерыв</li>
+</ul>
+</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Fatigue Score > 2.0 в рабочее время — необходим перерыв. Мозг не справляется с подавлением медленных ритмов, когнитивная обработка деградирует.</p></div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>В динамике в течение рабочего дня. Нарастание Fatigue Score — предиктор ошибок и снижения качества решений.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Fatigue Score высокий (> 2.0) — это нормально, мозг в режиме покоя.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Fatigue Score должен быть 0.5–1.0. Если выше 1.5 во время работы — человек утомлён.</p></div>
+</div><div class="metric c-indices" id="reverse-fatigue">
+<h3 class="metric-name">Reverse Fatigue</h3>
+<div class="metric-formula">Beta / (Alpha + Theta)</div>
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Обратный индекс усталости — уровень бодрости. Математически обратен Fatigue Score.</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"><span class="badge green">&gt; 2.0</span> <span class="badge blue">1.0–2.0</span> <span class="badge yellow">&lt; 1.0</span> </div>
+<ul><li><strong>&gt; 2.0</strong> — бодрость, высокая энергия</li>
+<li><strong>1.0–2.0</strong> — рабочий уровень</li>
+<li><strong>&lt; 1.0</strong> — сонливость, усталость</li>
+</ul>
+</div>
+</div><div class="metric c-indices" id="accumulated-fatigue">
+<h3 class="metric-name">Accumulated Fatigue</h3>
+
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Накопленная усталость за сессию — интегральный показатель, который учитывает не моментальное состояние, а динамику усталости за весь период записи.</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"><span class="badge gray">0–3</span> <span class="badge blue">3–6</span> <span class="badge yellow">6–8</span> <span class="badge red">&gt; 8</span> </div>
+<ul><li><strong>0–3</strong> — резервы есть, можно продолжать работу</li>
+<li><strong>3–6</strong> — умеренное накопление усталости</li>
+<li><strong>6–8</strong> — значительная усталость</li>
+<li><strong>&gt; 8</strong> — критическое накопление, необходим длительный отдых</li>
+</ul>
+</div><div class="msub"><div class="msub-label">КОГДА НАБЛЮДАТЬ</div><p>Важна сессия достаточной длительности (> 10 минут). В конце рабочего дня. При планировании перерывов.</p></div>
+</div><div class="metric c-indices" id="productivity-score">
+<h3 class="metric-name">Productivity Score</h3>
+
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Комплексная когнитивная эффективность — составной балл, учитывающий внимание, утомление, когнитивный контроль и нагрузку.</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"><span class="badge yellow">&lt; 40%</span> <span class="badge blue">40–60%</span> <span class="badge green">60–80%</span> <span class="badge gray">&gt; 80%</span> </div>
+<ul><li><strong>&lt; 40%</strong> — низкая продуктивность</li>
+<li><strong>40–60%</strong> — средняя</li>
+<li><strong>60–80%</strong> — хорошая</li>
+<li><strong>&gt; 80%</strong> — пиковая продуктивность</li>
+</ul>
+</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Это «итоговая оценка» когнитивного состояния. Полезна для быстрого понимания «насколько я сейчас эффективен» без погружения в отдельные метрики.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Productivity Score низкий — это нормально, человек не работает.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Productivity Score отражает реальную эффективность текущей когнитивной работы.</p></div>
+</div><div class="metric c-indices" id="alpha-gravity">
+<h3 class="metric-name">Alpha Gravity</h3>
+<div class="metric-formula">A2 / A1</div>
+<div class="msub"><div class="msub-label">ЧТО ЭТО</div><p>Соотношение верхней альфы (A2, выше IAPF) к нижней альфе (A1, ниже IAPF). Отражает баланс между сетью пассивного режима (DMN, Default Mode Network) и сетью центрального исполнения (CEN, Central Executive Network).</p></div><div class="msub">
+<div class="msub-label">ДИАПАЗОНЫ</div>
+<div class="ranges"><span class="badge gray">&lt; 0.8</span> <span class="badge green">~1.0</span> <span class="badge gray">&gt; 1.2</span> </div>
+<ul><li><strong>&lt; 0.8</strong> — преобладание нижней альфы → творческий режим, DMN активен, «мечтательность»</li>
+<li><strong>~1.0</strong> — баланс между DMN и CEN</li>
+<li><strong>&gt; 1.2</strong> — преобладание верхней альфы → аналитический режим, CEN активен</li>
+</ul>
+</div><div class="msub"><div class="msub-label">ИНТЕРПРЕТАЦИЯ</div><p>Alpha Gravity — один из наиболее тонких индикаторов когнитивного стиля в данный момент. Творческие задачи лучше решать при Alpha Gravity < 0.8 (DMN активен, связи между далёкими идеями). Аналитические — при Alpha Gravity > 1.2.</p></div><div class="state-block eyes-closed"><div class="msub-label">ЗАКРЫТЫЕ ГЛАЗА</div><p>Alpha Gravity стремится к балансу (~1.0), но может отклоняться в зависимости от того, «о чём не думает» человек — DMN может активироваться даже при попытке не думать.</p></div><div class="state-block eyes-open"><div class="msub-label">ОТКРЫТЫЕ ГЛАЗА, ФОКУС</div><p>Alpha Gravity растёт (> 1.0–1.2) — CEN берёт управление для задачи.</p></div>
+</div></div>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>

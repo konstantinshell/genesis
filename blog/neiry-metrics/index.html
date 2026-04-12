@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Справочник метрик Neiry Capsule — ONTO NOTHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/nav.css">
+<link rel="stylesheet" href="./metrics.css">
+</head>
+<body>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-eyebrow">справочник</div>
+<h1>Метрики Neiry Capsule</h1>
+<p class="hero-sub">Подробный справочник по всем метрикам экосистемы Neiry Capsule — для исследователей, практиков, нейрофизиологов и владельцев устройства.</p>
+</div>
+</section>
+
+<div class="content">
+<div class="hub-grid">
+<a href="./rhythms.html" class="hub-card c-rhythms">
+<div class="hub-count">4 метрики</div>
+<h3>Ритмы мозга</h3>
+<p>Alpha, Beta, Theta, SMR — нормализованные мощности мозговых ритмов от 0 до 1.</p>
+</a>
+<a href="./peaks.html" class="hub-card c-peaks">
+<div class="hub-count">3 метрики</div>
+<h3>Пиковые частоты</h3>
+<p>Alpha Peak, Beta Peak, Theta Peak — мгновенные пиковые частоты внутри каждого диапазона.</p>
+</a>
+<a href="./alpha-profile.html" class="hub-card c-alpha">
+<div class="hub-count">5 метрик</div>
+<h3>Альфа-профиль</h3>
+<p>IAF, IAPF, IAPF Power, IABW, IAPF Suppression — персональный нейрофизиологический паспорт.</p>
+</a>
+<a href="./cognitive.html" class="hub-card c-cognitive">
+<div class="hub-count">4 метрики</div>
+<h3>Когнитивные метрики</h3>
+<p>Attention, Relaxation, Cognitive Load, Cognitive Control — высокоуровневые составные показатели.</p>
+</a>
+<a href="./indices.html" class="hub-card c-indices">
+<div class="hub-count">7 метрик</div>
+<h3>Производные индексы</h3>
+<p>Relaxation Index, Concentration Index, Fatigue Score, Reverse Fatigue, Accumulated Fatigue, Productivity Score, Alpha Gravity.</p>
+</a>
+<a href="./ppg.html" class="hub-card c-ppg">
+<div class="hub-count">10 метрик</div>
+<h3>Сердечно-сосудистые (PPG)</h3>
+<p>HR, RR(M), Mo, SDNN, CV, AMo, MxdMn, SI Баевского, SAT Каплана, Perfusion.</p>
+</a>
+<a href="./states.html" class="hub-card c-states">
+<div class="hub-count">3 метрики</div>
+<h3>Итоговые статусы</h3>
+<p>Stress, Recommendation, State — итоговые бинарные и текстовые статусы.</p>
+</a>
+<a href="./technical.html" class="hub-card c-tech">
+<div class="hub-count">13 метрик</div>
+<h3>Технические метрики</h3>
+<p>IsConnected, Battery, Serial, Firmware, Mode, Session, Data Markup, импеданс, Artifacts и др.</p>
+</a>
+</div>
+
+<h2 style="margin-top:48px;font-size:24px">Иерархия доверия к данным</h2>
+<p style="color:var(--text2);margin:8px 0 16px">При анализе данных Neiry придерживайтесь следующего порядка проверки:</p>
+
+<div class="trust-level trust-1">
+<h4>Уровень 1 — абсолютный приоритет (проверять первым)</h4>
+<p>Valid State, Artifacts, Perfusion, PPG quality, Average µV, импеданс электродов. Если здесь проблемы — остальные данные не интерпретируются.</p>
+</div>
+<div class="trust-level trust-2">
+<h4>Уровень 2 — высокая надёжность</h4>
+<p>SDNN, SI, Alpha Peak vs IAPF, Accumulated Fatigue. Эти метрики хорошо изучены и надёжны при чистых данных.</p>
+</div>
+<div class="trust-level trust-3">
+<h4>Уровень 3 — средняя надёжность</h4>
+<p>Concentration, Relaxation, Fatigue Score. Требуют корректной калибровки для точности.</p>
+</div>
+<div class="trust-level trust-4">
+<h4>Уровень 4 — динамические</h4>
+<p>Instant Frequency Peaks, Emotions. Значимы только при устойчивости 2+ минуты. Кратковременные скачки — шум, не сигнал.</p>
+</div>
+
+<p style="color:var(--text3);font-size:0.85rem;margin-top:32px;font-style:italic">Этот справочник основан на данных, доступных через экосистему Neiry Capsule. Для профессиональной медицинской диагностики обратитесь к специалисту.</p>
+</div>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>

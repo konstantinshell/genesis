@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Технические метрики — Справочник метрик — ONTO NOTHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/nav.css">
+<link rel="stylesheet" href="./metrics.css">
+</head>
+<body>
+<nav class="sticky-header"><div class="block-nav"><div class="block-nav-inner">
+<a href="./index.html" class="block-nav-btn" style="font-weight:500;color:var(--text)">← Все метрики</a>
+<a href="./rhythms.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#7C3AED"></span>Ритмы мозга</a>
+<a href="./peaks.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#3B82F6"></span>Пиковые частоты</a>
+<a href="./alpha-profile.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#8B5CF6"></span>Альфа-профиль</a>
+<a href="./cognitive.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EC4899"></span>Когнитивные метрики</a>
+<a href="./indices.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#F59E0B"></span>Производные индексы</a>
+<a href="./ppg.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#EF4444"></span>Сердечно-сосудистые (PPG)</a>
+<a href="./states.html" class="block-nav-btn" style=""><span class="block-nav-dot" style="background:#10B981"></span>Итоговые статусы</a>
+<a href="./technical.html" class="block-nav-btn" style="font-weight:600;color:var(--text)"><span class="block-nav-dot" style="background:#6B7280"></span>Технические метрики</a>
+</div></div></nav>
+
+<div class="content">
+<a href="./index.html" class="back-link">← Все метрики</a>
+
+<div class="section-intro">
+<h2 style="font-size:clamp(24px,4vw,36px)">Технические метрики</h2>
+<p>Этот раздел предназначен для технических специалистов, владельцев устройств Neiry и тех, кто работает непосредственно в капсуле. Эти метрики не отражают состояние человека — они отражают состояние оборудования и качество данных.</p>
+</div>
+<nav style="background:var(--bg3);border-radius:12px;padding:16px 20px;margin-bottom:32px">
+<div style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">СОДЕРЖАНИЕ</div>
+<a href="#этот-раздел-предназначен-для-технических-специалис" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Этот раздел предназначен для технических специалистов, владельцев устройств Neiry и тех, кто работает непосредственно в капсуле. Эти метрики не отражают состояние человека — они отражают состояние оборудования и качество данных.</a>
+<a href="#isconnected-статус-подключения" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">IsConnected — статус подключения</a>
+<a href="#battery-заряд-батареи" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Battery — заряд батареи</a>
+<a href="#serial-серийный-номер" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Serial — серийный номер</a>
+<a href="#firmware-версия-прошивки" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Firmware — версия прошивки</a>
+<a href="#mode-режим-работы" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Mode — режим работы</a>
+<a href="#session-start-время-начала-сессии" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Session Start — время начала сессии</a>
+<a href="#session-duration-длительность-записи" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Session Duration — длительность записи</a>
+<a href="#session-id-уникальный-id-сессии" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Session ID — уникальный ID сессии</a>
+<a href="#data-markup-15-маркировка-событий" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Data Markup (1–5) — маркировка событий</a>
+<a href="#импеданс-электродов-o1-t3-o2-t4" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Импеданс электродов (O1, T3, O2, T4)</a>
+<a href="#artifacts-наличие-помех" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Artifacts — наличие помех</a>
+<a href="#average-µv-средняя-амплитуда-ээг" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Average µV — средняя амплитуда ЭЭГ</a>
+<a href="#ppg-quality-avg-качество-ppg-сигнала" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">PPG quality avg — качество PPG-сигнала</a>
+<a href="#is-calibrated-статус-калибровки" style="display:inline-block;font-size:0.88rem;color:#6B7280;margin:3px 12px 3px 0">Is Calibrated — статус калибровки</a>
+</nav>
+<div class="metric c-tech" id="этот-раздел-предназначен-для-технических-специалис" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Этот раздел предназначен для технических специалистов, владельцев устройств Neiry и тех, кто работает непосредственно в капсуле. Эти метрики не отражают состояние человека — они отражают состояние оборудования и качество данных.</h3>
+<p>---</p>
+</div>
+<div class="metric c-tech" id="isconnected-статус-подключения" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">IsConnected — статус подключения</h3>
+<p>Значения: true / false. Показывает, установлено ли Bluetooth-соединение с трекером.</p>
+</div>
+<div class="metric c-tech" id="battery-заряд-батареи" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Battery — заряд батареи</h3>
+<p>При заряде > 15% — качество записи нормальное. При < 15% — качество сигнала может снижаться, рекомендуется зарядить устройство.</p>
+</div>
+<div class="metric c-tech" id="serial-серийный-номер" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Serial — серийный номер</h3>
+<p>6-значный числовой код, уникальный идентификатор устройства.</p>
+</div>
+<div class="metric c-tech" id="firmware-версия-прошивки" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Firmware — версия прошивки</h3>
+<p>Числовой код версии. Обновления прошивки могут влиять на алгоритмы обработки.</p>
+</div>
+<div class="metric c-tech" id="mode-режим-работы" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Mode — режим работы</h3>
+<p>Текущий режим устройства (например, SignalResist).</p>
+</div>
+<div class="metric c-tech" id="session-start-время-начала-сессии" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Session Start — время начала сессии</h3>
+<p>Формат чч:мм:сс. Фиксирует момент начала записи.</p>
+</div>
+<div class="metric c-tech" id="session-duration-длительность-записи" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Session Duration — длительность записи</h3>
+<p>Минимальные требования: > 5 минут для надёжного HRV, > 10 минут для оценки накопленной усталости.</p>
+</div>
+<div class="metric c-tech" id="session-id-уникальный-id-сессии" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Session ID — уникальный ID сессии</h3>
+<p>Буквенно-числовой код для идентификации конкретной записи.</p>
+</div>
+<div class="metric c-tech" id="data-markup-15-маркировка-событий" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Data Markup (1–5) — маркировка событий</h3>
+<p>Ручные метки, которые оператор ставит во время записи для обозначения значимых моментов (начало задачи, эмоциональное событие и т.д.).</p>
+</div>
+<div class="metric c-tech" id="импеданс-электродов-o1-t3-o2-t4" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Импеданс электродов (O1, T3, O2, T4)</h3>
+<ul><li>Сопротивление контакта каждого электрода с кожей в кОм. Норма для сухих электродов: 100–300 кОм. Выше 300 — плохой контакт, нужно поправить электрод.</p><p><strong>Расположение электродов:</strong></li><li>O1-T3 — отведение левого полушария (аналитическое мышление, речь)</li><li>O2-T4 — отведение правого полушария (пространственное восприятие, эмоции)</p><p><strong>Межполушарная асимметрия:</strong> при успешной деактивации DMN асимметрия обычно снижается — оба полушария синхронизируются. Это маркер успешной практики остановки внутреннего диалога.</li></ul>
+</div>
+<div class="metric c-tech" id="artifacts-наличие-помех" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Artifacts — наличие помех</h3>
+<p>No = чистый сигнал. Yes = обнаружены артефакты (мышечные, от движения и др.). При артефактах данные ЭЭГ ненадёжны.</p>
+</div>
+<div class="metric c-tech" id="average-µv-средняя-амплитуда-ээг" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Average µV — средняя амплитуда ЭЭГ</h3>
+<p>Средняя амплитуда сигнала в микровольтах. Норма: 10–100 µV. Значения 5–6 µV — ниже нормы, возможны проблемы с контактом.</p>
+</div>
+<div class="metric c-tech" id="ppg-quality-avg-качество-ppg-сигнала" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">PPG quality avg — качество PPG-сигнала</h3>
+<p>Интегральная оценка качества оптического сигнала. < 0.5 — ненадёжно, > 0.7 — приемлемо.</p>
+</div>
+<div class="metric c-tech" id="is-calibrated-статус-калибровки" style="padding:20px 24px">
+<h3 class="metric-name" style="font-size:18px">Is Calibrated — статус калибровки</h3>
+<p>Yes / No. Без калибровки SAT и персонализированные метрики (Emotions) недостоверны.</p><p>---</p>
+</div>
+</div>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>
