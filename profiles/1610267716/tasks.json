@@ -110,6 +110,7 @@
         }
       ]
     },
-    "week_report": null
+    "week_report": null,
+    "user_tasks": []
   }
 }
