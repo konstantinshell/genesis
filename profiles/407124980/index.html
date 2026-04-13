@@ -2010,7 +2010,7 @@ setTimeout(function(){
     var el = document.getElementById('personal-advice');
     if (!el) return;
     if (txt) {
-      el.innerHTML = '<div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:4px;">AI-СОВЕТ</div><div style="font-size:12px;color:#ccc;line-height:1.7;">' + txt.replace(/\n/g,'<br>') + '</div>';
+      el.innerHTML = '<div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:4px;">AI-СОВЕТ</div><div style="font-size:12px;color:#ccc;line-height:1.7;">' + txt.split(String.fromCharCode(10)).join('<br>') + '</div>';
     } else {
       el.innerHTML = '<div style="font-size:10px;color:#7c6fff;font-weight:600;margin-bottom:4px;">AI-СОВЕТ</div><div style="font-size:12px;color:#555;line-height:1.7;">Совет появится после первых данных — рефлексий, сессий или анкеты.</div>';
     }
