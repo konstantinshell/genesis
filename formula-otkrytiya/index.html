@@ -3,21 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Формула Открытия — 40 дней до сверх-результатов. 7 режимов сознания. 60+ биомаркеров. Каждый результат — на приборе.">
-  <meta name="keywords" content="формула открытия, управление мозгом, ЭЭГ, нейропластичность, 40 дней, альфа, бета, нейробанд">
-  <meta property="og:title" content="Формула Открытия — 40 дней до сверх-результатов">
-  <meta property="og:description" content="Вы можете управлять своим мозгом. Буквально. 40 дней. 7 режимов сознания. 60+ биомаркеров.">
+  <meta name="description" content="Формула Открытия — 40 дней. 7 режимов сознания. 60+ биомаркеров. Каждый результат — на приборе.">
+  <meta property="og:title" content="Формула Открытия">
+  <meta property="og:description" content="40 дней. 7 режимов сознания. 60+ биомаркеров. Каждый результат — на приборе.">
   <meta property="og:type" content="website">
-  <title>Формула Открытия — 40 дней до сверх-результатов</title>
+  <title>Формула Открытия — 40 дней</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@300;400;500;600&family=Oswald:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/nav.css">
 
   <style>
     /* ══════════════════════════════════
-       RESET & TOKENS — ФОРМУЛА ОТКРЫТИЯ
+       RESET & TOKENS
     ══════════════════════════════════ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -25,14 +24,15 @@
       --bg:           #0A0A12;
       --bg-deep:      #06060C;
       --text:         #F0F0F5;
-      --muted:        #888896;
-      --body-c:       rgba(240,240,245,0.72);
+      --muted:        #777790;
+      --dim:          #44445A;
       --accent:       #5F5FFF;
       --accent-soft:  rgba(95,95,255,0.12);
       --warm:         #F5DEB3;
       --neuro-green:  #00E5A0;
       --violet:       #A78BFA;
-      --danger:       #FF5F6D;
+      --danger:       #FF6B6B;
+      --border:       #1A1A2E;
       --fh: "Oswald", sans-serif;
       --fb: "Jost", sans-serif;
       --fm: "Courier Prime", monospace;
@@ -84,7 +84,7 @@
     }
 
     /* ══════════════════════════════════
-       HERO — SCREEN 1 (GRABBER)
+       HERO — SCREEN 1
     ══════════════════════════════════ */
     .hero {
       position: relative;
@@ -93,36 +93,21 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 96px 24px 56px;
+      padding: 88px 24px 56px;
       overflow: hidden;
     }
 
-    /* Background orbs */
+    /* Central indigo radial glow — ~600px blurred */
     .hero::before {
       content: "";
       position: absolute;
-      width: 70vw;
-      height: 70vw;
-      max-width: 900px;
-      max-height: 900px;
+      width: 1200px;
+      height: 1200px;
       border-radius: 50%;
       top: 50%; left: 50%;
-      transform: translate(-50%, -55%);
-      background: radial-gradient(circle, rgba(95,95,255,0.18) 0%, rgba(245,222,179,0.05) 40%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 50vw;
-      height: 50vw;
-      max-width: 700px;
-      max-height: 700px;
-      border-radius: 50%;
-      top: 25%; left: 30%;
-      background: radial-gradient(circle, rgba(0,229,160,0.06) 0%, transparent 70%);
-      filter: blur(40px);
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(95,95,255,0.09) 0%, rgba(95,95,255,0.04) 30%, transparent 60%);
+      filter: blur(20px);
       pointer-events: none;
       z-index: 0;
     }
@@ -131,94 +116,77 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 1080px;
+      max-width: 960px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
     }
 
-    /* Tag */
+    /* ── Top label ────────────────────── */
     .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 6px 14px;
-      border-radius: 100px;
-      border: 1px solid rgba(95,95,255,0.35);
-      background: rgba(95,95,255,0.08);
       font-family: var(--fm);
       font-size: 11px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.36em;
       text-transform: uppercase;
-      color: var(--violet);
-      margin-bottom: 22px;
+      color: var(--accent);
+      margin-bottom: 28px;
       opacity: 0;
       animation: fadeUp 0.9s ease 0.1s forwards;
     }
     .hero-tag .dot {
-      width: 6px; height: 6px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--neuro-green);
       box-shadow: 0 0 10px var(--neuro-green);
-      animation: pulse 1.6s ease-in-out infinite;
+      animation: pulse 1.8s ease-in-out infinite;
     }
 
-    /* Caption above charts */
-    .hero-caption {
-      font-family: var(--fm);
-      font-size: clamp(0.8rem, 1.5vw, 0.95rem);
-      color: rgba(240,240,245,0.6);
-      letter-spacing: 0.06em;
-      margin-bottom: 14px;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.3s forwards;
-    }
-
-    /* EEG charts block */
+    /* ── EEG block ────────────────────── */
     .eeg-block {
       width: 100%;
-      max-width: 900px;
+      max-width: 780px;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: stretch;
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 14px;
+      margin-bottom: 14px;
       opacity: 0;
-      animation: fadeUp 1.1s ease 0.5s forwards;
+      animation: fadeUp 1.1s ease 0.3s forwards;
     }
 
     .eeg-card {
       position: relative;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.01) 100%);
-      padding: 14px 16px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.005) 100%);
+      padding: 12px 14px 10px;
       overflow: hidden;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
     }
-    .eeg-card--chaos { border-color: rgba(255,95,109,0.22); }
-    .eeg-card--order { border-color: rgba(0,229,160,0.25); }
+    .eeg-card--chaos { border-color: rgba(255,107,107,0.22); }
+    .eeg-card--order { border-color: rgba(0,229,160,0.22); }
 
     .eeg-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .eeg-label {
       font-family: var(--fm);
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(240,240,245,0.5);
+      color: rgba(240,240,245,0.45);
     }
     .eeg-state {
       font-family: var(--fh);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
     }
     .eeg-card--chaos .eeg-state { color: var(--danger); }
@@ -227,48 +195,29 @@
     .eeg-svg {
       display: block;
       width: 100%;
-      height: 86px;
+      height: 70px;
     }
 
-    .eeg-footer {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 6px;
-      font-family: var(--fm);
-      font-size: 10px;
-      color: rgba(240,240,245,0.4);
-      letter-spacing: 0.08em;
-    }
-    .eeg-footer b { font-weight: 700; color: rgba(240,240,245,0.75); }
-
-    /* Middle arrow — 30 seconds */
+    /* Middle — 30 сек bridge */
     .eeg-bridge {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 0 6px;
+      gap: 6px;
+      padding: 0 4px;
     }
     .eeg-bridge-time {
       font-family: var(--ft);
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-size: clamp(1.4rem, 2.6vw, 1.9rem);
       color: var(--warm);
       line-height: 1;
-      text-shadow: 0 0 18px rgba(245,222,179,0.35);
-    }
-    .eeg-bridge-label {
-      font-family: var(--fm);
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(240,240,245,0.45);
-      white-space: nowrap;
+      text-shadow: 0 0 14px rgba(245,222,179,0.35);
     }
     .eeg-bridge-arrow {
-      width: 46px;
+      width: 40px;
       height: 1px;
-      background: linear-gradient(90deg, rgba(255,95,109,0.5) 0%, var(--warm) 50%, rgba(0,229,160,0.6) 100%);
+      background: linear-gradient(90deg, rgba(255,107,107,0.5) 0%, var(--warm) 50%, rgba(0,229,160,0.6) 100%);
       position: relative;
     }
     .eeg-bridge-arrow::after {
@@ -280,143 +229,194 @@
       border-top: 1px solid var(--neuro-green);
       transform: translateY(-50%) rotate(45deg);
     }
-
-    /* Same-person line */
-    .hero-same {
+    .eeg-bridge-label {
       font-family: var(--fm);
-      font-size: clamp(0.75rem, 1.3vw, 0.88rem);
-      color: rgba(240,240,245,0.5);
-      letter-spacing: 0.05em;
-      margin-bottom: 14px;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.7s forwards;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(240,240,245,0.45);
+      white-space: nowrap;
     }
-    .hero-same b { color: var(--warm); font-weight: 700; }
 
-    /* Main heading */
+    /* EEG paths animation */
+    .eeg-path {
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      animation: drawLine 3s ease 0.8s forwards;
+    }
+    .eeg-path--chaos {
+      stroke: var(--danger);
+      opacity: 0.75;
+      filter: drop-shadow(0 0 3px rgba(255,107,107,0.45));
+    }
+    .eeg-path--order {
+      stroke: var(--neuro-green);
+      opacity: 0.8;
+      filter: drop-shadow(0 0 3px rgba(0,229,160,0.5));
+    }
+    .eeg-grid line { stroke: rgba(255,255,255,0.05); stroke-width: 1; }
+
+    /* Caption UNDER charts */
+    .hero-caption {
+      font-family: var(--fm);
+      font-size: 12px;
+      color: rgba(240,240,245,0.55);
+      letter-spacing: 0.06em;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.55s forwards;
+    }
+
+    /* ── Main headline ────────────────── */
     .hero-title {
       font-family: var(--fh);
-      font-size: clamp(1.75rem, 4.4vw, 3.4rem);
+      font-size: clamp(2.25rem, 7vw, 4.5rem);
       font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: 0.005em;
+      line-height: 1.02;
+      letter-spacing: 0.015em;
       text-transform: uppercase;
-      max-width: 920px;
-      margin-bottom: 14px;
+      color: #fff;
+      margin-bottom: 20px;
       opacity: 0;
-      animation: fadeUp 1.2s ease 0.85s forwards;
+      animation: fadeUp 1.2s ease 0.75s forwards;
     }
-    .hero-title .accent-grad {
-      background: linear-gradient(120deg, var(--warm) 0%, var(--accent) 45%, var(--violet) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .hero-title .accent {
+      color: var(--accent);
       display: inline-block;
+      position: relative;
+    }
+    .hero-title .accent::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0;
+      bottom: -6px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent) 30%, var(--accent) 70%, transparent 100%);
+      opacity: 0.6;
     }
 
     .hero-subtitle {
       font-family: var(--fb);
-      font-size: clamp(0.95rem, 1.7vw, 1.15rem);
-      font-weight: 400;
-      color: rgba(240,240,245,0.72);
-      max-width: 720px;
-      margin-bottom: 22px;
+      font-size: clamp(0.95rem, 1.6vw, 1.125rem);
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(240,240,245,0.65);
+      max-width: 560px;
+      margin-bottom: 44px;
       opacity: 0;
-      animation: fadeUp 1s ease 1.05s forwards;
-    }
-    .hero-subtitle .dot-sep {
-      display: inline-block;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--accent);
-      vertical-align: middle;
-      margin: 0 10px 3px;
-      opacity: 0.7;
+      animation: fadeUp 1s ease 0.95s forwards;
     }
 
-    /* CTA button */
-    .hero-cta-row {
+    /* ── 4 stats row ──────────────────── */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      width: 100%;
+      max-width: 720px;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.1s forwards;
+    }
+    .hero-stat {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 14px;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.25s forwards;
+      gap: 8px;
+      padding: 18px 10px;
+      border-left: 1px solid var(--border);
+      position: relative;
     }
+    .hero-stat:first-child { border-left: none; }
+    .hero-stat-num {
+      font-family: var(--fh);
+      font-size: clamp(1.75rem, 4vw, 2.35rem);
+      font-weight: 500;
+      line-height: 1;
+      color: var(--neuro-green);
+      letter-spacing: 0.01em;
+    }
+    .hero-stat-lbl {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    /* ── CTA button ───────────────────── */
     .hero-cta {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 14px 30px;
+      gap: 14px;
+      padding: 18px 42px;
       font-family: var(--fh);
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #fff;
-      background: linear-gradient(135deg, var(--accent) 0%, #7F7FFF 100%);
+      background: var(--accent);
       border: none;
-      border-radius: 10px;
+      border-radius: 2px;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.25s ease;
-      box-shadow:
-        0 10px 40px rgba(95,95,255,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.2);
+      box-shadow: 0 10px 40px rgba(95,95,255,0.3);
       position: relative;
       overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.3s forwards;
     }
     .hero-cta::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.2) 50%, transparent 65%);
-      transform: translateX(-100%);
+      background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.18) 50%, transparent 65%);
+      transform: translateX(-120%);
       transition: transform 0.6s ease;
     }
     .hero-cta:hover {
+      background: #4A4AEE;
       transform: translateY(-2px);
-      box-shadow:
-        0 14px 48px rgba(95,95,255,0.5),
-        inset 0 1px 0 rgba(255,255,255,0.25);
+      box-shadow: 0 14px 48px rgba(95,95,255,0.45);
     }
-    .hero-cta:hover::before { transform: translateX(100%); }
+    .hero-cta:hover::before { transform: translateX(120%); }
     .hero-cta .arrow {
       display: inline-block;
       transition: transform 0.25s ease;
     }
     .hero-cta:hover .arrow { transform: translateX(4px); }
 
-    .hero-note {
-      font-family: var(--fm);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: rgba(240,240,245,0.4);
-    }
-
     /* Scroll hint */
     .scroll-hint {
       position: absolute;
-      bottom: 28px;
+      bottom: 22px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       opacity: 0;
       animation: fadeIn 1s ease 2s forwards;
     }
     .scroll-hint span {
       font-family: var(--fm);
-      font-size: 10px;
+      font-size: 9px;
       color: var(--muted);
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
     .scroll-hint-arrow {
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-right: 1.5px solid var(--muted);
       border-bottom: 1.5px solid var(--muted);
       transform: rotate(45deg);
@@ -429,7 +429,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeIn {
-      to { opacity: 0.55; }
+      to { opacity: 0.5; }
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
@@ -439,319 +439,70 @@
       0%, 100% { transform: rotate(45deg) translateY(0); }
       50%      { transform: rotate(45deg) translateY(5px); }
     }
-
-    /* EEG stroke draw */
-    .eeg-path {
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 2000;
-      stroke-dashoffset: 2000;
-      animation: drawLine 3s ease 0.9s forwards;
-    }
-    .eeg-path--chaos {
-      stroke: var(--danger);
-      filter: drop-shadow(0 0 4px rgba(255,95,109,0.5));
-    }
-    .eeg-path--order {
-      stroke: var(--neuro-green);
-      filter: drop-shadow(0 0 4px rgba(0,229,160,0.55));
-    }
     @keyframes drawLine {
       to { stroke-dashoffset: 0; }
     }
-
-    /* Grid lines inside eeg card */
-    .eeg-grid line { stroke: rgba(255,255,255,0.05); stroke-width: 1; }
-
-    /* ══════════════════════════════════
-       SECTIONS 2+ — BASE
-    ══════════════════════════════════ */
-    .section {
-      position: relative;
-      padding: 120px 24px 120px;
-      z-index: 2;
-    }
-    .section-inner {
-      position: relative;
-      margin: 0 auto;
-    }
-    .section-separator {
-      position: relative;
-      max-width: 1100px;
-      margin: 0 auto;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 0%, #1A1A2E 20%, #1A1A2E 80%, transparent 100%);
-    }
-    .section-tag {
-      display: inline-block;
-      font-family: var(--fm);
-      font-size: 11px;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 28px;
-    }
-    .section-title {
-      font-family: var(--fh);
-      font-weight: 300;
-      font-size: clamp(1.9rem, 4.2vw, 2.9rem);
-      line-height: 1.12;
-      letter-spacing: 0.01em;
-      color: #fff;
-      margin-bottom: 20px;
-    }
-    .section-subtitle {
-      font-family: var(--fb);
-      font-size: clamp(0.95rem, 1.6vw, 1.1rem);
-      font-weight: 300;
-      line-height: 1.7;
-      color: #777790;
-      max-width: 640px;
-      margin-bottom: 64px;
-    }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: opacity 0.9s cubic-bezier(0.22,0.6,0.2,1), transform 0.9s cubic-bezier(0.22,0.6,0.2,1);
-      will-change: opacity, transform;
-    }
-    html.js .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-    }
-    html.js .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ══════════════════════════════════
-       SCREEN 2 — БОЛЬ
-    ══════════════════════════════════ */
-    .pain {
-      background: linear-gradient(180deg, #0A0A12 0%, #0D0D18 100%);
-    }
-    .pain .section-inner { max-width: 720px; }
-
-    .pain-list {
-      display: flex;
-      flex-direction: column;
-      gap: 36px;
-      margin-bottom: 72px;
-    }
-    .pain-item {
-      position: relative;
-      padding: 4px 0 4px 28px;
-      border-left: 2px solid #1A1A2E;
-      transition: border-color 0.4s ease, transform 0.4s ease;
-    }
-    .pain-item:hover {
-      border-left-color: var(--accent);
-      transform: translateX(4px);
-    }
-    .pain-item-num {
-      display: block;
-      font-family: var(--fm);
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      color: rgba(95,95,255,0.7);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-    }
-    .pain-item p {
-      font-family: var(--fb);
-      font-weight: 300;
-      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-      line-height: 1.75;
-      color: #9898B0;
-    }
-    .pain-item p em {
-      font-style: normal;
-      color: #E0E0EC;
-    }
-
-    .pain-bridge {
-      font-family: var(--fb);
-      font-size: clamp(1rem, 1.7vw, 1.15rem);
-      line-height: 1.75;
-      font-weight: 300;
-      color: #E0E0EC;
-      padding: 32px 0 4px;
-      border-top: 1px solid #1A1A2E;
-      max-width: 620px;
-    }
-    .pain-bridge b { color: #fff; font-weight: 500; }
-
-    /* ══════════════════════════════════
-       SCREEN 3 — КЛЕЙМЫ
-    ══════════════════════════════════ */
-    .claims {
-      background: #0A0A12;
-    }
-    .claims .section-inner { max-width: 860px; }
-
-    .claim-list {
-      margin-top: 12px;
-      margin-bottom: 80px;
-    }
-    .claim-item {
-      padding-top: 36px;
-      padding-bottom: 40px;
-      border-top: 1px solid #1A1A2E;
-    }
-    .claim-item:last-child { border-bottom: 1px solid #1A1A2E; }
-    .claim-item-num {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--fm);
-      font-size: 10px;
-      letter-spacing: 0.32em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-    .claim-item-num::before {
-      content: "";
-      display: inline-block;
-      width: 20px;
-      height: 1px;
-      background: var(--accent);
-    }
-    .claim-headline {
-      font-family: var(--fh);
-      font-weight: 400;
-      font-size: clamp(1.2rem, 2.3vw, 1.55rem);
-      line-height: 1.35;
-      color: #fff;
-      margin-bottom: 14px;
-      letter-spacing: 0.005em;
-    }
-    .claim-body {
-      font-family: var(--fb);
-      font-size: clamp(0.9rem, 1.5vw, 1rem);
-      font-weight: 300;
-      line-height: 1.72;
-      color: #888896;
-      max-width: 680px;
-    }
-    .claim-body b { color: #E0E0EC; font-weight: 500; }
-
-    /* Contrast table */
-    .contrast {
-      margin-top: 8px;
-      border: 1px solid #1A1A2E;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .contrast-head {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-    .contrast-head > div {
-      padding: 18px 24px;
-      font-family: var(--fm);
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-    }
-    .contrast-head .col-them {
-      background: #0D0D18;
-      color: #555566;
-      border-right: 1px solid #1A1A2E;
-    }
-    .contrast-head .col-us {
-      background: rgba(95,95,255,0.05);
-      color: var(--accent);
-      border-left: 1px solid rgba(95,95,255,0.18);
-    }
-    .contrast-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 1px solid #1A1A2E;
-    }
-    .contrast-row > div {
-      padding: 16px 24px;
-      font-family: var(--fb);
-      font-size: 0.88rem;
-      font-weight: 300;
-      line-height: 1.55;
-    }
-    .contrast-row .cell-them {
-      background: #0D0D18;
-      color: #555566;
-      border-right: 1px solid #1A1A2E;
-      position: relative;
-    }
-    .contrast-row .cell-them::after {
-      content: "→";
-      position: absolute;
-      right: -7px; top: 50%;
-      transform: translateY(-50%);
-      width: 14px; height: 14px;
-      background: #0A0A12;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      border-radius: 50%;
-      z-index: 2;
-    }
-    .contrast-row .cell-us {
-      background: rgba(95,95,255,0.04);
-      color: #E0E0EC;
-      border-left: 1px solid rgba(95,95,255,0.12);
-    }
-    .contrast-row .cell-us b {
-      color: var(--accent);
-      font-weight: 500;
-    }
-    .contrast-row:nth-child(odd) .cell-them { background: #0B0B14; }
-    .contrast-row:nth-child(odd) .cell-us { background: rgba(95,95,255,0.025); }
 
     /* ══════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════ */
     @media (max-width: 760px) {
-      .hero { padding: 120px 18px 70px; }
+      .hero { padding: 110px 18px 70px; }
+      .hero-tag {
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        padding: 0 8px;
+        line-height: 1.5;
+      }
       .eeg-block {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 10px;
       }
       .eeg-bridge {
         flex-direction: row;
         gap: 14px;
         padding: 4px 0;
       }
-      .eeg-bridge-arrow {
-        width: 80px;
+      .eeg-bridge-arrow { width: 80px; }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
       }
-      .hero-cta { padding: 16px 28px; }
-      .scroll-hint { bottom: 18px; }
+      .hero-stat {
+        padding: 14px 8px;
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+      .hero-stat:nth-child(1),
+      .hero-stat:nth-child(2) { border-top: none; }
+      .hero-stat:nth-child(odd) { border-right: 1px solid var(--border); }
+
+      .hero-cta { padding: 16px 30px; font-size: 12px; letter-spacing: 0.14em; }
+      .scroll-hint { display: none; }
+    }
+
+    @media (max-width: 420px) {
+      .hero-title { font-size: clamp(1.9rem, 10vw, 2.6rem); }
     }
   </style>
 </head>
 <body>
 
 <!-- ═══════════════════════════════════════
-     HERO — SCREEN 1 · GRABBER
+     HERO — SCREEN 1
 ═══════════════════════════════════════ -->
 <main>
 <section class="hero">
   <div class="hero-inner">
 
+    <!-- 1. Top label -->
     <span class="hero-tag">
       <span class="dot"></span>
-      Формула Открытия · 40 дней
+      Научное открытие × IT-платформа × Исследование
     </span>
 
-    <div class="hero-caption">Это один и тот же человек. Разница — 30 секунд.</div>
-
-    <!-- EEG before/after block -->
+    <!-- 2. EEG before/after block -->
     <div class="eeg-block">
 
       <!-- CHAOS (before) -->
@@ -760,19 +511,14 @@
           <span class="eeg-label">EEG · T₀</span>
           <span class="eeg-state">Хаос · β</span>
         </div>
-        <svg class="eeg-svg" viewBox="0 0 400 110" preserveAspectRatio="none" aria-hidden="true">
+        <svg class="eeg-svg" viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true">
           <g class="eeg-grid">
-            <line x1="0" y1="27" x2="400" y2="27"/>
-            <line x1="0" y1="55" x2="400" y2="55"/>
-            <line x1="0" y1="83" x2="400" y2="83"/>
+            <line x1="0" y1="22" x2="400" y2="22"/>
+            <line x1="0" y1="45" x2="400" y2="45"/>
+            <line x1="0" y1="68" x2="400" y2="68"/>
           </g>
-          <path class="eeg-path eeg-path--chaos" d="M0,55 L8,22 L14,85 L20,18 L26,92 L32,30 L38,78 L44,20 L50,88 L56,35 L62,75 L68,15 L74,95 L80,28 L86,82 L92,22 L98,90 L104,32 L110,74 L116,18 L122,86 L128,26 L134,80 L140,20 L146,92 L152,30 L154,72 L160,16 L166,88 L172,34 L178,78 L184,22 L190,94 L196,28 L202,82 L208,20 L214,90 L220,32 L226,74 L232,18 L238,86 L244,24 L250,92 L256,30 L262,78 L268,16 L274,90 L280,26 L286,84 L292,20 L298,88 L304,34 L310,72 L316,22 L322,94 L328,28 L334,82 L340,18 L346,90 L352,32 L358,76 L364,20 L370,88 L376,30 L382,80 L388,16 L394,92 L400,36"/>
+          <path class="eeg-path eeg-path--chaos" d="M0,45 L8,14 L14,74 L20,10 L26,80 L32,22 L38,68 L44,12 L50,78 L56,26 L62,66 L68,8 L74,82 L80,20 L86,72 L92,14 L98,80 L104,24 L110,64 L116,10 L122,76 L128,18 L134,70 L140,12 L146,82 L152,22 L154,62 L160,8 L166,78 L172,26 L178,68 L184,14 L190,84 L196,20 L202,72 L208,12 L214,80 L220,24 L226,64 L232,10 L238,76 L244,16 L250,82 L256,22 L262,68 L268,8 L274,80 L280,18 L286,74 L292,12 L298,78 L304,26 L310,62 L316,14 L322,84 L328,20 L334,72 L340,10 L346,80 L352,24 L358,66 L364,12 L370,78 L376,22 L382,70 L388,8 L394,82 L400,28"/>
         </svg>
-        <div class="eeg-footer">
-          <span>β <b>78%</b></span>
-          <span>α <b>9%</b></span>
-          <span>HRV <b>38</b></span>
-        </div>
       </div>
 
       <!-- BRIDGE -->
@@ -788,41 +534,55 @@
           <span class="eeg-label">EEG · T₁</span>
           <span class="eeg-state">Порядок · α</span>
         </div>
-        <svg class="eeg-svg" viewBox="0 0 400 110" preserveAspectRatio="none" aria-hidden="true">
+        <svg class="eeg-svg" viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true">
           <g class="eeg-grid">
-            <line x1="0" y1="27" x2="400" y2="27"/>
-            <line x1="0" y1="55" x2="400" y2="55"/>
-            <line x1="0" y1="83" x2="400" y2="83"/>
+            <line x1="0" y1="22" x2="400" y2="22"/>
+            <line x1="0" y1="45" x2="400" y2="45"/>
+            <line x1="0" y1="68" x2="400" y2="68"/>
           </g>
-          <path class="eeg-path eeg-path--order" d="M0,55 Q10,40 20,55 T40,55 T60,55 T80,55 T100,55 T120,55 T140,55 T160,55 T180,55 T200,55 T220,55 T240,55 T260,55 T280,55 T300,55 T320,55 T340,55 T360,55 T380,55 T400,55"/>
+          <path class="eeg-path eeg-path--order" d="M0,45 Q10,30 20,45 T40,45 T60,45 T80,45 T100,45 T120,45 T140,45 T160,45 T180,45 T200,45 T220,45 T240,45 T260,45 T280,45 T300,45 T320,45 T340,45 T360,45 T380,45 T400,45"/>
         </svg>
-        <div class="eeg-footer">
-          <span>β <b>24%</b></span>
-          <span>α <b>67%</b></span>
-          <span>HRV <b>44</b></span>
-        </div>
       </div>
     </div>
 
-    <div class="hero-same">/ верифицировано <b>Neiry</b> + <b>Garmin</b> /</div>
+    <!-- 3. Caption UNDER charts -->
+    <div class="hero-caption">Это один и тот же человек. Разница — 30 секунд.</div>
 
+    <!-- 4. Main headline -->
     <h1 class="hero-title">
-      Вы можете управлять своим мозгом.
-      <span class="accent-grad">Буквально.</span>
+      Формула <span class="accent">Открытия</span>
     </h1>
 
+    <!-- 5. Subtitle -->
     <p class="hero-subtitle">
-      40 дней<span class="dot-sep"></span>7 режимов сознания<span class="dot-sep"></span>60+ биомаркеров.
-      Каждый результат — на приборе.
+      40 дней. 7 режимов сознания. 60+ биомаркеров. Каждый результат — на приборе.
     </p>
 
-    <div class="hero-cta-row">
-      <a href="../zapisatsya/index.html" class="hero-cta">
-        Начать бесплатный check-up
-        <span class="arrow">→</span>
-      </a>
-      <div class="hero-note">Без обязательств · ~2 недели · данные на руках</div>
+    <!-- 6. Four stats -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">7</span>
+        <span class="hero-stat-lbl">режимов<br>сознания</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">60+</span>
+        <span class="hero-stat-lbl">биомаркеров</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">99%</span>
+        <span class="hero-stat-lbl">воспроизводимость</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">40</span>
+        <span class="hero-stat-lbl">дней<br>на цикл</span>
+      </div>
     </div>
+
+    <!-- 7. CTA -->
+    <a href="#checkup" class="hero-cta">
+      Начать бесплатный check-up
+      <span class="arrow">→</span>
+    </a>
 
   </div>
 
@@ -831,175 +591,7 @@
     <div class="scroll-hint-arrow"></div>
   </div>
 </section>
-
-<div class="section-separator"></div>
-
-<!-- ═══════════════════════════════════════
-     SCREEN 2 · БОЛЬ (Diagnose the Pain)
-═══════════════════════════════════════ -->
-<section class="section pain" id="pain">
-  <div class="section-inner">
-    <span class="section-tag reveal">Диагноз</span>
-    <h2 class="section-title reveal">Знакомо?</h2>
-    <p class="section-subtitle reveal">
-      Четыре симптома, которые вы не смогли решить ни медитацией, ни коучингом,
-      ни очередным приложением.
-    </p>
-
-    <div class="pain-list">
-      <div class="pain-item reveal">
-        <span class="pain-item-num">01 · Слепая практика</span>
-        <p>Вы медитируете три года. Пять лет. Десять. Вам хорошо после сессии.
-        Но вы понятия не имеете, работает ли это на самом деле.
-        <em>Ни одного числа. Ни одного факта.</em> Только ощущение, что «вроде помогает».</p>
-      </div>
-
-      <div class="pain-item reveal">
-        <span class="pain-item-num">02 · Эффект на неделю</span>
-        <p>Вы вкладываете в коучинг, терапию, ретриты. Каждый раз — эмоциональный подъём.
-        Через неделю — всё как было. Деньги потрачены.
-        <em>Доказательств нет.</em> Вы не можете показать ни себе, ни кому-либо, что что-то изменилось.</p>
-      </div>
-
-      <div class="pain-item reveal">
-        <span class="pain-item-num">03 · Тревога фоном</span>
-        <p>Вы просыпаетесь с тревогой. Засыпаете с тревогой.
-        Между — работа на автопилоте, ощущение тумана и ежедневное перегорание.
-        Вы пробовали добавки, гаджеты, приложения. <em>Ничего не держится дольше двух недель.</em></p>
-      </div>
-
-      <div class="pain-item reveal">
-        <span class="pain-item-num">04 · Потенциал без ключа</span>
-        <p>Вы чувствуете, что способны на большее. Но не знаете, как включить это «большее».
-        <em>И ни один инструмент не показывает вам, где оно прячется.</em></p>
-      </div>
-    </div>
-
-    <p class="pain-bridge reveal">
-      Мы знаем, почему так происходит. Потому что никто не показывал вам,
-      как на самом деле работает ваш мозг. <b>До сих пор.</b>
-    </p>
-  </div>
-</section>
-
-<div class="section-separator"></div>
-
-<!-- ═══════════════════════════════════════
-     SCREEN 3 · КЛЕЙМЫ (Differentiate your Claims)
-═══════════════════════════════════════ -->
-<section class="section claims" id="claims">
-  <div class="section-inner">
-    <span class="section-tag reveal">Открытие</span>
-    <h2 class="section-title reveal">Мы обнаружили кое-что.</h2>
-    <p class="section-subtitle reveal">
-      Три вещи, которых нет ни в одной практике медитации, ни в одном коучинге,
-      ни в одном гаджете. Вместе они меняют правила игры.
-    </p>
-
-    <div class="claim-list">
-
-      <div class="claim-item reveal">
-        <span class="claim-item-num">Клейм 01 · Therapeutic</span>
-        <h3 class="claim-headline">
-          Вы можете управлять ритмами мозга осознанно —
-          и видеть результат на энцефалографе за 40 минут.
-        </h3>
-        <p class="claim-body">
-          Не через годы практики. Не через вещества.
-          Через конкретную технологию переключения нейронных сетей,
-          <b>которую осваивает 99% участников</b> когортных групп.
-        </p>
-      </div>
-
-      <div class="claim-item reveal">
-        <span class="claim-item-num">Клейм 02 · Original</span>
-        <h3 class="claim-headline">
-          Три слоя данных — мозг, тело, жизнь — сводятся в один индекс,
-          который показывает, кто вы на самом деле.
-        </h3>
-        <p class="claim-body">
-          Не субъективные ощущения.
-          <b>Энцефалограф + фитнес-трекер 24/7 + AI-анализ</b> вашего голоса и решений
-          = полная картина.
-        </p>
-      </div>
-
-      <div class="claim-item reveal">
-        <span class="claim-item-num">Клейм 03 · Provable</span>
-        <h3 class="claim-headline">
-          40-дневный цикл меняет не самочувствие — он меняет биологию.
-          Альфа растёт, бета падает, HRV растёт, стресс падает.
-        </h3>
-        <p class="claim-body">
-          И это <b>видно в цифрах, а не в отзывах</b>.
-          Каждая метрика — с прибора, каждое изменение — с датой и значением до/после.
-        </p>
-      </div>
-
-    </div>
-
-    <div class="contrast reveal">
-      <div class="contrast-head">
-        <div class="col-them">Все остальные</div>
-        <div class="col-us">Мы</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell-them">«Вы почувствуете себя лучше»</div>
-        <div class="cell-us">«Ваш альфа-ритм <b>вырос на 187%</b>»</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell-them">«Доверьтесь процессу»</div>
-        <div class="cell-us">«Вот ваши <b>данные за 40 дней</b>»</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell-them">Сертификат прохождения</div>
-        <div class="cell-us"><b>Верификация навыка</b> на ЭЭГ</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell-them">Специалист управляет за вас</div>
-        <div class="cell-us"><b>Вы управляете сами</b></div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell-them">Гаджет на полке</div>
-        <div class="cell-us"><b>Рабочий инструмент</b> внутри программы</div>
-      </div>
-      <div class="contrast-row">
-        <div class="cell-them">Мотивация на неделю</div>
-        <div class="cell-us"><b>Измеримый сдвиг</b> биологии</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
 </main>
-
-<script>
-  // ── Scroll reveal ───────────────────────────────────────────────
-  (function () {
-    document.documentElement.classList.add('js');
-    const items = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window) || items.length === 0) {
-      items.forEach(el => el.classList.add('is-visible'));
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          // Кaскадная задержка внутри одной секции
-          const section = el.closest('section');
-          const siblings = section ? Array.from(section.querySelectorAll('.reveal')) : [el];
-          const idx = siblings.indexOf(el);
-          el.style.transitionDelay = Math.min(idx * 110, 600) + 'ms';
-          el.classList.add('is-visible');
-          io.unobserve(el);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    items.forEach(el => io.observe(el));
-  })();
-</script>
 
 <script src="../components/nav.js"></script>
 <script src="../components/footer.js"></script>
