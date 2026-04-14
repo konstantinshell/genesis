@@ -466,6 +466,254 @@
     .eeg-grid line { stroke: rgba(255,255,255,0.05); stroke-width: 1; }
 
     /* ══════════════════════════════════
+       SECTIONS 2+ — BASE
+    ══════════════════════════════════ */
+    .section {
+      position: relative;
+      padding: 120px 24px 120px;
+      z-index: 2;
+    }
+    .section-inner {
+      position: relative;
+      margin: 0 auto;
+    }
+    .section-separator {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #1A1A2E 20%, #1A1A2E 80%, transparent 100%);
+    }
+    .section-tag {
+      display: inline-block;
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .section-title {
+      font-family: var(--fh);
+      font-weight: 300;
+      font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+      line-height: 1.12;
+      letter-spacing: 0.01em;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .section-subtitle {
+      font-family: var(--fb);
+      font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+      font-weight: 300;
+      line-height: 1.7;
+      color: #777790;
+      max-width: 640px;
+      margin-bottom: 64px;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.9s cubic-bezier(0.22,0.6,0.2,1), transform 0.9s cubic-bezier(0.22,0.6,0.2,1);
+      will-change: opacity, transform;
+    }
+    html.js .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    html.js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════
+       SCREEN 2 — БОЛЬ
+    ══════════════════════════════════ */
+    .pain {
+      background: linear-gradient(180deg, #0A0A12 0%, #0D0D18 100%);
+    }
+    .pain .section-inner { max-width: 720px; }
+
+    .pain-list {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      margin-bottom: 72px;
+    }
+    .pain-item {
+      position: relative;
+      padding: 4px 0 4px 28px;
+      border-left: 2px solid #1A1A2E;
+      transition: border-color 0.4s ease, transform 0.4s ease;
+    }
+    .pain-item:hover {
+      border-left-color: var(--accent);
+      transform: translateX(4px);
+    }
+    .pain-item-num {
+      display: block;
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: rgba(95,95,255,0.7);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .pain-item p {
+      font-family: var(--fb);
+      font-weight: 300;
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      line-height: 1.75;
+      color: #9898B0;
+    }
+    .pain-item p em {
+      font-style: normal;
+      color: #E0E0EC;
+    }
+
+    .pain-bridge {
+      font-family: var(--fb);
+      font-size: clamp(1rem, 1.7vw, 1.15rem);
+      line-height: 1.75;
+      font-weight: 300;
+      color: #E0E0EC;
+      padding: 32px 0 4px;
+      border-top: 1px solid #1A1A2E;
+      max-width: 620px;
+    }
+    .pain-bridge b { color: #fff; font-weight: 500; }
+
+    /* ══════════════════════════════════
+       SCREEN 3 — КЛЕЙМЫ
+    ══════════════════════════════════ */
+    .claims {
+      background: #0A0A12;
+    }
+    .claims .section-inner { max-width: 860px; }
+
+    .claim-list {
+      margin-top: 12px;
+      margin-bottom: 80px;
+    }
+    .claim-item {
+      padding-top: 36px;
+      padding-bottom: 40px;
+      border-top: 1px solid #1A1A2E;
+    }
+    .claim-item:last-child { border-bottom: 1px solid #1A1A2E; }
+    .claim-item-num {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .claim-item-num::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .claim-headline {
+      font-family: var(--fh);
+      font-weight: 400;
+      font-size: clamp(1.2rem, 2.3vw, 1.55rem);
+      line-height: 1.35;
+      color: #fff;
+      margin-bottom: 14px;
+      letter-spacing: 0.005em;
+    }
+    .claim-body {
+      font-family: var(--fb);
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      font-weight: 300;
+      line-height: 1.72;
+      color: #888896;
+      max-width: 680px;
+    }
+    .claim-body b { color: #E0E0EC; font-weight: 500; }
+
+    /* Contrast table */
+    .contrast {
+      margin-top: 8px;
+      border: 1px solid #1A1A2E;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .contrast-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .contrast-head > div {
+      padding: 18px 24px;
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+    .contrast-head .col-them {
+      background: #0D0D18;
+      color: #555566;
+      border-right: 1px solid #1A1A2E;
+    }
+    .contrast-head .col-us {
+      background: rgba(95,95,255,0.05);
+      color: var(--accent);
+      border-left: 1px solid rgba(95,95,255,0.18);
+    }
+    .contrast-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #1A1A2E;
+    }
+    .contrast-row > div {
+      padding: 16px 24px;
+      font-family: var(--fb);
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.55;
+    }
+    .contrast-row .cell-them {
+      background: #0D0D18;
+      color: #555566;
+      border-right: 1px solid #1A1A2E;
+      position: relative;
+    }
+    .contrast-row .cell-them::after {
+      content: "→";
+      position: absolute;
+      right: -7px; top: 50%;
+      transform: translateY(-50%);
+      width: 14px; height: 14px;
+      background: #0A0A12;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    .contrast-row .cell-us {
+      background: rgba(95,95,255,0.04);
+      color: #E0E0EC;
+      border-left: 1px solid rgba(95,95,255,0.12);
+    }
+    .contrast-row .cell-us b {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .contrast-row:nth-child(odd) .cell-them { background: #0B0B14; }
+    .contrast-row:nth-child(odd) .cell-us { background: rgba(95,95,255,0.025); }
+
+    /* ══════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════ */
     @media (max-width: 760px) {
@@ -583,7 +831,175 @@
     <div class="scroll-hint-arrow"></div>
   </div>
 </section>
+
+<div class="section-separator"></div>
+
+<!-- ═══════════════════════════════════════
+     SCREEN 2 · БОЛЬ (Diagnose the Pain)
+═══════════════════════════════════════ -->
+<section class="section pain" id="pain">
+  <div class="section-inner">
+    <span class="section-tag reveal">Диагноз</span>
+    <h2 class="section-title reveal">Знакомо?</h2>
+    <p class="section-subtitle reveal">
+      Четыре симптома, которые вы не смогли решить ни медитацией, ни коучингом,
+      ни очередным приложением.
+    </p>
+
+    <div class="pain-list">
+      <div class="pain-item reveal">
+        <span class="pain-item-num">01 · Слепая практика</span>
+        <p>Вы медитируете три года. Пять лет. Десять. Вам хорошо после сессии.
+        Но вы понятия не имеете, работает ли это на самом деле.
+        <em>Ни одного числа. Ни одного факта.</em> Только ощущение, что «вроде помогает».</p>
+      </div>
+
+      <div class="pain-item reveal">
+        <span class="pain-item-num">02 · Эффект на неделю</span>
+        <p>Вы вкладываете в коучинг, терапию, ретриты. Каждый раз — эмоциональный подъём.
+        Через неделю — всё как было. Деньги потрачены.
+        <em>Доказательств нет.</em> Вы не можете показать ни себе, ни кому-либо, что что-то изменилось.</p>
+      </div>
+
+      <div class="pain-item reveal">
+        <span class="pain-item-num">03 · Тревога фоном</span>
+        <p>Вы просыпаетесь с тревогой. Засыпаете с тревогой.
+        Между — работа на автопилоте, ощущение тумана и ежедневное перегорание.
+        Вы пробовали добавки, гаджеты, приложения. <em>Ничего не держится дольше двух недель.</em></p>
+      </div>
+
+      <div class="pain-item reveal">
+        <span class="pain-item-num">04 · Потенциал без ключа</span>
+        <p>Вы чувствуете, что способны на большее. Но не знаете, как включить это «большее».
+        <em>И ни один инструмент не показывает вам, где оно прячется.</em></p>
+      </div>
+    </div>
+
+    <p class="pain-bridge reveal">
+      Мы знаем, почему так происходит. Потому что никто не показывал вам,
+      как на самом деле работает ваш мозг. <b>До сих пор.</b>
+    </p>
+  </div>
+</section>
+
+<div class="section-separator"></div>
+
+<!-- ═══════════════════════════════════════
+     SCREEN 3 · КЛЕЙМЫ (Differentiate your Claims)
+═══════════════════════════════════════ -->
+<section class="section claims" id="claims">
+  <div class="section-inner">
+    <span class="section-tag reveal">Открытие</span>
+    <h2 class="section-title reveal">Мы обнаружили кое-что.</h2>
+    <p class="section-subtitle reveal">
+      Три вещи, которых нет ни в одной практике медитации, ни в одном коучинге,
+      ни в одном гаджете. Вместе они меняют правила игры.
+    </p>
+
+    <div class="claim-list">
+
+      <div class="claim-item reveal">
+        <span class="claim-item-num">Клейм 01 · Therapeutic</span>
+        <h3 class="claim-headline">
+          Вы можете управлять ритмами мозга осознанно —
+          и видеть результат на энцефалографе за 40 минут.
+        </h3>
+        <p class="claim-body">
+          Не через годы практики. Не через вещества.
+          Через конкретную технологию переключения нейронных сетей,
+          <b>которую осваивает 99% участников</b> когортных групп.
+        </p>
+      </div>
+
+      <div class="claim-item reveal">
+        <span class="claim-item-num">Клейм 02 · Original</span>
+        <h3 class="claim-headline">
+          Три слоя данных — мозг, тело, жизнь — сводятся в один индекс,
+          который показывает, кто вы на самом деле.
+        </h3>
+        <p class="claim-body">
+          Не субъективные ощущения.
+          <b>Энцефалограф + фитнес-трекер 24/7 + AI-анализ</b> вашего голоса и решений
+          = полная картина.
+        </p>
+      </div>
+
+      <div class="claim-item reveal">
+        <span class="claim-item-num">Клейм 03 · Provable</span>
+        <h3 class="claim-headline">
+          40-дневный цикл меняет не самочувствие — он меняет биологию.
+          Альфа растёт, бета падает, HRV растёт, стресс падает.
+        </h3>
+        <p class="claim-body">
+          И это <b>видно в цифрах, а не в отзывах</b>.
+          Каждая метрика — с прибора, каждое изменение — с датой и значением до/после.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="contrast reveal">
+      <div class="contrast-head">
+        <div class="col-them">Все остальные</div>
+        <div class="col-us">Мы</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell-them">«Вы почувствуете себя лучше»</div>
+        <div class="cell-us">«Ваш альфа-ритм <b>вырос на 187%</b>»</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell-them">«Доверьтесь процессу»</div>
+        <div class="cell-us">«Вот ваши <b>данные за 40 дней</b>»</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell-them">Сертификат прохождения</div>
+        <div class="cell-us"><b>Верификация навыка</b> на ЭЭГ</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell-them">Специалист управляет за вас</div>
+        <div class="cell-us"><b>Вы управляете сами</b></div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell-them">Гаджет на полке</div>
+        <div class="cell-us"><b>Рабочий инструмент</b> внутри программы</div>
+      </div>
+      <div class="contrast-row">
+        <div class="cell-them">Мотивация на неделю</div>
+        <div class="cell-us"><b>Измеримый сдвиг</b> биологии</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 </main>
+
+<script>
+  // ── Scroll reveal ───────────────────────────────────────────────
+  (function () {
+    document.documentElement.classList.add('js');
+    const items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || items.length === 0) {
+      items.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          // Кaскадная задержка внутри одной секции
+          const section = el.closest('section');
+          const siblings = section ? Array.from(section.querySelectorAll('.reveal')) : [el];
+          const idx = siblings.indexOf(el);
+          el.style.transitionDelay = Math.min(idx * 110, 600) + 'ms';
+          el.classList.add('is-visible');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(el => io.observe(el));
+  })();
+</script>
 
 <script src="../components/nav.js"></script>
 <script src="../components/footer.js"></script>
