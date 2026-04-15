@@ -12,14 +12,11 @@
   const root = depth <= 1 ? './' : '../'.repeat(depth - 1);
 
   const navLinks = [
-    { label: 'Главная',           href: root + 'index.html' },
     { label: 'Ритмы жизни',       href: root + 'ritmy/index.html' },
     { label: 'Исследование',      href: root + 'issledovanie/index.html' },
     { label: 'MNIP',              href: root + 'mnip/index.html' },
-    { label: 'Neiry',             href: root + 'neiry/index.html' },
     { label: 'Блог',              href: root + 'blog/index.html' },
     { label: 'Записаться',        href: root + 'zapisatsya/index.html' },
-    { label: 'Как это работает',  href: root + 'kak-eto-rabotaet/index.html' },
     { label: 'ONTO NOTHING',      href: root + 'onto-nothing/index.html' },
   ];
 
