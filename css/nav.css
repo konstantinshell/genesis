@@ -23,11 +23,11 @@
 .nav-logo {
   font-family: "Oswald", sans-serif;
   font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
   color: #16161A;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
 }
 .nav-logo:hover { color: #5F5FFF; }
 
