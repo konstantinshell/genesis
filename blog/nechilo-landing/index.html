@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="НЕХИЛО — пульт управления ритмами жизни. 7 режимов сознания, 60+ биомаркеров, доказательства на приборе. За 40 дней.">
+  <meta property="og:title" content="НЕХИЛО — пульт управления ритмами жизни">
+  <meta property="og:description" content="Впервые в истории — ритмы мозга переключаются по команде, с верификацией на ЭЭГ.">
+  <meta property="og:type" content="website">
+  <title>НЕХИЛО — Пульт управления ритмами жизни</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@300;400;500;600&family=Oswald:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+
+  <style>
+    /* ── HERO SECTION ── */
+    .s-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 60px;
+      overflow: hidden;
+    }
+
+    /* EEG background canvas */
+    #eeg-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    /* Hero column layout — centered */
+    .hero-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+      max-width: 860px;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    /* ── EYEBROW (glass pill with typewriter) ── */
+    .eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: var(--glass-b);
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--glass-s);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .eyebrow-pill.vis { opacity: 1; transform: translateY(0); }
+    .eyebrow-text {
+      font-family: var(--fm);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      min-height: 1em;
+      white-space: nowrap;
+    }
+    .eyebrow-cursor {
+      display: inline-block;
+      width: 7px;
+      height: 11px;
+      background: var(--accent);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ── PRELUDE ── */
+    .hero-prelude {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: clamp(14px, 1.4vw, 16px);
+      color: var(--muted);
+      margin: 4px 0 8px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .hero-prelude.vis { opacity: 1; transform: translateY(0); }
+
+    /* ── MAIN HERO CARD ── */
+    .hero-card {
+      background: var(--glass-b);
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--glass-s);
+      border-radius: 28px;
+      padding: 48px 56px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .hero-title {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(30px, 5.5vw, 64px);
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .title-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .title-line.vis { opacity: 1; transform: translateY(0); }
+    .word-green {
+      color: #00B37A;
+    }
+
+    .divider {
+      width: 56px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 99px;
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .divider.vis { opacity: 1; transform: scaleX(1); }
+
+    .hero-sub {
+      font-family: var(--ft);
+      font-size: clamp(16px, 1.8vw, 20px);
+      line-height: 1.55;
+      color: var(--body-c);
+      max-width: 560px;
+      margin: 0;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .hero-sub.vis { opacity: 1; transform: translateY(0); }
+    .hero-sub strong {
+      color: var(--text);
+      font-weight: 700;
+      background: var(--acc-soft);
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px dashed rgba(95,95,255,0.35);
+    }
+
+    /* ── PROOF ROW (counters) ── */
+    .proof-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .proof-row.vis { opacity: 1; transform: translateY(0); }
+    .proof-card {
+      background: var(--glass-b);
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--glass-s);
+      border-radius: 20px;
+      padding: 22px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .proof-card:hover { transform: translateY(-3px); }
+    .proof-num {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+    .proof-card:nth-child(2) .proof-num { color: #00B37A; }
+    .proof-card:nth-child(3) .proof-num { color: #0A84FF; }
+    .proof-card:nth-child(4) .proof-num { color: #8B5CF6; }
+    .proof-label {
+      font-family: var(--fm);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    /* ── EEG COMPARE CARD ── */
+    .eeg-card {
+      background: var(--glass-b);
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--glass-s);
+      border-radius: 24px;
+      padding: 24px 28px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .eeg-card.vis { opacity: 1; transform: translateY(0); }
+
+    .eeg-compare-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .eeg-canvas-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+    .eeg-canvas-label {
+      font-family: var(--fm);
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    canvas.eeg-small {
+      display: block;
+      border-radius: 6px;
+      max-width: 100%;
+      height: auto;
+    }
+    .eeg-middle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 22px;
+      gap: 2px;
+      flex: 0 0 auto;
+    }
+    .eeg-arrow {
+      font-size: 16px;
+      color: var(--muted);
+    }
+    .eeg-timer {
+      font-family: var(--fh);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+    .eeg-caption {
+      font-family: var(--fm);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 14px;
+      font-weight: 700;
+    }
+
+    /* ── CTA BUTTONS ── */
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .hero-cta.vis { opacity: 1; transform: translateY(0); }
+
+    .btn-primary-hero {
+      font-family: var(--fh);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 15px 30px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      text-decoration: none;
+      cursor: pointer;
+      animation: btnPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes btnPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(95,95,255,0.4), 0 6px 20px rgba(95,95,255,0.25); }
+      50%       { box-shadow: 0 0 0 10px rgba(95,95,255,0), 0 10px 30px rgba(95,95,255,0.35); }
+    }
+    .btn-ghost-hero {
+      font-family: var(--fh);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 15px 30px;
+      background: var(--glass-b);
+      color: var(--text);
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-ghost-hero:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      z-index: 3;
+      opacity: 0;
+      animation: fadeInLate 0.6s ease 4.8s forwards;
+    }
+    @keyframes fadeInLate { to { opacity: 1; } }
+    .scroll-line {
+      width: 1px;
+      height: 32px;
+      background: rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .scroll-dot {
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: scrollDot 3s ease-in-out infinite;
+    }
+    @keyframes scrollDot {
+      0%   { top: -4px; opacity: 0; }
+      15%  { opacity: 1; }
+      85%  { opacity: 1; }
+      100% { top: 36px; opacity: 0; }
+    }
+    .scroll-label {
+      font-family: var(--fm);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .s-hero { padding: 88px 16px 80px; }
+      .hero-card { padding: 32px 22px; gap: 18px; }
+      .hero-title { font-size: clamp(26px, 8vw, 44px); }
+      .proof-row { grid-template-columns: repeat(2, 1fr); }
+      .proof-card { padding: 18px 10px; }
+      .eeg-card { padding: 20px 16px; }
+      .eeg-middle { padding: 0 12px; }
+      .eeg-timer { font-size: 1.1rem; }
+      .hero-cta { flex-direction: column; width: 100%; }
+      .btn-primary-hero, .btn-ghost-hero { width: 100%; text-align: center; }
+    }
+    @media (max-width: 420px) {
+      .eeg-compare-row { flex-direction: column; gap: 12px; }
+      .eeg-middle { flex-direction: row; padding: 4px 0; gap: 10px; }
+      .eeg-arrow { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-orbs">
+  <span></span>
+  <span></span>
+</div>
+
+<section class="s-hero">
+  <canvas id="eeg-bg"></canvas>
+
+  <div class="hero-layout">
+
+    <div class="eyebrow-pill" id="eyebrow-pill">
+      <span class="eyebrow-text" id="eyebrow"></span><span class="eyebrow-cursor" id="eyebrow-cursor"></span>
+    </div>
+
+    <p class="hero-prelude" id="prelude">«До сегодняшнего дня это было невозможно.»</p>
+
+    <div class="hero-card">
+      <h1 class="hero-title">
+        <span class="title-line" id="line1">ПУЛЬТ УПРАВЛЕНИЯ</span>
+        <span class="title-line" id="line2">РИТМАМИ ЖИЗНИ.</span>
+        <span class="title-line" id="line3"><span class="word-green">ВПЕРВЫЕ</span> В ИСТОРИИ.</span>
+      </h1>
+
+      <div class="divider" id="divider"></div>
+
+      <p class="hero-sub" id="sub1">
+        Ритмы мозга — переключаются по команде.<br>
+        Ритмы года — встроены в архитектуру программы.<br>
+        Ваша жизнь — сведена в <strong>один индекс</strong>.
+      </p>
+
+      <p class="hero-sub" id="sub2" style="max-width: 520px">
+        И всё это — <strong>с доказательствами на приборе</strong>.<br>
+        За 40 дней. Новая дисциплина работы с собой.
+      </p>
+    </div>
+
+    <div class="proof-row" id="proof-row">
+      <div class="proof-card">
+        <span class="proof-num" id="c1">0</span>
+        <span class="proof-label">режимов<br>сознания</span>
+      </div>
+      <div class="proof-card">
+        <span class="proof-num" id="c2">0</span>
+        <span class="proof-label">биомаркеров</span>
+      </div>
+      <div class="proof-card">
+        <span class="proof-num" id="c3">0</span>
+        <span class="proof-label">воспроизво-<br>димость</span>
+      </div>
+      <div class="proof-card">
+        <span class="proof-num" id="c4">0</span>
+        <span class="proof-label">дней<br>на цикл</span>
+      </div>
+    </div>
+
+    <div class="eeg-card" id="eeg-card">
+      <div class="eeg-compare-row">
+        <div class="eeg-canvas-wrap">
+          <canvas id="eeg-before" class="eeg-small" width="200" height="56"></canvas>
+          <span class="eeg-canvas-label">до</span>
+        </div>
+        <div class="eeg-middle">
+          <span class="eeg-arrow">→</span>
+          <span class="eeg-timer">30 сек</span>
+        </div>
+        <div class="eeg-canvas-wrap">
+          <canvas id="eeg-after" class="eeg-small" width="200" height="56"></canvas>
+          <span class="eeg-canvas-label">после</span>
+        </div>
+      </div>
+      <div class="eeg-caption">ЭТО ОДИН И ТОТ ЖЕ ЧЕЛОВЕК. РАЗНИЦА — 30 СЕКУНД.</div>
+    </div>
+
+    <div class="hero-cta" id="cta">
+      <a href="../../zapisatsya/index.html" class="btn-primary-hero">Начать бесплатный check-up</a>
+      <a href="../../kak-eto-rabotaet/index.html" class="btn-ghost-hero">Как это работает ↓</a>
+    </div>
+
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"><div class="scroll-dot"></div></div>
+    <span class="scroll-label">прокрутите вниз — там доказательства</span>
+  </div>
+</section>
+
+<script>
+/* ═══ EEG BACKGROUND ═══ */
+(function () {
+  var canvas = document.getElementById('eeg-bg');
+  var ctx = canvas.getContext('2d');
+  var start = performance.now();
+  var TRANSITION = 2000;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function eegY(x, t, chaos) {
+    var bf = 0.022;
+    var ordered = Math.sin(x * bf + t * 6.0) * 26
+                + Math.sin(x * bf * 2 + t * 6.1) * 4;
+    if (chaos <= 0) return ordered;
+    var noisy = Math.sin(x * bf * 1.0 + t * 4.0) * 12
+              + Math.sin(x * bf * 3.2 + t * 11.5) * 9
+              + Math.sin(x * bf * 5.5 + t * 18.0) * 7
+              + Math.sin(x * bf * 8.0 + t * 26.5) * 5
+              + Math.sin(x * bf * 0.5 + t * 2.8)  * 14;
+    return noisy * chaos + ordered * (1 - chaos);
+  }
+
+  function draw(ts) {
+    var elapsed = ts - start;
+    var t = elapsed * 0.001;
+    var raw = 1 - Math.min(elapsed / TRANSITION, 1);
+    var chaos = raw * raw;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(95,95,255,0.08)';
+    ctx.lineWidth = 1.5;
+    var mid = canvas.height / 2;
+    for (var x = 0; x <= canvas.width; x += 2) {
+      var y = mid + eegY(x, t, chaos);
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+}());
+
+/* ═══ TYPEWRITER EYEBROW ═══ */
+(function () {
+  var el = document.getElementById('eyebrow');
+  var cursor = document.getElementById('eyebrow-cursor');
+  var text = 'ФОРМУЛА ОТКРЫТИЯ · НАУЧНОЕ ИССЛЕДОВАНИЕ · 2026';
+  var i = 0;
+  function type() {
+    if (i < text.length) { el.textContent += text[i++]; setTimeout(type, 45); }
+    else { setTimeout(function(){ cursor.style.display = 'none'; }, 2000); }
+  }
+  setTimeout(type, 200);
+}());
+
+/* ═══ SEQUENTIAL REVEALS ═══ */
+function vis(id, delay) {
+  setTimeout(function () {
+    var el = document.getElementById(id);
+    if (el) el.classList.add('vis');
+  }, delay);
+}
+vis('eyebrow-pill',  100);
+vis('prelude',       500);
+vis('line1',        1000);
+vis('line2',        1200);
+vis('line3',        1400);
+vis('divider',      1800);
+vis('sub1',         2000);
+vis('sub2',         2300);
+vis('proof-row',    2700);
+vis('eeg-card',     3400);
+vis('cta',          4000);
+
+/* ═══ COUNTER ANIMATION ═══ */
+function counter(id, target, suffix, delay) {
+  setTimeout(function () {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var dur = 1500, s0 = performance.now();
+    function step(now) {
+      var p = Math.min((now - s0) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(e * target) + (suffix || '');
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }, delay);
+}
+counter('c1',  7,   '',  2700);
+counter('c2',  60,  '+', 2700);
+counter('c3',  99,  '%', 2700);
+counter('c4',  40,  '',  2700);
+
+/* ═══ EEG COMPARE CANVASES ═══ */
+(function () {
+  var bc = document.getElementById('eeg-before');
+  var ac = document.getElementById('eeg-after');
+  var bx = bc.getContext('2d');
+  var ax = ac.getContext('2d');
+  var W = 200, H = 56, mid = H / 2;
+
+  function animFrame(ts) {
+    var t = ts * 0.001;
+    var bf = 0.04;
+
+    /* chaotic / before — reddish */
+    bx.clearRect(0, 0, W, H);
+    bx.beginPath();
+    bx.strokeStyle = 'rgba(220,60,60,0.75)';
+    bx.lineWidth = 1.5;
+    for (var x = 0; x < W; x++) {
+      var y = mid
+        + Math.sin(x * bf * 1.0 + t * 4.2) * 9
+        + Math.sin(x * bf * 3.1 + t * 11.3) * 7
+        + Math.sin(x * bf * 5.4 + t * 17.8) * 5
+        + Math.sin(x * bf * 7.9 + t * 25.6) * 3;
+      x === 0 ? bx.moveTo(x, y) : bx.lineTo(x, y);
+    }
+    bx.stroke();
+
+    /* ordered / after — green */
+    ax.clearRect(0, 0, W, H);
+    ax.beginPath();
+    ax.strokeStyle = 'rgba(0,160,100,0.8)';
+    ax.lineWidth = 1.5;
+    for (var x2 = 0; x2 < W; x2++) {
+      var y2 = mid
+        + Math.sin(x2 * bf + t * 5.6) * 18
+        + Math.sin(x2 * bf * 2 + t * 5.7) * 3;
+      x2 === 0 ? ax.moveTo(x2, y2) : ax.lineTo(x2, y2);
+    }
+    ax.stroke();
+
+    requestAnimationFrame(animFrame);
+  }
+  requestAnimationFrame(animFrame);
+}());
+</script>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>
