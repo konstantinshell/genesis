@@ -299,10 +299,10 @@
       margin-top: 2px;
     }
 
-    /* Адаптив */
+    /* Адаптив HERO */
     @media (max-width: 700px) {
       .s           { padding: 56px 16px; }
-      .s-hero      { padding: 30px 16px 40px; }
+      .s-hero      { padding: 88px 16px 40px; }
       .hero-card   { padding: 32px 22px 26px; gap: 14px; border-radius: 28px; }
       .h1          { font-size: clamp(1.6rem, 7vw, 2rem); }
       .proof-row   { grid-template-columns: repeat(2, 1fr); }
@@ -310,6 +310,236 @@
       .verify-row  { gap: 10px 14px; padding-top: 10px; }
       .hero-cta    { padding: 14px 24px; font-size: 0.85rem; letter-spacing: 1.2px; }
       .proof-label { font-size: 10px; }
+    }
+
+    /* ══════════════════════════════════
+       SCREEN 2 — ПРОБЛЕМА
+    ══════════════════════════════════ */
+    .s-problem { padding: 80px 20px 90px; }
+
+    .problem-header {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 48px;
+    }
+    .chip {
+      display: inline-block;
+      font-family: var(--fm);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      background: var(--acc-soft);
+      border: 1px solid rgba(95,95,255,0.22);
+      border-radius: 7px;
+      padding: 5px 12px;
+      margin-bottom: 20px;
+    }
+    .h2 {
+      font-family: var(--fh);
+      font-size: clamp(1.8rem, 4.4vw, 2.9rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--text);
+      margin: 0;
+    }
+    .h2-accent {
+      color: var(--accent);
+    }
+
+    /* 6 методов-крестиков */
+    .methods-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 64px;
+    }
+    .method-card {
+      border-radius: 18px;
+      padding: 22px 48px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: relative;
+      transition: transform 0.25s, opacity 0.25s;
+      opacity: 0.82;
+    }
+    .method-card:hover {
+      transform: translateY(-3px);
+      opacity: 1;
+    }
+    .method-card::before {
+      content: "×";
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-family: var(--fh);
+      font-size: 28px;
+      font-weight: 400;
+      color: rgba(0,0,0,0.18);
+      line-height: 1;
+    }
+    .method-name {
+      font-family: var(--fh);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text);
+      letter-spacing: 0.5px;
+    }
+    .method-result {
+      font-family: var(--ft);
+      font-size: 1.05rem;
+      color: var(--body-c);
+      line-height: 1.4;
+    }
+
+    /* Мост-текст */
+    .problem-bridge {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 56px;
+      padding: 0 20px;
+    }
+    .problem-bridge p {
+      font-family: var(--fb);
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      color: var(--body-c);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .problem-bridge strong {
+      color: var(--text);
+      font-weight: 700;
+      background: var(--acc-soft);
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px dashed rgba(95,95,255,0.35);
+    }
+
+    /* 3 причины */
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 64px;
+    }
+    .reason-card {
+      border-radius: 24px;
+      padding: 32px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      transition: transform 0.3s;
+      overflow: hidden;
+    }
+    .reason-card:hover { transform: translateY(-6px); }
+    .reason-card::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 44%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 0 99px 99px 0;
+    }
+    .reason-num {
+      font-family: var(--fh);
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 0.9;
+      color: var(--accent);
+      opacity: 0.28;
+      letter-spacing: -2px;
+      margin-bottom: -4px;
+    }
+    .reason-title {
+      font-family: var(--fh);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.15;
+      color: var(--text);
+      margin: 0;
+    }
+    .reason-text {
+      font-family: var(--fb);
+      font-size: 0.95rem;
+      color: var(--body-c);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .reason-tag {
+      margin-top: auto;
+      font-family: var(--fm);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      padding-top: 14px;
+      border-top: 1px dashed rgba(95,95,255,0.25);
+    }
+
+    /* Финал */
+    .problem-finale {
+      border-radius: 28px;
+      padding: 44px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .problem-finale::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(95,95,255,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .finale-label {
+      position: relative;
+      z-index: 1;
+      font-family: var(--fm);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 14px;
+    }
+    .finale-h {
+      position: relative;
+      z-index: 1;
+      font-family: var(--fh);
+      font-size: clamp(2rem, 5.5vw, 3.4rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--text);
+      margin: 0;
+    }
+    .finale-h strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Адаптив SCREEN 2 */
+    @media (max-width: 900px) {
+      .methods-grid { grid-template-columns: repeat(2, 1fr); }
+      .reasons-grid { grid-template-columns: 1fr; gap: 14px; }
+      .reason-num { font-size: 2.6rem; }
+    }
+    @media (max-width: 520px) {
+      .methods-grid { grid-template-columns: 1fr; }
+      .s-problem { padding: 60px 16px 70px; }
+      .problem-header { margin-bottom: 36px; }
+      .problem-bridge { margin-bottom: 36px; }
+      .reasons-grid { margin-bottom: 44px; }
+      .problem-finale { padding: 32px 24px; }
     }
   </style>
 </head>
@@ -407,6 +637,97 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2 — ПРОБЛЕМА -->
+  <section class="s s-problem">
+    <div class="s-inner" style="max-width:1040px">
+
+      <!-- Заголовок секции -->
+      <div class="problem-header">
+        <span class="chip">Экран 02 · Проблема</span>
+        <h2 class="h2">
+          Вы пробовали всё.<br>
+          <span class="h2-accent">Ничего не дало результата</span>,<br>
+          который остался бы.
+        </h2>
+      </div>
+
+      <!-- 6 методов-крестиков -->
+      <div class="methods-grid">
+        <div class="method-card glass">
+          <div class="method-name">Медитация</div>
+          <div class="method-result">стало легче — на час</div>
+        </div>
+        <div class="method-card glass">
+          <div class="method-name">Терапия</div>
+          <div class="method-result">поняли больше, поведение не изменилось</div>
+        </div>
+        <div class="method-card glass">
+          <div class="method-name">Ретрит</div>
+          <div class="method-result">мощный опыт — через месяц всё на месте</div>
+        </div>
+        <div class="method-card glass">
+          <div class="method-name">Коучинг</div>
+          <div class="method-result">написали цели — не сделали и половины</div>
+        </div>
+        <div class="method-card glass">
+          <div class="method-name">Биохакинг</div>
+          <div class="method-result">оптимизировали сон — стресс никуда не делся</div>
+        </div>
+        <div class="method-card glass">
+          <div class="method-name">Эзотерика</div>
+          <div class="method-result">почувствовали «что-то» — не можете повторить</div>
+        </div>
+      </div>
+
+      <!-- Мост-текст -->
+      <div class="problem-bridge">
+        <p>
+          Проблема не в методах. Каждый из них работает — на своём уровне.<br>
+          Проблема в <strong>трёх вещах</strong>, которых не было ни у одного подхода.
+        </p>
+      </div>
+
+      <!-- 3 причины провала -->
+      <div class="reasons-grid">
+
+        <article class="reason-card glass">
+          <div class="reason-num">01</div>
+          <h3 class="reason-title">Вы работали вслепую</h3>
+          <p class="reason-text">
+            Ни один метод не показывал, как реагирует ваше тело, сердечный ритм, сон и стресс, когда вы «практикуете». Вы опирались на ощущения — а их мозг легко подделывает.
+          </p>
+          <div class="reason-tag">Нет данных</div>
+        </article>
+
+        <article class="reason-card glass">
+          <div class="reason-num">02</div>
+          <h3 class="reason-title">Состояния не встраивались в жизнь</h3>
+          <p class="reason-text">
+            Вы тренировались на коврике — и теряли всё, когда вставали с него. Практика оставалась «практикой», а жизнь — жизнью. Между ними пропасть.
+          </p>
+          <div class="reason-tag">Разрыв контекста</div>
+        </article>
+
+        <article class="reason-card glass">
+          <div class="reason-num">03</div>
+          <h3 class="reason-title">Никто не наблюдал долго</h3>
+          <p class="reason-text">
+            Разовый замер, разовая сессия, разовый инсайт. Без непрерывного потока данных невозможно увидеть паттерны — а значит, невозможно их изменить.
+          </p>
+          <div class="reason-tag">Нет непрерывности</div>
+        </article>
+
+      </div>
+
+      <!-- Финал -->
+      <div class="problem-finale glass">
+        <span class="finale-label">И самое главное</span>
+        <h3 class="finale-h">Мы решили <strong>все три.</strong></h3>
+      </div>
+
     </div>
   </section>
 
