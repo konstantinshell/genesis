@@ -20,6 +20,7 @@
 
   // ── Пункты меню ─────────────────────────────────────────────────
   const navItems = [
+    { label: 'Ритмы жизни',       href: root + 'ritmy/index.html',                        match: /\/ritmy\// },
     { label: 'Блог',              href: root + 'blog/index.html',                         match: /^\/blog\/$|\/blog\/index\.html$/ },
     { label: 'ONTO NOTHING',      href: root + 'onto-nothing/index.html',                  match: /\/onto-nothing\// },
   ];
