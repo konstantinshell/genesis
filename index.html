@@ -9,6 +9,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/nav.css">
+
+<style>
+/* ===== Dark-theme override для shared site-nav ===== */
+.site-nav {
+  background: rgba(10, 10, 18, 0.72) !important;
+  border-bottom: 1px solid rgba(237, 237, 242, 0.08) !important;
+}
+.site-nav .nav-logo { color: #EDEDF2 !important; font-family: 'JetBrains Mono', monospace; }
+.site-nav .nav-logo:hover { color: #6D6DFF !important; }
+.site-nav .nav-links a { color: rgba(237, 237, 242, 0.58) !important; font-family: 'Inter', sans-serif; }
+.site-nav .nav-links a:hover { color: #EDEDF2 !important; background: rgba(109, 109, 255, 0.15) !important; }
+.site-nav .nav-links a.active { color: #6D6DFF !important; background: rgba(109, 109, 255, 0.18) !important; }
+.site-nav .nav-burger span { background: #EDEDF2 !important; }
+@media (max-width: 768px) {
+  .site-nav .nav-links { background: rgba(10, 10, 18, 0.95) !important; }
+}
+</style>
 
 <style>
 /* ================================================================
@@ -143,7 +161,7 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding: 36px 48px 32px;
+  padding: 100px 48px 32px;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -7482,6 +7500,8 @@ body {
   });
 })();
 </script>
+
+<script src="components/nav.js"></script>
 
 </body>
 </html>
