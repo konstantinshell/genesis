@@ -1531,13 +1531,18 @@
        SLIDE 9 — МИРЫ ПОЗНАНИЯ (image)
     ═══════════════════════════════════════ */
     .slide-9 .slide-inner {
-      padding: 48px;
-      justify-content: center;
-      align-items: center;
+      padding: 0;
+      display: block;
+      position: relative;
     }
     .w9-image {
-      max-width: 100%;
-      max-height: 100%;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: calc(100% - 96px);
+      max-height: calc(100% - 96px);
       width: auto;
       height: auto;
       object-fit: contain;
@@ -1545,7 +1550,6 @@
       box-shadow:
         0 28px 80px rgba(0,0,0,0.12),
         0 4px 10px rgba(0,0,0,0.05);
-      position: relative;
       z-index: 2;
     }
 
