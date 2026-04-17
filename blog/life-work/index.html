@@ -667,6 +667,44 @@
       opacity: 0.85;
     }
 
+    /* Блок «Устойчивость бизнеса — это:» — крупный центрированный список */
+    .definition {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .definition-label {
+      font-family: var(--fm);
+      font-size: 14px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .definition-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-family: var(--fh);
+      font-weight: 400;
+      font-size: 38px;
+      line-height: 1.2;
+      letter-spacing: -0.012em;
+    }
+    .definition-list .row { color: var(--text); }
+    .definition-list .row b {
+      font-weight: 500;
+      background: linear-gradient(120deg, #5F5FFF 15%, #0A84FF 55%, #ff80a8 95%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-style: italic;
+      font-family: "Jost", sans-serif;
+    }
+    .definition-list .row .muted {
+      color: var(--muted);
+      font-weight: 300;
+    }
+
     .manifesto-quote {
       text-align: center;
       font-family: var(--fh);
@@ -1298,6 +1336,15 @@
             но и <span class="accent">как о вас узнают</span>
           </h2>
 
+          <div class="definition">
+            <div class="definition-label">Устойчивость бизнеса — это:</div>
+            <div class="definition-list">
+              <div class="row">работает <b>в долгую</b>, <span class="muted">а не только пока выгодно</span></div>
+              <div class="row">приносит <b>пользу</b>, <span class="muted">а не только прибыль</span></div>
+              <div class="row">узнаваем <b>по смыслу</b>, <span class="muted">а не по шуму</span></div>
+            </div>
+          </div>
+
           <div class="formula">
             <div class="formula-item">PR</div>
             <div class="formula-op">+</div>
@@ -1316,7 +1363,64 @@
         </div>
       </section>
 
-      <!-- ═════ SLIDE 4 — SERVICES ═════ -->
+      <!-- ═════ SLIDE 4 — REPUTATION FRAME ═════ -->
+      <section class="slide slide-5" data-title="Фрейм репутации">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb b"></div>
+          <div class="mesh-orb c"></div>
+        </div>
+        <div class="grain"></div>
+        <div class="slide-inner">
+
+          <div class="service-header">
+            <div class="slide-eyebrow">Фрейм</div>
+            <h2 class="slide-title">Деловая репутация — <span class="accent">это:</span></h2>
+            <p class="slide-subtitle">Три измеримых эффекта, которые даёт системная работа с PR, GR и ESG-коммуникациями.</p>
+          </div>
+
+          <div class="benefit-grid">
+
+            <div class="benefit-card b1">
+              <div class="benefit-icon-wrap">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 6v12M15 9H10.5a2.5 2.5 0 100 5h3a2.5 2.5 0 110 5H9"/>
+                </svg>
+              </div>
+              <div class="benefit-title">Доступ к финансированию</div>
+              <div class="benefit-desc">Меры господдержки и ESG-финансирование от банков и фондов, ориентированных на устойчивое развитие.</div>
+            </div>
+
+            <div class="benefit-card b2">
+              <div class="benefit-icon-wrap">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+              </div>
+              <div class="benefit-title">Защита в кризис</div>
+              <div class="benefit-desc">Запас доверия, который удерживает бизнес когда давит рынок, регулятор или медиа.</div>
+            </div>
+
+            <div class="benefit-card b3">
+              <div class="benefit-icon-wrap">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 11l-4-4M7 13l4 4"/>
+                  <path d="M11 7l-5 5a2.8 2.8 0 004 4l5-5"/>
+                  <path d="M13 17l5-5a2.8 2.8 0 00-4-4l-5 5"/>
+                  <path d="M3 9l3-3M18 21l3-3"/>
+                </svg>
+              </div>
+              <div class="benefit-title">Ценностные партнёры</div>
+              <div class="benefit-desc">Клиенты, инвесторы и сотрудники, которые разделяют ваш подход — а не приходят за быстрой выгодой.</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════ SLIDE 5 — SERVICES ═════ -->
       <section class="slide slide-4" data-title="Что предлагаем">
         <div class="mesh">
           <div class="mesh-orb a"></div>
@@ -1370,63 +1474,6 @@
               <div class="service-tag">ESG-коммуникации</div>
               <div class="service-name">Язык инвесторов и власти</div>
               <div class="service-desc">Как донести вклад в устойчивость, как говорить о ценностях на языке, который понимают инвесторы и регуляторы.</div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ═════ SLIDE 5 — REPUTATION FRAME ═════ -->
-      <section class="slide slide-5" data-title="Фрейм репутации">
-        <div class="mesh">
-          <div class="mesh-orb a"></div>
-          <div class="mesh-orb b"></div>
-          <div class="mesh-orb c"></div>
-        </div>
-        <div class="grain"></div>
-        <div class="slide-inner">
-
-          <div class="service-header">
-            <div class="slide-eyebrow">Фрейм</div>
-            <h2 class="slide-title">Деловая репутация — <span class="accent">это:</span></h2>
-            <p class="slide-subtitle">Три измеримых эффекта, которые даёт системная работа с PR, GR и ESG-коммуникациями.</p>
-          </div>
-
-          <div class="benefit-grid">
-
-            <div class="benefit-card b1">
-              <div class="benefit-icon-wrap">
-                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"/>
-                  <path d="M12 6v12M15 9H10.5a2.5 2.5 0 100 5h3a2.5 2.5 0 110 5H9"/>
-                </svg>
-              </div>
-              <div class="benefit-title">Доступ к финансированию</div>
-              <div class="benefit-desc">Меры господдержки и ESG-финансирование от банков и фондов, ориентированных на устойчивое развитие.</div>
-            </div>
-
-            <div class="benefit-card b2">
-              <div class="benefit-icon-wrap">
-                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/>
-                  <path d="M9 12l2 2 4-4"/>
-                </svg>
-              </div>
-              <div class="benefit-title">Защита в кризис</div>
-              <div class="benefit-desc">Запас доверия, который удерживает бизнес когда давит рынок, регулятор или медиа.</div>
-            </div>
-
-            <div class="benefit-card b3">
-              <div class="benefit-icon-wrap">
-                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 11l-4-4M7 13l4 4"/>
-                  <path d="M11 7l-5 5a2.8 2.8 0 004 4l5-5"/>
-                  <path d="M13 17l5-5a2.8 2.8 0 00-4-4l-5 5"/>
-                  <path d="M3 9l3-3M18 21l3-3"/>
-                </svg>
-              </div>
-              <div class="benefit-title">Ценностные партнёры</div>
-              <div class="benefit-desc">Клиенты, инвесторы и сотрудники, которые разделяют ваш подход — а не приходят за быстрой выгодой.</div>
             </div>
 
           </div>
