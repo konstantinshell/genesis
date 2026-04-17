@@ -1044,8 +1044,8 @@
     .triad {
       position: relative;
       width: 100%;
-      max-width: 1720px;
-      height: 700px;
+      max-width: 1400px;
+      height: 720px;
       margin: 0 auto;
     }
     .triad-connect {
@@ -1057,8 +1057,8 @@
     }
     .triad-card {
       position: absolute;
-      width: 460px;
-      padding: 26px 30px 28px;
+      width: 420px;
+      padding: 28px 32px 30px;
       border-radius: 26px;
       background: rgba(255,255,255,0.62);
       backdrop-filter: blur(30px) saturate(180%);
@@ -1086,13 +1086,13 @@
     .triad-head {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 12px;
+      gap: 16px;
+      margin-bottom: 14px;
     }
     .triad-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1106,11 +1106,11 @@
     .triad-head-text { flex: 1; min-width: 0; }
     .triad-num {
       font-family: var(--fm);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     .triad-card.t1 .triad-num { color: #5F5FFF; }
     .triad-card.t2 .triad-num { color: #0A84FF; }
@@ -1118,7 +1118,7 @@
     .triad-title {
       font-family: var(--fh);
       font-weight: 500;
-      font-size: 24px;
+      font-size: 28px;
       line-height: 1.1;
       letter-spacing: -0.01em;
       color: var(--text);
@@ -1126,7 +1126,7 @@
     .triad-desc {
       font-family: var(--fb);
       font-weight: 400;
-      font-size: 15.5px;
+      font-size: 17px;
       line-height: 1.55;
       color: var(--body-c);
     }
@@ -1136,8 +1136,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 220px;
-      height: 220px;
+      width: 260px;
+      height: 260px;
       border-radius: 50%;
       background: linear-gradient(135deg, #5F5FFF 0%, #0A84FF 55%, #ff80a8 110%);
       display: flex;
@@ -1171,17 +1171,17 @@
     }
     .triad-core-label .t-eyebrow {
       font-family: var(--fm);
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       opacity: 0.85;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .triad-core-label .t-name {
       font-family: var(--fh);
       font-weight: 500;
-      font-size: 22px;
+      font-size: 28px;
       line-height: 1.15;
       letter-spacing: -0.01em;
     }
@@ -1916,20 +1916,20 @@
 
           <div class="triad">
             <!-- Орбиты и линии-соединители -->
-            <svg class="triad-connect" viewBox="0 0 1720 700" preserveAspectRatio="none">
+            <svg class="triad-connect" viewBox="0 0 1400 720" preserveAspectRatio="none">
               <!-- Фоновые орбитальные круги -->
-              <circle cx="860" cy="350" r="330" fill="none" stroke="rgba(95,95,255,0.12)" stroke-dasharray="2 8"/>
-              <circle cx="860" cy="350" r="240" fill="none" stroke="rgba(95,95,255,0.16)" stroke-dasharray="2 8"/>
+              <circle cx="700" cy="360" r="270" fill="none" stroke="rgba(95,95,255,0.14)" stroke-dasharray="2 8"/>
+              <circle cx="700" cy="360" r="190" fill="none" stroke="rgba(95,95,255,0.18)" stroke-dasharray="2 8"/>
 
               <!-- Линии от центра к карточкам -->
-              <line x1="860" y1="350" x2="860" y2="205" stroke="rgba(95,95,255,0.45)" stroke-width="1.5" stroke-dasharray="5 7"/>
-              <line x1="860" y1="350" x2="230" y2="500" stroke="rgba(10,132,255,0.4)" stroke-width="1.5" stroke-dasharray="5 7"/>
-              <line x1="860" y1="350" x2="1490" y2="500" stroke="rgba(255,128,168,0.4)" stroke-width="1.5" stroke-dasharray="5 7"/>
+              <line x1="700" y1="360" x2="700" y2="210" stroke="rgba(95,95,255,0.5)" stroke-width="1.8" stroke-dasharray="5 7"/>
+              <line x1="700" y1="360" x2="210" y2="510" stroke="rgba(10,132,255,0.45)" stroke-width="1.8" stroke-dasharray="5 7"/>
+              <line x1="700" y1="360" x2="1190" y2="510" stroke="rgba(255,128,168,0.45)" stroke-width="1.8" stroke-dasharray="5 7"/>
 
               <!-- Dots в местах присоединения к карточкам -->
-              <circle cx="860" cy="205" r="5" fill="#5F5FFF" opacity="0.5"/>
-              <circle cx="230" cy="500" r="5" fill="#0A84FF" opacity="0.5"/>
-              <circle cx="1490" cy="500" r="5" fill="#FF80A8" opacity="0.5"/>
+              <circle cx="700" cy="210" r="6" fill="#5F5FFF" opacity="0.55"/>
+              <circle cx="210" cy="510" r="6" fill="#0A84FF" opacity="0.55"/>
+              <circle cx="1190" cy="510" r="6" fill="#FF80A8" opacity="0.55"/>
             </svg>
 
             <!-- Центральное ядро -->
