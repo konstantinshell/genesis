@@ -10,7 +10,7 @@
   <title>Life &amp; Work — устойчивость, баланс, AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@300;400;500;600&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Courier+Prime:wght@400;700&family=Jost:wght@300;400;500;600&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════
        RESET + TOKENS
@@ -1528,6 +1528,28 @@
     }
 
     /* ═══════════════════════════════════════
+       SLIDE 9 — МИРЫ ПОЗНАНИЯ (image)
+    ═══════════════════════════════════════ */
+    .slide-9 .slide-inner {
+      padding: 48px;
+      justify-content: center;
+      align-items: center;
+    }
+    .w9-image {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 18px;
+      box-shadow:
+        0 28px 80px rgba(0,0,0,0.12),
+        0 4px 10px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ═══════════════════════════════════════
        PRINT — каждый слайд на отдельной
        странице A4 landscape для PDF
     ═══════════════════════════════════════ */
@@ -2196,6 +2218,19 @@
             </div>
 
           </div>
+        </div>
+      </section>
+
+      <!-- ═════ SLIDE 9 — МИРЫ ПОЗНАНИЯ (image) ═════ -->
+      <section class="slide slide-9" data-title="Миры познания">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb b"></div>
+          <div class="mesh-orb c"></div>
+        </div>
+        <div class="grain"></div>
+        <div class="slide-inner">
+          <img src="img/miry-poznaniya.png" alt="Миры познания — схема" class="w9-image">
         </div>
       </section>
 
