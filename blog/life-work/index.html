@@ -2321,39 +2321,105 @@
        SLIDE 15 — ФИНАЛ / КОНТАКТЫ
     ═══════════════════════════════════════ */
     .slide-15 {
-      background: #0E0F2A;
+      background: #0E1033;
     }
     .slide-15 .mesh-orb.a {
-      background: radial-gradient(circle at 30% 30%, rgba(250,204,21,0.22), transparent 65%);
+      background: radial-gradient(circle at 30% 30%, rgba(250,204,21,0.2), transparent 65%);
       opacity: 0.5;
     }
     .slide-15 .mesh-orb.b {
-      background: radial-gradient(circle at 60% 60%, rgba(96,165,250,0.2), transparent 65%);
+      background: radial-gradient(circle at 60% 60%, rgba(96,165,250,0.22), transparent 65%);
       opacity: 0.5;
     }
     .slide-15 .mesh-orb.c {
-      background: radial-gradient(circle, rgba(167,139,250,0.18), transparent 65%);
+      background: radial-gradient(circle, rgba(167,139,250,0.15), transparent 65%);
       opacity: 0.4;
     }
 
     .slide-15 .slide-inner {
-      padding: 0;
-      display: block;
+      padding: 80px 100px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .w15-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+      color: #fff;
+    }
+
+    .w15-qrs {
+      display: flex;
+      gap: 80px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .w15-qr-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 26px;
+    }
+    .w15-qr-frame {
+      width: 340px;
+      height: 340px;
+      border-radius: 46px;
+      padding: 18px;
+      background: #fff;
+      border: 5px solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
     }
-    .w15-image {
+    .w15-qr-frame.yellow { border-color: #FACC15; }
+    .w15-qr-frame.blue   { border-color: #60A5FA; }
+    .w15-qr-frame img {
+      width: 100%;
+      height: 100%;
       display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: calc(100% - 80px);
-      max-height: calc(100% - 80px);
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      z-index: 2;
+      image-rendering: pixelated;
     }
+
+    .w15-qr-label {
+      font-family: var(--fb);
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      color: #fff;
+      text-align: center;
+    }
+    .w15-qr-label .path {
+      display: block;
+      margin-top: 4px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .w15-qr-item.yellow .w15-qr-label .path { color: #FACC15; }
+    .w15-qr-item.blue   .w15-qr-label .path { color: #60A5FA; }
+
+    .w15-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      padding: 18px 42px;
+      margin-top: 32px;
+      font-family: var(--fb);
+      font-weight: 700;
+      font-size: 44px;
+      letter-spacing: 0.02em;
+      color: #FACC15;
+    }
+    .w15-phone svg {
+      width: 42px;
+      height: 42px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .w15-phone svg .ring { stroke: #FACC15; }
 
     /* ═══════════════════════════════════════
        PRINT — каждый слайд на отдельной
@@ -3722,7 +3788,39 @@
           <div class="mesh-orb c"></div>
         </div>
         <div class="slide-inner">
-          <img src="img/contacts-final.png" alt="Контакты — QR коды и телефон" class="w15-image">
+          <div class="w15-wrap">
+
+            <div class="w15-qrs">
+              <a href="https://zhizniritm.ru/morozova" class="w15-qr-item yellow" target="_blank" rel="noopener">
+                <div class="w15-qr-frame yellow">
+                  <img src="img/qr-morozova.png" alt="QR · zhizniritm.ru/morozova">
+                </div>
+                <div class="w15-qr-label">
+                  zhizniritm.ru
+                  <span class="path">/morozova</span>
+                </div>
+              </a>
+
+              <a href="https://t.me/NihiloAI_bot?start=org" class="w15-qr-item blue" target="_blank" rel="noopener">
+                <div class="w15-qr-frame blue">
+                  <img src="img/qr-nihilo-bot.png" alt="QR · t.me/NihiloAI_bot">
+                </div>
+                <div class="w15-qr-label">
+                  t.me
+                  <span class="path">/NihiloAI_bot</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="w15-phone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                <path class="ring" d="M18 3.5v1.5M19.8 5.2l-1.1 1M21.5 9h-1.5" stroke-width="2.2"/>
+              </svg>
+              +7 (909) 654-6297
+            </div>
+
+          </div>
         </div>
       </section>
 
