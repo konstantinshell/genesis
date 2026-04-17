@@ -2319,6 +2319,44 @@
     }
 
     /* ═══════════════════════════════════════
+       SLIDE 15 — ФИНАЛ / КОНТАКТЫ
+    ═══════════════════════════════════════ */
+    .slide-15 {
+      background: #0E0F2A;
+    }
+    .slide-15 .mesh-orb.a {
+      background: radial-gradient(circle at 30% 30%, rgba(250,204,21,0.22), transparent 65%);
+      opacity: 0.5;
+    }
+    .slide-15 .mesh-orb.b {
+      background: radial-gradient(circle at 60% 60%, rgba(96,165,250,0.2), transparent 65%);
+      opacity: 0.5;
+    }
+    .slide-15 .mesh-orb.c {
+      background: radial-gradient(circle, rgba(167,139,250,0.18), transparent 65%);
+      opacity: 0.4;
+    }
+
+    .slide-15 .slide-inner {
+      padding: 0;
+      display: block;
+      position: relative;
+    }
+    .w15-image {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: calc(100% - 80px);
+      max-height: calc(100% - 80px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      z-index: 2;
+    }
+
+    /* ═══════════════════════════════════════
        PRINT — каждый слайд на отдельной
        странице A4 landscape для PDF
     ═══════════════════════════════════════ */
@@ -3589,6 +3627,18 @@
             </div>
           </div>
 
+        </div>
+      </section>
+
+      <!-- ═════ SLIDE 15 — ФИНАЛ / КОНТАКТЫ ═════ -->
+      <section class="slide slide-15" data-title="Контакты">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb b"></div>
+          <div class="mesh-orb c"></div>
+        </div>
+        <div class="slide-inner">
+          <img src="img/contacts-final.png" alt="Контакты — QR коды и телефон" class="w15-image">
         </div>
       </section>
 
