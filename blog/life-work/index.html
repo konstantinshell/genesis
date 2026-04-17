@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Life & Work — устойчивость бизнеса, баланс сфер жизни и AI технологии. Презентация Натальи Морозовой, Фонд Развития Социального Лидерства.">
+  <meta property="og:title" content="Life & Work — устойчивость, баланс, AI">
+  <meta property="og:description" content="Устойчивость бизнеса · Баланс сфер жизни · AI технологии">
+  <meta property="og:type" content="website">
+  <title>Life &amp; Work — устойчивость, баланс, AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@300;400;500;600&family=Oswald:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+  <style>
+    /* ── Hero screen ─────────────────────────────── */
+    .hero-screen {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 80px;
+      overflow: hidden;
+    }
+
+    /* Apple-style background mesh */
+    .mesh {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .mesh::before,
+    .mesh::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(110px);
+      opacity: 0.55;
+      animation: float 22s ease-in-out infinite;
+    }
+    .mesh::before {
+      width: 55vw;
+      height: 55vw;
+      top: -15%;
+      left: -10%;
+      background: radial-gradient(circle at 30% 30%, rgba(95,95,255,0.5), transparent 65%);
+    }
+    .mesh::after {
+      width: 50vw;
+      height: 50vw;
+      bottom: -15%;
+      right: -10%;
+      background: radial-gradient(circle at 60% 60%, rgba(10,132,255,0.35), transparent 65%);
+      animation-delay: -8s;
+    }
+    .mesh-peach {
+      position: absolute;
+      width: 36vw;
+      height: 36vw;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.35;
+      background: radial-gradient(circle, rgba(255,170,200,0.55), transparent 65%);
+      animation: float 30s ease-in-out infinite -4s;
+    }
+    @keyframes float {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33% { transform: translate(3%,-2%) scale(1.05); }
+      66% { transform: translate(-2%,3%) scale(0.97); }
+    }
+
+    /* ── Grain overlay для киношного ощущения ── */
+    .grain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.035;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 1080px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeUp 1.1s cubic-bezier(0.2,0.8,0.2,1) both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── Top meta ── */
+    .org-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 22px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.85);
+      box-shadow: 0 6px 24px rgba(95,95,255,0.08), inset 0 1px 0 rgba(255,255,255,1);
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .org-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(95,95,255,0.15);
+    }
+
+    /* ── Title ── */
+    .hero-title {
+      font-family: var(--fh);
+      font-weight: 300;
+      font-size: clamp(3.4rem, 11vw, 9rem);
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .hero-title .and {
+      font-style: italic;
+      font-weight: 300;
+      background: linear-gradient(120deg, #5F5FFF 20%, #0A84FF 60%, #ff80a8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding: 0 0.08em;
+    }
+    .hero-title .amp {
+      font-weight: 300;
+      color: var(--accent);
+      font-style: italic;
+      font-family: "Jost", sans-serif;
+    }
+
+    /* ── Subtitle ── */
+    .hero-sub {
+      font-family: var(--fb);
+      font-weight: 300;
+      font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+      line-height: 1.4;
+      color: var(--body-c);
+      max-width: 720px;
+      margin: 0 auto 48px;
+      letter-spacing: -0.005em;
+    }
+
+    /* ── Theme pills ── */
+    .theme-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 72px;
+    }
+    .theme-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,1);
+      font-family: var(--fh);
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text);
+      transition: transform 0.3s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.3s;
+    }
+    .theme-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(95,95,255,0.18), inset 0 1px 0 rgba(255,255,255,1);
+    }
+    .theme-pill .pill-icon {
+      width: 18px; height: 18px;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--accent);
+    }
+    .theme-pill:nth-child(2) .pill-icon { color: var(--blue); }
+    .theme-pill:nth-child(3) .pill-icon { color: #e879a4; }
+
+    /* ── Speaker card ── */
+    .speaker-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 28px 36px 28px 28px;
+      max-width: 780px;
+      width: 100%;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.07),
+        0 2px 6px rgba(0,0,0,0.04),
+        inset 0 1px 0 rgba(255,255,255,1);
+      text-align: left;
+    }
+    .speaker-photo {
+      flex-shrink: 0;
+      width: 140px;
+      height: 180px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #5F5FFF 0%, #0A84FF 60%, #ff80a8 100%);
+      box-shadow:
+        0 14px 40px rgba(95,95,255,0.22),
+        0 2px 6px rgba(0,0,0,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+    .speaker-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .speaker-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.5);
+      pointer-events: none;
+    }
+    .speaker-body { flex: 1; min-width: 0; }
+    .speaker-label {
+      font-family: var(--fm);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .speaker-name {
+      font-family: var(--fh);
+      font-weight: 500;
+      font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .speaker-roles {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-family: var(--fb);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--body-c);
+    }
+    .speaker-roles li {
+      position: relative;
+      padding-left: 16px;
+      list-style: none;
+    }
+    .speaker-roles li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    /* ── Scroll indicator ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fm);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+    .scroll-hint .line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+      50%     { opacity: 1;   transform: scaleY(1); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero-screen { padding: 100px 18px 90px; }
+      .hero-title { font-size: 3.4rem; }
+      .theme-pills { gap: 8px; margin-bottom: 48px; }
+      .theme-pill { padding: 10px 16px; font-size: 0.85rem; }
+      .speaker-card { flex-direction: column; align-items: center; text-align: center; padding: 24px 22px; gap: 20px; }
+      .speaker-photo { width: 130px; height: 160px; }
+      .speaker-roles li { padding-left: 0; }
+      .speaker-roles li::before { display: none; }
+      .org-badge { font-size: 0.65rem; padding: 8px 16px; margin-bottom: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<main>
+
+  <section class="hero-screen">
+    <div class="mesh"><div class="mesh-peach"></div></div>
+    <div class="grain"></div>
+
+    <div class="hero-inner">
+
+      <div class="org-badge">
+        <span class="dot"></span>
+        Фонд Развития Социального Лидерства
+      </div>
+
+      <h1 class="hero-title">
+        Life <span class="amp">&amp;</span> Work
+      </h1>
+
+      <p class="hero-sub">
+        Устойчивость бизнеса.&nbsp; Баланс сфер жизни.&nbsp; AI&nbsp;технологии.
+      </p>
+
+      <div class="theme-pills">
+        <div class="theme-pill">
+          <span class="pill-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </span>
+          Устойчивость
+        </div>
+        <div class="theme-pill">
+          <span class="pill-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 014-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 01-4 4H3"/></svg>
+          </span>
+          Баланс
+        </div>
+        <div class="theme-pill">
+          <span class="pill-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.9 5.8L20 9.6l-5 3.9L16.8 20 12 16.9 7.2 20 9 13.5 4 9.6l6.1-1.8z"/></svg>
+          </span>
+          AI технологии
+        </div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-photo">
+          <img src="img/natalia-morozova.jpg" alt="Наталья Морозова" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--fh);font-size:2.2rem;font-weight:500&quot;>НМ</div>'">
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-label">Спикер</div>
+          <div class="speaker-name">Наталья Александровна Морозова</div>
+          <ul class="speaker-roles">
+            <li>Президент Фонда Развития Социального Лидерства</li>
+            <li>Руководитель спецпроектов «Гильдии Устойчивого Развития при МТПП»</li>
+            <li>Эксперт по межсекторному партнёрству, КСО и устойчивому развитию</li>
+            <li>Основатель Центра Развития «Ритм Жизни»</li>
+            <li>Соавтор проекта «Цифровой Помощник» Вашей жизни</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="scroll-hint">
+      <span>Далее</span>
+      <span class="line"></span>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>
