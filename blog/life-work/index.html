@@ -1187,6 +1187,143 @@
     }
 
     /* ═══════════════════════════════════════
+       SLIDE 8 — WORLDS (Миры познания)
+    ═══════════════════════════════════════ */
+    .slide-8 .slide-inner {
+      padding: 80px 80px;
+      justify-content: center;
+    }
+    .slide-8 .service-header { margin-bottom: 56px; }
+
+    .worlds-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      width: 100%;
+      max-width: 1720px;
+      margin: 0 auto;
+    }
+    .world-card {
+      position: relative;
+      padding: 48px 40px 44px;
+      border-radius: 32px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow:
+        0 28px 70px rgba(0,0,0,0.07),
+        0 2px 6px rgba(0,0,0,0.04),
+        inset 0 1px 0 rgba(255,255,255,1);
+      text-align: left;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .world-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .world-card.w1::before { background: linear-gradient(90deg, #5F5FFF, rgba(95,95,255,0.2)); }
+    .world-card.w2::before { background: linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.2)); }
+    .world-card.w3::before { background: linear-gradient(90deg, #FF80A8, rgba(255,128,168,0.2)); }
+
+    /* Огромный номер-watermark */
+    .world-num {
+      position: absolute;
+      top: 16px;
+      right: 30px;
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+      font-size: 220px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      pointer-events: none;
+      font-style: italic;
+    }
+    .world-card.w1 .world-num {
+      background: linear-gradient(135deg, rgba(95,95,255,0.18), rgba(95,95,255,0.06));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .world-card.w2 .world-num {
+      background: linear-gradient(135deg, rgba(10,132,255,0.18), rgba(10,132,255,0.06));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .world-card.w3 .world-num {
+      background: linear-gradient(135deg, rgba(255,128,168,0.22), rgba(255,128,168,0.08));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .world-icon {
+      width: 84px;
+      height: 84px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+      color: #fff;
+      position: relative;
+      z-index: 2;
+    }
+    .world-card.w1 .world-icon {
+      background: linear-gradient(135deg, #5F5FFF 0%, #7b7bff 100%);
+      box-shadow: 0 14px 36px rgba(95,95,255,0.35);
+    }
+    .world-card.w2 .world-icon {
+      background: linear-gradient(135deg, #0A84FF 0%, #4ea6ff 100%);
+      box-shadow: 0 14px 36px rgba(10,132,255,0.35);
+    }
+    .world-card.w3 .world-icon {
+      background: linear-gradient(135deg, #FF80A8 0%, #ff9fbc 100%);
+      box-shadow: 0 14px 36px rgba(255,128,168,0.35);
+    }
+
+    .world-tag {
+      font-family: var(--fm);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+    .world-card.w1 .world-tag { color: #5F5FFF; }
+    .world-card.w2 .world-tag { color: #0A84FF; }
+    .world-card.w3 .world-tag { color: #FF80A8; }
+
+    .world-name {
+      font-family: var(--fh);
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 2;
+    }
+    .world-desc {
+      font-family: var(--fb);
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--body-c);
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+    }
+
+    /* ═══════════════════════════════════════
        DECK CHROME (controls)
     ═══════════════════════════════════════ */
     .deck-chrome {
@@ -1991,6 +2128,71 @@
                 </div>
               </div>
               <div class="triad-desc">Знание своих физических резервов и природных циклов — работать в своём ритме, а не против него.</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════ SLIDE 8 — МИРЫ ПОЗНАНИЯ ═════ -->
+      <section class="slide slide-8" data-title="Миры познания">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb b"></div>
+          <div class="mesh-orb c"></div>
+        </div>
+        <div class="grain"></div>
+        <div class="slide-inner">
+
+          <div class="service-header">
+            <div class="slide-eyebrow">Внутренний порядок миров</div>
+            <h2 class="slide-title">Наши миры <span class="accent">познания</span></h2>
+          </div>
+
+          <div class="worlds-grid">
+
+            <!-- 1 — Материальный, физический -->
+            <div class="world-card w1">
+              <div class="world-num">1</div>
+              <div class="world-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                  <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+              </div>
+              <div class="world-tag">Мир · 01</div>
+              <div class="world-name">Материальный,<br>физический мир</div>
+              <div class="world-desc">Мир, где мы живём и действуем.</div>
+            </div>
+
+            <!-- 2 — Виртуальный, цифровой -->
+            <div class="world-card w2">
+              <div class="world-num">2</div>
+              <div class="world-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 8.82a15 15 0 0120 0"/>
+                  <path d="M5 12.86a10 10 0 0114 0"/>
+                  <path d="M8.5 16.43a5 5 0 017 0"/>
+                  <circle cx="12" cy="20" r="1.2" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="world-tag">Мир · 02</div>
+              <div class="world-name">Виртуальный,<br>цифровой мир</div>
+              <div class="world-desc">Интернет, вещание, онлайн-общение и деятельность.</div>
+            </div>
+
+            <!-- 3 — Психо-эмоциональный -->
+            <div class="world-card w3">
+              <div class="world-num">3</div>
+              <div class="world-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                </svg>
+              </div>
+              <div class="world-tag">Мир · 03</div>
+              <div class="world-name">Психо-<br>эмоциональный</div>
+              <div class="world-desc">Где мы чувствуем, думаем, ощущаем эмоции и переживания.</div>
             </div>
 
           </div>
