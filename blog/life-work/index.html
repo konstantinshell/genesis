@@ -129,6 +129,41 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
+    /* ── Logo: Ритмы Жизни — Центр Развития ── */
+    .slide-watermark {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 34px;
+      opacity: 0.38;
+      z-index: 4;
+      pointer-events: none;
+      color: #16161A;
+    }
+    .slide-watermark img {
+      display: block;
+      height: 100%;
+      width: auto;
+    }
+    /* На слайде 15 (тёмный) — watermark светлее */
+    .slide-15 .slide-watermark {
+      color: #fff;
+      opacity: 0.45;
+    }
+    /* Большой логотип на обложке (слайд 1) */
+    .cover-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+      color: #16161A;
+    }
+    .cover-logo img {
+      display: block;
+      height: 78px;
+      width: auto;
+    }
+
     /* ═══════════════════════════════════════
        SLIDE INNER LAYOUT
     ═══════════════════════════════════════ */
@@ -2558,6 +2593,10 @@
         <div class="grain"></div>
         <div class="slide-inner">
 
+          <div class="cover-logo">
+            <img src="img/rzh-logo.svg" alt="Ритмы Жизни · Центр Развития">
+          </div>
+
           <div class="org-badge">
             <span class="dot"></span>
             Фонд Развития Социального Лидерства
@@ -3971,6 +4010,15 @@
     const n = parseInt(hashMatch[1], 10) - 1;
     if (n >= 0 && n < total) current = n;
   }
+
+  // Ватермарк «Ритмы Жизни» на каждый слайд (кроме обложки и финала)
+  slides.forEach((s, i) => {
+    if (i === 0 || i === total - 1) return;
+    const wm = document.createElement('div');
+    wm.className = 'slide-watermark';
+    wm.innerHTML = '<img src="img/rzh-logo.svg" alt="Ритмы Жизни">';
+    s.appendChild(wm);
+  });
 
   update();
 })();
