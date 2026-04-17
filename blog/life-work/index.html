@@ -2365,11 +2365,16 @@
       margin: 0;
     }
     @media print {
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
       html, body {
         overflow: visible !important;
         height: auto !important;
         width: auto !important;
-        background: #fff;
+        background: var(--bg);
       }
       .deck-viewport {
         position: static !important;
