@@ -2121,45 +2121,43 @@
        SLIDE 14 — НА СВОЁМ ПРИМЕРЕ (4 источника → AI)
     ═══════════════════════════════════════ */
     .slide-14 .slide-inner {
-      padding: 40px 56px;
+      padding: 56px 72px;
       justify-content: center;
     }
-    .slide-14 .service-header { margin-bottom: 24px; }
+    .slide-14 .service-header { margin-bottom: 48px; }
 
-    .sci-banner {
-      position: relative;
-      text-align: center;
-      padding: 18px 32px;
-      border-radius: 18px;
+    .sci-banner-pill {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px 16px;
+      padding: 12px 24px;
+      border-radius: 100px;
       background: linear-gradient(120deg, rgba(95,95,255,0.1), rgba(255,128,168,0.08), rgba(245,158,11,0.1));
-      border: 1px solid rgba(95,95,255,0.22);
-      max-width: 1600px;
-      margin: 0 auto 32px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,1);
-    }
-    .sci-banner-kicker {
-      font-family: var(--fm);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .sci-banner-text {
+      border: 1px solid rgba(95,95,255,0.25);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,1);
       font-family: var(--fh);
-      font-weight: 400;
-      font-size: 19px;
-      line-height: 1.35;
+      font-weight: 500;
+      font-size: 15px;
       color: var(--text);
-      letter-spacing: -0.005em;
+      letter-spacing: 0.02em;
+      margin-top: 16px;
+      max-width: 1300px;
     }
-    .sci-banner-text b {
-      font-weight: 600;
+    .sci-banner-pill b {
+      font-weight: 700;
       background: linear-gradient(120deg, #5F5FFF, #0A84FF, #FF80A8);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+    }
+    .sci-banner-pill .sep {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--muted);
+      opacity: 0.5;
+      display: inline-block;
     }
 
     .sources-grid {
@@ -2171,15 +2169,15 @@
     }
     .source-card {
       position: relative;
-      padding: 26px 24px 26px;
-      border-radius: 22px;
+      padding: 32px 28px 32px;
+      border-radius: 24px;
       background: rgba(255,255,255,0.6);
       backdrop-filter: blur(26px) saturate(180%);
       -webkit-backdrop-filter: blur(26px) saturate(180%);
       border: 1px solid rgba(255,255,255,0.9);
       box-shadow:
-        0 18px 44px rgba(0,0,0,0.06),
-        0 2px 6px rgba(0,0,0,0.03),
+        0 22px 52px rgba(0,0,0,0.07),
+        0 3px 8px rgba(0,0,0,0.03),
         inset 0 1px 0 rgba(255,255,255,1);
       text-align: left;
       overflow: hidden;
@@ -2202,8 +2200,8 @@
       margin-bottom: 14px;
     }
     .source-icon {
-      width: 50px; height: 50px;
-      border-radius: 14px;
+      width: 58px; height: 58px;
+      border-radius: 16px;
       display: flex; align-items: center; justify-content: center;
       color: #fff;
       flex-shrink: 0;
@@ -2229,88 +2227,89 @@
     .source-name {
       font-family: var(--fh);
       font-weight: 600;
-      font-size: 22px;
+      font-size: 26px;
       line-height: 1.1;
       letter-spacing: -0.01em;
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .source-role {
       font-family: var(--fb);
-      font-size: 13.5px;
-      line-height: 1.4;
+      font-size: 15px;
+      line-height: 1.45;
       color: var(--body-c);
     }
     .source-role b {
       font-family: var(--fh);
       font-weight: 500;
       color: var(--text);
-      font-size: 15px;
+      font-size: 17px;
       display: inline-block;
-      margin-left: 2px;
+      margin-left: 4px;
     }
 
     /* Connector from 4 cards to AI integrator */
     .sources-connector {
       display: flex;
       justify-content: center;
-      margin: 14px auto 14px;
+      margin: 22px auto 22px;
     }
     .connector-svg {
       width: 100%;
       max-width: 1720px;
-      height: 52px;
+      height: 90px;
       display: block;
     }
 
     /* ex NIHILO Integrator card */
     .ai-integrator {
-      max-width: 820px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 24px 34px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(245,158,11,0.14), rgba(167,139,250,0.12), rgba(95,95,255,0.08));
-      border: 2px solid rgba(245,158,11,0.38);
+      padding: 32px 44px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.16), rgba(167,139,250,0.14), rgba(95,95,255,0.1));
+      border: 2px solid rgba(245,158,11,0.4);
       box-shadow:
-        0 22px 56px rgba(245,158,11,0.18),
+        0 28px 70px rgba(245,158,11,0.2),
+        0 4px 10px rgba(0,0,0,0.04),
         inset 0 1px 0 rgba(255,255,255,1);
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 28px;
       text-align: left;
     }
     .ai-icon {
-      width: 68px; height: 68px;
-      border-radius: 18px;
+      width: 84px; height: 84px;
+      border-radius: 22px;
       background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 45%, #A78BFA 100%);
       display: flex; align-items: center; justify-content: center;
       color: #fff;
-      box-shadow: 0 12px 28px rgba(245,158,11,0.35), inset 0 1px 0 rgba(255,255,255,0.4);
+      box-shadow: 0 14px 34px rgba(245,158,11,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
       flex-shrink: 0;
     }
     .ai-text { flex: 1; }
     .ai-kind {
       font-family: var(--fm);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: #D97706;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     .ai-name {
       font-family: var(--fh);
       font-weight: 600;
-      font-size: 30px;
+      font-size: 38px;
       line-height: 1;
       letter-spacing: -0.01em;
       color: var(--text);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .ai-role {
       font-family: var(--fb);
-      font-size: 14.5px;
-      line-height: 1.4;
+      font-size: 17px;
+      line-height: 1.45;
       color: var(--body-c);
     }
     .ai-role b {
@@ -3530,12 +3529,17 @@
             <div class="slide-eyebrow">Практика изнутри</div>
             <h2 class="slide-title">На своём примере — <span class="accent">цифровая трансформация</span></h2>
             <p class="slide-subtitle">Мозг, тело, жизнь — на научно обоснованных фактах и показателях.</p>
-          </div>
-
-          <!-- Banner: метод -->
-          <div class="sci-banner">
-            <div class="sci-banner-kicker">Методология исследования</div>
-            <div class="sci-banner-text"><b>Научная верификация</b> · сбор данных · отслеживание изменений · постановка и реализация гипотез во времени — с явным наблюдением в режиме <b>24 / 7</b></div>
+            <div class="sci-banner-pill">
+              <b>Научная верификация</b>
+              <span class="sep"></span>
+              <span>сбор данных</span>
+              <span class="sep"></span>
+              <span>отслеживание изменений</span>
+              <span class="sep"></span>
+              <span>гипотезы во времени</span>
+              <span class="sep"></span>
+              <b>режим 24 / 7</b>
+            </div>
           </div>
 
           <!-- 4 источника данных -->
@@ -3603,15 +3607,23 @@
 
           <!-- Connector: 4 потока → 1 центр -->
           <div class="sources-connector">
-            <svg class="connector-svg" viewBox="0 0 1720 52" preserveAspectRatio="none">
+            <svg class="connector-svg" viewBox="0 0 1720 90" preserveAspectRatio="none">
               <!-- 4 линии сходятся к центру -->
-              <path d="M 215,2 C 500,26 760,44 860,48" stroke="#5F5FFF" fill="none" stroke-width="1.8" stroke-dasharray="4 6" opacity="0.55"/>
-              <path d="M 645,2 C 730,22 820,40 860,48" stroke="#FF80A8" fill="none" stroke-width="1.8" stroke-dasharray="4 6" opacity="0.55"/>
-              <path d="M 1075,2 C 990,22 900,40 860,48" stroke="#0A84FF" fill="none" stroke-width="1.8" stroke-dasharray="4 6" opacity="0.55"/>
-              <path d="M 1505,2 C 1220,26 960,44 860,48" stroke="#14B8A6" fill="none" stroke-width="1.8" stroke-dasharray="4 6" opacity="0.55"/>
-              <!-- Фокусная точка -->
-              <circle cx="860" cy="48" r="6" fill="#F59E0B" opacity="0.8"/>
-              <circle cx="860" cy="48" r="12" fill="none" stroke="#F59E0B" stroke-width="1" opacity="0.35"/>
+              <path d="M 215,4 C 500,40 760,78 860,82" stroke="#5F5FFF" fill="none" stroke-width="2.4" stroke-dasharray="5 7" opacity="0.85"/>
+              <path d="M 645,4 C 730,34 820,72 860,82" stroke="#FF80A8" fill="none" stroke-width="2.4" stroke-dasharray="5 7" opacity="0.85"/>
+              <path d="M 1075,4 C 990,34 900,72 860,82" stroke="#0A84FF" fill="none" stroke-width="2.4" stroke-dasharray="5 7" opacity="0.85"/>
+              <path d="M 1505,4 C 1220,40 960,78 860,82" stroke="#14B8A6" fill="none" stroke-width="2.4" stroke-dasharray="5 7" opacity="0.85"/>
+              <!-- Точки у истоков (на верхнем крае) -->
+              <circle cx="215" cy="4" r="5" fill="#5F5FFF"/>
+              <circle cx="645" cy="4" r="5" fill="#FF80A8"/>
+              <circle cx="1075" cy="4" r="5" fill="#0A84FF"/>
+              <circle cx="1505" cy="4" r="5" fill="#14B8A6"/>
+              <!-- Фокусная точка — схождение -->
+              <circle cx="860" cy="82" r="16" fill="none" stroke="#F59E0B" stroke-width="1.5" opacity="0.35"/>
+              <circle cx="860" cy="82" r="10" fill="none" stroke="#F59E0B" stroke-width="1.5" opacity="0.6"/>
+              <circle cx="860" cy="82" r="6" fill="#F59E0B"/>
+              <!-- Caption "4 потока → 1 индекс" -->
+              <text x="1680" y="50" text-anchor="end" font-family="'Courier Prime', monospace" font-size="11" font-weight="700" letter-spacing="2" fill="#888">4 ПОТОКА → 1 ИНТЕГРАТОР</text>
             </svg>
           </div>
 
@@ -3787,6 +3799,14 @@
 
   window.addEventListener('resize', scaleStage);
   scaleStage();
+
+  // Поддержка URL hash #slide=N для прямого перехода (для headless-скриншотов)
+  const hashMatch = window.location.hash.match(/^#slide=(\d+)$/);
+  if (hashMatch) {
+    const n = parseInt(hashMatch[1], 10) - 1;
+    if (n >= 0 && n < total) current = n;
+  }
+
   update();
 })();
 </script>
