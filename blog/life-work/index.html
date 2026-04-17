@@ -368,22 +368,43 @@
       border: 1px solid rgba(255,255,255,0.85);
     }
     .bio-title {
-      font-family: var(--fh);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      line-height: 1;
+      margin-bottom: 24px;
+      flex-wrap: nowrap;
+    }
+    .role-side {
+      font-family: var(--fm);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text);
+      flex-shrink: 0;
+      padding-top: 6px;
+    }
+    .role-divider {
+      width: 1px;
+      height: 72px;
+      background: linear-gradient(180deg, transparent 0%, rgba(22,22,26,0.18) 50%, transparent 100%);
+      flex-shrink: 0;
+    }
+    .role-center {
+      font-family: "Jost", sans-serif;
       font-weight: 300;
       font-size: 96px;
-      line-height: 0.95;
+      line-height: 0.9;
       letter-spacing: -0.028em;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-    .bio-title .accent {
-      background: linear-gradient(120deg, #5F5FFF 20%, #0A84FF 60%, #ff80a8 100%);
+      background: linear-gradient(120deg, #5F5FFF 15%, #0A84FF 55%, #ff80a8 95%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       font-style: italic;
-      font-family: "Jost", sans-serif;
-      font-weight: 300;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
     .bio-url {
       display: inline-flex;
@@ -853,7 +874,13 @@
 
           <div class="bio-header">
             <div class="slide-eyebrow">Опыт и экспертиза</div>
-            <h2 class="bio-title">Модератор&nbsp;— консультант&nbsp;— <span class="accent">автор методик</span></h2>
+            <h2 class="bio-title">
+              <span class="role-side">Модератор</span>
+              <span class="role-divider"></span>
+              <span class="role-center">автор методик</span>
+              <span class="role-divider"></span>
+              <span class="role-side">Консультант</span>
+            </h2>
             <a href="https://morozova-nataly.ru" target="_blank" rel="noopener" class="bio-url">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
               morozova-nataly.ru
