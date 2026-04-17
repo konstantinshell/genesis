@@ -3,30 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Life & Work — устойчивость бизнеса, баланс сфер жизни и AI технологии. Презентация Натальи Морозовой, Фонд Развития Социального Лидерства.">
+  <meta name="description" content="Life & Work — устойчивость бизнеса, баланс сфер жизни и AI технологии. Презентация Натальи Морозовой.">
   <meta property="og:title" content="Life & Work — устойчивость, баланс, AI">
   <meta property="og:description" content="Устойчивость бизнеса · Баланс сфер жизни · AI технологии">
   <meta property="og:type" content="website">
   <title>Life &amp; Work — устойчивость, баланс, AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@300;400;500;600&family=Oswald:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../../css/nav.css">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@300;400;500;600&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ── Hero screen ─────────────────────────────── */
-    .hero-screen {
-      position: relative;
-      min-height: 100vh;
+    /* ═══════════════════════════════════════
+       RESET + TOKENS
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #F4F5F7;
+      --text: #16161A;
+      --muted: #888896;
+      --body-c: #444450;
+      --accent: #5F5FFF;
+      --blue: #0A84FF;
+      --peach: #FF80A8;
+      --fh: "Oswald", sans-serif;
+      --fb: "Jost", sans-serif;
+      --fm: "Courier Prime", monospace;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--fb);
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* ═══════════════════════════════════════
+       DECK + SLIDES (16:9 @ 1920x1080)
+    ═══════════════════════════════════════ */
+    .deck-viewport {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .deck-stage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1920px;
+      height: 1080px;
+      transform-origin: center center;
+      /* scale calculated in JS */
+    }
+    .deck-track {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 24px 80px;
+      width: max-content;
+      height: 100%;
+      transition: transform 0.85s cubic-bezier(0.65, 0, 0.25, 1);
+      will-change: transform;
+    }
+    .slide {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      flex-shrink: 0;
       overflow: hidden;
     }
 
-    /* Apple-style background mesh */
+    /* ═══════════════════════════════════════
+       MESH BACKGROUND (per slide)
+    ═══════════════════════════════════════ */
     .mesh {
       position: absolute;
       inset: 0;
@@ -34,53 +81,47 @@
       overflow: hidden;
       z-index: 0;
     }
-    .mesh::before,
-    .mesh::after {
-      content: "";
+    .mesh-orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(110px);
+      filter: blur(140px);
+    }
+    .mesh-orb.a {
+      width: 960px; height: 960px;
+      top: -200px; left: -180px;
+      background: radial-gradient(circle at 30% 30%, rgba(95,95,255,0.55), transparent 65%);
       opacity: 0.55;
-      animation: float 22s ease-in-out infinite;
+      animation: float1 22s ease-in-out infinite;
     }
-    .mesh::before {
-      width: 55vw;
-      height: 55vw;
-      top: -15%;
-      left: -10%;
-      background: radial-gradient(circle at 30% 30%, rgba(95,95,255,0.5), transparent 65%);
+    .mesh-orb.b {
+      width: 900px; height: 900px;
+      bottom: -200px; right: -180px;
+      background: radial-gradient(circle at 60% 60%, rgba(10,132,255,0.4), transparent 65%);
+      opacity: 0.55;
+      animation: float2 26s ease-in-out infinite -6s;
     }
-    .mesh::after {
-      width: 50vw;
-      height: 50vw;
-      bottom: -15%;
-      right: -10%;
-      background: radial-gradient(circle at 60% 60%, rgba(10,132,255,0.35), transparent 65%);
-      animation-delay: -8s;
+    .mesh-orb.c {
+      width: 700px; height: 700px;
+      top: 30%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(255,128,168,0.4), transparent 65%);
+      opacity: 0.45;
+      animation: float3 30s ease-in-out infinite -12s;
     }
-    .mesh-peach {
-      position: absolute;
-      width: 36vw;
-      height: 36vw;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.35;
-      background: radial-gradient(circle, rgba(255,170,200,0.55), transparent 65%);
-      animation: float 30s ease-in-out infinite -4s;
-    }
-    @keyframes float {
+    @keyframes float1 {
       0%,100% { transform: translate(0,0) scale(1); }
-      33% { transform: translate(3%,-2%) scale(1.05); }
-      66% { transform: translate(-2%,3%) scale(0.97); }
+      50%     { transform: translate(40px,-30px) scale(1.06); }
     }
-
-    /* ── Grain overlay для киношного ощущения ── */
+    @keyframes float2 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%     { transform: translate(-30px,40px) scale(0.95); }
+    }
+    @keyframes float3 {
+      0%,100% { transform: translate(-50%,-50%) scale(1); }
+      50%     { transform: translate(-48%,-52%) scale(1.08); }
+    }
     .grain {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       pointer-events: none;
       z-index: 1;
       opacity: 0.035;
@@ -88,185 +129,164 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    .hero-inner {
+    /* ═══════════════════════════════════════
+       SLIDE INNER LAYOUT
+    ═══════════════════════════════════════ */
+    .slide-inner {
       position: relative;
       z-index: 3;
       width: 100%;
-      max-width: 1080px;
+      height: 100%;
+      padding: 100px 140px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       text-align: center;
-      animation: fadeUp 1.1s cubic-bezier(0.2,0.8,0.2,1) both;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: none; }
     }
 
-    /* ── Top meta ── */
+    /* ═══════════════════════════════════════
+       SLIDE 1 — COVER
+    ═══════════════════════════════════════ */
     .org-badge {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 22px;
+      gap: 12px;
+      padding: 14px 28px;
       border-radius: 100px;
       background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(18px) saturate(180%);
-      -webkit-backdrop-filter: blur(18px) saturate(180%);
-      border: 1px solid rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.9);
       box-shadow: 0 6px 24px rgba(95,95,255,0.08), inset 0 1px 0 rgba(255,255,255,1);
       font-family: var(--fm);
-      font-size: 0.72rem;
+      font-size: 14px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 40px;
+      margin-bottom: 48px;
     }
     .org-badge .dot {
-      width: 6px; height: 6px; border-radius: 50%;
+      width: 8px; height: 8px; border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 0 3px rgba(95,95,255,0.15);
+      box-shadow: 0 0 0 4px rgba(95,95,255,0.15);
     }
 
-    /* ── Title ── */
     .hero-title {
       font-family: var(--fh);
       font-weight: 300;
-      font-size: clamp(3.4rem, 11vw, 9rem);
+      font-size: 180px;
       line-height: 0.95;
       letter-spacing: -0.035em;
       color: var(--text);
-      margin-bottom: 24px;
+      margin-bottom: 32px;
     }
-    .hero-title .and {
-      font-style: italic;
-      font-weight: 300;
+    .hero-title .amp {
       background: linear-gradient(120deg, #5F5FFF 20%, #0A84FF 60%, #ff80a8 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      padding: 0 0.08em;
-    }
-    .hero-title .amp {
-      font-weight: 300;
-      color: var(--accent);
       font-style: italic;
       font-family: "Jost", sans-serif;
+      font-weight: 300;
     }
 
-    /* ── Subtitle ── */
     .hero-sub {
       font-family: var(--fb);
       font-weight: 300;
-      font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+      font-size: 30px;
       line-height: 1.4;
       color: var(--body-c);
-      max-width: 720px;
-      margin: 0 auto 48px;
-      letter-spacing: -0.005em;
+      max-width: 1100px;
+      margin: 0 auto 60px;
     }
 
-    /* ── Theme pills ── */
     .theme-pills {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 12px;
-      margin-bottom: 72px;
+      gap: 16px;
+      margin-bottom: 80px;
     }
     .theme-pill {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px 22px;
+      gap: 12px;
+      padding: 14px 28px;
       border-radius: 100px;
       background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
       border: 1px solid rgba(255,255,255,0.9);
       box-shadow: 0 10px 30px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,1);
       font-family: var(--fh);
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 18px;
       color: var(--text);
-      transition: transform 0.3s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.3s;
-    }
-    .theme-pill:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(95,95,255,0.18), inset 0 1px 0 rgba(255,255,255,1);
     }
     .theme-pill .pill-icon {
-      width: 18px; height: 18px;
+      width: 22px; height: 22px;
       display: inline-flex; align-items: center; justify-content: center;
       color: var(--accent);
     }
     .theme-pill:nth-child(2) .pill-icon { color: var(--blue); }
-    .theme-pill:nth-child(3) .pill-icon { color: #e879a4; }
+    .theme-pill:nth-child(3) .pill-icon { color: var(--peach); }
 
-    /* ── Speaker card ── */
     .speaker-card {
-      position: relative;
       display: flex;
       align-items: center;
-      gap: 32px;
-      padding: 28px 36px 28px 28px;
-      max-width: 780px;
+      gap: 36px;
+      padding: 32px 44px 32px 32px;
+      max-width: 900px;
       width: 100%;
-      border-radius: 28px;
+      border-radius: 32px;
       background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(30px) saturate(180%);
-      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      backdrop-filter: blur(34px) saturate(180%);
+      -webkit-backdrop-filter: blur(34px) saturate(180%);
       border: 1px solid rgba(255,255,255,0.9);
       box-shadow:
-        0 24px 60px rgba(0,0,0,0.07),
-        0 2px 6px rgba(0,0,0,0.04),
+        0 28px 70px rgba(0,0,0,0.08),
+        0 3px 8px rgba(0,0,0,0.04),
         inset 0 1px 0 rgba(255,255,255,1);
       text-align: left;
     }
     .speaker-photo {
       flex-shrink: 0;
-      width: 140px;
-      height: 180px;
-      border-radius: 20px;
+      width: 160px;
+      height: 200px;
+      border-radius: 24px;
       overflow: hidden;
       position: relative;
       background: linear-gradient(135deg, #5F5FFF 0%, #0A84FF 60%, #ff80a8 100%);
       box-shadow:
-        0 14px 40px rgba(95,95,255,0.22),
+        0 16px 44px rgba(95,95,255,0.24),
         0 2px 6px rgba(0,0,0,0.06),
         inset 0 1px 0 rgba(255,255,255,0.4);
     }
     .speaker-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
     }
     .speaker-photo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
+      content: ""; position: absolute; inset: 0;
+      border-radius: 24px;
       border: 1px solid rgba(255,255,255,0.5);
       pointer-events: none;
     }
-    .speaker-body { flex: 1; min-width: 0; }
     .speaker-label {
       font-family: var(--fm);
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
+      font-size: 13px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .speaker-name {
       font-family: var(--fh);
       font-weight: 500;
-      font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+      font-size: 32px;
       line-height: 1.15;
       color: var(--text);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       letter-spacing: -0.01em;
     }
     .speaker-roles {
@@ -274,142 +294,459 @@
       flex-direction: column;
       gap: 6px;
       font-family: var(--fb);
-      font-size: 0.88rem;
+      font-size: 16px;
       line-height: 1.5;
       color: var(--body-c);
+      list-style: none;
     }
     .speaker-roles li {
       position: relative;
-      padding-left: 16px;
-      list-style: none;
+      padding-left: 18px;
     }
     .speaker-roles li::before {
       content: "";
       position: absolute;
-      left: 0;
-      top: 9px;
-      width: 5px;
-      height: 5px;
+      left: 0; top: 10px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       background: var(--accent);
       opacity: 0.5;
     }
 
-    /* ── Scroll indicator ── */
-    .scroll-hint {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--fm);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+    /* ═══════════════════════════════════════
+       PLACEHOLDER SLIDE
+    ═══════════════════════════════════════ */
+    .placeholder {
+      text-align: center;
+    }
+    .placeholder .pl-num {
+      font-family: var(--fh);
+      font-weight: 300;
+      font-size: 280px;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.2;
+      margin-bottom: 24px;
+    }
+    .placeholder .pl-title {
+      font-family: var(--fh);
+      font-weight: 400;
+      font-size: 64px;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .placeholder .pl-sub {
+      font-family: var(--fb);
+      font-weight: 300;
+      font-size: 22px;
       color: var(--muted);
-      opacity: 0.6;
-    }
-    .scroll-hint .line {
-      width: 1px;
-      height: 36px;
-      background: linear-gradient(180deg, var(--accent), transparent);
-      animation: scrollPulse 2.2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%,100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
-      50%     { opacity: 1;   transform: scaleY(1); }
     }
 
-    /* ── Responsive ── */
-    @media (max-width: 640px) {
-      .hero-screen { padding: 100px 18px 90px; }
-      .hero-title { font-size: 3.4rem; }
-      .theme-pills { gap: 8px; margin-bottom: 48px; }
-      .theme-pill { padding: 10px 16px; font-size: 0.85rem; }
-      .speaker-card { flex-direction: column; align-items: center; text-align: center; padding: 24px 22px; gap: 20px; }
-      .speaker-photo { width: 130px; height: 160px; }
-      .speaker-roles li { padding-left: 0; }
-      .speaker-roles li::before { display: none; }
-      .org-badge { font-size: 0.65rem; padding: 8px 16px; margin-bottom: 28px; }
+    /* ═══════════════════════════════════════
+       DECK CHROME (controls)
+    ═══════════════════════════════════════ */
+    .deck-chrome {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 200;
+    }
+    .deck-chrome > * { pointer-events: auto; }
+
+    .nav-back {
+      position: absolute;
+      top: 24px;
+      left: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.85);
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--fb);
+      font-weight: 500;
+      font-size: 13px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-back:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    .counter {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      padding: 10px 18px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.85);
+      font-family: var(--fm);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+    .counter .current { color: var(--accent); font-weight: 700; }
+
+    .nav-arrows {
+      position: absolute;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      gap: 8px;
+    }
+    .nav-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .nav-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(95,95,255,0.2);
+      color: var(--accent);
+    }
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.85);
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(22,22,26,0.18);
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      transition: all 0.3s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .dot.active {
+      background: var(--accent);
+      width: 28px;
+      border-radius: 100px;
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 42px;
+      left: 28px;
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.75;
+    }
+    .hint kbd {
+      font-family: var(--fm);
+      background: rgba(255,255,255,0.8);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.08);
+      margin: 0 2px;
+      font-size: 10px;
+      color: var(--text);
+    }
+
+    /* ═══════════════════════════════════════
+       PRINT — каждый слайд на отдельной
+       странице A4 landscape для PDF
+    ═══════════════════════════════════════ */
+    @page {
+      size: 1920px 1080px;
+      margin: 0;
+    }
+    @media print {
+      html, body {
+        overflow: visible !important;
+        height: auto !important;
+        width: auto !important;
+        background: #fff;
+      }
+      .deck-viewport {
+        position: static !important;
+        overflow: visible !important;
+      }
+      .deck-stage {
+        position: static !important;
+        transform: none !important;
+        width: auto !important;
+        height: auto !important;
+      }
+      .deck-track {
+        display: block !important;
+        transform: none !important;
+        width: auto !important;
+        transition: none !important;
+      }
+      .slide {
+        width: 1920px !important;
+        height: 1080px !important;
+        page-break-after: always;
+        break-after: page;
+        page-break-inside: avoid;
+      }
+      .slide:last-child {
+        page-break-after: auto;
+      }
+      .deck-chrome { display: none !important; }
+      /* Убираем тени которые плохо печатаются */
+      .speaker-card, .theme-pill, .org-badge, .counter, .nav-back {
+        box-shadow: none !important;
+      }
     }
   </style>
 </head>
 <body>
 
-<main>
+<div class="deck-viewport">
+  <div class="deck-stage" id="stage">
+    <div class="deck-track" id="track">
 
-  <section class="hero-screen">
-    <div class="mesh"><div class="mesh-peach"></div></div>
-    <div class="grain"></div>
-
-    <div class="hero-inner">
-
-      <div class="org-badge">
-        <span class="dot"></span>
-        Фонд Развития Социального Лидерства
-      </div>
-
-      <h1 class="hero-title">
-        Life <span class="amp">&amp;</span> Work
-      </h1>
-
-      <p class="hero-sub">
-        Устойчивость бизнеса.&nbsp; Баланс сфер жизни.&nbsp; AI&nbsp;технологии.
-      </p>
-
-      <div class="theme-pills">
-        <div class="theme-pill">
-          <span class="pill-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </span>
-          Устойчивость
+      <!-- ═════ SLIDE 1 — COVER ═════ -->
+      <section class="slide" data-title="Обложка">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb b"></div>
+          <div class="mesh-orb c"></div>
         </div>
-        <div class="theme-pill">
-          <span class="pill-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 014-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 01-4 4H3"/></svg>
-          </span>
-          Баланс
-        </div>
-        <div class="theme-pill">
-          <span class="pill-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.9 5.8L20 9.6l-5 3.9L16.8 20 12 16.9 7.2 20 9 13.5 4 9.6l6.1-1.8z"/></svg>
-          </span>
-          AI технологии
-        </div>
-      </div>
+        <div class="grain"></div>
+        <div class="slide-inner">
 
-      <div class="speaker-card">
-        <div class="speaker-photo">
-          <img src="img/natalia-morozova.jpg" alt="Наталья Морозова" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--fh);font-size:2.2rem;font-weight:500&quot;>НМ</div>'">
+          <div class="org-badge">
+            <span class="dot"></span>
+            Фонд Развития Социального Лидерства
+          </div>
+
+          <h1 class="hero-title">
+            Life <span class="amp">&amp;</span> Work
+          </h1>
+
+          <p class="hero-sub">
+            Устойчивость бизнеса.&nbsp; Баланс сфер жизни.&nbsp; AI&nbsp;технологии.
+          </p>
+
+          <div class="theme-pills">
+            <div class="theme-pill">
+              <span class="pill-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </span>
+              Устойчивость
+            </div>
+            <div class="theme-pill">
+              <span class="pill-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 014-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 01-4 4H3"/></svg>
+              </span>
+              Баланс
+            </div>
+            <div class="theme-pill">
+              <span class="pill-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.9 5.8L20 9.6l-5 3.9L16.8 20 12 16.9 7.2 20 9 13.5 4 9.6l6.1-1.8z"/></svg>
+              </span>
+              AI технологии
+            </div>
+          </div>
+
+          <div class="speaker-card">
+            <div class="speaker-photo">
+              <img src="img/natalia-morozova.jpg" alt="Наталья Морозова">
+            </div>
+            <div class="speaker-body">
+              <div class="speaker-label">Спикер</div>
+              <div class="speaker-name">Наталья Александровна Морозова</div>
+              <ul class="speaker-roles">
+                <li>Президент Фонда Развития Социального Лидерства</li>
+                <li>Руководитель спецпроектов «Гильдии Устойчивого Развития при МТПП»</li>
+                <li>Эксперт по межсекторному партнёрству, КСО и устойчивому развитию</li>
+                <li>Основатель Центра Развития «Ритм Жизни»</li>
+                <li>Соавтор проекта «Цифровой Помощник» Вашей жизни</li>
+              </ul>
+            </div>
+          </div>
+
         </div>
-        <div class="speaker-body">
-          <div class="speaker-label">Спикер</div>
-          <div class="speaker-name">Наталья Александровна Морозова</div>
-          <ul class="speaker-roles">
-            <li>Президент Фонда Развития Социального Лидерства</li>
-            <li>Руководитель спецпроектов «Гильдии Устойчивого Развития при МТПП»</li>
-            <li>Эксперт по межсекторному партнёрству, КСО и устойчивому развитию</li>
-            <li>Основатель Центра Развития «Ритм Жизни»</li>
-            <li>Соавтор проекта «Цифровой Помощник» Вашей жизни</li>
-          </ul>
+      </section>
+
+      <!-- ═════ SLIDE 2 — PLACEHOLDER ═════ -->
+      <section class="slide" data-title="Слайд 2">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb b"></div>
         </div>
-      </div>
+        <div class="grain"></div>
+        <div class="slide-inner">
+          <div class="placeholder">
+            <div class="pl-num">02</div>
+            <div class="pl-title">Слайд 2</div>
+            <div class="pl-sub">Контент добавим позже</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════ SLIDE 3 — PLACEHOLDER ═════ -->
+      <section class="slide" data-title="Слайд 3">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb c"></div>
+        </div>
+        <div class="grain"></div>
+        <div class="slide-inner">
+          <div class="placeholder">
+            <div class="pl-num">03</div>
+            <div class="pl-title">Слайд 3</div>
+            <div class="pl-sub">Контент добавим позже</div>
+          </div>
+        </div>
+      </section>
 
     </div>
+  </div>
+</div>
 
-    <div class="scroll-hint">
-      <span>Далее</span>
-      <span class="line"></span>
-    </div>
-  </section>
+<!-- ═════ CHROME (controls) ═════ -->
+<div class="deck-chrome">
+  <a href="../" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Блог
+  </a>
 
-</main>
+  <div class="counter">
+    <span class="current" id="counter-current">01</span>
+    <span style="opacity:.4"> / </span>
+    <span id="counter-total">03</span>
+  </div>
 
-<script src="../../components/nav.js"></script>
-<script src="../../components/footer.js"></script>
+  <div class="hint">
+    <kbd>←</kbd> <kbd>→</kbd>  листать &nbsp;·&nbsp; <kbd>P</kbd> в PDF
+  </div>
+
+  <div class="dots" id="dots"></div>
+
+  <div class="nav-arrows">
+    <button class="nav-btn" id="btn-prev" aria-label="Предыдущий слайд">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="nav-btn" id="btn-next" aria-label="Следующий слайд">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const track = document.getElementById('track');
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const counterCur = document.getElementById('counter-current');
+  const counterTot = document.getElementById('counter-total');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const dotsWrap = document.getElementById('dots');
+
+  let current = 0;
+  const SLIDE_W = 1920;
+  const SLIDE_H = 1080;
+
+  // Build dots
+  slides.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.className = 'dot' + (i === 0 ? ' active' : '');
+    b.setAttribute('aria-label', 'Слайд ' + (i + 1));
+    b.addEventListener('click', () => go(i));
+    dotsWrap.appendChild(b);
+  });
+  const dots = dotsWrap.querySelectorAll('.dot');
+  counterTot.textContent = String(total).padStart(2, '0');
+
+  function scaleStage(){
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const scale = Math.min(vw / SLIDE_W, vh / SLIDE_H);
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  }
+
+  function update(){
+    track.style.transform = `translateX(-${current * SLIDE_W}px)`;
+    counterCur.textContent = String(current + 1).padStart(2, '0');
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === total - 1;
+  }
+
+  function go(n){
+    current = Math.max(0, Math.min(total - 1, n));
+    update();
+  }
+
+  btnPrev.addEventListener('click', () => go(current - 1));
+  btnNext.addEventListener('click', () => go(current + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (['ArrowRight',' ','PageDown'].includes(e.key)) { e.preventDefault(); go(current + 1); }
+    else if (['ArrowLeft','PageUp'].includes(e.key))  { e.preventDefault(); go(current - 1); }
+    else if (e.key === 'Home')                        { e.preventDefault(); go(0); }
+    else if (e.key === 'End')                         { e.preventDefault(); go(total - 1); }
+    else if (e.key === 'p' || e.key === 'P')          { window.print(); }
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) go(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  // Wheel (accumulate-and-throttle)
+  let wheelLock = false;
+  document.addEventListener('wheel', (e) => {
+    if (wheelLock) return;
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (Math.abs(delta) < 20) return;
+    wheelLock = true;
+    go(current + (delta > 0 ? 1 : -1));
+    setTimeout(() => wheelLock = false, 900);
+  }, { passive: true });
+
+  window.addEventListener('resize', scaleStage);
+  scaleStage();
+  update();
+})();
+</script>
+
 </body>
 </html>
