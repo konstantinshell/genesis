@@ -1734,6 +1734,168 @@
     }
 
     /* ═══════════════════════════════════════
+       SLIDE 12 — ВЕРИФИКАЦИЯ (pipeline + chart)
+    ═══════════════════════════════════════ */
+    .slide-12 .slide-inner {
+      padding: 48px 56px;
+      justify-content: center;
+    }
+    .slide-12 .service-header { margin-bottom: 36px; }
+
+    .pipeline {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 1760px;
+      margin: 0 auto 36px;
+    }
+    .pipe-block {
+      flex: 1;
+      min-width: 0;
+      padding: 24px 22px 26px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.58);
+      backdrop-filter: blur(26px) saturate(180%);
+      -webkit-backdrop-filter: blur(26px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow:
+        0 18px 44px rgba(0,0,0,0.06),
+        0 2px 6px rgba(0,0,0,0.03),
+        inset 0 1px 0 rgba(255,255,255,1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pipe-block::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .pipe-block.p1::before { background: linear-gradient(90deg, #5F5FFF, rgba(95,95,255,0.2)); }
+    .pipe-block.p2::before { background: linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.2)); }
+    .pipe-block.p3::before { background: linear-gradient(90deg, #FF80A8, rgba(255,128,168,0.2)); }
+    .pipe-block.p4::before { background: linear-gradient(90deg, #22C55E, rgba(34,197,94,0.2)); }
+    .pipe-block.p5::before { background: linear-gradient(90deg, #F59E0B, rgba(245,158,11,0.2)); }
+
+    .pipe-icon {
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 14px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .pipe-block.p1 .pipe-icon { background: linear-gradient(135deg, #5F5FFF, #7b7bff); box-shadow: 0 10px 24px rgba(95,95,255,0.32); }
+    .pipe-block.p2 .pipe-icon { background: linear-gradient(135deg, #0A84FF, #4ea6ff); box-shadow: 0 10px 24px rgba(10,132,255,0.32); }
+    .pipe-block.p3 .pipe-icon { background: linear-gradient(135deg, #FF80A8, #ff9fbc); box-shadow: 0 10px 24px rgba(255,128,168,0.32); }
+    .pipe-block.p4 .pipe-icon { background: linear-gradient(135deg, #22C55E, #4ade80); box-shadow: 0 10px 24px rgba(34,197,94,0.32); }
+    .pipe-block.p5 .pipe-icon { background: linear-gradient(135deg, #F59E0B, #FBBF24); box-shadow: 0 10px 24px rgba(245,158,11,0.35); }
+
+    .pipe-label {
+      font-family: var(--fm);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .pipe-block.p1 .pipe-label { color: #5F5FFF; }
+    .pipe-block.p2 .pipe-label { color: #0A84FF; }
+    .pipe-block.p3 .pipe-label { color: #FF80A8; }
+    .pipe-block.p4 .pipe-label { color: #22C55E; }
+    .pipe-block.p5 .pipe-label { color: #F59E0B; }
+
+    .pipe-name {
+      font-family: var(--fh);
+      font-weight: 500;
+      font-size: 19px;
+      line-height: 1.1;
+      color: var(--text);
+      letter-spacing: 0.005em;
+    }
+    .pipe-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      opacity: 0.55;
+      flex-shrink: 0;
+      padding: 0 2px;
+    }
+
+    /* Chart */
+    .proof-chart {
+      width: 100%;
+      max-width: 1760px;
+      margin: 0 auto;
+      padding: 22px 28px 20px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow:
+        0 22px 56px rgba(0,0,0,0.06),
+        0 2px 6px rgba(0,0,0,0.03),
+        inset 0 1px 0 rgba(255,255,255,1);
+    }
+    .proof-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      padding: 0 4px;
+      font-family: var(--fm);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .proof-head .mid { color: var(--text); }
+    .proof-svg {
+      width: 100%;
+      height: 260px;
+      display: block;
+      overflow: visible;
+    }
+    .proof-legend {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-family: var(--fb);
+      font-size: 15px;
+      color: var(--body-c);
+    }
+    .proof-legend .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .proof-legend .bar {
+      width: 28px;
+      height: 3px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .proof-legend .bar.red { background: #EF4444; box-shadow: 0 0 10px rgba(239,68,68,0.4); }
+    .proof-legend .bar.green { background: #22C55E; box-shadow: 0 0 10px rgba(34,197,94,0.4); }
+    .proof-legend strong {
+      font-family: var(--fh);
+      font-weight: 600;
+      color: var(--text);
+      margin-right: 4px;
+    }
+
+    /* ═══════════════════════════════════════
        PRINT — каждый слайд на отдельной
        странице A4 landscape для PDF
     ═══════════════════════════════════════ */
@@ -2586,6 +2748,189 @@
               <div class="rhythm-phase-text">
                 <div class="rhythm-phase-name">Переход</div>
                 <div class="rhythm-phase-desc">Точка пересборки — новое намерение.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ═════ SLIDE 12 — ВЕРИФИКАЦИЯ РЕЗУЛЬТАТА ═════ -->
+      <section class="slide slide-12" data-title="Верификация результата">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb b"></div>
+          <div class="mesh-orb c"></div>
+        </div>
+        <div class="grain"></div>
+        <div class="slide-inner">
+
+          <div class="service-header">
+            <div class="slide-eyebrow">Верификация результата</div>
+            <h2 class="slide-title">Как научно увидеть свой <span class="accent">прогресс</span>?</h2>
+            <p class="slide-subtitle">По здоровью. По сферам. По целям, задачам, мечтам и самореализации. Через цепочку доказательств — от метода к трансформации.</p>
+          </div>
+
+          <!-- Pipeline: Метод → Мозг → Тело → Событийность → Трансформация -->
+          <div class="pipeline">
+
+            <div class="pipe-block p1">
+              <div class="pipe-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+                  <path d="M8 7h8M8 11h8"/>
+                </svg>
+              </div>
+              <div class="pipe-label">01 · Источник</div>
+              <div class="pipe-name">Практика /<br>Метод</div>
+            </div>
+
+            <div class="pipe-arrow">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </div>
+
+            <div class="pipe-block p2">
+              <div class="pipe-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9.5 2A2.5 2.5 0 0112 4.5v15a2.5 2.5 0 01-4.96.44 2.5 2.5 0 01-2.96-3.08 3 3 0 01-.34-5.58 2.5 2.5 0 011.32-4.24 2.5 2.5 0 014.44-1.04z"/>
+                  <path d="M14.5 2A2.5 2.5 0 0012 4.5v15a2.5 2.5 0 004.96.44 2.5 2.5 0 002.96-3.08 3 3 0 00.34-5.58 2.5 2.5 0 00-1.32-4.24 2.5 2.5 0 00-4.44-1.04z"/>
+                </svg>
+              </div>
+              <div class="pipe-label">02 · Измеряем</div>
+              <div class="pipe-name">Мозг</div>
+            </div>
+
+            <div class="pipe-arrow">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </div>
+
+            <div class="pipe-block p3">
+              <div class="pipe-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                  <path d="M3.5 12h3l2-4 3 8 2-4h5" stroke-width="1.4"/>
+                </svg>
+              </div>
+              <div class="pipe-label">03 · Измеряем</div>
+              <div class="pipe-name">Тело</div>
+            </div>
+
+            <div class="pipe-arrow">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </div>
+
+            <div class="pipe-block p4">
+              <div class="pipe-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                  <circle cx="8" cy="14.5" r="0.8" fill="currentColor"/>
+                  <circle cx="12" cy="14.5" r="0.8" fill="currentColor"/>
+                  <circle cx="16" cy="14.5" r="0.8" fill="currentColor"/>
+                  <circle cx="8" cy="18" r="0.8" fill="currentColor"/>
+                  <circle cx="12" cy="18" r="0.8" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="pipe-label">04 · Отмечаем</div>
+              <div class="pipe-name">Событийность</div>
+            </div>
+
+            <div class="pipe-arrow">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </div>
+
+            <div class="pipe-block p5">
+              <div class="pipe-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 14.8 8.6 22 9.5 16.6 14.3 18.2 21.5 12 17.8 5.8 21.5 7.4 14.3 2 9.5 9.2 8.6 12 2"/>
+                </svg>
+              </div>
+              <div class="pipe-label">05 · Результат</div>
+              <div class="pipe-name">Трансформация</div>
+            </div>
+
+          </div>
+
+          <!-- Chart: ДО → ПОСЛЕ -->
+          <div class="proof-chart">
+            <div class="proof-head">
+              <span>← ДО</span>
+              <span class="mid">Динамика состояния</span>
+              <span>ПОСЛЕ →</span>
+            </div>
+
+            <svg class="proof-svg" viewBox="0 0 1600 260" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="red-area-v" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(239,68,68,0.25)"/>
+                  <stop offset="100%" stop-color="rgba(239,68,68,0)"/>
+                </linearGradient>
+                <linearGradient id="green-area-v" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(34,197,94,0.25)"/>
+                  <stop offset="100%" stop-color="rgba(34,197,94,0)"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Grid -->
+              <g stroke="rgba(0,0,0,0.05)" stroke-width="1" stroke-dasharray="3 6">
+                <line x1="0" y1="65" x2="1600" y2="65"/>
+                <line x1="0" y1="130" x2="1600" y2="130"/>
+                <line x1="0" y1="195" x2="1600" y2="195"/>
+              </g>
+              <g font-family="'Courier Prime', monospace" font-size="10" fill="#aaa" font-weight="700" letter-spacing="1.5">
+                <text x="12" y="68">MAX</text>
+                <text x="12" y="133">Ø</text>
+                <text x="12" y="198">MIN</text>
+              </g>
+
+              <!-- Red area (stress declining) -->
+              <path d="M 0,50 C 260,55 480,90 800,140 C 1120,190 1340,220 1600,228 L 1600,260 L 0,260 Z" fill="url(#red-area-v)"/>
+              <!-- Red line -->
+              <path d="M 0,50 C 260,55 480,90 800,140 C 1120,190 1340,220 1600,228" stroke="#EF4444" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+              <!-- Green area (wellbeing rising) -->
+              <path d="M 0,215 C 260,208 480,170 800,120 C 1120,70 1340,40 1600,32 L 1600,260 L 0,260 Z" fill="url(#green-area-v)"/>
+              <!-- Green line -->
+              <path d="M 0,215 C 260,208 480,170 800,120 C 1120,70 1340,40 1600,32" stroke="#22C55E" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+              <!-- Endpoint dots with rings -->
+              <g>
+                <circle cx="0" cy="50" r="10" fill="none" stroke="#EF4444" stroke-width="1" opacity="0.25"/>
+                <circle cx="0" cy="50" r="6" fill="#EF4444"/>
+                <circle cx="0" cy="215" r="10" fill="none" stroke="#22C55E" stroke-width="1" opacity="0.25"/>
+                <circle cx="0" cy="215" r="6" fill="#22C55E"/>
+                <circle cx="1600" cy="228" r="10" fill="none" stroke="#EF4444" stroke-width="1" opacity="0.25"/>
+                <circle cx="1600" cy="228" r="6" fill="#EF4444"/>
+                <circle cx="1600" cy="32" r="10" fill="none" stroke="#22C55E" stroke-width="1" opacity="0.25"/>
+                <circle cx="1600" cy="32" r="6" fill="#22C55E"/>
+              </g>
+
+              <!-- Arrow labels at end of lines -->
+              <g font-family="'Jost', sans-serif" font-size="13" font-weight="500">
+                <text x="1580" y="22" text-anchor="end" fill="#22C55E">↑ ясность · энергия · фокус</text>
+                <text x="1580" y="252" text-anchor="end" fill="#EF4444">↓ стресс · тревога · хаос</text>
+              </g>
+            </svg>
+
+            <div class="proof-legend">
+              <div class="legend-item">
+                <span class="bar red"></span>
+                <span><strong>Снижается:</strong> стресс, тревога, выгорание</span>
+              </div>
+              <div class="legend-item">
+                <span class="bar green"></span>
+                <span><strong>Растёт:</strong> ясность, энергия, реализация</span>
               </div>
             </div>
           </div>
