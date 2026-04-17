@@ -1896,6 +1896,228 @@
     }
 
     /* ═══════════════════════════════════════
+       SLIDE 13 — ЦИФРОВОЙ ПОМОЩНИК (iPhone mockups)
+    ═══════════════════════════════════════ */
+    .slide-13 .slide-inner {
+      padding: 56px 72px;
+      justify-content: flex-start;
+    }
+    .slide-13 .service-header { margin-bottom: 36px; }
+
+    .nihilo-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 56px;
+      width: 100%;
+      max-width: 1760px;
+      margin: 0 auto;
+      align-items: center;
+      flex: 1;
+    }
+
+    /* Phones side */
+    .phones {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      align-items: center;
+      perspective: 1200px;
+    }
+    .phone {
+      position: relative;
+      width: 310px;
+      height: 636px;
+      background: #0a0a0f;
+      border-radius: 48px;
+      padding: 12px;
+      box-shadow:
+        0 0 0 2px #2a2a35,
+        0 40px 90px rgba(0,0,0,0.25),
+        0 10px 30px rgba(0,0,0,0.15),
+        inset 0 0 0 6px #0a0a0f,
+        inset 0 0 0 7px rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+    .phone.left {
+      transform: rotateY(5deg) rotate(-2deg) translateY(10px);
+    }
+    .phone.right {
+      transform: rotateY(-5deg) rotate(2deg);
+    }
+    .phone::before {
+      /* Dynamic Island / notch */
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 26px;
+      background: #000;
+      border-radius: 15px;
+      z-index: 3;
+    }
+    .phone::after {
+      /* Side button hints */
+      content: "";
+      position: absolute;
+      top: 130px;
+      right: -3px;
+      width: 4px;
+      height: 70px;
+      background: #2a2a35;
+      border-radius: 0 2px 2px 0;
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 36px;
+      overflow: hidden;
+      background: #0e0e14;
+      position: relative;
+    }
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    /* Info side */
+    .nihilo-info {
+      padding: 0 8px;
+    }
+    .nihilo-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--fm);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #A78BFA;
+      margin-bottom: 20px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.25);
+    }
+    .nihilo-kicker .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #A78BFA;
+      box-shadow: 0 0 10px rgba(167,139,250,0.6);
+    }
+    .nihilo-heading {
+      font-family: var(--fh);
+      font-weight: 300;
+      font-size: 56px;
+      line-height: 1.05;
+      letter-spacing: -0.022em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+    .nihilo-heading .accent {
+      background: linear-gradient(120deg, #5F5FFF 15%, #0A84FF 55%, #ff80a8 95%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-style: italic;
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+    }
+
+    /* 4 streams list */
+    .streams {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .stream {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(22px) saturate(180%);
+      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,1);
+    }
+    .stream-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .stream.s1 .stream-icon { background: linear-gradient(135deg, #5F5FFF, #7b7bff); box-shadow: 0 6px 16px rgba(95,95,255,0.3); }
+    .stream.s2 .stream-icon { background: linear-gradient(135deg, #0A84FF, #4ea6ff); box-shadow: 0 6px 16px rgba(10,132,255,0.3); }
+    .stream.s3 .stream-icon { background: linear-gradient(135deg, #FF80A8, #ff9fbc); box-shadow: 0 6px 16px rgba(255,128,168,0.3); }
+    .stream.s4 .stream-icon { background: linear-gradient(135deg, #A78BFA, #C4B5FD); box-shadow: 0 6px 16px rgba(167,139,250,0.3); }
+    .stream-text { flex: 1; min-width: 0; }
+    .stream-name {
+      font-family: var(--fh);
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--text);
+      letter-spacing: 0.01em;
+      line-height: 1.1;
+    }
+    .stream-sub {
+      font-family: var(--fm);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* MNPI badge result */
+    .mnpi-out {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 24px;
+      border-radius: 20px;
+      background: linear-gradient(120deg, rgba(95,95,255,0.12), rgba(255,128,168,0.12));
+      border: 1px solid rgba(95,95,255,0.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+    }
+    .mnpi-out-arrow {
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+      font-size: 28px;
+      color: var(--muted);
+    }
+    .mnpi-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      background: linear-gradient(135deg, #5F5FFF, #0A84FF, #ff80a8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .mnpi-expand {
+      font-family: var(--fb);
+      font-size: 14px;
+      color: var(--body-c);
+      line-height: 1.4;
+    }
+    .mnpi-expand b {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ═══════════════════════════════════════
        PRINT — каждый слайд на отдельной
        странице A4 landscape для PDF
     ═══════════════════════════════════════ */
@@ -2933,6 +3155,118 @@
                 <span><strong>Растёт:</strong> ясность, энергия, реализация</span>
               </div>
             </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ═════ SLIDE 13 — ЦИФРОВОЙ ПОМОЩНИК ex NIHILO ═════ -->
+      <section class="slide slide-13" data-title="Цифровой помощник">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb b"></div>
+          <div class="mesh-orb c"></div>
+        </div>
+        <div class="grain"></div>
+        <div class="slide-inner">
+
+          <div class="nihilo-layout">
+
+            <!-- LEFT: iPhone mockups -->
+            <div class="phones">
+              <div class="phone left">
+                <div class="phone-screen">
+                  <img src="img/app-koleso.png" alt="Приложение ex NIHILO — колесо баланса">
+                </div>
+              </div>
+              <div class="phone right">
+                <div class="phone-screen">
+                  <img src="img/app-reflection.png" alt="Приложение ex NIHILO — AI рефлексия">
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Info -->
+            <div class="nihilo-info">
+
+              <div class="nihilo-kicker">
+                <span class="dot"></span>
+                ex NIHILO &middot; цифровой помощник
+              </div>
+
+              <h2 class="nihilo-heading">
+                Собирает 4 потока данных<br>
+                в единый <span class="accent">индекс MNPI</span>
+              </h2>
+
+              <div class="streams">
+
+                <div class="stream s1">
+                  <div class="stream-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9.5 2A2.5 2.5 0 0112 4.5v15a2.5 2.5 0 01-4.96.44 2.5 2.5 0 01-2.96-3.08 3 3 0 01-.34-5.58 2.5 2.5 0 011.32-4.24 2.5 2.5 0 014.44-1.04z"/>
+                      <path d="M14.5 2A2.5 2.5 0 0012 4.5v15a2.5 2.5 0 004.96.44 2.5 2.5 0 002.96-3.08 3 3 0 00.34-5.58 2.5 2.5 0 00-1.32-4.24 2.5 2.5 0 00-4.44-1.04z"/>
+                    </svg>
+                  </div>
+                  <div class="stream-text">
+                    <div class="stream-name">ЭЭГ</div>
+                    <div class="stream-sub">NEIRY · мозг</div>
+                  </div>
+                </div>
+
+                <div class="stream s2">
+                  <div class="stream-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                  </div>
+                  <div class="stream-text">
+                    <div class="stream-name">Биометрия</div>
+                    <div class="stream-sub">HRV · сон · ритмы</div>
+                  </div>
+                </div>
+
+                <div class="stream s3">
+                  <div class="stream-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="2" y1="12" x2="22" y2="12"/>
+                      <line x1="12" y1="2" x2="12" y2="22"/>
+                    </svg>
+                  </div>
+                  <div class="stream-text">
+                    <div class="stream-name">Колесо баланса</div>
+                    <div class="stream-sub">8 сфер · 4 вектора</div>
+                  </div>
+                </div>
+
+                <div class="stream s4">
+                  <div class="stream-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                      <line x1="8" y1="10" x2="16" y2="10"/>
+                      <line x1="8" y1="14" x2="13" y2="14"/>
+                    </svg>
+                  </div>
+                  <div class="stream-text">
+                    <div class="stream-name">AI рефлексия</div>
+                    <div class="stream-sub">планер · события · голос</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- MNPI output -->
+              <div class="mnpi-out">
+                <div class="mnpi-out-arrow">→</div>
+                <div>
+                  <div class="mnpi-badge">MNPI</div>
+                  <div class="mnpi-expand"><b>Multidimensional Neuroplasticity Index</b> — единый индекс нейропластичности, собирающий все потоки данных в одно число.</div>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
         </div>
