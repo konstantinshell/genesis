@@ -1033,6 +1033,160 @@
     }
 
     /* ═══════════════════════════════════════
+       SLIDE 7 — TRIAD (Устойчивая Личность)
+    ═══════════════════════════════════════ */
+    .slide-7 .slide-inner {
+      padding: 64px 80px;
+      justify-content: center;
+    }
+    .slide-7 .service-header { margin-bottom: 28px; }
+
+    .triad {
+      position: relative;
+      width: 100%;
+      max-width: 1720px;
+      height: 700px;
+      margin: 0 auto;
+    }
+    .triad-connect {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .triad-card {
+      position: absolute;
+      width: 460px;
+      padding: 26px 30px 28px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 22px 54px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,1);
+      text-align: left;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .triad-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .triad-card.t1::before { background: linear-gradient(90deg, #5F5FFF, rgba(95,95,255,0.2)); }
+    .triad-card.t2::before { background: linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.2)); }
+    .triad-card.t3::before { background: linear-gradient(90deg, #FF80A8, rgba(255,128,168,0.2)); }
+
+    .triad-card.top   { top: 0;    left: 50%; transform: translateX(-50%); }
+    .triad-card.left  { bottom: 0; left: 0; }
+    .triad-card.right { bottom: 0; right: 0; }
+
+    .triad-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .triad-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .triad-card.t1 .triad-icon { background: linear-gradient(135deg, #5F5FFF, #7b7bff); box-shadow: 0 8px 22px rgba(95,95,255,0.3); }
+    .triad-card.t2 .triad-icon { background: linear-gradient(135deg, #0A84FF, #4ea6ff); box-shadow: 0 8px 22px rgba(10,132,255,0.3); }
+    .triad-card.t3 .triad-icon { background: linear-gradient(135deg, #FF80A8, #ff9fbc); box-shadow: 0 8px 22px rgba(255,128,168,0.3); }
+
+    .triad-head-text { flex: 1; min-width: 0; }
+    .triad-num {
+      font-family: var(--fm);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .triad-card.t1 .triad-num { color: #5F5FFF; }
+    .triad-card.t2 .triad-num { color: #0A84FF; }
+    .triad-card.t3 .triad-num { color: #FF80A8; }
+    .triad-title {
+      font-family: var(--fh);
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .triad-desc {
+      font-family: var(--fb);
+      font-weight: 400;
+      font-size: 15.5px;
+      line-height: 1.55;
+      color: var(--body-c);
+    }
+
+    .triad-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5F5FFF 0%, #0A84FF 55%, #ff80a8 110%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 32px 80px rgba(95,95,255,0.4),
+        inset 0 2px 0 rgba(255,255,255,0.4);
+      z-index: 3;
+    }
+    .triad-core::before {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1px solid rgba(95,95,255,0.3);
+    }
+    .triad-core::after {
+      content: "";
+      position: absolute;
+      inset: -30px;
+      border-radius: 50%;
+      border: 1px dashed rgba(95,95,255,0.22);
+    }
+    .triad-core-label {
+      color: #fff;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .triad-core-label .t-eyebrow {
+      font-family: var(--fm);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 8px;
+    }
+    .triad-core-label .t-name {
+      font-family: var(--fh);
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    /* ═══════════════════════════════════════
        DECK CHROME (controls)
     ═══════════════════════════════════════ */
     .deck-chrome {
@@ -1739,6 +1893,104 @@
                 <li>Команда в фокусе и доверии</li>
                 <li>Устойчивый рост и сильная репутация</li>
               </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════ SLIDE 7 — УСТОЙЧИВАЯ ЛИЧНОСТЬ (triad) ═════ -->
+      <section class="slide slide-7" data-title="Устойчивая Личность">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb b"></div>
+          <div class="mesh-orb c"></div>
+        </div>
+        <div class="grain"></div>
+        <div class="slide-inner">
+
+          <div class="service-header">
+            <div class="slide-eyebrow">Основа устойчивого бизнеса</div>
+            <h2 class="slide-title">Что такое устойчивая <span class="accent">личность</span></h2>
+          </div>
+
+          <div class="triad">
+            <!-- Орбиты и линии-соединители -->
+            <svg class="triad-connect" viewBox="0 0 1720 700" preserveAspectRatio="none">
+              <!-- Фоновые орбитальные круги -->
+              <circle cx="860" cy="350" r="330" fill="none" stroke="rgba(95,95,255,0.12)" stroke-dasharray="2 8"/>
+              <circle cx="860" cy="350" r="240" fill="none" stroke="rgba(95,95,255,0.16)" stroke-dasharray="2 8"/>
+
+              <!-- Линии от центра к карточкам -->
+              <line x1="860" y1="350" x2="860" y2="205" stroke="rgba(95,95,255,0.45)" stroke-width="1.5" stroke-dasharray="5 7"/>
+              <line x1="860" y1="350" x2="230" y2="500" stroke="rgba(10,132,255,0.4)" stroke-width="1.5" stroke-dasharray="5 7"/>
+              <line x1="860" y1="350" x2="1490" y2="500" stroke="rgba(255,128,168,0.4)" stroke-width="1.5" stroke-dasharray="5 7"/>
+
+              <!-- Dots в местах присоединения к карточкам -->
+              <circle cx="860" cy="205" r="5" fill="#5F5FFF" opacity="0.5"/>
+              <circle cx="230" cy="500" r="5" fill="#0A84FF" opacity="0.5"/>
+              <circle cx="1490" cy="500" r="5" fill="#FF80A8" opacity="0.5"/>
+            </svg>
+
+            <!-- Центральное ядро -->
+            <div class="triad-core">
+              <div class="triad-core-label">
+                <div class="t-eyebrow">Основа</div>
+                <div class="t-name">Устойчивая<br>Личность</div>
+              </div>
+            </div>
+
+            <!-- 01 — Порядок миров (сверху) -->
+            <div class="triad-card t1 top">
+              <div class="triad-head">
+                <div class="triad-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1"/>
+                    <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="triad-head-text">
+                  <div class="triad-num">01 · Порядок</div>
+                  <div class="triad-title">Внутренний порядок миров</div>
+                </div>
+              </div>
+              <div class="triad-desc">Понимание внутренней архитектуры своего мира и всех сфер жизни — как они устроены и связаны между собой.</div>
+            </div>
+
+            <!-- 02 — Осознанность (слева снизу) -->
+            <div class="triad-card t2 left">
+              <div class="triad-head">
+                <div class="triad-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3.2"/>
+                  </svg>
+                </div>
+                <div class="triad-head-text">
+                  <div class="triad-num">02 · Осознанность</div>
+                  <div class="triad-title">Осознанность состояний</div>
+                </div>
+              </div>
+              <div class="triad-desc">Способность рефлексировать и отслеживать свои состояния — замечать их в моменте, а не задним числом.</div>
+            </div>
+
+            <!-- 03 — Биоритмы (справа снизу) -->
+            <div class="triad-card t3 right">
+              <div class="triad-head">
+                <div class="triad-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                  </svg>
+                </div>
+                <div class="triad-head-text">
+                  <div class="triad-num">03 · Биоритмы</div>
+                  <div class="triad-title">Синхронность биоритмов</div>
+                </div>
+              </div>
+              <div class="triad-desc">Знание своих физических резервов и природных циклов — работать в своём ритме, а не против него.</div>
             </div>
 
           </div>
