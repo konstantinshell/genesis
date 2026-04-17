@@ -1528,14 +1528,16 @@
     }
 
     /* ═══════════════════════════════════════
-       SLIDE 9 — МИРЫ ПОЗНАНИЯ (image)
+       SLIDE 9 / 10 — картинка на весь слайд
     ═══════════════════════════════════════ */
-    .slide-9 .slide-inner {
+    .slide-9 .slide-inner,
+    .slide-10 .slide-inner {
       padding: 0;
       display: block;
       position: relative;
     }
-    .w9-image {
+    .w9-image,
+    .w10-image {
       display: block;
       position: absolute;
       top: 50%;
@@ -1551,6 +1553,53 @@
         0 28px 80px rgba(0,0,0,0.12),
         0 4px 10px rgba(0,0,0,0.05);
       z-index: 2;
+    }
+
+    /* Заголовок сверху слайда 10 (картинка широкая 3:2) */
+    .slide-10 .slide-inner { padding: 0; }
+    .w10-title-wrap {
+      position: absolute;
+      top: 64px;
+      left: 0; right: 0;
+      text-align: center;
+      z-index: 3;
+    }
+    .w10-eyebrow {
+      display: inline-block;
+      font-family: var(--fm);
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 6px 16px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.85);
+      margin-bottom: 16px;
+    }
+    .w10-title {
+      font-family: var(--fh);
+      font-weight: 300;
+      font-size: 72px;
+      line-height: 1;
+      letter-spacing: -0.028em;
+      color: var(--text);
+    }
+    .w10-title .accent {
+      background: linear-gradient(120deg, #5F5FFF 15%, #0A84FF 55%, #ff80a8 95%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-style: italic;
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+    }
+    .slide-10 .w10-image {
+      top: auto;
+      bottom: 64px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-height: calc(100% - 280px);
     }
 
     /* ═══════════════════════════════════════
@@ -2235,6 +2284,23 @@
         <div class="grain"></div>
         <div class="slide-inner">
           <img src="img/miry-poznaniya.png" alt="Миры познания — схема" class="w9-image">
+        </div>
+      </section>
+
+      <!-- ═════ SLIDE 10 — 8 СФЕР + КОЛЕСО БАЛАНСА (image) ═════ -->
+      <section class="slide slide-10" data-title="8 сфер · колесо баланса">
+        <div class="mesh">
+          <div class="mesh-orb a"></div>
+          <div class="mesh-orb b"></div>
+          <div class="mesh-orb c"></div>
+        </div>
+        <div class="grain"></div>
+        <div class="slide-inner">
+          <div class="w10-title-wrap">
+            <div class="w10-eyebrow">Инструмент самодиагностики</div>
+            <h2 class="w10-title">8 сфер жизни &middot; <span class="accent">колесо баланса</span></h2>
+          </div>
+          <img src="img/sfery-i-koleso.png" alt="8 сфер жизни и колесо баланса — схема" class="w10-image">
         </div>
       </section>
 
