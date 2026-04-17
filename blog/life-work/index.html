@@ -2368,7 +2368,74 @@
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
         color-adjust: exact !important;
+        box-shadow: none !important;
       }
+
+      /* Fix 1: градиентный текст в PDF рендерится как цветной прямоугольник
+         вместо прозрачного clipped text. Fallback — solid accent color. */
+      .hero-title .amp,
+      .hero-title .and,
+      .role-center,
+      .accent,
+      .q-accent,
+      .mnpi-badge,
+      .amp,
+      .sci-banner-pill b,
+      .sci-banner-text b {
+        -webkit-background-clip: border-box !important;
+        background-clip: border-box !important;
+        background-image: none !important;
+        background: none !important;
+        color: #5F5FFF !important;
+        -webkit-text-fill-color: #5F5FFF !important;
+      }
+
+      /* Fix 2: круглые gradient-блоки — добавить overflow:hidden чтобы
+         border-radius применился к background корректно */
+      .triad-core,
+      .speaker-avatar,
+      .benefit-icon-wrap,
+      .ai-icon,
+      .pipe-icon,
+      .world-icon,
+      .source-icon,
+      .service-icon,
+      .triad-icon,
+      .stream-icon,
+      .rhythm-phase-icon,
+      .w9-dot {
+        overflow: hidden !important;
+      }
+
+      /* Fix 3: fallback border для glass-карточек
+         (компенсирует убранные shadows — чтобы сохранить depth) */
+      .speaker-card,
+      .session-card,
+      .service-card,
+      .bio-col,
+      .benefit-card,
+      .pipe-block,
+      .source-card,
+      .triad-card,
+      .world-card,
+      .rhythm-phase,
+      .proof-chart,
+      .ai-integrator,
+      .mnpi-out,
+      .sci-banner-pill,
+      .formula-item,
+      .formula-result,
+      .phone,
+      .contrast-side,
+      .stream {
+        border: 1px solid rgba(0,0,0,0.14) !important;
+      }
+
+      /* ai-integrator сохраняет свой яркий border */
+      .ai-integrator {
+        border: 2px solid rgba(245,158,11,0.5) !important;
+      }
+
       html, body {
         overflow: visible !important;
         height: auto !important;
