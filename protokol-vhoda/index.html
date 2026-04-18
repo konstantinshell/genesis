@@ -241,166 +241,197 @@ p  { font-size: clamp(0.94rem, 2.2vw, 1.05rem); line-height: 1.65; color: var(--
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   БЛОК 1 · HERO
+   БЛОК 1 · HERO — минимализм, центровка, воздух
 ══════════════════════════════════════════════════════════════════ */
 .hero {
   min-height: 100vh;
   min-height: 100dvh;
-  padding-top: 92px;
-  padding-bottom: 48px;
+  padding: 120px 22px 80px;
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: visible;
 }
 .hero-inner {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  align-items: center;
+  gap: 0;
   width: 100%;
+  max-width: 720px;
   margin: 0 auto;
-  max-width: 960px;
-  padding: 0;
   position: relative;
-}
-.hero-badge {
-  font-family: var(--fm);
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text-mute);
-}
-.hero-badge::before {
-  content: '';
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 10px var(--green);
-  margin-right: 10px;
-  transform: translateY(-2px);
-  animation: livePulse 2s infinite ease-in-out;
 }
 @keyframes livePulse {
   0%, 100% { opacity: 1; }
   50%      { opacity: 0.4; }
 }
-.hero-preamble {
-  font-family: var(--fb);
-  font-style: italic;
-  font-size: 0.9rem;
-  color: var(--text-mute);
-  max-width: 620px;
-  line-height: 1.5;
-  padding-left: 14px;
-  border-left: 2px solid var(--indigo-soft);
+@keyframes fadeUp {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
-.hero h1 {
-  font-family: var(--fh);
-  font-size: clamp(1.9rem, 7.2vw, 3.2rem);
-  font-weight: 300;
-  line-height: 1.08;
-  letter-spacing: -0.005em;
-  overflow-wrap: break-word;
-}
-.hero h1 .ln { display: block; }
-.hero h1 em { font-style: normal; font-weight: 500; color: var(--indigo); }
-.hero h1 .grn { font-weight: 500; color: var(--green); }
-
-.hero-sub {
-  font-size: clamp(1rem, 2.8vw, 1.2rem);
-  line-height: 1.55;
-  color: var(--text);
-  max-width: 620px;
-}
-.hero-note {
-  font-size: 0.88rem;
-  color: var(--text-mute);
-  line-height: 1.6;
-  max-width: 620px;
-}
-.hero-note b { color: var(--text); font-weight: 500; }
-
-.hero-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 18px;
-  margin-top: 8px;
-}
-.hero-cta .btn { width: 100%; max-width: 360px; }
-
-.hero-eeg {
-  width: 100%;
-  height: 64px;
-  opacity: 0.5;
-  margin: 4px 0;
-}
-.hero-eeg path {
-  stroke: var(--indigo);
-  stroke-width: 1.4;
-  fill: none;
-  stroke-dasharray: 1600;
-  stroke-dashoffset: 1600;
-  animation: drawWave 6s linear infinite;
-}
-@keyframes drawWave {
-  0%   { stroke-dashoffset: 1600; }
-  100% { stroke-dashoffset: -1600; }
+@keyframes ringRotate {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-.hero-rhythms {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  margin-top: 20px;
-  padding-top: 28px;
-  border-top: 1px solid var(--line);
-}
-.hero-rhythm {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 16px;
-  background: rgba(13, 13, 24, 0.6);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-}
-.hero-rhythm-title {
-  font-family: var(--fh);
-  font-weight: 500;
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-}
-.hero-rhythm-title::before {
-  content: '◉';
-  color: var(--indigo);
-  margin-right: 8px;
-}
-.hero-rhythm-desc {
-  font-family: var(--fm);
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
   color: var(--text-mute);
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  background: rgba(224, 224, 236, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  animation: fadeUp 0.9s 0.1s ease-out forwards;
+}
+.hero-eyebrow-glyph {
+  color: var(--indigo);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+.hero-eyebrow-dot { color: var(--text-dim); }
+
+.hero-title {
+  font-family: var(--fh);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 11vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin-top: 36px;
+  max-width: 12ch;
+  opacity: 0;
+  animation: fadeUp 1s 0.35s ease-out forwards;
+}
+.hero-title .hero-title-l1,
+.hero-title .hero-title-l2 { display: block; }
+.hero-title em {
+  font-style: normal;
+  font-weight: 400;
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--green) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.hero-lead {
+  font-family: var(--fb);
+  font-weight: 300;
+  font-size: clamp(1rem, 2.6vw, 1.2rem);
   line-height: 1.5;
+  color: var(--text-mute);
+  margin-top: 26px;
+  max-width: 28ch;
+  opacity: 0;
+  animation: fadeUp 1s 0.55s ease-out forwards;
+}
+
+.hero-glyph {
+  display: block;
+  width: clamp(180px, 48vw, 260px);
+  height: auto;
+  margin-top: 44px;
+  opacity: 0;
+  animation: fadeUp 1.2s 0.7s ease-out forwards;
+}
+.hero-glyph g circle {
+  transform-origin: 110px 80px;
+  animation: ringRotate 60s linear infinite;
+}
+.hero-glyph g circle:nth-child(2) { animation-duration: 80s; animation-direction: reverse; }
+.hero-glyph g circle:nth-child(3) { animation-duration: 100s; }
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: 44px;
+  width: 100%;
+  opacity: 0;
+  animation: fadeUp 1s 0.9s ease-out forwards;
+}
+.hero-btn {
+  min-height: 54px;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  gap: 12px;
+  border-radius: 100px;
+  min-width: 240px;
+}
+.hero-btn span:last-child {
+  transition: transform 0.25s;
+}
+.hero-btn:hover span:last-child { transform: translateX(4px); }
+.hero-alt {
+  font-size: 0.85rem;
+  color: var(--text-mute);
+  border-bottom: 1px solid var(--line-bright);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hero-alt:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.hero-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 72px;
+  color: var(--text-dim);
+  opacity: 0;
+  animation: fadeUp 1s 1.2s ease-out forwards;
+  transition: color 0.2s;
+}
+.hero-scroll:hover { color: var(--text-mute); }
+.hero-scroll-line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, transparent, currentColor);
+}
+.hero-scroll-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
 
 @media (min-width: 640px) {
-  .hero-rhythms { grid-template-columns: repeat(3, 1fr); }
+  .hero { padding: 140px 28px 100px; }
+  .hero-title { margin-top: 40px; max-width: 14ch; }
+  .hero-lead { max-width: 32ch; }
+  .hero-glyph { margin-top: 52px; }
+  .hero-actions { margin-top: 52px; flex-direction: row; gap: 28px; }
+  .hero-scroll { margin-top: 88px; }
 }
 @media (min-width: 960px) {
-  .hero-inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-    gap: 56px;
-    max-width: 1180px;
-    align-items: center;
+  .hero { padding: 160px 32px 120px; }
+  .hero-title { margin-top: 48px; max-width: 15ch; }
+  .hero-glyph { margin-top: 60px; width: 280px; }
+  .hero-scroll { margin-top: 104px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow, .hero-title, .hero-lead,
+  .hero-glyph, .hero-actions, .hero-scroll {
+    opacity: 1;
+    animation: none;
   }
-  .hero-text { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
-  .hero-text h1 { max-width: 100%; }
-  .hero-visual { display: flex; flex-direction: column; align-items: center; gap: 24px; }
-  .hero-rhythms { grid-column: 1 / -1; }
-  .hero-eeg { grid-column: 1 / -1; height: 90px; order: 5; }
+  .hero-glyph g circle { animation: none; }
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -954,90 +985,48 @@ p  { font-size: clamp(0.94rem, 2.2vw, 1.05rem); line-height: 1.65; color: var(--
 <main>
 <section class="section hero" id="hero">
   <div class="hero-inner">
-    <div class="hero-text">
-      <span class="hero-badge mono">NIHILO · LABORATORY · ИССЛЕДОВАНИЕ 2026</span>
-      <p class="hero-preamble">«Впервые внутреннее состояние человека стало объектом непрерывного измерения.»</p>
-      <h1>
-        <span class="ln">ЦИФРОВОЙ ПОМОЩНИК</span>
-        <span class="ln"><em>НОВОГО ТИПА</em> ДЛЯ ВАШЕГО</span>
-        <span class="ln grn">РИТМА МОЗГА · ТЕЛА · ЖИЗНИ</span>
-      </h1>
-      <p class="hero-sub">60+ ваших биопоказателей. Ваша событийность. Ваши планы. В одном месте — с обратной связью от искусственного интеллекта 24/7.</p>
-      <p class="hero-note">Это не сервис. Это <b>открытое исследование</b>. Вы вступаете в него как участник — и получаете цифрового помощника, который видит вас целиком.</p>
+    <div class="hero-eyebrow mono" aria-label="NIHILO · 2026">
+      <span class="hero-eyebrow-glyph" aria-hidden="true">◈</span>
+      <span>NIHILO</span>
+      <span class="hero-eyebrow-dot" aria-hidden="true">·</span>
+      <span>2026</span>
     </div>
 
-    <div class="hero-visual">
-      <div class="qr">
-        <div class="qr-frame">
-          <svg class="qr-svg" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" aria-label="QR-код · плейсхолдер">
-            <rect width="21" height="21" fill="#000"/>
-            <g fill="#5F5FFF">
-              <!-- finder top-left -->
-              <rect x="0" y="0" width="7" height="1"/><rect x="0" y="6" width="7" height="1"/>
-              <rect x="0" y="0" width="1" height="7"/><rect x="6" y="0" width="1" height="7"/>
-              <rect x="2" y="2" width="3" height="3"/>
-              <!-- finder top-right -->
-              <rect x="14" y="0" width="7" height="1"/><rect x="14" y="6" width="7" height="1"/>
-              <rect x="14" y="0" width="1" height="7"/><rect x="20" y="0" width="1" height="7"/>
-              <rect x="16" y="2" width="3" height="3"/>
-              <!-- finder bottom-left -->
-              <rect x="0" y="14" width="7" height="1"/><rect x="0" y="20" width="7" height="1"/>
-              <rect x="0" y="14" width="1" height="7"/><rect x="6" y="14" width="1" height="7"/>
-              <rect x="2" y="16" width="3" height="3"/>
-              <!-- timing patterns -->
-              <rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/>
-              <rect x="12" y="6" width="1" height="1"/>
-              <rect x="6" y="8" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/>
-              <rect x="6" y="12" width="1" height="1"/>
-              <!-- data modules (декоративно) -->
-              <rect x="8" y="2" width="1" height="1"/><rect x="9" y="0" width="1" height="1"/>
-              <rect x="10" y="3" width="1" height="1"/><rect x="11" y="1" width="1" height="1"/>
-              <rect x="12" y="2" width="1" height="1"/><rect x="13" y="4" width="1" height="1"/>
-              <rect x="8" y="4" width="1" height="1"/><rect x="9" y="5" width="1" height="1"/>
-              <rect x="10" y="1" width="2" height="1"/><rect x="8" y="0" width="1" height="1"/>
-              <rect x="13" y="2" width="1" height="2"/>
-              <rect x="8" y="8" width="2" height="1"/><rect x="11" y="8" width="1" height="2"/>
-              <rect x="13" y="9" width="2" height="1"/><rect x="16" y="8" width="1" height="2"/>
-              <rect x="18" y="9" width="2" height="1"/><rect x="10" y="10" width="1" height="1"/>
-              <rect x="12" y="10" width="2" height="1"/><rect x="15" y="11" width="1" height="2"/>
-              <rect x="17" y="10" width="2" height="1"/><rect x="19" y="12" width="1" height="1"/>
-              <rect x="8" y="12" width="1" height="2"/><rect x="10" y="13" width="3" height="1"/>
-              <rect x="14" y="13" width="1" height="1"/><rect x="16" y="13" width="2" height="1"/>
-              <rect x="19" y="14" width="1" height="2"/><rect x="18" y="15" width="1" height="1"/>
-              <rect x="16" y="15" width="1" height="1"/><rect x="14" y="15" width="1" height="2"/>
-              <rect x="12" y="15" width="1" height="1"/><rect x="10" y="15" width="1" height="2"/>
-              <rect x="8" y="16" width="2" height="1"/><rect x="9" y="18" width="2" height="1"/>
-              <rect x="11" y="17" width="1" height="2"/><rect x="13" y="18" width="1" height="1"/>
-              <rect x="15" y="18" width="3" height="1"/><rect x="17" y="17" width="1" height="1"/>
-              <rect x="19" y="18" width="1" height="2"/><rect x="14" y="19" width="1" height="1"/>
-              <rect x="8" y="19" width="1" height="1"/><rect x="16" y="20" width="2" height="1"/>
-              <rect x="10" y="20" width="1" height="1"/><rect x="13" y="20" width="1" height="1"/>
-            </g>
-          </svg>
-        </div>
-        <div class="qr-caption">NIHILO · BOT · TG<br>отсканируйте камерой телефона</div>
-        <a href="#" class="btn btn--primary btn--block" data-bot-link>Открыть в Telegram →</a>
-      </div>
-    </div>
+    <h1 class="hero-title">
+      <span class="hero-title-l1">Ваш ритм —</span>
+      <span class="hero-title-l2">в&nbsp;одном <em>помощнике.</em></span>
+    </h1>
 
-    <svg class="hero-eeg" viewBox="0 0 800 64" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M 0,32 Q 25,4 50,32 T 100,32 Q 125,8 150,32 Q 175,56 200,32 T 250,32 Q 275,12 300,32 Q 325,52 350,32 T 400,32 Q 425,6 450,32 Q 475,58 500,32 T 550,32 Q 575,14 600,32 Q 625,50 650,32 T 700,32 Q 725,10 750,32 T 800,32"/>
+    <p class="hero-lead">Мозг · тело · жизнь. В одной системе с&nbsp;ИИ 24/7.</p>
+
+    <svg class="hero-glyph" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="glyphGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#5F5FFF" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#5F5FFF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="110" cy="80" r="60" fill="url(#glyphGlow)"/>
+      <g fill="none" stroke-width="1.2" opacity="0.9">
+        <circle cx="84" cy="68" r="44" stroke="#5F5FFF"/>
+        <circle cx="136" cy="68" r="44" stroke="#6D6DFF"/>
+        <circle cx="110" cy="108" r="44" stroke="#00E5A0"/>
+      </g>
+      <circle cx="110" cy="80" r="3" fill="#E0E0EC"/>
     </svg>
 
-    <div class="hero-rhythms" aria-label="Три ритма — мини-навигация">
-      <div class="hero-rhythm">
-        <div class="hero-rhythm-title">ритм мозга</div>
-        <div class="hero-rhythm-desc">7 режимов · ЭЭГ · нейро</div>
-      </div>
-      <div class="hero-rhythm">
-        <div class="hero-rhythm-title">ритм тела</div>
-        <div class="hero-rhythm-desc">HRV · сон · восстановление</div>
-      </div>
-      <div class="hero-rhythm">
-        <div class="hero-rhythm-title">ритм жизни</div>
-        <div class="hero-rhythm-desc">события · планы · цикл 40 дней</div>
-      </div>
+    <div class="hero-actions">
+      <a href="#" class="btn btn--primary hero-btn" data-bot-link>
+        <span>Открыть в Telegram</span>
+        <span aria-hidden="true">→</span>
+      </a>
+      <a href="#enter" class="hero-alt">или отсканировать QR&nbsp;↓</a>
     </div>
+
+    <a class="hero-scroll" href="#rhythms" aria-label="Прокрутить вниз">
+      <span class="hero-scroll-line" aria-hidden="true"></span>
+      <span class="hero-scroll-label mono">Узнать как</span>
+    </a>
   </div>
 </section>
 
