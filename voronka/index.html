@@ -74,7 +74,6 @@
     }
     .hero-meta strong { color: var(--text); }
 
-    /* Итоговая статистика сверху */
     .summary {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -113,7 +112,6 @@
       margin-top: 4px;
     }
 
-    /* Колонки воронки */
     .funnel {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -168,7 +166,6 @@
       margin-bottom: 14px;
     }
 
-    /* Карточка участника */
     .card {
       display: block;
       background: #F5F6F9;
@@ -226,7 +223,35 @@
       border-radius: 10px;
     }
 
-    /* Блок основателей */
+    /* Виджет активности */
+    .card-activity {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(0,0,0,0.08);
+      font-family: var(--fm);
+      font-size: 10.5px;
+      letter-spacing: 0.02em;
+    }
+    .act-refl { color: #6A6A7A; display: flex; align-items: center; gap: 4px; }
+    .act-refl .act-num { font-weight: 700; color: var(--text); font-size: 12px; }
+    .act-refl.act-hi .act-num { color: var(--accent); }
+    .act-refl.act-zero .act-num { color: var(--muted); }
+    .act-last {
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .act-hot  { background: rgba(31,181,124,0.14);  color: var(--green); }
+    .act-warm { background: rgba(168,176,78,0.18);  color: #7A8A1F; }
+    .act-cool { background: rgba(255,149,0,0.14);   color: var(--orange); }
+    .act-cold { background: rgba(255,59,48,0.12);   color: var(--red); }
+    .act-none { background: rgba(0,0,0,0.06);       color: var(--muted); }
+
     .founders {
       margin-top: 40px;
       background: var(--card);
@@ -252,7 +277,6 @@
       background: #F5F6F9;
     }
 
-    /* Легенда */
     .legend {
       margin-top: 32px;
       padding: 16px 20px;
@@ -292,20 +316,19 @@
     </div>
     <div class="hero-meta">
       Обновлено: <strong>18.04.2026</strong><br>
-      Источник: network/participants.md
+      Источник: Obsidian / 01_NIHILO / Клиенты
     </div>
   </header>
 
-  <!-- Итоговая статистика -->
   <div class="summary">
     <div class="summary-card s1">
       <div class="summary-label">В боте · без NDA</div>
-      <div class="summary-value">2</div>
+      <div class="summary-value">4</div>
       <div class="summary-sub">первая точка касания</div>
     </div>
     <div class="summary-card s2">
       <div class="summary-label">NDA подписан · чекап</div>
-      <div class="summary-value">17</div>
+      <div class="summary-value">18</div>
       <div class="summary-sub">готовятся / на чекапе</div>
     </div>
     <div class="summary-card s3">
@@ -320,14 +343,13 @@
     </div>
   </div>
 
-  <!-- Воронка -->
   <div class="funnel">
 
     <!-- Стадия 1 -->
     <div class="col s1">
       <div class="col-header">
         <div class="col-title">1. В боте</div>
-        <div class="col-count">2</div>
+        <div class="col-count">4</div>
       </div>
       <div class="col-note">вступил(а) в бот, NDA ещё не подписан</div>
 
@@ -340,12 +362,28 @@
         </div>
       </a>
 
-      <a class="card">
+      <a href="https://konstantinshell.github.io/genesis/profiles/479910423/" class="card" target="_blank">
         <div class="card-name">Лиана Саунд</div>
         <div class="card-tg">@Liana_Sound</div>
         <div class="card-badges">
           <span class="badge warn">⏳ без NDA</span>
           <span class="badge neiry">🧠 NEIRY</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/744999846/" class="card" target="_blank">
+        <div class="card-name">Надежда Компас</div>
+        <div class="card-tg">@Woman_Kompas</div>
+        <div class="card-badges">
+          <span class="badge warn">⏳ без NDA</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/183298681/" class="card" target="_blank">
+        <div class="card-name">Станислав Орехов</div>
+        <div class="card-tg">@StasOrekhov</div>
+        <div class="card-badges">
+          <span class="badge ban">🚫 забанен</span>
         </div>
       </a>
     </div>
@@ -354,7 +392,7 @@
     <div class="col s2">
       <div class="col-header">
         <div class="col-title">2. NDA · чекап</div>
-        <div class="col-count">17</div>
+        <div class="col-count">18</div>
       </div>
       <div class="col-note">NDA подписан, идёт подготовка / чекап</div>
 
@@ -434,6 +472,12 @@
           <span class="badge neiry">🧠 NEIRY</span>
           <span class="badge amb">✪ Амб.</span>
         </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/334165104/" class="card" target="_blank">
+        <div class="card-name">Игорь Жаринов</div>
+        <div class="card-tg">@Igor_Bright</div>
+        <div class="card-badges"></div>
       </a>
 
       <a href="https://konstantinshell.github.io/genesis/profiles/319756543/" class="card" target="_blank">
@@ -552,7 +596,6 @@
 
   </div><!-- /funnel -->
 
-  <!-- Основатели -->
   <div class="founders">
     <div class="founders-header">Основатели — вне воронки</div>
     <div class="founders-row">
@@ -575,7 +618,6 @@
     </div>
   </div>
 
-  <!-- Легенда -->
   <div class="legend">
     <div class="legend-row">
       <span class="legend-item"><span class="legend-dot" style="background:rgba(95,95,255,0.35)"></span>NEIRY бэнд</span>
@@ -585,11 +627,83 @@
       <span class="legend-item"><span class="legend-dot" style="background:rgba(255,59,48,0.35)"></span>забанен</span>
     </div>
     <div style="margin-top:10px;font-size:11px">
-      Всего в боте активных: <strong>22</strong> · Основатели: <strong>2</strong> · Клик по карточке → профиль участника
+      Всего в боте активных: <strong>25</strong> · Основатели: <strong>2</strong> · Клик по карточке → профиль участника
+    </div>
+    <div style="margin-top:10px;font-size:11px;line-height:1.7">
+      <strong>Виджет активности:</strong> 💭 — рефлексии в боте · справа — дней с последней активности
+      (<span style="color:var(--green)">зелёный ≤3</span> · <span style="color:#7A8A1F">жёлто-зелёный ≤7</span> · <span style="color:var(--orange)">оранжевый ≤14</span> · <span style="color:var(--red)">красный &gt;14</span>)
     </div>
   </div>
 
 </div>
+
+<script>
+// Активность из Obsidian / 01_NIHILO / Клиенты / clients/*.md
+// r = общее количество рефлексий; last = дата последней активности
+const ACTIVITY = {
+  "41537154":   {"r":7,  "last":"2026-04-18"},
+  "8211648754": {"r":1,  "last":"2026-04-18"},
+  "765238865":  {"r":0,  "last":"2026-04-18"},
+  "479910423":  {"r":0,  "last":"2026-04-13"},
+  "744999846":  {"r":0,  "last":"2026-04-13"},
+  "183298681":  {"r":0,  "last":"2026-04-12"},
+  "221246992":  {"r":0,  "last":"2026-04-18"},
+  "1610267716": {"r":12, "last":"2026-04-18"},
+  "1139648370": {"r":17, "last":"2026-04-18"},
+  "1067307749": {"r":8,  "last":"2026-04-18"},
+  "446777127":  {"r":0,  "last":"2026-04-18"},
+  "5056234108": {"r":0,  "last":"2026-04-18"},
+  "261261504":  {"r":4,  "last":"2026-04-18"},
+  "39937232":   {"r":21, "last":"2026-04-18"},
+  "147991795":  {"r":16, "last":"2026-04-18"},
+  "334165104":  {"r":0,  "last":"2026-04-13"},
+  "319756543":  {"r":1,  "last":"2026-04-18"},
+  "57740229":   {"r":0,  "last":"2026-04-18"},
+  "1983391922": {"r":15, "last":"2026-04-18"},
+  "8678544199": {"r":16, "last":"2026-04-18"},
+  "827208307":  {"r":3,  "last":"2026-04-18"},
+  "248175087":  {"r":0,  "last":"2026-04-18"},
+  "448342702":  {"r":8,  "last":"2026-04-18"},
+  "652364423":  {"r":0,  "last":"2026-04-18"},
+  "429205054":  {"r":0,  "last":"2026-04-18"},
+  "424514495":  {"r":11, "last":"2026-04-18"},
+  "407124980":  {"r":4,  "last":"2026-04-18"}
+};
+
+(function renderActivity() {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  document.querySelectorAll('a.card').forEach(card => {
+    const href = card.getAttribute('href') || '';
+    const m = href.match(/\/profiles\/(\d+)\//);
+    if (!m) return;
+    const pid = m[1];
+    const data = ACTIVITY[pid];
+    if (!data) return;
+
+    let tier = 'none', label = 'нет данных';
+    if (data.last) {
+      const last = new Date(data.last);
+      last.setHours(0,0,0,0);
+      const days = Math.round((today - last) / 86400000);
+      label = days === 0 ? 'сегодня' : (days === 1 ? 'вчера' : days + ' дн назад');
+      if (days <= 3) tier = 'hot';
+      else if (days <= 7) tier = 'warm';
+      else if (days <= 14) tier = 'cool';
+      else tier = 'cold';
+    }
+
+    const reflClass = data.r === 0 ? 'act-zero' : (data.r >= 10 ? 'act-hi' : '');
+    const widget = document.createElement('div');
+    widget.className = 'card-activity';
+    widget.innerHTML =
+      '<div class="act-refl ' + reflClass + '">💭 <span class="act-num">' + data.r + '</span> рефл.</div>' +
+      '<div class="act-last act-' + tier + '">' + label + '</div>';
+    card.appendChild(widget);
+  });
+})();
+</script>
 
 </body>
 </html>
