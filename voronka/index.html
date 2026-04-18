@@ -631,7 +631,7 @@
       Всего в боте активных: <strong>25</strong> · Основатели: <strong>2</strong> · Клик по карточке → профиль участника
     </div>
     <div style="margin-top:10px;font-size:11px;line-height:1.7">
-      <strong>Виджет активности:</strong> 💭 — рефлексии в боте · справа — дней с последней активности
+      <strong>Виджет активности:</strong> 💭 — записи в боте (рефлексии + потоки) · справа — дней с последней активности
       (<span style="color:var(--green)">зелёный ≤3</span> · <span style="color:#7A8A1F">жёлто-зелёный ≤7</span> · <span style="color:var(--orange)">оранжевый ≤14</span> · <span style="color:var(--red)">красный &gt;14</span>)
     </div>
   </div>
@@ -683,8 +683,8 @@ const ACTIVITY = {
     const data = ACTIVITY[pid];
     if (!data) return;
 
-    let tier = 'none', label = 'нет данных';
-    if (data.last) {
+    let tier = 'none', label = 'нет записей';
+    if (data.r > 0 && data.last) {
       const last = new Date(data.last);
       last.setHours(0,0,0,0);
       const days = Math.round((today - last) / 86400000);
@@ -699,7 +699,7 @@ const ACTIVITY = {
     const widget = document.createElement('div');
     widget.className = 'card-activity';
     widget.innerHTML =
-      '<div class="act-refl ' + reflClass + '">💭 <span class="act-num">' + data.r + '</span> рефл.</div>' +
+      '<div class="act-refl ' + reflClass + '" title="рефлексии + потоки">💭 <span class="act-num">' + data.r + '</span> записей</div>' +
       '<div class="act-last act-' + tier + '">' + label + '</div>';
     card.appendChild(widget);
   });
