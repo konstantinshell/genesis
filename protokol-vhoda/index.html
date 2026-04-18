@@ -911,79 +911,6 @@ p  { font-size: clamp(0.94rem, 2.2vw, 1.05rem); line-height: 1.65; color: var(--
 .enter-points li::before { content: '· '; color: var(--indigo); }
 
 /* ══════════════════════════════════════════════════════════════════
-   БЛОК 9 · ФУТЕР
-══════════════════════════════════════════════════════════════════ */
-.foot {
-  background: #07070E;
-  padding: 56px 18px 28px;
-  border-top: 1px solid var(--line);
-  position: relative;
-  z-index: 2;
-}
-.foot-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--line);
-}
-.foot-col h4 {
-  font-family: var(--fh);
-  font-weight: 500;
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-mute);
-  margin-bottom: 14px;
-}
-.foot-brand {
-  font-family: var(--fh);
-  font-weight: 700;
-  font-size: 1.3rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text);
-  margin-bottom: 10px;
-}
-.foot-desc {
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: var(--text-mute);
-  max-width: 320px;
-}
-.foot-desc b { color: var(--text); font-weight: 500; }
-.foot-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-.foot-list a {
-  font-size: 0.9rem;
-  color: var(--text-mute);
-  transition: color 0.2s;
-}
-.foot-list a:hover { color: var(--text); }
-.foot-bottom {
-  max-width: 1100px;
-  margin: 28px auto 0;
-  font-family: var(--fm);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--text-dim);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-transform: uppercase;
-}
-@media (min-width: 640px) {
-  .foot-inner { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 36px; }
-  .foot-bottom { flex-direction: row; justify-content: space-between; }
-}
-
-/* ══════════════════════════════════════════════════════════════════
    STICKY TOP-BAR · 3-я точка CTA (появляется на скролле)
 ══════════════════════════════════════════════════════════════════ */
 .sticky-cta {
@@ -1508,46 +1435,6 @@ p  { font-size: clamp(0.94rem, 2.2vw, 1.05rem); line-height: 1.65; color: var(--
 </section>
 </main>
 
-<!-- ═══ БЛОК 9 · ФУТЕР (кастомный) ═══ -->
-<footer class="foot" id="foot">
-  <div class="foot-inner">
-    <div class="foot-col">
-      <div class="foot-brand">NIHILO · LABS</div>
-      <p class="foot-desc">Оцифрованный метод <b>ONTO NOTHING</b>. Философия, ставшая математикой и кодом. Ритмы мозга, ритмы года, единый индекс — всё в одной платформе с обратной связью 24/7.</p>
-    </div>
-    <div class="foot-col">
-      <h4>Исследование</h4>
-      <ul class="foot-list">
-        <li><a href="#">Программа когорты 2026</a></li>
-        <li><a href="#">Протокол участия</a></li>
-        <li><a href="#">Препринты и публикации</a></li>
-        <li><a href="#">Препринт MNPI</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h4>Форматы</h4>
-      <ul class="foot-list">
-        <li><a href="#">ЧЕКАП · онлайн</a></li>
-        <li><a href="#">Резиденция · Москва</a></li>
-        <li><a href="#">Резиденция · Бали</a></li>
-        <li><a href="#">Резиденция · Вьетнам</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h4>Контакты</h4>
-      <ul class="foot-list">
-        <li><a href="#">Канал исследования</a></li>
-        <li><a href="mailto:hello@nihilo.labs">hello@nihilo.labs</a></li>
-        <li><a href="#" data-bot-link>Telegram-помощник</a></li>
-        <li><a href="#">Соглашение об участии (PDF)</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="foot-bottom">
-    <span>© 2026 NIHILO LABS · ONTO NOTHING · ФОРМУЛА ОТКРЫТИЯ</span>
-    <span>v 2.0 · Вступить в исследование</span>
-  </div>
-</footer>
 
 <!-- Sticky CTA после скролла -->
 <div class="sticky-cta" id="sticky-cta">
@@ -1555,6 +1442,7 @@ p  { font-size: clamp(0.94rem, 2.2vw, 1.05rem); line-height: 1.65; color: var(--
 </div>
 
 <script src="../components/nav.js"></script>
+<script src="../components/footer.js"></script>
 <script>
   // Единый источник истины для ссылки на бота.
   // Когда бот будет готов — подменить BOT_URL на реальный, напр.
