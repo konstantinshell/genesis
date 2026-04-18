@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NIHILO · Вступить в исследование</title>
+<meta name="description" content="Цифровой помощник нового типа для вашего ритма мозга, тела, жизни. 60+ биопоказателей, событийность, планы — в одном месте, с обратной связью от ИИ 24/7. Вступайте в исследование.">
+<meta name="keywords" content="NIHILO, исследование, цифровой помощник, ЭЭГ, биомаркеры, ритмы, нейроинтерфейс, когорта, MNPI">
+<meta property="og:title" content="NIHILO · Цифровой помощник для ритма мозга, тела, жизни">
+<meta property="og:description" content="Открытое исследование. Один помощник. Три ритма. Одно поле данных.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@300;400;500;600&family=Oswald:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/nav.css">
+
+<style>
+/* ══════════════════════════════════════════════════════════════════
+   NIHILO · ЛЕНДИНГ · ПРОТОКОЛ ВХОДА · v2
+   mobile-first · 375px base · темная палитра
+══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:          #0A0A12;
+  --bg-card:     #0D0D18;
+  --bg-elev:     #14141F;
+  --text:        #E0E0EC;
+  --text-mute:   #777790;
+  --text-dim:    rgba(224, 224, 236, 0.34);
+  --line:        rgba(224, 224, 236, 0.08);
+  --line-bright: rgba(224, 224, 236, 0.16);
+  --indigo:      #5F5FFF;
+  --indigo-2:    #6D6DFF;
+  --indigo-soft: rgba(95, 95, 255, 0.18);
+  --green:       #00E5A0;
+  --red:         #FF6B6B;
+
+  --fh: "Oswald", sans-serif;
+  --fb: "Jost", -apple-system, BlinkMacSystemFont, sans-serif;
+  --fm: "Courier Prime", "SF Mono", Menlo, monospace;
+  --ft: "VT323", monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--fb);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--indigo-soft); color: var(--text); }
+
+a { color: inherit; text-decoration: none; }
+
+/* ══════ Dark-theme override для общей навигации ══════ */
+.site-nav {
+  background: rgba(10, 10, 18, 0.72) !important;
+  border-bottom: 1px solid var(--line) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.site-nav .nav-logo { color: var(--text) !important; }
+.site-nav .nav-logo:hover { color: var(--indigo-2) !important; }
+.site-nav .nav-links a { color: var(--text-mute) !important; font-family: var(--fb) !important; }
+.site-nav .nav-links a:hover { color: var(--text) !important; background: var(--indigo-soft) !important; }
+.site-nav .nav-links a.active { color: var(--indigo-2) !important; background: var(--indigo-soft) !important; }
+.site-nav .nav-burger span { background: var(--text) !important; }
+@media (max-width: 900px) {
+  .site-nav .nav-links.open { background: rgba(10, 10, 18, 0.96) !important; border-bottom: 1px solid var(--line) !important; }
+}
+
+/* ══════ Amb fon свет ══════ */
+.ambient { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.ambient::before,
+.ambient::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+.ambient::before {
+  top: -20%; left: -10%;
+  width: 80vmin; height: 80vmin;
+  background: radial-gradient(circle, rgba(95,95,255,0.22) 0%, transparent 65%);
+}
+.ambient::after {
+  bottom: -25%; right: -15%;
+  width: 70vmin; height: 70vmin;
+  background: radial-gradient(circle, rgba(0,229,160,0.12) 0%, transparent 65%);
+}
+
+/* ══════ Типографика ══════ */
+h1, h2, h3, h4 {
+  font-family: var(--fh);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.08;
+  color: var(--text);
+}
+h1 { font-size: clamp(2rem, 8.5vw, 3.8rem); font-weight: 500; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 500; letter-spacing: 0.01em; }
+h3 { font-size: clamp(1.15rem, 3vw, 1.5rem); font-weight: 500; }
+h4 { font-size: clamp(1rem, 2.5vw, 1.1rem); font-weight: 500; }
+
+p  { font-size: clamp(0.94rem, 2.2vw, 1.05rem); line-height: 1.65; color: var(--text); }
+.lead { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--text); }
+.muted { color: var(--text-mute); }
+
+.mono { font-family: var(--fm); letter-spacing: 0.02em; }
+.tag {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  display: inline-block;
+}
+.tag--dot::before {
+  content: '◉';
+  margin-right: 6px;
+  color: var(--indigo);
+}
+
+/* ══════ Секции ══════ */
+.section {
+  position: relative;
+  z-index: 2;
+  padding: 56px 18px;
+}
+.section-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+.section-head {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.section-head .tag { margin-bottom: 14px; }
+.section-head h2 { margin-bottom: 16px; }
+.section-head .lead { max-width: 680px; margin: 0 auto; color: var(--text-mute); }
+
+@media (min-width: 640px) {
+  .section { padding: 72px 22px; }
+  .section-head { margin-bottom: 44px; }
+}
+@media (min-width: 960px) {
+  .section { padding: 96px 24px; }
+  .section-head { margin-bottom: 56px; }
+}
+
+/* ══════ Кнопки ══════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-family: var(--fb);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  text-align: center;
+  line-height: 1.2;
+}
+.btn--primary {
+  background: var(--indigo);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(95, 95, 255, 0.25);
+}
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: var(--indigo-2);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 32px rgba(95, 95, 255, 0.4);
+  outline: none;
+}
+.btn--outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line-bright);
+}
+.btn--outline:hover {
+  background: var(--indigo-soft);
+  border-color: var(--indigo);
+}
+.btn--block { display: flex; width: 100%; }
+
+/* ══════ QR-плейсхолдер ══════ */
+.qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.qr-frame {
+  display: inline-block;
+  padding: 14px;
+  border: 2px solid var(--indigo);
+  border-radius: 14px;
+  background: #000;
+  box-shadow: 0 0 30px rgba(95, 95, 255, 0.3), inset 0 0 20px rgba(95, 95, 255, 0.08);
+  position: relative;
+}
+.qr-frame--lg { padding: 18px; }
+.qr-svg {
+  display: block;
+  width: 180px;
+  height: 180px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.qr-frame--lg .qr-svg { width: 240px; height: 240px; }
+.qr-caption {
+  font-family: var(--fm);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  text-align: center;
+  line-height: 1.5;
+}
+.qr-caption b { color: var(--text); font-weight: 700; letter-spacing: 0.22em; }
+
+@media (min-width: 960px) {
+  .qr-svg { width: 220px; height: 220px; }
+  .qr-frame--lg .qr-svg { width: 320px; height: 320px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   БЛОК 1 · HERO
+══════════════════════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: 92px;
+  padding-bottom: 48px;
+  display: flex;
+  align-items: stretch;
+}
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0;
+  position: relative;
+}
+.hero-badge {
+  font-family: var(--fm);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.hero-badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+  margin-right: 10px;
+  transform: translateY(-2px);
+  animation: livePulse 2s infinite ease-in-out;
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+.hero-preamble {
+  font-family: var(--fb);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text-mute);
+  max-width: 620px;
+  line-height: 1.5;
+  padding-left: 14px;
+  border-left: 2px solid var(--indigo-soft);
+}
+.hero h1 {
+  font-family: var(--fh);
+  font-size: clamp(1.9rem, 7.2vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.005em;
+  overflow-wrap: break-word;
+}
+.hero h1 .ln { display: block; }
+.hero h1 em { font-style: normal; font-weight: 500; color: var(--indigo); }
+.hero h1 .grn { font-weight: 500; color: var(--green); }
+
+.hero-sub {
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 620px;
+}
+.hero-note {
+  font-size: 0.88rem;
+  color: var(--text-mute);
+  line-height: 1.6;
+  max-width: 620px;
+}
+.hero-note b { color: var(--text); font-weight: 500; }
+
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  margin-top: 8px;
+}
+.hero-cta .btn { width: 100%; max-width: 360px; }
+
+.hero-eeg {
+  width: 100%;
+  height: 64px;
+  opacity: 0.5;
+  margin: 4px 0;
+}
+.hero-eeg path {
+  stroke: var(--indigo);
+  stroke-width: 1.4;
+  fill: none;
+  stroke-dasharray: 1600;
+  stroke-dashoffset: 1600;
+  animation: drawWave 6s linear infinite;
+}
+@keyframes drawWave {
+  0%   { stroke-dashoffset: 1600; }
+  100% { stroke-dashoffset: -1600; }
+}
+
+.hero-rhythms {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 20px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.hero-rhythm {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  background: rgba(13, 13, 24, 0.6);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.hero-rhythm-title {
+  font-family: var(--fh);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-rhythm-title::before {
+  content: '◉';
+  color: var(--indigo);
+  margin-right: 8px;
+}
+.hero-rhythm-desc {
+  font-family: var(--fm);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: var(--text-mute);
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .hero-rhythms { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 960px) {
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 56px;
+    max-width: 1180px;
+    align-items: center;
+  }
+  .hero-text { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+  .hero-text h1 { max-width: 100%; }
+  .hero-visual { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+  .hero-rhythms { grid-column: 1 / -1; }
+  .hero-eeg { grid-column: 1 / -1; height: 90px; order: 5; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   БЛОК 2 · ТРИ РИТМА
+══════════════════════════════════════════════════════════════════ */
+.rhythms-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+.rhythm-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.rhythm-big {
+  font-family: var(--fm);
+  font-size: clamp(3rem, 11vw, 4.6rem);
+  font-weight: 700;
+  color: var(--indigo);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.rhythm-sub {
+  font-family: var(--fh);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.rhythm-head {
+  font-family: var(--fh);
+  font-weight: 500;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.rhythm-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+}
+.rhythm-list li {
+  font-family: var(--fm);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text);
+  padding-left: 16px;
+  position: relative;
+}
+.rhythm-list li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--indigo);
+  font-weight: 700;
+}
+.rhythm-foot {
+  font-family: var(--fm);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+.rhythm-device {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+}
+.rhythms-bridge {
+  text-align: center;
+  margin-top: 36px;
+  padding: 22px;
+  background: linear-gradient(135deg, rgba(95,95,255,0.08), rgba(0,229,160,0.06));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+.rhythms-bridge b { color: var(--indigo); font-weight: 600; }
+
+@media (min-width: 640px) {
+  .rhythms-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .rhythm-card { padding: 24px 20px; }
+}
+@media (min-width: 960px) {
+  .rhythm-card { padding: 32px 26px; gap: 16px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   БЛОК 3 · АРХИТЕКТУРА
+══════════════════════════════════════════════════════════════════ */
+.arch-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.arch-node {
+  width: 100%;
+  max-width: 440px;
+  padding: 18px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  text-align: center;
+}
+.arch-node--you {
+  max-width: 140px;
+  padding: 12px 16px;
+  border-color: var(--green);
+  background: rgba(0, 229, 160, 0.06);
+}
+.arch-node--ai {
+  border-color: var(--indigo);
+  background: linear-gradient(135deg, rgba(95,95,255,0.12), rgba(95,95,255,0.04));
+  box-shadow: 0 0 28px rgba(95,95,255,0.15);
+}
+.arch-title {
+  font-family: var(--fh);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.arch-title--ai { color: var(--indigo); font-size: 1.1rem; letter-spacing: 0.14em; }
+.arch-sub {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+}
+.arch-list {
+  list-style: none;
+  text-align: left;
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.arch-list li {
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  color: var(--text-mute);
+  padding-left: 14px;
+  position: relative;
+}
+.arch-list li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--indigo);
+}
+.arch-arrow {
+  font-family: var(--fm);
+  font-size: 1.2rem;
+  color: var(--text-dim);
+  line-height: 1;
+}
+.arch-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  width: 100%;
+  max-width: 680px;
+}
+@media (min-width: 640px) {
+  .arch-row { grid-template-columns: repeat(3, 1fr); }
+}
+
+.arch-anchors {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 32px;
+  max-width: 680px;
+  width: 100%;
+}
+.arch-anchor {
+  text-align: center;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-card);
+}
+.arch-anchor-key {
+  font-family: var(--fm);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 6px;
+}
+.arch-anchor-val {
+  font-family: var(--fm);
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+@media (min-width: 640px) {
+  .arch-anchors { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   БЛОК 4 · МАСШТАБ
+══════════════════════════════════════════════════════════════════ */
+.scale-panel {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line-bright);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 34px;
+}
+.scale-cell {
+  background: var(--bg-card);
+  padding: 26px 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.scale-big {
+  font-family: var(--fm);
+  font-size: clamp(2.4rem, 9vw, 3.6rem);
+  font-weight: 700;
+  color: var(--indigo);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.scale-label {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  line-height: 1.4;
+}
+.scale-notes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+.scale-note h3 {
+  font-family: var(--fh);
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.scale-note p {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--text-mute);
+}
+.scale-note p b { color: var(--text); font-weight: 500; }
+
+@media (min-width: 640px) {
+  .scale-panel { grid-template-columns: repeat(4, 1fr); }
+  .scale-notes { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+}
+@media (min-width: 960px) {
+  .scale-cell { padding: 36px 22px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   БЛОК 5 · ПАРТНЁРЫ
+══════════════════════════════════════════════════════════════════ */
+.partners-line {
+  margin-bottom: 28px;
+}
+.partners-line:last-of-type { margin-bottom: 0; }
+.partners-line-title {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.partners-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.partner {
+  padding: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.partner-name {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.partner-role {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.partner-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-mute);
+  margin-top: 6px;
+}
+.partners-note {
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--text-mute);
+  font-style: italic;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-left: 2px solid var(--indigo-soft);
+}
+.partners-bridge {
+  margin-top: 36px;
+  padding: 22px;
+  background: rgba(13, 13, 24, 0.6);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+.partners-bridge p + p { margin-top: 12px; }
+.partners-bridge b { color: var(--indigo); font-weight: 600; }
+
+@media (min-width: 640px) {
+  .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+@media (min-width: 960px) {
+  .partners-line--tech .partners-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   БЛОК 6 · КОМАНДА
+══════════════════════════════════════════════════════════════════ */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px 22px;
+}
+.team-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--indigo), var(--green));
+  opacity: 0.3;
+  margin-bottom: 14px;
+}
+.team-name {
+  font-family: var(--fh);
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.team-role {
+  font-family: var(--fm);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 12px;
+}
+.team-bio { font-size: 0.94rem; line-height: 1.6; color: var(--text-mute); }
+.team-council {
+  padding: 20px 22px;
+  background: rgba(13, 13, 24, 0.5);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-mute);
+}
+.team-council b { color: var(--text); font-weight: 500; }
+
+@media (min-width: 640px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   БЛОК 7 · ИССЛЕДОВАТЕЛЬ
+══════════════════════════════════════════════════════════════════ */
+.researcher {
+  background: linear-gradient(135deg, rgba(95,95,255,0.08), rgba(95,95,255,0.02));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 22px;
+}
+.researcher-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+}
+.researcher-text { display: flex; flex-direction: column; gap: 14px; }
+.researcher-text p {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+.researcher-text p b { color: var(--indigo); font-weight: 600; }
+
+.dict {
+  background: rgba(13, 13, 24, 0.5);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.dict-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.dict-row:last-child { border-bottom: none; }
+.dict-cell {
+  padding: 12px 14px;
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+.dict-cell--yes { color: var(--text); border-right: 1px solid var(--line); }
+.dict-cell--yes::before { content: '◉ '; color: var(--green); }
+.dict-cell--no { color: var(--text-mute); text-decoration: line-through; text-decoration-color: var(--red); }
+
+@media (min-width: 960px) {
+  .researcher { padding: 44px 36px; }
+  .researcher-grid { grid-template-columns: 1.2fr 1fr; gap: 44px; align-items: start; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   БЛОК 8 · ФИНАЛЬНЫЙ CTA
+══════════════════════════════════════════════════════════════════ */
+.enter {
+  text-align: center;
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+.enter h2 {
+  font-family: var(--fh);
+  font-weight: 300;
+  font-size: clamp(1.8rem, 7vw, 3rem);
+  line-height: 1.1;
+  margin: 18px auto 36px;
+  max-width: 640px;
+}
+.enter h2 em { font-style: normal; font-weight: 500; color: var(--indigo); }
+.enter-qr { margin: 0 auto 28px; }
+.enter-cta {
+  display: inline-flex;
+  margin-bottom: 28px;
+  min-width: min(340px, 90%);
+}
+.enter-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--fm);
+  font-size: 0.82rem;
+  color: var(--text-mute);
+  max-width: 520px;
+  margin: 0 auto;
+}
+.enter-points li::before { content: '· '; color: var(--indigo); }
+
+/* ══════════════════════════════════════════════════════════════════
+   БЛОК 9 · ФУТЕР
+══════════════════════════════════════════════════════════════════ */
+.foot {
+  background: #07070E;
+  padding: 56px 18px 28px;
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 2;
+}
+.foot-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+}
+.foot-col h4 {
+  font-family: var(--fh);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  margin-bottom: 14px;
+}
+.foot-brand {
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.foot-desc {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-mute);
+  max-width: 320px;
+}
+.foot-desc b { color: var(--text); font-weight: 500; }
+.foot-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.foot-list a {
+  font-size: 0.9rem;
+  color: var(--text-mute);
+  transition: color 0.2s;
+}
+.foot-list a:hover { color: var(--text); }
+.foot-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-transform: uppercase;
+}
+@media (min-width: 640px) {
+  .foot-inner { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 36px; }
+  .foot-bottom { flex-direction: row; justify-content: space-between; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   STICKY TOP-BAR · 3-я точка CTA (появляется на скролле)
+══════════════════════════════════════════════════════════════════ */
+.sticky-cta {
+  position: fixed;
+  top: 74px;
+  right: 14px;
+  z-index: 99;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.sticky-cta.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.sticky-cta .btn {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: 0.86rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(95,95,255,0.35);
+}
+@media (min-width: 960px) {
+  .sticky-cta { top: 84px; right: 24px; }
+}
+
+/* ══════ прогрессивные улучшения ══════ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-eeg path,
+  .hero-badge::before { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="ambient" aria-hidden="true"></div>
+
+<!-- ═══ БЛОК 1 · HERO ═══ -->
+<main>
+<section class="section hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-badge mono">NIHILO · LABORATORY · ИССЛЕДОВАНИЕ 2026</span>
+      <p class="hero-preamble">«Впервые внутреннее состояние человека стало объектом непрерывного измерения.»</p>
+      <h1>
+        <span class="ln">ЦИФРОВОЙ ПОМОЩНИК</span>
+        <span class="ln"><em>НОВОГО ТИПА</em> ДЛЯ ВАШЕГО</span>
+        <span class="ln grn">РИТМА МОЗГА · ТЕЛА · ЖИЗНИ</span>
+      </h1>
+      <p class="hero-sub">60+ ваших биопоказателей. Ваша событийность. Ваши планы. В одном месте — с обратной связью от искусственного интеллекта 24/7.</p>
+      <p class="hero-note">Это не сервис. Это <b>открытое исследование</b>. Вы вступаете в него как участник — и получаете цифрового помощника, который видит вас целиком.</p>
+    </div>
+
+    <div class="hero-visual">
+      <div class="qr">
+        <div class="qr-frame">
+          <svg class="qr-svg" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" aria-label="QR-код · плейсхолдер">
+            <rect width="21" height="21" fill="#000"/>
+            <g fill="#5F5FFF">
+              <!-- finder top-left -->
+              <rect x="0" y="0" width="7" height="1"/><rect x="0" y="6" width="7" height="1"/>
+              <rect x="0" y="0" width="1" height="7"/><rect x="6" y="0" width="1" height="7"/>
+              <rect x="2" y="2" width="3" height="3"/>
+              <!-- finder top-right -->
+              <rect x="14" y="0" width="7" height="1"/><rect x="14" y="6" width="7" height="1"/>
+              <rect x="14" y="0" width="1" height="7"/><rect x="20" y="0" width="1" height="7"/>
+              <rect x="16" y="2" width="3" height="3"/>
+              <!-- finder bottom-left -->
+              <rect x="0" y="14" width="7" height="1"/><rect x="0" y="20" width="7" height="1"/>
+              <rect x="0" y="14" width="1" height="7"/><rect x="6" y="14" width="1" height="7"/>
+              <rect x="2" y="16" width="3" height="3"/>
+              <!-- timing patterns -->
+              <rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/>
+              <rect x="12" y="6" width="1" height="1"/>
+              <rect x="6" y="8" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/>
+              <rect x="6" y="12" width="1" height="1"/>
+              <!-- data modules (декоративно) -->
+              <rect x="8" y="2" width="1" height="1"/><rect x="9" y="0" width="1" height="1"/>
+              <rect x="10" y="3" width="1" height="1"/><rect x="11" y="1" width="1" height="1"/>
+              <rect x="12" y="2" width="1" height="1"/><rect x="13" y="4" width="1" height="1"/>
+              <rect x="8" y="4" width="1" height="1"/><rect x="9" y="5" width="1" height="1"/>
+              <rect x="10" y="1" width="2" height="1"/><rect x="8" y="0" width="1" height="1"/>
+              <rect x="13" y="2" width="1" height="2"/>
+              <rect x="8" y="8" width="2" height="1"/><rect x="11" y="8" width="1" height="2"/>
+              <rect x="13" y="9" width="2" height="1"/><rect x="16" y="8" width="1" height="2"/>
+              <rect x="18" y="9" width="2" height="1"/><rect x="10" y="10" width="1" height="1"/>
+              <rect x="12" y="10" width="2" height="1"/><rect x="15" y="11" width="1" height="2"/>
+              <rect x="17" y="10" width="2" height="1"/><rect x="19" y="12" width="1" height="1"/>
+              <rect x="8" y="12" width="1" height="2"/><rect x="10" y="13" width="3" height="1"/>
+              <rect x="14" y="13" width="1" height="1"/><rect x="16" y="13" width="2" height="1"/>
+              <rect x="19" y="14" width="1" height="2"/><rect x="18" y="15" width="1" height="1"/>
+              <rect x="16" y="15" width="1" height="1"/><rect x="14" y="15" width="1" height="2"/>
+              <rect x="12" y="15" width="1" height="1"/><rect x="10" y="15" width="1" height="2"/>
+              <rect x="8" y="16" width="2" height="1"/><rect x="9" y="18" width="2" height="1"/>
+              <rect x="11" y="17" width="1" height="2"/><rect x="13" y="18" width="1" height="1"/>
+              <rect x="15" y="18" width="3" height="1"/><rect x="17" y="17" width="1" height="1"/>
+              <rect x="19" y="18" width="1" height="2"/><rect x="14" y="19" width="1" height="1"/>
+              <rect x="8" y="19" width="1" height="1"/><rect x="16" y="20" width="2" height="1"/>
+              <rect x="10" y="20" width="1" height="1"/><rect x="13" y="20" width="1" height="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="qr-caption">NIHILO · BOT · TG<br>отсканируйте камерой телефона</div>
+        <a href="#" class="btn btn--primary btn--block" data-bot-link>Открыть в Telegram →</a>
+      </div>
+    </div>
+
+    <svg class="hero-eeg" viewBox="0 0 800 64" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 0,32 Q 25,4 50,32 T 100,32 Q 125,8 150,32 Q 175,56 200,32 T 250,32 Q 275,12 300,32 Q 325,52 350,32 T 400,32 Q 425,6 450,32 Q 475,58 500,32 T 550,32 Q 575,14 600,32 Q 625,50 650,32 T 700,32 Q 725,10 750,32 T 800,32"/>
+    </svg>
+
+    <div class="hero-rhythms" aria-label="Три ритма — мини-навигация">
+      <div class="hero-rhythm">
+        <div class="hero-rhythm-title">ритм мозга</div>
+        <div class="hero-rhythm-desc">7 режимов · ЭЭГ · нейро</div>
+      </div>
+      <div class="hero-rhythm">
+        <div class="hero-rhythm-title">ритм тела</div>
+        <div class="hero-rhythm-desc">HRV · сон · восстановление</div>
+      </div>
+      <div class="hero-rhythm">
+        <div class="hero-rhythm-title">ритм жизни</div>
+        <div class="hero-rhythm-desc">события · планы · цикл 40 дней</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ БЛОК 2 · ТРИ РИТМА ═══ -->
+<section class="section" id="rhythms">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="tag">три контура измерения</span>
+      <h2>Один помощник. Три ритма.<br>Одно поле данных.</h2>
+      <p class="lead">До сих пор это никогда не сводилось вместе: то, что происходит в мозге, то, что происходит в теле, и то, что происходит в вашей жизни. NIHILO впервые объединяет три контура в одну систему обратной связи.</p>
+    </div>
+
+    <div class="rhythms-grid">
+      <div class="rhythm-card">
+        <div class="rhythm-big">7</div>
+        <div class="rhythm-sub">режимов сознания</div>
+        <div class="rhythm-head">ритм мозга</div>
+        <ul class="rhythm-list">
+          <li>α · β · γ · θ · δ — все ритмы непрерывно</li>
+          <li>ONTO NOTHING как Shift</li>
+          <li>Active Presence · Embodied Flow · Quantum Genesis</li>
+          <li>Индивидуальный альфа-диапазон (IAR)</li>
+          <li>Пиковые частоты в реальном времени</li>
+        </ul>
+        <div class="rhythm-device">прибор: партнёрский нейробенд</div>
+        <div class="rhythm-foot">сбор данных · 24/7 · ЭЭГ</div>
+      </div>
+
+      <div class="rhythm-card">
+        <div class="rhythm-big">60+</div>
+        <div class="rhythm-sub">биомаркеров</div>
+        <div class="rhythm-head">ритм тела</div>
+        <ul class="rhythm-list">
+          <li>HRV (вариабельность сердечного ритма)</li>
+          <li>Сон, циклы, фазы, ночной HRV</li>
+          <li>Восстановление, body battery, recovery</li>
+          <li>Дыхание (BPRM), пульс покоя, нагрузка</li>
+          <li>Биологический возраст</li>
+          <li>Скорость биологического старения</li>
+        </ul>
+        <div class="rhythm-device">прибор: фитнес-трекер вашего выбора</div>
+        <div class="rhythm-foot">сбор данных · 24/7 · фитнес-API</div>
+      </div>
+
+      <div class="rhythm-card">
+        <div class="rhythm-big">40</div>
+        <div class="rhythm-sub">дней на один цикл</div>
+        <div class="rhythm-head">ритм жизни</div>
+        <ul class="rhythm-list">
+          <li>Дневник исследователя</li>
+          <li>Голосовые сессии (PI · феноменологический индекс)</li>
+          <li>События, решения, поворотные точки</li>
+          <li>Планы и намерения цикла</li>
+          <li>8 циклов в году по солнцестояниям и равноденствиям</li>
+          <li>Архитектура времени, не календарь</li>
+        </ul>
+        <div class="rhythm-device">прибор: цифровой помощник в Telegram</div>
+        <div class="rhythm-foot">обратная связь · ИИ · ежедневно</div>
+      </div>
+    </div>
+
+    <div class="rhythms-bridge">
+      Все три ритма сводятся в один индекс — <b>MNPI</b> (Master Nihilo Phenomenological Index). Это первая в истории попытка измерить состояние человека одним числом, опираясь на нейрофизиологию, биологию и феноменологию одновременно.
+    </div>
+  </div>
+</section>
+
+<!-- ═══ БЛОК 3 · АРХИТЕКТУРА ═══ -->
+<section class="section" id="architecture">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="tag">архитектура помощника</span>
+      <h2>Все ваши данные<br>становятся одной картиной</h2>
+      <p class="lead">Цифровой помощник работает не как «трекер с уведомлениями», а как <b style="color:var(--indigo)">исследовательская платформа</b>: собирает сырые данные с приборов, обогащает вашими голосовыми отчётами и событийностью, а ИИ возвращает вам обратную связь — не советы, а наблюдения, выводы и сравнения с вашей же базой.</p>
+    </div>
+
+    <div class="arch-wrap">
+      <div class="arch-node arch-node--you">
+        <div class="arch-title">Вы</div>
+      </div>
+      <div class="arch-arrow mono">│</div>
+
+      <div class="arch-row">
+        <div class="arch-node">
+          <div class="arch-title">ЭЭГ</div>
+          <div class="arch-sub">NEIRY · нейробенд</div>
+        </div>
+        <div class="arch-node">
+          <div class="arch-title">Фитнес-трекер</div>
+          <div class="arch-sub">GARMIN + LQ LAB для ВСР</div>
+        </div>
+        <div class="arch-node">
+          <div class="arch-title">Голос · дневник</div>
+          <div class="arch-sub">Telegram-бот</div>
+        </div>
+      </div>
+
+      <div class="arch-arrow mono">↓</div>
+
+      <div class="arch-node arch-node--ai">
+        <div class="arch-title arch-title--ai">NIHILO LABS · AI</div>
+        <div class="arch-sub">анализ + обратная связь</div>
+        <ul class="arch-list">
+          <li>60+ биомаркеров</li>
+          <li>7 режимов сознания</li>
+          <li>PI · MNPI</li>
+        </ul>
+      </div>
+
+      <div class="arch-arrow mono">↓</div>
+
+      <div class="arch-node">
+        <div class="arch-title">Вам обратно — в Telegram</div>
+        <ul class="arch-list">
+          <li>ежедневный снимок</li>
+          <li>еженедельный разбор</li>
+          <li>вердикт цикла (40 дней)</li>
+          <li>открытые вопросы для сессий</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="arch-anchors">
+      <div class="arch-anchor">
+        <div class="arch-anchor-key">сбор</div>
+        <div class="arch-anchor-val">24/7 без вашего участия</div>
+      </div>
+      <div class="arch-anchor">
+        <div class="arch-anchor-key">анализ</div>
+        <div class="arch-anchor-val">модели + методология NIHILO</div>
+      </div>
+      <div class="arch-anchor">
+        <div class="arch-anchor-key">обратная связь</div>
+        <div class="arch-anchor-val">ежедневно · в одном помощнике</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ БЛОК 4 · МАСШТАБ ═══ -->
+<section class="section" id="scale">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="tag">масштаб · 2025–2026</span>
+      <h2>Это не сервис.<br>Это формирующаяся когорта.</h2>
+      <p class="lead">Исследование собирает участников по трём географиям, по нескольким каналам и в разных форматах — но каждый получает одного и того же цифрового помощника и попадает в общее поле данных.</p>
+    </div>
+
+    <div class="scale-panel">
+      <div class="scale-cell">
+        <div class="scale-big">8</div>
+        <div class="scale-label">циклов<br>в году</div>
+      </div>
+      <div class="scale-cell">
+        <div class="scale-big">3</div>
+        <div class="scale-label">континента<br>Мск · Бали · VN</div>
+      </div>
+      <div class="scale-cell">
+        <div class="scale-big">4</div>
+        <div class="scale-label">формата<br>он / офф</div>
+      </div>
+      <div class="scale-cell">
+        <div class="scale-big">40</div>
+        <div class="scale-label">дней / цикл<br>измерения</div>
+      </div>
+    </div>
+
+    <div class="scale-notes">
+      <div class="scale-note">
+        <h3>8 циклов в году</h3>
+        <p>Каждый цикл — 40 дней, привязанных к равноденствиям, солнцестояниям и промежуточным точкам года. Это <b>архитектура времени</b>, а не календарь. Один цикл = одно наблюдение.</p>
+      </div>
+      <div class="scale-note">
+        <h3>3 континента, 3 базы</h3>
+        <p>Москва · Бали · Вьетнам. В каждой точке — резиденция исследования, где можно пройти полный ЧЕКАП лично, либо включиться в когорту онлайн.</p>
+      </div>
+      <div class="scale-note">
+        <h3>4 формата участия</h3>
+        <p>Чекап (точка калибровки) · цикл 40 дней (исследовательская волна) · ретрит (очное погружение) · поддержка платформы 24/7 (постоянный режим).</p>
+      </div>
+      <div class="scale-note">
+        <h3>Программа исследования</h3>
+        <p>Каждый участник заключает протокол об участии. Его данные становятся частью общего научного поля проекта — <b>анонимно, согласованно, с возможностью выйти в любой момент</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ БЛОК 5 · ПАРТНЁРЫ ═══ -->
+<section class="section" id="partners">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="tag">структура исследования</span>
+      <h2>Партнёры исследования.<br>Один цифровой помощник.</h2>
+      <p class="lead">NIHILO не строит аппаратуру и не изобретает методологию с нуля. Мы <b style="color:var(--indigo)">собираем в одно поле данных</b> лучшее из трёх миров: проверенный метод, проверенное железо, проверенный AI.</p>
+    </div>
+
+    <div class="partners-line partners-line--method">
+      <div class="partners-line-title">◉ смысловая база исследования</div>
+      <div class="partners-grid">
+        <div class="partner">
+          <div class="partner-name">ONTO NOTHING</div>
+          <div class="partner-role">авторский метод Константина Шеля</div>
+          <div class="partner-desc">архитектура 7 режимов сознания, протокол входа через «Nothing» как операционную систему</div>
+        </div>
+        <div class="partner">
+          <div class="partner-name">РИТМЫ ЖИЗНИ</div>
+          <div class="partner-role">система циклической организации</div>
+          <div class="partner-desc">8 циклов по 40 дней в году, привязка к астрономическим точкам, архитектура времени вместо календаря</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="partners-line partners-line--tech">
+      <div class="partners-line-title">◉ приборы · лаборатории · данные</div>
+      <div class="partners-grid">
+        <div class="partner">
+          <div class="partner-name">NEIRY</div>
+          <div class="partner-role">нейроинтерфейсы · ЭЭГ</div>
+          <div class="partner-desc">портативный нейробенд для непрерывной записи мозговых ритмов и верификации 7 режимов</div>
+        </div>
+        <div class="partner">
+          <div class="partner-name">NEYROX</div>
+          <div class="partner-role">нейрообратная связь</div>
+          <div class="partner-desc">методики работы с ЭЭГ-сигналом в реальном времени, точность верификации состояний</div>
+        </div>
+        <div class="partner">
+          <div class="partner-name">LQ LAB</div>
+          <div class="partner-role">ВСР-анализ · диагностика</div>
+          <div class="partner-desc">углублённая оценка вариабельности сердечного ритма, интеграция клинических данных в единый профиль</div>
+        </div>
+        <div class="partner">
+          <div class="partner-name">GARMIN</div>
+          <div class="partner-role">фитнес-трекеры · биометрия 24/7</div>
+          <div class="partner-desc">HRV, сон, восстановление, активность, пульс — непрерывный поток телесных данных через API</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="partners-line partners-line--ai">
+      <div class="partners-line-title">◉ анализ · обратная связь · языковые модели</div>
+      <div class="partners-grid">
+        <div class="partner">
+          <div class="partner-name">ANTHROPIC · CLAUDE</div>
+          <div class="partner-role">LLM-инфраструктура · агентные системы</div>
+          <div class="partner-desc">анализ голосового потока, расчёт феноменологического индекса (PI), генерация индивидуальной обратной связи, агентная логика цифрового помощника</div>
+        </div>
+      </div>
+      <p class="partners-note">Технологическая интеграция через Claude API. Формальное партнёрское соглашение — на горизонте обсуждения. Пока используем как техническую инфраструктуру — потому что это лучшее, что сейчас есть в сегменте.</p>
+    </div>
+
+    <div class="partners-bridge">
+      <p>Это не «партнёры-лейблы для убедительности». Это <b>методологическая, аппаратная и AI-инфраструктура исследования</b>, которая позволяет работать с данными уровня клинической точности — и одновременно держать смысловую рамку метода.</p>
+      <p>Каждый участник носит приборы партнёров, работает по методу ONTO NOTHING и циклам РИТМОВ ЖИЗНИ, а цифровой помощник NIHILO — на базе Claude — сводит всё в одну картину.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ БЛОК 6 · КОМАНДА ═══ -->
+<section class="section" id="team">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="tag">за исследованием стоят люди</span>
+      <h2>Авторы метода и команда</h2>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo" aria-hidden="true"></div>
+        <div class="team-name">Константин Шель</div>
+        <div class="team-role">главный методолог</div>
+        <p class="team-bio">Автор протокола ONTO NOTHING. 5+ лет полевых исследований, 200+ часов наработанной личной ЭЭГ-практики на приборе. До этого — построение направления нейромаркетинга в РФ.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-photo" aria-hidden="true"></div>
+        <div class="team-name">Натали Морозова</div>
+        <div class="team-role">сооснователь</div>
+        <p class="team-bio">Архитектор программ исследования. Соединяет научный протокол и опыт участника — отвечает за то, чтобы метод работал не только в лаборатории, но и в реальной жизни.</p>
+      </div>
+    </div>
+
+    <div class="team-council">
+      <b>Научный совет, инженерная команда и команда поддержки</b> — публикуются на отдельной странице «О лаборатории». Здесь мы хотим только обозначить: за проектом стоят живые люди с проверяемой биографией, а не безымянный «AI-стартап».
+    </div>
+  </div>
+</section>
+
+<!-- ═══ БЛОК 7 · ИССЛЕДОВАТЕЛЬ ═══ -->
+<section class="section" id="researcher">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="tag">ваша роль в исследовании</span>
+      <h2>Здесь вы — <em style="font-style:italic;color:var(--indigo)">исследователь</em>.<br>Не клиент.</h2>
+    </div>
+
+    <div class="researcher">
+      <div class="researcher-grid">
+        <div class="researcher-text">
+          <p>Вы вступаете в исследование, чтобы получить <b>правду о себе</b> — собранную, измеренную, систематизированную. Не советы. Не утешение. Не «личностный рост».</p>
+          <p>Цифровой помощник принадлежит <b>вам</b>. Ваши данные — это ваша собственность. Вы можете в любой момент скачать их, передать своему врачу, удалить или выйти из исследования. Это часть протокола, а не петитом в политике конфиденциальности.</p>
+          <p>Когорта получает обобщённые научные результаты исследования. Лично вы получаете <b>постоянного цифрового помощника, который видит вас целиком</b>.</p>
+        </div>
+
+        <div class="dict">
+          <div class="dict-row">
+            <div class="dict-cell dict-cell--yes">Вы — исследователь</div>
+            <div class="dict-cell dict-cell--no">Вы — клиент</div>
+          </div>
+          <div class="dict-row">
+            <div class="dict-cell dict-cell--yes">Ваши данные показывают</div>
+            <div class="dict-cell dict-cell--no">Мы считаем, что у вас…</div>
+          </div>
+          <div class="dict-row">
+            <div class="dict-cell dict-cell--yes">Предварительная оценка</div>
+            <div class="dict-cell dict-cell--no">Диагноз</div>
+          </div>
+          <div class="dict-row">
+            <div class="dict-cell dict-cell--yes">Обратная связь от данных</div>
+            <div class="dict-cell dict-cell--no">Наш совет</div>
+          </div>
+          <div class="dict-row">
+            <div class="dict-cell dict-cell--yes">Метрика · биомаркер</div>
+            <div class="dict-cell dict-cell--no">Индикатор счастья</div>
+          </div>
+          <div class="dict-row">
+            <div class="dict-cell dict-cell--yes">Когорта · протокол</div>
+            <div class="dict-cell dict-cell--no">Тариф · подписка</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ БЛОК 8 · ФИНАЛЬНЫЙ CTA ═══ -->
+<section class="section enter" id="enter">
+  <div class="section-inner">
+    <span class="tag">вход в исследование</span>
+    <h2>Узнайте свой ритм мозга, тела, жизни.<br><em>Вступайте в исследование.</em></h2>
+
+    <div class="qr enter-qr">
+      <div class="qr-frame qr-frame--lg">
+        <svg class="qr-svg" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" aria-label="QR-код · плейсхолдер">
+          <rect width="21" height="21" fill="#000"/>
+          <g fill="#5F5FFF">
+            <rect x="0" y="0" width="7" height="1"/><rect x="0" y="6" width="7" height="1"/>
+            <rect x="0" y="0" width="1" height="7"/><rect x="6" y="0" width="1" height="7"/>
+            <rect x="2" y="2" width="3" height="3"/>
+            <rect x="14" y="0" width="7" height="1"/><rect x="14" y="6" width="7" height="1"/>
+            <rect x="14" y="0" width="1" height="7"/><rect x="20" y="0" width="1" height="7"/>
+            <rect x="16" y="2" width="3" height="3"/>
+            <rect x="0" y="14" width="7" height="1"/><rect x="0" y="20" width="7" height="1"/>
+            <rect x="0" y="14" width="1" height="7"/><rect x="6" y="14" width="1" height="7"/>
+            <rect x="2" y="16" width="3" height="3"/>
+            <rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/>
+            <rect x="12" y="6" width="1" height="1"/>
+            <rect x="6" y="8" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/>
+            <rect x="6" y="12" width="1" height="1"/>
+            <rect x="8" y="2" width="1" height="1"/><rect x="9" y="0" width="1" height="1"/>
+            <rect x="10" y="3" width="1" height="1"/><rect x="11" y="1" width="1" height="1"/>
+            <rect x="12" y="2" width="1" height="1"/><rect x="13" y="4" width="1" height="1"/>
+            <rect x="8" y="4" width="1" height="1"/><rect x="9" y="5" width="1" height="1"/>
+            <rect x="10" y="1" width="2" height="1"/><rect x="8" y="0" width="1" height="1"/>
+            <rect x="13" y="2" width="1" height="2"/>
+            <rect x="8" y="8" width="2" height="1"/><rect x="11" y="8" width="1" height="2"/>
+            <rect x="13" y="9" width="2" height="1"/><rect x="16" y="8" width="1" height="2"/>
+            <rect x="18" y="9" width="2" height="1"/><rect x="10" y="10" width="1" height="1"/>
+            <rect x="12" y="10" width="2" height="1"/><rect x="15" y="11" width="1" height="2"/>
+            <rect x="17" y="10" width="2" height="1"/><rect x="19" y="12" width="1" height="1"/>
+            <rect x="8" y="12" width="1" height="2"/><rect x="10" y="13" width="3" height="1"/>
+            <rect x="14" y="13" width="1" height="1"/><rect x="16" y="13" width="2" height="1"/>
+            <rect x="19" y="14" width="1" height="2"/><rect x="18" y="15" width="1" height="1"/>
+            <rect x="16" y="15" width="1" height="1"/><rect x="14" y="15" width="1" height="2"/>
+            <rect x="12" y="15" width="1" height="1"/><rect x="10" y="15" width="1" height="2"/>
+            <rect x="8" y="16" width="2" height="1"/><rect x="9" y="18" width="2" height="1"/>
+            <rect x="11" y="17" width="1" height="2"/><rect x="13" y="18" width="1" height="1"/>
+            <rect x="15" y="18" width="3" height="1"/><rect x="17" y="17" width="1" height="1"/>
+            <rect x="19" y="18" width="1" height="2"/><rect x="14" y="19" width="1" height="1"/>
+            <rect x="8" y="19" width="1" height="1"/><rect x="16" y="20" width="2" height="1"/>
+            <rect x="10" y="20" width="1" height="1"/><rect x="13" y="20" width="1" height="1"/>
+          </g>
+        </svg>
+      </div>
+      <div class="qr-caption"><b>NIHILO · DIGITAL ASSISTANT</b><br>отсканируйте камерой телефона</div>
+    </div>
+
+    <a href="#" class="btn btn--primary enter-cta" data-bot-link>Открыть помощника в Telegram →</a>
+
+    <ul class="enter-points">
+      <li>никакой регистрации до знакомства с проектом</li>
+      <li>вы можете выйти в любой момент</li>
+      <li>ваши данные принадлежат вам</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<!-- ═══ БЛОК 9 · ФУТЕР (кастомный) ═══ -->
+<footer class="foot" id="foot">
+  <div class="foot-inner">
+    <div class="foot-col">
+      <div class="foot-brand">NIHILO · LABS</div>
+      <p class="foot-desc">Оцифрованный метод <b>ONTO NOTHING</b>. Философия, ставшая математикой и кодом. Ритмы мозга, ритмы года, единый индекс — всё в одной платформе с обратной связью 24/7.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Исследование</h4>
+      <ul class="foot-list">
+        <li><a href="#">Программа когорты 2026</a></li>
+        <li><a href="#">Протокол участия</a></li>
+        <li><a href="#">Препринты и публикации</a></li>
+        <li><a href="#">Препринт MNPI</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Форматы</h4>
+      <ul class="foot-list">
+        <li><a href="#">ЧЕКАП · онлайн</a></li>
+        <li><a href="#">Резиденция · Москва</a></li>
+        <li><a href="#">Резиденция · Бали</a></li>
+        <li><a href="#">Резиденция · Вьетнам</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Контакты</h4>
+      <ul class="foot-list">
+        <li><a href="#">Канал исследования</a></li>
+        <li><a href="mailto:hello@nihilo.labs">hello@nihilo.labs</a></li>
+        <li><a href="#" data-bot-link>Telegram-помощник</a></li>
+        <li><a href="#">Соглашение об участии (PDF)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 NIHILO LABS · ONTO NOTHING · ФОРМУЛА ОТКРЫТИЯ</span>
+    <span>v 2.0 · Вступить в исследование</span>
+  </div>
+</footer>
+
+<!-- Sticky CTA после скролла -->
+<div class="sticky-cta" id="sticky-cta">
+  <a href="#" class="btn btn--primary" data-bot-link>Открыть помощника →</a>
+</div>
+
+<script src="../components/nav.js"></script>
+<script>
+  // Единый источник истины для ссылки на бота.
+  // Когда бот будет готов — подменить BOT_URL на реальный, напр.
+  // "https://t.me/nihilo_bot?start=landing_v2"
+  const BOT_URL = '#';
+
+  document.querySelectorAll('[data-bot-link]').forEach(el => {
+    el.setAttribute('href', BOT_URL);
+    if (BOT_URL.startsWith('http')) el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  });
+
+  // Sticky CTA появляется после скролла на 320px
+  const stickyCta = document.getElementById('sticky-cta');
+  const stickyThreshold = 320;
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        stickyCta.classList.toggle('show', window.scrollY > stickyThreshold);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+</script>
+
+</body>
+</html>
