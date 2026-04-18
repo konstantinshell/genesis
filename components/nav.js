@@ -33,7 +33,7 @@
 
   const navHtml = `
 <nav class="site-nav" id="site-nav">
-  <a href="${root}index.html" class="nav-logo">ex NIHILO ai</a>
+  <a href="${root}protokol-vhoda/index.html" class="nav-logo">ex NIHILO</a>
   <ul class="nav-links" id="nav-links">
     ${linksHtml}
   </ul>
