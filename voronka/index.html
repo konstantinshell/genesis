@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Воронка участников — ONTO NOTHING</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #ECEEF2;
+      --text:     #16161A;
+      --muted:    #888896;
+      --body-c:   #444450;
+      --accent:   #5F5FFF;
+      --acc-soft: rgba(95,95,255,0.10);
+      --blue:     #0A84FF;
+      --green:    #1FB57C;
+      --orange:   #FF9500;
+      --red:      #FF3B30;
+      --card:     #FFFFFF;
+      --fh: "Oswald", sans-serif;
+      --fb: "Jost", sans-serif;
+      --fm: "Courier Prime", monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--bg);
+      font-family: var(--fb);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .hero h1 {
+      font-family: var(--fh);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+    .hero-subtitle {
+      font-family: var(--fm);
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 8px;
+    }
+    .hero-meta {
+      font-family: var(--fm);
+      font-size: 12px;
+      color: var(--muted);
+      text-align: right;
+    }
+    .hero-meta strong { color: var(--text); }
+
+    /* Итоговая статистика сверху */
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .summary-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px 20px;
+      border-left: 3px solid var(--accent);
+    }
+    .summary-card.s1 { border-left-color: #B8B8C6; }
+    .summary-card.s2 { border-left-color: var(--blue); }
+    .summary-card.s3 { border-left-color: var(--green); }
+    .summary-card.s4 { border-left-color: var(--accent); }
+
+    .summary-label {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .summary-value {
+      font-family: var(--fh);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .summary-sub {
+      font-family: var(--fb);
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Колонки воронки */
+    .funnel {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .col {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px 14px 14px;
+      min-height: 420px;
+    }
+    .col-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .col-title {
+      font-family: var(--fh);
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .col-count {
+      font-family: var(--fm);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.06);
+    }
+
+    .col.s1 .col-title { color: #6A6A7A; }
+    .col.s1 .col-count { background: rgba(106,106,122,0.12); color: #6A6A7A; }
+    .col.s2 .col-title { color: var(--blue); }
+    .col.s2 .col-count { background: rgba(10,132,255,0.12); color: var(--blue); }
+    .col.s3 .col-title { color: var(--green); }
+    .col.s3 .col-count { background: rgba(31,181,124,0.14); color: var(--green); }
+    .col.s4 .col-title { color: var(--accent); }
+    .col.s4 .col-count { background: rgba(95,95,255,0.12); color: var(--accent); }
+
+    .col-note {
+      font-family: var(--fm);
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: -6px;
+      margin-bottom: 14px;
+    }
+
+    /* Карточка участника */
+    .card {
+      display: block;
+      background: #F5F6F9;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+    .card:hover {
+      background: #fff;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .card-name {
+      font-family: var(--fb);
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+    .card-tg {
+      font-family: var(--fm);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .card-badges {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .badge {
+      font-family: var(--fm);
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+    .badge.neiry    { background: rgba(95,95,255,0.10); color: var(--accent); }
+    .badge.tracker  { background: rgba(10,132,255,0.10); color: var(--blue); }
+    .badge.amb      { background: rgba(31,181,124,0.12); color: var(--green); }
+    .badge.ban      { background: rgba(255,59,48,0.10); color: var(--red); }
+    .badge.warn     { background: rgba(255,149,0,0.12); color: var(--orange); }
+
+    .empty {
+      font-family: var(--fm);
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      padding: 40px 10px;
+      border: 1px dashed rgba(0,0,0,0.12);
+      border-radius: 10px;
+    }
+
+    /* Блок основателей */
+    .founders {
+      margin-top: 40px;
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px 24px;
+    }
+    .founders-header {
+      font-family: var(--fh);
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+      color: var(--muted);
+    }
+    .founders-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .founders-row .card {
+      flex: 0 0 240px;
+      background: #F5F6F9;
+    }
+
+    /* Легенда */
+    .legend {
+      margin-top: 32px;
+      padding: 16px 20px;
+      background: var(--card);
+      border-radius: 12px;
+      font-family: var(--fm);
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .legend-row { display: flex; gap: 20px; flex-wrap: wrap; }
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 3px; display: inline-block;
+    }
+
+    @media (max-width: 1024px) {
+      .summary { grid-template-columns: repeat(2, 1fr); }
+      .funnel { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .page { padding: 24px 14px 60px; }
+      .summary { grid-template-columns: 1fr 1fr; }
+      .funnel { grid-template-columns: 1fr; }
+      .hero-meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="hero">
+    <div>
+      <div class="hero-subtitle">ONTO NOTHING · Внутренний трекер</div>
+      <h1>Воронка участников</h1>
+    </div>
+    <div class="hero-meta">
+      Обновлено: <strong>18.04.2026</strong><br>
+      Источник: network/participants.md
+    </div>
+  </header>
+
+  <!-- Итоговая статистика -->
+  <div class="summary">
+    <div class="summary-card s1">
+      <div class="summary-label">В боте · без NDA</div>
+      <div class="summary-value">2</div>
+      <div class="summary-sub">первая точка касания</div>
+    </div>
+    <div class="summary-card s2">
+      <div class="summary-label">NDA подписан · чекап</div>
+      <div class="summary-value">17</div>
+      <div class="summary-sub">готовятся / на чекапе</div>
+    </div>
+    <div class="summary-card s3">
+      <div class="summary-label">Прошли чекап</div>
+      <div class="summary-value">3</div>
+      <div class="summary-sub">ДНК / анализы / MNPI</div>
+    </div>
+    <div class="summary-card s4">
+      <div class="summary-label">Главный продукт</div>
+      <div class="summary-value">0</div>
+      <div class="summary-sub">пока пусто</div>
+    </div>
+  </div>
+
+  <!-- Воронка -->
+  <div class="funnel">
+
+    <!-- Стадия 1 -->
+    <div class="col s1">
+      <div class="col-header">
+        <div class="col-title">1. В боте</div>
+        <div class="col-count">2</div>
+      </div>
+      <div class="col-note">вступил(а) в бот, NDA ещё не подписан</div>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/765238865/" class="card" target="_blank">
+        <div class="card-name">Алёна Журавкова</div>
+        <div class="card-tg">@alenazhuravkova</div>
+        <div class="card-badges">
+          <span class="badge warn">⚠ NDA</span>
+          <span class="badge tracker">⌚ Whoop</span>
+        </div>
+      </a>
+
+      <a class="card">
+        <div class="card-name">Лиана Саунд</div>
+        <div class="card-tg">@Liana_Sound</div>
+        <div class="card-badges">
+          <span class="badge warn">⏳ без NDA</span>
+          <span class="badge neiry">🧠 NEIRY</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Стадия 2 -->
+    <div class="col s2">
+      <div class="col-header">
+        <div class="col-title">2. NDA · чекап</div>
+        <div class="col-count">17</div>
+      </div>
+      <div class="col-note">NDA подписан, идёт подготовка / чекап</div>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/221246992/" class="card" target="_blank">
+        <div class="card-name">Александр Новожилов</div>
+        <div class="card-tg">@GoodWinZlo</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge amb">✪ Амб.</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/1610267716/" class="card" target="_blank">
+        <div class="card-name">Андрей Демчук</div>
+        <div class="card-tg">@sky_world204</div>
+        <div class="card-badges">
+          <span class="badge tracker">⌚ Huawei D2</span>
+          <span class="badge amb">✪ Амб.</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/1139648370/" class="card" target="_blank">
+        <div class="card-name">Вадим Гурьев</div>
+        <div class="card-tg">@vadimolegich</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge tracker">⌚ Garmin</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/1067307749/" class="card" target="_blank">
+        <div class="card-name">Валентина</div>
+        <div class="card-tg">@Vi_vittt</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge tracker">⌚ Garmin</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/446777127/" class="card" target="_blank">
+        <div class="card-name">Вероника Блощицына</div>
+        <div class="card-tg">@space_nika</div>
+        <div class="card-badges">
+          <span class="badge tracker">⌚ Garmin v5</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/5056234108/" class="card" target="_blank">
+        <div class="card-name">Владимир Подгорный</div>
+        <div class="card-tg">@WalWerty</div>
+        <div class="card-badges">
+          <span class="badge amb">✪ Амб.</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/261261504/" class="card" target="_blank">
+        <div class="card-name">Вячеслав Фетисов</div>
+        <div class="card-tg">@fetisov_vyacheslav</div>
+        <div class="card-badges">
+          <span class="badge amb">✪ Амб.</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/39937232/" class="card" target="_blank">
+        <div class="card-name">Екатерина Горлова</div>
+        <div class="card-tg">@Katyabra</div>
+        <div class="card-badges">
+          <span class="badge tracker">⌚ Polar</span>
+          <span class="badge amb">✪ Амб.</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/147991795/" class="card" target="_blank">
+        <div class="card-name">Егор Андреев</div>
+        <div class="card-tg">@Egor_iTao</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge amb">✪ Амб.</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/319756543/" class="card" target="_blank">
+        <div class="card-name">Илья Новицкий</div>
+        <div class="card-tg">@Ilya_novator</div>
+        <div class="card-badges">
+          <span class="badge tracker">⌚ Huawei D2</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/57740229/" class="card" target="_blank">
+        <div class="card-name">Ирик Габитов</div>
+        <div class="card-tg">@IrikG</div>
+        <div class="card-badges">
+          <span class="badge amb">✪ Амб.</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/1983391922/" class="card" target="_blank">
+        <div class="card-name">Карина Никитина</div>
+        <div class="card-tg">@KYK80</div>
+        <div class="card-badges">
+          <span class="badge tracker">⌚ Garmin</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/8678544199/" class="card" target="_blank">
+        <div class="card-name">Константин НОВАТОР</div>
+        <div class="card-tg">—</div>
+        <div class="card-badges"></div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/827208307/" class="card" target="_blank">
+        <div class="card-name">Михаил Антаков</div>
+        <div class="card-tg">@Antakov_Mixail</div>
+        <div class="card-badges">
+          <span class="badge tracker">⌚ Whoop 5</span>
+          <span class="badge amb">✪ Амб.</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/248175087/" class="card" target="_blank">
+        <div class="card-name">Наталия Петрова</div>
+        <div class="card-tg">@Top_Natali</div>
+        <div class="card-badges">
+          <span class="badge amb">✪ Амб.</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/448342702/" class="card" target="_blank">
+        <div class="card-name">Лидия Романова</div>
+        <div class="card-tg">@LA5951</div>
+        <div class="card-badges"></div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/652364423/" class="card" target="_blank">
+        <div class="card-name">Яна Шель</div>
+        <div class="card-tg">@yankitstor</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge amb">✪ Амб.</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Стадия 3 -->
+    <div class="col s3">
+      <div class="col-header">
+        <div class="col-title">3. Чекап пройден</div>
+        <div class="col-count">3</div>
+      </div>
+      <div class="col-note">ДНК / клин. анализы / внешний чекап есть</div>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/429205054/" class="card" target="_blank">
+        <div class="card-name">Алексей Смагажевский</div>
+        <div class="card-tg">@AlSmag</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge tracker">⌚ Apple</span>
+          <span class="badge amb">✓ ДНК</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/424514495/" class="card" target="_blank">
+        <div class="card-name">Виктория Левина</div>
+        <div class="card-tg">@levina_victory</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge amb">✓ чекап янв</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/407124980/" class="card" target="_blank">
+        <div class="card-name">Татьяна</div>
+        <div class="card-tg">@Tatyana_699612</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge amb">✓ чекап фев</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Стадия 4 -->
+    <div class="col s4">
+      <div class="col-header">
+        <div class="col-title">4. Главный продукт</div>
+        <div class="col-count">0</div>
+      </div>
+      <div class="col-note">после чекапа → основная программа</div>
+
+      <div class="empty">
+        ещё никто не дошёл<br>
+        <small>главный продукт пока в разработке</small>
+      </div>
+    </div>
+
+  </div><!-- /funnel -->
+
+  <!-- Основатели -->
+  <div class="founders">
+    <div class="founders-header">Основатели — вне воронки</div>
+    <div class="founders-row">
+      <a href="https://konstantinshell.github.io/genesis/profiles/41537154/" class="card" target="_blank">
+        <div class="card-name">Константин Шель</div>
+        <div class="card-tg">@konstantinshell</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge tracker">⌚ Garmin</span>
+        </div>
+      </a>
+      <a href="https://konstantinshell.github.io/genesis/profiles/8211648754/" class="card" target="_blank">
+        <div class="card-name">Натали Морозова</div>
+        <div class="card-tg">@morozovanatalua</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge tracker">⌚ Apple</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Легенда -->
+  <div class="legend">
+    <div class="legend-row">
+      <span class="legend-item"><span class="legend-dot" style="background:rgba(95,95,255,0.35)"></span>NEIRY бэнд</span>
+      <span class="legend-item"><span class="legend-dot" style="background:rgba(10,132,255,0.35)"></span>фитнес-трекер</span>
+      <span class="legend-item"><span class="legend-dot" style="background:rgba(31,181,124,0.35)"></span>амбассадор / чекап</span>
+      <span class="legend-item"><span class="legend-dot" style="background:rgba(255,149,0,0.35)"></span>NDA не подписан</span>
+      <span class="legend-item"><span class="legend-dot" style="background:rgba(255,59,48,0.35)"></span>забанен</span>
+    </div>
+    <div style="margin-top:10px;font-size:11px">
+      Всего в боте активных: <strong>22</strong> · Основатели: <strong>2</strong> · Клик по карточке → профиль участника
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
