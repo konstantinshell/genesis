@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ONTO NOTHING — архитектура метода. Лонгрид для профессионалов: психологов, коучей, биохакеров, нейрохакеров. 7 режимов сознания, нейрофизиологические маркеры, верификация на приборе.">
+  <meta name="keywords" content="ONTO NOTHING, метод, лонгрид, профессионалы, психологи, коучи, биохакеры, ЭЭГ, нейропластичность, режимы сознания, верификация">
+  <meta property="og:title" content="ONTO NOTHING — архитектура метода · лонгрид для профессионалов">
+  <meta property="og:description" content="Один навык открывает шесть специализированных режимов сознания. Для тех, кто работает с другим человеком на уровне состояния.">
+  <meta property="og:type" content="article">
+  <title>ONTO NOTHING — архитектура метода · лонгрид для профессионалов</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@400;500;600&family=Oswald:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+
+  <style>
+    /* ══════════════════════════════════════════
+       HERO · БЛОК 01
+    ══════════════════════════════════════════ */
+    .hero-longread {
+      padding: 160px 20px 100px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .hero-title {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(2rem, 5.4vw, 3.6rem);
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      max-width: 940px;
+      margin: 0 auto 28px;
+    }
+    .hero-title .accent { color: var(--accent); }
+    .hero-sub {
+      font-family: var(--fb);
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      line-height: 1.7;
+      color: var(--body-c);
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+    .hero-meta {
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════
+       СЕКЦИЯ · ОБЩЕЕ
+    ══════════════════════════════════════════ */
+    .section-tag {
+      display: block;
+      font-family: var(--fm);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+      line-height: 1.2;
+      margin-bottom: 28px;
+      letter-spacing: -0.005em;
+    }
+    .section-lead {
+      font-family: var(--fb);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--body-c);
+      max-width: 720px;
+      margin-bottom: 40px;
+    }
+    .narrow {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ══════════════════════════════════════════
+       ARTICLE · ДЛИННЫЕ ТЕКСТОВЫЕ БЛОКИ
+    ══════════════════════════════════════════ */
+    .article { max-width: 720px; margin: 0 auto; }
+    .article p {
+      font-family: var(--fb);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--body-c);
+      margin-bottom: 22px;
+    }
+    .article p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .article .kicker {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ══════════════════════════════════════════
+       БЛОК 03 · ОПРЕДЕЛЕНИЕ + ПУЛЬТ
+    ══════════════════════════════════════════ */
+    .def-list {
+      max-width: 720px;
+      margin: 0 auto 60px;
+    }
+    .def-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .def-dash {
+      font-family: var(--fm);
+      color: var(--accent);
+      flex-shrink: 0;
+      padding-top: 4px;
+    }
+    .def-item p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--body-c);
+      margin: 0;
+    }
+    .def-item strong { color: var(--text); font-weight: 600; }
+
+    .remote-scheme {
+      max-width: 760px;
+      margin: 48px auto 0;
+      padding: 32px 20px 28px;
+      background: var(--glass-b);
+      border-radius: 20px;
+      box-shadow: var(--glass-s);
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+    .remote-keys {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .remote-key {
+      aspect-ratio: 1 / 1.1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 6px;
+      background: rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .remote-key .rk-num {
+      font-family: var(--fm);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    .remote-key .rk-name {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+    .remote-key.shift {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(95,95,255,0.22);
+    }
+    .remote-key.shift .rk-num,
+    .remote-key.shift .rk-name { color: #fff; }
+    .remote-caption {
+      font-family: var(--fm);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-align: center;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    @media (max-width: 720px) {
+      .remote-keys { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .remote-key .rk-name { font-size: 0.6rem; }
+      .remote-key.shift {
+        grid-column: 1 / -1;
+        aspect-ratio: auto;
+        padding: 16px 12px;
+        order: 0;
+      }
+    }
+
+    /* ══════════════════════════════════════════
+       БЛОК 04 · ТАБЛИЦА НЕЙРОМАРКЕРОВ
+    ══════════════════════════════════════════ */
+    .neuro-table {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) 1.5fr;
+      gap: 0;
+      margin: 32px 0 16px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    .neuro-row {
+      display: contents;
+    }
+    .neuro-marker,
+    .neuro-desc {
+      padding: 22px 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      font-family: var(--fb);
+      line-height: 1.6;
+    }
+    .neuro-marker {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .neuro-marker strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .neuro-marker .up { color: #00A86B; font-family: var(--fm); font-weight: 700; margin-left: 4px; }
+    .neuro-marker .down { color: #C44; font-family: var(--fm); font-weight: 700; margin-left: 4px; }
+    .neuro-desc {
+      font-size: 0.95rem;
+      color: var(--body-c);
+    }
+    .neuro-note {
+      font-family: var(--fm);
+      font-size: 0.78rem;
+      line-height: 1.7;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: 24px;
+      padding-left: 16px;
+      border-left: 2px solid var(--accent);
+    }
+    @media (max-width: 720px) {
+      .neuro-table { grid-template-columns: 1fr; }
+      .neuro-marker { padding-bottom: 8px; border-bottom: none; }
+      .neuro-desc { padding-top: 0; }
+    }
+
+    /* ══════════════════════════════════════════
+       БЛОК 05 · КАРТОЧКИ РЕЖИМОВ
+    ══════════════════════════════════════════ */
+    .modes-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .mode-card {
+      background: var(--glass-b);
+      border-radius: 18px;
+      box-shadow: var(--glass-s);
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .mode-num {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 2.6rem;
+      color: var(--accent);
+      opacity: 0.4;
+      line-height: 1;
+    }
+    .mode-title {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      letter-spacing: 0.005em;
+    }
+    .mode-code {
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .mode-row {
+      margin-bottom: 14px;
+    }
+    .mode-row:last-child { margin-bottom: 0; }
+    .mode-label {
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .mode-text {
+      font-family: var(--fb);
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--body-c);
+    }
+    .mode-card.shift {
+      border: 1.5px solid var(--accent);
+      box-shadow: 0 20px 60px rgba(95,95,255,0.14), inset 0 1px 0 rgba(255,255,255,1);
+    }
+    .mode-card.shift .mode-num {
+      opacity: 1;
+      color: var(--accent);
+    }
+    @media (max-width: 640px) {
+      .mode-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 26px;
+      }
+      .mode-num { font-size: 1.8rem; }
+    }
+
+    /* ══════════════════════════════════════════
+       БЛОК 06 · ВИДЕО-ПЛЕЙСХОЛДЕР
+    ══════════════════════════════════════════ */
+    .video-placeholder {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 20px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0D0D18 0%, #1A1A2E 60%, #16163A 100%);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin: 32px 0 24px;
+    }
+    .video-pulse {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(95,95,255,0.16);
+      border: 1.5px solid rgba(95,95,255,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: videoPulse 2.4s ease-in-out infinite;
+    }
+    .video-pulse::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 16px solid rgba(255,255,255,0.82);
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      margin-left: 6px;
+    }
+    @keyframes videoPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(95,95,255,0.45); }
+      50%      { box-shadow: 0 0 0 14px rgba(95,95,255,0); }
+    }
+    .video-label {
+      font-family: var(--fm);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.75);
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .video-sub {
+      font-family: var(--fb);
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.48);
+      max-width: 380px;
+      text-align: center;
+      line-height: 1.55;
+    }
+    .video-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .metric-card {
+      background: var(--glass-b);
+      border-radius: 14px;
+      box-shadow: var(--glass-s);
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .metric-num {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+    .metric-label {
+      font-family: var(--fb);
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .video-note {
+      font-family: var(--fm);
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 28px;
+      padding-left: 16px;
+      border-left: 2px solid rgba(0,0,0,0.1);
+    }
+    @media (max-width: 640px) {
+      .video-metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ══════════════════════════════════════════
+       БЛОК 07 · ЭФФЕКТЫ
+    ══════════════════════════════════════════ */
+    .effects-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 36px;
+    }
+    .effect-card {
+      background: var(--glass-b);
+      border-radius: 18px;
+      box-shadow: var(--glass-s);
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .effect-num {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .effect-title {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .effect-text {
+      font-family: var(--fb);
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--body-c);
+    }
+    @media (max-width: 640px) {
+      .effect-card { grid-template-columns: 1fr; gap: 10px; padding: 26px; }
+    }
+
+    /* ══════════════════════════════════════════
+       БЛОК 08 · BEFORE / AFTER
+    ══════════════════════════════════════════ */
+    .compare-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin: 32px 0 24px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--glass-s);
+      border: 1px solid rgba(255,255,255,0.7);
+      background: var(--glass-b);
+    }
+    .compare-head {
+      padding: 20px 24px;
+      font-family: var(--fm);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .compare-head.before { color: var(--muted); }
+    .compare-head.after  { color: var(--accent); border-left: 1px solid rgba(0,0,0,0.05); }
+    .compare-cell {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      font-family: var(--fb);
+      font-size: 0.98rem;
+      line-height: 1.65;
+      color: var(--body-c);
+    }
+    .compare-cell.after { border-left: 1px solid rgba(0,0,0,0.05); color: var(--text); }
+    .compare-row:last-child .compare-cell { border-bottom: none; }
+    .compare-final {
+      max-width: 720px;
+      margin: 36px auto 0;
+      font-family: var(--fb);
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: var(--text);
+      text-align: center;
+      font-weight: 500;
+    }
+    @media (max-width: 640px) {
+      .compare-table { grid-template-columns: 1fr; }
+      .compare-head.after { border-left: none; border-top: 1px solid rgba(0,0,0,0.08); }
+      .compare-cell.after { border-left: none; }
+    }
+
+    /* ══════════════════════════════════════════
+       БЛОК 10 · СПИСОК ВЕРИФИКАЦИИ
+    ══════════════════════════════════════════ */
+    .verif-list {
+      max-width: 760px;
+      margin: 32px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .verif-item {
+      display: flex;
+      gap: 16px;
+      padding: 22px 24px;
+      background: var(--glass-b);
+      border-radius: 14px;
+      box-shadow: var(--glass-s);
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+    .verif-dash {
+      font-family: var(--fm);
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+    .verif-text {
+      font-family: var(--fb);
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--body-c);
+    }
+    .verif-text strong { color: var(--text); font-weight: 600; }
+
+    /* ══════════════════════════════════════════
+       БЛОК 11 · ПУТИ ВХОДА
+    ══════════════════════════════════════════ */
+    .path-intro {
+      max-width: 720px;
+      margin: 0 auto 44px;
+      font-family: var(--fb);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--body-c);
+    }
+    .paths {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 16px;
+    }
+    .path-card {
+      background: var(--glass-b);
+      border-radius: 20px;
+      box-shadow: var(--glass-s);
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+    }
+    .path-label {
+      font-family: var(--fm);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .path-title {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+      line-height: 1.25;
+    }
+    .path-desc {
+      font-family: var(--fb);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: var(--body-c);
+      margin-bottom: 28px;
+      flex: 1;
+    }
+    .path-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-family: var(--fh);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .path-btn.primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 8px 28px rgba(95,95,255,0.28);
+    }
+    .path-btn.primary:hover {
+      background: #4a4ae8;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(95,95,255,0.38);
+    }
+    .path-btn.outline {
+      background: transparent;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+    }
+    .path-btn.outline:hover {
+      background: var(--acc-soft);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 720px) {
+      .paths { grid-template-columns: 1fr; }
+    }
+
+    /* ══════════════════════════════════════════
+       HR / РАЗДЕЛИТЕЛЬ
+    ══════════════════════════════════════════ */
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(95,95,255,0.25), transparent);
+      max-width: 560px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-orbs">
+  <span></span>
+  <span></span>
+</div>
+
+<main>
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 01 · HERO
+  ═══════════════════════════════════════ -->
+  <section class="s hero-longread">
+    <div class="s-inner">
+      <div class="hero-eyebrow">ONTO NOTHING · АРХИТЕКТУРА МЕТОДА · ЛОНГРИД ДЛЯ ПРОФЕССИОНАЛОВ</div>
+      <h1 class="hero-title">
+        Вся ваша работа держится на интроспекции клиента.<br>
+        А что, если бы интроспекция стала <span class="accent">измеримой</span>?
+      </h1>
+      <p class="hero-sub">
+        Эта страница — для тех, кто работает с другим человеком на уровне состояния. Психологи, коучи, биохакеры, нейрохакеры, телесные практики. Если вы понимаете, что доступ клиента к самому себе — это и есть ваша главная переменная, читайте дальше.
+      </p>
+      <div class="hero-meta">12 минут чтения · 7 режимов сознания · 1 верифицированный навык</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 02 · РАМКА
+  ═══════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-inner">
+      <div class="narrow">
+        <span class="section-tag">рамка · с чем вы каждый день имеете дело</span>
+        <h2 class="section-title">Интроспекция уже есть. Но она нестабильна.</h2>
+      </div>
+      <div class="article">
+        <p>Любой ваш метод — психотерапия, коучинг, телесная практика, биохакерский протокол, нейрообратная связь — упирается в одну переменную. В то, насколько ваш клиент сейчас имеет доступ к самому себе. Если он в защите, в спешке, в петле руминации, в шуме DMN — никакая ваша техника не работает на полную. Если он в открытом присутствии, в тишине, в контакте с собой — даже простой вопрос разворачивает глубину.</p>
+        <p>Мы все это знаем эмпирически. И мы все умеем по косвенным признакам определять состояние клиента: по голосу, по дыханию, по фразам, по тому, как он отвечает. Хорошие специалисты делают это интуитивно за секунды. Это и есть половина мастерства профессии.</p>
+        <p>Но даже у хорошего специалиста есть три не закрываемых вопроса.</p>
+        <p><strong class="kicker">Первый.</strong> В каком именно режиме сознания сейчас клиент? Не «как он себя чувствует», а — какая нейросеть мозга у него сейчас активнее, какой ритм доминирует, насколько подавлена альфа, насколько активна Default Mode Network. Эту информацию вы не видите. Её не видит никто, кто работает без приборов.</p>
+        <p><strong class="kicker">Второй.</strong> Как стабильно вернуть клиента в нужное состояние, если оно ушло? Сегодня сессия пошла. Завтра — нет. Через неделю — снова есть. У вас нет рычага. Только косвенные приёмы и опыт.</p>
+        <p><strong class="kicker">Третий.</strong> Как доказать, что ваша работа дала результат — не на словах клиента, а в его биологии? Большинство из вас знает: после хорошей сессии у клиента меняется HRV, меняется паттерн дыхания, меняется речь. Но никто это не оцифровывает. Результат живёт в ощущении, а не в данных.</p>
+        <p>ONTO NOTHING — про закрытие всех трёх вопросов одним базовым навыком.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 03 · ОПРЕДЕЛЕНИЕ
+  ═══════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-inner">
+      <div class="narrow" style="text-align: center;">
+        <span class="section-tag">определение в 4 предложениях</span>
+        <h2 class="section-title">ONTO NOTHING — это не метод релаксации.</h2>
+      </div>
+
+      <div class="def-list">
+        <div class="def-item">
+          <span class="def-dash">—</span>
+          <p><strong>Это базовый произвольный навык</strong> управления собственными нейросетями мозга. Полная остановка внутреннего диалога по решению, а не по случайности.</p>
+        </div>
+        <div class="def-item">
+          <span class="def-dash">—</span>
+          <p><strong>Это операционная система,</strong> через которую открывается доступ к шести другим режимам сознания. Сама по себе ничего не делает — как клавиша Shift на клавиатуре. Но без неё ни один из шести специализированных режимов не доступен стабильно.</p>
+        </div>
+        <div class="def-item">
+          <span class="def-dash">—</span>
+          <p><strong>Это верифицируемое состояние.</strong> На ЭЭГ — конкретный паттерн: подавление beta, рост alpha-мощности при открытых глазах, снижение DMN-активности. Не «ощущение», а измеримый профиль.</p>
+        </div>
+        <div class="def-item">
+          <span class="def-dash">—</span>
+          <p><strong>Это то, что традиции описывали тысячелетиями</strong> языком мистики — «самадхи», «сатори», «шуньята», «пустота», «остановка ума». Только теперь это вышло из эзотерики и стало прибором.</p>
+        </div>
+      </div>
+
+      <div class="remote-scheme">
+        <div class="remote-keys">
+          <div class="remote-key"><span class="rk-num">01</span><span class="rk-name">Pure<br>Nothing</span></div>
+          <div class="remote-key"><span class="rk-num">02</span><span class="rk-name">Visceral<br>Mind</span></div>
+          <div class="remote-key"><span class="rk-num">03</span><span class="rk-name">Quantum<br>Genesis</span></div>
+          <div class="remote-key shift"><span class="rk-num">00</span><span class="rk-name">Shift<br>ONTO NOTHING</span></div>
+          <div class="remote-key"><span class="rk-num">04</span><span class="rk-name">Active<br>Presence</span></div>
+          <div class="remote-key"><span class="rk-num">05</span><span class="rk-name">Embodied<br>Flow</span></div>
+          <div class="remote-key"><span class="rk-num">06</span><span class="rk-name">Transcendent<br>Download</span></div>
+        </div>
+        <div class="remote-caption">Сначала — Shift. Потом — любая клавиша. Иначе не работает.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 04 · НЕЙРОФИЗИОЛОГИЯ
+  ═══════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-inner">
+      <div class="narrow">
+        <span class="section-tag">нейрофизиологический профиль</span>
+        <h2 class="section-title">Что измеряется. Что меняется. Что воспроизводится.</h2>
+        <p class="section-lead">
+          Каждое утверждение ниже — это маркер, который мы либо измеряем сами на партнёрском оборудовании (NEIRY · NEYROX · LQ LAB · GARMIN), либо опираемся на опубликованные исследования последних 20 лет. Никакой эзотерики. Только то, что воспроизводится.
+        </p>
+      </div>
+
+      <div class="neuro-table">
+        <div class="neuro-row">
+          <div class="neuro-marker"><strong>Alpha-мощность</strong><span class="up">↑</span> при открытых глазах</div>
+          <div class="neuro-desc">Состояние, ранее доступное только после многих лет практики. На ЭЭГ — индикатор тишины ума при сохранении внимания.</div>
+        </div>
+        <div class="neuro-row">
+          <div class="neuro-marker"><strong>Beta-активность</strong><span class="down">↓</span> в лобных областях</div>
+          <div class="neuro-desc">Снижение «ментального шума» — той самой петли DMN, в которой человек проводит 70–80% времени.</div>
+        </div>
+        <div class="neuro-row">
+          <div class="neuro-marker"><strong>Theta</strong><span class="up">↑</span> в передних областях</div>
+          <div class="neuro-desc">Маркер «окна нейропластичности» — состояния, в котором старые паттерны действительно переписываются, а не просто обсуждаются.</div>
+        </div>
+        <div class="neuro-row">
+          <div class="neuro-marker"><strong>HRV (вариабельность)</strong><span class="up">↑</span></div>
+          <div class="neuro-desc">Прямой маркер парасимпатического тонуса. Связан с восстановлением, иммунитетом, эмоциональной регуляцией, продолжительностью жизни.</div>
+        </div>
+        <div class="neuro-row">
+          <div class="neuro-marker"><strong>DMN-коннективность</strong><span class="down">↓</span></div>
+          <div class="neuro-desc">Снижение активности «сети по умолчанию» — той, что генерирует руминацию, социальный мониторинг, тревогу будущего.</div>
+        </div>
+        <div class="neuro-row">
+          <div class="neuro-marker"><strong>Salience Network</strong>: переключение</div>
+          <div class="neuro-desc">Способность произвольно переключать «сеть значимости» — то, что определяет, на что направлено ваше внимание.</div>
+        </div>
+        <div class="neuro-row">
+          <div class="neuro-marker"><strong>Соматическая интероцепция</strong><span class="up">↑</span></div>
+          <div class="neuro-desc">Доступ к телесным сигналам как к источнику данных, а не как к фону. Базовый ресурс любой телесной работы.</div>
+        </div>
+        <div class="neuro-row">
+          <div class="neuro-marker"><strong>Когерентность полушарий</strong><span class="up">↑</span></div>
+          <div class="neuro-desc">Синхронизация альфа-ритмов левого и правого полушарий — маркер интегрированного состояния.</div>
+        </div>
+      </div>
+
+      <p class="neuro-note">Все маркеры воспроизводимы. Все измеряемы. Все подтверждаются на оборудовании партнёров проекта.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 05 · 7 РЕЖИМОВ
+  ═══════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-inner">
+      <div class="narrow">
+        <span class="section-tag">7 режимов · архитектура вашего пульта</span>
+        <h2 class="section-title">Один навык открывает шесть специализированных режимов.</h2>
+        <p class="section-lead">
+          Без ONTO NOTHING каждый из шести режимов либо случаен, либо требует десятилетий практики, либо доступен только в редких обстоятельствах (после марафона, после ретрита, после препарата). С ONTO NOTHING — каждый становится произвольным выбором. Ниже — что вы получаете лично, как профессионал, который работает с другими людьми.
+        </p>
+      </div>
+
+      <div class="modes-stack">
+
+        <div class="mode-card shift">
+          <div class="mode-num">00</div>
+          <div>
+            <div class="mode-code">Shift · базовый навык</div>
+            <h3 class="mode-title">ONTO NOTHING</h3>
+            <div class="mode-row">
+              <div class="mode-label">Что это</div>
+              <div class="mode-text">Базовый навык. Полная остановка внутреннего диалога. Чистое присутствие без содержания.</div>
+            </div>
+            <div class="mode-row">
+              <div class="mode-label">Что даёт лично вам</div>
+              <div class="mode-text">Возможность входить в любую сессию из ноля, без переноса собственных вирусов. Возможность не «утонуть» в материале клиента — потому что у вас есть точка возврата. Возможность узнавать собственные реакции до того, как они срабатывают автоматически.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mode-card">
+          <div class="mode-num">01</div>
+          <div>
+            <div class="mode-code">α-перезагрузка</div>
+            <h3 class="mode-title">PURE NOTHING</h3>
+            <div class="mode-row">
+              <div class="mode-label">Что это</div>
+              <div class="mode-text">Глубокий альфа-режим с закрытыми глазами. Чистая перезагрузка нервной системы.</div>
+            </div>
+            <div class="mode-row">
+              <div class="mode-label">Что даёт лично вам</div>
+              <div class="mode-text">Восстановление между сессиями за 5–10 минут вместо 30–60. Защита от выгорания на длинной дистанции. Способность держать темп помогающей профессии без накопительного истощения.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mode-card">
+          <div class="mode-num">02</div>
+          <div>
+            <div class="mode-code">соматический интеллект</div>
+            <h3 class="mode-title">VISCERAL MIND</h3>
+            <div class="mode-row">
+              <div class="mode-label">Что это</div>
+              <div class="mode-text">Внимание уходит из головы в тело. Активируется интероцепция — разум, существовавший миллиарды лет до слов.</div>
+            </div>
+            <div class="mode-row">
+              <div class="mode-label">Что даёт лично вам</div>
+              <div class="mode-text">Прямой доступ к собственным телесным сигналам в работе. Если вы телесный практик — вы расширяете рабочий диапазон. Если психотерапевт — у вас появляется второй канал считывания клиента (не только речь, но и резонанс в собственном теле).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mode-card">
+          <div class="mode-num">03</div>
+          <div>
+            <div class="mode-code">окно нейропластичности</div>
+            <h3 class="mode-title">QUANTUM GENESIS</h3>
+            <div class="mode-row">
+              <div class="mode-label">Что это</div>
+              <div class="mode-text">Граница сна и бодрствования. Альфа и тета в равновесии. Единственное состояние, в котором старые паттерны действительно переписываются — а не обсуждаются.</div>
+            </div>
+            <div class="mode-row">
+              <div class="mode-label">Что даёт лично вам</div>
+              <div class="mode-text">Возможность переписывать собственные базовые установки, паттерны реагирования, импринты — за дни, а не за годы. Это же состояние вы можете распознавать у клиентов и работать с ним прицельно.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mode-card">
+          <div class="mode-num">04</div>
+          <div>
+            <div class="mode-code">α с открытыми глазами</div>
+            <h3 class="mode-title">ACTIVE PRESENCE</h3>
+            <div class="mode-row">
+              <div class="mode-label">Что это</div>
+              <div class="mode-text">Альфа-ритм сохраняется при открытых глазах. Мир воспринимается напрямую, без внутреннего комментария.</div>
+            </div>
+            <div class="mode-row">
+              <div class="mode-label">Что даёт лично вам</div>
+              <div class="mode-text">Возможность вести сессию из присутствия, а не из «головы». Меньше интерпретаций. Больше прямого восприятия. Это же состояние вы можете передавать клиенту резонансно — и оно ускоряет любую работу.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mode-card">
+          <div class="mode-num">05</div>
+          <div>
+            <div class="mode-code">γ · действие без посредника</div>
+            <h3 class="mode-title">EMBODIED FLOW</h3>
+            <div class="mode-row">
+              <div class="mode-label">Что это</div>
+              <div class="mode-text">Тело и накопленный опыт действуют напрямую. Внутренний критик выключен. Это не «отключение DMN» — это её качественно иная работа: служащая настоящему, а не паразитирующая на нём.</div>
+            </div>
+            <div class="mode-row">
+              <div class="mode-label">Что даёт лично вам</div>
+              <div class="mode-text">Доступ к собственному мастерству в полной мощности. Если вы вели тысячи сессий — вы перестаёте «думать, что сказать», и начинаете говорить из кумулятивного опыта.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mode-card">
+          <div class="mode-num">06</div>
+          <div>
+            <div class="mode-code">антенна</div>
+            <h3 class="mode-title">TRANSCENDENT DOWNLOAD</h3>
+            <div class="mode-row">
+              <div class="mode-label">Что это</div>
+              <div class="mode-text">Вопрос задаётся всем существом и отпускается. Ответ приходит целиком — не идея для развития, а готовая архитектура. Минимальная когнитивная нагрузка при максимальной интеграции сетей.</div>
+            </div>
+            <div class="mode-row">
+              <div class="mode-label">Что даёт лично вам</div>
+              <div class="mode-text">Способность находить решения, до которых нельзя дойти аналитически. Прорывы в собственной методологии. Состояние, из которого обычно приходят авторские открытия в любой профессии.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 06 · ВИДЕО-ДЕМО
+  ═══════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-inner">
+      <div class="narrow">
+        <span class="section-tag">доказательство · реальная ээг</span>
+        <h2 class="section-title">Один человек. Один прибор. Произвольное переключение режимов.</h2>
+        <p class="section-lead">
+          Это запись с прибора партнёра NEIRY. На экране слева — частотный спектр в реальном времени. Справа — обозначение режима. Каждые 30 секунд — переключение. Без слов, без движения, без таймера — только намерение.
+        </p>
+      </div>
+
+      <div class="video-placeholder">
+        <div class="video-pulse"></div>
+        <div class="video-label">Запись с NEIRY · в монтаже</div>
+        <div class="video-sub">Короткая демонстрация произвольного переключения режимов будет опубликована здесь.</div>
+      </div>
+
+      <div class="video-metrics">
+        <div class="metric-card">
+          <div class="metric-num">α +187%</div>
+          <div class="metric-label">рост альфа-мощности</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">β −42%</div>
+          <div class="metric-label">спад беты</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">HRV +60%</div>
+          <div class="metric-label">вариабельность</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">30 сек</div>
+          <div class="metric-label">время переключения</div>
+        </div>
+      </div>
+
+      <p class="video-note">Это не редкое состояние. Это воспроизводимый навык, который тренируется. На второй неделе после освоения ONTO NOTHING большинство участников исследования начинают переключаться произвольно.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 07 · 5 ИЗМЕРИМЫХ ЭФФЕКТОВ
+  ═══════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-inner">
+      <div class="narrow">
+        <span class="section-tag">что вы получаете как измеримый результат</span>
+        <h2 class="section-title">Пять измеримых сдвигов. Уже в первую неделю после выгрузки ментальных представлений.</h2>
+        <p class="section-lead">
+          Выгрузка ментальных представлений — это первый протокол на входе в исследование. Это не теоретическая концепция, а конкретная процедура: проговаривание и расщепление ментальных представлений о себе, освобождение нервной системы от петли DMN. После этой процедуры начинают работать пять измеримых эффектов.
+        </p>
+      </div>
+
+      <div class="effects-stack">
+
+        <div class="effect-card">
+          <div class="effect-num">01</div>
+          <div>
+            <h3 class="effect-title">Влияние на 60 биомаркеров</h3>
+            <p class="effect-text">HRV, сон, восстановление, биологический возраст, скорость биологического старения, паттерны дыхания, циркадная стабильность — всё, что вы и так отслеживаете на своём трекере. С первой же недели сдвиг виден объективно. Не «я чувствую себя лучше», а — данные изменились.</p>
+          </div>
+        </div>
+
+        <div class="effect-card">
+          <div class="effect-num">02</div>
+          <div>
+            <h3 class="effect-title">Изменение феноменологии</h3>
+            <p class="effect-text">То, как вы описываете себя, меняется. Появляется доступ к более глубоким слоям опыта. Если вы вели дневник — вы это увидите по своим же текстам через неделю. Феноменологический индекс (PI) растёт измеримо. Это первый объективный сдвиг в субъективном.</p>
+          </div>
+        </div>
+
+        <div class="effect-card">
+          <div class="effect-num">03</div>
+          <div>
+            <h3 class="effect-title">Изменение событийности</h3>
+            <p class="effect-text">События в жизни начинают перестраиваться. Не магически — а потому что у вас появляется доступ к более чистым решениям, к более ранней реакции, к лучшему распознаванию ситуаций. Меньше реактивности → меньше «случайных» проблем → больше пространства для движения.</p>
+          </div>
+        </div>
+
+        <div class="effect-card">
+          <div class="effect-num">04</div>
+          <div>
+            <h3 class="effect-title">Сила удерживать состояние под давлением</h3>
+            <p class="effect-text">До навыка — вы выходите из ровного состояния, как только повышается нагрузка. Конфликт, дедлайн, внезапный звонок — и вас «понесло». После навыка — вы можете оставаться в ровном состоянии под значительным давлением. Это не «эмоциональная устойчивость» в коучинговом смысле. Это нейрофизиологическая способность не терять альфу под действием стрессоров.</p>
+          </div>
+        </div>
+
+        <div class="effect-card">
+          <div class="effect-num">05</div>
+          <div>
+            <h3 class="effect-title">Реальная власть над ритмами мозга</h3>
+            <p class="effect-text">Произвольное переключение режимов. Не «попадание в поток», когда повезло, а — выбор режима под задачу. Перед сессией с клиентом — Active Presence. Между сессиями — Pure Nothing. Для творческой работы — Embodied Flow. Для прорыва — Transcendent Download. Для глубокой собственной работы — Quantum Genesis.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 08 · КЛИЕНТЫ · BEFORE / AFTER
+  ═══════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-inner">
+      <div class="narrow">
+        <span class="section-tag">ваша работа · усиленная в разы</span>
+        <h2 class="section-title">Каждая ваша техника начинает работать на уровне нейрофизиологии.</h2>
+        <p class="section-lead">
+          ONTO NOTHING — не замена вашего метода. Это слой под ним. Когда у клиента есть доступ к своим ритмам мозга, ваши техники перестают зависеть от случайности «попал он сегодня в нужное состояние или нет». Вы получаете не «человека на сессии», а — <strong>человека в нужном режиме</strong>.
+        </p>
+      </div>
+
+      <div class="compare-table">
+        <div class="compare-head before">Без ONTO NOTHING</div>
+        <div class="compare-head after">С ONTO NOTHING</div>
+
+        <div class="compare-row" style="display: contents;">
+          <div class="compare-cell">30 минут сессии уходит на «вход» — на то, чтобы клиент пришёл в контакт с собой</div>
+          <div class="compare-cell after">Клиент входит в нужный режим за 60 секунд — потому что у него есть навык</div>
+        </div>
+        <div class="compare-row" style="display: contents;">
+          <div class="compare-cell">Прорыв на сессии не воспроизводится через неделю — клиент «теряет» состояние</div>
+          <div class="compare-cell after">Клиент возвращается в режим самостоятельно, между сессиями</div>
+        </div>
+        <div class="compare-row" style="display: contents;">
+          <div class="compare-cell">Вы не знаете, в каком режиме клиент сейчас, и работаете «вслепую»</div>
+          <div class="compare-cell after">На базе данных партнёров видны объективные маркеры — вы работаете прицельно</div>
+        </div>
+        <div class="compare-row" style="display: contents;">
+          <div class="compare-cell">Глубинные паттерны переписываются годами или не переписываются вовсе</div>
+          <div class="compare-cell after">В Quantum Genesis — окно нейропластичности — паттерны переписываются за недели</div>
+        </div>
+        <div class="compare-row" style="display: contents;">
+          <div class="compare-cell">Соматические практики упираются в плохую интероцепцию клиента</div>
+          <div class="compare-cell after">Visceral Mind открывает доступ к телу как к источнику данных</div>
+        </div>
+        <div class="compare-row" style="display: contents;">
+          <div class="compare-cell">Стресс-тесты «эмоциональной устойчивости» — субъективны</div>
+          <div class="compare-cell after">HRV под давлением — объективен</div>
+        </div>
+        <div class="compare-row" style="display: contents;">
+          <div class="compare-cell">Результаты вашей работы доказываются обратной связью клиента</div>
+          <div class="compare-cell after">Результаты вашей работы доказываются сдвигом в данных</div>
+        </div>
+      </div>
+
+      <p class="compare-final">Вы становитесь профессионалом, чья работа измеряется так же, как сейчас измеряется работа кардиолога или эндокринолога. Это уже не помогающая профессия в формате «вера в метод». Это помогающая профессия с приборной верификацией результата.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 09 · НЕ ЗАМЕНА
+  ═══════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-inner">
+      <div class="narrow">
+        <span class="section-tag">важное уточнение</span>
+        <h2 class="section-title">ONTO NOTHING — это слой под вашим методом. Не вместо.</h2>
+      </div>
+      <div class="article">
+        <p>Если вы психоаналитик — мы не предлагаем вам отказаться от психоанализа. Если вы коуч ICF — мы не заменяем коучинговую модель. Если вы IFS-терапевт, гештальтист, специалист по соматическому переживанию, КПТ-консультант, биохакер на стеке Бредли, нейрообратносвязевик — мы не отменяем то, что вы делаете.</p>
+        <p>Мы добавляем под вашу работу один слой, которого до сих пор не было в массовом доступе. Слой произвольного управления собственными нейросетями. До сих пор он был возможен только тем, кто посвятил этому десятилетия — монахи, мастера айкидо, редкие исследователи. Сейчас он стал тренируемым навыком, доступным за недели.</p>
+        <p>Когда у клиента есть этот слой, ваш метод работает в среде, для которой он и был создан изначально. Если ваш метод работает с интроспекцией — у клиента появляется устойчивая интроспекция. Если ваш метод работает с переписыванием паттернов — у клиента открывается окно нейропластичности. Если ваш метод работает с телом — у клиента улучшается интероцепция. Любой метод усиливается.</p>
+        <p><strong>Это не конкуренция вашему мастерству. Это инфраструктура для него.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 10 · ВЕРИФИКАЦИЯ
+  ═══════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-inner">
+      <div class="narrow">
+        <span class="section-tag">научный протокол верификации</span>
+        <h2 class="section-title">Что делает метод верифицируемым</h2>
+        <p class="section-lead">
+          Любой метод можно описать красивыми словами. Верифицируемым его делает то, что результаты воспроизводимы вне автора, что данные собираются объективным прибором, и что протокол открыт для независимой оценки. Вот пять линий верификации, на которых стоит ONTO NOTHING.
+        </p>
+      </div>
+
+      <div class="verif-list">
+        <div class="verif-item">
+          <span class="verif-dash">—</span>
+          <div class="verif-text"><strong>ЭЭГ-маркеры на партнёрском оборудовании.</strong> Каждый из 7 режимов имеет описанный частотный профиль. Профиль фиксируется на нейробенде NEIRY, верифицируется в системе NEYROX. Профиль одного автора метода. Профиль начинающих участников. Сравнение.</div>
+        </div>
+        <div class="verif-item">
+          <span class="verif-dash">—</span>
+          <div class="verif-text"><strong>Биометрия 24/7 через GARMIN.</strong> HRV, сон, восстановление, циркадные ритмы. Сдвиги фиксируются автоматически, без участия исследователя. Невозможно «улучшить» данные субъективно — это объективный поток.</div>
+        </div>
+        <div class="verif-item">
+          <span class="verif-dash">—</span>
+          <div class="verif-text"><strong>Углублённый ВСР-анализ через LQ LAB.</strong> Лабораторная диагностика вариабельности сердечного ритма для случаев, требующих клинической точности.</div>
+        </div>
+        <div class="verif-item">
+          <span class="verif-dash">—</span>
+          <div class="verif-text"><strong>Феноменологический индекс PI.</strong> AI-анализ голосового потока: телесные дескрипторы, тональность, глубина самонаблюдения, когнитивная защита. Codebook опубликован. Анализ воспроизводим — потому что выполняется языковой моделью по фиксированному протоколу, а не «по ощущению эксперта».</div>
+        </div>
+        <div class="verif-item">
+          <span class="verif-dash">—</span>
+          <div class="verif-text"><strong>Препринты и протоколы исследования.</strong> Метод не закрыт. Протокол доступен. Препринты публикуются. Любой исследователь может оценить, повторить, оспорить — это и есть стандарт работы с методом, который претендует на научный статус.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════
+       БЛОК 11 · ВХОД В ИССЛЕДОВАНИЕ
+  ═══════════════════════════════════════ -->
+  <section class="s">
+    <div class="s-inner">
+      <div class="narrow" style="text-align: center;">
+        <span class="section-tag">доступ к методу</span>
+        <h2 class="section-title">Метод лежит в основе научного трека программы.<br>Доступ — через вход в исследование.</h2>
+      </div>
+
+      <p class="path-intro">
+        ONTO NOTHING не продаётся как курс и не выдаётся как сертификат. Это базовый протокол научного трека NIHILO. Каждый участник исследования получает доступ к методу, к 7 режимам, к цифровому помощнику, к данным партнёрского оборудования и к когорте, в которой ведётся работа. Если вы профессионал в смежной области — психолог, коуч, биохакер, нейрохакер, телесный практик, исследователь сознания — у вас два возможных пути входа.
+      </p>
+
+      <div class="paths">
+        <div class="path-card">
+          <div class="path-label">Путь 01</div>
+          <h3 class="path-title">Войти как участник</h3>
+          <p class="path-desc">Стандартный вход в исследование. Цифровой помощник, ЧЕКАП, цикл 40 дней, доступ к методу. Подходит, если вы хотите сначала освоить ONTO NOTHING лично — а потом думать, как и в каком формате интегрировать в свою практику.</p>
+          <a href="https://t.me/NihiloAI_bot?start=longread_pro" class="path-btn primary" target="_blank" rel="noopener">Открыть помощника в Telegram →</a>
+        </div>
+
+        <div class="path-card">
+          <div class="path-label">Путь 02</div>
+          <h3 class="path-title">Партнёрское взаимодействие</h3>
+          <p class="path-desc">Если вы ведёте практику и хотите обсудить интеграцию метода в свою работу — направление клиентов в исследование, совместные программы, исследовательское партнёрство. Это отдельный канал коммуникации.</p>
+          <a href="https://t.me/Konstantinshel" class="path-btn outline" target="_blank" rel="noopener">Запросить партнёрский контакт →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../components/nav.js"></script>
+<script src="../../components/footer.js"></script>
+</body>
+</html>
