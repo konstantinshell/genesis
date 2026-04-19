@@ -20,10 +20,59 @@
       --orange:   #FF9500;
       --red:      #FF3B30;
       --card:     #FFFFFF;
+      --card-inner: #F5F6F9;
+      --border:   rgba(0,0,0,0.08);
+      --border-dashed: rgba(0,0,0,0.12);
       --fh: "Oswald", sans-serif;
       --fb: "Jost", sans-serif;
       --fm: "Courier Prime", monospace;
     }
+
+    [data-theme="dark"] {
+      --bg:       #0F0F14;
+      --text:     #F0F0F5;
+      --muted:    #8E8E98;
+      --body-c:   #C8C8D0;
+      --accent:   #7B7BFF;
+      --acc-soft: rgba(123,123,255,0.14);
+      --blue:     #3B9EFF;
+      --green:    #32C88C;
+      --orange:   #FFB340;
+      --red:      #FF5C52;
+      --card:     #1C1C24;
+      --card-inner: #24242E;
+      --border:   rgba(255,255,255,0.08);
+      --border-dashed: rgba(255,255,255,0.14);
+    }
+
+    /* Плавное переключение темы */
+    html, body, .summary-card, .col, .card, .founders, .legend {
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* Переключатель темы */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--text);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.15s ease, background-color 0.2s ease;
+    }
+    .theme-toggle:hover { transform: translateY(-2px); }
+    .theme-toggle:active { transform: translateY(0); }
+    [data-theme="dark"] .theme-toggle { box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -49,7 +98,7 @@
       gap: 16px;
       margin-bottom: 32px;
       padding-bottom: 24px;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
+      border-bottom: 1px solid var(--border);
     }
     .hero h1 {
       font-family: var(--fh);
@@ -131,7 +180,7 @@
       justify-content: space-between;
       padding-bottom: 14px;
       margin-bottom: 14px;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
+      border-bottom: 1px solid var(--border);
     }
     .col-title {
       font-family: var(--fh);
@@ -146,7 +195,7 @@
       font-weight: 700;
       padding: 4px 10px;
       border-radius: 20px;
-      background: rgba(0,0,0,0.06);
+      background: var(--border);
     }
 
     .col.s1 .col-title { color: #6A6A7A; }
@@ -168,7 +217,7 @@
 
     .card {
       display: block;
-      background: #F5F6F9;
+      background: var(--card-inner);
       border-radius: 10px;
       padding: 10px 12px;
       margin-bottom: 8px;
@@ -178,7 +227,7 @@
       border: 1px solid transparent;
     }
     .card:hover {
-      background: #fff;
+      background: var(--card);
       border-color: var(--accent);
       transform: translateY(-1px);
     }
@@ -219,7 +268,7 @@
       color: var(--muted);
       text-align: center;
       padding: 40px 10px;
-      border: 1px dashed rgba(0,0,0,0.12);
+      border: 1px dashed var(--border-dashed);
       border-radius: 10px;
     }
 
@@ -231,7 +280,7 @@
       gap: 8px;
       margin-top: 8px;
       padding-top: 6px;
-      border-top: 1px dashed rgba(0,0,0,0.08);
+      border-top: 1px dashed var(--border);
       font-family: var(--fm);
       font-size: 10.5px;
       letter-spacing: 0.02em;
@@ -250,7 +299,7 @@
     .act-warm { background: rgba(168,176,78,0.18);  color: #7A8A1F; }
     .act-cool { background: rgba(255,149,0,0.14);   color: var(--orange); }
     .act-cold { background: rgba(255,59,48,0.12);   color: var(--red); }
-    .act-none { background: rgba(0,0,0,0.06);       color: var(--muted); }
+    .act-none { background: var(--border);          color: var(--muted); }
 
     .founders {
       margin-top: 40px;
@@ -274,7 +323,7 @@
     }
     .founders-row .card {
       flex: 0 0 240px;
-      background: #F5F6F9;
+      background: var(--card-inner);
     }
 
     .legend {
@@ -306,6 +355,8 @@
   </style>
 </head>
 <body>
+
+<button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему" title="Переключить тему">🌙</button>
 
 <div class="page">
 
@@ -634,6 +685,30 @@
 </div>
 
 <script>
+// === Переключение темы ===
+(function initTheme() {
+  const saved = localStorage.getItem('voronka-theme');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = saved || (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+
+document.addEventListener('DOMContentLoaded', function () {
+  const btn = document.getElementById('theme-toggle');
+  function syncIcon() {
+    const t = document.documentElement.getAttribute('data-theme');
+    btn.textContent = t === 'dark' ? '☀️' : '🌙';
+  }
+  syncIcon();
+  btn.addEventListener('click', function () {
+    const now = document.documentElement.getAttribute('data-theme');
+    const next = now === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('voronka-theme', next);
+    syncIcon();
+  });
+});
+
 // Активность из Obsidian / 01_NIHILO / Клиенты / clients/*.md
 // r = общее количество рефлексий; last = дата последней активности
 const ACTIVITY = {
