@@ -346,7 +346,7 @@
       <div style="background:#12121a;border-radius:10px;padding:14px;border:1px solid rgba(124,111,255,0.12);margin-bottom:10px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
           <span style="font-size:11px;color:#7c6fff;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Активность · 7 дней</span>
-          <span style="margin-left:auto;font-size:11px;color:#555;">9 записей</span>
+          <span style="margin-left:auto;font-size:11px;color:#555;">4 записей</span>
         </div>
         <canvas id="eeg-activity" height="70" style="width:100%;display:block;"></canvas>
       </div>
@@ -390,7 +390,7 @@
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🧘</div>
           <div style="font-size:12px; font-weight:600; color:#e0e0e8;">Рефлексия в бот</div>
-          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 16 записей</div>
+          <div style="font-size:11px; color:{'#34c759' if counts.get('reflections',0) > 0 else '#ff453a'}; margin-top:4px; font-weight:500;">✅ 20 записей</div>
         </div>
         <div style="background:#12121a; border-radius:10px; padding:14px; text-align:center;">
           <div style="font-size:24px; margin-bottom:6px;">🫀</div>
@@ -522,7 +522,7 @@
       </p>
     </div>
 
-<div class="updated">Обновлено: 19.04.2026</div>
+<div class="updated">Обновлено: 20.04.2026</div>
     <div style="height:100px;"></div>
   </div>
 
@@ -2116,9 +2116,9 @@ window.addEventListener('load', function() {
   var c = document.getElementById('eeg-activity');
   if (!c) return;
   var ctx = c.getContext('2d');
-  var data = [2, 1, 0, 4, 0, 2, 0];
+  var data = [4, 0, 0, 0, 0, 0, 0];
   var labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-  var todayIdx = 6;
+  var todayIdx = 0;
   var W = c.width = c.parentElement.offsetWidth - 28;
   var H = c.height;
   var mid = H * 0.48;
