@@ -125,8 +125,8 @@
 
     .summary {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
       margin-bottom: 32px;
     }
     .summary-card {
@@ -138,7 +138,9 @@
     .summary-card.s1 { border-left-color: #B8B8C6; }
     .summary-card.s2 { border-left-color: var(--blue); }
     .summary-card.s3 { border-left-color: var(--green); }
-    .summary-card.s4 { border-left-color: var(--accent); }
+    .summary-card.s4 { border-left-color: var(--orange); }
+    .summary-card.s5 { border-left-color: #B56CD1; }
+    .summary-card.s6 { border-left-color: var(--accent); }
 
     .summary-label {
       font-family: var(--fm);
@@ -163,8 +165,8 @@
 
     .funnel {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
       align-items: start;
     }
 
@@ -199,13 +201,40 @@
     }
 
     .col.s1 .col-title { color: #6A6A7A; }
-    .col.s1 .col-count { background: rgba(106,106,122,0.12); color: #6A6A7A; }
+    .col.s1 .col-count { background: rgba(106,106,122,0.14); color: #6A6A7A; }
     .col.s2 .col-title { color: var(--blue); }
-    .col.s2 .col-count { background: rgba(10,132,255,0.12); color: var(--blue); }
+    .col.s2 .col-count { background: rgba(10,132,255,0.14); color: var(--blue); }
     .col.s3 .col-title { color: var(--green); }
     .col.s3 .col-count { background: rgba(31,181,124,0.14); color: var(--green); }
-    .col.s4 .col-title { color: var(--accent); }
-    .col.s4 .col-count { background: rgba(95,95,255,0.12); color: var(--accent); }
+    .col.s4 .col-title { color: var(--orange); }
+    .col.s4 .col-count { background: rgba(255,149,0,0.14); color: var(--orange); }
+    .col.s5 .col-title { color: #B56CD1; }
+    .col.s5 .col-count { background: rgba(181,108,209,0.14); color: #B56CD1; }
+    .col.s6 .col-title { color: var(--accent); }
+    .col.s6 .col-count { background: rgba(95,95,255,0.14); color: var(--accent); }
+
+    /* Блок "Без NDA" — отдельный */
+    .no-nda {
+      margin-top: 28px;
+      padding: 18px 22px;
+      background: var(--card);
+      border-radius: 14px;
+      border-left: 3px solid var(--orange);
+    }
+    .no-nda-header {
+      font-family: var(--fh);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+      color: var(--orange);
+    }
+    .no-nda-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
 
     .col-note {
       font-family: var(--fm);
@@ -342,14 +371,20 @@
       width: 10px; height: 10px; border-radius: 3px; display: inline-block;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1400px) {
+      .summary { grid-template-columns: repeat(3, 1fr); }
+      .funnel { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
       .summary { grid-template-columns: repeat(2, 1fr); }
       .funnel { grid-template-columns: repeat(2, 1fr); }
+      .no-nda-row { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 640px) {
       .page { padding: 24px 14px 60px; }
       .summary { grid-template-columns: 1fr 1fr; }
       .funnel { grid-template-columns: 1fr; }
+      .no-nda-row { grid-template-columns: 1fr; }
       .hero-meta { text-align: left; }
     }
   </style>
@@ -373,86 +408,46 @@
 
   <div class="summary">
     <div class="summary-card s1">
-      <div class="summary-label">В боте · без NDA</div>
-      <div class="summary-value">4</div>
-      <div class="summary-sub">первая точка касания</div>
+      <div class="summary-label">1. Первичный чекап</div>
+      <div class="summary-value">15</div>
+      <div class="summary-sub">старт / сбор базы</div>
     </div>
     <div class="summary-card s2">
-      <div class="summary-label">NDA подписан · чекап</div>
-      <div class="summary-value">21</div>
-      <div class="summary-sub">готовятся / на чекапе</div>
+      <div class="summary-label">2. MNPI Neiry</div>
+      <div class="summary-value">6</div>
+      <div class="summary-sub">neiry_raw.csv есть</div>
     </div>
     <div class="summary-card s3">
-      <div class="summary-label">Прошли чекап</div>
+      <div class="summary-label">3. Ментальное Я</div>
       <div class="summary-value">0</div>
-      <div class="summary-sub">пока никто</div>
+      <div class="summary-sub">впереди</div>
     </div>
     <div class="summary-card s4">
-      <div class="summary-label">Главный продукт</div>
+      <div class="summary-label">4. Onto Nothing</div>
       <div class="summary-value">0</div>
-      <div class="summary-sub">пока пусто</div>
+      <div class="summary-sub">остановка ВД</div>
+    </div>
+    <div class="summary-card s5">
+      <div class="summary-label">5. 7×8</div>
+      <div class="summary-value">0</div>
+      <div class="summary-sub">режимы × сферы</div>
+    </div>
+    <div class="summary-card s6">
+      <div class="summary-label">6. 40-дневный</div>
+      <div class="summary-value">0</div>
+      <div class="summary-sub">цикл</div>
     </div>
   </div>
 
   <div class="funnel">
 
-    <!-- Стадия 1 -->
+    <!-- Стадия 1: Первичный чекап -->
     <div class="col s1">
       <div class="col-header">
-        <div class="col-title">1. В боте</div>
-        <div class="col-count">4</div>
+        <div class="col-title">1. Первичный чекап</div>
+        <div class="col-count">15</div>
       </div>
-      <div class="col-note">вступил(а) в бот, NDA ещё не подписан</div>
-
-      <a href="https://konstantinshell.github.io/genesis/profiles/479910423/" class="card" target="_blank">
-        <div class="card-name">Лиана Саунд</div>
-        <div class="card-tg">@Liana_Sound</div>
-        <div class="card-badges">
-          <span class="badge warn">⏳ без NDA</span>
-          <span class="badge neiry">🧠 NEIRY</span>
-        </div>
-      </a>
-
-      <a href="https://konstantinshell.github.io/genesis/profiles/744999846/" class="card" target="_blank">
-        <div class="card-name">Надежда Компас</div>
-        <div class="card-tg">@Woman_Kompas</div>
-        <div class="card-badges">
-          <span class="badge warn">⏳ без NDA</span>
-        </div>
-      </a>
-
-      <a href="https://konstantinshell.github.io/genesis/profiles/183298681/" class="card" target="_blank">
-        <div class="card-name">Станислав Орехов</div>
-        <div class="card-tg">@StasOrekhov</div>
-        <div class="card-badges">
-          <span class="badge ban">🚫 забанен</span>
-        </div>
-      </a>
-
-      <a href="https://konstantinshell.github.io/genesis/profiles/334165104/" class="card" target="_blank">
-        <div class="card-name">Игорь Жаринов</div>
-        <div class="card-tg">@Igor_Bright</div>
-        <div class="card-badges">
-          <span class="badge ban">🚫 забанен</span>
-        </div>
-      </a>
-    </div>
-
-    <!-- Стадия 2 -->
-    <div class="col s2">
-      <div class="col-header">
-        <div class="col-title">2. NDA · чекап</div>
-        <div class="col-count">21</div>
-      </div>
-      <div class="col-note">NDA подписан, идёт подготовка / чекап</div>
-
-      <a href="https://konstantinshell.github.io/genesis/profiles/765238865/" class="card" target="_blank">
-        <div class="card-name">Алёна Журавкова</div>
-        <div class="card-tg">@alenazhuravkova</div>
-        <div class="card-badges">
-          <span class="badge tracker">⌚ Whoop</span>
-        </div>
-      </a>
+      <div class="col-note">старый в боте (120с × 2), PI-тест, анкета, анализы, ДНК, ЭЭГ у партнёров, PPG</div>
 
       <a href="https://konstantinshell.github.io/genesis/profiles/221246992/" class="card" target="_blank">
         <div class="card-name">Александр Новожилов</div>
@@ -463,21 +458,21 @@
         </div>
       </a>
 
-      <a href="https://konstantinshell.github.io/genesis/profiles/1610267716/" class="card" target="_blank">
-        <div class="card-name">Андрей Демчук</div>
-        <div class="card-tg">@sky_world204</div>
+      <a href="https://konstantinshell.github.io/genesis/profiles/429205054/" class="card" target="_blank">
+        <div class="card-name">Алексей Смагажевский</div>
+        <div class="card-tg">@AlSmag</div>
         <div class="card-badges">
-          <span class="badge tracker">⌚ Huawei D2</span>
-          <span class="badge amb">✪ Амб.</span>
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge tracker">⌚ Apple</span>
+          <span class="badge amb">✓ ДНК</span>
         </div>
       </a>
 
-      <a href="https://konstantinshell.github.io/genesis/profiles/1139648370/" class="card" target="_blank">
-        <div class="card-name">Вадим Гурьев</div>
-        <div class="card-tg">@vadimolegich</div>
+      <a href="https://konstantinshell.github.io/genesis/profiles/765238865/" class="card" target="_blank">
+        <div class="card-name">Алёна Журавкова</div>
+        <div class="card-tg">@alenazhuravkova</div>
         <div class="card-badges">
-          <span class="badge neiry">🧠 NEIRY</span>
-          <span class="badge tracker">⌚ Garmin</span>
+          <span class="badge tracker">⌚ Whoop</span>
         </div>
       </a>
 
@@ -498,6 +493,15 @@
         </div>
       </a>
 
+      <a href="https://konstantinshell.github.io/genesis/profiles/424514495/" class="card" target="_blank">
+        <div class="card-name">Виктория Левина</div>
+        <div class="card-tg">@levina_victory</div>
+        <div class="card-badges">
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge amb">✓ чекап янв</span>
+        </div>
+      </a>
+
       <a href="https://konstantinshell.github.io/genesis/profiles/5056234108/" class="card" target="_blank">
         <div class="card-name">Владимир Подгорный</div>
         <div class="card-tg">@WalWerty</div>
@@ -510,15 +514,6 @@
         <div class="card-name">Вячеслав Фетисов</div>
         <div class="card-tg">@fetisov_vyacheslav</div>
         <div class="card-badges">
-          <span class="badge amb">✪ Амб.</span>
-        </div>
-      </a>
-
-      <a href="https://konstantinshell.github.io/genesis/profiles/39937232/" class="card" target="_blank">
-        <div class="card-name">Екатерина Горлова</div>
-        <div class="card-tg">@Katyabra</div>
-        <div class="card-badges">
-          <span class="badge tracker">⌚ Polar</span>
           <span class="badge amb">✪ Амб.</span>
         </div>
       </a>
@@ -556,12 +551,6 @@
         </div>
       </a>
 
-      <a href="https://konstantinshell.github.io/genesis/profiles/8678544199/" class="card" target="_blank">
-        <div class="card-name">Константин НОВАТОР</div>
-        <div class="card-tg">—</div>
-        <div class="card-badges"></div>
-      </a>
-
       <a href="https://konstantinshell.github.io/genesis/profiles/827208307/" class="card" target="_blank">
         <div class="card-name">Михаил Антаков</div>
         <div class="card-tg">@Antakov_Mixail</div>
@@ -571,18 +560,13 @@
         </div>
       </a>
 
-      <a href="https://konstantinshell.github.io/genesis/profiles/248175087/" class="card" target="_blank">
-        <div class="card-name">Наталия Петрова</div>
-        <div class="card-tg">@Top_Natali</div>
+      <a href="https://konstantinshell.github.io/genesis/profiles/407124980/" class="card" target="_blank">
+        <div class="card-name">Татьяна</div>
+        <div class="card-tg">@Tatyana_699612</div>
         <div class="card-badges">
-          <span class="badge amb">✪ Амб.</span>
+          <span class="badge neiry">🧠 NEIRY</span>
+          <span class="badge amb">✓ чекап фев</span>
         </div>
-      </a>
-
-      <a href="https://konstantinshell.github.io/genesis/profiles/448342702/" class="card" target="_blank">
-        <div class="card-name">Лидия Романова</div>
-        <div class="card-tg">@LA5951</div>
-        <div class="card-badges"></div>
       </a>
 
       <a href="https://konstantinshell.github.io/genesis/profiles/652364423/" class="card" target="_blank">
@@ -593,55 +577,167 @@
           <span class="badge amb">✪ Амб.</span>
         </div>
       </a>
+    </div>
 
-      <a href="https://konstantinshell.github.io/genesis/profiles/429205054/" class="card" target="_blank">
-        <div class="card-name">Алексей Смагажевский</div>
-        <div class="card-tg">@AlSmag</div>
-        <div class="card-badges"></div>
+    <!-- Стадия 2: Чекап MNPI (Neiry) -->
+    <div class="col s2">
+      <div class="col-header">
+        <div class="col-title">2. MNPI Neiry</div>
+        <div class="col-count">6</div>
+      </div>
+      <div class="col-note">NDA подписан → сессия Neiry пройдена (есть neiry_raw.csv)</div>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/1139648370/" class="card" target="_blank">
+        <div class="card-name">Вадим Гурьев</div>
+        <div class="card-tg">@vadimolegich</div>
+        <div class="card-badges">
+          <span class="badge amb">✓ 2 сессии</span>
+          <span class="badge tracker">⌚ Garmin</span>
+        </div>
       </a>
 
-      <a href="https://konstantinshell.github.io/genesis/profiles/424514495/" class="card" target="_blank">
-        <div class="card-name">Виктория Левина</div>
-        <div class="card-tg">@levina_victory</div>
-        <div class="card-badges"></div>
+      <a href="https://konstantinshell.github.io/genesis/profiles/1610267716/" class="card" target="_blank">
+        <div class="card-name">Андрей Демчук</div>
+        <div class="card-tg">@sky_world204</div>
+        <div class="card-badges">
+          <span class="badge amb">✓ 2 сессии</span>
+          <span class="badge tracker">⌚ Huawei D2</span>
+        </div>
       </a>
 
-      <a href="https://konstantinshell.github.io/genesis/profiles/407124980/" class="card" target="_blank">
-        <div class="card-name">Татьяна</div>
-        <div class="card-tg">@Tatyana_699612</div>
-        <div class="card-badges"></div>
+      <a href="https://konstantinshell.github.io/genesis/profiles/39937232/" class="card" target="_blank">
+        <div class="card-name">Екатерина Горлова</div>
+        <div class="card-tg">@Katyabra</div>
+        <div class="card-badges">
+          <span class="badge amb">✓ 1 сессия</span>
+          <span class="badge tracker">⌚ Polar</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/8678544199/" class="card" target="_blank">
+        <div class="card-name">Константин НОВАТОР</div>
+        <div class="card-tg">@Konstantinshel</div>
+        <div class="card-badges">
+          <span class="badge amb">✓ 1 сессия (дек.25)</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/248175087/" class="card" target="_blank">
+        <div class="card-name">Наталия Петрова</div>
+        <div class="card-tg">@Top_Natali</div>
+        <div class="card-badges">
+          <span class="badge amb">✓ 1 сессия</span>
+          <span class="badge warn">зашум.</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/448342702/" class="card" target="_blank">
+        <div class="card-name">Лидия Романова</div>
+        <div class="card-tg">@LA5951</div>
+        <div class="card-badges">
+          <span class="badge amb">✓ Сессия 3</span>
+          <span class="badge warn">1 и 2 нет</span>
+        </div>
       </a>
     </div>
 
-    <!-- Стадия 3 -->
+    <!-- Стадия 3: Чекап ментального Я -->
     <div class="col s3">
       <div class="col-header">
-        <div class="col-title">3. Чекап пройден</div>
+        <div class="col-title">3. Ментальное Я</div>
         <div class="col-count">0</div>
       </div>
-      <div class="col-note">ДНК / клин. анализы / внешний чекап</div>
+      <div class="col-note">тренинг «Чекап ментального Я»</div>
 
       <div class="empty">
-        пока никто не прошёл<br>
-        <small>чекап запускается</small>
+        впереди<br>
+        <small>следующая стадия программы</small>
       </div>
     </div>
 
-    <!-- Стадия 4 -->
+    <!-- Стадия 4: Активация ритма Onto Nothing -->
     <div class="col s4">
       <div class="col-header">
-        <div class="col-title">4. Главный продукт</div>
+        <div class="col-title">4. Onto Nothing</div>
         <div class="col-count">0</div>
       </div>
-      <div class="col-note">после чекапа → основная программа</div>
+      <div class="col-note">остановка внутреннего диалога, управление вниманием</div>
 
       <div class="empty">
-        ещё никто не дошёл<br>
-        <small>главный продукт пока в разработке</small>
+        впереди<br>
+        <small>тренинг активации</small>
+      </div>
+    </div>
+
+    <!-- Стадия 5: 7 режимов × 8 сфер -->
+    <div class="col s5">
+      <div class="col-header">
+        <div class="col-title">5. 7 × 8</div>
+        <div class="col-count">0</div>
+      </div>
+      <div class="col-note">7 режимов сознания в 8 сферах жизни</div>
+
+      <div class="empty">
+        впереди<br>
+        <small>методологический слой</small>
+      </div>
+    </div>
+
+    <!-- Стадия 6: 40-дневный цикл -->
+    <div class="col s6">
+      <div class="col-header">
+        <div class="col-title">6. 40 дней</div>
+        <div class="col-count">0</div>
+      </div>
+      <div class="col-note">участие в 40-дневном цикле — полный пройденный путь</div>
+
+      <div class="empty">
+        впереди<br>
+        <small>финальная стадия</small>
       </div>
     </div>
 
   </div><!-- /funnel -->
+
+  <!-- Блок: без NDA -->
+  <div class="no-nda">
+    <div class="no-nda-header">Без NDA · не в воронке (4)</div>
+    <div class="no-nda-row">
+      <a href="https://konstantinshell.github.io/genesis/profiles/479910423/" class="card" target="_blank">
+        <div class="card-name">Лиана Саунд</div>
+        <div class="card-tg">@Liana_Sound</div>
+        <div class="card-badges">
+          <span class="badge warn">⏳ без NDA</span>
+          <span class="badge neiry">🧠 NEIRY</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/744999846/" class="card" target="_blank">
+        <div class="card-name">Надежда Компас</div>
+        <div class="card-tg">@Woman_Kompas</div>
+        <div class="card-badges">
+          <span class="badge warn">⏳ без NDA</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/183298681/" class="card" target="_blank">
+        <div class="card-name">Станислав Орехов</div>
+        <div class="card-tg">@StasOrekhov</div>
+        <div class="card-badges">
+          <span class="badge ban">🚫 забанен</span>
+        </div>
+      </a>
+
+      <a href="https://konstantinshell.github.io/genesis/profiles/334165104/" class="card" target="_blank">
+        <div class="card-name">Игорь Жаринов</div>
+        <div class="card-tg">@Igor_Bright</div>
+        <div class="card-badges">
+          <span class="badge ban">🚫 забанен</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
 
   <div class="founders">
     <div class="founders-header">Основатели — вне воронки</div>
