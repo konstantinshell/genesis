@@ -187,6 +187,123 @@
 </section>
 
 <!-- ══════════════════════════════
+     ЭКРАН 4.5 — ОБОРУДОВАНИЕ · MINDTRACKER
+══════════════════════════════ -->
+<section class="section-wide">
+  <div class="section-label">оборудование</div>
+  <h2>На этом приборе проходит программа · Neiry MindTracker</h2>
+  <p>Вся программа работает на нейробенде Neiry MindTracker — персональном интерфейсе мозг–компьютер, разработанном в России. Это не фитнес-браслет и не обруч с базовой пульсометрией. Внутри — связка из трёх независимых сенсорных систем, которая позволяет снимать одновременно электрическую активность мозга, сердечный ритм и положение тела.</p>
+
+  <div class="mt-zone">
+    <div class="mt-top">
+      <div class="mt-device" aria-hidden="true">
+        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mt-band" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3A3A58"/>
+              <stop offset="60%" stop-color="#1E1E30"/>
+              <stop offset="100%" stop-color="#14141F"/>
+            </linearGradient>
+            <radialGradient id="mt-glow" cx="50%" cy="50%">
+              <stop offset="0%" stop-color="#6A6AFF" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#6A6AFF" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <!-- Band arc -->
+          <path d="M 30 140 Q 30 40 160 40 Q 290 40 290 140" fill="none" stroke="url(#mt-band)" stroke-width="34" stroke-linecap="round"/>
+          <path d="M 30 140 Q 30 40 160 40 Q 290 40 290 140" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-linecap="round"/>
+          <!-- Sensors (золочёные электроды) -->
+          <g>
+            <circle cx="88" cy="74" r="10" fill="#D4A155" opacity="0.85"/>
+            <circle cx="88" cy="74" r="4" fill="#E7B76B"/>
+            <circle cx="88" cy="74" r="16" fill="none" stroke="#D4A155" stroke-width="1" opacity="0.35"/>
+          </g>
+          <g>
+            <circle cx="232" cy="74" r="10" fill="#D4A155" opacity="0.85"/>
+            <circle cx="232" cy="74" r="4" fill="#E7B76B"/>
+            <circle cx="232" cy="74" r="16" fill="none" stroke="#D4A155" stroke-width="1" opacity="0.35"/>
+          </g>
+          <!-- Logo dot (центр) -->
+          <g>
+            <circle cx="160" cy="44" r="6" fill="#6A6AFF"/>
+            <circle cx="160" cy="44" r="12" fill="none" stroke="#6A6AFF" stroke-width="1" opacity="0.5">
+              <animate attributeName="r" values="10;22;10" dur="2.4s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.6;0;0.6" dur="2.4s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+          <!-- Signal waves -->
+          <path d="M 100 180 Q 120 165 140 180 T 180 180 Q 200 165 220 180" fill="none" stroke="#6A6AFF" stroke-width="1.6" opacity="0.7"/>
+          <path d="M 100 200 Q 120 188 140 200 T 180 200 Q 200 188 220 200" fill="none" stroke="#00A39A" stroke-width="1.6" opacity="0.55"/>
+          <text x="160" y="225" text-anchor="middle" font-family="Courier Prime, monospace" font-size="10" fill="rgba(237,237,242,0.5)" letter-spacing="0.15em">NEIRY · MIND TRACKER</text>
+        </svg>
+        <div class="mt-caption">Стилизованное изображение · сухие ЭЭГ-электроды</div>
+      </div>
+
+      <div class="mt-intro">
+        <span class="mt-kicker">Brain–Computer Interface</span>
+        <h3>Три сенсорные системы в одном нейробанде</h3>
+        <p><strong class="mt-hl">ЭЭГ</strong> снимает электрическую активность мозга в реальном времени. <strong class="mt-hl">ФПГ-датчик</strong> параллельно регистрирует сердечный ритм и вариабельность. <strong class="mt-hl">IMU</strong> (гироскоп + акселерометр) отслеживает положение и микродвижения, чтобы отделять сигнал мозга от артефактов движения.</p>
+        <p>Сухие электроды <strong>медицинского силикона с золотым покрытием</strong> — не требуют геля, не залипают, не искажают сигнал. Ноу-хау, позволяющее записывать ЭЭГ в бытовых условиях качеством, близким к лабораторному.</p>
+
+        <div class="mt-specs">
+          <div class="mt-spec"><div class="mts-big">ЭЭГ</div><div class="mts-sub">электрическая<br>активность мозга</div></div>
+          <div class="mt-spec"><div class="mts-big">ФПГ</div><div class="mts-sub">сердечный ритм<br>и HRV</div></div>
+          <div class="mt-spec"><div class="mts-big">IMU</div><div class="mts-sub">гироскоп +<br>акселерометр</div></div>
+          <div class="mt-spec"><div class="mts-big">Au</div><div class="mts-sub">золотые сухие<br>электроды</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-features">
+      <div class="mt-feat">
+        <div class="mf-icon">⚡</div>
+        <h4>Индивидуальная калибровка</h4>
+        <p>Алгоритмы настраиваются под физиологию конкретного человека. Метрики считываются из его персонального профиля, а не усреднённой «нормы».</p>
+      </div>
+      <div class="mt-feat">
+        <div class="mf-icon">📡</div>
+        <h4>Беспроводная связь по Bluetooth</h4>
+        <p>Работает с приложениями на iOS 16+, Android 10+, Windows и macOS. Никаких проводов во время сессии — только нейробенд и тишина.</p>
+      </div>
+      <div class="mt-feat">
+        <div class="mf-icon">🔬</div>
+        <h4>Лабораторное качество сигнала</h4>
+        <p>Российская разработка, сертифицированная для исследовательских задач. На данных Neiry строятся научные программы — включая исследования ONTO NOTHING.</p>
+      </div>
+    </div>
+
+    <div class="mt-forms">
+      <div class="mt-form">
+        <div class="mfi">◎</div>
+        <div>
+          <div class="mfn">Neiry Headband</div>
+          <div class="mfd">флагман · полный набор датчиков</div>
+        </div>
+      </div>
+      <div class="mt-form">
+        <div class="mfi">◐</div>
+        <div>
+          <div class="mfn">Neiry Headphones</div>
+          <div class="mfd">наушники со встроенной ЭЭГ</div>
+        </div>
+      </div>
+      <div class="mt-form">
+        <div class="mfi">◑</div>
+        <div>
+          <div class="mfn">Headphones Lite</div>
+          <div class="mfd">облегчённая версия</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-cta-row">
+      <p class="mt-cta-note">Для прохождения чекапа подойдут все три форм-фактора. Флагман — Neiry Headband — покрывает максимальный набор метрик. В тарифе 3 «Нейробенд + курс» (75 000 ₽) устройство входит в пакет и остаётся у тебя навсегда.</p>
+      <a class="mt-link" href="https://neiry.ru/mindtracker" target="_blank" rel="noopener">neiry.ru/mindtracker →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
      ЭКРАН 5 — ПЯТЬ СОСТОЯНИЙ
 ══════════════════════════════ -->
 <section class="section-wide">
@@ -292,6 +409,104 @@
         <div class="pdesc">Сравнение твоих ответов после сессий с ЭЭГ. Там, где они расходятся, — самая ценная информация.</div>
       </div>
       <span class="ptag">Phenomen.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 6.5 — КРОЛИЧЬЯ НОРА ДАННЫХ
+══════════════════════════════ -->
+<section class="section-wide">
+  <div class="section-label">глубина данных</div>
+  <h2>Насколько глубока кроличья нора?</h2>
+  <p>За каждой из пяти сессий стоит не абстрактный «замер состояния», а десятки конкретных нейрофизиологических показателей. Нейробенд снимает их одновременно, приложение сохраняет, а программа чекапа учит каждый из них читать.</p>
+
+  <div class="metrics-zone">
+    <div class="mz-top">
+      <div class="mz-bignum">
+        <div><span class="mzn">36</span><span class="mzn-suffix">+</span></div>
+        <div class="mzlabel">метрик доступно<br>по итогам чекапа</div>
+      </div>
+      <div class="mz-intro">
+        <div class="mz-kicker">На основе экосистемы Neiry Capsule</div>
+        <h3>Семь смысловых групп · одна картина</h3>
+        <p>Каждая сессия — это <strong>36+ одновременных измерений</strong>: ритмы мозга, персональные пиковые частоты, альфа-профиль, составные когнитивные индексы, сердечная вариабельность, итоговые статусы. Все метрики — из экосистемы Neiry Capsule, на которой работает программа.</p>
+        <p>На их основе рассчитывается MNPI — но сами по себе метрики ценны: ты получаешь не «оценку», а живой срез нервной системы, с которым можно работать точечно.</p>
+      </div>
+    </div>
+
+    <div class="mz-groups">
+      <div class="mz-group g-rhythms">
+        <div class="mzg-count">4 <span>метрики</span></div>
+        <h4>Ритмы мозга</h4>
+        <div class="mzg-list">Alpha · Beta · Theta · SMR</div>
+      </div>
+      <div class="mz-group g-peaks">
+        <div class="mzg-count">3 <span>метрики</span></div>
+        <h4>Пиковые частоты</h4>
+        <div class="mzg-list">Alpha Peak · Beta Peak · Theta Peak</div>
+      </div>
+      <div class="mz-group g-alpha">
+        <div class="mzg-count">5 <span>метрик</span></div>
+        <h4>Альфа-профиль</h4>
+        <div class="mzg-list">IAF · IAPF · IAPF Power · IABW · IAPF Suppression</div>
+      </div>
+      <div class="mz-group g-cognitive">
+        <div class="mzg-count">4 <span>метрики</span></div>
+        <h4>Когнитивные</h4>
+        <div class="mzg-list">Attention · Relaxation · Cognitive Load · Cognitive Control</div>
+      </div>
+      <div class="mz-group g-indices">
+        <div class="mzg-count">7 <span>метрик</span></div>
+        <h4>Производные индексы</h4>
+        <div class="mzg-list">Relaxation / Concentration / Fatigue / Reverse Fatigue / Accumulated Fatigue / Productivity / Alpha Gravity</div>
+      </div>
+      <div class="mz-group g-ppg">
+        <div class="mzg-count">10 <span>метрик</span></div>
+        <h4>Сердечно-сосудистые (ФПГ)</h4>
+        <div class="mzg-list">HR · RR(M) · Mo · SDNN · CV · AMo · MxdMn · SI Баевского · SAT Каплана · Perfusion</div>
+      </div>
+      <div class="mz-group g-states">
+        <div class="mzg-count">3 <span>метрики</span></div>
+        <h4>Итоговые статусы</h4>
+        <div class="mzg-list">Stress · Recommendation · State</div>
+      </div>
+      <div class="mz-group g-tech">
+        <div class="mzg-count">13 <span>метрик</span></div>
+        <h4>Технические · качество сигнала</h4>
+        <div class="mzg-list">Valid State · Artifacts · Impedance · Battery · Firmware · Session · Mode и др.</div>
+      </div>
+    </div>
+
+    <div class="mz-trust">
+      <div class="mz-trust-title">Иерархия доверия<span>с какого уровня начинается чтение</span></div>
+      <div class="mz-levels">
+        <div class="mz-level lv1">
+          <div class="mzl-num">Уровень 1</div>
+          <div class="mzl-name">Абсолютный приоритет</div>
+          <p>Valid State, Artifacts, импеданс, Perfusion. Без чистых данных остальное не читается.</p>
+        </div>
+        <div class="mz-level lv2">
+          <div class="mzl-num">Уровень 2</div>
+          <div class="mzl-name">Высокая надёжность</div>
+          <p>SDNN, SI Баевского, Alpha Peak vs IAPF, Accumulated Fatigue — хорошо изучены.</p>
+        </div>
+        <div class="mz-level lv3">
+          <div class="mzl-num">Уровень 3</div>
+          <div class="mzl-name">Средняя надёжность</div>
+          <p>Concentration, Relaxation, Fatigue Score — требуют корректной калибровки.</p>
+        </div>
+        <div class="mz-level lv4">
+          <div class="mzl-num">Уровень 4</div>
+          <div class="mzl-name">Динамические</div>
+          <p>Instant Frequency Peaks, Emotions — значимы только при устойчивости 2+ минут.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mz-foot">
+      <p>Все метрики собираются одновременно в каждой из пяти сессий чекапа. Модуль «Гипотеза и проверка» учит сопоставлять их между собой и строить эксперименты, модуль «7 режимов» — связывать с конкретными функциональными состояниями мозга.</p>
+      <a class="mz-link" href="../neiry-metrics/index.html" target="_blank" rel="noopener">Полный справочник →</a>
     </div>
   </div>
 </section>
