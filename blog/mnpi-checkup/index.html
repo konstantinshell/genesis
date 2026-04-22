@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MNPI Checkup Neiry — базовая диагностика нейропластичности | ONTO NOTHING</title>
-<meta name="description" content="Первый структурированный тест нейропластичности для владельцев нейробанда. Пять сессий, пять состояний сознания, пять снимков твоего мозга.">
-<meta property="og:title" content="MNPI Checkup Neiry — базовая диагностика нейропластичности">
-<meta property="og:description" content="Ты знаешь, что происходит у тебя в мозге прямо сейчас? Пять сессий, пять состояний, пять снимков — от тишины до инсайта.">
+<meta name="description" content="Пять диагностических сессий, тест на знание метрик, два модуля, персональная тренировка со специалистом и три закрытых гайда. Тарифы от 10 000 ₽.">
+<meta property="og:title" content="MNPI Checkup Neiry — нейрофизиологическая диагностика нейропластичности">
+<meta property="og:description" content="Ты знаешь, что происходит у тебя в мозге прямо сейчас? Пять сессий, тест, два модуля и персональная сессия со специалистом.">
 <meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,286 +24,979 @@
 </nav>
 
 <!-- ══════════════════════════════
-     HERO
+     ЭКРАН 1 — HERO
 ══════════════════════════════ -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">Чекап · ONTO NOTHING × Neiry</div>
-    <h1><span class="grad">MNPI Checkup Neiry</span></h1>
-    <p class="hero-sub">Первый структурированный тест нейропластичности для владельцев нейробанда. Пять сессий, пять состояний сознания — пять снимков твоего мозга.</p>
-    <div class="hero-meta">
-      <span>5 сессий</span>
-      <span class="dot"></span>
-      <span>~40 минут каждая</span>
-      <span class="dot"></span>
-      <span>Neiry MindTracker / Capsule</span>
+<section class="hero-v3">
+  <div class="hero-inner" style="max-width: 1100px; margin: 0 auto;">
+    <span class="eyebrow">MNPI CHECKUP NEIRY · ONTO NOTHING × NEIRY</span>
+    <h1>Ты знаешь, что происходит у тебя в мозге прямо <span class="word-literal">сейчас</span>?</h1>
+    <p class="lead-copy">Не в переносном смысле — <strong>буквально</strong>. Насколько глубоко ты умеешь расслабляться. Можешь ли остановить внутренний диалог — и на сколько минут. Есть ли у тебя доступ к состоянию потока. Насколько твой мозг пластичен — способен перестраиваться или работает годами в одном режиме.</p>
+    <p class="lead-copy" style="margin-top: 16px;">Большинство людей этого не знают. Не потому что это сложно — просто никто никогда не мерял. <strong>MNPI Checkup Neiry измеряет. И учит понимать, что именно измерено.</strong></p>
+
+    <div class="cta-row">
+      <a href="/zapisatsya/" class="btn-primary btn-glow">Пройти чекап-курс →</a>
+      <span class="micro-note">5 сессий диагностики + 2 модуля + тест + личная тренировка со специалистом.<br>От 10 000 ₽ — если у тебя уже есть нейробенд.</span>
+    </div>
+
+    <div class="eeg-line-wrap">
+      <svg class="eeg-svg" viewBox="0 0 1000 140" preserveAspectRatio="none" aria-hidden="true">
+        <path class="eeg-path" d="M 0 70 Q 40 50 80 70 T 160 70 Q 200 40 240 70 T 320 70 Q 360 55 400 70 T 480 70 Q 520 35 560 70 T 640 70 Q 680 55 720 70 T 800 70 Q 840 40 880 70 T 960 70 L 1000 70"/>
+        <g class="eeg-dot d1" style="color: #00A39A;"><circle cx="100" cy="70" r="7" fill="#00A39A"/><circle cx="100" cy="70" r="3" fill="#fff"/></g>
+        <g class="eeg-dot d2" style="color: #F59E0B;"><circle cx="300" cy="70" r="7" fill="#F59E0B"/><circle cx="300" cy="70" r="3" fill="#fff"/></g>
+        <g class="eeg-dot d3" style="color: #A78BFA;"><circle cx="500" cy="70" r="7" fill="#A78BFA"/><circle cx="500" cy="70" r="3" fill="#fff"/></g>
+        <g class="eeg-dot d4" style="color: #10B981;"><circle cx="700" cy="70" r="7" fill="#10B981"/><circle cx="700" cy="70" r="3" fill="#fff"/></g>
+        <g class="eeg-dot d5" style="color: #EF4444;"><circle cx="900" cy="70" r="7" fill="#EF4444"/><circle cx="900" cy="70" r="3" fill="#fff"/></g>
+      </svg>
+      <div class="eeg-labels">
+        <span class="l1">01 BASE</span>
+        <span class="l2">02 BODY</span>
+        <span class="l3">03 DEPTH</span>
+        <span class="l4">04 ACTIVE<br>PRESENCE</span>
+        <span class="l5">05 ANTENNA</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════
-     SECTION 1 — Интро вопрос
+     ЭКРАН 2 — ПРОВОКАЦИЯ
 ══════════════════════════════ -->
-<section class="section">
-  <div class="section-label">точка отсчёта</div>
-  <h2>Ты знаешь, что происходит у тебя в мозге прямо сейчас?</h2>
-  <p class="lead">Не в переносном смысле — <span class="hl">буквально</span>.</p>
-  <p>Насколько глубоко ты умеешь расслабляться. Можешь ли ты остановить внутренний диалог — и на сколько минут. Есть ли у тебя доступ к состоянию потока. Насколько твой мозг вообще пластичен — способен ли он перестраиваться, или работает годами в одном и том же режиме.</p>
-  <p>Большинство людей этого не знают. Не потому что это сложно — просто никто никогда не мерял.</p>
-  <p class="lead"><span class="hl">MNPI Checkup Neiry измеряет.</span></p>
+<section class="section-wide">
+  <div class="section-label">провокация</div>
+  <h2>Нейропластичность — это не абстракция из научпопа.</h2>
+  <p class="lead">Это конкретная способность мозга переходить между состояниями. Входить в глубокое расслабление. Удерживать его под давлением. Быстро переключаться между режимами работы.</p>
+  <p>Мозг, который умеет это делать, восстанавливается быстрее, принимает решения яснее и реже застревает в стрессовых петлях. Мозг, который не умеет — работает на износ. Даже если человек этого не замечает.</p>
 
-  <!-- Визуальное ядро -->
-  <div class="core-viz">
-    <div class="core-circles">
-      <div class="core-circle c1"></div>
-      <div class="core-circle c2"></div>
-      <div class="core-circle c3"></div>
-      <div class="core-center">MNPI</div>
+  <div class="brain-compare">
+    <div class="brain-compare-grid">
+      <div class="brain-pane bad">
+        <h4>Мозг на износе</h4>
+        <svg class="eeg-mini" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M 0 35 L 12 18 L 22 50 L 35 10 L 48 55 L 60 15 L 76 48 L 92 22 L 108 52 L 124 14 L 140 46 L 158 20 L 174 50 L 192 12 L 210 54 L 228 22 L 246 44 L 264 16 L 282 52 L 300 32"/>
+        </svg>
+        <div class="brain-metrics">
+          <span>Alpha 0.12 ↓</span>
+          <span>Beta 0.62 ↑</span>
+          <span>IAPF Suppression 1.1</span>
+          <span>SDNN 32 мс</span>
+        </div>
+      </div>
+      <div class="brain-pane good">
+        <h4>Пластичный мозг</h4>
+        <svg class="eeg-mini" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M 0 35 Q 20 22 40 35 T 80 35 Q 100 20 120 35 T 160 35 Q 180 24 200 35 T 240 35 Q 260 22 280 35 T 300 35"/>
+        </svg>
+        <div class="brain-metrics">
+          <span>Alpha 0.42</span>
+          <span>Beta 0.28</span>
+          <span>IAPF Suppression 2.1</span>
+          <span>SDNN 74 мс</span>
+        </div>
+      </div>
     </div>
+    <div class="brain-compare-caption">Разница видна на ЭЭГ. Она измерима. И она меняется — если знать, с чем работать.</div>
   </div>
-</section>
-
-<!-- ══════════════════════════════
-     SECTION 2 — Нейропластичность
-══════════════════════════════ -->
-<section class="section">
-  <div class="section-label">методология</div>
-  <h2>Что такое нейропластичность на практике</h2>
-  <p>Нейропластичность — это не абстракция из научпопа. Это конкретная способность мозга переходить между состояниями: входить в глубокое расслабление, удерживать его под давлением, быстро переключаться между режимами работы.</p>
-
-  <!-- Контраст: мозг, который умеет vs не умеет -->
-  <div class="contrast">
-    <div class="warm">
-      <h4>Пластичный мозг</h4>
-      <p>Восстанавливается быстрее. Принимает решения яснее. Легко меняет режимы. Реже застревает в стрессовых петлях. Отзывчив к практике.</p>
-    </div>
-    <div class="cold">
-      <h4>Негибкий мозг</h4>
-      <p>Работает на износ, даже если человек этого не замечает. Застревает в одном режиме. Не восстанавливается между нагрузками. Перестаёт отзываться.</p>
-    </div>
-  </div>
-
-  <p>Разница между ними видна на ЭЭГ. Она измерима. И она меняется — если знать, с чем работать.</p>
 
   <div class="card">
-    <p style="margin:0;"><strong>MNPI</strong> — Multidimensional Neuroplasticity Index — это система измерения, разработанная в рамках исследовательской программы «Сила ритма». <span class="hl">Чекап — это первый шаг</span>: базовый нейрофизиологический снимок, который показывает, где ты находишься прямо сейчас.</p>
+    <p style="margin:0;"><strong>MNPI — Multidimensional Neuroplasticity Index</strong> — система измерения, разработанная в рамках исследовательской программы ONTO NOTHING × Neiry. Чекап — это <span class="hl">первый шаг</span>: базовый нейрофизиологический снимок плюс обучение читать свои данные.</p>
   </div>
 </section>
 
 <!-- ══════════════════════════════
-     SECTION 3 — Как работает
+     ЭКРАН 3 — ЧТО ВХОДИТ
 ══════════════════════════════ -->
-<section class="section">
-  <div class="section-label">структура</div>
-  <h2>Как это работает</h2>
-  <p class="lead">Пять сессий с нейробандом Neiry. Каждая — одно состояние сознания. От простого к сложному.</p>
-  <p>В каждой сессии три блока: открытые глаза — закрытые глаза — снова открытые. Нейробанд пишет ЭЭГ непрерывно. После каждой сессии — несколько вопросов о том, как ты себя ощущал изнутри.</p>
+<section class="section-wide">
+  <div class="section-label">состав курса</div>
+  <h2>Это не просто замер. Это полный цикл: измерение, понимание, применение.</h2>
+  <p class="lead">Чтобы данные имели смысл, нужно три вещи: замер, знание того, что он значит, и навык работы с результатом. Чекап-курс даёт всё три — в одной программе.</p>
 
-  <!-- Триада — структура каждой сессии -->
-  <div class="triad">
-    <div class="triad-step eyes-open">
-      <span class="eye">Открытые глаза</span>
-      <div class="name">Вход</div>
-      <div class="time">~10 мин</div>
+  <div class="orbit-grid">
+    <div class="orbit-card c1">
+      <span class="icon">🧠</span>
+      <h4>Пять диагностических сессий</h4>
+      <p>Базовый снимок → Тело → Глубина → Тишина с открытыми глазами → Антенна. Каждая сессия — одно состояние сознания с тремя блоками записи ЭЭГ.</p>
     </div>
-    <div class="triad-arrow">→</div>
-    <div class="triad-step eyes-closed">
-      <span class="eye">Закрытые глаза</span>
-      <div class="name">Состояние</div>
-      <div class="time">15–25 мин</div>
+    <div class="orbit-card c2">
+      <span class="icon">🧪</span>
+      <h4>Тест на знание данных</h4>
+      <p>Проверка того, что ты понимаешь, что именно замерил. Метрики, суб-индексы, их история и смысл. Без этого цифры на экране — просто цифры.</p>
     </div>
-    <div class="triad-arrow">→</div>
-    <div class="triad-step eyes-open">
-      <span class="eye">Открытые глаза</span>
-      <div class="name">Выход</div>
-      <div class="time">~10 мин</div>
+    <div class="orbit-card c3">
+      <span class="icon">🔬</span>
+      <h4>Модуль «Гипотеза и проверка»</h4>
+      <p>Нейроданные сами по себе ничего не доказывают. Гипотеза превращает их в инструмент. Модуль учит базовой исследовательской механике.</p>
+    </div>
+    <div class="orbit-card c4">
+      <span class="icon">⚡</span>
+      <h4>Модуль «7 режимов сознания»</h4>
+      <p>Функциональные состояния как операционная система мозга. Что они дают, на что влияют в теле и в когнитивной работе, как их верифицировать на ЭЭГ.</p>
+    </div>
+    <div class="orbit-card c5">
+      <span class="icon">🎯</span>
+      <h4>Персональная тренировка · 40 мин</h4>
+      <p>С сертифицированным специалистом по 7 режимам сознания. Один на один. По твоим данным чекапа. Вход в целевой режим под руководством.</p>
+      <span class="o-badge">Бонус</span>
+    </div>
+    <div class="orbit-card c6">
+      <span class="icon">🔒</span>
+      <h4>Три закрытых гайда</h4>
+      <p>Гайд по приложению Neiry, практическое руководство по Neiry Capsule, полный справочник метрик. Нигде больше не продаются — только в курсе.</p>
     </div>
   </div>
-
-  <p class="quiet">Никакого специального опыта не нужно. Нужен нейробанд, тихое место и ~35–40 минут.</p>
 </section>
 
 <!-- ══════════════════════════════
-     SECTION 4 — Пять сессий (главное)
+     ЭКРАН 4 — КАК РАБОТАЕТ
 ══════════════════════════════ -->
-<section class="section" id="sessions">
+<section class="section-wide">
+  <div class="section-label">механика сессии</div>
+  <h2>Пять сессий. Пять состояний. Одна точка отсчёта.</h2>
+  <p>В каждой сессии три блока записи ЭЭГ с нейробандом: <strong>открытые глаза — закрытые глаза — снова открытые.</strong> Нейробанд пишет непрерывно. После каждой сессии — несколько вопросов о том, как ты себя ощущал изнутри.</p>
+  <p>Это первый слой феноменологии. Его сравнение с ЭЭГ даёт неожиданные открытия. Иногда мозг находится в глубоком состоянии, а человек убеждён, что ничего не происходило. Иногда наоборот.</p>
+
+  <div class="pipeline">
+    <div class="pipeline-step open">
+      <span class="ps-icon">👁</span>
+      <div class="ps-label">Открытые</div>
+      <div class="ps-time">10 мин</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step closed">
+      <span class="ps-icon">🔒</span>
+      <div class="ps-label">Закрытые</div>
+      <div class="ps-time">15–25 мин</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step open">
+      <span class="ps-icon">👁</span>
+      <div class="ps-label">Открытые</div>
+      <div class="ps-time">10 мин</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step ask">
+      <span class="ps-icon">📝</span>
+      <div class="ps-label">Вопросы</div>
+      <div class="ps-time">~5 мин</div>
+    </div>
+  </div>
+  <svg class="hrv-trail" viewBox="0 0 1000 46" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M 0 23 Q 40 18 80 23 T 160 23 Q 200 14 240 23 T 320 23 Q 360 22 400 23 T 480 23 Q 520 16 560 23 T 640 23 Q 680 22 720 23 T 800 23 Q 840 18 880 23 T 960 23 L 1000 23"/>
+  </svg>
+
+  <p class="quiet" style="text-align: center; margin-top: 6px;">Никакого специального опыта не нужно. Нужен нейробенд, тихое место и 35–45 минут.</p>
+</section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 5 — ПЯТЬ СОСТОЯНИЙ
+══════════════════════════════ -->
+<section class="section-wide">
   <div class="section-label">программа чекапа</div>
-  <h2>Пять состояний — пять снимков</h2>
-  <p>Каждая сессия открывает отдельную страницу с полной инструкцией. Читай и проходи в удобном темпе.</p>
+  <h2>Что именно мы снимаем — по сессиям</h2>
+  <p>Пять состояний сознания — от простого к сложному. Каждое открывает свой слой данных о твоём мозге.</p>
 
-  <div class="sessions-grid">
+  <div class="states-split">
+    <div class="states-content">
+      <article data-smap="s1">
+        <div class="skicker">~35 мин · Point A</div>
+        <h3>Сессия 1 · Базовый нейроснимок</h3>
+        <div class="ssub">POINT A · базовая координата</div>
+        <p>Твой мозг в обычном состоянии и первый вход в тишину. Никаких заданий. Никаких правильных ответов. В закрытых глазах — задача одна: найти промежуток между двумя мыслями и остаться в нём. Большинство людей никогда там не оказываются — следующая мысль приходит раньше, чем человек замечает паузу.</p>
+        <div class="fixed-block"><strong>Что фиксируется:</strong> базовый нейрофизиологический снимок. Уровень активности, стресса, альфа-синхронизации, вариабельности сердечного ритма. Это не хорошо и не плохо — это факт, от которого можно двигаться.</div>
+      </article>
+      <article data-smap="s2">
+        <div class="skicker">~35 мин · Интероцепция</div>
+        <h3>Сессия 2 · Тело</h3>
+        <div class="ssub">INTEROCEPTION · канал к телу</div>
+        <p>Внимание переносится из головы в тело. Живот, грудь, ладони, ступни — или всё тело сразу как единый поток. Интероцепция — способность слышать собственный организм — один из ключевых маркеров нейрофизиологического здоровья. У одних канал широко открыт, у других почти закрыт: они живут в голове и не слышат, что тело давно сигналит.</p>
+        <div class="fixed-block"><strong>Что фиксируется:</strong> насколько канал интероцепции у тебя открыт. Как ЭЭГ и HRV реагируют на перенос внимания в тело. Сохраняется ли контакт с телом при открытых глазах.</div>
+      </article>
+      <article data-smap="s3">
+        <div class="skicker">~45 мин · Окно нейропластичности</div>
+        <h3>Сессия 3 · Глубина</h3>
+        <div class="ssub">HYPNAGOGIA · альфа-тета баланс</div>
+        <p>Граница между бодрствованием и сном. Нейробиологи называют это гипнагогическим состоянием — зоной, где альфа- и тета-ритмы встречаются в равновесии и мозг максимально восприимчив к изменениям. Обычно человек проваливается сквозь это состояние в сон и не замечает. Задача — войти намеренно и удержаться. Это редкий навык. Его нельзя взять усилием — попытка «достичь» убивает состояние. Его можно только позволить.</p>
+        <div class="fixed-block"><strong>Что фиксируется:</strong> насколько тебе доступно окно нейропластичности. Где ты на шкале между «не могу отпустить контроль» и «сразу проваливаюсь в сон».</div>
+      </article>
+      <article data-smap="s4">
+        <div class="skicker">~40 мин · Active Presence</div>
+        <h3>Сессия 4 · Тишина с открытыми глазами</h3>
+        <div class="ssub">ACTIVE PRESENCE · альфа наружу</div>
+        <p>Сохранить внутренний покой, когда мир перед тобой — принципиально другая задача, чем закрыть глаза и расслабиться. Нейробиологи долго считали устойчивый альфа-ритм при открытых глазах физиологически невозможным — пока не начали измерять мозг людей с многолетней практикой. Теперь это измеримо. Это не дар, это навык.</p>
+        <div class="fixed-block"><strong>Что фиксируется:</strong> твоя способность удерживать состояние под давлением внешнего мира. У большинства альфа-ритм схлопывается, у кого-то он удерживается. Запись покажет, где на этой шкале ты.</div>
+      </article>
+      <article data-smap="s5">
+        <div class="skicker">~40 мин · Transcendent Download</div>
+        <h3>Сессия 5 · Антенна</h3>
+        <div class="ssub">TRANSCENDENT DOWNLOAD · интеграция сетей</div>
+        <p>В ней не делается ничего. Минимальная когнитивная нагрузка при максимальной нейронной интеграции. Сети мозга, которые обычно не разговаривают друг с другом, начинают обмениваться сигналами. Именно из этого обмена появляются инсайты — не результат думания, а результат его остановки. Мозг не работает — он принимает. Как антенна, которую перестали крутить и направили в сторону сигнала.</p>
+        <div class="fixed-block"><strong>Что фиксируется:</strong> насколько тебе доступен этот режим. Карта интеграции мозговых сетей в состоянии полного отпускания.</div>
+      </article>
+    </div>
 
-    <a href="./session-1/index.html" class="session-link">
-      <div class="session-row">
-        <div class="session-num">01</div>
-        <div class="session-body">
-          <div class="session-kicker">Базовый снимок</div>
-          <div class="session-title">Базовый нейроснимок</div>
-          <p class="session-sub">Твой мозг в обычном состоянии и первый вход в тишину. Это <span class="hl">Point A</span> — отправная точка, от которой считается всё остальное.</p>
-          <div class="session-meta">
-            <span>~35 мин</span>
-            <span class="mdot"></span>
-            <span>тишина в голове</span>
-          </div>
-        </div>
-        <div class="session-arrow">→</div>
-      </div>
-    </a>
-
-    <a href="./session-2/index.html" class="session-link">
-      <div class="session-row">
-        <div class="session-num">02</div>
-        <div class="session-body">
-          <div class="session-kicker">Интероцепция</div>
-          <div class="session-title">Тело</div>
-          <p class="session-sub">Внимание переносится из головы в тело. Интероцепция — способность слышать собственный организм — один из ключевых маркеров нейрофизиологического здоровья.</p>
-          <div class="session-meta">
-            <span>~35 мин</span>
-            <span class="mdot"></span>
-            <span>внимание в тело</span>
-          </div>
-        </div>
-        <div class="session-arrow">→</div>
-      </div>
-    </a>
-
-    <a href="./session-3/index.html" class="session-link">
-      <div class="session-row">
-        <div class="session-num">03</div>
-        <div class="session-body">
-          <div class="session-kicker">Окно нейропластичности</div>
-          <div class="session-title">Глубина</div>
-          <p class="session-sub">Граница между бодрствованием и сном. Гипнагогическое состояние — зона, где альфа и тета встречаются в равновесии и мозг становится <span class="hl">максимально восприимчив к изменениям</span>.</p>
-          <div class="session-meta">
-            <span>~45 мин</span>
-            <span class="mdot"></span>
-            <span>позволить глубине</span>
-          </div>
-        </div>
-        <div class="session-arrow">→</div>
-      </div>
-    </a>
-
-    <a href="./session-4/index.html" class="session-link">
-      <div class="session-row">
-        <div class="session-num">04</div>
-        <div class="session-body">
-          <div class="session-kicker">Active Presence</div>
-          <div class="session-title">Тишина с открытыми глазами</div>
-          <p class="session-sub">Сохранить внутренний покой, когда мир перед тобой — принципиально другая задача. Нейробиологи долго считали устойчивый альфа-ритм при открытых глазах невозможным.</p>
-          <div class="session-meta">
-            <span>~40 мин</span>
-            <span class="mdot"></span>
-            <span>тишина наружу</span>
-          </div>
-        </div>
-        <div class="session-arrow">→</div>
-      </div>
-    </a>
-
-    <a href="./session-5/index.html" class="session-link">
-      <div class="session-row">
-        <div class="session-num">05</div>
-        <div class="session-body">
-          <div class="session-kicker">Transcendent Download</div>
-          <div class="session-title">Антенна</div>
-          <p class="session-sub">Минимальное когнитивное усилие при максимальной нейронной интеграции. Состояние, в котором мозг генерирует инсайты: <span class="hl">не результат думания, а результат его остановки</span>.</p>
-          <div class="session-meta">
-            <span>~40 мин</span>
-            <span class="mdot"></span>
-            <span>отпустить всё</span>
-          </div>
-        </div>
-        <div class="session-arrow">→</div>
-      </div>
-    </a>
-
+    <aside class="states-map" id="statesMap">
+      <div class="states-map-title">5 сессий</div>
+      <div class="smap-node is-active" data-target="s1"><div class="snum">01</div><div><div class="sname-en">POINT A</div><div class="sname-ru">Базовый снимок</div></div></div>
+      <div class="smap-node" data-target="s2"><div class="snum">02</div><div><div class="sname-en">INTEROCEPTION</div><div class="sname-ru">Тело</div></div></div>
+      <div class="smap-node" data-target="s3"><div class="snum">03</div><div><div class="sname-en">HYPNAGOGIA</div><div class="sname-ru">Глубина</div></div></div>
+      <div class="smap-node" data-target="s4"><div class="snum">04</div><div><div class="sname-en">ACTIVE PRESENCE</div><div class="sname-ru">Тишина наружу</div></div></div>
+      <div class="smap-node" data-target="s5"><div class="snum">05</div><div><div class="sname-en">TRANSCENDENT</div><div class="sname-ru">Антенна</div></div></div>
+    </aside>
   </div>
 </section>
 
 <!-- ══════════════════════════════
-     SECTION 5 — Что ты узнаешь
+     ЭКРАН 6 — ЧТО ТЫ УЗНАЕШЬ
 ══════════════════════════════ -->
-<section class="section">
+<section class="section-wide">
   <div class="section-label">результат</div>
-  <h2>Что ты узнаешь о себе</h2>
-  <p>По итогам пяти сессий у тебя будет конкретная картина — <span class="hl">не ощущения, а данные</span>.</p>
+  <h2>Что ты получишь по итогам — не ощущения, а данные</h2>
+  <p>По итогам пяти сессий у тебя будет конкретная картина — в пяти слоях, от базы к интеграции.</p>
 
-  <div class="discovery">
-    <div>
-      <span class="dn">01</span>
-      <h4>Базовое состояние мозга</h4>
-      <p>Уровень активности, стресса, альфа-синхронизации и вариабельности сердечного ритма в обычной жизни. Это не хорошо и не плохо — это факт, от которого можно двигаться.</p>
+  <div class="pyramid">
+    <div class="pyramid-layer l1">
+      <span class="pn">01</span>
+      <div>
+        <div class="ptitle">База · общее состояние мозга и тела</div>
+        <div class="pdesc">Уровень активности, стресса, альфа-синхронизации и HRV в обычной жизни. Фундамент, от которого считается всё остальное.</div>
+      </div>
+      <span class="ptag">Факт</span>
     </div>
-    <div>
-      <span class="dn">02</span>
-      <h4>Карта доступных состояний</h4>
-      <p>Какие режимы тебе открыты прямо сейчас, какие нет, какие частично. Это индивидуально — и это меняется с практикой.</p>
+    <div class="pyramid-layer l2">
+      <span class="pn">02</span>
+      <div>
+        <div class="ptitle">Карта · какие режимы доступны</div>
+        <div class="pdesc">Какие из пяти состояний тебе открыты сейчас, какие нет, какие частично. Индивидуальный профиль.</div>
+      </div>
+      <span class="ptag">Профиль</span>
     </div>
-    <div>
-      <span class="dn">03</span>
-      <h4>Способность удерживать состояние</h4>
-      <p>Войти в тишину на минуту может почти каждый. Удерживать её 15 минут — это навык. Запись показывает динамику во времени.</p>
+    <div class="pyramid-layer l3">
+      <span class="pn">03</span>
+      <div>
+        <div class="ptitle">Удержание · способность оставаться в состоянии (RI)</div>
+        <div class="pdesc">Войти в тишину на минуту может почти каждый. Удерживать её 15 минут — навык. Запись показывает динамику.</div>
+      </div>
+      <span class="ptag">Resilience</span>
     </div>
-    <div>
-      <span class="dn">04</span>
-      <h4>Скорость переходов</h4>
-      <p>Как твой мозг реагирует, когда условия меняются. Ключевой маркер нейропластичности — не глубина одного состояния, а способность переключаться.</p>
+    <div class="pyramid-layer l4">
+      <span class="pn">04</span>
+      <div>
+        <div class="ptitle">Переходы · скорость и качество переключений (SI)</div>
+        <div class="pdesc">Как мозг реагирует, когда условия меняются. Ключевой маркер пластичности — не глубина, а способность переключаться.</div>
+      </div>
+      <span class="ptag">Switching</span>
     </div>
-    <div>
-      <span class="dn">05</span>
-      <h4>Субъективное vs объективное</h4>
-      <p>Сравнение того, что ты чувствовал, с тем, что зафиксировал нейробанд. Иногда мозг в глубоком состоянии, а человек убеждён, что ничего не происходило. Иногда наоборот.</p>
+    <div class="pyramid-layer l5">
+      <span class="pn">05</span>
+      <div>
+        <div class="ptitle">Соответствие · субъективное ↔ объективное (PI)</div>
+        <div class="pdesc">Сравнение твоих ответов после сессий с ЭЭГ. Там, где они расходятся, — самая ценная информация.</div>
+      </div>
+      <span class="ptag">Phenomen.</span>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════
-     SECTION 6 — Только начало
+     ЭКРАН 7 — MNPI
 ══════════════════════════════ -->
-<section class="section">
-  <div class="section-label">перспектива</div>
-  <h2>Это только начало</h2>
-  <p>Чекап — нейрофизиологическая база. Первый и необходимый шаг перед чем-либо более глубоким.</p>
-  <p>На его основе строится полный <span class="hl">MNPI-профиль</span>, который включает феноменологический анализ голосовых нарративов и данные физиологии за весь период. Но всё это возможно только если есть точка отсчёта.</p>
+<section class="section-wide">
+  <div class="section-label">Multidimensional Neuroplasticity Index</div>
+  <h2>Нейропластичность — это четыре измерения, а не одна цифра</h2>
+  <p>MNPI — составной индекс, построенный на том, что нейропластичность проявляется на четырёх разных уровнях одновременно. Скорость переключения. Глубина. Устойчивость под нагрузкой. Соответствие языка состоянию мозга. Каждое измерение считается отдельно — и тренируется отдельной практикой.</p>
 
-  <div class="card">
-    <p style="margin:0; font-size:1.05rem; color: var(--text); font-weight:500;">Чекап — эта точка.</p>
+  <div class="mnpi-zone">
+    <div class="mnpi-top">
+      <div class="radar-wrap" id="radarWrap">
+        <svg viewBox="0 0 400 400" aria-hidden="true">
+          <!-- Сетка -->
+          <polygon class="radar-grid" points="200,60 340,200 200,340 60,200" opacity="0.25"/>
+          <polygon class="radar-grid" points="200,95 305,200 200,305 95,200" opacity="0.25"/>
+          <polygon class="radar-grid" points="200,130 270,200 200,270 130,200" opacity="0.25"/>
+          <!-- Оси -->
+          <line class="radar-axis" x1="200" y1="60" x2="200" y2="340"/>
+          <line class="radar-axis" x1="60" y1="200" x2="340" y2="200"/>
+          <!-- Многоугольник пользователя (пример 72: SI 70, DI 82, RI 65, PI 68) -->
+          <polygon class="radar-poly" id="radarPoly" points="200,102 316,200 200,298 102,200"/>
+          <!-- Подписи осей -->
+          <text class="radar-label si" x="200" y="42" text-anchor="middle">SI · 30%</text>
+          <text class="radar-label di" x="360" y="204" text-anchor="middle">DI · 35%</text>
+          <text class="radar-label ri" x="200" y="366" text-anchor="middle">RI · 20%</text>
+          <text class="radar-label pi" x="40" y="204" text-anchor="middle">PI · 15%</text>
+        </svg>
+        <div class="radar-center">
+          <div class="mnpi-kicker">Пример</div>
+          <div class="mnpi-num" id="mnpiNum">0</div>
+          <div class="mnpi-status">🟡 Рабочий режим</div>
+        </div>
+      </div>
+
+      <div class="mnpi-intro">
+        <p><strong>Пять сессий чекапа дают начальный срез</strong> по всем четырём измерениям. Каждый субиндекс считается по шкале 0–100, итоговый MNPI — тоже 0–100.</p>
+        <ul>
+          <li class="m-di"><strong>DI (35%)</strong> — замер глубины во всех пяти состояниях относительно базовой линии первой сессии.</li>
+          <li class="m-si"><strong>SI (30%)</strong> — насколько быстро ты переключаешься между состояниями.</li>
+          <li class="m-ri"><strong>RI (20%)</strong> — как состояние держится в третьих блоках сессий и под давлением.</li>
+          <li class="m-pi"><strong>PI (15%)</strong> — анализ ответов после сессии, сравнение с ЭЭГ.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-grid">
+      <div class="sub-card si" data-axis="si">
+        <div class="sc-top">
+          <span class="sc-abbr">SI</span>
+          <span class="sc-name">Switching</span>
+          <span class="sc-pct">30%</span>
+        </div>
+        <div class="sc-role">Скорость переключения</div>
+        <p>Скорость и точность намеренного перехода из одного состояния в другое. Измеряется в секундах от намерения до смены ЭЭГ-паттерна. Можно уметь входить в тишину — но тратить на это десять минут. А можно за три секунды. Разница в тренируемости.</p>
+        <div class="sc-train"><strong>Тренирует:</strong> практики с намеренным входом в состояние.</div>
+      </div>
+      <div class="sub-card di" data-axis="di">
+        <div class="sc-top">
+          <span class="sc-abbr">DI</span>
+          <span class="sc-name">Depth</span>
+          <span class="sc-pct">35%</span>
+        </div>
+        <div class="sc-role">Глубина состояния</div>
+        <p>Глубина относительно твоей персональной точки А — не от абстрактной «нормы», а от тебя самого вчерашнего. Именно поэтому нужен Point A — базовый нейроснимок первой сессии. Без него глубина не имеет смысла: непонятно, от чего считать.</p>
+        <div class="sc-train"><strong>Тренирует:</strong> практики на углубление и погружение.</div>
+      </div>
+      <div class="sub-card ri" data-axis="ri">
+        <div class="sc-top">
+          <span class="sc-abbr">RI</span>
+          <span class="sc-name">Resilience</span>
+          <span class="sc-pct">20%</span>
+        </div>
+        <div class="sc-role">Устойчивость</div>
+        <p>Способность удерживать состояние под реальной нагрузкой и возвращаться в него после возмущения. Войти в тишину в тихой комнате может почти каждый. Удержать её, когда звонит телефон. Вернуться за пять секунд после того, как отвлёкся. Это RI.</p>
+        <div class="sc-train"><strong>Тренирует:</strong> практики на устойчивость и интеграцию.</div>
+      </div>
+      <div class="sub-card pi" data-axis="pi">
+        <div class="sc-top">
+          <span class="sc-abbr">PI</span>
+          <span class="sc-name">Phenomenology</span>
+          <span class="sc-pct">15%</span>
+        </div>
+        <div class="sc-role">Соответствие нарратива состоянию</div>
+        <p>Соответствие языка нарратива состоянию мозга. Если ЭЭГ показывает глубокое состояние, а язык остался абстрактным — PI фиксирует рассинхронизацию. Мозг был в Pure Nothing, а человек описывает штампами из книжек про медитацию. Данные разошлись — и это тоже данные.</p>
+        <div class="sc-train"><strong>Тренирует:</strong> осознанность и интеграцию опыта.</div>
+      </div>
+    </div>
+
+    <div class="formula-box">MNPI = <span class="fc-accent">SI × 0.30</span> + <span class="fc-accent">DI × 0.35</span> + <span class="fc-accent">RI × 0.20</span> + <span class="fc-accent">PI × 0.15</span></div>
+
+    <div class="mnpi-scale">
+      <div class="scale-bar"><div class="scale-marker"></div></div>
+      <div class="scale-labels">
+        <span class="s-red">🔴 Дисфункция<br>0–49</span>
+        <span class="s-orange">🟠 Напряжение<br>50–69</span>
+        <span class="s-yellow">🟡 Рабочий<br>70–84</span>
+        <span class="s-green">🟢 Синергия<br>85–100</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════
-     SECTION 7 — Что нужно
+     ЭКРАН 8 — ТЕСТ
 ══════════════════════════════ -->
-<section class="section">
+<section class="section-wide">
+  <div class="section-label">модуль теста</div>
+  <h2>Цифры без понимания — это просто цифры.</h2>
+  <p>Когда ты смотришь на Alpha Gravity 1.4, на IAPF Suppression 2.1, на SDNN 68 мс — что это значит? Это много или мало? Кто эту метрику придумал? Из какого ритма она считается? На какие поведенческие паттерны влияет?</p>
+  <p>Владелец нейробанда, который не ответит на эти вопросы, — просто смотрит в красивый интерфейс. <strong>Владелец, который ответит — реально работает с собственными данными.</strong> Тест в курсе проверяет именно это: историю метрик (Бергер, Клаймеш, Баевский, Стерман), диапазоны, связи, мифы и ловушки.</p>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-prog">Вопрос 3 из 40 · демо</div>
+    <div class="quiz-bar"><span class="quiz-bar-fill"></span></div>
+    <div class="quiz-q">Кто и в каком году впервые описал альфа-ритм?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-letter="A" data-correct="false">Сэр Чарльз Шеррингтон (1906)</button>
+      <button class="quiz-opt" data-letter="B" data-correct="true">Ганс Бергер (1929)</button>
+      <button class="quiz-opt" data-letter="C" data-correct="false">Барри Стерман (1967)</button>
+      <button class="quiz-opt" data-letter="D" data-correct="false">Вольфганг Клаймеш (1999)</button>
+    </div>
+    <div class="quiz-explain" id="quizExplain">
+      <strong>Правильно — Ганс Бергер, 1929.</strong> При создании первой ЭЭГ человека. «Альфа» — первая буква греческого алфавита, потому что это был первый обнаруженный ритм. Дальше Бергер же описал бета-ритм вторым — отсюда название. В курсе — 40 вопросов по истории, диапазонам, связям и мифам.
+    </div>
+  </div>
+  <div class="quiz-preview">
+    <div class="quiz-preview-card">Вопрос 7 · Мифы</div>
+    <div class="quiz-preview-card">Вопрос 14 · Диапазоны</div>
+    <div class="quiz-preview-card">Вопрос 23 · Связи</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 9 — ГИПОТЕЗА
+══════════════════════════════ -->
+<section class="section-wide">
+  <div class="section-label">модуль научного метода</div>
+  <h2>Как превратить данные в инструмент</h2>
+  <p class="lead">Нейроданные сами по себе ничего не доказывают. Гипотеза делает их полезными.</p>
+  <p>«Мой IAPF Suppression 1.8, значит у меня выгорание» — это не вывод, это паника. «У меня IAPF Suppression 1.8, проверю, вырастет ли он после двух недель сна по 8 часов» — это гипотеза. Разница фундаментальная. Первое — приговор. Второе — инструмент.</p>
+
+  <div class="hypo-flow">
+    <div class="hypo-step">
+      <div class="hn">01</div>
+      <div class="ht">Вопрос</div>
+      <div class="ex">
+        <span class="bad">Я странно себя чувствую последние две недели</span>
+        <span class="good">Как 2 недели сна по 8 часов повлияют на мой SDNN?</span>
+      </div>
+    </div>
+    <div class="hypo-step">
+      <div class="hn">02</div>
+      <div class="ht">Гипотеза</div>
+      <div class="ex">
+        <span class="bad">Наверное, стану спокойнее</span>
+        <span class="good">SDNN в Pure Nothing вырастет на 10+ мс</span>
+      </div>
+    </div>
+    <div class="hypo-step">
+      <div class="hn">03</div>
+      <div class="ht">Замер</div>
+      <div class="ex">
+        <span class="bad">Один замер в случайный день</span>
+        <span class="good">3 до + 3 после, в одно время, в одних условиях</span>
+      </div>
+    </div>
+    <div class="hypo-step">
+      <div class="hn">04</div>
+      <div class="ht">Вывод</div>
+      <div class="ex">
+        <span class="bad">Вроде лучше стало</span>
+        <span class="good">SDNN 62→74 мс (+12). Подтверждено.</span>
+      </div>
+    </div>
+  </div>
+  <div class="hypo-loop">↺ Цикл: новый вопрос рождается из вывода</div>
+</section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 10 — 7 РЕЖИМОВ
+══════════════════════════════ -->
+<section class="section-wide">
+  <div class="section-label">операционная система мозга</div>
+  <h2>Функциональные состояния · 7 режимов сознания</h2>
+  <p>В чекапе мы замеряем пять состояний. Но это не весь регистр. Всего режимов — семь. Каждый — отдельное нейрофизиологическое состояние со своим паттерном на ЭЭГ, своим эффектом в теле, своим применением в жизни. Модуль разбирает все семь: что происходит в мозге, какие ощущения, какие задачи становятся доступны, как верифицировать на ЭЭГ.</p>
+
+  <div class="modes-grid">
+    <div class="mode-cell checked">
+      <span class="micon">∅</span>
+      <h4>Pure Nothing</h4>
+      <div class="meng">Полная остановка</div>
+      <span class="mtag">в чекапе</span>
+    </div>
+    <div class="mode-cell checked">
+      <span class="micon">🫀</span>
+      <h4>Visceral Mind</h4>
+      <div class="meng">Тело как канал</div>
+      <span class="mtag">в чекапе</span>
+    </div>
+    <div class="mode-cell checked">
+      <span class="micon">🌊</span>
+      <h4>Deep Window</h4>
+      <div class="meng">Альфа-тета</div>
+      <span class="mtag">в чекапе</span>
+    </div>
+    <div class="mode-cell checked">
+      <span class="micon">👁</span>
+      <h4>Active Presence</h4>
+      <div class="meng">Альфа наружу</div>
+      <span class="mtag">в чекапе</span>
+    </div>
+    <div class="mode-cell checked">
+      <span class="micon">🔮</span>
+      <h4>Transcendent Download</h4>
+      <div class="meng">Интеграция сетей</div>
+      <span class="mtag">в чекапе</span>
+    </div>
+    <div class="mode-cell extra">
+      <span class="micon">⚡</span>
+      <h4>Embodied Flow</h4>
+      <div class="meng">Поток в действии</div>
+      <span class="mtag">только в модуле</span>
+    </div>
+    <div class="mode-cell extra">
+      <span class="micon">✨</span>
+      <h4>Quantum Genesis</h4>
+      <div class="meng">Креативный синтез</div>
+      <span class="mtag">только в модуле</span>
+    </div>
+    <div class="mode-cell extra" style="background: linear-gradient(180deg, rgba(95,95,255,0.05), transparent 80%); border-style: dashed;">
+      <span class="micon" style="opacity:0.5;">?</span>
+      <h4 style="color: var(--muted);">+ подход</h4>
+      <div class="meng">Как переключаться</div>
+      <span class="mtag">протоколы</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 11 — БОНУС
+══════════════════════════════ -->
+<section class="section-wide">
+  <div class="section-label">бонус</div>
+  <h2>Одна персональная тренировка — с сертифицированным специалистом</h2>
+  <p>Сорок минут один на один. Не по шаблону — по твоим данным чекапа. Специалист смотрит на твой профиль, твои ответы после сессий, твою точку старта — и работает именно с тем, что видно в данных.</p>
+
+  <div class="bonus-zone">
+    <div class="bonus-card">
+      <div class="bonus-badge">★ Bonus</div>
+      <h3>Персональная сессия<br>40 минут</h3>
+      <div class="bsub">один на один · по твоим данным чекапа<br>сертифицированный специалист по 7 режимам</div>
+      <div class="bdivider"></div>
+      <div class="bonus-icons">
+        <div><span>🧠</span>Разбор нейропрофиля</div>
+        <div><span>⚡</span>Целевой режим</div>
+        <div><span>📋</span>Личный протокол</div>
+      </div>
+      <div class="bmeet">Zoom · Google Meet · офлайн в Москве</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 12 — ТРИ ГАЙДА
+══════════════════════════════ -->
+<section class="section-wide">
+  <div class="section-label">закрытые материалы</div>
+  <h2>Плюс — доступ к трём закрытым гайдам, которые нигде больше не найти</h2>
+  <p>Материалы, которые обычно собирают по форумам, случайным видео и разрозненным статьям — у тебя будут сразу, в одном месте, в рабочем виде. Доступ открывается вместе с курсом и остаётся навсегда.</p>
+
+  <div class="guides-grid">
+    <div class="guide-card" tabindex="0">
+      <div class="guide-flip">
+        <div class="guide-face guide-front">
+          <span class="guide-lock">🔒</span>
+          <div class="gsub">Гайд · руководство пользователя</div>
+          <h4>Приложение<br>Neiry</h4>
+          <span class="g-badge">Входит в курс · навсегда</span>
+        </div>
+        <div class="guide-face guide-back">
+          <h4>Приложение Neiry</h4>
+          <p>Как работать с приложением на уровне эксперта. Что где искать. Как читать интерфейс. Настройка, калибровка, экспорт данных, разбор экранов. То, что новый владелец нейробенда узнаёт месяцами методом тыка — у тебя в структурированном виде с первого дня.</p>
+          <div class="guide-metrics">~50 страниц · 18 разделов · v2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="guide-card" tabindex="0">
+      <div class="guide-flip">
+        <div class="guide-face guide-front">
+          <span class="guide-lock">🔒</span>
+          <div class="gsub">Гайд · практическое руководство</div>
+          <h4>Neiry Capsule<br>Practical Guide</h4>
+          <span class="g-badge">Входит в курс · навсегда</span>
+        </div>
+        <div class="guide-face guide-back">
+          <h4>Neiry Capsule</h4>
+          <p>Детальный разбор работы с нейробендом от первого включения до первой осмысленной сессии. Частые ошибки, проверка качества сигнала, как не испортить первые данные, как избежать артефактов, которые делают замер бесполезным. Десятки часов самостоятельного разбирательства — в одном гайде.</p>
+          <div class="guide-metrics">~40 страниц · FAQ · чек-листы</div>
+        </div>
+      </div>
+    </div>
+    <div class="guide-card" tabindex="0">
+      <div class="guide-flip">
+        <div class="guide-face guide-front">
+          <span class="guide-lock">🔒</span>
+          <div class="gsub">Справочник · все метрики</div>
+          <h4>Метрики<br>Neiry</h4>
+          <span class="g-badge">Входит в курс · навсегда</span>
+        </div>
+        <div class="guide-face guide-back">
+          <h4>Справочник метрик Neiry</h4>
+          <p>Полное описание всех метрик устройства. Что они значат. Кто их придумал и в каком контексте (Бергер, Клаймеш, Баевский, Стерман — история за каждой цифрой). Диапазоны, интерпретации, поведение в покое и при задаче, разбор мифов. База, на которой построен тест курса.</p>
+          <div class="guide-metrics">~60 страниц · 45 метрик · 12 разделов</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="quiet" style="text-align: center; margin-top: 18px;">Эти материалы не продаются и не находятся в открытом доступе. Часть закрытой инфраструктуры программы ONTO NOTHING × Neiry.</p>
+</section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 13 — ТАРИФЫ
+══════════════════════════════ -->
+<section class="section-wide" id="tariffs">
+  <div class="section-label">тарифы</div>
+  <h2>Выбери формат</h2>
+  <p>Три варианта. Зависит от того, есть ли у тебя уже нейробенд и нужно ли тебе живое сопровождение.</p>
+
+  <div style="text-align:center;">
+    <div class="tariff-toggle" id="tariffToggle">
+      <button class="is-on" data-filter="have">Уже есть нейробенд</button>
+      <button data-filter="none">Нейробенда нет</button>
+    </div>
+  </div>
+
+  <div class="tariff-grid">
+    <div class="tariff-card" data-kind="have">
+      <div class="tari-name">В записи</div>
+      <div class="tari-for">для владельцев нейробенда</div>
+      <div class="tari-price">10 000 <span>₽</span></div>
+      <div class="tari-desc">Все сессии, тесты и модули — в записи, в удобном темпе.</div>
+      <ul class="tari-list">
+        <li>5 диагностических сессий · протоколы + аудиогайды</li>
+        <li>Тест на знание данных и метрик</li>
+        <li>Модуль «Гипотеза и проверка»</li>
+        <li>Модуль «7 режимов сознания»</li>
+        <li>Три закрытых гайда · навсегда</li>
+        <li>Закрытый Telegram-канал</li>
+        <li class="no">Персональная тренировка</li>
+      </ul>
+      <a href="/zapisatsya/?tarif=basic" class="tari-cta">Выбрать →</a>
+    </div>
+
+    <div class="tariff-card rec" data-kind="have">
+      <span class="rec-badge">Рекомендуем</span>
+      <div class="tari-name">Тренинг</div>
+      <div class="tari-for">для владельцев нейробенда</div>
+      <div class="tari-price">15 000 <span>₽</span></div>
+      <div class="tari-desc">Всё из записи — плюс живое сопровождение и бонус-сессия.</div>
+      <ul class="tari-list">
+        <li>Всё из тарифа «В записи»</li>
+        <li><strong>Бонус:</strong> 40-мин тренировка со специалистом по 7 режимам</li>
+        <li>Проверка теста специалистом (а не авто)</li>
+        <li>Разбор твоего нейропрофиля после 5-й сессии</li>
+        <li>Приоритетная поддержка в чате</li>
+      </ul>
+      <a href="/zapisatsya/?tarif=training" class="tari-cta">Выбрать →</a>
+    </div>
+
+    <div class="tariff-card gold" data-kind="none">
+      <div class="tari-name">Нейробенд + курс</div>
+      <div class="tari-for">для тех, у кого нейробенда ещё нет</div>
+      <div class="tari-price">75 000 <span>₽</span></div>
+      <div class="tari-desc">Оборудование + программа + живое сопровождение — одним пакетом.</div>
+      <ul class="tari-list">
+        <li><strong>Нейробенд Neiry</strong> · навсегда, остаётся у тебя</li>
+        <li>Всё из тарифа «Тренинг»</li>
+        <li><strong>Бонус:</strong> 40-мин персональная тренировка</li>
+        <li>Помощь с первой настройкой и калибровкой</li>
+        <li>Приоритетная поддержка</li>
+      </ul>
+      <a href="/zapisatsya/?tarif=full" class="tari-cta">Выбрать →</a>
+    </div>
+  </div>
+  <div class="tariff-micro">Оплата через бот. Доступна рассрочка. Записи и материалы остаются навсегда.</div>
+</section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 14 — ДЛЯ КОГО
+══════════════════════════════ -->
+<section class="section-wide">
+  <div class="section-label">аудитория</div>
+  <h2>Четыре типа людей, для которых это сделано</h2>
+
+  <div class="aud-matrix-wrap">
+    <div class="aud-axis-vert"><span>Работа с другими ← Личная работа</span></div>
+    <div class="aud-matrix-main">
+      <div class="aud-matrix">
+        <div class="aud-card biohacker">
+          <div class="a-icon">⌚</div>
+          <h4>Биохакеры</h4>
+          <div class="a-sub">уже живут по данным</div>
+          <p>У вас Whoop, Oura, Garmin. Вы знаете свою HRV, SWS, температуру. Но это следствие. Источник — мозг. Чекап даёт прямые данные ЭЭГ и связывает их с метриками тела, которые вы уже носите.</p>
+        </div>
+        <div class="aud-card seeker">
+          <div class="a-icon">🧭</div>
+          <h4>Ищущие</h4>
+          <div class="a-sub">в точке поиска себя</div>
+          <p>Вы пробовали медитации, приложения, практики. Что-то работало, что-то нет. Не хватает объективности. Чекап не обещает просветления — он показывает, какие состояния доступны и где зоны роста.</p>
+        </div>
+        <div class="aud-card founder">
+          <div class="a-icon">⚙</div>
+          <h4>Предприниматели</h4>
+          <div class="a-sub">высокая когнитивная нагрузка</div>
+          <p>Вам не нужна ещё одна практика в календарь. Вам нужны данные о собственной системе — где мозг в хроническом перенапряжении, где альфа не восстанавливается. Точка старта для управленческих решений о собственном ресурсе.</p>
+        </div>
+        <div class="aud-card coach">
+          <div class="a-icon">🌱</div>
+          <h4>Коучи и фасилитаторы</h4>
+          <div class="a-sub">работают с состояниями других</div>
+          <p>Вы уже работаете с клиентами. Но есть ли у вашей работы объективная нейрофизиологическая база? Чекап — возможность пройти протокол самому и увидеть инструмент изнутри. Тест и модуль про гипотезы особенно релевантны.</p>
+        </div>
+      </div>
+      <div class="aud-axis-horiz"><span>Данные</span><span>Смысл</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 15 — ЧТО НУЖНО
+══════════════════════════════ -->
+<section class="section-wide">
   <div class="section-label">подготовка</div>
-  <h2>Что нужно</h2>
+  <h2>Что потребуется для прохождения</h2>
 
-  <ul class="checklist">
-    <li>
-      <span class="ck">✓</span>
-      <div><strong>Neiry MindTracker или Neiry Capsule</strong> — основной нейробанд для записи ЭЭГ</div>
-    </li>
-    <li>
-      <span class="ck">✓</span>
-      <div><strong>Garmin или другой HRV-трекер</strong> — желательно, но не обязательно</div>
-    </li>
-    <li>
-      <span class="ck">✓</span>
-      <div><strong>Тихое место</strong> — без отвлекающих звуков, ~35–40 минут на сессию</div>
-    </li>
-    <li>
-      <span class="ck">✓</span>
-      <div><strong>Пять дней</strong> — или больше, в удобном темпе. По одной сессии за раз.</div>
-    </li>
-  </ul>
-
-  <div class="cta-final">
-    <h3>Готов начать?</h3>
-    <p style="margin-bottom: 22px;">Первая сессия занимает 35 минут. Нужно только тихое место, нейробанд и готовность просто быть.</p>
-    <a href="./session-1/index.html" style="display:inline-flex; align-items:center; gap:10px; padding:14px 28px; background:#5F5FFF; color:#fff; border-radius:12px; font-family:var(--fh); font-weight:700; font-size:0.95rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">Сессия 01 — Базовый снимок →</a>
+  <div class="req-grid">
+    <div class="req-cell">
+      <span class="ok-check">✓</span>
+      <div class="req-icon">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M 4 16 Q 4 8 16 8 Q 28 8 28 16"/>
+          <path d="M 4 16 L 4 20 M 28 16 L 28 20"/>
+          <circle cx="16" cy="14" r="2.2"/>
+          <path d="M 10 20 L 12 22 M 22 20 L 20 22"/>
+        </svg>
+      </div>
+      <h4>Нейробенд Neiry</h4>
+      <p>Neiry MindTracker или Neiry Capsule. Обязательно для тарифов 1 и 2 · для тарифа 3 — входит в пакет.</p>
+    </div>
+    <div class="req-cell">
+      <span class="ok-check">✓</span>
+      <div class="req-icon">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="10" y="8" width="12" height="16" rx="3"/>
+          <path d="M 10 11 L 8 11 M 24 11 L 22 11 M 10 21 L 8 21 M 24 21 L 22 21"/>
+          <path d="M 14 16 L 15 15 L 16 17 L 17 14 L 18 16"/>
+        </svg>
+      </div>
+      <h4>HRV-трекер</h4>
+      <p>Garmin, Apple Watch, WHOOP, Oura или другой. С HRV-данными картина полнее.</p>
+      <span class="opt">желательно</span>
+    </div>
+    <div class="req-cell">
+      <span class="ok-check">✓</span>
+      <div class="req-icon">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="16" cy="12" r="4"/>
+          <path d="M 8 26 Q 8 18 16 18 Q 24 18 24 26"/>
+          <path d="M 4 22 L 6 24 M 28 22 L 26 24"/>
+        </svg>
+      </div>
+      <h4>Тихое место</h4>
+      <p>35–45 минут на сессию, без шума и уведомлений. Комфортное сидячее положение.</p>
+    </div>
+    <div class="req-cell">
+      <span class="ok-check">✓</span>
+      <div class="req-icon">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="4" y="6" width="24" height="22" rx="3"/>
+          <path d="M 4 12 L 28 12"/>
+          <path d="M 9 4 L 9 10 M 16 4 L 16 10 M 23 4 L 23 10"/>
+          <rect x="8" y="16" width="3" height="3"/>
+          <rect x="13" y="16" width="3" height="3"/>
+          <rect x="18" y="16" width="3" height="3"/>
+          <rect x="23" y="16" width="1" height="3"/>
+          <rect x="8" y="21" width="3" height="3"/>
+        </svg>
+      </div>
+      <h4>5 дней и больше</h4>
+      <p>Одна сессия в день оптимально. Можно растянуть на две недели. Больше месяца — теряется связность.</p>
+    </div>
   </div>
 </section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 16 — ЧТО ПОТОМ
+══════════════════════════════ -->
+<section class="section-wide">
+  <div class="section-label">перспектива</div>
+  <h2>Чекап-курс — это точка старта. Что дальше — твой выбор.</h2>
+  <p>Чекап даёт тебе Point A — базовую нейрофизиологическую координату и навык работать со своими данными. Дальше можно двигаться по нескольким траекториям.</p>
+
+  <div class="path-wrap">
+    <div class="path-node start">
+      <div class="pb-icon">∅</div>
+      <div>
+        <div class="pb-title">Чекап-курс · Point A</div>
+        <div class="pb-desc">Ты здесь. Базовая нейрофизиологическая координата, с которой считается всё последующее движение.</div>
+      </div>
+      <div class="pb-arr">→</div>
+    </div>
+    <div class="path-node branch-a">
+      <div class="pb-icon">↻</div>
+      <div>
+        <div class="pb-title">Свой темп · пересчёт раз в квартал</div>
+        <div class="pb-desc">Возвращаешься раз в квартал, пересчитываешь чекап — видишь, как меняется мозг во времени. Базового курса хватает.</div>
+      </div>
+      <div class="pb-arr">→</div>
+    </div>
+    <div class="path-node branch-b">
+      <div class="pb-icon">◎</div>
+      <div>
+        <div class="pb-title">MNPI-профиль · исследовательский уровень</div>
+        <div class="pb-desc">Феноменологический анализ голосовых нарративов, длительное наблюдение физиологии, интегральный отчёт. Строится на данных чекапа.</div>
+      </div>
+      <div class="pb-arr">→</div>
+    </div>
+    <div class="path-node branch-c">
+      <div class="pb-icon">⌘</div>
+      <div>
+        <div class="pb-title">ONTO NOTHING · практика 7 режимов</div>
+        <div class="pb-desc">Уже не диагностика, а практика — целенаправленная работа с режимами сознания и их тренировка. Чекап — обязательный вход.</div>
+      </div>
+      <div class="pb-arr">→</div>
+    </div>
+  </div>
+  <p class="quiet" style="text-align:center; margin-top:18px;">Без чекапа все последующие замеры висят в воздухе. С ним — любое изменение в твоём мозге за следующий месяц, полгода, год становится видно.</p>
+</section>
+
+<!-- ══════════════════════════════
+     ЭКРАН 17 — ФИНАЛ
+══════════════════════════════ -->
+<section class="section-wide">
+  <div class="final-zone">
+    <svg class="final-eeg" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 0 40 Q 40 24 80 40 T 160 40 Q 200 18 240 40 T 320 40 Q 360 30 400 40 T 480 40 Q 520 14 560 40 T 640 40 Q 680 30 720 40 T 800 40 Q 840 20 880 40 T 960 40 L 1000 40"/>
+      <circle cx="100" cy="40" r="6" fill="#00A39A"/>
+      <circle cx="300" cy="40" r="6" fill="#F59E0B"/>
+      <circle cx="500" cy="40" r="6" fill="#A78BFA"/>
+      <circle cx="700" cy="40" r="6" fill="#10B981"/>
+      <circle cx="900" cy="40" r="6" fill="#EF4444"/>
+    </svg>
+    <h2>Сначала — узнай, где ты есть.<br>Потом решай, куда идти.</h2>
+    <p>MNPI Checkup Neiry — структурированная нейрофизиологическая диагностика для владельцев нейробенда. Пять состояний сознания, тест, два модуля, персональная сессия со специалистом и три гайда. После курса у тебя впервые появляется Point A — объективная точка, от которой считается любое дальнейшее движение.</p>
+    <a href="/zapisatsya/" class="btn-primary btn-glow">Пройти чекап-курс →</a>
+    <p class="quiet" style="margin-top: 22px; font-family: var(--fm); font-size: 0.8rem;">От 10 000 ₽ — для владельцев нейробенда · 75 000 ₽ — нейробенд + полный курс</p>
+    <div class="final-logos"><strong>NEIRY</strong><span>×</span><strong>ONTO NOTHING</strong></div>
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── Reveal on scroll
+  var revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  // ── Quiz
+  var quizCard = document.getElementById('quizCard');
+  if (quizCard) {
+    var opts = quizCard.querySelectorAll('.quiz-opt');
+    var explain = document.getElementById('quizExplain');
+    opts.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (quizCard.dataset.answered === '1') return;
+        var correct = btn.dataset.correct === 'true';
+        opts.forEach(function (o) {
+          o.disabled = true;
+          if (o.dataset.correct === 'true') o.classList.add('correct');
+        });
+        if (!correct) btn.classList.add('wrong');
+        quizCard.classList.add(correct ? 'ok' : 'bad');
+        quizCard.dataset.answered = '1';
+        if (explain) explain.classList.add('is-shown');
+      });
+    });
+  }
+
+  // ── MNPI counter + radar reveal
+  var radarWrap = document.getElementById('radarWrap');
+  var mnpiNum = document.getElementById('mnpiNum');
+  if (radarWrap && mnpiNum && 'IntersectionObserver' in window) {
+    var shown = false;
+    var ioRadar = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting || shown) return;
+        shown = true;
+        radarWrap.classList.add('is-active');
+        var target = 72;
+        var start = null;
+        var dur = 1400;
+        function tick(ts) {
+          if (!start) start = ts;
+          var p = Math.min(1, (ts - start) / dur);
+          var eased = 1 - Math.pow(1 - p, 3);
+          mnpiNum.textContent = Math.round(target * eased);
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        ioRadar.disconnect();
+      });
+    }, { threshold: 0.35 });
+    ioRadar.observe(radarWrap);
+  }
+
+  // ── Sub-card ↔ radar axis highlight
+  var subCards = document.querySelectorAll('.sub-card[data-axis]');
+  var axisLabels = document.querySelectorAll('.radar-label');
+  subCards.forEach(function (card) {
+    card.addEventListener('mouseenter', function () {
+      var axis = card.dataset.axis;
+      axisLabels.forEach(function (l) {
+        if (l.classList.contains(axis)) l.classList.add('highlight');
+      });
+    });
+    card.addEventListener('mouseleave', function () {
+      axisLabels.forEach(function (l) { l.classList.remove('highlight'); });
+    });
+  });
+
+  // ── States map: подсветка активной сессии при скролле
+  var stateNodes = document.querySelectorAll('.smap-node');
+  var stateArticles = document.querySelectorAll('.states-content article[data-smap]');
+  if (stateNodes.length && stateArticles.length && 'IntersectionObserver' in window) {
+    var current = 's1';
+    function setActive(key) {
+      if (key === current) return;
+      current = key;
+      stateNodes.forEach(function (n) { n.classList.toggle('is-active', n.dataset.target === key); });
+    }
+    var ioStates = new IntersectionObserver(function (entries) {
+      var best = null;
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        if (!best || e.intersectionRatio > best.intersectionRatio) best = e;
+      });
+      if (best) setActive(best.target.dataset.smap);
+    }, { threshold: [0.35, 0.6], rootMargin: '-30% 0px -30% 0px' });
+    stateArticles.forEach(function (a) { ioStates.observe(a); });
+    // Click на ноде — плавный скролл
+    stateNodes.forEach(function (n) {
+      n.addEventListener('click', function () {
+        var tgt = document.querySelector('.states-content article[data-smap="' + n.dataset.target + '"]');
+        if (tgt) tgt.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      n.style.cursor = 'pointer';
+    });
+  }
+
+  // ── Tariff toggle
+  var toggle = document.getElementById('tariffToggle');
+  if (toggle) {
+    var btns = toggle.querySelectorAll('button');
+    var cards = document.querySelectorAll('.tariff-card[data-kind]');
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        btns.forEach(function (x) { x.classList.remove('is-on'); });
+        b.classList.add('is-on');
+        var filter = b.dataset.filter;
+        cards.forEach(function (c) {
+          c.classList.toggle('is-dim', c.dataset.kind !== filter);
+        });
+      });
+    });
+  }
+
+  // ── Guide card click (mobile flip)
+  var guideCards = document.querySelectorAll('.guide-card');
+  guideCards.forEach(function (g) {
+    g.addEventListener('click', function (e) {
+      if (window.matchMedia('(hover: none)').matches) {
+        g.classList.toggle('is-flipped');
+      }
+    });
+    g.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        g.classList.toggle('is-flipped');
+      }
+    });
+  });
+})();
+</script>
 
 <script src="../../components/nav.js"></script>
 <script src="../../components/footer.js"></script>
