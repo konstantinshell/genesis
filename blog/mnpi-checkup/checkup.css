@@ -3475,6 +3475,306 @@ h1, h2, h3, h4 {
 }
 
 /* ═══════════════════════════════════════════════
+   Bento dashboard — Apple-style spec summary
+═══════════════════════════════════════════════ */
+.bento-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.bento-intro p {
+  font-family: var(--fm);
+  font-size: 0.84rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 520px;
+  margin: 0;
+}
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin: 24px 0 16px;
+  grid-auto-flow: dense;
+}
+.bento-tile {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 22px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 180px;
+}
+.bento-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(22,22,26,0.07);
+}
+.bento-tile .bt-kicker {
+  font-family: var(--fm);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.bento-tile .bt-big {
+  font-family: var(--fh);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.bento-tile .bt-big .bt-suffix {
+  font-family: var(--fm);
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 4px;
+  letter-spacing: 0;
+}
+.bento-tile .bt-title {
+  font-family: var(--fh);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.bento-tile .bt-desc {
+  font-size: 0.86rem;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin: auto 0 0;
+}
+.bento-tile .bt-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+.bento-tile .bt-list li {
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.45;
+  font-family: var(--fm);
+}
+.bento-tile .bt-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 1;
+  top: 2px;
+}
+.bento-tile .bt-delta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--fh);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ri);
+  margin-top: 2px;
+}
+.bento-tile .bt-delta::before {
+  content: '↑';
+  font-size: 0.9em;
+  font-weight: 700;
+}
+.bento-tile .bt-foot {
+  font-family: var(--fm);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+  line-height: 1.4;
+}
+
+/* Mini EEG decorative wave */
+.bt-wave {
+  width: 100%;
+  height: 36px;
+  margin: 8px 0 4px;
+  display: block;
+}
+.bt-wave path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+/* ── Tile sizes ──
+   Grid: 6 columns wide on desktop
+*/
+.bento-tile.size-2x1 { grid-column: span 2; }
+.bento-tile.size-3x1 { grid-column: span 3; }
+.bento-tile.size-4x1 { grid-column: span 4; }
+.bento-tile.size-2x2 { grid-column: span 2; grid-row: span 2; min-height: 372px; }
+.bento-tile.size-3x2 { grid-column: span 3; grid-row: span 2; min-height: 372px; }
+.bento-tile.size-6x1 { grid-column: span 6; min-height: 140px; }
+
+/* ── Tile color variants ── */
+.bento-tile.accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #6A6AFF 100%);
+  color: #fff;
+  border: none;
+}
+.bento-tile.accent .bt-kicker { color: rgba(255,255,255,0.7); }
+.bento-tile.accent .bt-big,
+.bento-tile.accent .bt-title { color: #fff; }
+.bento-tile.accent .bt-desc { color: rgba(255,255,255,0.85); }
+.bento-tile.accent .bt-foot { color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.2); }
+
+.bento-tile.dark {
+  background: linear-gradient(135deg, #0F1016 0%, #1A1B28 100%);
+  color: #EDEDF2;
+  border: 1px solid rgba(237,237,242,0.08);
+}
+.bento-tile.dark .bt-kicker { color: rgba(237,237,242,0.5); }
+.bento-tile.dark .bt-big,
+.bento-tile.dark .bt-title { color: #fff; }
+.bento-tile.dark .bt-desc { color: rgba(237,237,242,0.7); }
+.bento-tile.dark .bt-list { color: rgba(237,237,242,0.7); }
+.bento-tile.dark .bt-list li::before { color: #6A6AFF; }
+.bento-tile.dark .bt-foot { color: rgba(237,237,242,0.45); border-color: rgba(237,237,242,0.1); }
+.bento-tile.dark .bt-big .bt-suffix { color: rgba(237,237,242,0.5); }
+
+.bento-tile.growth {
+  background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+  border-color: rgba(16,185,129,0.3);
+}
+.bento-tile.growth .bt-kicker { color: #059669; }
+.bento-tile.growth .bt-big { color: #059669; }
+.bento-tile.growth .bt-title { color: #064E3B; }
+.bento-tile.growth .bt-desc { color: #065F46; }
+
+.bento-tile.gold {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border-color: rgba(212,161,85,0.4);
+}
+.bento-tile.gold .bt-big { color: #B8863E; }
+.bento-tile.gold .bt-title { color: #78350F; }
+
+.bento-tile.soft {
+  background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+  border-color: rgba(167,139,250,0.3);
+}
+.bento-tile.soft .bt-big { color: #7C3AED; }
+
+.bento-tile.cyan {
+  background: linear-gradient(135deg, #ECFEFF 0%, #CFFAFE 100%);
+  border-color: rgba(6,182,212,0.3);
+}
+.bento-tile.cyan .bt-big { color: #0891B2; }
+
+/* Icon corner */
+.bt-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent-s);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  pointer-events: none;
+}
+.bento-tile.accent .bt-icon,
+.bento-tile.dark .bt-icon { background: rgba(255,255,255,0.12); color: #fff; }
+.bento-tile.growth .bt-icon { background: rgba(16,185,129,0.18); color: #059669; }
+.bento-tile.gold .bt-icon { background: rgba(212,161,85,0.2); color: #B8863E; }
+.bento-tile.soft .bt-icon { background: rgba(124,58,237,0.14); color: #7C3AED; }
+.bento-tile.cyan .bt-icon { background: rgba(6,182,212,0.14); color: #0891B2; }
+
+/* Result-card specifics */
+.bt-metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border);
+  gap: 12px;
+}
+.bt-metric-row:last-child { border-bottom: none; }
+.bt-metric-name {
+  font-family: var(--fm);
+  font-size: 0.76rem;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+}
+.bt-metric-val {
+  font-family: var(--fh);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--ri);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.bt-metric-val.neg { color: var(--pi); }
+.bento-tile.dark .bt-metric-name { color: rgba(237,237,242,0.65); }
+.bento-tile.dark .bt-metric-row { border-color: rgba(237,237,242,0.12); }
+
+.bento-disclaimer {
+  margin-top: 16px;
+  padding: 14px 20px;
+  background: var(--bg-soft);
+  border: 1px dashed var(--border-2);
+  border-radius: 12px;
+  font-family: var(--fm);
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+.bento-disclaimer strong { color: var(--text-2); font-weight: 500; }
+
+@media (max-width: 900px) {
+  .bento { grid-template-columns: repeat(4, 1fr); }
+  .bento-tile.size-3x1,
+  .bento-tile.size-4x1 { grid-column: span 4; }
+  .bento-tile.size-3x2 { grid-column: span 4; grid-row: span 1; min-height: 200px; }
+  .bento-tile.size-6x1 { grid-column: span 4; }
+  .bento-tile.size-2x2 { grid-column: span 2; grid-row: span 2; min-height: 340px; }
+}
+@media (max-width: 560px) {
+  .bento { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .bento-tile { padding: 18px 18px 16px; min-height: 150px; }
+  .bento-tile.size-2x1,
+  .bento-tile.size-3x1,
+  .bento-tile.size-4x1,
+  .bento-tile.size-6x1,
+  .bento-tile.size-3x2 { grid-column: span 2; min-height: 150px; grid-row: auto; }
+  .bento-tile.size-2x2 { grid-column: span 2; grid-row: auto; min-height: 200px; }
+  .bt-icon { width: 32px; height: 32px; top: 14px; right: 14px; font-size: 1rem; }
+}
+
+/* ═══════════════════════════════════════════════
    Program timeline — расписание живого тренинга
 ═══════════════════════════════════════════════ */
 .program-zone {
