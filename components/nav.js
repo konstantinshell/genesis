@@ -21,6 +21,7 @@
   // ── Пункты меню ─────────────────────────────────────────────────
   const navItems = [
     { label: 'Ритмы жизни',       href: root + 'ritmy/index.html',                        match: /\/ritmy\// },
+    { label: 'NEIRY',             href: root + 'mnpi-checkup/index.html',                  match: /\/mnpi-checkup\// },
     { label: 'Блог',              href: root + 'blog/index.html',                         match: /^\/blog\/$|\/blog\/index\.html$/ },
     { label: 'ONTO NOTHING',      href: root + 'onto-nothing/index.html',                  match: /\/onto-nothing\// },
     { label: 'Записаться',        href: root + 'zapisatsya/index.html',                    match: /\/zapisatsya\//, cta: true },
