@@ -14,6 +14,7 @@
   const navLinks = [
     { label: 'Ритмы жизни',       href: root + 'ritmy/index.html' },
     { label: 'Исследование',      href: root + 'issledovanie/index.html' },
+    { label: 'I MENTAL',          href: root + 'i-mental/index.html' },
     { label: 'MNIP',              href: root + 'mnip/index.html' },
     { label: 'Блог',              href: root + 'blog/index.html' },
     { label: 'Записаться',        href: root + 'zapisatsya/index.html' },

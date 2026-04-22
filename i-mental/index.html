@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>I MENTAL · Книга о тебе · ONTO NOTHING</title>
+<meta name="description" content="I MENTAL — тренинг и персональная книга о тебе. Ты выгружаешь шесть слоёв своего ментального Я. ИИ превращает это в книгу — написанную из твоих собственных слов.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/nav.css">
+
+<style>
+/* ============================================================
+   I MENTAL · Dark theme + gold accent
+   Самостоятельная тема страницы, не использует ../css/style.css
+   ============================================================ */
+
+:root {
+  --bg:         #0A0A12;
+  --bg-2:       #14141F;
+  --bg-3:       #1A1A28;
+  --text:       #EDEDF2;
+  --text-mute:  rgba(237, 237, 242, 0.62);
+  --text-dim:   rgba(237, 237, 242, 0.36);
+  --text-faint: rgba(237, 237, 242, 0.14);
+  --line:       rgba(237, 237, 242, 0.08);
+  --line-br:    rgba(237, 237, 242, 0.18);
+
+  --gold:        #D4A155;
+  --gold-soft:   #E7B76B;
+  --gold-deep:   #B8863E;
+  --gold-glow:   rgba(212, 161, 85, 0.45);
+  --gold-bg:     rgba(212, 161, 85, 0.08);
+
+  --indigo:     #6D6DFF;
+  --cyan:       #5FBFFF;
+  --green:      #00E5A0;
+
+  --fh: "Oswald", sans-serif;
+  --fb: "Jost", sans-serif;
+  --fm: "Courier Prime", monospace;
+  --ft: "VT323", monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--fb);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
+}
+
+body {
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--gold-glow); color: var(--text); }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== Nav dark override ===== */
+.site-nav {
+  background: rgba(10, 10, 18, 0.78) !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+.site-nav .nav-logo { color: var(--text) !important; font-family: var(--fh); }
+.site-nav .nav-logo:hover { color: var(--gold-soft) !important; }
+.site-nav .nav-links a { color: var(--text-mute) !important; font-family: var(--fb); }
+.site-nav .nav-links a:hover { color: var(--text) !important; background: var(--gold-bg) !important; }
+.site-nav .nav-links a.active { color: var(--gold-soft) !important; background: var(--gold-bg) !important; }
+.site-nav .nav-burger span { background: var(--text) !important; }
+@media (max-width: 768px) {
+  .site-nav .nav-links { background: rgba(10, 10, 18, 0.96) !important; }
+}
+
+/* ===== Ambient + grain (from root index.html) ===== */
+.ambient {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+}
+.ambient::before {
+  content: ''; position: absolute;
+  top: -25%; left: 50%;
+  width: 140vmin; height: 140vmin;
+  transform: translateX(-50%);
+  background: radial-gradient(circle,
+    rgba(212, 161, 85, 0.22) 0%,
+    rgba(212, 161, 85, 0.08) 25%,
+    transparent 60%);
+  filter: blur(70px);
+  animation: glowDrift 22s ease-in-out infinite alternate;
+}
+.ambient::after {
+  content: ''; position: absolute;
+  bottom: -40%; left: 50%;
+  width: 110vmin; height: 110vmin;
+  transform: translateX(-50%);
+  background: radial-gradient(circle,
+    rgba(109, 109, 255, 0.12) 0%,
+    rgba(95, 191, 255, 0.04) 40%,
+    transparent 65%);
+  filter: blur(90px);
+  animation: glowDrift 26s ease-in-out infinite alternate-reverse;
+}
+@keyframes glowDrift {
+  0%   { transform: translate(-50%, 0) scale(1);     opacity: 0.85; }
+  100% { transform: translate(-46%, 3%) scale(1.08); opacity: 1;    }
+}
+
+.grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  opacity: 0.035; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== Base section ===== */
+main { position: relative; z-index: 2; }
+
+.s {
+  position: relative;
+  padding: 110px 32px;
+  z-index: 2;
+}
+.s-inner {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4 {
+  font-family: var(--fh);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  color: var(--text);
+}
+h1 { font-size: clamp(2.6rem, 6.4vw, 4.8rem); font-weight: 700; }
+h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+h3 { font-size: clamp(1.35rem, 2.4vw, 1.8rem); }
+h4 { font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--gold-soft); }
+
+p {
+  font-family: var(--fb);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-mute);
+}
+p.lead { font-size: 1.18rem; color: var(--text); }
+p + p { margin-top: 1.1em; }
+
+.eyebrow {
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 6px 14px;
+  border: 1px solid var(--gold-glow);
+  border-radius: 2px;
+  background: var(--gold-bg);
+}
+
+.hl { color: var(--gold-soft); font-weight: 500; }
+em { font-style: normal; color: var(--text); font-weight: 500; }
+strong { color: var(--text); font-weight: 600; }
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--line-br), transparent);
+  margin: 0 auto;
+  max-width: 640px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero-imental {
+  padding: 160px 32px 120px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.hero-inner { max-width: 980px; margin: 0 auto; position: relative; z-index: 3; }
+.hero-imental h1 {
+  font-family: var(--fh);
+  margin: 24px 0 32px;
+  letter-spacing: 0.005em;
+}
+.hero-imental h1 .highlight { color: var(--gold-soft); }
+.hero-imental h1 .highlight-under { position: relative; color: var(--text); }
+.hero-imental h1 .highlight-under::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 4%;
+  height: 0.18em;
+  background: var(--gold-deep);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.hero-tagline {
+  font-family: var(--fm);
+  font-size: 0.92rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 8px;
+}
+.hero-subtag {
+  font-family: var(--fm);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.hero-para {
+  max-width: 720px;
+  margin: 18px auto 0;
+  font-size: 1.12rem;
+  line-height: 1.75;
+  color: var(--text-mute);
+}
+.hero-para.emph { color: var(--text); font-weight: 400; font-size: 1.18rem; margin-top: 32px; }
+.hero-para.final { color: var(--gold-soft); font-family: var(--fh); font-size: 1.4rem; letter-spacing: 0.02em; margin-top: 36px; font-weight: 500; }
+
+/* Particles (neural field) */
+.particles {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.particles canvas { width: 100%; height: 100%; display: block; }
+
+/* ============================================================
+   SECTION: LAYERS (6 concentric rings)
+   ============================================================ */
+.layers-head { text-align: center; margin-bottom: 72px; }
+.layers-head h2 { margin-bottom: 18px; }
+.layers-head .eyebrow { margin-bottom: 20px; }
+
+.layers-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.layers-stage {
+  position: sticky;
+  top: 100px;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.layers-stage svg { width: 100%; height: 100%; overflow: visible; }
+.layer-ring {
+  fill: none;
+  stroke: var(--line-br);
+  stroke-width: 1.2;
+  transition: stroke 0.5s ease, stroke-width 0.5s ease, filter 0.5s ease;
+}
+.layer-ring.active {
+  stroke: var(--gold-soft);
+  stroke-width: 2.2;
+  filter: drop-shadow(0 0 12px var(--gold-glow));
+}
+.layer-center-dot { fill: var(--gold-soft); filter: drop-shadow(0 0 10px var(--gold-glow)); }
+
+.layer-label {
+  position: absolute;
+  font-family: var(--fm);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+  transition: color 0.4s ease;
+  pointer-events: none;
+}
+.layer-label.active { color: var(--gold-soft); }
+
+.layers-text { display: flex; flex-direction: column; gap: 44px; }
+.layer-entry {
+  padding: 28px 28px 28px 32px;
+  border-left: 2px solid var(--line);
+  border-radius: 0 8px 8px 0;
+  transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s ease;
+  cursor: pointer;
+}
+.layer-entry:hover {
+  border-left-color: var(--gold-deep);
+  background: rgba(212, 161, 85, 0.03);
+}
+.layer-entry.active {
+  border-left-color: var(--gold-soft);
+  background: var(--gold-bg);
+}
+.layer-entry h3 {
+  font-family: var(--fh);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.layer-entry.active h3 { color: var(--gold-soft); }
+.layer-entry p { color: var(--text-mute); font-size: 1rem; }
+
+/* Contrast block under layers */
+.contrast-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 80px;
+}
+.contrast-item {
+  padding: 40px 32px;
+  border-radius: 6px;
+  background: rgba(30, 30, 45, 0.5);
+  border: 1px solid var(--line-br);
+  text-align: center;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.contrast-item:hover { transform: translateY(-4px); border-color: var(--gold-deep); }
+.contrast-item.alt { background: rgba(212, 161, 85, 0.06); border-color: var(--gold-glow); }
+.contrast-item .tag { font-family: var(--fm); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-soft); display: block; margin-bottom: 12px; }
+.contrast-item p { color: var(--text); font-family: var(--fh); font-size: 1.35rem; line-height: 1.4; font-weight: 500; }
+
+/* ============================================================
+   SECTION: HOW (3-step vertical timeline)
+   ============================================================ */
+.how-wrap { max-width: 820px; margin: 0 auto; }
+.how-head { text-align: center; margin-bottom: 64px; }
+.how-timeline {
+  position: relative;
+  padding-left: 64px;
+}
+.how-timeline::before {
+  content: '';
+  position: absolute;
+  left: 22px; top: 20px; bottom: 20px;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--line-br) 8%, var(--line-br) 92%, transparent);
+}
+.how-step {
+  position: relative;
+  padding-bottom: 56px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.how-step.in { opacity: 1; transform: translateY(0); }
+.how-step:last-child { padding-bottom: 0; }
+.how-step-node {
+  position: absolute;
+  left: -64px; top: 2px;
+  width: 46px; height: 46px;
+  border: 2px solid var(--gold-deep);
+  background: var(--bg);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fh);
+  color: var(--gold-soft);
+  font-size: 1.15rem;
+  font-weight: 600;
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+.how-step.in .how-step-node {
+  box-shadow: 0 0 24px var(--gold-glow);
+  border-color: var(--gold-soft);
+}
+.how-step h3 {
+  font-family: var(--fh);
+  font-size: 1.6rem;
+  color: var(--gold-soft);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+.how-step .step-label {
+  font-family: var(--fm);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+  display: block;
+}
+.how-step p { color: var(--text-mute); }
+.how-step p.emph { color: var(--text); margin-top: 10px; font-style: italic; }
+
+/* ============================================================
+   SECTION: GAINS (5 flip cards)
+   ============================================================ */
+.gains-head { text-align: center; margin-bottom: 64px; }
+.gains-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+}
+.gain-card { grid-column: span 3; }
+.gain-card.row2 { grid-column: span 2; }
+.gain-card {
+  perspective: 1200px;
+  aspect-ratio: 1.3;
+  cursor: pointer;
+}
+.gain-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(.22,1,.36,1);
+}
+.gain-card.flipped .gain-inner { transform: rotateY(180deg); }
+@media (hover: hover) and (pointer: fine) {
+  .gain-card:hover .gain-inner { transform: rotateY(180deg); }
+}
+.gain-face {
+  position: absolute; inset: 0;
+  padding: 32px 28px;
+  border: 1px solid var(--line-br);
+  border-radius: 8px;
+  background: rgba(20, 20, 31, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex; flex-direction: column; justify-content: space-between;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.gain-face.back {
+  transform: rotateY(180deg);
+  background: rgba(212, 161, 85, 0.08);
+  border-color: var(--gold-glow);
+}
+.gain-icon {
+  font-family: var(--fh);
+  font-size: 2rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.04em;
+}
+.gain-face h3 {
+  font-family: var(--fh);
+  font-size: 1.25rem;
+  color: var(--text);
+  line-height: 1.25;
+  margin-top: 12px;
+}
+.gain-face p { font-size: 0.96rem; color: var(--text-mute); line-height: 1.6; }
+.gain-face.back p { color: var(--text); }
+
+/* ============================================================
+   SECTION: PROGRAM (horizontal timeline)
+   ============================================================ */
+.program-head { text-align: center; margin-bottom: 56px; }
+.program-timeline {
+  border-left: 2px solid var(--line-br);
+  padding-left: 28px;
+  position: relative;
+}
+.program-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px dashed var(--line);
+  align-items: flex-start;
+  position: relative;
+}
+.program-row:last-child { border-bottom: none; }
+.program-row::before {
+  content: '';
+  position: absolute;
+  left: -35px; top: 28px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--gold-deep);
+}
+.program-row.break::before { border-color: var(--text-dim); }
+.program-row.session::before {
+  background: var(--gold-soft);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+.program-time {
+  font-family: var(--fm);
+  font-size: 0.95rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.04em;
+  padding-top: 2px;
+}
+.program-row.break .program-time { color: var(--text-dim); }
+.program-content h4 {
+  font-family: var(--fh);
+  font-size: 1.15rem;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 6px;
+  letter-spacing: 0.015em;
+  text-transform: none;
+}
+.program-row.session .program-content h4 { color: var(--gold-soft); }
+.program-content p { font-size: 0.95rem; color: var(--text-mute); line-height: 1.55; }
+.program-content .dump {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  font-family: var(--fm);
+  font-size: 0.82rem;
+  color: var(--gold-soft);
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-glow);
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+
+.program-totals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 72px;
+  padding: 48px 32px;
+  border: 1px solid var(--gold-glow);
+  border-radius: 6px;
+  background: var(--gold-bg);
+  text-align: center;
+}
+.program-totals .total-num {
+  font-family: var(--fh);
+  font-size: clamp(2.6rem, 5vw, 3.8rem);
+  color: var(--gold-soft);
+  line-height: 1;
+  font-weight: 600;
+}
+.program-totals .total-label {
+  font-family: var(--fm);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  margin-top: 8px;
+}
+
+/* ============================================================
+   SECTION: WHY (morph + contrast)
+   ============================================================ */
+.why-head { text-align: center; margin-bottom: 48px; max-width: 760px; margin-left: auto; margin-right: auto; }
+.why-morph {
+  position: relative;
+  height: 320px;
+  margin: 56px 0 48px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: radial-gradient(ellipse at center, rgba(20,20,31,0.9) 0%, var(--bg) 80%);
+}
+.why-morph canvas { width: 100%; height: 100%; display: block; }
+.why-morph-caption {
+  position: absolute;
+  left: 50%; bottom: 24px;
+  transform: translateX(-50%);
+  font-family: var(--fm);
+  font-size: 0.82rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: center;
+  width: 90%;
+}
+.why-body {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.why-body p { margin-bottom: 1em; font-size: 1.05rem; }
+.why-body p.emph { color: var(--text); font-family: var(--fh); font-size: 1.25rem; line-height: 1.4; text-align: center; margin: 28px 0; font-weight: 500; }
+
+/* ============================================================
+   SECTION: PATH (8 step ladder)
+   ============================================================ */
+.path-head { text-align: center; margin-bottom: 64px; }
+.path-ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.path-step {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 24px;
+  padding: 22px 28px;
+  border: 1px solid var(--line);
+  background: rgba(20, 20, 31, 0.4);
+  border-radius: 4px;
+  align-items: center;
+  transition: transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+}
+.path-step:hover { transform: translateX(6px); border-color: var(--line-br); }
+.path-step .p-num {
+  font-family: var(--fh);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.path-step h3 { font-family: var(--fh); font-size: 1.2rem; color: var(--text); font-weight: 500; margin-bottom: 4px; }
+.path-step p { font-size: 0.95rem; color: var(--text-mute); line-height: 1.55; }
+.path-step .p-marker {
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.path-step.here {
+  border-color: var(--gold-soft);
+  background: var(--gold-bg);
+  box-shadow: 0 0 32px rgba(212, 161, 85, 0.15), inset 0 0 0 1px var(--gold-glow);
+}
+.path-step.here .p-num { color: var(--gold-soft); }
+.path-step.here h3 { color: var(--gold-soft); }
+.path-step.here .p-marker { color: var(--gold-soft); font-weight: 700; }
+
+/* ============================================================
+   SECTION: NUMBERS
+   ============================================================ */
+.numbers-head { text-align: center; margin-bottom: 56px; }
+.numbers-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 56px;
+}
+.num-card {
+  padding: 48px 28px;
+  text-align: center;
+  border: 1px solid var(--line);
+  background: rgba(20, 20, 31, 0.5);
+  border-radius: 6px;
+}
+.num-card .big {
+  font-family: var(--fh);
+  font-size: clamp(3rem, 6vw, 4.6rem);
+  font-weight: 700;
+  color: var(--gold-soft);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  margin-bottom: 14px;
+}
+.num-card .num-label {
+  color: var(--text-mute);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+.quote-card {
+  padding: 40px 48px;
+  border: 1px solid var(--gold-glow);
+  background: var(--gold-bg);
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 32px;
+  position: relative;
+}
+.quote-card::before {
+  content: '"';
+  position: absolute;
+  top: -6px; left: 22px;
+  font-family: var(--fh);
+  font-size: 4rem;
+  color: var(--gold-deep);
+  line-height: 1;
+}
+.quote-card blockquote {
+  font-family: var(--fh);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  color: var(--text);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.quote-card cite {
+  font-family: var(--fm);
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  font-style: normal;
+}
+.case-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  padding: 32px 36px;
+  border: 1px solid var(--line-br);
+  background: rgba(20, 20, 31, 0.5);
+  border-radius: 6px;
+  align-items: center;
+}
+.case-icon {
+  width: 56px; height: 56px;
+  border: 2px solid var(--gold-soft);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fh);
+  color: var(--gold-soft);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.case-card p { color: var(--text); font-size: 1rem; line-height: 1.6; }
+.case-card p .eeg-note {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+/* ============================================================
+   SECTION: SCIENCE (cluster cloud)
+   ============================================================ */
+.science-head { text-align: center; margin-bottom: 56px; }
+.science-cluster {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  aspect-ratio: 1.6;
+  min-height: 540px;
+}
+.science-svg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+.science-svg line {
+  stroke: var(--line-br);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  transition: stroke 0.4s ease;
+}
+.science-node {
+  position: absolute;
+  padding: 16px 22px;
+  background: rgba(20, 20, 31, 0.85);
+  border: 1px solid var(--line-br);
+  border-radius: 6px;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(6px);
+  z-index: 2;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  cursor: default;
+  max-width: 240px;
+}
+.science-node:hover {
+  border-color: var(--gold-soft);
+  box-shadow: 0 0 24px var(--gold-glow);
+  transform: translate(-50%, -50%) scale(1.04);
+}
+.science-node h4 {
+  font-family: var(--fh);
+  font-size: 1rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  text-transform: none;
+  margin-bottom: 4px;
+}
+.science-node p {
+  font-size: 0.85rem;
+  color: var(--text-mute);
+  line-height: 1.4;
+}
+.science-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: var(--gold-bg);
+  border: 2px solid var(--gold-soft);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 0 40px var(--gold-glow);
+  z-index: 3;
+}
+.science-center .c-title {
+  font-family: var(--fh);
+  font-size: 1.2rem;
+  color: var(--gold-soft);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.science-center .c-sub {
+  font-family: var(--fm);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  margin-top: 6px;
+}
+
+/* ============================================================
+   SECTION: HOSTS
+   ============================================================ */
+.hosts-head { text-align: center; margin-bottom: 56px; }
+.hosts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.host-card {
+  perspective: 1200px;
+  min-height: 400px;
+  cursor: pointer;
+}
+.host-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(.22,1,.36,1);
+}
+.host-card.flipped .host-inner { transform: rotateY(180deg); }
+@media (hover: hover) and (pointer: fine) {
+  .host-card:hover .host-inner { transform: rotateY(180deg); }
+}
+.host-face {
+  position: absolute; inset: 0;
+  padding: 40px 36px;
+  border: 1px solid var(--line-br);
+  background: rgba(20, 20, 31, 0.7);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex; flex-direction: column;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+.host-face.back {
+  transform: rotateY(180deg);
+  background: rgba(212, 161, 85, 0.06);
+  border-color: var(--gold-glow);
+  justify-content: center;
+}
+.host-portrait {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold-soft));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fh);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--bg);
+  margin-bottom: 22px;
+  letter-spacing: 0.02em;
+}
+.host-face h3 {
+  font-family: var(--fh);
+  font-size: 1.6rem;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+}
+.host-face .host-role {
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 22px;
+}
+.host-face p {
+  font-size: 0.98rem;
+  color: var(--text-mute);
+  line-height: 1.65;
+}
+.host-face .flip-hint {
+  margin-top: auto;
+  padding-top: 20px;
+  font-family: var(--fm);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.host-note {
+  text-align: center;
+  margin-top: 32px;
+  font-style: italic;
+  color: var(--text-mute);
+  font-size: 1.02rem;
+}
+
+/* ============================================================
+   SECTION: AUDIENCE (accordion)
+   ============================================================ */
+.audience-head { text-align: center; margin-bottom: 48px; }
+.audience-list {
+  max-width: 860px;
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+}
+.audience-row {
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 0.4s ease;
+}
+.audience-row:hover { background: rgba(212, 161, 85, 0.03); }
+.audience-row-head {
+  display: grid;
+  grid-template-columns: 48px 1fr 28px;
+  gap: 16px;
+  padding: 28px 4px;
+  align-items: center;
+}
+.audience-row-head .a-num {
+  font-family: var(--fh);
+  font-size: 0.95rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.1em;
+}
+.audience-row-head .a-title {
+  font-family: var(--fh);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--text);
+  line-height: 1.35;
+  font-weight: 400;
+}
+.audience-row-head .a-toggle {
+  width: 22px; height: 22px;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+.audience-row-head .a-toggle::before,
+.audience-row-head .a-toggle::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  background: var(--gold-soft);
+  transition: transform 0.4s ease;
+}
+.audience-row-head .a-toggle::before {
+  width: 14px; height: 1.5px;
+  transform: translate(-50%, -50%);
+}
+.audience-row-head .a-toggle::after {
+  width: 1.5px; height: 14px;
+  transform: translate(-50%, -50%);
+}
+.audience-row.open .a-toggle::after { transform: translate(-50%, -50%) scaleY(0); }
+.audience-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(.22,1,.36,1);
+}
+.audience-row.open .audience-body { max-height: 600px; }
+.audience-body p {
+  padding: 0 4px 32px 64px;
+  color: var(--text-mute);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   SECTION: FORMAT
+   ============================================================ */
+.format-head { text-align: center; margin-bottom: 56px; }
+.format-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.format-item {
+  padding: 36px 20px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(20, 20, 31, 0.4);
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.format-item:hover { transform: translateY(-4px); border-color: var(--gold-deep); }
+.format-icon {
+  width: 56px; height: 56px;
+  margin: 0 auto 18px;
+  border: 1.5px solid var(--gold-soft);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fh);
+  font-size: 1.4rem;
+  color: var(--gold-soft);
+}
+.format-item h4 {
+  font-family: var(--fh);
+  font-size: 0.95rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.format-item p { font-size: 0.95rem; color: var(--text); line-height: 1.5; }
+
+/* ============================================================
+   SECTION: FINAL + CTA
+   ============================================================ */
+.final {
+  padding: 140px 32px 160px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center top, rgba(212, 161, 85, 0.08) 0%, transparent 50%);
+}
+.final-inner { max-width: 840px; margin: 0 auto; position: relative; z-index: 2; }
+.final p {
+  font-family: var(--fh);
+  color: var(--text);
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  line-height: 1.45;
+  margin-bottom: 1.15em;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.final p.reveal-in { opacity: 1; transform: translateY(0); }
+.final p.muted { color: var(--text-mute); }
+.final p.gold { color: var(--gold-soft); }
+.final p.biggest {
+  font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+  font-weight: 600;
+  margin-top: 48px;
+  color: var(--text);
+}
+.final p.tiny {
+  font-size: 1rem;
+  color: var(--text-mute);
+  margin-top: 0;
+  margin-bottom: 0.6em;
+  font-family: var(--fb);
+  font-weight: 300;
+}
+
+.cta-wrap { margin-top: 64px; }
+.cta-gold {
+  display: inline-block;
+  padding: 20px 56px;
+  font-family: var(--fh);
+  font-size: 1.05rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  border: 2px solid var(--gold-soft);
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+  animation: ctaPulse 2.6s ease-in-out infinite;
+}
+.cta-gold:hover {
+  background: var(--gold-soft);
+  color: var(--bg);
+  box-shadow: 0 12px 40px var(--gold-glow);
+  transform: translateY(-2px);
+  animation-play-state: paused;
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--gold-glow); }
+  50%      { box-shadow: 0 0 0 14px rgba(212, 161, 85, 0); }
+}
+
+.final-footer-tag {
+  margin-top: 56px;
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ============================================================
+   FADE UP / REVEAL (shared)
+   ============================================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.9s cubic-bezier(.22,1,.36,1), transform 0.9s cubic-bezier(.22,1,.36,1);
+}
+.fade-up.in { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.12s; }
+.delay-2 { transition-delay: 0.24s; }
+.delay-3 { transition-delay: 0.36s; }
+.delay-4 { transition-delay: 0.48s; }
+.delay-5 { transition-delay: 0.6s; }
+.delay-6 { transition-delay: 0.72s; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .layers-grid { grid-template-columns: 1fr; gap: 40px; }
+  .layers-stage { position: relative; top: 0; max-width: 420px; }
+  .gains-grid { grid-template-columns: repeat(2, 1fr); }
+  .gain-card, .gain-card.row2 { grid-column: span 1; }
+  .numbers-row { grid-template-columns: 1fr; gap: 18px; }
+  .format-row { grid-template-columns: repeat(2, 1fr); }
+  .science-cluster { min-height: 720px; aspect-ratio: auto; }
+}
+
+@media (max-width: 768px) {
+  .s { padding: 80px 20px; }
+  .hero-imental { padding: 130px 20px 90px; }
+  .hero-imental h1 { font-size: clamp(2rem, 9vw, 3rem); }
+  .contrast-row { grid-template-columns: 1fr; }
+  .how-timeline { padding-left: 48px; }
+  .how-timeline::before { left: 14px; }
+  .how-step-node { left: -48px; width: 38px; height: 38px; font-size: 1rem; }
+  .gains-grid { grid-template-columns: 1fr; }
+  .gain-card { aspect-ratio: 1.6; }
+  .program-timeline { padding-left: 22px; }
+  .program-row { grid-template-columns: 70px 1fr; gap: 16px; }
+  .program-row::before { left: -28px; }
+  .program-totals { grid-template-columns: 1fr; padding: 36px 24px; }
+  .path-step { grid-template-columns: 56px 1fr; gap: 16px; padding: 18px 20px; }
+  .path-step .p-marker { grid-column: 2; margin-top: 6px; }
+  .hosts-grid { grid-template-columns: 1fr; }
+  .host-card { min-height: 360px; }
+  .host-card .host-inner { transition: transform 0.6s ease; }
+  .format-row { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .quote-card { padding: 32px 24px; }
+  .case-card { grid-template-columns: 1fr; padding: 28px 24px; text-align: center; }
+  .case-icon { margin: 0 auto; }
+  .science-cluster { min-height: 900px; }
+  .science-center { width: 130px; height: 130px; }
+  .final { padding: 100px 20px 120px; }
+  .cta-gold { padding: 16px 36px; font-size: 0.95rem; }
+}
+
+@media (max-width: 540px) {
+  .audience-row-head { grid-template-columns: 36px 1fr 22px; gap: 12px; padding: 22px 4px; }
+  .audience-body p { padding-left: 48px; }
+  .format-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="ambient"></div>
+<div class="grain"></div>
+
+<main>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero-imental s">
+  <div class="particles"><canvas id="particles-hero"></canvas></div>
+  <div class="hero-inner">
+    <div class="hero-tagline fade-up">I MENTAL</div>
+    <div class="hero-subtag fade-up delay-1">Книга о тебе · часть методологии ONTO NOTHING</div>
+    <h1 class="fade-up delay-2">
+      Ты живёшь внутри себя —<br>
+      но никогда не видел себя <span class="highlight-under">целиком</span>
+    </h1>
+    <p class="hero-para fade-up delay-3">
+      Каждый день ты принимаешь решения. Реагируешь на людей. Двигаешься к чему-то — или уходишь от чего-то. Но большая часть этого происходит автоматически. По программам которые ты не выбирал. Из представлений о себе которые сложились давно — и с тех пор не пересматривались.
+    </p>
+    <p class="hero-para emph fade-up delay-4">
+      <span class="hl">I MENTAL</span> — это первый в мире тренинг где ты выгружаешь всё своё ментальное Я. Полностью. За один сеанс. А потом самый мощный ИИ-анализ превращает это в персональную книгу о тебе.
+    </p>
+    <p class="hero-para fade-up delay-5">
+      Не чужую интерпретацию. Не тест с шаблонными ответами. Книгу — написанную из твоих собственных слов.
+    </p>
+    <p class="hero-para final fade-up delay-6">И это не конец пути. Это — его необходимое начало.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     LAYERS — 6 concentric circles
+     ============================================================ -->
+<section class="s" id="layers">
+  <div class="s-inner">
+    <div class="layers-head">
+      <div class="eyebrow fade-up">Что такое ментальное Я</div>
+      <h2 class="fade-up delay-1">Ты — не один человек.<br>Ты — система из <span class="hl">шести слоёв</span>.</h2>
+    </div>
+
+    <div class="layers-grid">
+      <div class="layers-stage">
+        <svg viewBox="-10 -10 520 520" aria-hidden="true">
+          <circle class="layer-ring" data-ring="6" cx="250" cy="250" r="248"></circle>
+          <circle class="layer-ring" data-ring="5" cx="250" cy="250" r="205"></circle>
+          <circle class="layer-ring" data-ring="4" cx="250" cy="250" r="162"></circle>
+          <circle class="layer-ring" data-ring="3" cx="250" cy="250" r="120"></circle>
+          <circle class="layer-ring" data-ring="2" cx="250" cy="250" r="78"></circle>
+          <circle class="layer-ring" data-ring="1" cx="250" cy="250" r="38"></circle>
+          <circle class="layer-center-dot" cx="250" cy="250" r="6"></circle>
+        </svg>
+        <div class="layer-label" data-ring-label="1" style="left: 50%; top: 46%; transform: translate(-50%, -50%);">Я·1 Сознательное</div>
+        <div class="layer-label" data-ring-label="2" style="left: 50%; top: 33%; transform: translate(-50%, -50%);">Я·2 Имплицитное</div>
+        <div class="layer-label" data-ring-label="3" style="left: 50%; top: 21%; transform: translate(-50%, -50%);">Я·3 Социальное</div>
+        <div class="layer-label" data-ring-label="4" style="left: 50%; top: 10.5%; transform: translate(-50%, -50%);">Я·4 Историческое</div>
+        <div class="layer-label" data-ring-label="5" style="left: 50%; top: 2%; transform: translate(-50%, -50%);">Я·5 Проективное</div>
+        <div class="layer-label" data-ring-label="6" style="left: 50%; top: -6%; transform: translate(-50%, -50%);">Я·6 Экзистенциальное</div>
+      </div>
+
+      <div class="layers-text">
+        <div class="layer-entry" data-layer="1">
+          <h3>Сознательное Я</h3>
+          <p>То каким ты себя считаешь. Официальная версия. Та которую ты показываешь миру.</p>
+        </div>
+        <div class="layer-entry" data-layer="2">
+          <h3>Имплицитное Я</h3>
+          <p>То как ты реально работаешь. Автоматические реакции. Паттерны которые повторяются. То что происходит до того как ты успел подумать.</p>
+        </div>
+        <div class="layer-entry" data-layer="3">
+          <h3>Социальное Я</h3>
+          <p>То каким ты становишься рядом с другими. Роли которые играешь. Маски которые надеваешь. Интерфейс между тобой и миром.</p>
+        </div>
+        <div class="layer-entry" data-layer="4">
+          <h3>Историческое Я</h3>
+          <p>То что из прошлого до сих пор активно в тебе. Слова которые были сказаны и до сих пор звучат внутри. Моменты которые изменили тебя — навсегда.</p>
+        </div>
+        <div class="layer-entry" data-layer="5">
+          <h3>Проективное Я</h3>
+          <p>То каким ты видишь себя в будущем. Образы к которым стремишься. И образы которых боишься стать.</p>
+        </div>
+        <div class="layer-entry" data-layer="6">
+          <h3>Экзистенциальное Я</h3>
+          <p>Самый глубокий слой. Во что ты веришь по-настоящему. Зачем живёшь. Что держит тебя когда всё рушится.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contrast-row">
+      <div class="contrast-item fade-up">
+        <span class="tag">Один слой</span>
+        <p>Показание одного свидетеля</p>
+      </div>
+      <div class="contrast-item alt fade-up delay-2">
+        <span class="tag">Шесть слоёв</span>
+        <p>Перекрёстный допрос</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW — 3 steps
+     ============================================================ -->
+<section class="s" id="how">
+  <div class="s-inner">
+    <div class="how-head">
+      <div class="eyebrow fade-up">Как это работает</div>
+      <h2 class="fade-up delay-1">Три шага от твоего голоса —<br>до книги о тебе</h2>
+    </div>
+
+    <div class="how-wrap">
+      <div class="how-timeline">
+        <div class="how-step">
+          <div class="how-step-node">1</div>
+          <span class="step-label">Тренинг</span>
+          <h3>Живой Zoom — 4 часа</h3>
+          <p>Три-четыре часа в живом Зум-формате. Ты слушаешь теорию — научную, нейробиологическую, психологическую. Понимаешь как устроен каждый слой твоего Я. Потом — выгружаешь. Говоришь в диктофон без остановки. Десять минут на каждое Я. Честно. Без редактуры. После каждого блока — отправляешь запись.</p>
+          <p class="emph">Никаких правильных ответов. Никаких тестов. Только ты — и твой голос.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="how-step-node">2</div>
+          <span class="step-label">Анализ</span>
+          <h3>ИИ исследует шесть Я вместе</h3>
+          <p>Твои записи транскрибируются. Каждое слово превращается в текст. Потом ИИ исследует все шесть слоёв вместе. Находит паттерны которые не видны изнутри. Противоречия между слоями. Повторяющиеся темы. То о чём ты говоришь много — и то о чём почти молчишь.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="how-step-node">3</div>
+          <span class="step-label">Книга</span>
+          <h3>Книга <span class="hl">I MENTAL</span> — в 48 часов</h3>
+          <p>В течение 48 часов после тренинга — ты получаешь книгу. О себе. Написанную из твоих собственных слов — но увиденную снаружи.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GAINS — 5 flip cards
+     ============================================================ -->
+<section class="s" id="gains">
+  <div class="s-inner">
+    <div class="gains-head">
+      <div class="eyebrow fade-up">Что ты получишь</div>
+      <h2 class="fade-up delay-1">Пять результатов —<br>один документ глубиной</h2>
+    </div>
+
+    <div class="gains-grid">
+      <div class="gain-card fade-up">
+        <div class="gain-inner">
+          <div class="gain-face">
+            <div class="gain-icon">01</div>
+            <h3>Книгу I MENTAL</h3>
+            <p>Персональный документ — глубины которого нет ни в одном психологическом тесте</p>
+          </div>
+          <div class="gain-face back">
+            <div class="gain-icon">01</div>
+            <p>Персональный документ глубиной которого нет ни в одном психологическом тесте, ни в одном коучинге, ни в одной терапии. Потому что он создан из твоих слов — а не из чужих вопросов.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gain-card fade-up delay-1">
+        <div class="gain-inner">
+          <div class="gain-face">
+            <div class="gain-icon">02</div>
+            <h3>Карту своих паттернов</h3>
+            <p>Откуда берутся твои автоматические реакции — и голоса из прошлого</p>
+          </div>
+          <div class="gain-face back">
+            <div class="gain-icon">02</div>
+            <p>Ты увидишь откуда берутся твои автоматические реакции. Почему повторяются одни и те же сценарии. Какие голоса из прошлого до сих пор говорят внутри тебя — и принимают решения за тебя.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gain-card row2 fade-up delay-2">
+        <div class="gain-inner">
+          <div class="gain-face">
+            <div class="gain-icon">03</div>
+            <h3>Понимание своего вектора</h3>
+            <p>Твой образ будущего Я — твой или чужой?</p>
+          </div>
+          <div class="gain-face back">
+            <div class="gain-icon">03</div>
+            <p>Твой образ будущего Я — он твой или чужой? Ты движешься к чему-то — или уходишь от чего-то? Это разные типы мотивации с принципиально разными результатами.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gain-card row2 fade-up delay-3">
+        <div class="gain-inner">
+          <div class="gain-face">
+            <div class="gain-icon">04</div>
+            <h3>Точку опоры</h3>
+            <p>Видимое — не управляет тобой так как невидимое</p>
+          </div>
+          <div class="gain-face back">
+            <div class="gain-icon">04</div>
+            <p>Когда ты видишь свою систему снаружи, она перестаёт быть автоматической. Видимое — не управляет тобой так как невидимое.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gain-card row2 fade-up delay-4">
+        <div class="gain-inner">
+          <div class="gain-face">
+            <div class="gain-icon">05</div>
+            <h3>Основу для следующего шага</h3>
+            <p>Твоя точка А в методологии ONTO NOTHING</p>
+          </div>
+          <div class="gain-face back">
+            <div class="gain-icon">05</div>
+            <p>Книга I MENTAL становится твоей точкой А. Персональным baseline от которого будет измеряться всё дальнейшее развитие в методологии ONTO NOTHING.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROGRAM — horizontal timeline
+     ============================================================ -->
+<section class="s" id="program">
+  <div class="s-inner">
+    <div class="program-head">
+      <div class="eyebrow fade-up">Программа тренинга</div>
+      <h2 class="fade-up delay-1">Четыре часа.<br>Шесть выгрузок.<br>Одна книга.</h2>
+    </div>
+
+    <div class="program-timeline">
+      <div class="program-row">
+        <div class="program-time">10:00</div>
+        <div class="program-content">
+          <h4>Открытие</h4>
+          <p>Встречаемся в Зуме. Объясняю как устроен день. Отвечаю на вопросы до старта.</p>
+        </div>
+      </div>
+      <div class="program-row">
+        <div class="program-time">10:15</div>
+        <div class="program-content">
+          <h4>Введение · Карта ментального Я</h4>
+          <p>Что такое ментальное Я. Как устроены шесть слоёв. Нейробиология непрерывной речи.</p>
+        </div>
+      </div>
+      <div class="program-row session">
+        <div class="program-time">10:30</div>
+        <div class="program-content">
+          <h4>Я·1 · Сознательное Я</h4>
+          <p>Теория · нейронный уровень · психологические концепции · живые примеры</p>
+          <span class="dump">→ Выгрузка · 10 минут · диктофон</span>
+        </div>
+      </div>
+      <div class="program-row session">
+        <div class="program-time">11:00</div>
+        <div class="program-content">
+          <h4>Я·2 · Имплицитное Я</h4>
+          <p>Теория · Система 1 · принцип Хебба · схемы Янга · примеры</p>
+          <span class="dump">→ Выгрузка · 10 минут · диктофон</span>
+        </div>
+      </div>
+      <div class="program-row break">
+        <div class="program-time">11:30</div>
+        <div class="program-content">
+          <h4>Перерыв</h4>
+          <p>10 минут.</p>
+        </div>
+      </div>
+      <div class="program-row session">
+        <div class="program-time">11:40</div>
+        <div class="program-content">
+          <h4>Я·3 · Социальное Я</h4>
+          <p>Теория · зеркальные нейроны · Гофман · Персона по Юнгу · примеры</p>
+          <span class="dump">→ Выгрузка · 10 минут · диктофон</span>
+        </div>
+      </div>
+      <div class="program-row session">
+        <div class="program-time">12:10</div>
+        <div class="program-content">
+          <h4>Я·4 · Историческое Я</h4>
+          <p>Теория · пластичность памяти · теория привязанности · трансгенерационные паттерны</p>
+          <span class="dump">→ Выгрузка · 10 минут · диктофон</span>
+        </div>
+      </div>
+      <div class="program-row break">
+        <div class="program-time">12:40</div>
+        <div class="program-content">
+          <h4>Перерыв</h4>
+          <p>10 минут.</p>
+        </div>
+      </div>
+      <div class="program-row session">
+        <div class="program-time">12:50</div>
+        <div class="program-content">
+          <h4>Я·5 · Проективное Я</h4>
+          <p>Теория · mental time travel · возможные Я · синдром самозванца · примеры</p>
+          <span class="dump">→ Выгрузка · 10 минут · диктофон</span>
+        </div>
+      </div>
+      <div class="program-row session">
+        <div class="program-time">13:20</div>
+        <div class="program-content">
+          <h4>Я·6 · Экзистенциальное Я</h4>
+          <p>Теория · смысл как нейробиологическая необходимость · Франкл · Ялом · Менегетти</p>
+          <span class="dump">→ Выгрузка · 12 минут · диктофон</span>
+        </div>
+      </div>
+      <div class="program-row">
+        <div class="program-time">14:00</div>
+        <div class="program-content">
+          <h4>Итог и закрытие</h4>
+          <p>Что дальше. Книга I MENTAL. ONTO NOTHING. Шеринг.</p>
+        </div>
+      </div>
+      <div class="program-row">
+        <div class="program-time">14:20</div>
+        <div class="program-content">
+          <h4>Конец тренинга</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-totals fade-up">
+      <div>
+        <div class="total-num" data-count="4" data-suffix="">0</div>
+        <div class="total-label">Часа</div>
+      </div>
+      <div>
+        <div class="total-num" data-count="6" data-suffix="">0</div>
+        <div class="total-label">Выгрузок</div>
+      </div>
+      <div>
+        <div class="total-num" data-count="1" data-suffix="">0</div>
+        <div class="total-label">Книга</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY — morph + contrast map/territory
+     ============================================================ -->
+<section class="s" id="why">
+  <div class="s-inner">
+    <div class="why-head">
+      <div class="eyebrow fade-up">Зачем это нужно · где это в большом пути</div>
+      <h2 class="fade-up delay-1">Программу нельзя отключить<br>пока ты живёшь внутри неё</h2>
+    </div>
+
+    <div class="why-morph fade-up">
+      <canvas id="morph-canvas"></canvas>
+      <div class="why-morph-caption">Хаос частиц → порядок шести колец</div>
+    </div>
+
+    <div class="why-body">
+      <p><em>Внутренний диалог — это не мышление.</em> Это работа модели себя. Шесть Я-представлений говорят о себе, к себе, за себя — снова и снова. Создавая иллюзию что это ты думаешь. На самом деле — это работает программа.</p>
+      <p>Но программу нельзя отключить пока ты живёшь внутри неё. Нельзя наблюдать за тем что ты считаешь собой.</p>
+      <p class="emph">Когда ты видишь все шесть слоёв снаружи — возникает вопрос которого раньше не могло быть:<br><span class="hl">«если это модель — то кто наблюдает за ней?»</span></p>
+      <p>Тот кто наблюдает — не говорит. Он просто присутствует.</p>
+      <p>Это и есть вход в <strong>ONTO NOTHING</strong> — методологию управления состояниями сознания. Семь режимов работы мозга. Верифицированных на ЭЭГ. Измеримых. Воспроизводимых. Пульт управления собственным сознанием — который становится доступен только тогда когда ментальное Я увидено и описано полностью.</p>
+    </div>
+
+    <div class="contrast-row">
+      <div class="contrast-item fade-up">
+        <span class="tag">I MENTAL</span>
+        <p>Это — карта</p>
+      </div>
+      <div class="contrast-item alt fade-up delay-2">
+        <span class="tag">ONTO NOTHING</span>
+        <p>Это — территория</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PATH — 8 steps ladder
+     ============================================================ -->
+<section class="s" id="path">
+  <div class="s-inner">
+    <div class="path-head">
+      <div class="eyebrow fade-up">Путь ONTO NOTHING</div>
+      <h2 class="fade-up delay-1">Восемь этапов — от первого ЭЭГ<br>до верифицированной практики</h2>
+    </div>
+
+    <div class="path-ladder">
+      <div class="path-step fade-up">
+        <div class="p-num">01</div>
+        <div>
+          <h3>Погружение в контекст</h3>
+          <p>Первая запись мозговой активности на ЭЭГ. Ты впервые видишь как работает твой мозг — в реальном времени, в объективных данных.</p>
+        </div>
+        <div class="p-marker">Этап 1</div>
+      </div>
+
+      <div class="path-step here fade-up delay-1">
+        <div class="p-num">02</div>
+        <div>
+          <h3>I MENTAL · Самоисследование</h3>
+          <p>Выгрузка шести Я-представлений. Персональная книга I MENTAL. Твоя точка А.</p>
+        </div>
+        <div class="p-marker">← ты здесь</div>
+      </div>
+
+      <div class="path-step fade-up delay-2">
+        <div class="p-num">03</div>
+        <div>
+          <h3>Обнуление</h3>
+          <p>Ты учишься полностью останавливать внутренний диалог. Не подавлять. Не замедлять. Именно останавливать — мгновенно, по собственному решению.</p>
+        </div>
+        <div class="p-marker">Этап 3</div>
+      </div>
+
+      <div class="path-step fade-up delay-3">
+        <div class="p-num">04</div>
+        <div>
+          <h3>Инициация</h3>
+          <p>Один день. Ты активируешь и впервые применяешь новые режимы работы сознания. Уходишь с навыком который уже работает.</p>
+        </div>
+        <div class="p-marker">Этап 4</div>
+      </div>
+
+      <div class="path-step fade-up delay-4">
+        <div class="p-num">05</div>
+        <div>
+          <h3>Интеграция</h3>
+          <p>Две недели. Ты встраиваешь навык в обычную жизнь. Не отдельная практика — реальные ситуации.</p>
+        </div>
+        <div class="p-marker">Этап 5</div>
+      </div>
+
+      <div class="path-step fade-up delay-5">
+        <div class="p-num">06</div>
+        <div>
+          <h3>Исследование и верификация</h3>
+          <p>Долгосрочный трек. MNPI — Multidimensional Neuroplasticity Index. ЭЭГ + физиология + феноменология. Реальные данные за шесть-двенадцать месяцев.</p>
+        </div>
+        <div class="p-marker">Этапы 6–8</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NUMBERS
+     ============================================================ -->
+<section class="s" id="numbers">
+  <div class="s-inner">
+    <div class="numbers-head">
+      <div class="eyebrow fade-up">Цифры · что говорит практика</div>
+      <h2 class="fade-up delay-1">Измеримые результаты —<br>на ЭЭГ и в жизни</h2>
+    </div>
+
+    <div class="numbers-row">
+      <div class="num-card fade-up">
+        <div class="big" data-count="1200" data-suffix="+">0</div>
+        <div class="num-label">человек прошли через методологию ONTO NOTHING</div>
+      </div>
+      <div class="num-card fade-up delay-1">
+        <div class="big" data-count="99" data-suffix="%">0</div>
+        <div class="num-label">останавливают внутренний диалог уже на первой инициации</div>
+      </div>
+      <div class="num-card fade-up delay-2">
+        <div class="big"><span data-count="25" data-suffix="">0</span>–<span data-count="40" data-suffix="%">0</span></div>
+        <div class="num-label">улучшение HRV в течение первых месяцев практики</div>
+      </div>
+    </div>
+
+    <div class="quote-card fade-up">
+      <blockquote>Мне больше не нужно усилие — тишина включается сама, когда я замечаю шум.</blockquote>
+      <cite>— Участник программы</cite>
+    </div>
+
+    <div class="case-card fade-up delay-1">
+      <div class="case-icon">EEG</div>
+      <p>Участник — руководитель крупной компании. За 2 месяца достиг результатов которые обычно требуют 500–1000 часов медитативной практики. <span class="eeg-note">Верифицировано на ЭЭГ</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCIENCE — cluster cloud
+     ============================================================ -->
+<section class="s" id="science">
+  <div class="s-inner">
+    <div class="science-head">
+      <div class="eyebrow fade-up">Научная основа</div>
+      <h2 class="fade-up delay-1">Шесть дисциплин —<br>один метод исследования</h2>
+    </div>
+
+    <div class="science-cluster">
+      <svg class="science-svg" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="500" y1="300" x2="180" y2="110"></line>
+        <line x1="500" y1="300" x2="820" y2="110"></line>
+        <line x1="500" y1="300" x2="120" y2="300"></line>
+        <line x1="500" y1="300" x2="880" y2="300"></line>
+        <line x1="500" y1="300" x2="180" y2="490"></line>
+        <line x1="500" y1="300" x2="820" y2="490"></line>
+      </svg>
+
+      <div class="science-center">
+        <div class="c-title">I MENTAL</div>
+        <div class="c-sub">ядро метода</div>
+      </div>
+
+      <div class="science-node" style="top: 18%; left: 18%;">
+        <h4>Нейробиология</h4>
+        <p>Работа мозга во время автобиографического нарратива, принцип Хебба, почему непрерывная речь обходит социальный фильтр.</p>
+      </div>
+      <div class="science-node" style="top: 18%; left: 82%;">
+        <h4>Когнитивная психология</h4>
+        <p>Канеман: Система 1/2. Схемы Янга. Возможные Я — Маркус и Нуриус. Нарративная идентичность МакАдамса.</p>
+      </div>
+      <div class="science-node" style="top: 50%; left: 12%;">
+        <h4>Экзистенциальная психология</h4>
+        <p>Четыре данности Ялома. Логотерапия Франкла. Экзистенциальная свобода Сартра.</p>
+      </div>
+      <div class="science-node" style="top: 50%; left: 88%;">
+        <h4>Онтопсихология</h4>
+        <p>Семантическое поле и монитор отклонения Менегетти. Онтический принцип. Механизм ложного Я.</p>
+      </div>
+      <div class="science-node" style="top: 82%; left: 18%;">
+        <h4>Нейрофизиология состояний</h4>
+        <p>Методология ONTO NOTHING. Семь режимов сознания. MNPI. ЭЭГ-верификация переходов.</p>
+      </div>
+      <div class="science-node" style="top: 82%; left: 82%;">
+        <h4>Соматическая психология</h4>
+        <p>Тело как хранилище имплицитной памяти. Левин, ван дер Колк. Теория привязанности Боулби.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOSTS
+     ============================================================ -->
+<section class="s" id="hosts">
+  <div class="s-inner">
+    <div class="hosts-head">
+      <div class="eyebrow fade-up">Ведущие тренинга</div>
+      <h2 class="fade-up delay-1">Нейронаука + жизненная практика</h2>
+    </div>
+
+    <div class="hosts-grid">
+      <div class="host-card fade-up">
+        <div class="host-inner">
+          <div class="host-face">
+            <div class="host-portrait">КШ</div>
+            <h3>Константин Шель</h3>
+            <div class="host-role">Principal Investigator · CEO AI Research Platform</div>
+            <p>Создатель методологии ONTO NOTHING. Исследователь на пересечении нейрофизиологии, феноменологии и управления состояниями сознания.</p>
+            <div class="flip-hint">Наведи — подробнее →</div>
+          </div>
+          <div class="host-face back">
+            <h3>Константин Шель</h3>
+            <div class="host-role">О работе</div>
+            <p>Разработал систему измерения нейропластичности MNPI — первый стандартизированный инструмент верификации того как практики влияют на мозг. Создал карту семи режимов сознания и протокол входа в каждый из них. Через его методологию прошли более 1200 человек. Ведёт тренинг I MENTAL — от теории до практики выгрузки.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="host-card fade-up delay-1">
+        <div class="host-inner">
+          <div class="host-face">
+            <div class="host-portrait">НМ</div>
+            <h3>Натали Морозова</h3>
+            <div class="host-role">Со-основатель · General Director OOO «Ритмы»</div>
+            <p>Создатель методологии «Ритмы Жизни» — системы осознанного планирования жизни через 8 сфер и 4 вектора развития.</p>
+            <div class="flip-hint">Наведи — подробнее →</div>
+          </div>
+          <div class="host-face back">
+            <h3>Натали Морозова</h3>
+            <div class="host-role">О работе</div>
+            <p>Более десяти лет работает с людьми в области целеполагания, ценностей и жизненных циклов. Автор практических инструментов которые помогают человеку увидеть где он находится — и куда реально движется. На тренинге I MENTAL сопровождает выгрузку через призму жизненных сфер и ритмов.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="host-note fade-up delay-2">Два взгляда. Нейронаука и жизненная практика. Исследование и сопровождение. Вместе — полная картина.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     AUDIENCE — accordion
+     ============================================================ -->
+<section class="s" id="audience">
+  <div class="s-inner">
+    <div class="audience-head">
+      <div class="eyebrow fade-up">Для кого это</div>
+      <h2 class="fade-up delay-1">Четыре типа людей —<br>одна общая точка</h2>
+    </div>
+
+    <div class="audience-list">
+      <div class="audience-row">
+        <div class="audience-row-head">
+          <div class="a-num">01</div>
+          <div class="a-title">Для тех кто давно чувствует что живёт не совсем своей жизнью</div>
+          <div class="a-toggle"></div>
+        </div>
+        <div class="audience-body">
+          <p>Но не может понять почему. Ощущение что действуешь не из себя — но откуда оно идёт и чьё это — не видно изнутри. I MENTAL даёт возможность посмотреть на свою систему снаружи.</p>
+        </div>
+      </div>
+
+      <div class="audience-row">
+        <div class="audience-row-head">
+          <div class="a-num">02</div>
+          <div class="a-title">Для тех кто знает свои паттерны — но не знает откуда они</div>
+          <div class="a-toggle"></div>
+        </div>
+        <div class="audience-body">
+          <p>Ты видишь что одна и та же сцена повторяется годами. Но не видишь её корня. I MENTAL собирает голоса из прошлого — и показывает какие из них до сих пор принимают решения за тебя.</p>
+        </div>
+      </div>
+
+      <div class="audience-row">
+        <div class="audience-row-head">
+          <div class="a-num">03</div>
+          <div class="a-title">Для тех кто устал от типологий, тестов и чужих интерпретаций</div>
+          <div class="a-toggle"></div>
+        </div>
+        <div class="audience-body">
+          <p>И хочет наконец увидеть себя из своих собственных слов. Не через сетку MBTI или Big Five. Не через архетипы. Через собственный голос — услышанный и проанализированный целиком.</p>
+        </div>
+      </div>
+
+      <div class="audience-row">
+        <div class="audience-row-head">
+          <div class="a-num">04</div>
+          <div class="a-title">Для тех кто готов к следующему шагу</div>
+          <div class="a-toggle"></div>
+        </div>
+        <div class="audience-body">
+          <p>К реальной работе с состояниями сознания. К нейробиологически верифицированным практикам. К жизни которая управляется осознанно а не автоматически. I MENTAL — это необходимое начало этого пути.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FORMAT
+     ============================================================ -->
+<section class="s" id="format">
+  <div class="s-inner">
+    <div class="format-head">
+      <div class="eyebrow fade-up">Формат</div>
+      <h2 class="fade-up delay-1">Живой Zoom. Группа до 20.<br>Книга через 48 часов.</h2>
+    </div>
+
+    <div class="format-row">
+      <div class="format-item fade-up">
+        <div class="format-icon">20</div>
+        <h4>Группа</h4>
+        <p>Живой Zoom-тренинг до 20 человек</p>
+      </div>
+      <div class="format-item fade-up delay-1">
+        <div class="format-icon">4h</div>
+        <h4>Длительность</h4>
+        <p>4 часа · с двумя перерывами по 10 минут</p>
+      </div>
+      <div class="format-item fade-up delay-2">
+        <div class="format-icon">REC</div>
+        <h4>Что нужно</h4>
+        <p>Диктофон или телефон · наушники · тихое место</p>
+      </div>
+      <div class="format-item fade-up delay-3">
+        <div class="format-icon">48h</div>
+        <h4>Результат</h4>
+        <p>Книга I MENTAL — в течение 48 часов после тренинга</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL + CTA
+     ============================================================ -->
+<section class="final">
+  <div class="final-inner">
+    <p class="muted" data-reveal>Большинство людей проживают всю жизнь внутри своей модели себя — не зная что она есть.</p>
+    <p class="tiny muted" data-reveal>Действуют из автоматических программ. Идут к чужим целям. Слышат чужие голоса и принимают их за свои мысли.</p>
+    <p data-reveal><span class="hl">I MENTAL</span> — это выход наружу. Первый раз в жизни увидеть себя целиком. Из своих слов. С научной точностью. Без чужих интерпретаций.</p>
+    <p class="gold" data-reveal>А потом — научиться управлять тем что ты увидел.</p>
+    <p class="biggest" data-reveal>Это начало другой жизни.</p>
+    <p class="tiny muted" data-reveal>Не потому что мы так говорим.</p>
+    <p class="tiny muted" data-reveal>Потому что когда видишь — уже невозможно не видеть.</p>
+
+    <div class="cta-wrap">
+      <a href="../zapisatsya/index.html" class="cta-gold">Записаться на тренинг</a>
+    </div>
+
+    <div class="final-footer-tag">I MENTAL · часть методологии ONTO NOTHING · Константин Шель · Натали Морозова</div>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ============================================================
+   Layer highlighter — scroll syncs rings with text blocks
+   ============================================================ */
+(function() {
+  const entries = Array.from(document.querySelectorAll('.layer-entry'));
+  const rings = Array.from(document.querySelectorAll('.layer-ring'));
+  const labels = Array.from(document.querySelectorAll('.layer-label'));
+  if (!entries.length || !rings.length) return;
+
+  const setActive = (n) => {
+    entries.forEach(e => e.classList.toggle('active', Number(e.dataset.layer) === n));
+    rings.forEach(r => r.classList.toggle('active', Number(r.dataset.ring) === n));
+    labels.forEach(l => l.classList.toggle('active', Number(l.dataset.ringLabel) === n));
+  };
+
+  entries.forEach(e => {
+    e.addEventListener('mouseenter', () => setActive(Number(e.dataset.layer)));
+    e.addEventListener('click',      () => setActive(Number(e.dataset.layer)));
+  });
+
+  const io = new IntersectionObserver((obs) => {
+    let best = null, bestRatio = 0;
+    obs.forEach(o => {
+      if (o.isIntersecting && o.intersectionRatio > bestRatio) {
+        best = o.target; bestRatio = o.intersectionRatio;
+      }
+    });
+    if (best) setActive(Number(best.dataset.layer));
+  }, { rootMargin: '-40% 0px -40% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
+  entries.forEach(e => io.observe(e));
+
+  setActive(1);
+})();
+
+/* ============================================================
+   Fade-up reveals — universal
+   ============================================================ */
+(function() {
+  const targets = document.querySelectorAll('.fade-up, .how-step');
+  if (!targets.length) return;
+  const io = new IntersectionObserver((obs) => {
+    obs.forEach(o => {
+      if (o.isIntersecting) {
+        o.target.classList.add('in');
+        io.unobserve(o.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  targets.forEach(t => io.observe(t));
+})();
+
+/* ============================================================
+   Flip cards — tap to flip on mobile
+   ============================================================ */
+(function() {
+  document.querySelectorAll('.gain-card, .host-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+  });
+})();
+
+/* ============================================================
+   Accordion — audience
+   ============================================================ */
+(function() {
+  document.querySelectorAll('.audience-row').forEach(row => {
+    row.addEventListener('click', () => row.classList.toggle('open'));
+  });
+})();
+
+/* ============================================================
+   Counters
+   ============================================================ */
+(function() {
+  const nodes = document.querySelectorAll('[data-count]');
+  if (!nodes.length) return;
+
+  const animate = (el) => {
+    const target = Number(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1400;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(target * eased);
+      el.textContent = val + (t === 1 ? suffix : '');
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const io = new IntersectionObserver((obs) => {
+    obs.forEach(o => {
+      if (o.isIntersecting) {
+        animate(o.target);
+        io.unobserve(o.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  nodes.forEach(n => io.observe(n));
+})();
+
+/* ============================================================
+   Final section — progressive reveal
+   ============================================================ */
+(function() {
+  const nodes = document.querySelectorAll('.final [data-reveal]');
+  if (!nodes.length) return;
+  const io = new IntersectionObserver((obs) => {
+    obs.forEach((o) => {
+      if (o.isIntersecting) {
+        const idx = Array.from(nodes).indexOf(o.target);
+        setTimeout(() => o.target.classList.add('reveal-in'), idx * 220);
+        io.unobserve(o.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  nodes.forEach(n => io.observe(n));
+})();
+
+/* ============================================================
+   Hero particles (neural field)
+   ============================================================ */
+(function() {
+  const canvas = document.getElementById('particles-hero');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, dpr = Math.min(2, window.devicePixelRatio || 1);
+  const resize = () => {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  resize();
+  window.addEventListener('resize', resize);
+
+  const N = 56;
+  const pts = Array.from({ length: N }, () => ({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
+    r: 0.8 + Math.random() * 1.4
+  }));
+
+  let raf;
+  const draw = () => {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+    }
+    // connections
+    ctx.strokeStyle = 'rgba(212, 161, 85, 0.12)';
+    ctx.lineWidth = 0.6;
+    for (let i = 0; i < N; i++) {
+      for (let j = i + 1; j < N; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 120) {
+          ctx.globalAlpha = 1 - d / 120;
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+    // dots
+    for (const p of pts) {
+      ctx.fillStyle = 'rgba(231, 183, 107, 0.55)';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    raf = requestAnimationFrame(draw);
+  };
+  draw();
+})();
+
+/* ============================================================
+   Morph canvas — chaos → rings
+   ============================================================ */
+(function() {
+  const canvas = document.getElementById('morph-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, dpr = Math.min(2, window.devicePixelRatio || 1);
+  const resize = () => {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    layout();
+  };
+
+  const N = 220;
+  const pts = [];
+  const layout = () => {
+    pts.length = 0;
+    const cx = W / 2, cy = H / 2;
+    for (let i = 0; i < N; i++) {
+      const ring = i % 6;
+      const ringR = 30 + ring * 28;
+      const ang = (i / N) * Math.PI * 2 + ring * 0.3;
+      pts.push({
+        x: Math.random() * W, y: Math.random() * H,
+        tx: cx + Math.cos(ang) * ringR,
+        ty: cy + Math.sin(ang) * ringR,
+        vx: 0, vy: 0,
+        ring: ring
+      });
+    }
+  };
+  resize();
+  window.addEventListener('resize', resize);
+
+  let phase = 0; // 0 chaos → 1 order
+  let dir = 1;
+  let last = performance.now();
+
+  const RING_COLORS = ['#E7B76B', '#D4A155', '#B8863E', '#8E6A30', '#6E4F22', '#543B18'];
+
+  const draw = (now) => {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    phase += dir * dt * 0.08;
+    if (phase > 1) { phase = 1; dir = -1; }
+    if (phase < 0) { phase = 0; dir = 1; }
+    const ease = phase < 0.5 ? 2 * phase * phase : 1 - Math.pow(-2 * phase + 2, 2) / 2;
+
+    ctx.clearRect(0, 0, W, H);
+
+    for (const p of pts) {
+      // chaos drift
+      p.vx += (Math.random() - 0.5) * 0.4 * (1 - ease);
+      p.vy += (Math.random() - 0.5) * 0.4 * (1 - ease);
+      p.vx *= 0.92; p.vy *= 0.92;
+
+      const ox = p.x + p.vx;
+      const oy = p.y + p.vy;
+      const gx = p.tx, gy = p.ty;
+
+      p.x = ox * (1 - ease * 0.5) + gx * (ease * 0.5);
+      p.y = oy * (1 - ease * 0.5) + gy * (ease * 0.5);
+
+      const alpha = 0.3 + 0.6 * ease;
+      ctx.fillStyle = RING_COLORS[p.ring];
+      ctx.globalAlpha = alpha;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.5 + ease * 0.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  };
+  requestAnimationFrame(draw);
+})();
+</script>
+
+<script src="../components/nav.js"></script>
+<script src="../components/footer.js"></script>
+</body>
+</html>
