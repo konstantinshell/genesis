@@ -79,6 +79,20 @@ img { max-width: 100%; display: block; }
 .site-nav .nav-links a:hover { color: var(--text) !important; background: var(--gold-bg) !important; }
 .site-nav .nav-links a.active { color: var(--gold-soft) !important; background: var(--gold-bg) !important; }
 .site-nav .nav-burger span { background: var(--text) !important; }
+.site-nav .nav-links a.nav-cta {
+  background: var(--gold-soft) !important;
+  color: var(--bg) !important;
+  font-weight: 600 !important;
+}
+.site-nav .nav-links a.nav-cta:hover {
+  background: var(--gold-deep) !important;
+  color: var(--bg) !important;
+  box-shadow: 0 4px 16px var(--gold-glow) !important;
+}
+.site-nav .nav-links a.nav-cta.active {
+  background: var(--gold-soft) !important;
+  color: var(--bg) !important;
+}
 @media (max-width: 768px) {
   .site-nav .nav-links { background: rgba(10, 10, 18, 0.96) !important; }
 }

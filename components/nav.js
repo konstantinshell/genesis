@@ -23,12 +23,14 @@
     { label: 'Ритмы жизни',       href: root + 'ritmy/index.html',                        match: /\/ritmy\// },
     { label: 'Блог',              href: root + 'blog/index.html',                         match: /^\/blog\/$|\/blog\/index\.html$/ },
     { label: 'ONTO NOTHING',      href: root + 'onto-nothing/index.html',                  match: /\/onto-nothing\// },
+    { label: 'Записаться',        href: root + 'zapisatsya/index.html',                    match: /\/zapisatsya\//, cta: true },
   ];
 
   // ── Собираем HTML навигации ──────────────────────────────────────
   const linksHtml = navItems.map(item => {
     const isActive = item.match.test(path) ? ' active' : '';
-    return `<li><a href="${item.href}" class="${isActive.trim()}">${item.label}</a></li>`;
+    const ctaClass = item.cta ? ' nav-cta' : '';
+    return `<li><a href="${item.href}" class="${(isActive + ctaClass).trim()}">${item.label}</a></li>`;
   }).join('');
 
   const navHtml = `
