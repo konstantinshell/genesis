@@ -2035,10 +2035,13 @@ h1, h2, h3, h4 {
 /* ── 3 guides flip (Экран 12) ── */
 .guides-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin: 30px 0 20px;
   perspective: 1200px;
+}
+@media (max-width: 1100px) {
+  .guides-grid { grid-template-columns: repeat(2, 1fr); }
 }
 .guide-flip {
   min-height: 360px;
