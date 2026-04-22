@@ -27,31 +27,20 @@
      ЭКРАН 1 — HERO
 ══════════════════════════════ -->
 <section class="hero-v3">
-  <div class="hero-inner" style="max-width: 1240px; margin: 0 auto;">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">MNPI CHECKUP NEIRY · ONTO NOTHING × NEIRY</span>
-        <h1>Ты знаешь, насколько пластичен твой мозг прямо <span class="word-literal">сейчас</span>? А сможешь его <span class="word-literal">сдвинуть</span> за шесть недель?</h1>
+  <div class="hero-inner" style="max-width: 1280px; margin: 0 auto;">
+    <span class="eyebrow">MNPI CHECKUP NEIRY · ONTO NOTHING × NEIRY</span>
 
-        <div class="hero-triad" aria-hidden="true">
-          <span class="ht-step">Измерить</span>
-          <span class="ht-arrow">→</span>
-          <span class="ht-step">Научиться читать</span>
-          <span class="ht-arrow">→</span>
-          <span class="ht-step">Сдвинуть в цифрах</span>
-        </div>
+    <!-- ── Ряд 1: заголовок + картинка трекера ── -->
+    <div class="hero-top">
+      <div class="hero-top-copy">
+        <h1>Твой мозг — в одной цифре. Для тех, кто доверяет <span class="word-literal">научно обоснованным</span> данным — и хочет <span class="word-literal">сам</span> этим управлять.</h1>
 
-        <p class="lead-copy"><strong>MNPI Checkup Neiry</strong> превращает состояние твоего мозга в одну цифру — индекс от 0 до 100, собранный из четырёх измерений (SI · DI · RI · PI). Это не просто замер, а полный цикл: пять ЭЭГ-сессий на нейробенде Neiry, 36+ метрик, два обучающих модуля, тест на знание данных, персональная тренировка со специалистом по 7 режимам сознания, четыре закрытых материала и месяц на платформе AI NIHILO.</p>
+        <p class="hero-sub"><strong>MNPI Checkup Neiry</strong> — первая система измерения нейропластичности. Пять ЭЭГ-сессий, 36+ метрик, персональная тренировка.</p>
 
-        <p class="lead-copy" style="margin-top: 16px;">Через 4–6 недель — повторный чекап. Point A → Point B, в конкретных цифрах: альфа <strong>+5–8%</strong>, стресс <strong>−7–10%</strong>, скорость входа в состояние <strong>−15–20%</strong>. Не «я стал спокойнее» — <strong>сдвиг показателей</strong>.</p>
-
-        <div class="cta-row">
-          <a href="../../zapisatsya/" class="btn-primary btn-glow">Пройти чекап-курс →</a>
-          <span class="micro-note">Три тарифа — от <strong>10 000 ₽</strong> в записи до 75 000 ₽ с нейробендом в комплекте.<br>Записи и материалы остаются навсегда.</span>
-        </div>
+        <p class="hero-result">Не «я стал спокойнее» — а <span class="hstat"><strong>альфа +7%</strong></span> <span class="hstat"><strong>стресс −9%</strong></span> <span class="hstat"><strong>вход в состояние на 18% быстрее</strong></span></p>
       </div>
 
-      <div class="hero-visual" aria-hidden="true">
+      <div class="hero-top-visual" aria-hidden="true">
         <div class="hero-band-glow"></div>
         <div class="hero-band-halo"></div>
         <img src="./neiry-band.webp" alt="Нейробенд Neiry MindTracker" class="hero-band-img" loading="eager">
@@ -59,7 +48,7 @@
           <div class="hbs-label">на нём проходит программа</div>
           <div class="hbs-name">Neiry MindTracker</div>
           <div class="hbs-chips">
-            <span>3 ЭЭГ-сенсора</span>
+            <span>3 ЭЭГ</span>
             <span>HRV</span>
             <span>IMU · 6 осей</span>
           </div>
@@ -67,23 +56,129 @@
       </div>
     </div>
 
-    <div class="eeg-line-wrap">
-      <svg class="eeg-svg" viewBox="0 0 1000 140" preserveAspectRatio="none" aria-hidden="true">
-        <path class="eeg-path" d="M 0 70 Q 40 50 80 70 T 160 70 Q 200 40 240 70 T 320 70 Q 360 55 400 70 T 480 70 Q 520 35 560 70 T 640 70 Q 680 55 720 70 T 800 70 Q 840 40 880 70 T 960 70 L 1000 70"/>
-        <g class="eeg-dot d1" style="color: #00A39A;"><circle cx="100" cy="70" r="7" fill="#00A39A"/><circle cx="100" cy="70" r="3" fill="#fff"/></g>
-        <g class="eeg-dot d2" style="color: #F59E0B;"><circle cx="300" cy="70" r="7" fill="#F59E0B"/><circle cx="300" cy="70" r="3" fill="#fff"/></g>
-        <g class="eeg-dot d3" style="color: #A78BFA;"><circle cx="500" cy="70" r="7" fill="#A78BFA"/><circle cx="500" cy="70" r="3" fill="#fff"/></g>
-        <g class="eeg-dot d4" style="color: #10B981;"><circle cx="700" cy="70" r="7" fill="#10B981"/><circle cx="700" cy="70" r="3" fill="#fff"/></g>
-        <g class="eeg-dot d5" style="color: #EF4444;"><circle cx="900" cy="70" r="7" fill="#EF4444"/><circle cx="900" cy="70" r="3" fill="#fff"/></g>
-      </svg>
-      <div class="eeg-labels">
-        <span class="l1">01 BASE</span>
-        <span class="l2">02 BODY</span>
-        <span class="l3">03 DEPTH</span>
-        <span class="l4">04 ACTIVE<br>PRESENCE</span>
-        <span class="l5">05 ANTENNA</span>
+    <!-- ── Ряд 2: доказательство — радар MNPI + прогноз ── -->
+    <div class="hero-proof">
+      <div class="hero-radar-card">
+        <div class="hrc-head">
+          <div class="hrc-kicker">Твой нейропрофиль</div>
+          <div class="hrc-title">Point A → Point B · 4 измерения MNPI</div>
+        </div>
+
+        <div class="radar-wrap">
+          <svg class="radar-svg" viewBox="0 0 300 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Радар MNPI: до и после">
+            <!-- сетка -->
+            <g class="r-grid">
+              <polygon points="150,50 250,155 150,260 50,155"/>
+              <polygon points="150,76 224,155 150,234 76,155"/>
+              <polygon points="150,102 198,155 150,208 102,155"/>
+              <polygon points="150,128 172,155 150,182 128,155"/>
+            </g>
+            <g class="r-axis">
+              <line x1="150" y1="155" x2="150" y2="50"/>
+              <line x1="150" y1="155" x2="250" y2="155"/>
+              <line x1="150" y1="155" x2="150" y2="260"/>
+              <line x1="150" y1="155" x2="50" y2="155"/>
+            </g>
+
+            <!-- Point A (до) -->
+            <polygon class="r-a" points="150,108 186,155 150,215 108,155"/>
+
+            <!-- Point B (после) -->
+            <polygon class="r-b" points="150,82 216,155 150,240 80,155"/>
+
+            <!-- точки Point B -->
+            <g class="r-b-dots">
+              <circle cx="150" cy="82" r="5"/>
+              <circle cx="216" cy="155" r="5"/>
+              <circle cx="150" cy="240" r="5"/>
+              <circle cx="80" cy="155" r="5"/>
+            </g>
+
+            <!-- подписи осей · коды -->
+            <g class="r-labels">
+              <text x="150" y="38" text-anchor="middle">DI</text>
+              <text x="268" y="159" text-anchor="start">SI</text>
+              <text x="150" y="282" text-anchor="middle">RI</text>
+              <text x="32" y="159" text-anchor="end">PI</text>
+            </g>
+            <!-- подписи осей · полные -->
+            <g class="r-labels-full">
+              <text x="150" y="22" text-anchor="middle">ГЛУБИНА СОСТОЯНИЯ</text>
+              <text x="268" y="174" text-anchor="start">СКОРОСТЬ ПЕРЕКЛЮЧЕНИЯ</text>
+              <text x="150" y="298" text-anchor="middle">УСТОЙЧИВОСТЬ ПОД НАГРУЗКОЙ</text>
+              <text x="32" y="174" text-anchor="end">СООТВЕТСТВИЕ НАРРАТИВА</text>
+            </g>
+          </svg>
+
+          <div class="radar-legend">
+            <div class="rl-item"><span class="rl-dot a"></span>Point A · до чекапа</div>
+            <div class="rl-item"><span class="rl-dot b"></span>Point B · +6 недель</div>
+          </div>
+        </div>
+
+        <div class="mnpi-bar">
+          <div class="mb-from">
+            <div class="mb-small">MNPI сейчас</div>
+            <div class="mb-num">62</div>
+          </div>
+          <div class="mb-track" aria-hidden="true">
+            <div class="mb-fill"></div>
+            <div class="mb-arrow">→</div>
+          </div>
+          <div class="mb-to">
+            <div class="mb-small">через 6 недель</div>
+            <div class="mb-num">74</div>
+          </div>
+          <div class="mb-delta">+12 пунктов</div>
+        </div>
+
+        <p class="hrc-caption">Четыре измерения нейропластичности в одном профиле. Повторный чекап покажет твой личный сдвиг — не относительно «нормы», а относительно <strong>тебя вчерашнего</strong>.</p>
+      </div>
+
+      <div class="hero-forecast">
+        <div class="hf-label">Прогноз сдвига</div>
+        <div class="hf-title">4–6 недель самостоятельной практики</div>
+
+        <div class="hf-rows">
+          <div class="hf-row">
+            <span class="hf-name">Альфа при открытых глазах</span>
+            <span class="hf-val up">▲ +5–8%</span>
+          </div>
+          <div class="hf-row">
+            <span class="hf-name">Вариабельность ритма (SDNN)</span>
+            <span class="hf-val up">▲ +3–5 мс</span>
+          </div>
+          <div class="hf-row">
+            <span class="hf-name">Индекс стресса (Баевский)</span>
+            <span class="hf-val down good">▼ −7–10%</span>
+          </div>
+          <div class="hf-row">
+            <span class="hf-name">Скорость входа в состояние</span>
+            <span class="hf-val down good">▼ −15–20%</span>
+          </div>
+        </div>
+
+        <div class="hf-foot">Консервативная оценка · только на встроенных тренингах Neiry.<br>С методом ONTO NOTHING сдвиги <strong>в 2–3 раза глубже</strong>.</div>
       </div>
     </div>
+
+    <!-- ── Ряд 3: CTA ── -->
+    <div class="cta-row">
+      <a href="../../zapisatsya/" class="btn-primary btn-glow">Пройти чекап-курс · от 10 000 ₽ →</a>
+      <a href="#demo-dashboard" class="btn-ghost">Посмотреть демо-отчёт</a>
+    </div>
+
+    <ul class="hero-badges">
+      <li><span class="hb-check">✓</span>Результат в цифрах, а не в ощущениях</li>
+      <li><span class="hb-check">✓</span>Работает с любым нейробендом Neiry</li>
+      <li><span class="hb-check">✓</span>Материалы и платформа — навсегда</li>
+    </ul>
+
+    <ul class="hero-trust">
+      <li><span class="ht-ico">🔐</span>Данные шифруются и хранятся в РФ</li>
+      <li><span class="ht-ico">🇷🇺</span>Neiry (Россия) × ONTO NOTHING</li>
+      <li><span class="ht-ico">📊</span>36+ валидированных метрик Neiry Capsule</li>
+    </ul>
   </div>
 </section>
 
@@ -1441,7 +1536,7 @@
 <!-- ══════════════════════════════
      ЭКРАН 13.5 — ДАШБОРД СПЕЦИФИКАЦИЙ
 ══════════════════════════════ -->
-<section class="section-wide">
+<section class="section-wide" id="demo-dashboard">
   <div class="section-label">всё, что внутри · по цифрам</div>
   <h2>Что получаешь на входе — и какой результат ждёт на выходе</h2>
 
