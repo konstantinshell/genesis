@@ -963,6 +963,35 @@ h1, h2, h3, h4 {
   line-height: 1.7;
 }
 .hero-v3 .lead-copy strong { color: var(--text); }
+
+.hero-triad {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 4px 0 22px;
+  padding: 8px 14px;
+  border: 1px dashed var(--border);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.4);
+}
+.hero-triad .ht-step {
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  font-weight: 700;
+}
+.hero-triad .ht-arrow {
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+@media (max-width: 560px) {
+  .hero-triad { gap: 6px 8px; padding: 8px 12px; }
+  .hero-triad .ht-step { font-size: 0.7rem; letter-spacing: 0.04em; }
+}
 .hero-v3 .cta-row {
   display: flex;
   flex-wrap: wrap;
