@@ -2032,7 +2032,76 @@ h1, h2, h3, h4 {
   margin-top: 6px;
 }
 
-/* ── 3 guides flip (Экран 12) ── */
+/* ── Закрытые материалы: 2 группы (Экран 12) ── */
+.closed-group {
+  margin-top: 40px;
+}
+.closed-group:first-of-type {
+  margin-top: 34px;
+}
+.closed-group-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed var(--border);
+}
+.closed-group-num {
+  font-family: var(--ft);
+  font-size: 2.6rem;
+  color: var(--gold);
+  line-height: 0.9;
+  padding-top: 4px;
+  text-shadow: 0 0 18px rgba(212,161,85,0.25);
+}
+.closed-group-kind {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.closed-group-title h3 {
+  font-family: var(--fh);
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 8px;
+  letter-spacing: -0.005em;
+}
+.closed-group-title p {
+  font-size: 0.95rem;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 720px;
+}
+
+.guides-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  perspective: 1200px;
+}
+.books-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px;
+  max-width: 780px;
+  margin: 0 auto;
+  perspective: 1400px;
+}
+@media (max-width: 760px) {
+  .guides-grid-2 { grid-template-columns: 1fr; }
+  .books-grid-2 { grid-template-columns: 1fr; gap: 28px; max-width: 380px; }
+  .closed-group-head { grid-template-columns: 1fr; gap: 10px; }
+  .closed-group-num { font-size: 2rem; }
+}
+
+/* Legacy — на случай если где-то ещё используется */
 .guides-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -2152,6 +2221,94 @@ h1, h2, h3, h4 {
   position: relative;
   min-height: 360px;
   cursor: pointer;
+}
+
+/* ── Книжная карточка — визуально именно книга ── */
+.guide-card.book {
+  min-height: 480px;
+}
+.guide-card.book .guide-flip {
+  min-height: 480px;
+}
+.book-volume {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--ft);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  background: #0F1016;
+  padding: 4px 14px;
+  border: 1px solid var(--gold-b);
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+.guide-card.book .guide-front {
+  padding: 40px 26px 26px 44px;
+  background:
+    /* корешок: тёмная полоска + золотая линия + тонкий блик */
+    linear-gradient(90deg,
+      rgba(0,0,0,0.45) 0,
+      rgba(0,0,0,0.45) 16px,
+      rgba(212,161,85,0.55) 16px,
+      rgba(212,161,85,0.55) 17px,
+      rgba(255,255,255,0.04) 17px,
+      rgba(255,255,255,0.04) 19px,
+      transparent 19px),
+    radial-gradient(ellipse at 60% 30%, rgba(212,161,85,0.18), transparent 60%),
+    linear-gradient(135deg, #12131A 0%, #20212E 100%);
+  box-shadow:
+    -12px 14px 30px rgba(0,0,0,0.45),
+    inset 1px 0 0 rgba(255,255,255,0.05);
+  text-align: center;
+  align-items: center;
+}
+/* рамка внутри обложки — золотая двойная */
+.guide-card.book .guide-front::after {
+  inset: 18px 16px 18px 34px;
+  border: 1px solid rgba(212,161,85,0.35);
+  border-radius: 8px;
+}
+.guide-card.book .guide-front::before {
+  content: '';
+  position: absolute;
+  inset: 22px 20px 22px 38px;
+  border: 1px solid rgba(212,161,85,0.18);
+  border-radius: 5px;
+  pointer-events: none;
+}
+.guide-card.book .guide-lock {
+  top: 26px;
+  right: 26px;
+}
+.guide-card.book .gsub {
+  margin-top: 6px;
+  text-align: center;
+}
+.guide-card.book .guide-front h4 {
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-top: 18px;
+  margin-bottom: 14px;
+  line-height: 1.35;
+}
+.book-ornament {
+  font-family: serif;
+  font-size: 1.4rem;
+  color: rgba(212,161,85,0.55);
+  margin: 0 auto 18px;
+  line-height: 1;
+}
+.guide-card.book .guide-front .g-badge {
+  align-self: center;
+  margin-top: auto;
+}
+.guide-card.book .guide-back {
+  padding: 30px 24px 22px;
 }
 
 /* ── Tariffs (Экран 13) ── */
