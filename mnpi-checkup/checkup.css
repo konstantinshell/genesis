@@ -1661,6 +1661,142 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
 }
 
+/* ══════════ Что даёт рост MNPI (Экран 2.5) ══════════ */
+.benefits-section {
+  position: relative;
+}
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+}
+@media (max-width: 960px) {
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .benefits-grid { grid-template-columns: 1fr; }
+}
+
+.benefit-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 24px;
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  border-radius: 999px;
+  opacity: 0.55;
+}
+.benefit-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(95,95,255,0.35);
+  box-shadow: 0 16px 40px rgba(22,22,26,0.08), 0 0 0 1px rgba(95,95,255,0.12);
+}
+.bc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, rgba(95,95,255,0.12), rgba(10,132,255,0.08));
+  border: 1px solid rgba(95,95,255,0.18);
+  border-radius: 14px;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.benefit-card h4 {
+  font-family: var(--fh);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+.bc-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+.bc-was, .bc-now {
+  display: block;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  position: relative;
+  padding-left: 14px;
+}
+.bc-was::before, .bc-now::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  border-radius: 999px;
+}
+.bc-was::before { background: rgba(136,136,150,0.4); }
+.bc-now::before { background: var(--accent); }
+.bc-was { color: var(--muted); }
+.bc-now { color: var(--text); }
+.bc-label {
+  display: block;
+  font-family: var(--fm);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.bc-was .bc-label { color: #B8860B; }
+.bc-now .bc-label { color: var(--accent); }
+.bc-metric {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.benefits-closing {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 30px;
+  padding: 22px 26px;
+  background: linear-gradient(135deg, rgba(95,95,255,0.06), rgba(10,132,255,0.04));
+  border: 1px dashed rgba(95,95,255,0.3);
+  border-radius: 16px;
+}
+.bcl-arrow {
+  font-size: 1.6rem;
+  color: var(--accent);
+  line-height: 1;
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+.benefits-closing p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+.benefits-closing strong { color: var(--text); font-weight: 700; }
+
 /* ── 6 orbit cards (Экран 3) ── */
 .orbit-grid {
   display: grid;
