@@ -1545,6 +1545,405 @@ body {
   .lab-name { font-size: 20px; }
 }
 
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 6 · IV — 7 функциональных режимов сознания
+   Интерактивный пульт: DMN в центре + 6 режимов + details panel
+══════════════════════════════════════════════════════════════ */
+.section-modes {
+  position: relative;
+  z-index: 2;
+  padding: 80px 24px 160px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.modes-intro {
+  max-width: 760px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+.modes-intro-b {
+  margin-top: 40px;
+  padding: 20px 28px;
+  background: rgba(95, 95, 255, 0.04);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(18px, 1.7vw, 22px);
+  line-height: 1.5;
+  color: var(--text);
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Console (пульт) ── */
+.console-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.console-hint {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 6px;
+}
+.console-hint .k {
+  padding: 2px 8px;
+  border: 1px solid var(--line-bright);
+  border-radius: 4px;
+  margin: 0 2px;
+  font-size: 10px;
+  color: var(--text);
+}
+
+.console-circle {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.console-orbit {
+  position: absolute;
+  inset: 70px;
+  border: 1px dashed rgba(15, 20, 25, 0.12);
+  border-radius: 50%;
+}
+
+.console-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(15, 20, 25, 0.06);
+  border: 1px solid rgba(15, 20, 25, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.console-center:hover {
+  background: rgba(15, 20, 25, 0.09);
+  transform: translate(-50%, -50%) scale(1.03);
+}
+.console-center.active {
+  background: rgba(15, 20, 25, 0.1);
+  border-color: rgba(15, 20, 25, 0.28);
+  box-shadow: 0 6px 20px rgba(15, 20, 25, 0.12);
+}
+.console-center .icon {
+  font-size: 38px;
+  line-height: 1;
+  opacity: 0.7;
+}
+.console-center .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.console-node {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 106px;
+  height: 106px;
+  margin-top: -53px; margin-left: -53px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 16px rgba(15, 20, 25, 0.08);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 8px;
+  transition: transform 0.35s cubic-bezier(.22,1,.36,1),
+              box-shadow 0.35s, border-color 0.35s;
+  will-change: transform;
+}
+.console-node .n-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+.console-node .n-icon.glyph {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--_c, var(--accent));
+}
+.console-node .n-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.console-node:hover {
+  transform: translate(var(--_tx), var(--_ty)) scale(1.08);
+  box-shadow: 0 8px 28px rgba(15, 20, 25, 0.14);
+}
+.console-node.active {
+  border-color: var(--_c);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.08),
+              0 0 0 4px rgba(0, 0, 0, 0.02),
+              0 0 0 6px var(--_c-glow);
+  transform: translate(var(--_tx), var(--_ty)) scale(1.12);
+}
+.console-node:focus-visible {
+  outline: none;
+  border-color: var(--_c);
+}
+
+/* Позиции 6 режимов (−90°, −30°, 30°, 90°, 150°, −150° = top, TR, BR, bottom, BL, TL) */
+.console-node[data-pos="0"] { --_tx:    0; --_ty: -175px; }
+.console-node[data-pos="1"] { --_tx:  152px; --_ty: -88px; }
+.console-node[data-pos="2"] { --_tx:  152px; --_ty:  88px; }
+.console-node[data-pos="3"] { --_tx:    0; --_ty:  175px; }
+.console-node[data-pos="4"] { --_tx: -152px; --_ty:  88px; }
+.console-node[data-pos="5"] { --_tx: -152px; --_ty: -88px; }
+.console-node { transform: translate(var(--_tx), var(--_ty)); }
+
+/* Соединительные линии */
+.console-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+.console-line {
+  stroke: rgba(15, 20, 25, 0.14);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  transition: stroke 0.4s, stroke-width 0.4s;
+}
+.console-line.active {
+  stroke: var(--_c, var(--accent));
+  stroke-width: 1.5;
+  stroke-dasharray: none;
+}
+
+.console-node { z-index: 2; }
+
+/* ── Details panel ── */
+.console-details {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 22px;
+  padding: 38px 38px 36px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 22px rgba(15, 20, 25, 0.04);
+  min-height: 440px;
+  position: relative;
+  overflow: hidden;
+}
+.console-details::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: var(--_c, var(--accent));
+  transition: background 0.4s;
+}
+
+.cd-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.cd-icon {
+  font-size: 40px;
+  line-height: 1;
+}
+.cd-icon.glyph {
+  font-family: var(--font-display);
+  font-weight: 300;
+  color: var(--_c, var(--accent));
+}
+.cd-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(26px, 2.6vw, 34px);
+  line-height: 1.1;
+  color: var(--text);
+  margin: 0;
+}
+.cd-name em {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--_c, var(--accent));
+}
+
+.cd-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+.cd-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+.cd-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding-top: 12px;
+  border-top: 1px solid rgba(15, 20, 25, 0.06);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.cd-row:first-child { border-top: none; padding-top: 0; }
+.cd-row.visible { opacity: 1; transform: translateY(0); }
+.cd-row-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--_c, var(--accent));
+  white-space: nowrap;
+}
+.cd-row-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  margin: 0;
+}
+.cd-row-text em {
+  font-style: italic;
+  color: var(--text-mute);
+}
+
+.cd-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.cd-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 6px 11px;
+  border-radius: 100px;
+  background: var(--_c-bg);
+  color: var(--_c);
+  border: 1px solid var(--_c-glow);
+}
+
+.cd-footer {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(15, 20, 25, 0.1);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cd-footer .kbd-hint b {
+  padding: 2px 6px;
+  border: 1px solid var(--line-bright);
+  border-radius: 3px;
+  color: var(--text);
+  font-weight: 600;
+  margin: 0 1px;
+}
+
+.modes-closing {
+  max-width: 780px;
+  margin: 96px auto 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.4;
+  color: var(--text);
+}
+.modes-closing strong {
+  font-style: normal;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Адаптив секции 6 */
+@media (max-width: 960px) {
+  .console-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .console-circle { max-width: 460px; }
+  .console-node[data-pos="0"] { --_ty: -150px; }
+  .console-node[data-pos="1"] { --_tx:  130px; --_ty: -75px; }
+  .console-node[data-pos="2"] { --_tx:  130px; --_ty:  75px; }
+  .console-node[data-pos="3"] { --_ty:  150px; }
+  .console-node[data-pos="4"] { --_tx: -130px; --_ty:  75px; }
+  .console-node[data-pos="5"] { --_tx: -130px; --_ty: -75px; }
+}
+@media (max-width: 520px) {
+  .console-node { width: 90px; height: 90px; margin-top: -45px; margin-left: -45px; }
+  .console-node .n-icon { font-size: 22px; }
+  .console-node .n-label { font-size: 8.5px; }
+  .console-node[data-pos="0"] { --_ty: -128px; }
+  .console-node[data-pos="1"] { --_tx:  110px; --_ty: -64px; }
+  .console-node[data-pos="2"] { --_tx:  110px; --_ty:  64px; }
+  .console-node[data-pos="3"] { --_ty:  128px; }
+  .console-node[data-pos="4"] { --_tx: -110px; --_ty:  64px; }
+  .console-node[data-pos="5"] { --_tx: -110px; --_ty: -64px; }
+  .console-center { width: 96px; height: 96px; }
+  .console-center .icon { font-size: 30px; }
+  .console-details { padding: 28px 22px; }
+  .cd-row { grid-template-columns: 1fr; gap: 4px; }
+}
+
 /* ── Адаптив ── */
 @media (max-width: 900px) {
   .paths-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -2031,6 +2430,98 @@ body {
 
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 6 · IV — 7 функциональных режимов сознания
+     Интерактивный пульт: DMN в центре + 6 режимов вокруг
+     При клике на режим справа обновляется details panel
+═══════════════════════════════════════════════════════════ -->
+<section class="section-modes" id="modes">
+
+  <span class="section-num">Часть IV</span>
+  <h2 class="section-h2">7 функциональных режимов сознания. <em>Пульт управления состояниями.</em></h2>
+
+  <div class="modes-intro">
+    <p class="intro-para centered">
+      ONTO NOTHING — это <strong>ключ к операционной системе мозга</strong>, в которой семь различимых режимов. У каждого — свой нейрофизиологический портрет, своя роль и сценарий применения.
+    </p>
+  </div>
+
+  <div class="modes-intro-b">
+    Научиться выходить из 🌀 DMN и заходить в ∅ — значит получить доступ ко всем остальным.
+  </div>
+
+  <!-- Интерактивный пульт -->
+  <div class="console-wrap">
+    <div class="console-hint">
+      Кликни на любой режим, чтобы увидеть что происходит в мозге · клавиши <span class="k">1</span><span class="k">7</span>
+    </div>
+
+    <!-- Левая часть — круговой пульт -->
+    <div class="console-circle" role="tablist" aria-label="Режимы сознания">
+      <div class="console-orbit" aria-hidden="true"></div>
+
+      <!-- SVG соединительные линии от центра к узлам -->
+      <svg class="console-lines" viewBox="0 0 540 540" preserveAspectRatio="none" aria-hidden="true">
+        <line class="console-line" data-line="0" x1="270" y1="270" x2="270" y2="95"/>
+        <line class="console-line" data-line="1" x1="270" y1="270" x2="422" y2="182"/>
+        <line class="console-line" data-line="2" x1="270" y1="270" x2="422" y2="358"/>
+        <line class="console-line" data-line="3" x1="270" y1="270" x2="270" y2="445"/>
+        <line class="console-line" data-line="4" x1="270" y1="270" x2="118" y2="358"/>
+        <line class="console-line" data-line="5" x1="270" y1="270" x2="118" y2="182"/>
+      </svg>
+
+      <!-- DMN (центр) -->
+      <button class="console-center" data-mode="dmn" type="button" role="tab" aria-selected="false">
+        <span class="icon">🌀</span>
+        <span class="label">DMN</span>
+      </button>
+
+      <!-- 6 режимов на орбите -->
+      <button class="console-node" data-mode="pure" data-pos="0" type="button" role="tab"
+              style="--_c:#3b82f6; --_c-bg:rgba(59,130,246,0.08); --_c-glow:rgba(59,130,246,0.2);">
+        <span class="n-icon glyph">∅</span>
+        <span class="n-label">Pure<br>Nothing</span>
+      </button>
+      <button class="console-node" data-mode="visceral" data-pos="1" type="button" role="tab"
+              style="--_c:#e0447c; --_c-bg:rgba(224,68,124,0.08); --_c-glow:rgba(224,68,124,0.2);">
+        <span class="n-icon">🫀</span>
+        <span class="n-label">Visceral<br>Mind</span>
+      </button>
+      <button class="console-node" data-mode="quantum" data-pos="2" type="button" role="tab"
+              style="--_c:#9333ea; --_c-bg:rgba(147,51,234,0.08); --_c-glow:rgba(147,51,234,0.2);">
+        <span class="n-icon">✨</span>
+        <span class="n-label">Quantum<br>Genesis</span>
+      </button>
+      <button class="console-node" data-mode="presence" data-pos="3" type="button" role="tab"
+              style="--_c:#d97706; --_c-bg:rgba(217,119,6,0.08); --_c-glow:rgba(217,119,6,0.2);">
+        <span class="n-icon">👁</span>
+        <span class="n-label">Active<br>Presence</span>
+      </button>
+      <button class="console-node" data-mode="flow" data-pos="4" type="button" role="tab"
+              style="--_c:#059669; --_c-bg:rgba(5,150,105,0.08); --_c-glow:rgba(5,150,105,0.2);">
+        <span class="n-icon">⚡</span>
+        <span class="n-label">Embodied<br>Flow</span>
+      </button>
+      <button class="console-node" data-mode="transcendent" data-pos="5" type="button" role="tab"
+              style="--_c:#6366f1; --_c-bg:rgba(99,102,241,0.08); --_c-glow:rgba(99,102,241,0.2);">
+        <span class="n-icon">🔮</span>
+        <span class="n-label">Transcendent<br>Download</span>
+      </button>
+    </div>
+
+    <!-- Правая панель — детали выбранного режима -->
+    <aside class="console-details" id="mode-details" role="tabpanel" aria-live="polite">
+      <!-- Заполняется JS на основе modesData -->
+    </aside>
+  </div>
+
+  <p class="modes-closing">
+    Большинство людей живёт в 🌀 DMN — фоновом шуме беты, где внутренний диалог идёт сам.<br>
+    <strong>ONTO NOTHING — это пульт.</strong> И возможность выбирать ту кнопку, которая нужна задаче.
+  </p>
+
+</section>
+
 <!-- ═══ JS: звёзды + счётчики ═══ -->
 <script>
   // ── Генерация мягких светлых орбов (фон) ────────────────────
@@ -2196,6 +2687,185 @@ body {
     addDots(300, 260, 28, 0.25, 0.6, 1.8, '#5F5FFF');
     // Orbit 3 extra ambient
     addDots(40, 340, 18, 0.15, 0.4, 1.2, '#0A84FF');
+  })();
+
+  // ── Пульт управления состояниями: данные + рендер ──────────
+  (function modesConsole() {
+    const details = document.getElementById('mode-details');
+    if (!details) return;
+
+    const modes = {
+      dmn: {
+        icon: '🌀', iconType: 'emoji', color: '#5c5c6b', colorBg: 'rgba(92,92,107,0.08)', colorGlow: 'rgba(92,92,107,0.22)',
+        name: 'DMN · Режим по умолчанию',
+        sub: 'Default Mode Network · базовая линия большинства',
+        rows: [
+          { label: 'Внимание',  text: 'Рассеянное, неуправляемое, цепляется за тревожные петли. Не ты управляешь им, а оно тобой.' },
+          { label: 'Что даёт',  text: 'Исходная точка. Руминация, тревога, переигрывание прошлого. Базовая линия большинства.' },
+          { label: 'Тело',      text: 'Симпатическая доминанта, мышечный тонус, кортизол, верхнее дыхание, сжатая диафрагма.' },
+          { label: 'ЭЭГ / ВСР', text: 'β↑↑ · α↓ · DMN активна · SDNN↓ · SI Баевский↑ · HR↑ · RMSSD↓' },
+        ],
+        pills: ['β↑↑', 'α↓', 'DMN ON', 'HR↑', 'RMSSD↓'],
+        footer: 'Базовая линия. Не «плохой» режим — задача уметь из него выходить.',
+      },
+      pure: {
+        icon: '∅', iconType: 'glyph', color: '#3b82f6', colorBg: 'rgba(59,130,246,0.08)', colorGlow: 'rgba(59,130,246,0.22)',
+        name: '∅ · Pure Nothing',
+        sub: 'Полная остановка · дверь ко всем остальным режимам',
+        rows: [
+          { label: 'Внимание',  text: 'Направленное, не-цепляющееся. Ты не думаешь о чём-то — внимание остаётся чистым полем без содержания.' },
+          { label: 'Что даёт',  text: 'Обнуление системы за 60 секунд. Точка сброса перед важным решением. Дверь ко всем остальным режимам.' },
+          { label: 'Тело',      text: 'Резкий парасимпатический сдвиг, падение кортизола, расслабление диафрагмы, глубокое естественное дыхание.' },
+          { label: 'ЭЭГ / ВСР', text: 'α↑↑ · β↓↓ · DMN подавлена · IAPF Suppression↑ · SDNN↑ · RMSSD↑ · HR↓' },
+        ],
+        pills: ['α↑↑', 'β↓↓', 'DMN OFF', 'SDNN↑', 'RMSSD↑'],
+        footer: 'Ключевой режим · входная точка ко всему пульту.',
+      },
+      visceral: {
+        icon: '🫀', iconType: 'emoji', color: '#e0447c', colorBg: 'rgba(224,68,124,0.08)', colorGlow: 'rgba(224,68,124,0.22)',
+        name: 'Visceral Mind',
+        sub: 'Тело как канал · Salience Network активна',
+        rows: [
+          { label: 'Внимание',  text: 'Удерживается в теле — на ощущениях живота, груди, сердца, стоп. Не на словах о теле, а на самом сигнале.' },
+          { label: 'Что даёт',  text: 'Доступ к телесной интуиции, работа с соматикой, решения «из нутра». Тело впервые получает слово.' },
+          { label: 'Тело',      text: 'Активация блуждающего нерва, улучшение перистальтики, согревание периферии, снятие хронических зажимов.' },
+          { label: 'ЭЭГ / ВСР', text: 'α умеренная · инсула↑ · DMN↓ · вагальный тонус↑↑ · RMSSD↑↑ · HRV↑' },
+        ],
+        pills: ['α~', 'Инсула↑', 'Vagus↑↑', 'RMSSD↑↑', 'HRV↑'],
+        footer: 'Режим интероцепции · решения «из нутра».',
+      },
+      quantum: {
+        icon: '✨', iconType: 'emoji', color: '#9333ea', colorBg: 'rgba(147,51,234,0.08)', colorGlow: 'rgba(147,51,234,0.22)',
+        name: 'Quantum Genesis',
+        sub: 'Гипнагогическое окно · гиппокамп активен',
+        rows: [
+          { label: 'Внимание',  text: 'Мягкое, плавающее, не цепляющееся за объект. Наблюдатель отпускает контроль — и мозг начинает связывать.' },
+          { label: 'Что даёт',  text: 'Креативный синтез, инсайты на стыке контекстов, ускоренное научение, загрузка новых паттернов в память.' },
+          { label: 'Тело',      text: 'Глубокое расслабление, микро-подёргивания, тёплые волны, замедление дыхания до 4–6 циклов/мин.' },
+          { label: 'ЭЭГ / ВСР', text: 'θ↑↑ · α↑ · θ/α ≈ 1 · гиппокамп активен · DMN↓ · SDNN↑↑ · дыхание↓↓' },
+        ],
+        pills: ['θ↑↑', 'α↑', 'Hipp↑', 'SDNN↑↑'],
+        footer: 'Здесь рождается то, чего ещё не существует.',
+      },
+      presence: {
+        icon: '👁', iconType: 'emoji', color: '#d97706', colorBg: 'rgba(217,119,6,0.08)', colorGlow: 'rgba(217,119,6,0.22)',
+        name: 'Active Presence',
+        sub: 'Устойчивая альфа при открытых глазах · DAN активна',
+        rows: [
+          { label: 'Внимание',  text: 'Устойчиво распределено на внешнем поле, без внутреннего комментария. Смотришь — и видишь. Без прослойки мыслей.' },
+          { label: 'Что даёт',  text: 'Присутствие в переговорах, на сцене, в конфликте, за рулём под нагрузкой. Быстрые решения из ясности.' },
+          { label: 'Тело',      text: 'Мышечная экономия, отсутствие компенсаторного напряжения, ровное дыхание на фоне внешней сложности.' },
+          { label: 'ЭЭГ / ВСР', text: 'α↑ при открытых глазах (ключевой маркер) · β контролируемая · DAN↑ · DMN↓' },
+        ],
+        pills: ['α↑ EO', 'β ctrl', 'DAN↑', 'DMN↓'],
+        footer: 'Спокойствие не в кабинете — спокойствие в действии.',
+      },
+      flow: {
+        icon: '⚡', iconType: 'emoji', color: '#059669', colorBg: 'rgba(5,150,105,0.08)', colorGlow: 'rgba(5,150,105,0.22)',
+        name: 'Embodied Flow',
+        sub: 'SMR-ритм 12–15 Гц · префронтальный самоконтроль снижен',
+        rows: [
+          { label: 'Внимание',  text: 'Полностью слито с действием. Нет разделения на «я» и «то, что я делаю». Петля обратной связи мгновенная.' },
+          { label: 'Что даёт',  text: 'Точность без усилия. Спорт, музыка, сложная работа руками, вождение. Интеграция тело-мозг в реальном времени.' },
+          { label: 'Тело',      text: 'Экономичная моторика, нет тремора усталости, субъективно «время растягивается».' },
+          { label: 'ЭЭГ / ВСР', text: 'SMR↑↑ · β-шум↓ · префронтальная активность↓ · α фоновая · SDNN↑' },
+        ],
+        pills: ['SMR↑↑', 'β-noise↓', 'PFC↓', 'SDNN↑'],
+        footer: '«Делает само» — точность без усилия.',
+      },
+      transcendent: {
+        icon: '🔮', iconType: 'emoji', color: '#6366f1', colorBg: 'rgba(99,102,241,0.08)', colorGlow: 'rgba(99,102,241,0.22)',
+        name: 'Transcendent Download',
+        sub: 'Интеграция сетей · DMN ↔ CEN кратко ко-активируются',
+        rows: [
+          { label: 'Внимание',  text: 'Широкое, панорамное, не-сфокусированное. Ты не ищешь ответ. Ты создаёшь условия, в которых он приходит сам.' },
+          { label: 'Что даёт',  text: 'Творческие прорывы, стратегические инсайты, моменты «вдруг всё встало на место». То, что называют «осенило».' },
+          { label: 'Тело',      text: 'Волна мурашек, тёплая вспышка в груди или макушке, дыхание на мгновение останавливается.' },
+          { label: 'ЭЭГ / ВСР', text: 'γ-всплески · α стабильна · DMN ↔ CEN коактивация · кратковременный всплеск HR в момент инсайта' },
+        ],
+        pills: ['γ↑', 'α stable', 'DMN⇄CEN'],
+        footer: 'Инсайт — не результат думания, а результат его остановки.',
+      },
+    };
+
+    const order = ['pure', 'visceral', 'quantum', 'presence', 'flow', 'transcendent', 'dmn'];
+    let current = 'pure';
+
+    function render(mode) {
+      const d = modes[mode];
+      if (!d) return;
+      // Обновляем CSS-переменные для цветов панели
+      details.style.setProperty('--_c', d.color);
+      details.style.setProperty('--_c-bg', d.colorBg);
+      details.style.setProperty('--_c-glow', d.colorGlow);
+
+      const iconClass = d.iconType === 'glyph' ? 'cd-icon glyph' : 'cd-icon';
+      details.innerHTML = '<div class="cd-head">' +
+        '<span class="' + iconClass + '">' + d.icon + '</span>' +
+        '<h3 class="cd-name">' + d.name + '</h3>' +
+        '</div>' +
+        '<div class="cd-sub">' + d.sub + '</div>' +
+        '<div class="cd-rows">' +
+          d.rows.map(r => '<div class="cd-row"><span class="cd-row-label">' + r.label + '</span><p class="cd-row-text">' + r.text + '</p></div>').join('') +
+        '</div>' +
+        '<div class="cd-metrics">' +
+          d.pills.map(p => '<span class="cd-pill">' + p + '</span>').join('') +
+        '</div>' +
+        '<div class="cd-footer">' +
+          '<span>' + d.footer + '</span>' +
+          '<span class="kbd-hint">1–7 · клавиши</span>' +
+        '</div>';
+
+      // Stagger-анимация cd-row
+      const rows = details.querySelectorAll('.cd-row');
+      rows.forEach((r, i) => setTimeout(() => r.classList.add('visible'), 60 + i * 90));
+
+      // Обновляем состояние узлов и линий
+      document.querySelectorAll('.console-node').forEach(n => {
+        n.classList.toggle('active', n.dataset.mode === mode);
+        n.setAttribute('aria-selected', n.dataset.mode === mode);
+      });
+      document.querySelector('.console-center').classList.toggle('active', mode === 'dmn');
+      document.querySelector('.console-center').setAttribute('aria-selected', mode === 'dmn');
+
+      // Линия активного узла
+      document.querySelectorAll('.console-line').forEach(l => {
+        l.classList.remove('active');
+        l.style.removeProperty('--_c');
+      });
+      const activeNode = document.querySelector('.console-node.active');
+      if (activeNode) {
+        const pos = activeNode.dataset.pos;
+        const line = document.querySelector('.console-line[data-line="' + pos + '"]');
+        if (line) {
+          line.classList.add('active');
+          line.style.setProperty('--_c', d.color);
+        }
+      }
+      current = mode;
+    }
+
+    // Обработчики кликов
+    document.querySelectorAll('.console-node, .console-center').forEach(n => {
+      n.addEventListener('click', () => render(n.dataset.mode));
+    });
+
+    // Клавиши 1-7
+    document.addEventListener('keydown', (e) => {
+      const section = document.querySelector('.section-modes');
+      if (!section) return;
+      // Срабатывает только если секция видима
+      const r = section.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= 7) {
+        e.preventDefault();
+        render(order[n - 1]);
+      }
+    });
+
+    // Начальный рендер
+    render(current);
   })();
 
   // ── Счётчики сети (network-stats) ──────────────────────────
