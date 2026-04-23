@@ -15,38 +15,26 @@
 <link rel="stylesheet" href="../../css/nav.css">
 
 <style>
-/* ===== Dark-theme override для shared site-nav ===== */
-.site-nav {
-  background: rgba(10, 10, 18, 0.72) !important;
-  border-bottom: 1px solid rgba(237, 237, 242, 0.08) !important;
-}
-.site-nav .nav-logo { color: #EDEDF2 !important; }
-.site-nav .nav-logo:hover { color: #7DD3FC !important; }
-.site-nav .nav-links a { color: rgba(237, 237, 242, 0.58) !important; font-family: 'Inter', sans-serif; }
-.site-nav .nav-links a:hover { color: #EDEDF2 !important; background: rgba(125, 211, 252, 0.12) !important; }
-.site-nav .nav-links a.active { color: #7DD3FC !important; background: rgba(125, 211, 252, 0.16) !important; }
-.site-nav .nav-burger span { background: #EDEDF2 !important; }
-@media (max-width: 768px) {
-  .site-nav .nav-links { background: rgba(10, 10, 18, 0.95) !important; }
-}
-
 /* ================================================================
-   ONTO NOTHING · HERO — «Пульсирующая тишина»
-   Тёмный космос · символ ∅ с свечением · расходящиеся волны
+   ONTO NOTHING · Тренинг — светлая палитра
    ================================================================ */
 
 :root {
-  --bg:           #0A0A12;
-  --bg-2:         #1A1A2E;
-  --text:         #FAFAFA;
-  --text-mute:    #A1A1AA;
-  --text-dim:     #71717A;
-  --text-faint:   rgba(250, 250, 250, 0.14);
-  --line:         rgba(250, 250, 250, 0.08);
-  --line-bright:  rgba(250, 250, 250, 0.18);
-  --cyan:         #7DD3FC;
-  --cyan-soft:    rgba(125, 211, 252, 0.4);
-  --cyan-bg:      rgba(125, 211, 252, 0.08);
+  --bg:           #F5F6F8;
+  --bg-2:         #FFFFFF;
+  --text:         #0F1419;
+  --text-mute:    #4E5560;
+  --text-dim:     #7A8291;
+  --text-faint:   rgba(15, 20, 25, 0.14);
+  --line:         rgba(15, 20, 25, 0.10);
+  --line-bright:  rgba(15, 20, 25, 0.18);
+  --accent:       #5F5FFF;
+  --accent-soft:  rgba(95, 95, 255, 0.4);
+  --accent-bg:    rgba(95, 95, 255, 0.08);
+  --blue:         #0A84FF;
+  --cyan:         #5F5FFF; /* оставляем переменную, но биндим на violet для светлого стиля */
+  --cyan-soft:    rgba(95, 95, 255, 0.4);
+  --cyan-bg:      rgba(95, 95, 255, 0.08);
 
   --font-display: 'Playfair Display', 'Times New Roman', Georgia, serif;
   --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -59,7 +47,8 @@ html, body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 17px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -70,43 +59,41 @@ body {
   min-height: 100dvh;
   position: relative;
   overflow-x: hidden;
-  background: radial-gradient(ellipse at 50% 40%, var(--bg-2) 0%, var(--bg) 65%);
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(95, 95, 255, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(10, 132, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 90%, rgba(95, 95, 255, 0.06) 0%, transparent 55%),
+    var(--bg);
 }
 
 ::selection {
-  background: rgba(125, 211, 252, 0.35);
+  background: rgba(95, 95, 255, 0.28);
   color: var(--text);
 }
 
-/* ===== Звёздное поле ===== */
+/* ===== Мягкие орбы вместо звёзд ===== */
 .stars {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 }
 .stars span {
   position: absolute;
-  width: 2px;
-  height: 2px;
   border-radius: 50%;
-  background: #FAFAFA;
-  opacity: 0.6;
-  animation: twinkle 4s ease-in-out infinite;
-}
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; transform: scale(0.8); }
-  50%      { opacity: 0.9; transform: scale(1.2); }
+  background: rgba(95, 95, 255, 0.06);
+  filter: blur(1px);
 }
 
-/* Зернистая плёнка */
+/* Зернистая плёнка (лёгкая) */
 .grain {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -145,12 +132,12 @@ body {
 /* ── Центральный символ ∅ + волны ── */
 .core {
   position: relative;
-  width: 260px;
-  height: 260px;
+  width: 300px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 48px;
+  margin-bottom: 56px;
   opacity: 0;
   animation: coreIn 1.2s 0.1s cubic-bezier(.22,1,.36,1) forwards;
 }
@@ -164,29 +151,29 @@ body {
   z-index: 4;
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: 180px;
+  font-size: 210px;
   line-height: 1;
-  color: var(--cyan);
+  color: var(--accent);
   text-shadow:
-    0 0 20px rgba(125, 211, 252, 0.6),
-    0 0 50px rgba(125, 211, 252, 0.35),
-    0 0 90px rgba(125, 211, 252, 0.2);
+    0 6px 20px rgba(95, 95, 255, 0.28),
+    0 0 40px rgba(95, 95, 255, 0.22),
+    0 0 90px rgba(95, 95, 255, 0.14);
   animation: pulse 4s ease-in-out infinite;
 }
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
     text-shadow:
-      0 0 20px rgba(125, 211, 252, 0.6),
-      0 0 50px rgba(125, 211, 252, 0.35),
-      0 0 90px rgba(125, 211, 252, 0.2);
+      0 6px 20px rgba(95, 95, 255, 0.28),
+      0 0 40px rgba(95, 95, 255, 0.22),
+      0 0 90px rgba(95, 95, 255, 0.14);
   }
   50% {
     transform: scale(1.05);
     text-shadow:
-      0 0 40px rgba(125, 211, 252, 0.85),
-      0 0 80px rgba(125, 211, 252, 0.5),
-      0 0 140px rgba(125, 211, 252, 0.3);
+      0 8px 30px rgba(95, 95, 255, 0.45),
+      0 0 70px rgba(95, 95, 255, 0.35),
+      0 0 130px rgba(95, 95, 255, 0.22);
   }
 }
 
@@ -194,9 +181,9 @@ body {
 .wave {
   position: absolute;
   top: 50%; left: 50%;
-  width: 200px; height: 200px;
-  margin-top: -100px; margin-left: -100px;
-  border: 1px solid var(--cyan);
+  width: 220px; height: 220px;
+  margin-top: -110px; margin-left: -110px;
+  border: 1px solid var(--accent);
   border-radius: 50%;
   opacity: 0;
   animation: waveExpand 5s ease-out infinite;
@@ -204,51 +191,51 @@ body {
 .wave:nth-child(2) { animation-delay: 1.6s; }
 .wave:nth-child(3) { animation-delay: 3.2s; }
 @keyframes waveExpand {
-  0%   { transform: scale(0.5); opacity: 0.8; }
-  100% { transform: scale(2.2); opacity: 0;   }
+  0%   { transform: scale(0.5); opacity: 0.45; }
+  100% { transform: scale(2.2); opacity: 0;    }
 }
 
 /* ── Kicker / eyebrow ── */
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.25em;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-mute);
-  padding: 8px 18px;
+  padding: 10px 22px;
   border: 1px solid var(--line);
   border-radius: 100px;
-  background: rgba(250, 250, 250, 0.015);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  margin-bottom: 28px;
+  margin-bottom: 34px;
   opacity: 0;
   animation: fadeUp 0.9s 0.4s ease-out forwards;
 }
 .eyebrow-dot {
-  width: 6px; height: 6px;
+  width: 7px; height: 7px;
   border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 10px var(--cyan);
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(95, 95, 255, 0.18);
   animation: livePulse 2s infinite ease-in-out;
 }
 @keyframes livePulse {
-  0%, 100% { opacity: 1;   }
-  50%      { opacity: 0.4; }
+  0%, 100% { box-shadow: 0 0 0 3px rgba(95, 95, 255, 0.18); }
+  50%      { box-shadow: 0 0 0 6px rgba(95, 95, 255, 0.06); }
 }
 
 /* ── Главный заголовок ── */
 .headline {
   font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(48px, 8vw, 104px);
-  line-height: 1;
-  letter-spacing: 0.06em;
-  margin-bottom: 28px;
+  font-weight: 400;
+  font-size: clamp(56px, 9vw, 120px);
+  line-height: 0.98;
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
   color: var(--text);
   opacity: 0;
   animation: fadeUp 1.1s 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
@@ -256,18 +243,23 @@ body {
 
 /* ── Подзаголовок основной ── */
 .sublead {
-  max-width: 720px;
-  font-size: clamp(16px, 1.5vw, 20px);
-  font-weight: 300;
+  max-width: 780px;
+  font-size: clamp(18px, 1.7vw, 23px);
+  font-weight: 400;
   color: var(--text-mute);
   line-height: 1.55;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   opacity: 0;
   animation: fadeUp 1.1s 1.0s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 .sublead strong {
   color: var(--text);
-  font-weight: 400;
+  font-weight: 600;
+  background: linear-gradient(0deg, rgba(95, 95, 255, 0.15) 0%, rgba(95, 95, 255, 0.15) 100%);
+  background-size: 100% 32%;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding: 0 3px;
 }
 
 /* ── Слоган ── */
@@ -275,29 +267,29 @@ body {
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px 18px;
+  gap: 12px 24px;
   font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 13px;
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text);
-  margin-bottom: 52px;
+  margin-bottom: 60px;
   opacity: 0;
   animation: fadeUp 1.1s 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 .slogan span {
   position: relative;
-  padding-left: 18px;
+  padding-left: 20px;
 }
 .slogan span::before {
   content: '';
   position: absolute;
   left: 0; top: 50%;
-  width: 6px; height: 6px;
+  width: 7px; height: 7px;
   transform: translateY(-50%);
-  background: var(--cyan);
-  box-shadow: 0 0 10px var(--cyan);
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(95, 95, 255, 0.15);
   border-radius: 50%;
 }
 
@@ -306,8 +298,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 64px;
+  gap: 16px;
+  margin-bottom: 72px;
   opacity: 0;
   animation: fadeUp 1.1s 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
@@ -316,30 +308,30 @@ body {
   align-items: center;
   gap: 14px;
   font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--cyan);
-  background: transparent;
-  padding: 20px 40px;
-  border: 1px solid var(--cyan);
+  color: #fff;
+  background: var(--accent);
+  padding: 22px 44px;
+  border: 1px solid var(--accent);
   border-radius: 100px;
   text-decoration: none;
+  box-shadow: 0 10px 28px rgba(95, 95, 255, 0.28);
   transition: background .3s, color .3s, box-shadow .3s, transform .3s;
 }
 .cta:hover {
-  background: var(--cyan);
-  color: var(--bg);
-  box-shadow: 0 10px 40px rgba(125, 211, 252, 0.35);
+  background: #4848ff;
+  box-shadow: 0 14px 40px rgba(95, 95, 255, 0.45);
   transform: translateY(-2px);
 }
-.cta .arrow { transition: transform .3s; font-size: 1.2em; }
+.cta .arrow { transition: transform .3s; font-size: 1.15em; }
 .cta:hover .arrow { transform: translateX(6px); }
 .cta-sub {
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-dim);
@@ -348,49 +340,49 @@ body {
 /* ── Стат-полоса ── */
 .stats {
   width: 100%;
-  max-width: 1040px;
+  max-width: 1080px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 0;
-  padding-top: 36px;
+  padding-top: 40px;
   border-top: 1px solid var(--line);
   opacity: 0;
   animation: fadeUp 1.1s 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 .stat {
-  padding: 6px 18px;
+  padding: 8px 22px;
   border-left: 1px solid var(--line);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
   text-align: left;
 }
 .stat:first-child { border-left: none; padding-left: 0; }
 .stat-value {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 500;
+  font-size: clamp(32px, 3.8vw, 54px);
   line-height: 1;
-  color: var(--cyan);
+  color: var(--accent);
   letter-spacing: -0.01em;
 }
 .stat-value .unit {
   font-family: var(--font-body);
-  font-size: 0.48em;
-  font-weight: 300;
+  font-size: 0.44em;
+  font-weight: 400;
   color: var(--text-mute);
-  margin-left: 4px;
+  margin-left: 6px;
   letter-spacing: 0.04em;
 }
 .stat-label {
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-mute);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 @keyframes fadeUp {
@@ -449,62 +441,66 @@ body {
 .section-num {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 22px;
+  color: var(--accent);
+  margin-bottom: 26px;
 }
 .section-num::before {
   content: '';
-  width: 36px;
+  width: 40px;
   height: 1px;
-  background: var(--cyan);
+  background: var(--accent);
   opacity: 0.7;
 }
 
 .section-h2 {
   font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(30px, 5.2vw, 58px);
-  line-height: 1.12;
+  font-weight: 500;
+  font-size: clamp(36px, 5.8vw, 66px);
+  line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--text);
-  max-width: 820px;
-  margin: 0 0 48px;
+  max-width: 880px;
+  margin: 0 0 52px;
 }
 .section-h2 em {
   font-style: italic;
-  color: var(--cyan);
+  font-weight: 400;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .intro-para {
   font-family: var(--font-body);
-  font-weight: 300;
-  font-size: clamp(15px, 1.3vw, 18px);
-  line-height: 1.7;
+  font-weight: 400;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.65;
   color: var(--text-mute);
-  max-width: 720px;
-  margin: 0 0 20px;
+  max-width: 760px;
+  margin: 0 0 22px;
 }
 .intro-para strong {
   color: var(--text);
-  font-weight: 400;
+  font-weight: 600;
 }
 .intro-para em {
   font-style: italic;
-  color: var(--cyan);
+  color: var(--accent);
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
 }
 .intro-para.closing {
-  margin-top: 28px;
-  font-size: clamp(17px, 1.5vw, 21px);
+  margin-top: 32px;
+  font-size: clamp(20px, 1.8vw, 26px);
   color: var(--text);
-  font-weight: 400;
+  font-weight: 500;
   font-family: var(--font-display);
   font-style: italic;
   letter-spacing: 0.005em;
@@ -514,8 +510,8 @@ body {
 .constellation {
   position: relative;
   width: 100%;
-  max-width: 1040px;
-  margin: 80px auto 0;
+  max-width: 1080px;
+  margin: 96px auto 0;
   aspect-ratio: 10 / 7;
 }
 
@@ -524,21 +520,21 @@ body {
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-display);
-  font-weight: 300;
-  font-size: 96px;
+  font-weight: 400;
+  font-size: 108px;
   line-height: 1;
-  color: var(--cyan);
+  color: var(--accent);
   text-shadow:
-    0 0 22px rgba(125, 211, 252, 0.55),
-    0 0 60px rgba(125, 211, 252, 0.3),
-    0 0 120px rgba(125, 211, 252, 0.18);
+    0 6px 18px rgba(95, 95, 255, 0.35),
+    0 0 45px rgba(95, 95, 255, 0.22),
+    0 0 100px rgba(95, 95, 255, 0.14);
   z-index: 3;
   animation: coreBreath 5.5s ease-in-out infinite;
   pointer-events: none;
 }
 @keyframes coreBreath {
   0%, 100% {
-    opacity: 0.85;
+    opacity: 0.9;
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
@@ -556,9 +552,9 @@ body {
   overflow: visible;
 }
 .const-line {
-  stroke: rgba(125, 211, 252, 0.22);
+  stroke: rgba(95, 95, 255, 0.22);
   stroke-width: 1;
-  stroke-dasharray: 3 4;
+  stroke-dasharray: 4 5;
   transition: stroke 0.4s, stroke-width 0.4s, opacity 0.4s;
 }
 
@@ -574,15 +570,16 @@ body {
 }
 
 .const-card {
-  background: rgba(10, 10, 18, 0.72);
-  border: 1px solid rgba(250, 250, 250, 0.14);
-  border-radius: 18px;
-  padding: 22px 24px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 20px;
+  padding: 26px 28px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  gap: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 14px rgba(15, 20, 25, 0.04);
   transition: opacity 0.9s cubic-bezier(.22,1,.36,1), border-color 0.4s, box-shadow 0.4s;
   opacity: 0;
   animation: cardFloat 7s ease-in-out infinite;
@@ -596,38 +593,36 @@ body {
 }
 
 .const-card:hover {
-  border-color: var(--cyan);
+  border-color: var(--accent);
   box-shadow:
-    0 10px 40px rgba(125, 211, 252, 0.22),
-    0 0 0 1px rgba(125, 211, 252, 0.35);
+    0 14px 40px rgba(95, 95, 255, 0.18),
+    0 0 0 1px rgba(95, 95, 255, 0.35);
   z-index: 4;
 }
-.const-card:hover + svg .const-line,
-.const-card:hover ~ .const-lines .const-line { /* sibling hack, overridden by JS */ }
 
 .const-card-name {
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--cyan);
+  color: var(--accent);
 }
 .const-card-quote {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--text-mute);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text);
   margin: 0;
 }
 .const-card.meta .const-card-quote {
   font-style: normal;
   font-family: var(--font-body);
-  font-size: 13.5px;
-  font-weight: 300;
-  color: var(--text-dim);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-mute);
 }
 
 /* Раскладка 6 карточек: 4 по углам + 2 по середине (сверху/снизу ∅) */
@@ -646,9 +641,9 @@ body {
     position: static;
     transform: none;
     margin: 0 auto 40px;
-    font-size: 72px;
+    font-size: 84px;
     animation: none;
-    filter: drop-shadow(0 0 20px rgba(125, 211, 252, 0.5));
+    filter: drop-shadow(0 6px 18px rgba(95, 95, 255, 0.3));
   }
   .const-grid {
     position: static;
@@ -663,6 +658,281 @@ body {
     align-self: auto !important;
     animation: none;
   }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 3 · II — Пути, которыми шли до сих пор
+   5 карточек-путей с графиком «подъём → откат» + вердикт
+══════════════════════════════════════════════════════════════ */
+:root {
+  --amber:     #A56F2F;
+  --amber-dim: rgba(165, 111, 47, 0.55);
+  --red:       #DC2626;
+  --red-dim:   rgba(220, 38, 38, 0.55);
+}
+
+.section-paths {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 160px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.paths-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+  margin: 68px 0 0;
+}
+
+.path-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 22px;
+  padding: 28px 26px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 16px rgba(15, 20, 25, 0.04);
+  transition: opacity 0.8s cubic-bezier(.22,1,.36,1),
+              transform 0.8s cubic-bezier(.22,1,.36,1),
+              border-color 0.4s, box-shadow 0.4s;
+  opacity: 0;
+  transform: translateY(16px);
+}
+.path-card.appear { opacity: 1; transform: translateY(0); }
+
+.path-card:hover {
+  border-color: rgba(165, 111, 47, 0.45);
+  box-shadow: 0 14px 38px rgba(165, 111, 47, 0.14);
+}
+.path-card:hover .path-line { stroke: var(--amber); }
+.path-card:hover .path-dot  { fill: var(--red); opacity: 1; }
+
+/* Раскладка 3+2 по центру на wide */
+.path-card:nth-child(1) { grid-column: 1 / span 2; }
+.path-card:nth-child(2) { grid-column: 3 / span 2; }
+.path-card:nth-child(3) { grid-column: 5 / span 2; }
+.path-card:nth-child(4) { grid-column: 2 / span 2; }
+.path-card:nth-child(5) { grid-column: 4 / span 2; }
+
+.path-icon {
+  font-size: 32px;
+  line-height: 1;
+  margin-bottom: 2px;
+  filter: saturate(0.85);
+}
+
+.path-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--text);
+  margin: 0;
+}
+.path-name .small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 8px;
+}
+
+.path-graph {
+  width: 100%;
+  height: 90px;
+  overflow: visible;
+  display: block;
+}
+.path-graph .grid-line {
+  stroke: rgba(15, 20, 25, 0.08);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.path-line {
+  fill: none;
+  stroke: var(--amber-dim);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  transition: stroke-dashoffset 2s cubic-bezier(.22,1,.36,1),
+              stroke 0.4s;
+}
+.path-card.appear .path-line { stroke-dashoffset: 0; }
+.path-dot {
+  fill: var(--red-dim);
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+  transition: fill 0.4s, opacity 0.4s;
+}
+.path-card.appear .path-dot {
+  animation: dotBlink 1.8s 2s ease-out forwards;
+}
+@keyframes dotBlink {
+  0%   { opacity: 0;   transform: scale(0);   }
+  50%  { opacity: 1;   transform: scale(1.5); }
+  100% { opacity: 0.8; transform: scale(1);   }
+}
+.path-axis-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  fill: var(--text-dim);
+}
+
+.path-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-mute);
+  margin: 0;
+}
+.path-text strong {
+  color: var(--text);
+  font-weight: 600;
+  background: linear-gradient(0deg, rgba(220, 38, 38, 0.16) 0%, rgba(220, 38, 38, 0.16) 100%);
+  background-size: 100% 36%;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding: 0 3px;
+}
+
+.path-result {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(15, 20, 25, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.path-result .rollback { color: var(--red); }
+
+/* ── Verdict block ── */
+.paths-verdict {
+  margin: 110px auto 0;
+  max-width: 940px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  text-align: center;
+  position: relative;
+}
+.paths-verdict::before,
+.paths-verdict::after {
+  content: '';
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  width: 110%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.35), transparent);
+}
+.paths-verdict::before { top: -28px; }
+.paths-verdict::after  { bottom: -28px; }
+
+.verdict-word {
+  padding: 22px 16px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 32px);
+  letter-spacing: 0.02em;
+  color: var(--red);
+  border-right: 1px dashed rgba(220, 38, 38, 0.25);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.9s cubic-bezier(.22,1,.36,1), transform 0.9s cubic-bezier(.22,1,.36,1);
+}
+.verdict-word:last-child { border-right: none; }
+.paths-verdict.appear .verdict-word { opacity: 1; transform: translateY(0); }
+.paths-verdict.appear .verdict-word:nth-child(2) { transition-delay: 0.2s; }
+.paths-verdict.appear .verdict-word:nth-child(3) { transition-delay: 0.4s; }
+
+/* ── Closing narrative ── */
+.paths-closing {
+  max-width: 720px;
+  margin: 110px auto 0;
+  text-align: center;
+}
+.paths-closing p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.65;
+  color: var(--text-mute);
+  margin: 0 0 20px;
+}
+.paths-closing p strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.paths-closing p em {
+  font-style: italic;
+  color: var(--amber);
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+.paths-until {
+  margin: 72px auto 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: 0.005em;
+  color: var(--text-mute);
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(.22,1,.36,1);
+}
+.paths-until strong {
+  font-weight: 500;
+  font-style: normal;
+  display: block;
+  font-family: var(--font-display);
+  background: linear-gradient(90deg, var(--accent) 0%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.02em;
+  font-size: 0.88em;
+  margin-top: 18px;
+}
+.paths-until.appear { opacity: 1; }
+
+/* ── Адаптив ── */
+@media (max-width: 900px) {
+  .paths-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .path-card:nth-child(1),
+  .path-card:nth-child(2),
+  .path-card:nth-child(3),
+  .path-card:nth-child(4) { grid-column: auto; }
+  .path-card:nth-child(5) { grid-column: 1 / -1; }
+  .paths-verdict { grid-template-columns: 1fr; gap: 0; }
+  .verdict-word { border-right: none; border-bottom: 1px dashed rgba(239, 68, 68, 0.25); }
+  .verdict-word:last-child { border-bottom: none; }
+}
+@media (max-width: 520px) {
+  .paths-grid { grid-template-columns: 1fr; }
+  .path-card:nth-child(5) { grid-column: auto; }
 }
 </style>
 </head>
@@ -821,22 +1091,161 @@ body {
 
 </section>
 
+<!-- ═══════════════════════════════════════════════════════
+     СЕКЦИЯ 3 · II — Пути, которыми шли до сих пор
+     5 карточек-методов с графиком «подъём → откат»
+     + красный вердикт + переход к 2022
+═══════════════════════════════════════════════════════ -->
+<section class="section-paths" id="paths">
+
+  <span class="section-num">Часть II</span>
+  <h2 class="section-h2">Пути, которыми шли <em>до сих пор.</em></h2>
+
+  <p class="intro-para">
+    Тысячи лет человечество искало эту тишину. Вот пять главных дорог — и почему у каждой одна и та же проблема.
+  </p>
+
+  <div class="paths-grid">
+
+    <!-- ⛰ Медитация -->
+    <div class="path-card">
+      <div class="path-icon">⛰</div>
+      <h3 class="path-name">
+        <span class="small">Годы практики</span>
+        Медитация
+      </h3>
+      <svg class="path-graph" viewBox="0 0 200 90" preserveAspectRatio="none" aria-hidden="true">
+        <line class="grid-line" x1="0" y1="85" x2="200" y2="85"/>
+        <path class="path-line" d="M 2,85 Q 40,75 80,55 Q 120,38 160,55 Q 180,65 198,72"/>
+        <circle class="path-dot" cx="198" cy="72" r="4"/>
+      </svg>
+      <p class="path-text">Сотни часов на подушке. Результат — через <strong>годы</strong>, и у единиц. Большинство останавливается на «мне стало спокойнее». До тишины доходят немногие.</p>
+      <div class="path-result">
+        <span>Достигнуто: 60%</span>
+        <span class="rollback">Откат</span>
+      </div>
+    </div>
+
+    <!-- 🌿 Ретриты -->
+    <div class="path-card">
+      <div class="path-icon">🌿</div>
+      <h3 class="path-name">
+        <span class="small">Шаманские практики</span>
+        Ретриты
+      </h3>
+      <svg class="path-graph" viewBox="0 0 200 90" preserveAspectRatio="none" aria-hidden="true">
+        <line class="grid-line" x1="0" y1="85" x2="200" y2="85"/>
+        <path class="path-line" d="M 2,85 Q 30,30 70,22 L 100,25 Q 130,78 170,80 L 198,82"/>
+        <circle class="path-dot" cx="198" cy="82" r="4"/>
+      </svg>
+      <p class="path-text">Амазонка, Бали, Алтай. Церемонии, посты. Возвращаешься изменённым — на месяц. Потом <strong>жизнь откатывает обратно</strong>. Опыт был. Навыка нет.</p>
+      <div class="path-result">
+        <span>Достигнуто: 70%</span>
+        <span class="rollback">Откат</span>
+      </div>
+    </div>
+
+    <!-- 💊 Вещества -->
+    <div class="path-card">
+      <div class="path-icon">💊</div>
+      <h3 class="path-name">
+        <span class="small">Быстрый путь</span>
+        Вещества
+      </h3>
+      <svg class="path-graph" viewBox="0 0 200 90" preserveAspectRatio="none" aria-hidden="true">
+        <line class="grid-line" x1="0" y1="85" x2="200" y2="85"/>
+        <path class="path-line" d="M 2,85 Q 25,10 55,8 L 95,8 Q 115,88 155,86 L 198,86"/>
+        <circle class="path-dot" cx="198" cy="86" r="4"/>
+      </svg>
+      <p class="path-text">Молекулы, обрывающие диалог за минуты. Состояние настоящее. Но ты <strong>не владеешь им</strong> — он владеет тобой. Когда уходит — уходит и состояние.</p>
+      <div class="path-result">
+        <span>Достигнуто: 90%</span>
+        <span class="rollback">Крах</span>
+      </div>
+    </div>
+
+    <!-- 🧘 Коучи -->
+    <div class="path-card">
+      <div class="path-icon">🧘</div>
+      <h3 class="path-name">
+        <span class="small">Наставники</span>
+        Коучи, психологи
+      </h3>
+      <svg class="path-graph" viewBox="0 0 200 90" preserveAspectRatio="none" aria-hidden="true">
+        <line class="grid-line" x1="0" y1="85" x2="200" y2="85"/>
+        <path class="path-line" d="M 2,85 Q 50,72 100,62 L 150,60 L 198,62"/>
+        <circle class="path-dot" cx="198" cy="62" r="4"/>
+      </svg>
+      <p class="path-text">Разговоры, техники, осознанность. Помогает <strong>понять себя</strong>. Но в тишину разговор не приводит — туда попадают через переключение режима.</p>
+      <div class="path-result">
+        <span>Достигнуто: 30%</span>
+        <span class="rollback">Плато</span>
+      </div>
+    </div>
+
+    <!-- 🏔 Випассана -->
+    <div class="path-card">
+      <div class="path-icon">🏔</div>
+      <h3 class="path-name">
+        <span class="small">10 дней молчания</span>
+        Випассана
+      </h3>
+      <svg class="path-graph" viewBox="0 0 200 90" preserveAspectRatio="none" aria-hidden="true">
+        <line class="grid-line" x1="0" y1="85" x2="200" y2="85"/>
+        <path class="path-line" d="M 2,85 L 50,28 L 100,18 L 130,22 Q 165,78 198,82"/>
+        <circle class="path-dot" cx="198" cy="82" r="4"/>
+      </svg>
+      <p class="path-text">Жёсткий формат. Глубокий опыт. Через 2–3 недели ум снова говорит 24/7. Там учат <strong>наблюдать диалог</strong> — не останавливать.</p>
+      <div class="path-result">
+        <span>Достигнуто: 80%</span>
+        <span class="rollback">Откат</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Вердикт -->
+  <div class="paths-verdict">
+    <span class="verdict-word">Откат.</span>
+    <span class="verdict-word">Нет навыка.</span>
+    <span class="verdict-word">Нет состояния по запросу.</span>
+  </div>
+
+  <!-- Закрывающий нарратив -->
+  <div class="paths-closing">
+    <p>
+      Ты можешь <em>прикоснуться</em> к тишине. Но не можешь <strong>войти в неё, когда тебе нужно</strong>. Не можешь включить за 5 секунд перед важным решением. Не можешь передать этот навык другому.
+    </p>
+    <p>
+      Тысячи лет человечество жило с этим ограничением. Медитация как искусство <em>наблюдать</em> мысли — потому что инструмента, чтобы их <strong>остановить по желанию</strong>, не существовало.
+    </p>
+    <p>
+      Не было ни технологии, ни метода, ни протокола.
+    </p>
+  </div>
+
+  <div class="paths-until">
+    До
+    <strong>2022 года.</strong>
+  </div>
+
+</section>
+
 <!-- ═══ JS: звёзды + счётчики ═══ -->
 <script>
-  // ── Генерация звёздного поля ────────────────────────────────
-  (function makeStars() {
+  // ── Генерация мягких светлых орбов (фон) ────────────────────
+  (function makeOrbs() {
     const field = document.querySelector('.stars');
-    const count = window.innerWidth < 640 ? 60 : 120;
+    if (!field) return;
+    const count = window.innerWidth < 640 ? 14 : 22;
     const frag = document.createDocumentFragment();
     for (let i = 0; i < count; i++) {
       const s = document.createElement('span');
       s.style.left = Math.random() * 100 + '%';
       s.style.top  = Math.random() * 100 + '%';
-      const size = (Math.random() * 1.8 + 0.8).toFixed(1);
+      const size = (Math.random() * 3 + 2).toFixed(1);
       s.style.width = s.style.height = size + 'px';
-      s.style.opacity = (Math.random() * 0.6 + 0.2).toFixed(2);
-      s.style.animationDelay = (Math.random() * 4).toFixed(2) + 's';
-      s.style.animationDuration = (3 + Math.random() * 4).toFixed(2) + 's';
+      s.style.opacity = (Math.random() * 0.5 + 0.3).toFixed(2);
       frag.appendChild(s);
     }
     field.appendChild(frag);
@@ -898,7 +1307,7 @@ body {
       const line = document.querySelector('.const-line[data-i="' + i + '"]');
       if (!line) return;
       card.addEventListener('mouseenter', () => {
-        line.style.stroke = 'rgba(125, 211, 252, 0.75)';
+        line.style.stroke = 'rgba(95, 95, 255, 0.7)';
         line.style.strokeWidth = '1.5';
       });
       card.addEventListener('mouseleave', () => {
@@ -906,6 +1315,40 @@ body {
         line.style.strokeWidth = '';
       });
     });
+  })();
+
+  // ── Карточки путей: stagger-появление при скролле ──────────
+  (function revealPaths() {
+    const cards = document.querySelectorAll('.path-card');
+    const verdict = document.querySelector('.paths-verdict');
+    const until = document.querySelector('.paths-until');
+    const section = document.querySelector('.section-paths');
+    if (!section || !cards.length) return;
+    let fired = { cards: false, verdict: false, until: false };
+    function show(which, cb, delay = 0) {
+      if (fired[which]) return;
+      fired[which] = true;
+      setTimeout(cb, delay);
+    }
+    function check() {
+      const r = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (r.top < vh * 0.82) {
+        show('cards', () => cards.forEach((c, i) => setTimeout(() => c.classList.add('appear'), i * 180)));
+      }
+      if (verdict) {
+        const vr = verdict.getBoundingClientRect();
+        if (vr.top < vh * 0.85) show('verdict', () => verdict.classList.add('appear'));
+      }
+      if (until) {
+        const ur = until.getBoundingClientRect();
+        if (ur.top < vh * 0.9) show('until', () => until.classList.add('appear'));
+      }
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check);
+    window.addEventListener('load', check);
+    check();
   })();
 </script>
 
