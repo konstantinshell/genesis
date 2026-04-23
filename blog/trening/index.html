@@ -3270,6 +3270,985 @@ body {
   .compare-tbl th, .compare-tbl td { padding: 10px 10px; }
 }
 
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 15 · XII — Кому это нужно · 5 аватаров
+══════════════════════════════════════════════════════════════ */
+.section-who {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 140px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.avatars {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-top: 72px;
+}
+.avatar-card {
+  padding: 28px 22px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 22px;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 14px rgba(15, 20, 25, 0.04);
+}
+.avatar-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 38px rgba(95, 95, 255, 0.14);
+}
+.avatar-icon {
+  font-size: 38px;
+  line-height: 1;
+  display: block;
+  margin-bottom: 14px;
+}
+.avatar-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.avatar-card h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.25;
+  color: var(--text);
+  margin: 0 0 10px;
+}
+.avatar-card p {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-mute);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .avatars { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .avatars { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 16 · XIII — Что ты получаешь · 8 артефактов
+══════════════════════════════════════════════════════════════ */
+.section-stack {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 140px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.stack-grid {
+  margin-top: 72px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.stack-card {
+  padding: 24px 24px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  box-shadow: 0 2px 14px rgba(15, 20, 25, 0.04);
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.stack-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 36px rgba(95, 95, 255, 0.12);
+}
+.stack-card .mark {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--accent);
+  margin-bottom: 10px;
+  display: block;
+}
+.stack-card h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.25;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.stack-card p {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-mute);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .stack-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .stack-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 17 · XIV — Кейсы участников · 3 карточки + отзывы
+══════════════════════════════════════════════════════════════ */
+.section-cases {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 140px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.cases-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 22px;
+  margin-top: 72px;
+}
+.case-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 22px;
+  padding: 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 18px rgba(15, 20, 25, 0.05);
+}
+.case-name {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.case-card h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--text);
+  margin: 0;
+}
+.case-meta {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-dim);
+  font-style: italic;
+}
+.case-ba {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(15, 20, 25, 0.05);
+}
+.case-ba > div {
+  padding: 14px 14px;
+  background: #fff;
+}
+.case-ba .before {
+  color: var(--text-mute);
+  border-right: 1px solid rgba(15, 20, 25, 0.06);
+}
+.case-ba .after {
+  background: linear-gradient(135deg, rgba(95, 95, 255, 0.08), rgba(10, 132, 255, 0.04));
+  color: var(--text);
+}
+.case-ba .hd {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  display: block;
+}
+.case-ba .after .hd { color: var(--accent); }
+.case-ba p {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0;
+}
+.case-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+  padding-top: 16px;
+  border-top: 1px dashed rgba(15, 20, 25, 0.1);
+}
+
+.short-reviews {
+  margin-top: 72px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.short-review {
+  padding: 22px 22px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 16px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .cases-stack { grid-template-columns: 1fr; }
+  .short-reviews { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 18 · XV — Тарифы · 3 уровня лестницей
+══════════════════════════════════════════════════════════════ */
+.section-pricing {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 140px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.pricing-lead {
+  max-width: 720px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+.pricing-lead p {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.6;
+  color: var(--text-mute);
+}
+.pricing-lead p strong { color: var(--text); font-weight: 600; }
+
+.tariffs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 56px;
+  align-items: stretch;
+}
+.tariff {
+  padding: 36px 32px 32px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 20, 25, 0.1);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 22px rgba(15, 20, 25, 0.05);
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.tariff:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(15, 20, 25, 0.1); }
+.tariff.elite {
+  background: linear-gradient(145deg, #FFFFFF 0%, #F0EEFF 100%);
+  border: 1px solid var(--accent);
+  box-shadow: 0 18px 48px rgba(95, 95, 255, 0.18);
+  transform: translateY(-12px);
+}
+.tariff.elite:hover { transform: translateY(-16px); box-shadow: 0 24px 60px rgba(95, 95, 255, 0.25); }
+.tariff-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  box-shadow: 0 6px 16px rgba(95, 95, 255, 0.3);
+}
+
+.tariff-symbol {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--accent);
+  line-height: 1;
+}
+.tariff-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--text);
+  margin: 0;
+}
+.tariff-price {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--text);
+}
+.tariff.elite .tariff-price {
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.tariff-price .from {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-right: 6px;
+  -webkit-text-fill-color: var(--text-dim);
+}
+.tariff-features {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-mute);
+  flex: 1;
+}
+.tariff-features li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: baseline;
+}
+.tariff-features li::before {
+  content: '✓';
+  color: var(--accent);
+  font-weight: 700;
+}
+.tariff-features li strong { color: var(--text); font-weight: 600; }
+.tariff-cta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border: 1px solid rgba(15, 20, 25, 0.2);
+  color: var(--text);
+  background: #fff;
+  text-decoration: none;
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  margin-top: auto;
+}
+.tariff-cta:hover { background: var(--text); color: #fff; border-color: var(--text); }
+.tariff.elite .tariff-cta { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tariff.elite .tariff-cta:hover { background: #4848ff; box-shadow: 0 10px 30px rgba(95, 95, 255, 0.35); }
+
+.pricing-note {
+  max-width: 760px;
+  margin: 48px auto 0;
+  text-align: center;
+  padding: 20px 28px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px dashed rgba(15, 20, 25, 0.15);
+  border-radius: 14px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-mute);
+  font-style: italic;
+}
+.pricing-note strong { color: var(--text); font-style: normal; font-weight: 600; }
+
+@media (max-width: 900px) {
+  .tariffs { grid-template-columns: 1fr; gap: 20px; }
+  .tariff.elite { transform: translateY(0); }
+  .tariff.elite:hover { transform: translateY(-4px); }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 19 · XVI — О ведущем · Константин Шель
+══════════════════════════════════════════════════════════════ */
+.section-author {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 140px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.author-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+  margin-top: 64px;
+}
+.author-portrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+.author-ring {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  padding: 3px;
+  box-shadow: 0 18px 48px rgba(95, 95, 255, 0.25);
+}
+.author-ring-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 76px;
+  font-weight: 400;
+  color: var(--text);
+}
+.author-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--text);
+  margin: 0;
+}
+.author-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.author-bio p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-mute);
+  margin: 0 0 20px;
+}
+.author-bio p strong { color: var(--text); font-weight: 600; }
+
+.author-created {
+  margin-top: 28px;
+}
+.author-created h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 20px;
+}
+.author-created-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.author-created-list li {
+  padding-left: 22px;
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-mute);
+}
+.author-created-list li::before {
+  content: '◈';
+  position: absolute; left: 0; top: 0;
+  color: var(--accent);
+}
+.author-created-list strong { color: var(--text); font-weight: 600; }
+
+.author-quote {
+  margin-top: 40px;
+  padding: 24px 28px;
+  border-left: 3px solid var(--accent);
+  background: rgba(95, 95, 255, 0.04);
+  border-radius: 0 12px 12px 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.author-quote cite {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.author-stats {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.author-stats .as-item { padding: 0 24px; border-left: 1px solid var(--line); }
+.author-stats .as-item:first-child { border-left: none; padding-left: 0; }
+.author-stats .as-val {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.author-stats .as-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+@media (max-width: 820px) {
+  .author-wrap { grid-template-columns: 1fr; }
+  .author-portrait { margin-bottom: 16px; }
+  .author-stats { grid-template-columns: 1fr; gap: 16px; }
+  .author-stats .as-item { border-left: none; padding: 16px 0 0; border-top: 1px solid var(--line); }
+  .author-stats .as-item:first-child { border-top: none; padding-top: 0; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 20 · XVII — Гарантия 100%
+══════════════════════════════════════════════════════════════ */
+.section-guarantee {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 140px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.guarantee-shield {
+  margin: 72px auto 48px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 18px 60px rgba(95, 95, 255, 0.35);
+  position: relative;
+}
+.guarantee-shield::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  opacity: 0.3;
+  animation: shieldPulse 3s ease-in-out infinite;
+}
+@keyframes shieldPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50%      { transform: scale(1.1); opacity: 0; }
+}
+.guarantee-shield .pct {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 1;
+}
+.guarantee-shield .lbl {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.guarantee-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 56px 0 0;
+}
+.pillar {
+  padding: 28px 26px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 18px;
+  text-align: center;
+}
+.pillar .ico { font-size: 32px; display: block; margin-bottom: 14px; }
+.pillar h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--text);
+  margin: 0 0 10px;
+}
+.pillar p {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-mute);
+  margin: 0;
+}
+
+.guarantee-terms {
+  margin: 64px auto 0;
+  padding: 32px 36px;
+  background: rgba(95, 95, 255, 0.04);
+  border-radius: 22px;
+  border: 1px solid rgba(95, 95, 255, 0.2);
+}
+.guarantee-terms h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 18px;
+}
+.guarantee-terms p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-mute);
+  margin: 0 0 18px;
+}
+.guarantee-terms p strong { color: var(--text); font-weight: 600; }
+
+.guarantee-final {
+  margin-top: 52px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(18px, 1.9vw, 22px);
+  line-height: 1.5;
+  color: var(--text);
+}
+
+@media (max-width: 720px) {
+  .guarantee-pillars { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 21 · XVIII — Ближайший поток
+══════════════════════════════════════════════════════════════ */
+.section-stream {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 140px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.stream-card {
+  margin-top: 56px;
+  padding: 48px 48px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 6px 28px rgba(15, 20, 25, 0.06);
+  text-align: center;
+}
+.stream-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding: 24px 0;
+  margin-bottom: 28px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.stream-meta .sm-item { padding: 0 16px; border-left: 1px solid var(--line); text-align: center; }
+.stream-meta .sm-item:first-child { border-left: none; }
+.stream-meta .lbl {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.stream-meta .val {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.25;
+  color: var(--text);
+}
+.stream-note {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-mute);
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+.stream-note strong { color: var(--text); font-style: normal; font-weight: 600; }
+.stream-cta-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.stream-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 32px;
+  text-decoration: none;
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+.stream-cta.primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 10px 28px rgba(95, 95, 255, 0.3);
+}
+.stream-cta.primary:hover { background: #4848ff; transform: translateY(-2px); box-shadow: 0 14px 36px rgba(95, 95, 255, 0.4); }
+.stream-cta.secondary {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid rgba(15, 20, 25, 0.2);
+}
+.stream-cta.secondary:hover { background: var(--text); color: #fff; }
+
+@media (max-width: 640px) {
+  .stream-meta { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .stream-meta .sm-item { border-left: none; }
+  .stream-card { padding: 32px 24px; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 22 · XIX — FAQ · аккордеон
+══════════════════════════════════════════════════════════════ */
+.section-faq {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 140px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.faq-list {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.faq-item {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.faq-item[open] {
+  border-color: var(--accent);
+  box-shadow: 0 8px 28px rgba(95, 95, 255, 0.1);
+}
+.faq-item summary {
+  padding: 20px 24px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--text);
+  position: relative;
+  padding-right: 56px;
+  list-style: none;
+  transition: color 0.3s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--accent);
+  transition: transform 0.3s;
+}
+.faq-item[open] summary::after { content: '−'; }
+.faq-item[open] summary { color: var(--accent); border-bottom: 1px solid rgba(95, 95, 255, 0.2); }
+.faq-item p {
+  padding: 20px 24px;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-mute);
+}
+.faq-item p strong { color: var(--text); font-weight: 600; }
+
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 23 · XX — Финальная вспышка ∅ + CTA
+══════════════════════════════════════════════════════════════ */
+.section-finale {
+  position: relative;
+  z-index: 2;
+  padding: 120px 24px 140px;
+  max-width: 1120px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.finale-symbol {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(140px, 24vw, 280px);
+  line-height: 1;
+  color: var(--accent);
+  text-shadow:
+    0 8px 30px rgba(95, 95, 255, 0.4),
+    0 0 80px rgba(95, 95, 255, 0.25),
+    0 0 160px rgba(95, 95, 255, 0.15);
+  margin-bottom: 40px;
+  animation: finalePulse 4s ease-in-out infinite;
+}
+@keyframes finalePulse {
+  0%, 100% { transform: scale(1);    }
+  50%      { transform: scale(1.06); }
+}
+
+.finale-text {
+  max-width: 740px;
+  margin: 0 auto 44px;
+}
+.finale-line {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.3;
+  color: var(--text-mute);
+  margin: 0 0 14px;
+}
+.finale-line.highlight {
+  color: var(--text);
+  font-weight: 500;
+}
+.finale-line.brand {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.finale-call {
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 32px 0 40px;
+}
+.finale-call span { display: inline-block; padding: 0 14px; position: relative; }
+.finale-call span + span::before {
+  content: '·';
+  position: absolute; left: -4px;
+  color: var(--accent);
+}
+
+.finale-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 52px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  box-shadow: 0 14px 36px rgba(95, 95, 255, 0.3);
+  transition: all 0.3s;
+  animation: finaleCtaGlow 2.6s ease-in-out infinite;
+}
+@keyframes finaleCtaGlow {
+  0%, 100% { box-shadow: 0 14px 36px rgba(95, 95, 255, 0.3); }
+  50%      { box-shadow: 0 18px 54px rgba(95, 95, 255, 0.5), 0 0 0 8px rgba(95, 95, 255, 0.08); }
+}
+.finale-cta:hover {
+  background: #4848ff;
+  transform: translateY(-3px);
+  box-shadow: 0 22px 60px rgba(95, 95, 255, 0.5);
+  animation: none;
+}
+
+.finale-sign {
+  margin-top: 72px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
 /* Адаптив секции 6 */
 @media (max-width: 960px) {
   .console-wrap { grid-template-columns: 1fr; gap: 32px; }
@@ -4789,6 +5768,481 @@ body {
     ONTO NOTHING не заменяет духовную практику — <em>он её ускоряет.</em><br>
     Если ты медитировал годами — метод даёт то, за чем ты шёл, сразу. Если не медитировал — даёт тот же доступ, без подготовки.
   </p>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 15 · XII — Кому это нужно · 5 аватаров
+═══════════════════════════════════════════════════════════ -->
+<section class="section-who" id="who">
+
+  <span class="section-num">Часть XII</span>
+  <h2 class="section-h2">Кому это <em>нужно.</em></h2>
+
+  <p class="intro-para centered">Это работает для тебя, если ты:</p>
+
+  <div class="avatars">
+    <div class="avatar-card">
+      <div class="avatar-icon">🧠</div>
+      <div class="avatar-label">01 · Уставший</div>
+      <h4>Устал от ума, который не выключается</h4>
+      <p>Нужна настоящая тишина как рабочий инструмент, а не идея о ней.</p>
+    </div>
+    <div class="avatar-card">
+      <div class="avatar-icon">💼</div>
+      <div class="avatar-label">02 · Лидер</div>
+      <h4>Принимаешь важные решения</h4>
+      <p>Внутренний шум искажает картину. Ясность нужна в работе — каждый день.</p>
+    </div>
+    <div class="avatar-card">
+      <div class="avatar-icon">🧘</div>
+      <div class="avatar-label">03 · Практик</div>
+      <h4>Медитируешь, но «пробил потолок»</h4>
+      <p>Глубокие проблески бывают, но только как спонтанное событие. ONTO NOTHING снимает потолок.</p>
+    </div>
+    <div class="avatar-card">
+      <div class="avatar-icon">🌿</div>
+      <div class="avatar-label">04 · Работающий с людьми</div>
+      <h4>Коуч, психолог, терапевт</h4>
+      <p>Хочешь добавить в арсенал инструмент <strong>прямого действия</strong> — не разговорный.</p>
+    </div>
+    <div class="avatar-card">
+      <div class="avatar-icon">🔬</div>
+      <div class="avatar-label">05 · Исследователь</div>
+      <h4>Нейро-энтузиаст</h4>
+      <p>Интересуешься нейротехнологиями и оптимизацией сознания. ONTO NOTHING — передний край.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 16 · XIII — Что ты получаешь · 8 артефактов
+═══════════════════════════════════════════════════════════ -->
+<section class="section-stack" id="stack">
+
+  <span class="section-num">Часть XIII</span>
+  <h2 class="section-h2">Что ты <em>получаешь.</em></h2>
+
+  <p class="intro-para centered">Стек того, что уходит с тобой после тренинга.</p>
+
+  <div class="stack-grid">
+    <div class="stack-card">
+      <span class="mark">◈</span>
+      <h4>Тренинг-день</h4>
+      <p>4–5 часов глубокой работы с полным сопровождением автора метода.</p>
+    </div>
+    <div class="stack-card">
+      <span class="mark" style="font-family:var(--font-display); color:var(--accent); font-weight:300">∅</span>
+      <h4>Навык остановки ВД</h4>
+      <p>Полная остановка внутреннего диалога по желанию. Навсегда.</p>
+    </div>
+    <div class="stack-card">
+      <span class="mark">🎛</span>
+      <h4>Доступ к 7 режимам</h4>
+      <p>Пульт управления состояниями. Переключение между сетями мозга.</p>
+    </div>
+    <div class="stack-card">
+      <span class="mark">☀️</span>
+      <h4>Протокол интеграции</h4>
+      <p>7 дней утренних сессий с ведением и обратной связью.</p>
+    </div>
+    <div class="stack-card">
+      <span class="mark">◈</span>
+      <h4>ex NIHILO ai</h4>
+      <p>Цифровой помощник на базе Claude Opus 4.7. Месяц полного доступа.</p>
+    </div>
+    <div class="stack-card">
+      <span class="mark">🎯</span>
+      <h4>Референсная точка</h4>
+      <p>Опыт, к которому можно возвращаться и всегда знать: он возможен.</p>
+    </div>
+    <div class="stack-card">
+      <span class="mark">◈</span>
+      <h4>Закрытое сообщество</h4>
+      <p>Верифицированное MNPI-уровнем сообщество выпускников. Уровень, недоступный в открытых форумах.</p>
+    </div>
+    <div class="stack-card">
+      <span class="mark">📊</span>
+      <h4>Объективная верификация</h4>
+      <p>Сопряжение с MNPI-чекапом на ЭЭГ — сдвиг виден в цифре (опционально).</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 17 · XIV — Кейсы участников
+═══════════════════════════════════════════════════════════ -->
+<section class="section-cases" id="cases">
+
+  <span class="section-num">Часть XIV</span>
+  <h2 class="section-h2">Кейсы <em>участников.</em></h2>
+
+  <p class="intro-para centered">Три истории, по которым видно, что меняется. И короткие отзывы от остальных.</p>
+
+  <div class="cases-stack">
+
+    <!-- Виктор -->
+    <div class="case-card">
+      <div class="case-name">Кейс 01 · Виктор</div>
+      <h4>Научный кейс</h4>
+      <div class="case-meta">35 дней · 11 сессий · ~8 часов практики</div>
+      <div class="case-ba">
+        <div class="before">
+          <span class="hd">До</span>
+          <p>RI 2.05 · Alpha Gravity 0.43 · Stress 47.8 · удержание ОВД 23%</p>
+        </div>
+        <div class="after">
+          <span class="hd">После</span>
+          <p>RI 4.60 · Alpha Gravity 0.95 (пики 46.88) · Stress 38.5 · удержание 85%</p>
+        </div>
+      </div>
+      <div class="case-quote">
+        Уровень монаха с 1000+ часами практики — за ~8 часов.<br>
+        ЭЭГ-мониторинг Neiry подтвердил сдвиг каждой сессии. Подробнее в секции V.
+      </div>
+    </div>
+
+    <!-- Валентин -->
+    <div class="case-card">
+      <div class="case-name">Кейс 02 · Валентин</div>
+      <h4>Избавление от тревожности</h4>
+      <div class="case-meta">Предприниматель, 40 лет · 6 лет анксиолитиков</div>
+      <div class="case-ba">
+        <div class="before">
+          <span class="hd">До</span>
+          <p>Панические атаки 2–3 раза в неделю. Прерывистый сон. ВД не замолкает даже во сне.</p>
+        </div>
+        <div class="after">
+          <span class="hd">Через 3 месяца</span>
+          <p>Не принимает препараты. Спит без пробуждений. Панических атак не было ни одной.</p>
+        </div>
+      </div>
+      <div class="case-quote">
+        «Я не верил, что ум вообще может замолкнуть. Шесть лет я учился жить с шумом. За один день выяснилось, что шум можно выключить».
+      </div>
+    </div>
+
+    <!-- Андрей -->
+    <div class="case-card">
+      <div class="case-name">Кейс 03 · Андрей</div>
+      <h4>Пробил потолок после 15 лет</h4>
+      <div class="case-meta">Випассана + дзадзэн с 2010 · сотни часов на подушке</div>
+      <div class="case-ba">
+        <div class="before">
+          <span class="hd">До</span>
+          <p>15 лет практики. Глубокие проблески тишины только как спонтанное событие. Чувствовал потолок.</p>
+        </div>
+        <div class="after">
+          <span class="hd">Через месяц</span>
+          <p>Вход в ∅ за 10–15 сек — норма. Освоил пульт 7 режимов. Навык, а не событие.</p>
+        </div>
+      </div>
+      <div class="case-quote">
+        «Я шёл к этому 15 лет. За один день получил то, за чем шёл. Но самое ценное — я получил это не как событие, а как навык. Это две разные вещи».
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Короткие отзывы -->
+  <div class="short-reviews">
+    <div class="short-review">«До тренинга я думал, что знаю, что такое тишина. После первой сессии понял — не знал».</div>
+    <div class="short-review">«Самое странное — что этот навык никуда не делся. Прошло три месяца. Могу войти в состояние прямо сейчас».</div>
+    <div class="short-review">«Не мистика. Не эзотерика. Переключение. Нашёл в себе кнопку, о которой не знал».</div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 18 · XV — Тарифы · 3 уровня
+═══════════════════════════════════════════════════════════ -->
+<section class="section-pricing" id="pricing">
+
+  <span class="section-num">Часть XV</span>
+  <h2 class="section-h2">Три уровня <em>доступа к методу.</em></h2>
+
+  <div class="pricing-lead">
+    <p>Все тарифы включают: <strong>тренинг-день</strong>, 7 дней интеграции, <strong>ex NIHILO ai</strong> на месяц, 100% гарантию возврата. Разница — в глубине сопровождения и доступе к Константину лично.</p>
+  </div>
+
+  <div class="tariffs">
+
+    <!-- Групповой -->
+    <div class="tariff">
+      <span class="tariff-symbol">◯</span>
+      <h3 class="tariff-name">Групповой</h3>
+      <div class="tariff-price"><span class="from">от</span>30 000 ₽</div>
+      <ul class="tariff-features">
+        <li><span>Тренинг-день в группе до 30 человек</span></li>
+        <li><span>7 дней утренних сессий программы интеграции</span></li>
+        <li><span><strong>ex NIHILO ai</strong> (Claude Opus 4.7) на месяц</span></li>
+        <li><span>Закрытый чат сообщества практикующих</span></li>
+        <li><span>100% гарантия возврата</span></li>
+      </ul>
+      <a href="../../zapisatsya/index.html" class="tariff-cta">Выбрать →</a>
+    </div>
+
+    <!-- С мастером -->
+    <div class="tariff">
+      <span class="tariff-symbol">◉</span>
+      <h3 class="tariff-name">С мастером-исследователем</h3>
+      <div class="tariff-price">50 000 ₽</div>
+      <ul class="tariff-features">
+        <li><span>Всё из группового тарифа</span></li>
+        <li><span><strong>Персональное сопровождение</strong> сертифицированным мастером</span></li>
+        <li><span><strong>MNPI-чекап до и после</strong> — Точка А и Точка Б в цифре</span></li>
+        <li><span>Индивидуальный разбор динамики и траектории</span></li>
+        <li><span>Приоритет в очереди на поток</span></li>
+      </ul>
+      <a href="../../zapisatsya/index.html" class="tariff-cta">Выбрать →</a>
+    </div>
+
+    <!-- Лично с Константином -->
+    <div class="tariff elite">
+      <div class="tariff-badge">Elite · Лично</div>
+      <span class="tariff-symbol">◆</span>
+      <h3 class="tariff-name">Лично с Константином Шель</h3>
+      <div class="tariff-price">100 000 ₽</div>
+      <ul class="tariff-features">
+        <li><span>Всё из предыдущих тарифов</span></li>
+        <li><span><strong>Тренинг-день 1-на-1</strong> с автором метода</span></li>
+        <li><span>Персональный разбор MNPI-профиля</span></li>
+        <li><span><strong>Годовое сопровождение</strong> по дуге трансформации</span></li>
+        <li><span>Прямой доступ в закрытом канале</span></li>
+        <li><span>Настройка пульта 7 режимов под твои задачи</span></li>
+      </ul>
+      <a href="../../zapisatsya/index.html" class="tariff-cta">Выбрать →</a>
+    </div>
+
+  </div>
+
+  <div class="pricing-note">
+    На все тарифы действует <strong>100% гарантия возврата</strong>. <strong>Предварительный отбор</strong> обязателен для любого тарифа — мы берём не всех.
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 19 · XVI — О ведущем · Константин Шель
+═══════════════════════════════════════════════════════════ -->
+<section class="section-author" id="author">
+
+  <span class="section-num">Часть XVI</span>
+  <h2 class="section-h2">О ведущем. <em>Константин Шель.</em></h2>
+
+  <div class="author-wrap">
+    <div class="author-portrait">
+      <div class="author-ring">
+        <div class="author-ring-inner">∅</div>
+      </div>
+      <h3 class="author-name">Константин Шель</h3>
+      <div class="author-title">Автор метода<br>ONTO NOTHING™<br>· основатель ex NIHILO</div>
+    </div>
+
+    <div class="author-bio">
+      <p>
+        В <strong>2022 году</strong> описал и воспроизвёл феномен <strong>произвольной остановки внутреннего диалога</strong> — то, что до этого считалось либо спонтанным событием, либо результатом десятилетий созерцательной практики. Это открытие легло в основу метода и запустило направление прикладной нейропсихологии управляемых состояний сознания.
+      </p>
+      <p>
+        Работает на стыке <strong>нейробиологии, нейропсихологии, созерцательных традиций и прикладных нейротехнологий мониторинга</strong>. Главный принцип: <em>субъективный опыт должен быть верифицирован объективными метриками</em>. Слова — субъективны, ЭЭГ и ВСР — нет.
+      </p>
+
+      <div class="author-created">
+        <h4>Что создано</h4>
+        <ul class="author-created-list">
+          <li><strong>ONTO NOTHING™</strong> — метод произвольной остановки ВД и переключения между 7 функциональными режимами сознания.</li>
+          <li><strong>Архитектура 7 режимов</strong> — операционная система мозга с протоколами входа в каждый режим.</li>
+          <li><strong>MNPI · Индекс нейропластичности</strong> (в со-авторстве с Натали Морозовой, 2025) — первый в мире интегральный индекс практической нейропластичности.</li>
+          <li><strong>ex NIHILO ai</strong> — цифровой помощник на базе Claude Opus 4.7 с 5 агентами феноменологии.</li>
+          <li><strong>Научные партнёрства</strong>: Neiry (ЭЭГ-нейроинтерфейсы), Neyrox (нейротрекеры), LQ Lab (валидация метода).</li>
+        </ul>
+      </div>
+
+      <blockquote class="author-quote">
+        Тысячи лет тишина ума считалась вершиной пути. Я показал, что это навык. И показал, как его передать за 35 дней.
+        <cite>— Константин Шель</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="author-stats">
+    <div class="as-item">
+      <div class="as-val">400+</div>
+      <div class="as-label">Лично с Константином</div>
+    </div>
+    <div class="as-item">
+      <div class="as-val">600+</div>
+      <div class="as-label">Через учеников и лаборатории</div>
+    </div>
+    <div class="as-item">
+      <div class="as-val">1000+</div>
+      <div class="as-label">Суммарно · по миру</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 20 · XVII — Гарантия 100%
+═══════════════════════════════════════════════════════════ -->
+<section class="section-guarantee" id="guarantee">
+
+  <span class="section-num">Часть XVII</span>
+  <h2 class="section-h2">Гарантия <em>результата.</em></h2>
+
+  <p class="intro-para centered">
+    <strong>100% гарантия работоспособности метода.</strong> С возвратом денег, если не сработало. Юридически оформленное обязательство, которое мы даём добровольно — потому что знаем эффективность метода.
+  </p>
+
+  <div class="guarantee-shield">
+    <div class="pct">100%</div>
+    <div class="lbl">Гарантия</div>
+  </div>
+
+  <div class="guarantee-pillars">
+    <div class="pillar">
+      <div class="ico">📝</div>
+      <h4>Серьёзная анкета</h4>
+      <p>Состояние здоровья, психологический контекст, цели, опыт. Это рабочий фильтр, а не формальность.</p>
+    </div>
+    <div class="pillar">
+      <div class="ico">🧠</div>
+      <h4>Предварительный чекап</h4>
+      <p>При необходимости — Neiry MNPI и HRV-профиль до старта. Точка А, противопоказания, траектория.</p>
+    </div>
+    <div class="pillar">
+      <div class="ico">⚖️</div>
+      <h4>Закон о защите прав потребителей</h4>
+      <p>Условия возврата, сроки, процедура прописаны в договоре. Без скрытых условий.</p>
+    </div>
+  </div>
+
+  <div class="guarantee-terms">
+    <h4>Что именно гарантируется</h4>
+    <p><strong>◈ Если ты прошёл тренинг-день, выполнил протокол интеграции в полном объёме — и навык остановки ВД у тебя не активировался — мы возвращаем деньги в полном объёме.</strong></p>
+    <p><strong>◈ Если с первого раза получилось не глубоко — мы работаем с тобой дополнительно. Столько сессий, сколько понадобится, пока не сработает. Без доплат.</strong></p>
+    <p>Мы можем так формулировать, потому что <strong>знаем</strong>: при правильной подготовке и отборе метод срабатывает у <strong>100% участников</strong>. За 3 года и 1000+ кейсов исключений не было.</p>
+  </div>
+
+  <p class="guarantee-final">
+    Сначала убеждаемся, что работать будет именно у тебя —<br>
+    и только потом берём в программу.
+  </p>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 21 · XVIII — Ближайший поток
+═══════════════════════════════════════════════════════════ -->
+<section class="section-stream" id="stream">
+
+  <span class="section-num">Часть XVIII</span>
+  <h2 class="section-h2">Ближайший <em>поток.</em></h2>
+
+  <div class="stream-card">
+    <div class="stream-meta">
+      <div class="sm-item">
+        <div class="lbl">Формат</div>
+        <div class="val">Очно / Zoom</div>
+      </div>
+      <div class="sm-item">
+        <div class="lbl">Длительность</div>
+        <div class="val">1 день + 7 дней</div>
+      </div>
+      <div class="sm-item">
+        <div class="lbl">Группа</div>
+        <div class="val">до 30 человек</div>
+      </div>
+      <div class="sm-item">
+        <div class="lbl">Ведёт</div>
+        <div class="val">Константин Шель</div>
+      </div>
+    </div>
+
+    <p class="stream-note">
+      До 30 человек — не ограничение, а <strong>стратегия</strong>. Глубина не масштабируется. Метод работает только в прямом контакте с автором или сертифицированным мастером-исследователем.
+    </p>
+
+    <div class="stream-cta-row">
+      <a href="../../zapisatsya/index.html" class="stream-cta primary">Записаться на поток →</a>
+      <a href="../../zapisatsya/index.html" class="stream-cta secondary">15-минутный вводный созвон</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 22 · XIX — Частые вопросы
+═══════════════════════════════════════════════════════════ -->
+<section class="section-faq" id="faq">
+
+  <span class="section-num">Часть XIX</span>
+  <h2 class="section-h2">Частые <em>вопросы.</em></h2>
+
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Это безопасно?</summary>
+      <p>Да. Никаких веществ, никаких экстремальных практик. <strong>Естественное состояние сознания</strong>, которое у тебя уже есть — но доступ к которому закрыт. Мы открываем доступ, ничего не добавляя извне.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Я никогда не медитировал. Подойдёт?</summary>
+      <p>Да. Более того — <strong>иногда новичкам легче</strong>. У них меньше заготовленных ожиданий от «духовной практики».</p>
+    </details>
+    <details class="faq-item">
+      <summary>А если я медитирую 10+ лет?</summary>
+      <p>Подойдёт особенно. Это другой уровень. Многие опытные практики описывают ONTO NOTHING как <em>«то, куда я шёл, но не доходил»</em>.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Что если у меня не получится с первого раза?</summary>
+      <p>Получится. За 3 года и 1000+ кейсов процент входа в состояние на первом тренинге — <strong>выше 90%</strong>, при правильно пройденном отборе — 100%. Если редкий случай — работаем дополнительно до результата, без доплат. См. «Гарантия результата».</p>
+    </details>
+    <details class="faq-item">
+      <summary>А если всё же не сработает?</summary>
+      <p><strong>Вернём деньги в полном объёме.</strong> Это юридически оформленное обязательство в рамках Закона о защите прав потребителей. Условия прописаны в договоре.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Меня могут не взять в программу?</summary>
+      <p>Да. <strong>Мы берём не всех.</strong> Перед входом — серьёзная анкета и, при необходимости, предварительный чекап. Если метод тебе сейчас не подходит или противопоказан — мы скажем об этом <em>до оплаты</em>, а не после.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Это религиозная практика?</summary>
+      <p>Нет. <strong>Это нейрокогнитивный навык.</strong> Рамка — научная: нейрофизиология, нейропластичность, теория режимов сознания. Духовная интерпретация опыта — твоё личное дело.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Откатит ли?</summary>
+      <p>При прохождении программы интеграции — <strong>нет</strong>. Именно для этого она и встроена в тренинг.</p>
+    </details>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 23 · XX — Финальная вспышка ∅ + CTA
+═══════════════════════════════════════════════════════════ -->
+<section class="section-finale" id="finale">
+
+  <div class="finale-symbol">∅</div>
+
+  <div class="finale-text">
+    <p class="finale-line">Тысячи лет люди шли в тишину длинной дорогой.<br>Большинство не доходило.</p>
+    <p class="finale-line highlight">Короткая дорога — существует <strong>с 2022 года</strong>.</p>
+    <p class="finale-line brand">Она называется ONTO NOTHING.</p>
+  </div>
+
+  <div class="finale-call">
+    <span>Один день</span><span>Навык</span><span>Состояние — по запросу</span>
+  </div>
+
+  <a href="../../zapisatsya/index.html" class="finale-cta">
+    Записаться на ближайший поток
+    <span style="font-size:1.2em">→</span>
+  </a>
+
+  <div class="finale-sign">
+    ONTO NOTHING™ · метод Константина Шель · 2022
+  </div>
 
 </section>
 
