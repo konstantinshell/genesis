@@ -2814,12 +2814,16 @@ body {
   filter: drop-shadow(0 3px 6px rgba(255, 140, 66, 0.4));
 }
 .sk-labels text {
-  font-family: var(--fm); font-size: 12px;
+  font-family: var(--fm); font-size: 14px;
   fill: var(--rh-text-2); letter-spacing: 0.04em;
 }
 .sk-vals text {
-  font-family: var(--fh); font-weight: 600; font-size: 14px;
-  fill: #FFF;
+  font-family: var(--fh); font-weight: 600; font-size: 13px;
+  fill: var(--rh-orange-d);
+  paint-order: stroke;
+  stroke: #FFFFFF;
+  stroke-width: 3px;
+  stroke-linejoin: round;
 }
 
 .sk-legend {
