@@ -542,6 +542,179 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════
+     СЕКЦИЯ 4 · БАЗА ДЛЯ ЦИФРОВОГО ПОМОЩНИКА
+     Тёмный блок. NIHILO в центре + 6 узлов твоих данных.
+     По периметру — 4 функции помощника.
+══════════════════════════════════════════ -->
+<section class="s-nihilo" id="nihilo">
+  <div class="sn-inner">
+
+    <header class="sn-head">
+      <span class="sn-kicker">База для цифрового помощника</span>
+      <h2 class="sn-title">Цифровой помощник без данных о&nbsp;тебе — это <em>просто чатбот</em>.<br>С&nbsp;данными — это твой личный куратор.</h2>
+      <p class="sn-sub">В нашей исследовательской программе есть цифровой помощник NIHILO — AI-ассистент на Claude Opus 4.6, синхронизированный с твоим трекером, знающий режимы сознания по методу ONTO NOTHING и твой MNPI-профиль (если ты прошёл чек-ап на нейробенде Neiry). Но для этого ему нужно одно: знать <em>тебя</em>.</p>
+    </header>
+
+    <!-- Пульсирующая сеть -->
+    <div class="sn-net-wrap">
+      <svg class="sn-net" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="snCoreGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#FFD2A8"/>
+            <stop offset="40%"  stop-color="#FF8C42"/>
+            <stop offset="100%" stop-color="#E8742A"/>
+          </radialGradient>
+          <radialGradient id="snHaloGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#FF8C42" stop-opacity="0.55"/>
+            <stop offset="60%"  stop-color="#FF8C42" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#FF8C42" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="snSoftGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4"/>
+          </filter>
+        </defs>
+
+        <!-- Внешнее сияние -->
+        <circle cx="450" cy="300" r="200" fill="url(#snHaloGrad)" class="sn-halo"/>
+
+        <!-- Шесть линий от узлов к центру (c motion-точками) -->
+        <!-- Узлы по окружности R=230 (6 штук, по 60°) -->
+        <!-- 0°: (680, 300); 60°: (565, 499); 120°: (335, 499); 180°: (220, 300); 240°: (335, 101); 300°: (565, 101) -->
+
+        <g class="sn-links">
+          <path class="sn-link" id="sn-l1" d="M 680 300 L 450 300"/>
+          <path class="sn-link" id="sn-l2" d="M 565 499 L 450 300"/>
+          <path class="sn-link" id="sn-l3" d="M 335 499 L 450 300"/>
+          <path class="sn-link" id="sn-l4" d="M 220 300 L 450 300"/>
+          <path class="sn-link" id="sn-l5" d="M 335 101 L 450 300"/>
+          <path class="sn-link" id="sn-l6" d="M 565 101 L 450 300"/>
+        </g>
+
+        <!-- Импульсы по линиям (от узла к центру) -->
+        <g class="sn-pulses">
+          <circle class="sn-pulse" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0s"><mpath href="#sn-l1"/></animateMotion></circle>
+          <circle class="sn-pulse" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.3s"><mpath href="#sn-l2"/></animateMotion></circle>
+          <circle class="sn-pulse" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.6s"><mpath href="#sn-l3"/></animateMotion></circle>
+          <circle class="sn-pulse" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.9s"><mpath href="#sn-l4"/></animateMotion></circle>
+          <circle class="sn-pulse" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.2s"><mpath href="#sn-l5"/></animateMotion></circle>
+          <circle class="sn-pulse" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.5s"><mpath href="#sn-l6"/></animateMotion></circle>
+        </g>
+
+        <!-- Шесть data-узлов -->
+        <g class="sn-nodes">
+          <g class="sn-node" transform="translate(680,300)">
+            <circle r="36" class="sn-node-bg"/>
+            <circle r="36" class="sn-node-ring"/>
+            <text class="sn-node-label" x="52" y="5" text-anchor="start">Колесо Баланса</text>
+          </g>
+          <g class="sn-node" transform="translate(565,499)">
+            <circle r="32" class="sn-node-bg"/>
+            <circle r="32" class="sn-node-ring"/>
+            <text class="sn-node-label" x="0" y="62" text-anchor="middle">Цели цикла</text>
+          </g>
+          <g class="sn-node" transform="translate(335,499)">
+            <circle r="32" class="sn-node-bg"/>
+            <circle r="32" class="sn-node-ring"/>
+            <text class="sn-node-label" x="0" y="62" text-anchor="middle">Паттерн формулировок</text>
+          </g>
+          <g class="sn-node" transform="translate(220,300)">
+            <circle r="36" class="sn-node-bg"/>
+            <circle r="36" class="sn-node-ring"/>
+            <text class="sn-node-label" x="-52" y="5" text-anchor="end">Хронотип</text>
+          </g>
+          <g class="sn-node" transform="translate(335,101)">
+            <circle r="32" class="sn-node-bg"/>
+            <circle r="32" class="sn-node-ring"/>
+            <text class="sn-node-label" x="0" y="-46" text-anchor="middle">Сферы</text>
+          </g>
+          <g class="sn-node" transform="translate(565,101)">
+            <circle r="32" class="sn-node-bg"/>
+            <circle r="32" class="sn-node-ring"/>
+            <text class="sn-node-label" x="0" y="-46" text-anchor="middle">Узкие места</text>
+          </g>
+        </g>
+
+        <!-- Центральное ядро NIHILO -->
+        <g class="sn-core">
+          <circle cx="450" cy="300" r="88" fill="url(#snCoreGrad)"/>
+          <circle cx="450" cy="300" r="88" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+          <circle cx="432" cy="282" r="14" fill="rgba(255,255,255,0.35)" filter="url(#snSoftGlow)"/>
+          <text x="450" y="295" text-anchor="middle" class="sn-core-name">NIHILO</text>
+          <text x="450" y="316" text-anchor="middle" class="sn-core-cap">Claude Opus 4.6</text>
+        </g>
+      </svg>
+
+      <!-- Центральный бейдж (накладывается HTML-овый на SVG для чёткого рендера шрифта) -->
+    </div>
+
+    <!-- 4 функции помощника -->
+    <div class="sn-funcs">
+      <h3 class="sn-funcs-title">Что он умеет с твоей базой</h3>
+      <div class="sn-funcs-grid">
+        <article class="sn-func" style="--d:0ms;">
+          <div class="sn-func-ico" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="8" cy="8" r="3"/>
+              <circle cx="24" cy="8" r="3"/>
+              <circle cx="16" cy="24" r="3"/>
+              <path d="M10.5 9.5 L14 22"/>
+              <path d="M21.5 9.5 L18 22"/>
+              <path d="M11 8 L21 8"/>
+            </svg>
+          </div>
+          <h4 class="sn-func-name">Связывает события + состояния</h4>
+          <p class="sn-func-desc">Утреннее намерение + дневной скачок стресса = подсказка о причине. Не отдельные события, а связи.</p>
+        </article>
+
+        <article class="sn-func" style="--d:120ms;">
+          <div class="sn-func-ico" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 22 Q9 12 16 18 T29 12"/>
+              <circle cx="16" cy="18" r="2" fill="currentColor"/>
+              <circle cx="29" cy="12" r="2"/>
+              <path d="M3 27 L29 27" opacity="0.4"/>
+            </svg>
+          </div>
+          <h4 class="sn-func-name">Подсказки по ритму</h4>
+          <p class="sn-func-desc">Под твой хронотип и под твоё Колесо Баланса. «В 15:00 сегодня тебе лучше не начинать глубокую задачу».</p>
+        </article>
+
+        <article class="sn-func" style="--d:240ms;">
+          <div class="sn-func-ico" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4 L28 24 L4 24 Z"/>
+              <line x1="16" y1="12" x2="16" y2="18"/>
+              <circle cx="16" cy="21" r="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <h4 class="sn-func-name">Предупреждает о дрейфе</h4>
+          <p class="sn-func-desc">Когда ежедневные задачи начинают отклоняться от целей цикла — даёт сигнал до того, как набежит отставание.</p>
+        </article>
+
+        <article class="sn-func" style="--d:360ms;">
+          <div class="sn-func-ico" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 24 L6 10 Q6 6 10 6 L22 6 Q26 6 26 10 L26 18 Q26 22 22 22 L12 22 L6 28 Z"/>
+              <line x1="10" y1="12" x2="22" y2="12"/>
+              <line x1="10" y1="16" x2="18" y2="16"/>
+            </svg>
+          </div>
+          <h4 class="sn-func-name">Помогает формулировать</h4>
+          <p class="sn-func-desc">По методу Натали Морозовой, а не по общим шаблонам. Твой язык, твои сферы, твой ритм.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- Принцип -->
+    <blockquote class="sn-principle">
+      <span class="sn-principle-mark">«</span>
+      Без тренинга цифровой помощник — это красивый интерфейс без содержания. С&nbsp;тренингом — это инструмент, который начинает давать ощутимую пользу <em>с первого дня</em> после заполнения базы.
+    </blockquote>
+
+  </div>
+</section>
+
 <script src="../components/nav.js"></script>
 <script src="../components/footer.js"></script>
 </body>
