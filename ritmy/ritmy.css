@@ -3183,59 +3183,47 @@ body {
 
 .swl-names text {
   font-family: var(--fh); font-weight: 500;
-  font-size: 13px;
+  font-size: 15px;
   fill: var(--rh-text); letter-spacing: 0.01em;
+  paint-order: stroke;
+  stroke: rgba(255, 245, 240, 0.92);
+  stroke-width: 4px;
+  stroke-linejoin: round;
 }
 .swl-vals text {
-  font-family: var(--fh); font-weight: 600;
-  font-size: 13px;
+  font-family: var(--fh); font-weight: 700;
+  font-size: 16px;
   fill: #FFFFFF;
+  paint-order: stroke;
+  stroke: rgba(42, 42, 42, 0.25);
+  stroke-width: 2px;
+  stroke-linejoin: round;
 }
 
-/* Лейблы 4 векторов по сторонам колеса */
-.swl-vec {
-  position: absolute;
-  font-family: var(--fm);
-  font-size: 0.66rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--rh-orange-d);
-  background: #FFFFFF;
-  border: 1px solid rgba(255, 140, 66, 0.25);
-  border-radius: 100px;
-  padding: 4px 10px;
-  white-space: nowrap;
-  box-shadow: 0 6px 16px rgba(255, 140, 66, 0.15);
-}
-.swl-vec--n { top: -12px; left: 50%; transform: translateX(-50%); }
-.swl-vec--s { bottom: -12px; left: 50%; transform: translateX(-50%); }
-.swl-vec--e { right: -10px; top: 50%; transform: translateY(-50%); }
-.swl-vec--w { left: -10px; top: 50%; transform: translateY(-50%); }
+.swl-wheel-wrap { text-align: center; }
 
 .swl-round {
-  position: absolute;
-  top: 14px; right: 14px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--rh-border);
-  border-radius: 14px;
-  padding: 10px 14px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(42, 42, 42, 0.06);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 10px 20px;
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 140, 66, 0.3);
+  border-radius: 100px;
+  box-shadow: 0 10px 22px rgba(255, 140, 66, 0.18);
 }
 .swl-round-num {
   font-family: var(--fh); font-weight: 500;
-  font-size: 1.35rem; line-height: 1;
+  font-size: 1.2rem; line-height: 1;
   color: var(--rh-orange-d);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 .swl-round-cap {
-  font-family: var(--fm); font-size: 0.62rem;
-  letter-spacing: 0.08em; text-transform: uppercase;
+  font-family: var(--fm); font-size: 0.66rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--rh-muted);
   line-height: 1.2;
-  margin-top: 4px;
 }
 
 .swl-vectors {}
@@ -3289,9 +3277,9 @@ body {
 }
 @media (max-width: 640px) {
   .s-wheel { padding: 72px 14px 80px; }
-  .swl-names text { font-size: 10px; }
-  .swl-round { padding: 8px 10px; top: 8px; right: 8px; }
-  .swl-round-num { font-size: 1.1rem; }
+  .swl-names text { font-size: 12px; stroke-width: 3px; }
+  .swl-round { padding: 8px 14px; margin-top: 12px; }
+  .swl-round-num { font-size: 1.05rem; }
   .swl-vec-list li { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 
