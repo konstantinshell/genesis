@@ -2141,6 +2141,469 @@ body {
   .baseline-radar { max-width: 400px; }
 }
 
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 8 · V — Кейс Виктора (дашборд) + сравнение + MNPI
+══════════════════════════════════════════════════════════════ */
+.section-viktor {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 160px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.viktor-pull {
+  max-width: 860px;
+  margin: 48px auto 56px;
+  padding: 34px 40px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 22px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.45;
+  color: var(--text);
+  box-shadow: 0 4px 22px rgba(15, 20, 25, 0.04);
+}
+.viktor-pull strong {
+  font-style: normal;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.viktor-meta {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.viktor-meta span {
+  padding: 0 24px;
+  border-left: 1px solid rgba(15, 20, 25, 0.15);
+}
+.viktor-meta span:first-child { border-left: none; }
+.viktor-meta b { color: var(--text); font-weight: 700; }
+
+/* Dashboard grid 3x2 */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.dash-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 20px;
+  padding: 24px 26px 22px;
+  box-shadow: 0 2px 14px rgba(15, 20, 25, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 220px;
+}
+.dash-card h4 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0;
+}
+.dash-card .chart {
+  flex: 1;
+  width: 100%;
+  display: block;
+  height: 80px;
+}
+.dash-chart .grid-line {
+  stroke: rgba(15, 20, 25, 0.08);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.dash-chart .line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.dash-chart .area {
+  opacity: 0.18;
+}
+.dash-chart .peak {
+  fill: none;
+  stroke-width: 2;
+}
+.dash-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+.dash-num {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(26px, 2.5vw, 34px);
+  line-height: 1;
+  color: var(--text);
+}
+.dash-num em {
+  font-style: normal;
+  font-size: 0.6em;
+  font-weight: 400;
+  color: var(--text-dim);
+  margin-left: 4px;
+  font-family: var(--font-body);
+}
+.dash-delta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  padding: 4px 10px;
+  background: rgba(95, 95, 255, 0.1);
+  border-radius: 20px;
+}
+.dash-delta.down  { color: #059669; background: rgba(5, 150, 105, 0.1); }
+.dash-delta.up    { color: var(--accent); background: rgba(95, 95, 255, 0.1); }
+.dash-delta.warn  { color: #ea580c; background: rgba(234, 88, 12, 0.1); }
+.dash-tip {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-mute);
+  margin: 0;
+}
+
+/* Таблицы Точка А → Точка Б */
+.viktor-ab {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 72px;
+}
+.viktor-ab-col {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 22px;
+  padding: 32px 32px 28px;
+}
+.viktor-ab-col.b {
+  border-color: rgba(95, 95, 255, 0.28);
+  box-shadow: 0 8px 36px rgba(95, 95, 255, 0.15);
+}
+.va-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.viktor-ab-col.b .va-label { color: var(--accent); }
+.va-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.va-rows {
+  list-style: none;
+  padding: 0; margin: 0;
+}
+.va-rows li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px dashed rgba(15, 20, 25, 0.1);
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-mute);
+}
+.va-rows li:first-child { border-top: 1px solid rgba(15, 20, 25, 0.12); }
+.va-rows li:last-child { border-bottom: 1px solid rgba(15, 20, 25, 0.12); }
+.va-rows b {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text);
+  font-size: 14px;
+}
+.viktor-ab-col.b .va-rows b {
+  color: var(--accent);
+}
+.va-rows .lvl {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* Сравнительная таблица с мировыми нормами */
+.benchmark-wrap {
+  margin-top: 80px;
+}
+.benchmark-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(15, 20, 25, 0.04);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+.benchmark-tbl th,
+.benchmark-tbl td {
+  padding: 14px 16px;
+  text-align: left;
+  border-top: 1px solid rgba(15, 20, 25, 0.06);
+}
+.benchmark-tbl thead th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: rgba(15, 20, 25, 0.03);
+  border-top: none;
+}
+.benchmark-tbl .col-v {
+  background: rgba(95, 95, 255, 0.06);
+  color: var(--accent);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+.benchmark-tbl thead .col-v { color: var(--accent); }
+.benchmark-tbl .metric {
+  font-weight: 600;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+.benchmark-final {
+  margin-top: 48px;
+  padding: 32px 36px;
+  background: linear-gradient(135deg, rgba(95,95,255,0.06), rgba(10,132,255,0.06));
+  border-radius: 22px;
+  border: 1px solid rgba(95, 95, 255, 0.2);
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.4;
+  color: var(--text);
+}
+.benchmark-final b {
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* ── MNPI donut + 4 под-индекса ── */
+.mnpi-wrap {
+  margin-top: 120px;
+}
+.mnpi-lead {
+  max-width: 760px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+.mnpi-lead .tagline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+  display: block;
+}
+.mnpi-lead .head {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.mnpi-lead .head em {
+  font-weight: 500;
+  font-style: italic;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.mnpi-body {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+  margin-top: 64px;
+}
+.mnpi-donut {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+}
+.mnpi-donut svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.mnpi-donut .ring { fill: none; stroke-width: 24; }
+.mnpi-donut .seg-bg { stroke: rgba(15, 20, 25, 0.06); }
+.mnpi-donut .seg-si { stroke: #7DD3FC; }
+.mnpi-donut .seg-di { stroke: #5F5FFF; }
+.mnpi-donut .seg-ri { stroke: #34D399; }
+.mnpi-donut .seg-pi { stroke: #FBBF24; }
+.mnpi-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.mnpi-score {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 72px;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.mnpi-center .label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.mnpi-subs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.mnpi-sub {
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mnpi-sub.si { border-color: rgba(125, 211, 252, 0.35); }
+.mnpi-sub.di { border-color: rgba(95, 95, 255, 0.35); }
+.mnpi-sub.ri { border-color: rgba(52, 211, 153, 0.35); }
+.mnpi-sub.pi { border-color: rgba(251, 191, 36, 0.35); }
+.mnpi-sub-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+.mnpi-sub-code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.mnpi-sub.si .mnpi-sub-code { color: #0284C7; }
+.mnpi-sub.di .mnpi-sub-code { color: var(--accent); }
+.mnpi-sub.ri .mnpi-sub-code { color: #059669; }
+.mnpi-sub.pi .mnpi-sub-code { color: #D97706; }
+.mnpi-sub-weight {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+.mnpi-sub-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--text);
+  margin: 0;
+}
+.mnpi-sub-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-mute);
+  margin: 0;
+}
+
+.mnpi-pull {
+  margin-top: 72px;
+  padding: 40px 40px;
+  text-align: center;
+  border-top: 1px solid rgba(15, 20, 25, 0.12);
+  border-bottom: 1px solid rgba(15, 20, 25, 0.12);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.4;
+  color: var(--text);
+}
+.mnpi-pull .a,
+.mnpi-pull .b {
+  display: block;
+}
+.mnpi-pull .b {
+  margin-top: 4px;
+  font-weight: 600;
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Адаптив секции V */
+@media (max-width: 900px) {
+  .dashboard { grid-template-columns: repeat(2, 1fr); }
+  .viktor-ab { grid-template-columns: 1fr; }
+  .mnpi-body { grid-template-columns: 1fr; gap: 48px; }
+  .mnpi-donut { max-width: 260px; margin: 0 auto; }
+  .mnpi-subs { grid-template-columns: 1fr; }
+  .benchmark-tbl { font-size: 12px; }
+  .benchmark-tbl th, .benchmark-tbl td { padding: 10px 8px; }
+}
+@media (max-width: 560px) {
+  .dashboard { grid-template-columns: 1fr; }
+  .viktor-meta span { border-left: none; padding: 4px 12px; }
+}
+
 /* Адаптив секции 6 */
 @media (max-width: 960px) {
   .console-wrap { grid-template-columns: 1fr; gap: 32px; }
@@ -2890,6 +3353,304 @@ body {
     Это и есть настоящий результат тренинга —
     <strong>новая базовая линия, из которой ты живёшь.</strong>
   </p>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 8 · V — Цифры. Кейс Виктора + дашборд
+     + сравнение с мировыми нормами + MNPI
+═══════════════════════════════════════════════════════════ -->
+<section class="section-viktor" id="viktor">
+
+  <span class="section-num">Часть V</span>
+  <h2 class="section-h2">Цифры. <em>Что происходит на ЭЭГ.</em></h2>
+
+  <p class="intro-para centered">
+    <em>Слова — субъективны. Нейрофизиология — нет.</em> Поэтому мы сопрягаем ONTO NOTHING с ЭЭГ-мониторингом Neiry: каждая сессия измеряется, траектория видна в цифре.
+  </p>
+
+  <div class="viktor-meta">
+    <span>Кейс · <b>Виктор</b></span>
+    <span>03.12.2025 → 07.01.2026</span>
+    <span><b>35</b> дней · <b>11</b> сессий · <b>~8</b> часов практики</span>
+  </div>
+
+  <!-- Дашборд 3×2 -->
+  <div class="dashboard">
+
+    <!-- 1. Relaxation Index -->
+    <div class="dash-card">
+      <h4>◇ Relaxation Index · 11 сессий</h4>
+      <svg class="chart dash-chart" viewBox="0 0 200 80" preserveAspectRatio="none">
+        <line class="grid-line" x1="0" y1="60" x2="200" y2="60"/>
+        <line class="grid-line" x1="0" y1="30" x2="200" y2="30"/>
+        <path class="line" stroke="#5F5FFF" d="M 5,60 L 25,55 L 45,50 L 65,44 L 85,38 L 105,32 L 125,26 L 145,22 L 165,18 L 185,14 L 198,8"/>
+        <circle cx="198" cy="8" r="4" fill="#5F5FFF"/>
+      </svg>
+      <div class="dash-result">
+        <div class="dash-num">4.60<em>из 5</em></div>
+        <span class="dash-delta up">×2.24</span>
+      </div>
+      <p class="dash-tip">2.05 → <b style="color:var(--text)">4.60</b> — уровень <b style="color:var(--text)">мастера+</b> (1000+ ч).</p>
+    </div>
+
+    <!-- 2. Удержание ОВД -->
+    <div class="dash-card">
+      <h4>◇ Удержание ОВД · 11 сессий</h4>
+      <svg class="chart dash-chart" viewBox="0 0 200 80" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5F5FFF" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#5F5FFF" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="area" fill="url(#areaGrad)" d="M 5,62 L 22,58 L 40,54 L 60,48 L 80,40 L 100,32 L 120,24 L 140,18 L 160,14 L 180,10 L 198,10 L 198,78 L 5,78 Z"/>
+        <path class="line" stroke="#5F5FFF" d="M 5,62 L 22,58 L 40,54 L 60,48 L 80,40 L 100,32 L 120,24 L 140,18 L 160,14 L 180,10 L 198,10"/>
+      </svg>
+      <div class="dash-result">
+        <div class="dash-num">85%</div>
+        <span class="dash-delta up">+270%</span>
+      </div>
+      <p class="dash-tip">23% → <b style="color:var(--text)">85%</b> · короткие проблески превратились в удержание.</p>
+    </div>
+
+    <!-- 3. Alpha Gravity с пиками -->
+    <div class="dash-card">
+      <h4>◇ Alpha Gravity · с аномальными пиками</h4>
+      <svg class="chart dash-chart" viewBox="0 0 200 80" preserveAspectRatio="none">
+        <line class="grid-line" x1="0" y1="60" x2="200" y2="60"/>
+        <path class="line" stroke="#D97706" d="M 5,62 L 25,60 L 45,58 L 65,15 L 85,55 L 105,52 L 125,50 L 145,3 L 165,48 L 185,45 L 198,42"/>
+        <circle cx="65" cy="15" r="3.5" fill="#DC2626"><animate attributeName="r" values="3.5;5.5;3.5" dur="2s" repeatCount="indefinite"/></circle>
+        <circle cx="145" cy="3" r="3.5" fill="#DC2626"><animate attributeName="r" values="3.5;5.5;3.5" dur="2s" repeatCount="indefinite" begin="0.7s"/></circle>
+      </svg>
+      <div class="dash-result">
+        <div class="dash-num">46.88<em>пик</em></div>
+        <span class="dash-delta up">×100+</span>
+      </div>
+      <p class="dash-tip">Пики на сессиях 3 и 8 — спонтанные глубокие трансы.</p>
+    </div>
+
+    <!-- 4. Stress -->
+    <div class="dash-card">
+      <h4>◇ Stress Index</h4>
+      <svg class="chart dash-chart" viewBox="0 0 200 80" preserveAspectRatio="none">
+        <path class="line" stroke="#DC2626" d="M 5,15 L 25,20 L 45,25 L 65,32 L 85,38 L 105,42 L 125,46 L 145,50 L 165,54 L 185,58 L 198,60"/>
+        <circle cx="198" cy="60" r="4" fill="#DC2626"/>
+      </svg>
+      <div class="dash-result">
+        <div class="dash-num">38.5</div>
+        <span class="dash-delta down">−19%</span>
+      </div>
+      <p class="dash-tip">47.8 → <b style="color:var(--text)">38.5</b> · сдвиг в зону мастеров.</p>
+    </div>
+
+    <!-- 5. Focus (inverse) -->
+    <div class="dash-card">
+      <h4>◇ Focus · аналитический ум</h4>
+      <svg class="chart dash-chart" viewBox="0 0 200 80" preserveAspectRatio="none">
+        <path class="line" stroke="#0EA5E9" d="M 5,12 L 25,18 L 45,25 L 65,30 L 85,38 L 105,44 L 125,50 L 145,56 L 165,62 L 185,66 L 198,68"/>
+        <circle cx="198" cy="68" r="4" fill="#0EA5E9"/>
+      </svg>
+      <div class="dash-result">
+        <div class="dash-num">27.6</div>
+        <span class="dash-delta down">−46%</span>
+      </div>
+      <p class="dash-tip">51.2 → <b style="color:var(--text)">27.6</b> · аналитический ум отключается — уровень мастера.</p>
+    </div>
+
+    <!-- 6. Big numbers -->
+    <div class="dash-card">
+      <h4>◇ Итоговые маркёры</h4>
+      <div style="display:flex; flex-direction:column; gap:14px; flex:1; justify-content:center;">
+        <div class="dash-result">
+          <div class="dash-num">+87<em>%</em></div>
+          <span class="dash-delta up" style="font-size:10px">Cognitive</span>
+        </div>
+        <div class="dash-result">
+          <div class="dash-num">57.3<em>bpm</em></div>
+          <span class="dash-delta down" style="font-size:10px">парасимпатика</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pull verdict -->
+  <div class="viktor-pull">
+    <em>Вердикт отчёта Neiry:</em> «Виктор не просто научился медитировать. Он <strong>перепрограммировал базовую архитектуру своего сознания</strong>».
+  </div>
+
+  <!-- Точка А vs Точка Б -->
+  <div class="viktor-ab">
+    <div class="viktor-ab-col">
+      <div class="va-label">Точка А · сессия 1</div>
+      <div class="va-title">03 декабря 2025</div>
+      <ul class="va-rows">
+        <li><span>Relaxation Index</span><b>2.05<span class="lvl">опытный</span></b></li>
+        <li><span>Alpha Gravity</span><b>0.43<span class="lvl">новичок</span></b></li>
+        <li><span>Stress</span><b>47.8<span class="lvl">повышенный</span></b></li>
+        <li><span>Focus (аналитич.)</span><b>51.2<span class="lvl">активен</span></b></li>
+        <li><span>Heart Rate</span><b>63.4<span class="lvl">симпатика</span></b></li>
+        <li><span>Удержание ОВД</span><b>23%<span class="lvl">проблески</span></b></li>
+      </ul>
+    </div>
+
+    <div class="viktor-ab-col b">
+      <div class="va-label">Точка Б · сессия 11 · +35 дней</div>
+      <div class="va-title">07 января 2026</div>
+      <ul class="va-rows">
+        <li><span>Relaxation Index</span><b>4.60<span class="lvl">мастер+ (×2.24)</span></b></li>
+        <li><span>Alpha Gravity</span><b>0.95 / пики 46.88<span class="lvl">мастер+</span></b></li>
+        <li><span>Stress</span><b>38.5<span class="lvl">мастер (−19%)</span></b></li>
+        <li><span>Focus (при ОВД)</span><b>27.6<span class="lvl">мастер (−46%)</span></b></li>
+        <li><span>Heart Rate</span><b>57.3<span class="lvl">мастер (−10%)</span></b></li>
+        <li><span>Удержание ОВД</span><b>85%<span class="lvl">мастер (+270%)</span></b></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Сравнение с мировыми нормами -->
+  <div class="benchmark-wrap">
+    <h3 class="bl-subhead" style="text-align:center; max-width:760px; margin:0 auto 32px;">Сравнение с мировыми нормами медитативных традиций</h3>
+    <p class="intro-para centered" style="margin-bottom:32px">
+      Референсы: исследования Davidson, Lutz (2008–2020), данные центров Випассаны, монастырей Тибета.
+    </p>
+
+    <table class="benchmark-tbl">
+      <thead>
+        <tr>
+          <th>Метрика</th>
+          <th>Новички</th>
+          <th>Опытные (500+ ч)</th>
+          <th>Мастера (1000+ ч)</th>
+          <th class="col-v">Виктор (8 ч)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="metric">Relaxation Index</td>
+          <td>0.8 – 1.2</td>
+          <td>2.0 – 3.0</td>
+          <td>3.5 – 4.5</td>
+          <td class="col-v">4.60</td>
+        </tr>
+        <tr>
+          <td class="metric">Alpha Gravity</td>
+          <td>0.2 – 0.4</td>
+          <td>0.6 – 1.0</td>
+          <td>1.0 – 1.5</td>
+          <td class="col-v">0.95 / 46.88</td>
+        </tr>
+        <tr>
+          <td class="metric">Stress</td>
+          <td>50 – 70</td>
+          <td>35 – 45</td>
+          <td>25 – 35</td>
+          <td class="col-v">38.5</td>
+        </tr>
+        <tr>
+          <td class="metric">Focus (при ОВД)</td>
+          <td>60 – 80</td>
+          <td>40 – 55</td>
+          <td>25 – 40</td>
+          <td class="col-v">27.6</td>
+        </tr>
+        <tr>
+          <td class="metric">Heart Rate</td>
+          <td>65 – 75</td>
+          <td>55 – 65</td>
+          <td>50 – 60</td>
+          <td class="col-v">57.3</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="benchmark-final">
+      Виктор достиг уровня мастеров медитации с 1000+ часами — <b>за 11 сессий и ~8 часов</b>.<br>
+      Отношение: <b>~125× по эффективности обучения.</b>
+    </div>
+  </div>
+
+  <!-- ── MNPI ── -->
+  <div class="mnpi-wrap">
+    <div class="mnpi-lead">
+      <span class="tagline">Метрика, которой до этого не было</span>
+      <h3 class="head">MNPI. <em>Индекс практической нейропластичности.</em></h3>
+      <p class="intro-para centered">
+        Лабораторные индексы нейропластичности смотрят на дендриты и BDNF. <strong>MNPI смотрит на человека в жизни</strong> — способен ли мозг переключать режим по запросу, удерживать его под нагрузкой, входить быстрее с каждым разом. До 2025 года такой метрики не существовало.
+      </p>
+    </div>
+
+    <div class="mnpi-body">
+      <div class="mnpi-donut">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <!-- background ring -->
+          <circle class="ring seg-bg" cx="100" cy="100" r="80"/>
+          <!-- SI 30% (108° arc) stroke-dasharray calculated on circumference 502.65 -->
+          <!-- DI 35% · RI 20% · PI 15% — стартуют друг за другом -->
+          <circle class="ring seg-si" cx="100" cy="100" r="80"
+                  stroke-dasharray="150.8 502.65" stroke-dashoffset="0" stroke-linecap="butt"/>
+          <circle class="ring seg-di" cx="100" cy="100" r="80"
+                  stroke-dasharray="175.9 502.65" stroke-dashoffset="-150.8" stroke-linecap="butt"/>
+          <circle class="ring seg-ri" cx="100" cy="100" r="80"
+                  stroke-dasharray="100.5 502.65" stroke-dashoffset="-326.7" stroke-linecap="butt"/>
+          <circle class="ring seg-pi" cx="100" cy="100" r="80"
+                  stroke-dasharray="75.4 502.65" stroke-dashoffset="-427.2" stroke-linecap="butt"/>
+        </svg>
+        <div class="mnpi-center">
+          <div class="mnpi-score">74</div>
+          <div class="label">MNPI Виктор</div>
+        </div>
+      </div>
+
+      <div class="mnpi-subs">
+        <div class="mnpi-sub si">
+          <div class="mnpi-sub-head">
+            <span class="mnpi-sub-code">SI</span>
+            <span class="mnpi-sub-weight">30%</span>
+          </div>
+          <h4 class="mnpi-sub-title">Switching</h4>
+          <p class="mnpi-sub-desc">Скорость переключения между режимами сознания.</p>
+        </div>
+        <div class="mnpi-sub di">
+          <div class="mnpi-sub-head">
+            <span class="mnpi-sub-code">DI</span>
+            <span class="mnpi-sub-weight">35%</span>
+          </div>
+          <h4 class="mnpi-sub-title">Depth</h4>
+          <p class="mnpi-sub-desc">Глубина сдвига относительно твоей Точки А.</p>
+        </div>
+        <div class="mnpi-sub ri">
+          <div class="mnpi-sub-head">
+            <span class="mnpi-sub-code">RI</span>
+            <span class="mnpi-sub-weight">20%</span>
+          </div>
+          <h4 class="mnpi-sub-title">Resilience</h4>
+          <p class="mnpi-sub-desc">Способность удерживать состояние под нагрузкой.</p>
+        </div>
+        <div class="mnpi-sub pi">
+          <div class="mnpi-sub-head">
+            <span class="mnpi-sub-code">PI</span>
+            <span class="mnpi-sub-weight">15%</span>
+          </div>
+          <h4 class="mnpi-sub-title">Phenomenology</h4>
+          <p class="mnpi-sub-desc">Согласованность нарратива и ЭЭГ (слова ↔ мозг).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mnpi-pull">
+      <span class="a">Без MNPI нейропластичность — философия.</span>
+      <span class="b">С MNPI — инженерия.</span>
+    </div>
+
+    <p class="intro-para centered" style="margin-top:48px">
+      ONTO NOTHING идёт в паре с MNPI-чекапом: <strong>метод — это протокол, MNPI — приборная доска</strong>, по которой видно, что протокол работает именно у тебя.
+    </p>
+    <p class="intro-para centered" style="margin-top:18px; font-size:13px; color: var(--text-dim)">
+      <em>Авторы метрики: Константин Шель · Натали Морозова · 2025</em>
+    </p>
+  </div>
 
 </section>
 
