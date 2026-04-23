@@ -1326,9 +1326,7 @@ body {
   stroke-width: 1.5;
 }
 .sn-node {
-  animation: sn-node-float 5s ease-in-out infinite;
-  transform-box: fill-box;
-  transform-origin: center;
+  animation: sn-node-breath 5s ease-in-out infinite;
 }
 .sn-node:nth-child(1) { animation-delay: 0s;   }
 .sn-node:nth-child(2) { animation-delay: 0.6s; }
@@ -1336,9 +1334,10 @@ body {
 .sn-node:nth-child(4) { animation-delay: 1.8s; }
 .sn-node:nth-child(5) { animation-delay: 2.4s; }
 .sn-node:nth-child(6) { animation-delay: 3.0s; }
-@keyframes sn-node-float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-4px); }
+/* Пульсация делается через opacity, чтобы не перетереть SVG transform="translate(…)" у узлов */
+@keyframes sn-node-breath {
+  0%, 100% { opacity: 0.88; }
+  50%      { opacity: 1; }
 }
 
 .sn-node-label {
