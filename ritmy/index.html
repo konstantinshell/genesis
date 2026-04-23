@@ -1307,6 +1307,456 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════
+     СЕКЦИЯ 8 · ТОНКАЯ НАСТРОЙКА НА СЕБЯ
+     Радар на 5 осях: персональный профиль постановки задач
+══════════════════════════════════════════ -->
+<section class="s-calibrate" id="calibrate">
+  <div class="sk-inner">
+
+    <header class="sk-head">
+      <span class="sk-kicker">Тонкая настройка на себя</span>
+      <h2 class="sk-title">За три часа ты <em>откалибровываешь</em> собственный инструмент постановки задач.</h2>
+      <p class="sk-sub">Большинство людей формулируют задачи одинаково — независимо от того, подходит ли им этот способ. Кто-то слишком абстрактно. Кто-то слишком мелко. Кто-то по десять раз переписывает одну и ту же задачу. На тренинге Натали ведёт тебя через процесс, в котором ты видишь собственный паттерн и перестраиваешь его под свою природу.</p>
+    </header>
+
+    <div class="sk-body">
+      <!-- Радар -->
+      <div class="sk-radar-wrap">
+        <svg class="sk-radar" viewBox="0 0 420 440" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="skYou" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#FF8C42" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#FF8C42" stop-opacity="0.1"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Концентрические пентагоны -->
+          <g class="sk-grid">
+            <polygon points="210,20 385,145 320,360 100,360 35,145"/>
+            <polygon points="210,58 351,158 298,331 122,331 69,158"/>
+            <polygon points="210,96 317,171 276,302 144,302 103,171"/>
+            <polygon points="210,134 283,184 254,273 166,273 137,184"/>
+            <polygon points="210,172 249,197 232,244 188,244 171,197"/>
+          </g>
+
+          <!-- Оси -->
+          <g class="sk-axis">
+            <line x1="210" y1="210" x2="210" y2="20"/>
+            <line x1="210" y1="210" x2="385" y2="145"/>
+            <line x1="210" y1="210" x2="320" y2="360"/>
+            <line x1="210" y1="210" x2="100" y2="360"/>
+            <line x1="210" y1="210" x2="35"  y2="145"/>
+          </g>
+
+          <!-- Средний паттерн -->
+          <polygon class="sk-avg"
+                   points="210,96 283,184 254,273 166,273 137,184"/>
+
+          <!-- Твой профиль (точки: 3, 4, 2, 5, 3 из 5) -->
+          <!-- верх (1=170 бл центра … 5=20 от верха): level 3 -->
+          <!-- позиции ~ (верх 3, справа-верх 4, справа-низ 2, слева-низ 5, слева-верх 3) -->
+          <polygon class="sk-you"
+                   points="210,134 317,171 276,302 100,360 137,184"/>
+
+          <!-- Точки -->
+          <g class="sk-you-dots">
+            <circle cx="210" cy="134" r="6"/>
+            <circle cx="317" cy="171" r="6"/>
+            <circle cx="276" cy="302" r="6"/>
+            <circle cx="100" cy="360" r="6"/>
+            <circle cx="137" cy="184" r="6"/>
+          </g>
+
+          <!-- Подписи осей -->
+          <g class="sk-labels">
+            <text x="210" y="10"  text-anchor="middle">Размер задачи</text>
+            <text x="395" y="140" text-anchor="start">Откладывание</text>
+            <text x="330" y="380" text-anchor="start">Ритм проверки</text>
+            <text x="92"  y="380" text-anchor="end">Ёмкость цикла</text>
+            <text x="28"  y="140" text-anchor="end">Сигнал перегрева</text>
+          </g>
+
+          <!-- Подписи значений по осям -->
+          <g class="sk-vals">
+            <text x="218" y="134">3</text>
+            <text x="325" y="170">4</text>
+            <text x="284" y="305">2</text>
+            <text x="92"  y="363">5</text>
+            <text x="127" y="181">3</text>
+          </g>
+        </svg>
+
+        <div class="sk-legend">
+          <div class="sk-lg"><span class="sk-lg-dot sk-lg-avg"></span>Средний паттерн</div>
+          <div class="sk-lg"><span class="sk-lg-dot sk-lg-you"></span>Твой профиль</div>
+        </div>
+      </div>
+
+      <!-- 5 параметров калибровки -->
+      <div class="sk-params">
+        <h3 class="sk-params-title">5 параметров калибровки</h3>
+        <ol class="sk-params-list">
+          <li><strong>Оптимальный размер задачи.</strong> Один подходит крупным шагам, другой — только мелким. Ты определяешь свою зернистость.</li>
+          <li><strong>Способ откладывания.</strong> У каждого свой характерный приём. Видя его, ты перестаёшь в него проваливаться автоматически.</li>
+          <li><strong>Ритм проверки задач.</strong> Утром, вечером, в середине дня — разные хронотипы требуют разного темпа.</li>
+          <li><strong>Ёмкость 40-дневного цикла.</strong> Сколько задач твоя система держит без перегрева — без теоретической прикидки, по фактам твоего цикла.</li>
+          <li><strong>Личный сигнал перегрева.</strong> Свой соматический маркер — что-то одно, что ты чувствуешь <em>до</em> остальных сигналов.</li>
+        </ol>
+        <p class="sk-params-foot">Это твой персональный профиль постановки задач. На тренинге он <strong>откалибруется до точности 0.1</strong> — и дальше уже им пользуешься ты сам.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     СЕКЦИЯ 9 · ПРЕДУПРЕЖДЕНИЕ О ПЕРЕГРЕВЕ
+     Heatmap-календарь 6×7 + 4 индикатора
+══════════════════════════════════════════ -->
+<section class="s-alert" id="alert">
+  <div class="sa2-inner">
+
+    <header class="sa2-head">
+      <span class="sa2-kicker">Раннее оповещение</span>
+      <h2 class="sa2-title">Система видит твоё приближение к&nbsp;перегреву <em>раньше тебя</em>.</h2>
+      <p class="sa2-sub">Перегрев — не внезапное событие, а процесс с длинной пре-фазой. За недели до срыва появляются сигналы: падение HRV, укорочение глубокого сна, рост стресс-индекса, сужение круга интересов. По отдельности — шум. Вместе — читаемый профиль.</p>
+    </header>
+
+    <!-- 4 индикатора сверху -->
+    <div class="sa2-indicators">
+      <article class="sa2-ind">
+        <div class="sa2-ind-label">Ежедневный фон</div>
+        <div class="sa2-ind-val">35%</div>
+        <div class="sa2-ind-bar"><div class="sa2-ind-fill" style="--p:35%;"></div></div>
+        <div class="sa2-ind-cap">тенденция дня</div>
+      </article>
+      <article class="sa2-ind">
+        <div class="sa2-ind-label">Недельная динамика</div>
+        <div class="sa2-ind-val">62%</div>
+        <div class="sa2-ind-bar"><div class="sa2-ind-fill sa2-ind-fill--yellow" style="--p:62%;"></div></div>
+        <div class="sa2-ind-cap">тренд 7–10 дней</div>
+      </article>
+      <article class="sa2-ind">
+        <div class="sa2-ind-label">Календарная превенция</div>
+        <div class="sa2-ind-val sa2-ind-val--warn">78%</div>
+        <div class="sa2-ind-bar"><div class="sa2-ind-fill sa2-ind-fill--red" style="--p:78%;"></div></div>
+        <div class="sa2-ind-cap">нагрузка недели вперёд</div>
+      </article>
+      <article class="sa2-ind">
+        <div class="sa2-ind-label">Соматический сигнал</div>
+        <div class="sa2-ind-val">45%</div>
+        <div class="sa2-ind-bar"><div class="sa2-ind-fill sa2-ind-fill--yellow" style="--p:45%;"></div></div>
+        <div class="sa2-ind-cap">твой личный маркер</div>
+      </article>
+    </div>
+
+    <!-- Календарь heatmap -->
+    <div class="sa2-cal">
+      <div class="sa2-cal-head">
+        <div>
+          <div class="sa2-cal-kicker">Календарь готовности · 6 недель</div>
+          <div class="sa2-cal-title">Фактические 3 недели + прогноз на&nbsp;3&nbsp;вперёд</div>
+        </div>
+        <div class="sa2-cal-legend">
+          <span class="sa2-lg sa2-lg-g"><i></i>норма</span>
+          <span class="sa2-lg sa2-lg-y"><i></i>внимание</span>
+          <span class="sa2-lg sa2-lg-r"><i></i>риск</span>
+          <span class="sa2-lg sa2-lg-p"><i></i>прогноз</span>
+        </div>
+      </div>
+
+      <div class="sa2-cal-grid">
+        <!-- 6 недель × 7 дней. Неделя 1: норма, норма... -->
+        <!-- Week 1 -->
+        <div class="sa2-cal-row">
+          <span class="sa2-cal-rowlabel">Нед.&nbsp;1</span>
+          <div class="sa2-day g">D1</div>
+          <div class="sa2-day g">D2</div>
+          <div class="sa2-day g">D3</div>
+          <div class="sa2-day g">D4</div>
+          <div class="sa2-day g">D5</div>
+          <div class="sa2-day y">D6</div>
+          <div class="sa2-day g">D7</div>
+        </div>
+        <!-- Week 2 -->
+        <div class="sa2-cal-row">
+          <span class="sa2-cal-rowlabel">Нед.&nbsp;2</span>
+          <div class="sa2-day g">D8</div>
+          <div class="sa2-day g">D9</div>
+          <div class="sa2-day y">D10</div>
+          <div class="sa2-day y">D11</div>
+          <div class="sa2-day g">D12</div>
+          <div class="sa2-day y">D13</div>
+          <div class="sa2-day y">D14</div>
+        </div>
+        <!-- Week 3 -->
+        <div class="sa2-cal-row">
+          <span class="sa2-cal-rowlabel">Нед.&nbsp;3</span>
+          <div class="sa2-day y">D15</div>
+          <div class="sa2-day r">D16</div>
+          <div class="sa2-day r">D17</div>
+          <div class="sa2-day r pulse">D18</div>
+          <div class="sa2-day y">D19</div>
+          <div class="sa2-day y">D20</div>
+          <div class="sa2-day g">D21</div>
+        </div>
+        <!-- Week 4 (forecast) -->
+        <div class="sa2-cal-row">
+          <span class="sa2-cal-rowlabel">Нед.&nbsp;4</span>
+          <div class="sa2-day p">D22</div>
+          <div class="sa2-day p">D23</div>
+          <div class="sa2-day p">D24</div>
+          <div class="sa2-day p">D25</div>
+          <div class="sa2-day p">D26</div>
+          <div class="sa2-day p">D27</div>
+          <div class="sa2-day p">D28</div>
+        </div>
+        <!-- Week 5 -->
+        <div class="sa2-cal-row">
+          <span class="sa2-cal-rowlabel">Нед.&nbsp;5</span>
+          <div class="sa2-day p">D29</div>
+          <div class="sa2-day p">D30</div>
+          <div class="sa2-day p">D31</div>
+          <div class="sa2-day p">D32</div>
+          <div class="sa2-day p">D33</div>
+          <div class="sa2-day p">D34</div>
+          <div class="sa2-day p">D35</div>
+        </div>
+        <!-- Week 6 -->
+        <div class="sa2-cal-row">
+          <span class="sa2-cal-rowlabel">Нед.&nbsp;6</span>
+          <div class="sa2-day p">D36</div>
+          <div class="sa2-day p">D37</div>
+          <div class="sa2-day p">D38</div>
+          <div class="sa2-day p">D39</div>
+          <div class="sa2-day p">D40</div>
+          <div class="sa2-day p"></div>
+          <div class="sa2-day p"></div>
+        </div>
+      </div>
+
+      <div class="sa2-callout">
+        <div class="sa2-callout-ico" aria-hidden="true">⚠</div>
+        <div class="sa2-callout-body">
+          <strong>3 красных дня подряд</strong> (D16–D18). Рекомендация: снять задачу <em>«презентация»</em> из недели 4 и добавить точку восстановления.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     СЕКЦИЯ 10 · СЕМЬ МИРОВ ПОЗНАНИЯ
+     Вертикальная ось с 7 кругами + описания
+══════════════════════════════════════════ -->
+<section class="s-worlds" id="worlds">
+  <div class="sw-inner">
+
+    <header class="sw-head">
+      <span class="sw-kicker">Семь Миров Познания</span>
+      <h2 class="sw-title">Карта <em>внутренней реальности</em>.<br>На тренинге ты впервые видишь её целиком.</h2>
+      <p class="sw-sub">В методе Натали Морозовой каждая внутренняя задача живёт в одном из семи пространств сознания — Мирах Познания. Сознание перемещается между ними чаще всего автоматически. На тренинге ты получаешь карту и инструменты осознанного переключения — через паузу.</p>
+    </header>
+
+    <div class="sw-axis" role="list">
+      <div class="sw-rail"></div>
+
+      <!-- 7 Миров -->
+      <div class="sw-item" style="--d:0ms;">
+        <div class="sw-circle sw-c1"><span>1</span></div>
+        <div class="sw-item-body">
+          <div class="sw-item-no">Мир&nbsp;1 · Мир Духа</div>
+          <h3 class="sw-item-name">«Я ЕСТЬ» <em>· I&nbsp;am</em></h3>
+          <p class="sw-item-desc">Точка опоры. Пространство первичной целостности — до любых ролей, задач и намерений.</p>
+        </div>
+      </div>
+
+      <div class="sw-item" style="--d:120ms;">
+        <div class="sw-circle sw-c2"><span>2</span></div>
+        <div class="sw-item-body">
+          <div class="sw-item-no">Мир&nbsp;2 · Мир Намерений</div>
+          <h3 class="sw-item-name">«Я ЖЕЛАЮ» <em>· I&nbsp;wish</em></h3>
+          <p class="sw-item-desc">Рождение направления. Намерение как вектор жизни, а не как список пожеланий на Новый&nbsp;год.</p>
+        </div>
+      </div>
+
+      <div class="sw-item" style="--d:240ms;">
+        <div class="sw-circle sw-c3"><span>3</span></div>
+        <div class="sw-item-body">
+          <div class="sw-item-no">Мир&nbsp;3 · Мир Возможностей</div>
+          <h3 class="sw-item-name">«Я ИМЕЮ» <em>· I&nbsp;have</em></h3>
+          <p class="sw-item-desc">Поле ресурсов — внутренних и внешних. То, с чем ты уже пришёл в этот цикл.</p>
+        </div>
+      </div>
+
+      <div class="sw-item" style="--d:360ms;">
+        <div class="sw-circle sw-c4"><span>4</span></div>
+        <div class="sw-item-body">
+          <div class="sw-item-no">Мир&nbsp;4 · Мир Законов и Границ</div>
+          <h3 class="sw-item-name">«Я РАЗРЕШАЮ» <em>· I&nbsp;can</em></h3>
+          <p class="sw-item-desc">Внутренние правила. Что ты себе разрешаешь — и что запрещаешь без осознания этого запрета.</p>
+        </div>
+      </div>
+
+      <div class="sw-item sw-item--big" style="--d:480ms;">
+        <div class="sw-circle sw-c5 sw-c--wheel">
+          <div class="sw-wheel">
+            <span class="sw-ws s1"></span><span class="sw-ws s2"></span>
+            <span class="sw-ws s3"></span><span class="sw-ws s4"></span>
+            <span class="sw-ws s5"></span><span class="sw-ws s6"></span>
+            <span class="sw-ws s7"></span><span class="sw-ws s8"></span>
+            <span class="sw-wheel-heart">♡</span>
+          </div>
+        </div>
+        <div class="sw-item-body">
+          <div class="sw-item-no">Мир&nbsp;5 · Мир Действий</div>
+          <h3 class="sw-item-name">«Я ДЕЛАЮ» <em>· I&nbsp;do</em></h3>
+          <p class="sw-item-desc">Пространство воплощения. Колесо Баланса и 8 сфер — это <strong>внутренняя геометрия</strong> этого Мира.</p>
+        </div>
+      </div>
+
+      <div class="sw-item" style="--d:600ms;">
+        <div class="sw-circle sw-c6"><span>6</span></div>
+        <div class="sw-item-body">
+          <div class="sw-item-no">Мир&nbsp;6 · Мир Осознаний</div>
+          <h3 class="sw-item-name">«Я АНАЛИЗИРУЮ» <em>· I&nbsp;think</em></h3>
+          <p class="sw-item-desc">Рефлексия. Здесь прожитое превращается в выводы, а выводы — в корректировку следующего цикла.</p>
+        </div>
+      </div>
+
+      <div class="sw-item" style="--d:720ms;">
+        <div class="sw-circle sw-c7 sw-c--glow"><span>7</span></div>
+        <div class="sw-item-body">
+          <div class="sw-item-no">Мир&nbsp;7 · Мир Ясности</div>
+          <h3 class="sw-item-name">«Я ЗНАЮ И ЧУВСТВУЮ» <em>· I&nbsp;know · I&nbsp;feel</em></h3>
+          <p class="sw-item-desc">Интегрированное восприятие. Мышление и чувство перестают быть двумя параллельными потоками и становятся одним.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="sw-foot">Между этими Мирами есть переходы — и они идут <em>через паузу</em>.</p>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     СЕКЦИЯ 11 · КОЛЕСО БАЛАНСА + 4 ВЕКТОРА
+     8-секторная диаграмма + 4 вектора-оси
+══════════════════════════════════════════ -->
+<section class="s-wheel" id="wheel">
+  <div class="swl-inner">
+
+    <header class="swl-head">
+      <span class="swl-kicker">Колесо Баланса и четыре вектора</span>
+      <h2 class="swl-title"><em>Колесо может катиться только тогда</em>, когда оно круглое.</h2>
+      <p class="swl-sub">Колесо Баланса — твоя визуальная карта. Восемь сфер жизни плюс четыре несущих вектора. Ты её рисуешь, оцениваешь, и дальше она становится рабочим инструментом цикла.</p>
+    </header>
+
+    <div class="swl-body">
+
+      <!-- Колесо SVG -->
+      <div class="swl-wheel-wrap">
+        <svg class="swl-wheel" viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g transform="translate(230,230)">
+            <!-- Фоновые концентрические окружности -->
+            <circle class="swl-ring" r="200"/>
+            <circle class="swl-ring" r="160"/>
+            <circle class="swl-ring" r="120"/>
+            <circle class="swl-ring" r="80"/>
+            <circle class="swl-ring" r="40"/>
+
+            <!-- Оси секторов (каждые 45°) -->
+            <g class="swl-div">
+              <line x1="0" y1="-200" x2="0" y2="200"/>
+              <line x1="-200" y1="0" x2="200" y2="0"/>
+              <line x1="-141" y1="-141" x2="141" y2="141"/>
+              <line x1="141" y1="-141" x2="-141" y2="141"/>
+            </g>
+
+            <!-- 8 секторов-заполнений (уровень 1-10) -->
+            <!-- Значения: Изобилие 7, Профессия 9, Знания 5, Общение 4, ЗОЖ 7, Отношения 3, Творчество 6, Осознанность 5 -->
+            <!-- Каждый сектор — circle sector: используем path от центра -->
+            <!-- Сектор на 45° = pi/4 -->
+            <!-- 1 Изобилие: top (-y), 337.5°…22.5° → от (-76,-184) до (76,-184) при r=200 для уровня 7 (140px) -->
+            <g class="swl-sectors">
+              <!-- Сектор 1: Изобилие (up-right начало), 0° = вверх. Углы: -22.5 .. 22.5° (top). Уровень 7 → r=140 -->
+              <path class="swl-sec swl-sec--money"  d="M 0 0 L -53.6 -129.5 A 140 140 0 0 1 53.6 -129.5 Z"/>
+              <!-- Сектор 2: Профессия (22.5..67.5°), level 9 → r=180 -->
+              <path class="swl-sec swl-sec--work"   d="M 0 0 L 68.9 -166.4 A 180 180 0 0 1 166.4 -68.9 Z"/>
+              <!-- Сектор 3: Знания (67.5..112.5°), level 5 → r=100 -->
+              <path class="swl-sec swl-sec--mind"   d="M 0 0 L 92.4 -38.3 A 100 100 0 0 1 92.4 38.3 Z"/>
+              <!-- Сектор 4: Общение (112.5..157.5°), level 4 → r=80 -->
+              <path class="swl-sec swl-sec--talk"   d="M 0 0 L 73.9 30.6 A 80 80 0 0 1 30.6 73.9 Z"/>
+              <!-- Сектор 5: ЗОЖ (157.5..202.5°), level 7 → r=140 -->
+              <path class="swl-sec swl-sec--body"   d="M 0 0 L 53.6 129.5 A 140 140 0 0 1 -53.6 129.5 Z"/>
+              <!-- Сектор 6: Отношения (202.5..247.5°), level 3 → r=60 -->
+              <path class="swl-sec swl-sec--love"   d="M 0 0 L -23 55.4 A 60 60 0 0 1 -55.4 23 Z"/>
+              <!-- Сектор 7: Творчество (247.5..292.5°), level 6 → r=120 -->
+              <path class="swl-sec swl-sec--art"    d="M 0 0 L -110.9 45.9 A 120 120 0 0 1 -110.9 -45.9 Z"/>
+              <!-- Сектор 8: Осознанность (292.5..337.5°), level 5 → r=100 -->
+              <path class="swl-sec swl-sec--focus"  d="M 0 0 L -92.4 -38.3 A 100 100 0 0 1 -38.3 -92.4 Z"/>
+            </g>
+
+            <!-- Центральная точка -->
+            <circle cx="0" cy="0" r="5" fill="#2A2A2A"/>
+
+            <!-- Подписи секторов (внешние) -->
+            <g class="swl-names">
+              <text x="0"    y="-218" text-anchor="middle">Изобилие</text>
+              <text x="154"  y="-154" text-anchor="middle">Профессия</text>
+              <text x="218"  y="5"    text-anchor="middle">Знания</text>
+              <text x="154"  y="164"  text-anchor="middle">Общение</text>
+              <text x="0"    y="228"  text-anchor="middle">ЗОЖ</text>
+              <text x="-154" y="164"  text-anchor="middle">Отношения</text>
+              <text x="-218" y="5"    text-anchor="middle">Творчество</text>
+              <text x="-154" y="-154" text-anchor="middle">Осознанность</text>
+            </g>
+
+            <!-- Значения внутри сектора (мелкие цифры) -->
+            <g class="swl-vals">
+              <text x="0"   y="-105" text-anchor="middle">7</text>
+              <text x="103" y="-97"  text-anchor="middle">9</text>
+              <text x="80"  y="5"    text-anchor="middle">5</text>
+              <text x="55"  y="58"   text-anchor="middle">4</text>
+              <text x="0"   y="105"  text-anchor="middle">7</text>
+              <text x="-38" y="45"   text-anchor="middle">3</text>
+              <text x="-90" y="5"    text-anchor="middle">6</text>
+              <text x="-70" y="-70"  text-anchor="middle">5</text>
+            </g>
+          </g>
+        </svg>
+
+        <!-- Четыре вектора в HTML-лейблах сверху SVG -->
+        <div class="swl-vec swl-vec--n">Сила</div>
+        <div class="swl-vec swl-vec--e">Информация</div>
+        <div class="swl-vec swl-vec--s">Энергия</div>
+        <div class="swl-vec swl-vec--w">Пространство</div>
+
+        <!-- Округлость -->
+        <div class="swl-round">
+          <div class="swl-round-num">64%</div>
+          <div class="swl-round-cap">округлость<br>колеса</div>
+        </div>
+      </div>
+
+      <!-- 4 вектора как подписи справа -->
+      <div class="swl-vectors">
+        <h3 class="swl-vectors-title">4 несущих вектора</h3>
+        <ul class="swl-vec-list">
+          <li><span class="swl-vec-badge">Сила</span><span class="swl-vec-pair">Осознанность + Творчество</span></li>
+          <li><span class="swl-vec-badge">Пространство</span><span class="swl-vec-pair">Отношения + Профессия</span></li>
+          <li><span class="swl-vec-badge">Энергия</span><span class="swl-vec-pair">ЗОЖ + Изобилие</span></li>
+          <li><span class="swl-vec-badge">Информация</span><span class="swl-vec-pair">Знания + Общение</span></li>
+        </ul>
+        <p class="swl-vec-foot">На тренинге ты оцениваешь 8 сфер, диагностируешь 4 вектора и определяешь 1–2 <strong>фокусные сферы</strong> цикла. Не равенство цифр, а <em>синхронность векторов</em>.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <script src="../components/nav.js"></script>
 <script src="../components/footer.js"></script>
 </body>
