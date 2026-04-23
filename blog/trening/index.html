@@ -1256,6 +1256,295 @@ body {
   .discovery-quote::before, .discovery-quote::after { display: none; }
 }
 
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 5 · Масштаб применения к 2026 году
+   Живая сеть: ∅ в центре + орбиты точек + счётчики + лаборатории
+══════════════════════════════════════════════════════════════ */
+.section-network {
+  position: relative;
+  z-index: 2;
+  padding: 80px 24px 140px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 36px; height: 1px;
+  background: var(--accent);
+  opacity: 0.7;
+}
+
+.intro-para.centered {
+  max-width: 760px;
+  margin: 0 auto 0;
+  text-align: center;
+}
+
+/* ── Живая сеть ── */
+.network-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  margin: 80px auto 0;
+  aspect-ratio: 1 / 1;
+}
+.network-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+.network-svg .orbit {
+  fill: none;
+  stroke: rgba(15, 20, 25, 0.08);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+.network-svg .center-node {
+  fill: var(--accent);
+  filter: drop-shadow(0 6px 18px rgba(95, 95, 255, 0.5));
+  animation: nodeBreath 4.5s ease-in-out infinite;
+  transform-origin: 400px 400px;
+}
+@keyframes nodeBreath {
+  0%, 100% { transform: scale(1);    opacity: 0.95; }
+  50%      { transform: scale(1.06); opacity: 1;    }
+}
+.network-svg .center-halo {
+  fill: var(--accent);
+  opacity: 0.12;
+  transform-origin: 400px 400px;
+  animation: haloBreath 4.5s ease-in-out infinite;
+}
+@keyframes haloBreath {
+  0%, 100% { transform: scale(1);   opacity: 0.15; }
+  50%      { transform: scale(1.2); opacity: 0.05; }
+}
+.network-svg .lab-node {
+  fill: var(--blue);
+  filter: drop-shadow(0 4px 12px rgba(10, 132, 255, 0.45));
+}
+.network-svg .lab-line {
+  stroke: rgba(10, 132, 255, 0.35);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  fill: none;
+}
+.network-svg .lab-sub-node {
+  fill: #fff;
+  stroke: var(--blue);
+  stroke-width: 1.5;
+}
+.network-svg text.lab-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  fill: var(--blue);
+}
+.network-svg text.lab-sub-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  fill: var(--text-mute);
+}
+
+.network-center-label {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, 52px);
+  text-align: center;
+  pointer-events: none;
+}
+.network-center-label .who {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.network-center-label .what {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 16px;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Счётчики сети ── */
+.network-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  max-width: 960px;
+  margin: 60px auto 0;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.ns-item {
+  padding: 0 28px;
+  border-left: 1px solid var(--line);
+  text-align: left;
+}
+.ns-item:first-child { border-left: none; padding-left: 0; }
+.ns-value {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(34px, 4.2vw, 58px);
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+.ns-item.highlight .ns-value {
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.ns-label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-mute);
+}
+.ns-item.highlight .ns-label {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ── Блок лабораторий ── */
+.labs {
+  max-width: 760px;
+  margin: 96px auto 0;
+}
+.labs-heading {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+}
+.labs-heading::before,
+.labs-heading::after {
+  content: '';
+  width: 40px; height: 1px;
+  background: rgba(15, 20, 25, 0.15);
+}
+.lab-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+  border-radius: 22px;
+  padding: 32px 36px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 16px rgba(15, 20, 25, 0.04);
+}
+.lab-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.lab-name .mark {
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 22px;
+}
+.lab-name .sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.lab-desc {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-mute);
+  margin: 0;
+}
+.lab-desc strong {
+  color: var(--text);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  letter-spacing: 0.08em;
+  padding: 1px 6px;
+  background: rgba(10, 132, 255, 0.08);
+  border-radius: 4px;
+  color: var(--blue);
+}
+
+.network-closing {
+  max-width: 720px;
+  margin: 72px auto 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.45;
+  color: var(--text);
+}
+.network-closing strong {
+  font-style: normal;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Адаптив секции 5 */
+@media (max-width: 720px) {
+  .network-stats { grid-template-columns: 1fr; gap: 0; }
+  .ns-item { border-left: none; border-top: 1px solid var(--line); padding: 24px 0 0; }
+  .ns-item:first-child { border-top: none; padding-top: 0; }
+  .lab-card { padding: 24px 22px; }
+  .lab-name { font-size: 20px; }
+}
+
 /* ── Адаптив ── */
 @media (max-width: 900px) {
   .paths-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -1647,6 +1936,101 @@ body {
 
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 5 · Масштаб применения к 2026 году
+     Сеть узлов вокруг центра + счётчики + блок лабораторий
+═══════════════════════════════════════════════════════════ -->
+<section class="section-network" id="network">
+
+  <span class="section-eyebrow">Масштаб · 2026</span>
+  <h2 class="section-h2">Метод вышел <em>за пределы автора.</em></h2>
+
+  <p class="intro-para centered">
+    За три года с момента открытия ONTO NOTHING стал рабочей методологией в независимых командах и исследовательских программах. <strong>1000+ человек</strong> прошли метод на разных уровнях глубины.
+  </p>
+
+  <!-- Живая сеть: центр + 2 орбиты точек + лаборатория -->
+  <div class="network-wrap">
+    <svg class="network-svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <!-- Орбиты -->
+      <circle class="orbit" cx="400" cy="400" r="160"/>
+      <circle class="orbit" cx="400" cy="400" r="260"/>
+      <circle class="orbit" cx="400" cy="400" r="340"/>
+
+      <!-- Точки орбит (заполняются JS) -->
+      <g class="orbit-dots"></g>
+
+      <!-- Halo центра -->
+      <circle class="center-halo" cx="400" cy="400" r="80"/>
+
+      <!-- Центральный узел -->
+      <circle class="center-node" cx="400" cy="400" r="44"/>
+      <text x="400" y="407" text-anchor="middle" style="font-family: var(--font-display); font-size: 44px; font-weight: 400; fill: #fff;">∅</text>
+
+      <!-- Лаборатория ONTO на 3-й орбите -->
+      <!-- Позиция: угол 60°, r=340 → x=400+340*cos(-30°)=400+294=694, y=400+340*sin(-30°)=400-170=230 -->
+      <g class="lab-group">
+        <line class="lab-line" x1="400" y1="400" x2="694" y2="230"/>
+        <circle class="lab-node" cx="694" cy="230" r="16"/>
+        <text class="lab-label" x="720" y="215">Лаборатория ONTO</text>
+        <text class="lab-sub-label" x="720" y="236">Онтонавты</text>
+
+        <!-- Субузлы GENESIS / МОРФИУС -->
+        <line class="lab-line" x1="694" y1="230" x2="748" y2="165"/>
+        <circle class="lab-sub-node" cx="748" cy="165" r="7"/>
+        <text class="lab-sub-label" x="760" y="168">Genesis</text>
+
+        <line class="lab-line" x1="694" y1="230" x2="760" y2="285"/>
+        <circle class="lab-sub-node" cx="760" cy="285" r="7"/>
+        <text class="lab-sub-label" x="772" y="288">Морфиус</text>
+      </g>
+    </svg>
+
+    <div class="network-center-label">
+      <span class="who">Константин Шель</span>
+      <span class="what">ONTO NOTHING</span>
+    </div>
+  </div>
+
+  <!-- Счётчики -->
+  <div class="network-stats">
+    <div class="ns-item">
+      <div class="ns-value" data-net-count="400" data-suffix="+">0+</div>
+      <div class="ns-label">Лично с Константином Шель — прямые тренинги и программы интеграции</div>
+    </div>
+    <div class="ns-item">
+      <div class="ns-value" data-net-count="600" data-suffix="+">0+</div>
+      <div class="ns-label">Через учеников Константина и партнёрские лаборатории</div>
+    </div>
+    <div class="ns-item highlight">
+      <div class="ns-value" data-net-count="1000" data-suffix="+">0+</div>
+      <div class="ns-label">Суммарно работают или работали с ONTO NOTHING</div>
+    </div>
+  </div>
+
+  <!-- Лаборатории -->
+  <div class="labs">
+    <h3 class="labs-heading">Научные лаборатории, использующие метод</h3>
+    <div class="lab-card">
+      <div class="lab-name">
+        <span class="mark">◈</span>
+        Лаборатория ONTO
+        <span class="sub">Онтонавты</span>
+      </div>
+      <p class="lab-desc">
+        Независимая исследовательская команда. Ведёт протоколы <strong>GENESIS</strong> и международное исследование <strong>МОРФИУС</strong>, применяя метод Константина Шель для измерения остановки внутреннего диалога, сдвигов практической нейропластичности и биологического возраста у участников.
+      </p>
+    </div>
+  </div>
+
+  <!-- Закрывающее утверждение -->
+  <p class="network-closing">
+    ONTO NOTHING перестал быть единичной практикой автора.<br>
+    Это <strong>рабочая методология</strong>, применяемая в независимых научных командах и исследовательских программах.
+  </p>
+
+</section>
+
 <!-- ═══ JS: звёзды + счётчики ═══ -->
 <script>
   // ── Генерация мягких светлых орбов (фон) ────────────────────
@@ -1778,6 +2162,69 @@ body {
       if (r.top < window.innerHeight * 0.85) {
         fired = true;
         name.classList.add('appear');
+      }
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('load', check);
+    check();
+  })();
+
+  // ── Заполнение орбит сети точками ──────────────────────────
+  (function buildNetwork() {
+    const group = document.querySelector('.network-svg .orbit-dots');
+    if (!group) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const cx = 400, cy = 400;
+    function addDots(count, radius, variance, opacityMin, opacityMax, size, color) {
+      for (let i = 0; i < count; i++) {
+        const theta = Math.random() * Math.PI * 2;
+        const r = radius + (Math.random() - 0.5) * variance;
+        const x = cx + r * Math.cos(theta);
+        const y = cy + r * Math.sin(theta);
+        const dot = document.createElementNS(NS, 'circle');
+        dot.setAttribute('cx', x.toFixed(1));
+        dot.setAttribute('cy', y.toFixed(1));
+        dot.setAttribute('r', (size + Math.random() * 0.8).toFixed(1));
+        dot.setAttribute('fill', color);
+        dot.setAttribute('opacity', (opacityMin + Math.random() * (opacityMax - opacityMin)).toFixed(2));
+        group.appendChild(dot);
+      }
+    }
+    // Orbit 1: 400 человек (лично)
+    addDots(200, 160, 28, 0.45, 0.9, 2.2, '#5F5FFF');
+    // Orbit 2: 600 человек (через учеников)
+    addDots(300, 260, 28, 0.25, 0.6, 1.8, '#5F5FFF');
+    // Orbit 3 extra ambient
+    addDots(40, 340, 18, 0.15, 0.4, 1.2, '#0A84FF');
+  })();
+
+  // ── Счётчики сети (network-stats) ──────────────────────────
+  (function networkCounters() {
+    const values = document.querySelectorAll('.ns-value[data-net-count]');
+    const section = document.querySelector('.section-network');
+    if (!values.length || !section) return;
+    let fired = false;
+    function animate(el) {
+      const target = parseInt(el.dataset.netCount, 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1600;
+      const fps = 30;
+      const steps = Math.round(duration / (1000 / fps));
+      let i = 0;
+      const tick = setInterval(() => {
+        i++;
+        const p = Math.min(i / steps, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (p >= 1) clearInterval(tick);
+      }, 1000 / fps);
+    }
+    function check() {
+      if (fired) return;
+      const r = section.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.75) {
+        fired = true;
+        values.forEach((v, i) => setTimeout(() => animate(v), i * 180));
       }
     }
     window.addEventListener('scroll', check, { passive: true });
