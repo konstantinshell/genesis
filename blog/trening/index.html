@@ -1917,6 +1917,230 @@ body {
   background-clip: text;
 }
 
+/* ══════════════════════════════════════════════════════════════
+   СЕКЦИЯ 7 · Базовая линия — радарная диаграмма + 6 сдвигов
+══════════════════════════════════════════════════════════════ */
+.section-baseline {
+  position: relative;
+  z-index: 2;
+  padding: 40px 24px 160px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.baseline-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+  margin-top: 72px;
+}
+
+/* ── Радар ── */
+.baseline-radar-wrap {
+  position: relative;
+}
+.baseline-radar {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  overflow: visible;
+}
+.baseline-radar .br-grid polygon {
+  fill: none;
+  stroke: rgba(15, 20, 25, 0.08);
+  stroke-width: 1;
+}
+.baseline-radar .br-axes line {
+  stroke: rgba(15, 20, 25, 0.08);
+  stroke-width: 1;
+}
+.baseline-radar .br-dmn {
+  fill: rgba(220, 100, 60, 0.12);
+  stroke: #C86434;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  opacity: 0;
+  transform-origin: 180px 180px;
+  transform: scale(0.2);
+  transition: opacity 1.2s cubic-bezier(.22,1,.36,1),
+              transform 1.4s cubic-bezier(.22,1,.36,1);
+}
+.baseline-radar .br-func {
+  fill: url(#baselineGrad);
+  stroke: var(--accent);
+  stroke-width: 2;
+  opacity: 0;
+  transform-origin: 180px 180px;
+  transform: scale(0.2);
+  transition: opacity 1.4s cubic-bezier(.22,1,.36,1) 0.5s,
+              transform 1.6s cubic-bezier(.22,1,.36,1) 0.5s;
+}
+.baseline-split.appear .br-dmn,
+.baseline-split.appear .br-func {
+  opacity: 1;
+  transform: scale(1);
+}
+.baseline-radar .br-func-dot {
+  fill: var(--accent);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.baseline-split.appear .br-func-dot {
+  opacity: 1;
+  transition-delay: 1.8s;
+}
+
+.baseline-radar .br-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  fill: var(--text);
+}
+.baseline-radar .br-label-sub {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--text-dim);
+}
+
+.baseline-legend {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.bl-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.bl-item .dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.bl-item.dmn .dot  { background: rgba(200, 100, 52, 0.25); border: 1.5px dashed #C86434; }
+.bl-item.func .dot { background: var(--accent); box-shadow: 0 0 0 3px rgba(95, 95, 255, 0.18); }
+
+/* ── Список 6 сдвигов ── */
+.baseline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.bl-heading {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.bl-subhead {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.25;
+  color: var(--text);
+  margin: 0 0 28px;
+}
+.bl-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.bl-list li {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 18px;
+  align-items: start;
+  padding: 22px 0;
+  border-top: 1px dashed rgba(15, 20, 25, 0.1);
+}
+.bl-list li:first-child { border-top: 1px solid rgba(15, 20, 25, 0.12); }
+.bl-list li:last-child { border-bottom: 1px solid rgba(15, 20, 25, 0.12); }
+.bl-mark {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1;
+  padding-top: 2px;
+  color: var(--accent);
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.bl-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-mute);
+}
+.bl-text strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.bl-text em {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.88em;
+  letter-spacing: 0.06em;
+  padding: 1px 6px;
+  background: rgba(95, 95, 255, 0.08);
+  color: var(--accent);
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Closing */
+.baseline-final {
+  margin: 96px auto 0;
+  max-width: 720px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.45;
+  color: var(--text);
+}
+.baseline-final strong {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Адаптив */
+@media (max-width: 860px) {
+  .baseline-split { grid-template-columns: 1fr; gap: 48px; }
+  .baseline-radar { max-width: 400px; }
+}
+
 /* Адаптив секции 6 */
 @media (max-width: 960px) {
   .console-wrap { grid-template-columns: 1fr; gap: 32px; }
@@ -2522,6 +2746,153 @@ body {
 
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════
+     СЕКЦИЯ 7 · Базовая линия — радарная диаграмма + 6 сдвигов
+═══════════════════════════════════════════════════════════ -->
+<section class="section-baseline" id="baseline">
+
+  <span class="section-num">Базовая линия</span>
+  <h2 class="section-h2">Что меняется, если жить <em>в функциональных режимах.</em></h2>
+
+  <p class="intro-para centered">
+    Большинство людей проводит <strong>90%+ времени в 🌀 DMN</strong>. Мозг — в фоновой бете, ВНС — в симпатике, внутренний диалог не замолкает. Тело платит за это <strong>хроническим стрессом</strong> — даже когда «ничего не происходит».
+  </p>
+
+  <div class="baseline-split">
+    <!-- Радар -->
+    <div class="baseline-radar-wrap">
+      <svg class="baseline-radar" viewBox="0 0 360 360" aria-hidden="true">
+        <defs>
+          <radialGradient id="baselineGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stop-color="#5F5FFF" stop-opacity="0.32"/>
+            <stop offset="100%" stop-color="#5F5FFF" stop-opacity="0.05"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Grid 20/40/60/80/100% -->
+        <g class="br-grid">
+          <polygon points="180,50 272,88 310,180 272,272 180,310 88,272 50,180 88,88"/>
+          <polygon points="180,76 253,107 284,180 253,253 180,284 107,253 76,180 107,107"/>
+          <polygon points="180,102 235,125 258,180 235,235 180,258 125,235 102,180 125,125"/>
+          <polygon points="180,128 217,143 232,180 217,217 180,232 143,217 128,180 143,143"/>
+          <polygon points="180,154 198,162 206,180 198,198 180,206 162,198 154,180 162,162"/>
+        </g>
+
+        <!-- Axes -->
+        <g class="br-axes">
+          <line x1="180" y1="180" x2="180" y2="50"/>
+          <line x1="180" y1="180" x2="272" y2="88"/>
+          <line x1="180" y1="180" x2="310" y2="180"/>
+          <line x1="180" y1="180" x2="272" y2="272"/>
+          <line x1="180" y1="180" x2="180" y2="310"/>
+          <line x1="180" y1="180" x2="88"  y2="272"/>
+          <line x1="180" y1="180" x2="50"  y2="180"/>
+          <line x1="180" y1="180" x2="88"  y2="88"/>
+        </g>
+
+        <!-- DMN polygon (тусклый янтарный, малый, искажённый) -->
+        <polygon class="br-dmn"  points="180,147 208,152 226,180 217,217 180,226 162,198 141,180 152,152"/>
+
+        <!-- Функциональные режимы (большой violet) -->
+        <polygon class="br-func" points="180,76 258,102 297,180 254,254 180,277 102,258 63,180 106,106"/>
+
+        <!-- Точки на функциональном полигоне -->
+        <g class="br-func-dot-group">
+          <circle class="br-func-dot" cx="180" cy="76"  r="3.5"/>
+          <circle class="br-func-dot" cx="258" cy="102" r="3.5"/>
+          <circle class="br-func-dot" cx="297" cy="180" r="3.5"/>
+          <circle class="br-func-dot" cx="254" cy="254" r="3.5"/>
+          <circle class="br-func-dot" cx="180" cy="277" r="3.5"/>
+          <circle class="br-func-dot" cx="102" cy="258" r="3.5"/>
+          <circle class="br-func-dot" cx="63"  cy="180" r="3.5"/>
+          <circle class="br-func-dot" cx="106" cy="106" r="3.5"/>
+        </g>
+
+        <!-- Подписи осей -->
+        <g class="br-labels">
+          <text class="br-label"     x="180" y="32"  text-anchor="middle">Альфа</text>
+          <text class="br-label-sub" x="180" y="44"  text-anchor="middle">доминанта</text>
+
+          <text class="br-label"     x="282" y="82"  text-anchor="start">Вагус</text>
+          <text class="br-label-sub" x="282" y="94"  text-anchor="start">тонус</text>
+
+          <text class="br-label"     x="322" y="178" text-anchor="start">SDNN</text>
+          <text class="br-label-sub" x="322" y="190" text-anchor="start">ВСР</text>
+
+          <text class="br-label"     x="282" y="282" text-anchor="start">Сон</text>
+          <text class="br-label-sub" x="282" y="294" text-anchor="start">глубина</text>
+
+          <text class="br-label"     x="180" y="336" text-anchor="middle">Иммунитет</text>
+
+          <text class="br-label"     x="78"  y="282" text-anchor="end">Ясность</text>
+          <text class="br-label-sub" x="78"  y="294" text-anchor="end">когниция</text>
+
+          <text class="br-label"     x="38"  y="178" text-anchor="end">Эмо.рег</text>
+          <text class="br-label-sub" x="38"  y="190" text-anchor="end">регуляция</text>
+
+          <text class="br-label"     x="78"  y="82"  text-anchor="end">Циркадный</text>
+          <text class="br-label-sub" x="78"  y="94"  text-anchor="end">ритм</text>
+        </g>
+      </svg>
+
+      <div class="baseline-legend">
+        <div class="bl-item dmn"><span class="dot"></span>Жизнь в DMN</div>
+        <div class="bl-item func"><span class="dot"></span>В функциональных режимах</div>
+      </div>
+    </div>
+
+    <!-- Список 6 сдвигов -->
+    <div class="baseline-list">
+      <div class="bl-heading">Шесть сдвигов базовой линии</div>
+      <h3 class="bl-subhead">Новая норма, из которой ты живёшь.</h3>
+      <ul class="bl-list">
+        <li>
+          <span class="bl-mark">α</span>
+          <div class="bl-text">
+            <strong>Доминирующий ритм</strong> смещается от <em>бета-доминанты</em> к <em>альфа-доминанте</em> с осознанными переходами в тету и SMR под задачу.
+          </div>
+        </li>
+        <li>
+          <span class="bl-mark">♡</span>
+          <div class="bl-text">
+            <strong>ВНС</strong> большую часть дня в парасимпатической или сбалансированной фазе. <em>SDNN↑</em>, <em>SI Баевский↓</em>, <em>RMSSD↑</em>.
+          </div>
+        </li>
+        <li>
+          <span class="bl-mark">⟳</span>
+          <div class="bl-text">
+            <strong>Кортизол</strong> выходит из фонового хронического паттерна — <em>циркадный ритм восстанавливается</em>.
+          </div>
+        </li>
+        <li>
+          <span class="bl-mark">☾</span>
+          <div class="bl-text">
+            <strong>Сон углубляется</strong> — потому что ты входишь в него не из перегрузки, а из уже замедленной системы.
+          </div>
+        </li>
+        <li>
+          <span class="bl-mark">∞</span>
+          <div class="bl-text">
+            <strong>Нейропластичность остаётся открытой как образ жизни</strong> — мозг продолжает учиться и перестраиваться во взрослом возрасте.
+          </div>
+        </li>
+        <li>
+          <span class="bl-mark">✦</span>
+          <div class="bl-text">
+            <strong>Воспаление снижается</strong>, иммунитет стабилизируется — вагальный тонус напрямую связан с противовоспалительным рефлексом.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="baseline-final">
+    Это и есть настоящий результат тренинга —
+    <strong>новая базовая линия, из которой ты живёшь.</strong>
+  </p>
+
+</section>
+
 <!-- ═══ JS: звёзды + счётчики ═══ -->
 <script>
   // ── Генерация мягких светлых орбов (фон) ────────────────────
@@ -2638,6 +3009,24 @@ body {
     }
     window.addEventListener('scroll', check, { passive: true });
     window.addEventListener('resize', check);
+    window.addEventListener('load', check);
+    check();
+  })();
+
+  // ── Reveal радарной диаграммы базовой линии ────────────────
+  (function revealBaseline() {
+    const split = document.querySelector('.baseline-split');
+    if (!split) return;
+    let fired = false;
+    function check() {
+      if (fired) return;
+      const r = split.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.8) {
+        fired = true;
+        split.classList.add('appear');
+      }
+    }
+    window.addEventListener('scroll', check, { passive: true });
     window.addEventListener('load', check);
     check();
   })();
