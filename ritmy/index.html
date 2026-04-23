@@ -715,6 +715,237 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════
+     СЕКЦИЯ 5 · БАЗА ДЛЯ ПРЕДИКТИВНОЙ МОДЕЛИ
+     Дашборд: 3 виджета + line chart с предсказанием +
+     4 действия модели
+══════════════════════════════════════════ -->
+<section class="s-predict" id="predict">
+  <div class="sp-inner">
+
+    <header class="sp-head">
+      <span class="sp-kicker">База для предиктивной модели</span>
+      <h2 class="sp-title">Предупреждение о перегреве — <em>до того</em>, как перегрев наступит.</h2>
+      <p class="sp-sub">Классическая проблема всех, кто работает на износ: ты понимаешь, что выгорел, <em>только когда уже выгорел</em>. Трекеры фиксируют падение HRV, рост стресс-индекса, ухудшение сна — но ты эти данные не читаешь. Модель учится на твоих данных отличать <em>твою норму</em> от <em>твоего отклонения</em> — и даёт сигнал заранее.</p>
+      <p class="sp-sub">Чтобы модель это могла, ей нужна исходная точка — <strong>T<sub>0</sub></strong>. Твоё состояние в момент входа в программу: феноменология, биометрика, цели и намерения на цикл. Ровно это собирается на 3-часовом тренинге.</p>
+    </header>
+
+    <!-- Дашборд -->
+    <div class="sp-dashboard">
+
+      <!-- Верхняя панель виджетов -->
+      <div class="sp-widgets">
+        <div class="sp-widget">
+          <div class="sp-w-head">
+            <span class="sp-w-name">HRV</span>
+            <span class="sp-w-meta">rmSSD, мс</span>
+          </div>
+          <div class="sp-w-main">
+            <div class="sp-w-num">52<span class="sp-w-unit">мс</span></div>
+            <svg class="sp-w-spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M 0 20 L 14 18 L 28 22 L 42 14 L 56 16 L 70 12 L 84 10 L 100 8"
+                    fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 0 20 L 14 18 L 28 22 L 42 14 L 56 16 L 70 12 L 84 10 L 100 8 L 100 30 L 0 30 Z"
+                    fill="currentColor" opacity="0.12"/>
+              <circle cx="100" cy="8" r="2.2" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="sp-w-trend sp-w-up">▲ +4 мс <span>за 7 дней</span></div>
+        </div>
+
+        <div class="sp-widget">
+          <div class="sp-w-head">
+            <span class="sp-w-name">Сон</span>
+            <span class="sp-w-meta">ср. 7 дней, ч</span>
+          </div>
+          <div class="sp-w-main">
+            <div class="sp-w-num">7,2<span class="sp-w-unit">ч</span></div>
+            <svg class="sp-w-spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M 0 14 L 14 18 L 28 12 L 42 15 L 56 14 L 70 11 L 84 13 L 100 10"
+                    fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 0 14 L 14 18 L 28 12 L 42 15 L 56 14 L 70 11 L 84 13 L 100 10 L 100 30 L 0 30 Z"
+                    fill="currentColor" opacity="0.12"/>
+              <circle cx="100" cy="10" r="2.2" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="sp-w-trend sp-w-up">▲ +0,3 ч <span>к базовой норме</span></div>
+        </div>
+
+        <div class="sp-widget">
+          <div class="sp-w-head">
+            <span class="sp-w-name">Стресс-индекс</span>
+            <span class="sp-w-meta">Баевский</span>
+          </div>
+          <div class="sp-w-main">
+            <div class="sp-w-num">187<span class="sp-w-unit">усл.</span></div>
+            <svg class="sp-w-spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M 0 10 L 14 12 L 28 9 L 42 14 L 56 16 L 70 18 L 84 20 L 100 22"
+                    fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 0 10 L 14 12 L 28 9 L 42 14 L 56 16 L 70 18 L 84 20 L 100 22 L 100 30 L 0 30 Z"
+                    fill="currentColor" opacity="0.12"/>
+              <circle cx="100" cy="22" r="2.2" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="sp-w-trend sp-w-warn">▲ +32 <span>за 10 дней — тренд вверх</span></div>
+        </div>
+      </div>
+
+      <!-- Основной график готовности -->
+      <div class="sp-chart-card">
+        <div class="sp-chart-head">
+          <div>
+            <div class="sp-chart-kicker">Индекс готовности · 40 дней цикла</div>
+            <div class="sp-chart-title">Факт <span class="sp-dot-fact"></span> + прогноз <span class="sp-dot-pred"></span> модели</div>
+          </div>
+          <div class="sp-chart-legend">
+            <span class="sp-lg sp-lg--good"><i></i>норма</span>
+            <span class="sp-lg sp-lg--attention"><i></i>внимание</span>
+            <span class="sp-lg sp-lg--risk"><i></i>зона риска</span>
+          </div>
+        </div>
+
+        <div class="sp-chart-wrap">
+          <svg class="sp-chart" viewBox="0 0 1100 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="spFactGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#10B981" stop-opacity="0.32"/>
+                <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="spPredGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#8F7FE0" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#8F7FE0" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Зоны -->
+            <rect x="60" y="300" width="1000" height="80"  fill="rgba(255, 179, 179, 0.2)"/>
+            <rect x="60" y="220" width="1000" height="80"  fill="rgba(255, 224, 179, 0.22)"/>
+            <rect x="60" y="60"  width="1000" height="160" fill="rgba(183, 228, 199, 0.16)"/>
+
+            <!-- Горизонтальные линии сетки -->
+            <g class="sp-grid">
+              <line x1="60" y1="60"  x2="1060" y2="60"/>
+              <line x1="60" y1="140" x2="1060" y2="140"/>
+              <line x1="60" y1="220" x2="1060" y2="220"/>
+              <line x1="60" y1="300" x2="1060" y2="300"/>
+              <line x1="60" y1="380" x2="1060" y2="380"/>
+            </g>
+
+            <!-- Подписи Y -->
+            <g class="sp-yaxis">
+              <text x="50" y="64"  text-anchor="end">100</text>
+              <text x="50" y="144" text-anchor="end">75</text>
+              <text x="50" y="224" text-anchor="end">50</text>
+              <text x="50" y="304" text-anchor="end">30</text>
+              <text x="50" y="384" text-anchor="end">0</text>
+            </g>
+
+            <!-- Подписи X (дни) -->
+            <g class="sp-xaxis">
+              <text x="60"   y="405" text-anchor="middle">D0</text>
+              <text x="210"  y="405" text-anchor="middle">D7</text>
+              <text x="360"  y="405" text-anchor="middle">D14</text>
+              <text x="510"  y="405" text-anchor="middle">D21</text>
+              <text x="660"  y="405" text-anchor="middle">D28</text>
+              <text x="810"  y="405" text-anchor="middle">D35</text>
+              <text x="960"  y="405" text-anchor="middle">D40</text>
+              <text x="1060" y="405" text-anchor="middle"></text>
+            </g>
+
+            <!-- Разделитель факт / прогноз на D14 -->
+            <line x1="360" y1="60" x2="360" y2="380" stroke="rgba(42, 42, 42, 0.25)" stroke-width="1" stroke-dasharray="4 4"/>
+            <text x="360" y="50" text-anchor="middle" class="sp-split-label">сейчас</text>
+
+            <!-- Заливка под фактической линией -->
+            <path class="sp-fact-fill"
+                  d="M 60 130 L 110 125 L 160 138 L 210 120 L 260 145 L 310 128 L 360 118 L 360 380 L 60 380 Z"
+                  fill="url(#spFactGrad)"/>
+
+            <!-- Фактическая линия (D0–D14) -->
+            <path class="sp-fact-line"
+                  d="M 60 130 L 110 125 L 160 138 L 210 120 L 260 145 L 310 128 L 360 118"
+                  fill="none" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- Точки на фактической -->
+            <g class="sp-fact-dots">
+              <circle cx="60"  cy="130" r="4" fill="#10B981"/>
+              <circle cx="110" cy="125" r="4" fill="#10B981"/>
+              <circle cx="160" cy="138" r="4" fill="#10B981"/>
+              <circle cx="210" cy="120" r="4" fill="#10B981"/>
+              <circle cx="260" cy="145" r="4" fill="#10B981"/>
+              <circle cx="310" cy="128" r="4" fill="#10B981"/>
+              <circle cx="360" cy="118" r="4" fill="#10B981"/>
+            </g>
+
+            <!-- Заливка под прогнозной -->
+            <path class="sp-pred-fill"
+                  d="M 360 118 L 430 150 L 510 190 L 600 235 L 700 285 L 800 315 L 900 325 L 960 330 L 960 380 L 360 380 Z"
+                  fill="url(#spPredGrad)"/>
+
+            <!-- Прогнозная линия (D14–D40), пунктир, фиолетовая -->
+            <path class="sp-pred-line"
+                  d="M 360 118 L 430 150 L 510 190 L 600 235 L 700 285 L 800 315 L 900 325 L 960 330"
+                  fill="none" stroke="#8F7FE0" stroke-width="3" stroke-linecap="round"
+                  stroke-dasharray="7 6"/>
+
+            <!-- Точка пересечения с риском (примерно D26 = x=650) -->
+            <circle class="sp-risk-pulse" cx="650" cy="300" r="14" fill="#FFB3B3" opacity="0.5"/>
+            <circle class="sp-risk-dot"   cx="650" cy="300" r="7"  fill="#E85555"/>
+          </svg>
+
+          <!-- Callout-предупреждение -->
+          <div class="sp-callout">
+            <div class="sp-callout-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3 L22 20 L2 20 Z"/>
+                <line x1="12" y1="10" x2="12" y2="15"/>
+                <circle cx="12" cy="18" r="0.8" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="sp-callout-body">
+              <div class="sp-callout-head">Через 12 дней — окно перегрева</div>
+              <p class="sp-callout-text">Модель прогнозирует пересечение зоны риска на <strong>Дне&nbsp;26</strong>. Рекомендация: снять 2 задачи из недели 4 и добавить точку восстановления.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 действия модели -->
+    <ul class="sp-actions">
+      <li class="sp-action">
+        <span class="sp-ac-num">01</span>
+        <div class="sp-ac-body">
+          <h4 class="sp-ac-name">Строит твою персональную норму</h4>
+          <p class="sp-ac-desc">Базовый HRV, собственный паттерн сна, типичный вечерний стресс-индекс — у тебя, а не у «среднего».</p>
+        </div>
+      </li>
+      <li class="sp-action">
+        <span class="sp-ac-num">02</span>
+        <div class="sp-ac-body">
+          <h4 class="sp-ac-name">Считает отклонения в динамике</h4>
+          <p class="sp-ac-desc">Скользящее среднее за 7–10 дней. Важно не «плохо сегодня», а «тренд на неделе».</p>
+        </div>
+      </li>
+      <li class="sp-action">
+        <span class="sp-ac-num">03</span>
+        <div class="sp-ac-body">
+          <h4 class="sp-ac-name">Предсказывает окна риска</h4>
+          <p class="sp-ac-desc">Заранее, не задним числом. Сигнал появляется <em>до</em>, а не после того, как перегрев уже наступил.</p>
+        </div>
+      </li>
+      <li class="sp-action">
+        <span class="sp-ac-num">04</span>
+        <div class="sp-ac-body">
+          <h4 class="sp-ac-name">Подстраивает план под ритм</h4>
+          <p class="sp-ac-desc">Предлагает скорректировать интенсивность задач — снять, перенести, добавить точку восстановления.</p>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
 <script src="../components/nav.js"></script>
 <script src="../components/footer.js"></script>
 </body>
