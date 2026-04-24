@@ -1649,6 +1649,90 @@
     }
     .metric-mini strong { color: #fff; font-weight: 600; font-style: normal; }
 
+    /* Apple-style мега-заголовок в секции Виктора */
+    .viktor-hero {
+      text-align: center;
+      max-width: 1080px;
+      margin: 0 auto 30px;
+      padding: 10px 0;
+    }
+    .viktor-hero .eyebrow {
+      margin-bottom: 32px;
+    }
+    .vh-h2 {
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.6rem, 8vw, 5.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+      color: #fff;
+      text-transform: uppercase;
+      margin: 0 0 28px;
+    }
+    .vh-h2 em {
+      font-style: normal;
+      display: block;
+      background: linear-gradient(135deg, #00E5A0 0%, #5F5FFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+    .vh-lead {
+      font-family: "Jost", sans-serif;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      line-height: 1.6;
+      color: #c8c8d2;
+      max-width: 760px;
+      margin: 0 auto 36px;
+    }
+    .vh-lead strong { color: #fff; font-weight: 600; }
+
+    .vh-specs {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      padding: 14px 8px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      max-width: 100%;
+    }
+    .vh-spec {
+      padding: 6px 24px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: center;
+    }
+    .vh-spec:last-child { border-right: none; }
+    .vh-spec-val {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .vh-spec-val.accent {
+      background: linear-gradient(135deg, #00E5A0 0%, #5F5FFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .vh-spec-lbl {
+      font-family: "Courier Prime", monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    @media (max-width: 700px) {
+      .vh-spec { padding: 6px 14px; border-right: none; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+      .vh-spec:last-child { border-bottom: none; }
+      .vh-specs { flex-direction: column; align-items: stretch; padding: 6px 8px; }
+    }
+
     /* Impact decoder — что значит в жизни */
     .impact-panel {
       margin-top: 64px;
@@ -4577,12 +4661,19 @@
   <!-- ═══════════ VI · VIKTOR ═══════════ -->
   <section id="viktor" class="s s-viktor">
     <div class="s-inner">
-      <div class="section-header reveal">
+      <div class="viktor-hero reveal">
         <span class="eyebrow">Часть VI · Кейс Виктора · ЭЭГ</span>
-        <h2 class="h2-custom">Цифры. <em>Что происходит на ЭЭГ.</em></h2>
-        <p class="lead">Слова — субъективны. Нейрофизиология — нет. Каждая сессия измеряется — траектория видна в цифре.</p>
+        <h2 class="vh-h2">60+ биомаркеров.<em>Все разом.</em></h2>
+        <p class="vh-lead">Не оптимизация одной метрики. Не «улучшение». <strong>Перепрошивка базовой архитектуры сознания</strong> — за 11 сессий и ~8 часов практики. Уровень мастера с 1000+ ч медитации. Подтверждено ЭЭГ Neiry, PPG Whoop и HRV.</p>
+        <div class="vh-specs">
+          <div class="vh-spec"><span class="vh-spec-val">35</span><span class="vh-spec-lbl">дней</span></div>
+          <div class="vh-spec"><span class="vh-spec-val">11</span><span class="vh-spec-lbl">сессий</span></div>
+          <div class="vh-spec"><span class="vh-spec-val">~8 ч</span><span class="vh-spec-lbl">практики</span></div>
+          <div class="vh-spec"><span class="vh-spec-val accent">×125</span><span class="vh-spec-lbl">vs классика</span></div>
+          <div class="vh-spec"><span class="vh-spec-val accent">MNPI 74</span><span class="vh-spec-lbl">зона опытного</span></div>
+          <div class="vh-spec"><span class="vh-spec-val accent">−4 года</span><span class="vh-spec-lbl">биовозраст</span></div>
+        </div>
       </div>
-      <div class="viktor-meta reveal">03.12.2025 → 07.01.2026 <span>·</span> 35 дней <span>·</span> 11 сессий <span>·</span> ~8 часов практики</div>
 
       <div class="viktor-grid">
         <div class="metric-card reveal">
