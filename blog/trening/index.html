@@ -3067,17 +3067,19 @@
     }
     .core-ring-icon {
       position: absolute;
-      width: 44px; height: 44px;
+      width: 46px; height: 46px;
       border-radius: 50%;
       background: #fff;
-      border: 1.5px solid rgba(22,22,26,0.18);
+      border: 1.5px solid rgba(95,95,255,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
-      line-height: 1;
-      box-shadow: 0 6px 14px rgba(22,22,26,0.08);
+      color: #5F5FFF;
+      box-shadow: 0 6px 14px rgba(95,95,255,0.12);
       z-index: 5;
+    }
+    .core-ring-icon svg {
+      width: 22px; height: 22px;
     }
     .core-ring-icon.at-bottom {
       bottom: 0; left: 50%;
@@ -3214,17 +3216,20 @@
     .li-ic {
       display: inline-flex;
       align-items: center; justify-content: center;
-      width: 24px; height: 24px;
+      width: 26px; height: 26px;
       border-radius: 50%;
-      background: rgba(22,22,26,0.05);
-      border: 1px solid rgba(22,22,26,0.1);
+      background: rgba(95,95,255,0.08);
+      border: 1px solid rgba(95,95,255,0.22);
+      color: #5F5FFF;
       font-size: 0.9rem;
       line-height: 1;
       font-family: "Oswald", sans-serif;
+      flex-shrink: 0;
     }
+    .li-ic svg { width: 14px; height: 14px; }
     .legend-item.is-onto .li-ic {
-      background: rgba(95,95,255,0.15);
-      border-color: rgba(95,95,255,0.4);
+      background: rgba(95,95,255,0.16);
+      border-color: rgba(95,95,255,0.45);
       color: #5F5FFF;
       font-weight: 300;
     }
@@ -5808,15 +5813,21 @@
         <div class="core-diagram">
           <div class="core-ring core-ring-4">
             <span class="core-ring-tag">04 · Внешняя жизнь</span>
-            <span class="core-ring-icon at-bottom">🎯</span>
+            <span class="core-ring-icon at-bottom" aria-label="Внешняя жизнь">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+            </span>
           </div>
           <div class="core-ring core-ring-3">
             <span class="core-ring-tag">03 · Тело · химия</span>
-            <span class="core-ring-icon at-right">💊</span>
+            <span class="core-ring-icon at-right" aria-label="Тело">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M 2 12 H 6 L 8.5 8 L 11 16 L 13.5 7 L 16 12 H 22"/></svg>
+            </span>
           </div>
           <div class="core-ring core-ring-2">
             <span class="core-ring-tag">02 · Психика</span>
-            <span class="core-ring-icon at-left">🧠</span>
+            <span class="core-ring-icon at-left" aria-label="Психика">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="8" r="2"/><circle cx="17" cy="8" r="2"/><circle cx="12" cy="16" r="2"/><path d="M 9 8 H 15"/><path d="M 8 10 L 11 14"/><path d="M 16 10 L 13 14"/></svg>
+            </span>
           </div>
           <div class="core-ring core-ring-1">
             <span class="core-ring-tag">01 · ∅ Сознание</span>
@@ -5832,7 +5843,10 @@
           <div class="legend-item">
             <div class="li-num">04</div>
             <div>
-              <h4 class="li-title"><span class="li-ic">🎯</span>Внешняя жизнь</h4>
+              <h4 class="li-title">
+                <span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span>
+                Внешняя жизнь
+              </h4>
               <p class="li-desc">Цели, результаты, поведение, внешние обстоятельства — самый внешний слой.</p>
               <span class="li-methods">▸ Программы развития, стратегии</span>
             </div>
@@ -5840,7 +5854,10 @@
           <div class="legend-item">
             <div class="li-num">03</div>
             <div>
-              <h4 class="li-title"><span class="li-ic">💊</span>Тело · химия</h4>
+              <h4 class="li-title">
+                <span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M 2 12 H 6 L 8.5 8 L 11 16 L 13.5 7 L 16 12 H 22"/></svg></span>
+                Тело · химия
+              </h4>
               <p class="li-desc">Физиология, гормоны, биомаркеры, сон, восстановление.</p>
               <span class="li-methods">▸ БАДы, биохакинг, фармакология</span>
             </div>
@@ -5848,7 +5865,10 @@
           <div class="legend-item">
             <div class="li-num">02</div>
             <div>
-              <h4 class="li-title"><span class="li-ic">🧠</span>Психика</h4>
+              <h4 class="li-title">
+                <span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="8" r="2"/><circle cx="17" cy="8" r="2"/><circle cx="12" cy="16" r="2"/><path d="M 9 8 H 15"/><path d="M 8 10 L 11 14"/><path d="M 16 10 L 13 14"/></svg></span>
+                Психика
+              </h4>
               <p class="li-desc">Мысли, эмоции, убеждения, ментальные конструкции.</p>
               <span class="li-methods">▸ Психотерапия, коучинг, NLP</span>
             </div>
@@ -5856,23 +5876,23 @@
           <div class="legend-item is-onto">
             <div class="li-num">01</div>
             <div>
-              <h4 class="li-title"><span class="li-ic">∅</span>Сознание</h4>
-              <p class="li-desc">Базовый режим работы мозга — из него рождаются и мысли, и эмоции, и решения. Альфа-доминанта. <strong>Здесь работает только ONTO NOTHING.</strong></p>
-              <span class="li-methods"><strong>▸ ONTO NOTHING</strong> · единственный вход</span>
+              <h4 class="li-title"><span class="li-ic">∅</span>Сознание · ОС</h4>
+              <p class="li-desc">Базовый режим работы мозга — из него рождаются и мысли, и эмоции, и решения. Альфа-доминанта. <strong>ONTO NOTHING — доступ к этому слою.</strong></p>
+              <span class="li-methods"><strong>▸ ONTO NOTHING</strong> · ОС сознания</span>
             </div>
           </div>
           <div class="legend-item is-core">
             <div class="li-num">∅</div>
             <div>
               <h4 class="li-title">Ты в центре себя</h4>
-              <p class="li-desc">До мыслей, до эмоций, до всего. Ядро, к которому ведёт один путь — через тишину в слое сознания. ONTO NOTHING — этот путь.</p>
+              <p class="li-desc">До мыслей, до эмоций, до всего. <strong>ONTO NOTHING — это не путь. Это доступ.</strong> К себе. К ОС сознания.</p>
             </div>
           </div>
         </div>
 
       </div>
 
-      <p class="diff-bridge reveal">Все остальные подходы работают <strong>по слоям</strong> — добавки влияют на тело, психотерапия на мысли, коучинг на поведение. ONTO NOTHING работает <strong>в ядре</strong>. Меняется центр — все слои перестраиваются сами.</p>
+      <p class="diff-bridge reveal">Все остальные подходы работают <strong>по слоям</strong> — добавки влияют на тело, психотерапия на мысли, коучинг на поведение. <strong>ONTO NOTHING — это доступ к операционной системе сознания.</strong> Меняется ОС — все слои перестраиваются сами.</p>
 
       <div class="diff-table reveal">
         <table>
