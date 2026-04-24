@@ -1631,6 +1631,160 @@
       font-size: 0.95rem; color: #888896;
       margin-top: 8px; line-height: 1.3; min-height: 18px;
     }
+    .metric-mini {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(0,229,160,0.18);
+      font-family: "Jost", sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.82);
+      font-style: italic;
+    }
+    .metric-mini::before {
+      content: '→ ';
+      color: #00E5A0;
+      font-style: normal;
+      font-weight: 700;
+    }
+    .metric-mini strong { color: #fff; font-weight: 600; font-style: normal; }
+
+    /* Impact decoder — что значит в жизни */
+    .impact-panel {
+      margin-top: 64px;
+      padding: 48px 44px;
+      border-radius: 26px;
+      background: linear-gradient(160deg, rgba(0,229,160,0.08) 0%, rgba(95,95,255,0.06) 100%);
+      border: 1px solid rgba(0,229,160,0.28);
+      position: relative;
+      overflow: hidden;
+    }
+    .impact-panel::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(0,229,160,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 85% 75%, rgba(95,95,255,0.10) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .impact-panel > * { position: relative; z-index: 2; }
+    .impact-head {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .impact-eye {
+      display: inline-block;
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #00E5A0;
+      padding: 6px 16px;
+      border-radius: 100px;
+      background: rgba(0,229,160,0.12);
+      border: 1px solid rgba(0,229,160,0.35);
+      margin-bottom: 18px;
+    }
+    .impact-h {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0;
+      line-height: 1.15;
+    }
+    .impact-h em {
+      font-style: italic;
+      background: linear-gradient(135deg, #00E5A0 0%, #5F5FFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .impact-card {
+      padding: 26px 24px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform .25s, border-color .25s;
+    }
+    .impact-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0,229,160,0.35);
+    }
+    .ic-top {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .ic-num {
+      font-family: "Oswald", sans-serif;
+      font-size: 2.4rem; font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, #00E5A0 0%, #5F5FFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.01em;
+    }
+    .ic-label {
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .ic-arrow {
+      font-family: "Courier Prime", monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.6px; text-transform: uppercase;
+      color: #00E5A0;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(0,229,160,0.22);
+    }
+    .ic-meaning {
+      font-family: "Jost", sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #d0d0da;
+      margin: 0;
+    }
+    .ic-meaning strong { color: #fff; font-weight: 600; }
+
+    .impact-wow {
+      margin-top: 40px;
+      text-align: center;
+      padding: 28px 32px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(0,229,160,0.22);
+    }
+    .impact-wow p {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.35;
+      margin: 0;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .impact-wow p em {
+      font-style: italic;
+      background: linear-gradient(135deg, #00E5A0 0%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
 
     /* Viktor — A/B table */
     .ab-wrap {
@@ -3422,7 +3576,8 @@
       .hero5-stats { grid-template-columns: repeat(3, 1fr); gap: 16px 0; }
       .hero5-stat:nth-child(4), .hero5-stat:nth-child(5) { border-left: none; padding-left: 0; }
       .const-grid, .baseline-grid, .cases-grid, .team-grid, .voices-strip,
-      .network-stats, .ai-features ul, .mnpi-comp, .trees-grid, .stack-grid { grid-template-columns: repeat(2, 1fr); }
+      .network-stats, .ai-features ul, .mnpi-comp, .trees-grid, .stack-grid,
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
       .stack-grid { grid-template-columns: repeat(2, 1fr); }
       .paths-grid, .av-grid { grid-template-columns: repeat(3, 1fr); }
       .day-grid { grid-template-columns: repeat(2, 1fr); }
@@ -3507,6 +3662,9 @@
       /* day timeline — mobile */
       .dt-inner { min-width: 760px; }
       .dt-summary { grid-template-columns: 1fr; }
+      /* impact decoder — mobile */
+      .impact-panel { padding: 30px 22px; }
+      .impact-grid { grid-template-columns: 1fr; }
       /* bento stack — mobile */
       .bento-stack { grid-template-columns: repeat(2, 1fr); grid-auto-rows: auto; gap: 10px; }
       .st-tile.size-2x2, .st-tile.size-3x1, .st-tile.size-4x1, .st-tile.size-2x1 {
@@ -4431,41 +4589,117 @@
           <span class="metric-label">Relaxation Index · 11 сессий</span>
           <span class="metric-num">×2.24</span>
           <span class="metric-sub">2.05 → 4.60 · мастер+</span>
+          <div class="metric-mini">Уровень <strong>монаха с 1000+ ч медитации</strong> — за 8 часов практики.</div>
         </div>
         <div class="metric-card reveal">
           <span class="metric-label">Удержание ОВД</span>
           <span class="metric-num">+270%</span>
           <span class="metric-sub">23% → 85% · удержание</span>
+          <div class="metric-mini">Тишина больше <strong>не случается</strong> — она включается по команде.</div>
         </div>
         <div class="metric-card reveal">
           <span class="metric-label">Alpha Gravity · пиковые значения</span>
           <span class="metric-num">×100+</span>
           <span class="metric-sub">пик 46.88 · глубокий транс</span>
+          <div class="metric-mini">Окно нейропластичности, куда обычно уходят <strong>психоделиками</strong>.</div>
         </div>
         <div class="metric-card reveal">
           <span class="metric-label">Stress Index</span>
           <span class="metric-num">−19%</span>
           <span class="metric-sub">47.8 → 38.5 · зона мастеров</span>
+          <div class="metric-mini">Биологический возраст <strong>−4 года</strong>. Кардиориск −18%.</div>
         </div>
         <div class="metric-card reveal">
           <span class="metric-label">Focus · аналитический ум</span>
           <span class="metric-num">−46%</span>
           <span class="metric-sub">51.2 → 27.6 · отключение</span>
+          <div class="metric-mini">Аналитический ум <strong>выключается</strong> — перед сценой, сном, решением.</div>
         </div>
         <div class="metric-card reveal">
           <span class="metric-label">Heart Rate</span>
           <span class="metric-num">57.3</span>
           <span class="metric-sub">bpm · парасимпатика</span>
+          <div class="metric-mini">Сердце в режиме <strong>восстановления</strong>, а не угрозы.</div>
         </div>
         <div class="metric-card reveal">
           <span class="metric-label">Когнитивный прирост</span>
           <span class="metric-num">+87%</span>
           <span class="metric-sub">итоговый маркёр</span>
+          <div class="metric-mini">Память, ясность, скорость решений — <strong>всё возвращается</strong>.</div>
         </div>
         <div class="metric-card reveal">
           <span class="metric-label">Эффективность vs 1000+ ч</span>
           <span class="metric-num">×125</span>
           <span class="metric-sub">8 часов вместо 1000</span>
+          <div class="metric-mini"><strong>Год классической медитации</strong> — в одном тренинге.</div>
+        </div>
+      </div>
+
+      <!-- ═══ IMPACT DECODER — что значит в жизни ═══ -->
+      <div class="impact-panel reveal">
+        <div class="impact-head">
+          <span class="impact-eye">→ Декодер · что это значит в жизни</span>
+          <h3 class="impact-h">Если перевести цифры на <em>язык жизни.</em></h3>
+        </div>
+
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="ic-top">
+              <span class="ic-num">+15 мс</span>
+              <span class="ic-label">SDNN HRV</span>
+            </div>
+            <div class="ic-arrow">↓ Что это значит</div>
+            <p class="ic-meaning"><strong>Биовозраст −4 года</strong> по Whoop. Кардиориск −18%. Быстрее восстановление после нагрузок. Выше стрессоустойчивость.</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="ic-top">
+              <span class="ic-num">+16%</span>
+              <span class="ic-label">глубокий сон</span>
+            </div>
+            <div class="ic-arrow">↓ Что это значит</div>
+            <p class="ic-meaning">С 92 до 107 минут. <strong>+15 минут гормона роста</strong> каждую ночь · сильнее иммунитет · крепче память.</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="ic-top">
+              <span class="ic-num">85%</span>
+              <span class="ic-label">удержание ОВД</span>
+            </div>
+            <div class="ic-arrow">↓ Что это значит</div>
+            <p class="ic-meaning">Раньше тишина случалась секундами. Теперь — <strong>большую часть сессии</strong>. Это уже не везение — это навык.</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="ic-top">
+              <span class="ic-num">46.88</span>
+              <span class="ic-label">пик Alpha Gravity</span>
+            </div>
+            <div class="ic-arrow">↓ Что это значит</div>
+            <p class="ic-meaning">Окно <strong>глубокого транса</strong> — куда в классике входят психоделиками или 20 лет на подушке. Без того и другого.</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="ic-top">
+              <span class="ic-num">×125</span>
+              <span class="ic-label">vs классика</span>
+            </div>
+            <div class="ic-arrow">↓ Что это значит</div>
+            <p class="ic-meaning"><strong>Год классической медитации — в одном тренинге.</strong> То, за чем монахи идут десятилетия, — получаешь за 8 часов.</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="ic-top">
+              <span class="ic-num">60+</span>
+              <span class="ic-label">биомаркеров</span>
+            </div>
+            <div class="ic-arrow">↓ Что это значит</div>
+            <p class="ic-meaning">Сон, пульс, HRV, кортизол, альфа/бета, стресс, фокус — <strong>сдвинулись в одну сторону одновременно</strong>. Не оптимизация отдельной метрики — перепрошивка системы.</p>
+          </div>
+        </div>
+
+        <div class="impact-wow">
+          <p>Это не «улучшение». Это <em>перепрошивка базовой архитектуры сознания</em> — подтверждённая 60+ биомаркерами ЭЭГ, HRV, PPG и сна.</p>
         </div>
       </div>
 
