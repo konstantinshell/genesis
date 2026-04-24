@@ -1867,6 +1867,418 @@
     .ai-features li strong { color: #16161A; font-weight: 600; }
 
     /* ══════════════════════════════════
+       PLATFORM — ex NIHILO ai (перенос из /mnpi-checkup/)
+    ══════════════════════════════════ */
+    .pf-zone {
+      background:
+        radial-gradient(ellipse 800px 480px at 25% 30%, rgba(95,95,255,0.18), transparent 60%),
+        radial-gradient(ellipse 700px 420px at 80% 75%, rgba(0,229,160,0.12), transparent 60%),
+        linear-gradient(135deg, #0F1016 0%, #14141F 55%, #1A1B28 100%);
+      border-radius: 24px;
+      padding: 50px 44px 46px;
+      margin: 30px 0 18px;
+      color: #EDEDF2;
+      position: relative;
+      overflow: hidden;
+    }
+    .pf-zone::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(237,237,242,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(237,237,242,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 50%, transparent 95%);
+              mask-image: radial-gradient(ellipse at center, #000 50%, transparent 95%);
+      pointer-events: none;
+    }
+    .pf-zone > * { position: relative; z-index: 1; }
+
+    .pf-hero {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 50px;
+      align-items: center;
+      margin-bottom: 44px;
+    }
+    .pf-mockups {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 460px;
+    }
+    .pf-phone {
+      width: 220px;
+      aspect-ratio: 9/19.5;
+      padding: 9px 7px;
+      background: linear-gradient(180deg, #2A2B38 0%, #0F1016 100%);
+      border-radius: 26px;
+      border: 1px solid rgba(237,237,242,0.18);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .pf-phone::before {
+      content: '';
+      position: absolute;
+      top: 5px; left: 50%;
+      transform: translateX(-50%);
+      width: 50px; height: 12px;
+      background: #06060B;
+      border-radius: 999px;
+      z-index: 3;
+    }
+    .pf-screen {
+      position: absolute;
+      inset: 9px 7px;
+      border-radius: 19px;
+      background: #06060B;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 30px 12px 16px;
+      font-family: "Jost", sans-serif;
+    }
+    .pf-screen-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "Courier Prime", monospace;
+      font-size: 8px;
+      color: rgba(237,237,242,0.55);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      padding: 0 4px;
+    }
+    .pf-screen-status .pfs-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #00E5A0;
+      display: inline-block;
+      margin-right: 4px;
+      vertical-align: middle;
+      box-shadow: 0 0 6px #00E5A0;
+    }
+    .pf-screen-h {
+      font-family: "Oswald", sans-serif;
+      font-size: 11px; font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      padding: 0 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .pf-screen-h span {
+      display: block;
+      font-family: "Courier Prime", monospace;
+      font-size: 7px;
+      color: #5F5FFF;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+      font-weight: 700;
+    }
+    .pf-msg {
+      margin-bottom: 5px;
+      padding: 7px 9px;
+      border-radius: 10px;
+      font-size: 8.5px;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+      max-width: 90%;
+    }
+    .pf-msg.user {
+      background: #5F5FFF;
+      color: #fff;
+      margin-left: auto;
+      border-bottom-right-radius: 3px;
+    }
+    .pf-msg.ai {
+      background: rgba(255,255,255,0.06);
+      color: rgba(237,237,242,0.85);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-bottom-left-radius: 3px;
+    }
+    .pf-msg.ai b { color: #00E5A0; }
+    .pf-msg.ai code {
+      font-family: "Courier Prime", monospace;
+      font-size: 7.5px;
+      color: #5F5FFF;
+      background: rgba(95,95,255,0.14);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    .pf-typing {
+      display: inline-flex;
+      gap: 3px;
+      padding: 6px 9px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      align-self: flex-start;
+    }
+    .pf-typing span {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(237,237,242,0.5);
+      animation: pfDot 1.4s infinite;
+    }
+    .pf-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .pf-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pfDot { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
+
+    .pf-graph-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(237,237,242,0.08);
+      border-radius: 9px;
+      padding: 8px 9px;
+      margin-bottom: 6px;
+    }
+    .pf-graph-h {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .pf-graph-h .pfg-l {
+      font-family: "Courier Prime", monospace;
+      font-size: 7px;
+      letter-spacing: 0.06em;
+      color: rgba(237,237,242,0.55);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .pf-graph-h .pfg-v {
+      font-family: "Oswald", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .pf-graph-h .pfg-v .pfg-d {
+      font-size: 8px;
+      color: #00E5A0;
+      margin-left: 2px;
+    }
+    .pf-graph svg {
+      width: 100%;
+      height: 32px;
+      display: block;
+    }
+    .pf-graph svg path { fill: none; stroke-width: 1.5; stroke-linecap: round; }
+    .pf-bars {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+      height: 28px;
+      align-items: end;
+      margin-top: 4px;
+    }
+    .pf-bars span {
+      background: linear-gradient(180deg, #5F5FFF, rgba(95,95,255,0.3));
+      border-radius: 2px;
+      display: block;
+    }
+
+    .pf-phone.left {
+      position: relative;
+      z-index: 2;
+      transform: rotate(-7deg) translateX(40px);
+    }
+    .pf-phone.right {
+      position: relative;
+      z-index: 1;
+      transform: rotate(6deg) translateX(-40px);
+      margin-left: -100px;
+    }
+    .pf-phone:hover { z-index: 5; }
+
+    .pf-intro .pf-eyebrow {
+      display: inline-block;
+      font-family: "Courier Prime", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #00E5A0;
+      padding: 6px 14px;
+      border: 1px solid rgba(0,229,160,0.3);
+      background: rgba(0,229,160,0.08);
+      border-radius: 999px;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .pf-intro h3 {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+    .pf-intro h3 .pf-hl { color: #5F5FFF; }
+    .pf-intro p {
+      font-family: "Jost", sans-serif;
+      color: rgba(237,237,242,0.75);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .pf-intro p strong { color: #fff; }
+
+    .pf-quick {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .pf-quick-item {
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(237,237,242,0.08);
+      border-radius: 12px;
+    }
+    .pf-quick-item .pfq-num {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #5F5FFF;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pf-quick-item .pfq-lab {
+      font-family: "Courier Prime", monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(237,237,242,0.55);
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .pf-features-head {
+      font-family: "Oswald", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 8px 0 18px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .pf-features-head span {
+      font-family: "Courier Prime", monospace;
+      font-size: 0.7rem;
+      color: rgba(237,237,242,0.5);
+      letter-spacing: 0.16em;
+      margin-left: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .pf-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .pf-feat {
+      padding: 22px 22px 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(237,237,242,0.08);
+      border-radius: 14px;
+      position: relative;
+      transition: all 0.22s;
+      display: flex;
+      flex-direction: column;
+    }
+    .pf-feat:hover {
+      background: rgba(95,95,255,0.08);
+      border-color: rgba(95,95,255,0.3);
+      transform: translateY(-2px);
+    }
+    .pf-feat .pff-num {
+      display: inline-block;
+      font-family: "Courier Prime", monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #5F5FFF;
+      margin-bottom: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .pf-feat h4 {
+      font-family: "Oswald", sans-serif;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+    .pf-feat p {
+      font-family: "Jost", sans-serif;
+      font-size: 0.86rem;
+      color: rgba(237,237,242,0.72);
+      line-height: 1.55;
+      margin: 0 0 auto;
+    }
+    .pf-feat .pff-tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 3px 9px;
+      font-family: "Courier Prime", monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: #00E5A0;
+      background: rgba(0,229,160,0.08);
+      border: 1px solid rgba(0,229,160,0.22);
+      border-radius: 999px;
+      text-transform: uppercase;
+      font-weight: 700;
+      align-self: flex-start;
+    }
+    .pf-feat.coach { border-color: rgba(212,161,85,0.28); background: rgba(212,161,85,0.05); }
+    .pf-feat.coach .pff-num { color: #D4A155; }
+    .pf-feat.coach .pff-tag { color: #E7B76B; background: rgba(212,161,85,0.1); border-color: rgba(212,161,85,0.3); }
+
+    .pf-foot {
+      margin-top: 26px;
+      padding: 20px 26px;
+      background: rgba(95,95,255,0.1);
+      border: 1px dashed rgba(95,95,255,0.4);
+      border-radius: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .pf-foot p {
+      margin: 0;
+      font-family: "Jost", sans-serif;
+      font-size: 0.9rem;
+      color: rgba(237,237,242,0.85);
+      line-height: 1.55;
+      max-width: 660px;
+    }
+    .pf-foot p strong { color: #fff; }
+    .pf-foot .pf-month {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: #5F5FFF;
+      color: #fff;
+      border-radius: 10px;
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════
        TRAINING DAY — 6 blocks
     ══════════════════════════════════ */
     .day-grid {
@@ -2858,6 +3270,20 @@
       /* day timeline — mobile */
       .dt-inner { min-width: 760px; }
       .dt-summary { grid-template-columns: 1fr; }
+      /* platform — mobile */
+      .pf-zone { padding: 32px 20px 28px; }
+      .pf-hero { grid-template-columns: 1fr; gap: 30px; margin-bottom: 30px; }
+      .pf-mockups { min-height: 360px; }
+      .pf-phone { width: 180px; }
+      .pf-phone.left { transform: rotate(-5deg) translateX(20px); }
+      .pf-phone.right { transform: rotate(4deg) translateX(-20px); margin-left: -60px; }
+      .pf-features { grid-template-columns: 1fr; }
+      .pf-quick { grid-template-columns: 1fr 1fr; }
+      .pf-foot { flex-direction: column; align-items: flex-start; }
+    }
+    @media (min-width: 701px) and (max-width: 1024px) {
+      .pf-hero { grid-template-columns: 1fr; gap: 30px; }
+      .pf-features { grid-template-columns: 1fr 1fr; }
     }
     @media (min-width: 701px) and (max-width: 1024px) {
       .why-grid { grid-template-columns: 1fr 1fr; }
@@ -3896,36 +4322,142 @@
   <section id="ai" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть VII · Цифровой помощник</span>
-        <h2 class="h2-custom">ex NIHILO ai. <em>Помощник на месяц.</em></h2>
-        <p class="lead">Новый навык живёт первые недели как хрупкий паттерн. Чтобы он закрепился, нужна обратная связь каждый день — и она должна быть умнее, чем дневник.</p>
+        <span class="eyebrow">Часть VII · Платформа · Цифровой помощник</span>
+        <h2 class="h2-custom">ex NIHILO ai — <em>твой цифровой помощник</em> на месяц полного доступа.</h2>
+        <p class="lead">Тренинг даёт тебе данные. Платформа — место, где эти данные оживают. Отчёты, графики, обратная связь по каждому замеру, аудиодневник, закрытый контент только для участников. Полный функционал доступен на 1 месяц после старта.</p>
       </div>
 
-      <div class="ai-layout">
-        <div class="ai-brand-card reveal">
-          <div>
-            <div class="ai-brand-name">ex NIHILO ai</div>
-            <div class="ai-base">Based on · Claude Opus 4.7 · Anthropic</div>
+      <div class="pf-zone reveal">
+        <div class="pf-hero">
+
+          <!-- PHONE MOCKUPS -->
+          <div class="pf-mockups">
+            <div class="pf-phone left" aria-hidden="true">
+              <div class="pf-screen">
+                <div class="pf-screen-status"><span><span class="pfs-dot"></span>ex NIHILO · online</span><span>09:42</span></div>
+                <div class="pf-screen-h"><span>Чат с помощником</span>Что значит мой замер?</div>
+                <div class="pf-msg user">У меня IAPF Suppression <code>1.4</code> на сессии 3 — это нормально?</div>
+                <div class="pf-msg ai">Для Point A — ниже среднего. Альфа просела при закрытых глазах. Возможные причины: <b>гипертонус</b>, кофеин, недосып. Какой был SDNN?</div>
+                <div class="pf-msg user">52 мс</div>
+                <div class="pf-msg ai">Подтверждается: <b>симпатический перевес</b>. На неделю — Pure Nothing 2× в день + сон 8 ч. Через 7 дней пересдадим один замер.</div>
+                <div class="pf-typing"><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <div class="pf-phone right" aria-hidden="true">
+              <div class="pf-screen">
+                <div class="pf-screen-status"><span><span class="pfs-dot"></span>Дашборд</span><span>NIHILO</span></div>
+                <div class="pf-screen-h"><span>Динамика недели</span>MNPI · твой профиль</div>
+
+                <div class="pf-graph-card">
+                  <div class="pf-graph-h"><span class="pfg-l">MNPI</span><span class="pfg-v">74<span class="pfg-d">+4</span></span></div>
+                  <div class="pf-graph">
+                    <svg viewBox="0 0 180 32" preserveAspectRatio="none"><path d="M 0 24 L 26 22 L 52 20 L 78 18 L 104 16 L 130 14 L 156 12 L 180 10" stroke="#00E5A0"/></svg>
+                  </div>
+                </div>
+
+                <div class="pf-graph-card">
+                  <div class="pf-graph-h"><span class="pfg-l">SDNN · 7 дней</span><span class="pfg-v">62<span class="pfg-d">+5мс</span></span></div>
+                  <div class="pf-bars">
+                    <span style="height: 40%"></span>
+                    <span style="height: 55%"></span>
+                    <span style="height: 48%"></span>
+                    <span style="height: 65%"></span>
+                    <span style="height: 70%"></span>
+                    <span style="height: 80%"></span>
+                    <span style="height: 90%"></span>
+                  </div>
+                </div>
+
+                <div class="pf-graph-card">
+                  <div class="pf-graph-h"><span class="pfg-l">Ритмы жизни</span><span class="pfg-v">87%</span></div>
+                  <div class="pf-graph">
+                    <svg viewBox="0 0 180 32" preserveAspectRatio="none"><path d="M 0 16 Q 20 8 40 16 T 80 16 Q 100 4 120 16 T 160 16 L 180 16" stroke="#5F5FFF"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="ai-agents">
-            <span class="ai-agent">🫀 Тело</span>
-            <span class="ai-agent">💭 Эмоции</span>
-            <span class="ai-agent">🧠 Мысли</span>
-            <span class="ai-agent">∅ Состояние</span>
-            <span class="ai-agent">✨ Смысл</span>
+
+          <!-- TEXT SIDE -->
+          <div class="pf-intro">
+            <span class="pf-eyebrow">Включено в тренинг</span>
+            <h3>Не просто <span class="pf-hl">приложение</span> — а помощник, который читает твои данные за тебя</h3>
+            <p>Все замеры с нейробенда + данные с фитнес-трекера + твой аудиодневник — собираются в одном месте. AI на базе Claude Opus 4.7 разбирает их через <strong>5 параллельных агентов</strong> феноменологии и выдаёт обратную связь конкретно по твоему профилю.</p>
+            <p>Ставь задачи, веди дневник рефлексий голосом, смотри, как навык управления ритмами мозга влияет на ритмы жизни — и наоборот.</p>
+
+            <div class="pf-quick">
+              <div class="pf-quick-item">
+                <div class="pfq-num">1 мес</div>
+                <div class="pfq-lab">Полный доступ<br>после тренинга</div>
+              </div>
+              <div class="pf-quick-item">
+                <div class="pfq-num">5 AI</div>
+                <div class="pfq-lab">Параллельных агентов<br>феноменологии</div>
+              </div>
+              <div class="pf-quick-item">
+                <div class="pfq-num">24/7</div>
+                <div class="pfq-lab">Синхронизация<br>с трекером и нейробендом</div>
+              </div>
+              <div class="pf-quick-item">
+                <div class="pfq-num">∞</div>
+                <div class="pfq-lab">Закрытый контент<br>для участников</div>
+              </div>
+            </div>
           </div>
-          <div class="ai-note">Месяц полного доступа · входит в тренинг</div>
         </div>
 
-        <div class="ai-features glass5 reveal">
-          <ul>
-            <li><strong>5 агентов феноменологии</strong> — специализированные агенты работают со своим слоем опыта</li>
-            <li><strong>Интерпретация метрик в чате</strong> — присылаешь показатели, получаешь разбор</li>
-            <li><strong>Синхронизация 24/7</strong> с Neyrox, Garmin, нейробендом</li>
-            <li><strong>Персональный MNPI-профиль</strong> — история, прогнозы, траектория</li>
-            <li><strong>Аудиодневник</strong> — надиктовываешь голосом, агент раскладывает опыт по режимам</li>
-            <li><strong>24/7 доступ</strong> в течение месяца после тренинга</li>
-          </ul>
+        <div class="pf-features-head">7 ключевых функций<span>что реально делает помощник</span></div>
+
+        <div class="pf-features">
+          <div class="pf-feat">
+            <div class="pff-num">01 · Sync</div>
+            <h4>Прямая синхронизация с нейробендом</h4>
+            <p>Данные после каждой сессии Neiry автоматически попадают на платформу. Никакого ручного импорта, никаких CSV — связка работает по Bluetooth и облаку.</p>
+          </div>
+
+          <div class="pf-feat">
+            <div class="pff-num">02 · Wearable</div>
+            <h4>24/7 синхронизация с фитнес-трекером</h4>
+            <p>Подключаются <strong style="color:#fff;">NEYROX</strong> (рекомендуем для исследования) или <strong style="color:#fff;">Garmin</strong> для максимального функционала. HRV, сон, нагрузка — всё в одном дашборде.</p>
+            <span class="pff-tag">Neyrox / Garmin</span>
+          </div>
+
+          <div class="pf-feat">
+            <div class="pff-num">03 · AI</div>
+            <h4>Анализ событийности на Claude Opus 4.7</h4>
+            <p>Самый умный AI на рынке работает на 5 параллельных агентах: каждый разбирает свой аспект феноменологии — тело, эмоции, мысли, состояние, смысл.</p>
+            <span class="pff-tag">Claude Opus 4.7</span>
+          </div>
+
+          <div class="pf-feat">
+            <div class="pff-num">04 · Verify</div>
+            <h4>Официальная верификация данных</h4>
+            <p>Замеры и результаты получают официальное подтверждение от производителей оборудования. Это не «бытовой замер» — это документированная нейрофизиологическая база.</p>
+          </div>
+
+          <div class="pf-feat">
+            <div class="pff-num">05 · Community</div>
+            <h4>Сообщество единомышленников</h4>
+            <p>Встречи, конференции, симпозиумы, регулярные Zoom-собрания внутри платформы. Закрытое пространство для тех, кто реально работает с данными о собственной нейропластичности.</p>
+          </div>
+
+          <div class="pf-feat">
+            <div class="pff-num">06 · MNPI</div>
+            <h4>Полные данные о нейропластичности</h4>
+            <p>Все четыре субиндекса MNPI с историей. Сравнение Точка А → текущая точка → прогноз. Графики каждой метрики с привязкой к событиям дня.</p>
+          </div>
+
+          <div class="pf-feat coach">
+            <div class="pff-num">07 · Pro</div>
+            <h4>Ведение клиентов через помощника</h4>
+            <p>Для коучей, психологов, фасилитаторов — ты видишь, что было с твоим клиентом за последние 24/7/365. Рука на пульсе, даже когда вы в разных странах. Объективная нейрофизиологическая база для работы.</p>
+            <span class="pff-tag">для практикующих специалистов</span>
+          </div>
+        </div>
+
+        <div class="pf-foot">
+          <p><strong>База для исследователя.</strong> Если ты берёшь нейробенд для собственных исследований и тренировки скилов — ex NIHILO ai даёт полную инфраструктуру: данные, интерпретацию, дневник, сообщество, верификацию. Не приложение для замеров — а среда для серьёзной работы со своей нервной системой.</p>
+          <span class="pf-month">1 месяц · полный доступ</span>
         </div>
       </div>
     </div>
