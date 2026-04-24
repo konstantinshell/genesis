@@ -3030,42 +3030,101 @@
       aspect-ratio: 1;
       margin: 0 auto;
     }
+    /* Сияние от ядра — уходит к внешним кольцам */
+    .core-diagram::before {
+      content: '';
+      position: absolute;
+      inset: 18%;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(95,95,255,0.22) 0%, rgba(95,95,255,0.08) 45%, transparent 72%);
+      filter: blur(18px);
+      pointer-events: none;
+      z-index: 0;
+    }
     .core-ring {
       position: absolute;
       border-radius: 50%;
-      border: 1px dashed rgba(22,22,26,0.14);
-      background: rgba(255,255,255,0.35);
+      border: 1.5px solid rgba(22,22,26,0.14);
+      background: rgba(255,255,255,0.4);
       transition: all .3s;
+      z-index: 1;
     }
     .core-ring-tag {
       position: absolute;
       top: 0;
       left: 50%;
       transform: translate(-50%, -50%);
-      padding: 4px 11px;
+      padding: 5px 12px;
       background: #ECEEF2;
       border-radius: 100px;
-      border: 1px solid rgba(22,22,26,0.18);
+      border: 1px solid rgba(22,22,26,0.2);
       font-family: "Courier Prime", monospace;
-      font-size: 9px; font-weight: 700;
+      font-size: 9.5px; font-weight: 700;
       letter-spacing: 1.3px; text-transform: uppercase;
-      color: #888896;
+      color: #444450;
       white-space: nowrap;
-      z-index: 3;
+      z-index: 5;
     }
-    .core-ring-4 { inset: 0; opacity: 0.6; }
-    .core-ring-3 { inset: 13%; opacity: 0.75; }
-    .core-ring-2 { inset: 27%; opacity: 0.9; }
+    .core-ring-icon {
+      position: absolute;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1.5px solid rgba(22,22,26,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      line-height: 1;
+      box-shadow: 0 6px 14px rgba(22,22,26,0.08);
+      z-index: 5;
+    }
+    .core-ring-icon.at-bottom {
+      bottom: 0; left: 50%;
+      transform: translate(-50%, 50%);
+    }
+    .core-ring-icon.at-right {
+      right: 0; top: 50%;
+      transform: translate(50%, -50%);
+    }
+    .core-ring-icon.at-left {
+      left: 0; top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .core-ring-icon.at-top-right {
+      right: 14%; top: 14%;
+      transform: translate(50%, -50%);
+    }
+    .core-ring-4 {
+      inset: 0;
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(22,22,26,0.12);
+    }
+    .core-ring-3 {
+      inset: 13%;
+      background: rgba(255,255,255,0.45);
+      border-color: rgba(22,22,26,0.16);
+    }
+    .core-ring-2 {
+      inset: 27%;
+      background: rgba(255,255,255,0.65);
+      border-color: rgba(22,22,26,0.22);
+    }
     .core-ring-1 {
       inset: 41%;
-      border: 2px solid rgba(95,95,255,0.5);
-      background: linear-gradient(135deg, rgba(95,95,255,0.20), rgba(167,139,250,0.10));
-      box-shadow: 0 0 0 4px rgba(95,95,255,0.08);
+      border: 2.5px solid rgba(95,95,255,0.55);
+      background:
+        radial-gradient(circle at center, rgba(95,95,255,0.28) 0%, rgba(167,139,250,0.12) 60%, transparent 100%),
+        rgba(255,255,255,0.7);
+      box-shadow:
+        0 0 0 6px rgba(95,95,255,0.08),
+        inset 0 0 16px rgba(95,95,255,0.15);
     }
     .core-ring-1 .core-ring-tag {
-      background: #5F5FFF;
+      background: linear-gradient(135deg, #5F5FFF 0%, #A78BFA 100%);
       border-color: #5F5FFF;
       color: #fff;
+      box-shadow: 0 6px 14px rgba(95,95,255,0.35);
     }
     .core-center {
       position: absolute;
@@ -3148,6 +3207,26 @@
       margin: 0 0 6px;
       letter-spacing: 0.01em;
       line-height: 1.2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .li-ic {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: rgba(22,22,26,0.05);
+      border: 1px solid rgba(22,22,26,0.1);
+      font-size: 0.9rem;
+      line-height: 1;
+      font-family: "Oswald", sans-serif;
+    }
+    .legend-item.is-onto .li-ic {
+      background: rgba(95,95,255,0.15);
+      border-color: rgba(95,95,255,0.4);
+      color: #5F5FFF;
+      font-weight: 300;
     }
     .legend-item.is-core .li-title { color: #fff; }
     .li-desc {
@@ -5729,12 +5808,15 @@
         <div class="core-diagram">
           <div class="core-ring core-ring-4">
             <span class="core-ring-tag">04 · Внешняя жизнь</span>
+            <span class="core-ring-icon at-bottom">🎯</span>
           </div>
           <div class="core-ring core-ring-3">
             <span class="core-ring-tag">03 · Тело · химия</span>
+            <span class="core-ring-icon at-right">💊</span>
           </div>
           <div class="core-ring core-ring-2">
             <span class="core-ring-tag">02 · Психика</span>
+            <span class="core-ring-icon at-left">🧠</span>
           </div>
           <div class="core-ring core-ring-1">
             <span class="core-ring-tag">01 · ∅ Сознание</span>
@@ -5750,7 +5832,7 @@
           <div class="legend-item">
             <div class="li-num">04</div>
             <div>
-              <h4 class="li-title">Внешняя жизнь</h4>
+              <h4 class="li-title"><span class="li-ic">🎯</span>Внешняя жизнь</h4>
               <p class="li-desc">Цели, результаты, поведение, внешние обстоятельства — самый внешний слой.</p>
               <span class="li-methods">▸ Программы развития, стратегии</span>
             </div>
@@ -5758,7 +5840,7 @@
           <div class="legend-item">
             <div class="li-num">03</div>
             <div>
-              <h4 class="li-title">Тело · химия</h4>
+              <h4 class="li-title"><span class="li-ic">💊</span>Тело · химия</h4>
               <p class="li-desc">Физиология, гормоны, биомаркеры, сон, восстановление.</p>
               <span class="li-methods">▸ БАДы, биохакинг, фармакология</span>
             </div>
@@ -5766,7 +5848,7 @@
           <div class="legend-item">
             <div class="li-num">02</div>
             <div>
-              <h4 class="li-title">Психика</h4>
+              <h4 class="li-title"><span class="li-ic">🧠</span>Психика</h4>
               <p class="li-desc">Мысли, эмоции, убеждения, ментальные конструкции.</p>
               <span class="li-methods">▸ Психотерапия, коучинг, NLP</span>
             </div>
@@ -5774,7 +5856,7 @@
           <div class="legend-item is-onto">
             <div class="li-num">01</div>
             <div>
-              <h4 class="li-title">∅ Сознание</h4>
+              <h4 class="li-title"><span class="li-ic">∅</span>Сознание</h4>
               <p class="li-desc">Базовый режим работы мозга — из него рождаются и мысли, и эмоции, и решения. Альфа-доминанта. <strong>Здесь работает только ONTO NOTHING.</strong></p>
               <span class="li-methods"><strong>▸ ONTO NOTHING</strong> · единственный вход</span>
             </div>
