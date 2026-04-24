@@ -3388,6 +3388,40 @@
     }
 
     /* BOOST — ONTO NOTHING как ускоритель любого подхода */
+    .boost-intro {
+      margin: 88px auto 0;
+      max-width: 880px;
+      text-align: center;
+      padding: 0 16px;
+    }
+    .boost-intro-title {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(2rem, 4.8vw, 3.6rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.04;
+      letter-spacing: -0.01em;
+      color: #16161A;
+      margin: 0 0 22px;
+    }
+    .boost-intro-title em {
+      font-style: normal;
+      color: #5F5FFF;
+    }
+    .boost-intro-sub {
+      font-family: "Jost", sans-serif;
+      font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+      line-height: 1.55;
+      color: #444450;
+      max-width: 640px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+    @media (max-width: 700px) {
+      .boost-intro { margin-top: 64px; }
+      .boost-intro-title br { display: none; }
+    }
+
     .boost-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 18px; margin-top: 48px;
@@ -6004,9 +6038,10 @@
 
       </div>
 
-      <p class="diff-bridge reveal">Все остальные подходы работают <strong>по слоям</strong> — добавки влияют на тело, психотерапия на мысли, коучинг на поведение. <strong>ONTO NOTHING — это доступ к операционной системе сознания.</strong> Меняется ОС — все слои перестраиваются сами.</p>
-
-      <p class="diff-outro reveal">ONTO NOTHING не заменяет ни один подход — <em>он ускоряет и усиливает любой.</em> Медитация, психотерапия, биохакинг, нейротренинг, спорт, мистические практики — каждое направление получает то, чего ему не хватало: <strong>прямой доступ к ядру, из которого работает всё остальное.</strong></p>
+      <div class="boost-intro reveal">
+        <h3 class="boost-intro-title">Усиливает всё.<br><em>Не заменяет ничего.</em></h3>
+        <p class="boost-intro-sub">Девять направлений. Один общий доступ к ядру, из которого все они начинают работать в разы сильнее.</p>
+      </div>
 
       <!-- BOOST — как ONTO NOTHING усиливает каждый подход -->
       <div class="boost-grid">
