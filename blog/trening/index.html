@@ -3492,6 +3492,47 @@
       display: grid; grid-template-columns: repeat(5, 1fr);
       gap: 14px; margin-top: 20px;
     }
+    .av-grid.who-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .av-grid.who-grid-5 { grid-template-columns: repeat(5, 1fr); }
+
+    /* Группы аудиторий */
+    .who-group {
+      margin-top: 56px;
+    }
+    .who-group:first-of-type { margin-top: 0; }
+    .who-group-head {
+      max-width: 760px;
+      margin: 0 auto 28px;
+      text-align: center;
+    }
+    .who-group-tag {
+      display: inline-block;
+      font-family: "Oswald", sans-serif;
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.4px;
+      color: #5F5FFF;
+      padding: 6px 14px;
+      background: rgba(95,95,255,0.10);
+      border: 1px solid rgba(95,95,255,0.28);
+      border-radius: 999px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .who-group-h {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.18;
+      color: #16161A;
+      margin: 0;
+      letter-spacing: 0.005em;
+    }
+    .who-group-h em {
+      font-style: normal;
+      color: #5F5FFF;
+      font-weight: 600;
+    }
     .av-card {
       padding: 28px 20px; border-radius: 20px;
       display: flex; flex-direction: column; gap: 12px;
@@ -4334,6 +4375,8 @@
       .impact-grid { grid-template-columns: repeat(2, 1fr); }
       .stack-grid { grid-template-columns: repeat(2, 1fr); }
       .paths-grid, .av-grid { grid-template-columns: repeat(3, 1fr); }
+      .av-grid.who-grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .av-grid.who-grid-5 { grid-template-columns: repeat(3, 1fr); }
       .day-grid { grid-template-columns: repeat(2, 1fr); }
       .integ-calendar { grid-template-columns: 1fr 1fr; }
       .viktor-grid { grid-template-columns: repeat(2, 1fr); }
@@ -4363,6 +4406,8 @@
       .const-grid, .baseline-grid, .cases-grid, .trees-grid, .voices-strip,
       .stack-grid, .paths-grid, .av-grid, .day-grid, .network-stats,
       .guar-pillars, .mnpi-comp { grid-template-columns: 1fr; }
+      .av-grid.who-grid-4, .av-grid.who-grid-5 { grid-template-columns: 1fr; }
+      .who-group { margin-top: 40px; }
       .integ-calendar { grid-template-columns: 1fr; }
       .modes-grid { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: 1fr; }
@@ -6174,46 +6219,89 @@
     </div>
   </section>
 
-  <!-- ═══════════ XI · WHO (Avatars) ═══════════ -->
+  <!-- ═══════════ XI · WHO (Two audiences) ═══════════ -->
   <section id="who" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
         <span class="eyebrow">13 · Кому это нужно</span>
-        <h2 class="h2-custom">Это работает для тебя, <em>если ты:</em></h2>
+        <h2 class="h2-custom">Двум типам людей.<br><em>Тем, кто работает над собой. И тем, кто работает с другими.</em></h2>
+        <p class="lead">ONTO NOTHING — и личный инструмент, и профессиональный. Для роста перформанса, здоровья и ясности — себе. Для прямого действия на состояние клиента — тем, кто работает с людьми.</p>
       </div>
 
-      <div class="av-grid">
-        <div class="av-card glass5 reveal">
-          <span class="av-num">01 · Уставший</span>
-          <span class="av-icon">🧠</span>
-          <h3 class="av-title">Устал от ума, который не выключается</h3>
-          <p class="av-desc">Нужна настоящая тишина как рабочий инструмент, а не идея о ней.</p>
+      <!-- Группа 1: Для себя -->
+      <div class="who-group reveal">
+        <div class="who-group-head">
+          <span class="who-group-tag">Группа 01</span>
+          <h3 class="who-group-h">Для тебя. <em>Личная эффективность, здоровье, ясность.</em></h3>
         </div>
-        <div class="av-card glass5 reveal">
-          <span class="av-num">02 · Лидер</span>
-          <span class="av-icon">💼</span>
-          <h3 class="av-title">Принимаешь важные решения</h3>
-          <p class="av-desc">Внутренний шум искажает картину. Ясность нужна в работе — каждый день.</p>
-        </div>
-        <div class="av-card glass5 reveal">
-          <span class="av-num">03 · Практик</span>
-          <span class="av-icon">🧘</span>
-          <h3 class="av-title">Медитируешь, но «пробил потолок»</h3>
-          <p class="av-desc">Глубокие проблески бывают, но только как спонтанное событие. ONTO NOTHING снимает потолок.</p>
-        </div>
-        <div class="av-card glass5 reveal">
-          <span class="av-num">04 · Работающий с людьми</span>
-          <span class="av-icon">🌿</span>
-          <h3 class="av-title">Коуч, психолог, терапевт</h3>
-          <p class="av-desc">Хочешь добавить в арсенал инструмент прямого действия — не разговорный.</p>
-        </div>
-        <div class="av-card glass5 reveal">
-          <span class="av-num">05 · Исследователь</span>
-          <span class="av-icon">🔬</span>
-          <h3 class="av-title">Нейро-энтузиаст</h3>
-          <p class="av-desc">Интересуешься нейротехнологиями и оптимизацией сознания. ONTO NOTHING — передний край.</p>
+        <div class="av-grid who-grid-4">
+          <div class="av-card glass5">
+            <span class="av-num">01 · Перформанс</span>
+            <span class="av-icon">🧠</span>
+            <h3 class="av-title">Предприниматель · Руководитель · Эксперт</h3>
+            <p class="av-desc">Решения каждый день — внутренний шум искажает картину. Тебе нужна не идея о тишине, а тишина как рабочий инструмент.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">02 · Здоровье</span>
+            <span class="av-icon">💎</span>
+            <h3 class="av-title">Здоровье и долголетие</h3>
+            <p class="av-desc">Хронический фон активации DMN — это воспаление, кортизол, ускоренное старение. Метод снимает этот фон. Биовозраст идёт вниз быстрее.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">03 · Творчество</span>
+            <span class="av-icon">✨</span>
+            <h3 class="av-title">Творец · Креатор · Автор</h3>
+            <p class="av-desc">Идеи приходят из паузы, а не из шума. Метод даёт доступ к нелинейному мышлению — для текстов, продуктов, музыки, искусства.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">04 · Практик</span>
+            <span class="av-icon">🧘</span>
+            <h3 class="av-title">Опытный практик медитации</h3>
+            <p class="av-desc">Глубокие проблески бывают, но как спонтанное событие. Годы садханы дают доступ — ONTO NOTHING делает его воспроизводимым по команде.</p>
+          </div>
         </div>
       </div>
+
+      <!-- Группа 2: Для работы с другими -->
+      <div class="who-group reveal">
+        <div class="who-group-head">
+          <span class="who-group-tag">Группа 02</span>
+          <h3 class="who-group-h">Для тех, с кем ты работаешь. <em>Психологи, коучи, врачи, тренеры, исследователи.</em></h3>
+        </div>
+        <div class="av-grid who-grid-5">
+          <div class="av-card glass5">
+            <span class="av-num">05 · Психолог · Терапевт</span>
+            <span class="av-icon">🛋</span>
+            <h3 class="av-title">Психолог · Психотерапевт</h3>
+            <p class="av-desc">В арсенал — инструмент прямого действия. Снимает фон сопротивления у клиента, после которого проработка идёт глубже и быстрее.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">06 · Коуч</span>
+            <span class="av-icon">🎤</span>
+            <h3 class="av-title">Коуч · Ментор</h3>
+            <p class="av-desc">Клиент приходит с шумом — сессия буксует на этом фоне. После входа в тишину разговор идёт качественно глубже.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">07 · Врач</span>
+            <span class="av-icon">🩺</span>
+            <h3 class="av-title">Врач · Психиатр · Превентивщик</h3>
+            <p class="av-desc">Состояния сознания получают нейрофизиологическую сигнатуру. Появляется новый инструмент в работе с тревогой, выгоранием, сном.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">08 · Тренер</span>
+            <span class="av-icon">🎓</span>
+            <h3 class="av-title">Тренер · Учитель медитации · Инструктор йоги</h3>
+            <p class="av-desc">У практик появляется калиброванный паттерн ЭЭГ как мишень. Можно учить не «попробуй», а конкретному воспроизводимому состоянию.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">09 · Исследователь</span>
+            <span class="av-icon">🔬</span>
+            <h3 class="av-title">Исследователь · Нейро · IT</h3>
+            <p class="av-desc">Наука, нейротехнологии, разработка ИИ-ассистентов под состояния. ONTO NOTHING — передний край прикладной нейрофизиологии сознания.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
