@@ -1275,6 +1275,253 @@
     }
 
     /* ══════════════════════════════════
+       DAY TIMELINE — Один день. Два мозга.
+    ══════════════════════════════════ */
+    .day-timeline {
+      margin-top: 28px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 6px;
+    }
+    .dt-inner {
+      min-width: 980px;
+    }
+    .dt-scale {
+      display: grid;
+      grid-template-columns: 180px repeat(6, 1fr);
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .dt-scale span {
+      font-family: "VT323", monospace;
+      font-size: 1rem;
+      color: #888896;
+      letter-spacing: 0.5px;
+      text-align: left;
+      padding-left: 6px;
+    }
+    .dt-scale span:first-child { text-align: right; padding-right: 8px; padding-left: 0; color: transparent; }
+    .dt-scale span:last-child { position: relative; }
+
+    .dt-track {
+      margin-bottom: 20px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .dt-track.dmn-track {
+      background: linear-gradient(160deg, rgba(255,107,107,0.08) 0%, rgba(245,166,35,0.04) 100%);
+      border: 1px solid rgba(255,107,107,0.22);
+    }
+    .dt-track.func-track {
+      background: linear-gradient(160deg, rgba(95,95,255,0.06) 0%, rgba(0,229,160,0.05) 100%);
+      border: 1px solid rgba(95,95,255,0.22);
+    }
+
+    .dt-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      border-bottom: 1px dashed rgba(0,0,0,0.06);
+    }
+    .dt-head .dt-ic {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .dt-track.dmn-track .dt-head .dt-ic {
+      background: rgba(255,107,107,0.16);
+      color: #FF6B6B;
+    }
+    .dt-track.func-track .dt-head .dt-ic {
+      background: linear-gradient(135deg, rgba(95,95,255,0.18) 0%, rgba(0,229,160,0.18) 100%);
+    }
+    .dt-name {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.1rem; font-weight: 700;
+      text-transform: uppercase;
+      color: #16161A;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+    .dt-sub {
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: #888896;
+      margin-top: 3px;
+    }
+
+    .dt-body {
+      padding: 16px 22px 20px;
+    }
+    .dt-row {
+      display: grid;
+      grid-template-columns: 180px repeat(6, 1fr);
+      gap: 6px;
+      align-items: stretch;
+    }
+    .dt-row-label {
+      padding-right: 14px;
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: #888896;
+      align-self: center;
+      text-align: right;
+      line-height: 1.3;
+    }
+    .dt-seg {
+      padding: 14px 14px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 6px;
+      color: #fff;
+      min-height: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .dt-seg-ic {
+      font-size: 1.1rem; line-height: 1;
+    }
+    .dt-seg-title {
+      font-family: "Oswald", sans-serif;
+      font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+    }
+    .dt-seg-body {
+      font-family: "Jost", sans-serif;
+      font-size: 0.72rem;
+      line-height: 1.4;
+      opacity: 0.94;
+      margin: 0;
+    }
+
+    /* DMN segments — all same monotone */
+    .dt-seg.dmn {
+      background: linear-gradient(135deg, #FF6B6B 0%, #F5A623 100%);
+    }
+    .dt-seg.dmn::after {
+      content: '';
+      position: absolute;
+      right: 10px; top: 10px;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.55);
+    }
+
+    /* Functional segments — each mode own color */
+    .dt-seg.pure     { background: linear-gradient(135deg, #5F5FFF 0%, #A78BFA 100%); }
+    .dt-seg.presence { background: linear-gradient(135deg, #0A84FF 0%, #5F5FFF 100%); }
+    .dt-seg.flow     { background: linear-gradient(135deg, #00E5A0 0%, #0A84FF 100%); }
+    .dt-seg.visceral { background: linear-gradient(135deg, #A78BFA 0%, #FF6B6B 100%); }
+    .dt-seg.quantum  { background: linear-gradient(135deg, #5F5FFF 0%, #00E5A0 100%); }
+    .dt-seg.transcendent { background: linear-gradient(135deg, #A78BFA 0%, #0A84FF 100%); }
+
+    /* Metric row — сигнал под сегментами */
+    .dt-metrics-row {
+      display: grid;
+      grid-template-columns: 180px repeat(6, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(0,0,0,0.06);
+    }
+    .dt-metric-bar {
+      height: 8px;
+      border-radius: 100px;
+      position: relative;
+    }
+    .dt-metric-bar.high { background: linear-gradient(90deg, #FF6B6B, #F5A623); }
+    .dt-metric-bar.low { background: linear-gradient(90deg, #5F5FFF, #A78BFA); opacity: 0.4; }
+    .dt-metric-bar.alpha-bar {
+      background: linear-gradient(90deg, #00E5A0, #5F5FFF);
+    }
+    .dt-metric-bar.beta-bar {
+      background: linear-gradient(90deg, #FF6B6B, #F5A623);
+    }
+    .dt-metric-fill {
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      border-radius: 100px;
+      background: inherit;
+    }
+
+    /* Day summary strip */
+    .dt-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .dt-sum-card {
+      padding: 20px 22px;
+      border-radius: 14px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .dt-sum-card.dmn {
+      background: rgba(255,107,107,0.06);
+      border: 1px solid rgba(255,107,107,0.22);
+    }
+    .dt-sum-card.func {
+      background: rgba(0,229,160,0.06);
+      border: 1px solid rgba(0,229,160,0.28);
+    }
+    .dt-sum-lbl {
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase;
+    }
+    .dt-sum-card.dmn .dt-sum-lbl { color: #FF6B6B; }
+    .dt-sum-card.func .dt-sum-lbl { color: #00a575; }
+    .dt-sum-txt {
+      font-family: "Jost", sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #16161A;
+    }
+
+    .dt-recap-head {
+      text-align: center;
+      margin: 60px auto 0;
+      max-width: 640px;
+    }
+    .dt-recap-lbl {
+      display: inline-block;
+      font-family: "Courier Prime", monospace;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #5F5FFF;
+      padding: 6px 16px;
+      border-radius: 100px;
+      background: rgba(95,95,255,0.08);
+      border: 1px solid rgba(95,95,255,0.22);
+      margin-bottom: 16px;
+    }
+    .dt-recap-h {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #16161A;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .dt-recap-h em {
+      font-style: italic;
+      color: #5F5FFF;
+    }
+
+    /* ══════════════════════════════════
        BASELINE
     ══════════════════════════════════ */
     .baseline-grid {
@@ -2608,6 +2855,9 @@
       .why-grid { grid-template-columns: 1fr; }
       .why-reveal-card { padding: 36px 24px; }
       .why-turn-line::before, .why-turn-line::after { display: none; }
+      /* day timeline — mobile */
+      .dt-inner { min-width: 760px; }
+      .dt-summary { grid-template-columns: 1fr; }
     }
     @media (min-width: 701px) and (max-width: 1024px) {
       .why-grid { grid-template-columns: 1fr 1fr; }
@@ -3313,9 +3563,153 @@
   <section id="baseline" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть V · Базовая линия</span>
-        <h2 class="h2-custom">Что меняется, если жить <em>в функциональных режимах.</em></h2>
-        <p class="lead">Большинство проводит 90%+ времени в 🌀 DMN. Мозг в фоновой бете, ВНС в симпатике, диалог не замолкает. Тело платит хроническим стрессом — даже когда «ничего не происходит».</p>
+        <span class="eyebrow">Часть V · Базовая линия · Один день</span>
+        <h2 class="h2-custom">Два человека. <em>Один день.</em></h2>
+        <p class="lead">Что происходит с утра до ночи у того, кто залип в DMN — и у того, кто переключается между режимами. Одинаковые 18 часов. Два разных мозга.</p>
+      </div>
+
+      <div class="day-timeline reveal">
+        <div class="dt-inner">
+
+          <!-- Time scale -->
+          <div class="dt-scale">
+            <span></span>
+            <span>06:00</span>
+            <span>09:00</span>
+            <span>12:00</span>
+            <span>15:00</span>
+            <span>18:00</span>
+            <span>21:00</span>
+          </div>
+
+          <!-- DMN TRACK -->
+          <div class="dt-track dmn-track">
+            <div class="dt-head">
+              <div class="dt-ic">🌀</div>
+              <div>
+                <div class="dt-name">DMN-человек</div>
+                <div class="dt-sub">Бета-доминанта · симпатика · 90% времени</div>
+              </div>
+            </div>
+            <div class="dt-body">
+              <div class="dt-row">
+                <div class="dt-row-label">Режим<br>сознания</div>
+                <div class="dt-seg dmn">
+                  <span class="dt-seg-ic">🌀</span>
+                  <div class="dt-seg-title">Утро в тревоге</div>
+                  <p class="dt-seg-body">Проснулся с мыслью о дне. Уже стресс.</p>
+                </div>
+                <div class="dt-seg dmn">
+                  <span class="dt-seg-ic">🌀</span>
+                  <div class="dt-seg-title">Расфокус</div>
+                  <p class="dt-seg-body">Прокрастинация. Окна, вкладки, жевание.</p>
+                </div>
+                <div class="dt-seg dmn">
+                  <span class="dt-seg-ic">🌀</span>
+                  <div class="dt-seg-title">Обед + лента</div>
+                  <p class="dt-seg-body">Снова в телефоне. Ум не замолкает.</p>
+                </div>
+                <div class="dt-seg dmn">
+                  <span class="dt-seg-ic">🌀</span>
+                  <div class="dt-seg-title">Срыв в звонке</div>
+                  <p class="dt-seg-body">Реактивный ответ. Потом весь день переживает.</p>
+                </div>
+                <div class="dt-seg dmn">
+                  <span class="dt-seg-ic">🌀</span>
+                  <div class="dt-seg-title">Автопилот дома</div>
+                  <p class="dt-seg-body">Раздражение. Сериал как анестезия.</p>
+                </div>
+                <div class="dt-seg dmn">
+                  <span class="dt-seg-ic">🌀</span>
+                  <div class="dt-seg-title">Не может уснуть</div>
+                  <p class="dt-seg-body">Ум гоняет диалог. Засыпание за час.</p>
+                </div>
+              </div>
+
+              <div class="dt-metrics-row">
+                <div class="dt-row-label">β-волна</div>
+                <div class="dt-metric-bar beta-bar" style="grid-column: 2 / -1;"></div>
+              </div>
+              <div class="dt-metrics-row" style="border-top: none; padding-top: 0;">
+                <div class="dt-row-label">α-волна</div>
+                <div class="dt-metric-bar low" style="grid-column: 2 / -1;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FUNCTIONAL TRACK -->
+          <div class="dt-track func-track">
+            <div class="dt-head">
+              <div class="dt-ic">∅</div>
+              <div>
+                <div class="dt-name">ONTO NOTHING-человек</div>
+                <div class="dt-sub">Переключается между 7 режимами по задаче</div>
+              </div>
+            </div>
+            <div class="dt-body">
+              <div class="dt-row">
+                <div class="dt-row-label">Режим<br>сознания</div>
+                <div class="dt-seg pure">
+                  <span class="dt-seg-ic">∅</span>
+                  <div class="dt-seg-title">Pure Nothing</div>
+                  <p class="dt-seg-body">20-мин сессия. Вход в день из тишины.</p>
+                </div>
+                <div class="dt-seg presence">
+                  <span class="dt-seg-ic">👁</span>
+                  <div class="dt-seg-title">Active Presence</div>
+                  <p class="dt-seg-body">Работа с полным вниманием без усилия.</p>
+                </div>
+                <div class="dt-seg flow">
+                  <span class="dt-seg-ic">⚡</span>
+                  <div class="dt-seg-title">Embodied Flow</div>
+                  <p class="dt-seg-body">Сложная задача — в потоке. 2× эффективность.</p>
+                </div>
+                <div class="dt-seg visceral">
+                  <span class="dt-seg-ic">🫀</span>
+                  <div class="dt-seg-title">Visceral Mind</div>
+                  <p class="dt-seg-body">Переговоры. Решение из тела, не из шума.</p>
+                </div>
+                <div class="dt-seg quantum">
+                  <span class="dt-seg-ic">✨</span>
+                  <div class="dt-seg-title">Quantum Genesis</div>
+                  <p class="dt-seg-body">Креативный блок. Тета-окно, инсайт.</p>
+                </div>
+                <div class="dt-seg transcendent">
+                  <span class="dt-seg-ic">🔮</span>
+                  <div class="dt-seg-title">→ ∅ Pure Nothing</div>
+                  <p class="dt-seg-body">Download + сон из тишины. Засыпает за минуты.</p>
+                </div>
+              </div>
+
+              <div class="dt-metrics-row">
+                <div class="dt-row-label">β-волна</div>
+                <div class="dt-metric-bar low" style="grid-column: 2 / -1;"></div>
+              </div>
+              <div class="dt-metrics-row" style="border-top: none; padding-top: 0;">
+                <div class="dt-row-label">α-волна</div>
+                <div class="dt-metric-bar alpha-bar" style="grid-column: 2 / -1;"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="dt-summary reveal">
+        <div class="dt-sum-card dmn">
+          <span class="dt-sum-lbl">→ День в DMN</span>
+          <p class="dt-sum-txt">Стресс-индекс высокий весь день. HRV низкий. Кортизол хронический. Сон неглубокий. «Ничего не случилось» — но тело в режиме угрозы 18 часов подряд.</p>
+        </div>
+        <div class="dt-sum-card func">
+          <span class="dt-sum-lbl">→ День в режимах</span>
+          <p class="dt-sum-txt">ВНС в балансе. Альфа-доминанта с переключениями в тету под задачу. Кортизол в циркадной норме. Сон глубокий. Нейропластичность открыта как образ жизни.</p>
+        </div>
+      </div>
+
+      <!-- RECAP: 6 shifts -->
+      <div class="dt-recap-head reveal">
+        <span class="dt-recap-lbl">Почему это работает</span>
+        <h3 class="dt-recap-h">6 сдвигов в <em>базовой линии.</em></h3>
       </div>
 
       <div class="baseline-grid">
