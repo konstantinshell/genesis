@@ -3387,6 +3387,59 @@
       padding-top: 10px;
     }
 
+    /* BOOST — ONTO NOTHING как ускоритель любого подхода */
+    .boost-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px; margin-top: 48px;
+    }
+    .boost-card {
+      padding: 28px 24px 26px; border-radius: 22px;
+      position: relative;
+      display: flex; flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .boost-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 44px rgba(95,95,255,0.10);
+    }
+    .boost-head {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .boost-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: rgba(95,95,255,0.10);
+      border: 1px solid rgba(95,95,255,0.28);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: #5F5FFF; flex-shrink: 0;
+    }
+    .boost-icon svg { width: 20px; height: 20px; }
+    .boost-tag {
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.6px;
+      color: #5F5FFF;
+    }
+    .boost-card h3 {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.18rem; font-weight: 700;
+      text-transform: uppercase; color: #16161A;
+      margin: 0 0 12px; line-height: 1.22;
+    }
+    .boost-card p {
+      font-family: "Jost", sans-serif;
+      font-size: 0.93rem; line-height: 1.62;
+      color: #444450; margin: 0;
+    }
+    .boost-gain {
+      margin-top: 14px; padding-top: 12px;
+      border-top: 1px dashed rgba(95,95,255,0.22);
+      font-family: "Jost", sans-serif;
+      font-size: 0.9rem; line-height: 1.5;
+      color: #16161A; font-weight: 500;
+    }
+    .boost-gain b { color: #5F5FFF; font-weight: 700; }
+
     /* ══════════════════════════════════
        AVATARS
     ══════════════════════════════════ */
@@ -4250,6 +4303,7 @@
       .team-card.featured .team-bio { text-align: left; }
       .integ-results ul { grid-template-columns: 1fr; }
       .not-grid { grid-template-columns: 1fr; }
+      .boost-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     }
     @media (max-width: 700px) {
       .s { padding: 72px 16px; }
@@ -4271,6 +4325,8 @@
       .hero5-cta { padding: 16px 28px; font-size: 0.9rem; }
       .finale-cta { padding: 20px 36px; }
       .pull-quote { padding: 22px 24px; }
+      .boost-grid { grid-template-columns: 1fr; }
+      .boost-card { padding: 24px 20px; }
       .arc-grid { grid-template-columns: 100px repeat(5, 1fr); min-width: 780px; }
       .mnpi-score-value { font-size: 2.4rem; }
       .mnpi-block { padding: 28px 22px; }
@@ -5950,38 +6006,87 @@
 
       <p class="diff-bridge reveal">Все остальные подходы работают <strong>по слоям</strong> — добавки влияют на тело, психотерапия на мысли, коучинг на поведение. <strong>ONTO NOTHING — это доступ к операционной системе сознания.</strong> Меняется ОС — все слои перестраиваются сами.</p>
 
-      <p class="diff-outro reveal">ONTO NOTHING не заменяет духовную практику — <em>он её ускоряет.</em> Если ты медитировал годами — метод даёт то, за чем ты шёл, сразу. Если не медитировал — даёт тот же доступ, без подготовки.</p>
+      <p class="diff-outro reveal">ONTO NOTHING не заменяет ни один подход — <em>он ускоряет и усиливает любой.</em> Медитация, психотерапия, биохакинг, нейротренинг, спорт, мистические практики — каждое направление получает то, чего ему не хватало: <strong>прямой доступ к ядру, из которого работает всё остальное.</strong></p>
 
-      <!-- NOT-IS -->
-      <div class="not-grid">
-        <div class="not-card glass5 reveal">
-          <div class="not-icon">×</div>
-          <h3>Это не медитация.</h3>
-          <p>Медитация — практика успокоения без гарантии результата.</p>
-          <p>ONTO NOTHING — протокол входа с верификацией на приборах с первой сессии.</p>
+      <!-- BOOST — как ONTO NOTHING усиливает каждый подход -->
+      <div class="boost-grid">
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M 12 3 V 6"/><path d="M 12 18 V 21"/><path d="M 3 12 H 6"/><path d="M 18 12 H 21"/><path d="M 5.6 5.6 L 7.7 7.7"/><path d="M 16.3 16.3 L 18.4 18.4"/><path d="M 5.6 18.4 L 7.7 16.3"/><path d="M 16.3 7.7 L 18.4 5.6"/></svg>
+            </span>
+            <span class="boost-tag">Медитация · Йога</span>
+          </div>
+          <h3>Годы практики — за один день.</h3>
+          <p>То состояние, к которому ведут десятилетия садханы, ретриты и тысячи часов сидения, — становится доступным с первой сессии. И — воспроизводимым по запросу.</p>
+          <div class="boost-gain"><b>Выгода:</b> практика перестаёт быть лотереей. У тебя есть мишень, которую видно на ЭЭГ.</div>
         </div>
-        <div class="not-card glass5 reveal">
-          <div class="not-icon">×</div>
-          <h3>Это не психотерапия.</h3>
-          <p>Терапия работает с содержанием мыслей.</p>
-          <p>ONTO NOTHING выключает сам аппарат мышления.</p>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 12 4 C 8 4 5 7 5 11 C 5 14 7 16 7 18 V 20 H 12"/><path d="M 9 11 a 1 1 0 1 0 0.01 0"/><path d="M 14 14 H 19"/><path d="M 16.5 11.5 V 16.5"/></svg>
+            </span>
+            <span class="boost-tag">Психотерапия · Коучинг</span>
+          </div>
+          <h3>Терапия идёт глубже и быстрее.</h3>
+          <p>Терапия работает с содержанием мыслей. ONTO NOTHING выключает сам фон, на котором эти мысли крутятся, — и проработка идёт без сопротивления.</p>
+          <div class="boost-gain"><b>Выгода:</b> то, что в кабинете прорабатывается месяцами, после входа складывается за недели.</div>
         </div>
-        <div class="not-card glass5 reveal">
-          <div class="not-icon">×</div>
-          <h3>Это не биохакинг.</h3>
-          <p>Биохакинг оптимизирует физиологию.</p>
-          <p>ONTO NOTHING меняет уровень сознания, из которого физиология — следствие.</p>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 8 3 H 16"/><path d="M 9 3 V 9 L 5 18 a 2 2 0 0 0 2 2 H 17 a 2 2 0 0 0 2 -2 L 15 9 V 3"/><path d="M 7 14 H 17"/></svg>
+            </span>
+            <span class="boost-tag">Биохакинг · БАДы</span>
+          </div>
+          <h3>Те же протоколы — другой эффект.</h3>
+          <p>На выключенной DMN физиология работает иначе. Сон, добавки, тренировки, голодание — всё усваивается глубже, потому что нервная система перестаёт жить в фоновом стрессе.</p>
+          <div class="boost-gain"><b>Выгода:</b> биомаркеры сдвигаются в 2–3 раза быстрее на тех же протоколах.</div>
         </div>
-        <div class="not-card glass5 reveal">
-          <div class="not-icon">×</div>
-          <h3>Это не эзотерика.</h3>
-          <p>Эзотерика просит верить.</p>
-          <p>ONTO NOTHING показывает графики ЭЭГ, PPG и HRV в реальном времени.</p>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M 2 12 H 5 L 7 6 L 10 18 L 13 9 L 15 14 L 17 11 H 22"/></svg>
+            </span>
+            <span class="boost-tag">Нейрофидбэк · ЭЭГ-тренинг</span>
+          </div>
+          <h3>Калиброванная мишень для мозга.</h3>
+          <p>ONTO NOTHING — это конкретный, описанный паттерн ЭЭГ. Нейрофидбэк перестаёт гонять абстракции «расслабься / сконцентрируйся» и тренирует воспроизводимое состояние.</p>
+          <div class="boost-gain"><b>Выгода:</b> у нейротренинга появляется измеримая цель, а не «попробуем ещё».</div>
         </div>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M 4 18 L 10 12 L 14 16 L 20 6"/><path d="M 14 6 H 20 V 12"/></svg>
+            </span>
+            <span class="boost-tag">Спорт · Перформанс · Flow</span>
+          </div>
+          <h3>Поток — по команде, а не случайно.</h3>
+          <p>Flow в спорте, переговорах, креативе раньше зависел от удачи и формы. ONTO NOTHING — это вход в то же состояние сборки внимания, только воспроизводимый осознанно.</p>
+          <div class="boost-gain"><b>Выгода:</b> доступ к пиковому состоянию становится навыком, а не везением.</div>
+        </div>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M 12 3 V 21"/><path d="M 3 12 H 21"/><path d="M 5 7 C 9 9 15 9 19 7"/><path d="M 5 17 C 9 15 15 15 19 17"/></svg>
+            </span>
+            <span class="boost-tag">Мистика · Эзотерика · Ритуал</span>
+          </div>
+          <h3>То, что описывали мистики, — теперь видно на приборах.</h3>
+          <p>Состояния, о которых писали суфии, дзенцы, исихасты, шаманы — получают ЭЭГ-сигнатуру. Не вера, не метафора — измеримый феномен с воспроизводимым входом.</p>
+          <div class="boost-gain"><b>Выгода:</b> традиция перестаёт быть «или верь, или нет» — она проверяется на приборе.</div>
+        </div>
+
       </div>
 
       <blockquote class="pull-quote reveal">
-        Это новая категория — <em>онтология выключенного ума с инструментальной верификацией.</em>
+        ONTO NOTHING — не альтернатива практикам. <em>Это операционный доступ к ядру, из которого все практики начинают работать в разы сильнее.</em>
       </blockquote>
     </div>
   </section>
