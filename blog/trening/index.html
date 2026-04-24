@@ -584,6 +584,195 @@
     }
 
     /* ══════════════════════════════════
+       CONTRAST (ЭЭГ до/после)
+    ══════════════════════════════════ */
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: 1fr 120px 1fr;
+      gap: 18px;
+      margin-top: 28px;
+      align-items: stretch;
+    }
+    .contrast-card {
+      padding: 30px 28px;
+      border-radius: 22px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .contrast-card.before {
+      background: linear-gradient(160deg, rgba(255,107,107,0.10) 0%, rgba(245,166,35,0.04) 100%);
+      border: 1px solid rgba(255,107,107,0.28);
+    }
+    .contrast-card.after {
+      background: linear-gradient(160deg, rgba(0,229,160,0.10) 0%, rgba(95,95,255,0.06) 100%);
+      border: 1px solid rgba(0,229,160,0.32);
+    }
+    .contrast-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding-bottom: 8px;
+      margin-bottom: 4px;
+      border-bottom: 1px dashed rgba(0,0,0,0.08);
+    }
+    .contrast-tag {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.5rem; font-weight: 700;
+      text-transform: uppercase;
+      color: #FF6B6B;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .contrast-card.after .contrast-tag { color: #00a575; }
+    .contrast-time {
+      font-family: "VT323", monospace;
+      font-size: 1.4rem;
+      color: #888896;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+    .contrast-card.after .contrast-time { color: #00a575; }
+    .wave-track {
+      display: grid;
+      grid-template-columns: 120px 1fr 110px;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.06);
+    }
+    .wave-track:last-of-type { border-bottom: none; }
+    .wave-label {
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: #444450;
+      line-height: 1.4;
+    }
+    .wave-label b {
+      display: block;
+      font-family: "Oswald", sans-serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: #16161A;
+      margin-bottom: 3px;
+      letter-spacing: 0.02em;
+      text-transform: none;
+    }
+    .wave-svg {
+      height: 52px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.35);
+    }
+    .wave-svg::before, .wave-svg::after {
+      content: '';
+      position: absolute; top: 0; bottom: 0;
+      width: 18px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .wave-svg::before { left: 0; background: linear-gradient(90deg, rgba(255,255,255,0.6), transparent); }
+    .wave-svg::after { right: 0; background: linear-gradient(-90deg, rgba(255,255,255,0.6), transparent); }
+    .wave-svg svg {
+      width: 200%;
+      height: 100%;
+      display: block;
+      will-change: transform;
+    }
+    .wave-svg.beta-strong svg { animation: waveScroll 2.2s linear infinite; }
+    .wave-svg.beta-weak svg { animation: waveScroll 2.2s linear infinite; opacity: 0.25; }
+    .wave-svg.alpha-weak svg { animation: waveScroll 7s linear infinite; opacity: 0.3; }
+    .wave-svg.alpha-strong svg { animation: waveScroll 5.5s linear infinite; }
+    @keyframes waveScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wave-svg svg { animation: none !important; }
+    }
+    .wave-state {
+      font-family: "Courier Prime", monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.3px; text-transform: uppercase;
+      text-align: right;
+      line-height: 1.3;
+    }
+    .wave-state.dom { color: #FF6B6B; }
+    .wave-state.sup { color: #888896; }
+    .wave-state.new-dom { color: #00a575; }
+    .contrast-foot {
+      margin-top: 14px;
+      padding: 14px 18px; border-radius: 12px;
+      background: rgba(255,255,255,0.45);
+      font-family: "Jost", sans-serif;
+      font-size: 0.9rem; line-height: 1.55;
+      color: #444450;
+    }
+    .contrast-foot strong { color: #16161A; font-weight: 600; }
+
+    .contrast-arrow {
+      grid-column: 2;
+      align-self: center;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px;
+      padding: 16px 6px;
+      text-align: center;
+    }
+    .contrast-arrow .c-label {
+      font-family: "Courier Prime", monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.6px; text-transform: uppercase;
+      color: #5F5FFF;
+      line-height: 1.3;
+    }
+    .contrast-arrow .c-arr {
+      font-family: "Oswald", sans-serif;
+      font-size: 2.6rem;
+      color: #5F5FFF;
+      line-height: 1;
+    }
+    .contrast-arrow .c-sec {
+      font-family: "VT323", monospace;
+      font-size: 1.3rem;
+      color: #5F5FFF;
+      background: rgba(95,95,255,0.1);
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid rgba(95,95,255,0.25);
+    }
+
+    .contrast-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 44px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .cm-item {
+      padding: 0 22px;
+      border-left: 1px solid rgba(0,0,0,0.08);
+      text-align: left;
+    }
+    .cm-item:first-child { border-left: none; padding-left: 0; }
+    .cm-val {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, #5F5FFF 0%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.01em;
+    }
+    .cm-lbl {
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: #888896;
+      margin-top: 10px;
+      line-height: 1.45;
+    }
+
+    /* ══════════════════════════════════
        PATHS (5 cards)
     ══════════════════════════════════ */
     .paths-grid {
@@ -2189,6 +2378,15 @@
       .tl-node.finale > .tl-card { grid-column: 1 / -1; }
       .tl-node.finale-year { margin: 36px 0 8px; }
       .tl-node.finale-year .tl-year-big { font-size: 2.4rem; padding: 10px 22px; }
+      /* contrast — stack */
+      .contrast-grid { grid-template-columns: 1fr; gap: 16px; }
+      .contrast-arrow { grid-column: 1; flex-direction: row; justify-content: center; padding: 12px 0; }
+      .contrast-arrow .c-arr { transform: rotate(90deg); font-size: 1.8rem; }
+      .wave-track { grid-template-columns: 1fr; gap: 8px; padding: 12px 0; }
+      .wave-state { text-align: left; }
+      .contrast-metrics { grid-template-columns: 1fr 1fr; gap: 18px 14px; }
+      .cm-item:nth-child(3) { border-left: none; padding-left: 0; }
+      .cm-item:nth-child(2), .cm-item:nth-child(4) { border-left: 1px solid rgba(0,0,0,0.08); }
     }
   </style>
 </head>
@@ -2264,23 +2462,24 @@
   <nav class="subnav" aria-label="Разделы страницы">
     <div class="subnav-inner">
       <a href="#tradition">01 · Традиция</a>
-      <a href="#paths">02 · Пути</a>
-      <a href="#discovery">03 · Открытие</a>
-      <a href="#modes">04 · Режимы</a>
-      <a href="#baseline">05 · Линия</a>
-      <a href="#viktor">06 · Цифры</a>
-      <a href="#ai">07 · ai</a>
-      <a href="#day">08 · Тренинг</a>
-      <a href="#arc">09 · Дуга</a>
-      <a href="#diff">10 · Граница</a>
-      <a href="#who">11 · Кому</a>
-      <a href="#stack">12 · Стек</a>
-      <a href="#cases">13 · Кейсы</a>
-      <a href="#author">14 · Автор</a>
-      <a href="#pricing">15 · Тарифы</a>
-      <a href="#guarantee">16 · Гарантия</a>
-      <a href="#stream">17 · Поток</a>
-      <a href="#faq">18 · FAQ</a>
+      <a href="#contrast">02 · ЭЭГ</a>
+      <a href="#paths">03 · Пути</a>
+      <a href="#discovery">04 · Открытие</a>
+      <a href="#modes">05 · Режимы</a>
+      <a href="#baseline">06 · Линия</a>
+      <a href="#viktor">07 · Цифры</a>
+      <a href="#ai">08 · ai</a>
+      <a href="#day">09 · Тренинг</a>
+      <a href="#arc">10 · Дуга</a>
+      <a href="#diff">11 · Граница</a>
+      <a href="#who">12 · Кому</a>
+      <a href="#stack">13 · Стек</a>
+      <a href="#cases">14 · Кейсы</a>
+      <a href="#author">15 · Автор</a>
+      <a href="#pricing">16 · Тарифы</a>
+      <a href="#guarantee">17 · Гарантия</a>
+      <a href="#stream">18 · Поток</a>
+      <a href="#faq">19 · FAQ</a>
     </div>
   </nav>
 
@@ -2414,6 +2613,105 @@
         Суть одна. Пути разные.
         <small>У него много имён — pure awareness, самадхи, flow, non-dual state, чистое присутствие, ничто</small>
       </blockquote>
+    </div>
+  </section>
+
+  <!-- ═══════════ CONTRAST · ЭЭГ до/после ═══════════ -->
+  <section id="contrast" class="s">
+    <div class="s-inner">
+      <div class="section-header reveal">
+        <span class="eyebrow">60 секунд · что происходит в мозге</span>
+        <h2 class="h2-custom">ДО и ПОСЛЕ входа. <em>Прямо на ЭЭГ.</em></h2>
+        <p class="lead">Не метафора. Реальное переключение доминирующего ритма — бета гасится, альфа выходит на первый план. Видно с первой сессии, на приборе.</p>
+      </div>
+
+      <div class="contrast-grid">
+
+        <!-- BEFORE -->
+        <div class="contrast-card before reveal">
+          <div class="contrast-head">
+            <span class="contrast-tag">ДО</span>
+            <span class="contrast-time">00:00</span>
+          </div>
+          <div class="wave-track">
+            <div class="wave-label"><b>β Beta</b>13–30 Гц</div>
+            <div class="wave-svg beta-strong">
+              <svg viewBox="0 0 800 48" preserveAspectRatio="none">
+                <path fill="none" stroke="#FF6B6B" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" d="M 0 24 L 8 14 L 16 34 L 24 10 L 32 38 L 40 16 L 48 32 L 56 12 L 64 36 L 72 18 L 80 30 L 88 14 L 96 34 L 104 10 L 112 38 L 120 16 L 128 32 L 136 12 L 144 36 L 152 18 L 160 30 L 168 14 L 176 34 L 184 10 L 192 38 L 200 16 L 208 32 L 216 12 L 224 36 L 232 18 L 240 30 L 248 14 L 256 34 L 264 10 L 272 38 L 280 16 L 288 32 L 296 12 L 304 36 L 312 18 L 320 30 L 328 14 L 336 34 L 344 10 L 352 38 L 360 16 L 368 32 L 376 12 L 384 36 L 392 18 L 400 24 L 408 14 L 416 34 L 424 10 L 432 38 L 440 16 L 448 32 L 456 12 L 464 36 L 472 18 L 480 30 L 488 14 L 496 34 L 504 10 L 512 38 L 520 16 L 528 32 L 536 12 L 544 36 L 552 18 L 560 30 L 568 14 L 576 34 L 584 10 L 592 38 L 600 16 L 608 32 L 616 12 L 624 36 L 632 18 L 640 30 L 648 14 L 656 34 L 664 10 L 672 38 L 680 16 L 688 32 L 696 12 L 704 36 L 712 18 L 720 30 L 728 14 L 736 34 L 744 10 L 752 38 L 760 16 L 768 32 L 776 12 L 784 36 L 792 18 L 800 24"/>
+              </svg>
+            </div>
+            <span class="wave-state dom">доминанта</span>
+          </div>
+          <div class="wave-track">
+            <div class="wave-label"><b>α Alpha</b>8–12 Гц</div>
+            <div class="wave-svg alpha-weak">
+              <svg viewBox="0 0 800 48" preserveAspectRatio="none">
+                <path fill="none" stroke="#5F5FFF" stroke-width="1.5" stroke-linecap="round" d="M 0 24 C 50 18, 150 18, 200 24 C 250 30, 350 30, 400 24 C 450 18, 550 18, 600 24 C 650 30, 750 30, 800 24"/>
+              </svg>
+            </div>
+            <span class="wave-state sup">подавлена</span>
+          </div>
+          <div class="contrast-foot">
+            <strong>Фоновый шум беты.</strong> Внутренний диалог 24/7 · DMN активен · симпатика · ум говорит сам с собой.
+          </div>
+        </div>
+
+        <!-- ARROW -->
+        <div class="contrast-arrow reveal">
+          <span class="c-label">ONTO NOTHING<br>протокол входа</span>
+          <span class="c-arr">→</span>
+          <span class="c-sec">~60 сек</span>
+        </div>
+
+        <!-- AFTER -->
+        <div class="contrast-card after reveal">
+          <div class="contrast-head">
+            <span class="contrast-tag">ПОСЛЕ</span>
+            <span class="contrast-time">01:00</span>
+          </div>
+          <div class="wave-track">
+            <div class="wave-label"><b>β Beta</b>13–30 Гц</div>
+            <div class="wave-svg beta-weak">
+              <svg viewBox="0 0 800 48" preserveAspectRatio="none">
+                <path fill="none" stroke="#FF6B6B" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" d="M 0 24 L 8 21 L 16 27 L 24 20 L 32 28 L 40 22 L 48 27 L 56 20 L 64 28 L 72 23 L 80 26 L 88 21 L 96 27 L 104 20 L 112 28 L 120 22 L 128 27 L 136 21 L 144 28 L 152 23 L 160 26 L 168 21 L 176 27 L 184 20 L 192 28 L 200 22 L 208 26 L 216 21 L 224 27 L 232 23 L 240 26 L 248 21 L 256 27 L 264 20 L 272 28 L 280 22 L 288 26 L 296 21 L 304 27 L 312 23 L 320 26 L 328 21 L 336 27 L 344 20 L 352 28 L 360 22 L 368 27 L 376 21 L 384 26 L 392 23 L 400 24 L 408 21 L 416 27 L 424 20 L 432 28 L 440 22 L 448 27 L 456 20 L 464 28 L 472 23 L 480 26 L 488 21 L 496 27 L 504 20 L 512 28 L 520 22 L 528 27 L 536 21 L 544 28 L 552 23 L 560 26 L 568 21 L 576 27 L 584 20 L 592 28 L 600 22 L 608 26 L 616 21 L 624 27 L 632 23 L 640 26 L 648 21 L 656 27 L 664 20 L 672 28 L 680 22 L 688 26 L 696 21 L 704 27 L 712 23 L 720 26 L 728 21 L 736 27 L 744 20 L 752 28 L 760 22 L 768 27 L 776 21 L 784 26 L 792 23 L 800 24"/>
+              </svg>
+            </div>
+            <span class="wave-state sup">подавлена</span>
+          </div>
+          <div class="wave-track">
+            <div class="wave-label"><b>α Alpha</b>8–12 Гц</div>
+            <div class="wave-svg alpha-strong">
+              <svg viewBox="0 0 800 48" preserveAspectRatio="none">
+                <path fill="none" stroke="#00E5A0" stroke-width="2.5" stroke-linecap="round" d="M 0 24 C 50 4, 150 4, 200 24 C 250 44, 350 44, 400 24 C 450 4, 550 4, 600 24 C 650 44, 750 44, 800 24"/>
+              </svg>
+            </div>
+            <span class="wave-state new-dom">доминанта</span>
+          </div>
+          <div class="contrast-foot">
+            <strong>Тишина — измеримая.</strong> Диалог выключен · DMN деактивирован · парасимпатика · альфа-доминанта с переходами в тету.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="contrast-metrics reveal">
+        <div class="cm-item">
+          <div class="cm-val">−64%</div>
+          <div class="cm-lbl">снижение β-мощности</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-val">+180%</div>
+          <div class="cm-lbl">рост α-гравитации</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-val">~60 сек</div>
+          <div class="cm-lbl">время переключения</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-val">1-я сессия</div>
+          <div class="cm-lbl">видно с первого захода</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -3625,7 +3923,7 @@
 
     // ── Sub-nav active state ───────────────────────
     const subnavLinks = document.querySelectorAll('.subnav a');
-    const sectionIds = ['tradition','paths','discovery','modes','baseline','viktor','ai','day','arc','diff','who','stack','cases','author','pricing','guarantee','stream','faq'];
+    const sectionIds = ['tradition','contrast','paths','discovery','modes','baseline','viktor','ai','day','arc','diff','who','stack','cases','author','pricing','guarantee','stream','faq'];
     const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
 
     if ('IntersectionObserver' in window && subnavLinks.length && sections.length) {
