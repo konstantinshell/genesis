@@ -404,6 +404,185 @@
       text-transform: none;
     }
 
+    /* ── TIMELINE (историческая лента) ── */
+    .timeline-wrap {
+      position: relative;
+      margin-top: 56px;
+      padding: 10px 0 20px;
+    }
+    .timeline-wrap::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(95,95,255,0.35) 6%,
+        rgba(95,95,255,0.35) 94%,
+        transparent 100%);
+      transform: translateX(-1px);
+    }
+    .tl-node {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 140px 1fr;
+      align-items: center;
+      gap: 18px;
+      margin: 26px 0;
+    }
+    .tl-date {
+      grid-column: 2;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2;
+    }
+    .tl-date-inner {
+      font-family: "VT323", monospace;
+      font-size: 1.1rem;
+      color: #5F5FFF;
+      letter-spacing: 0.5px;
+      background: #ECEEF2;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid rgba(95,95,255,0.35);
+      white-space: nowrap;
+      position: relative;
+      z-index: 2;
+    }
+    .tl-date::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #5F5FFF;
+      box-shadow: 0 0 0 5px rgba(95,95,255,0.12), 0 0 0 11px rgba(95,95,255,0.05);
+      z-index: 1;
+    }
+    .tl-card {
+      padding: 22px 24px;
+      border-radius: 18px;
+      display: flex; flex-direction: column; gap: 8px;
+      max-width: 440px;
+    }
+    .tl-node.left > .tl-card {
+      grid-column: 1;
+      justify-self: end;
+      text-align: right;
+    }
+    .tl-node.right > .tl-card {
+      grid-column: 3;
+      justify-self: start;
+      text-align: left;
+    }
+    .tl-tradition {
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.6px; text-transform: uppercase;
+      color: #5F5FFF;
+    }
+    .tl-concept {
+      font-family: "Courier Prime", monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.3px; text-transform: uppercase;
+      color: #888896;
+    }
+    .tl-quote {
+      font-family: "Oswald", sans-serif;
+      font-size: 1rem; font-weight: 500;
+      line-height: 1.35; color: #16161A;
+      margin: 0;
+      letter-spacing: 0;
+    }
+    .tl-node.science > .tl-card {
+      background: linear-gradient(160deg, rgba(0,229,160,0.10) 0%, rgba(95,95,255,0.06) 100%);
+      border: 1px solid rgba(0,229,160,0.28);
+      box-shadow: none;
+    }
+    .tl-node.science .tl-tradition { color: #00a575; }
+    .tl-node.science .tl-date-inner {
+      color: #00a575;
+      border-color: rgba(0,229,160,0.45);
+    }
+    .tl-node.science .tl-date::before {
+      background: #00E5A0;
+      box-shadow: 0 0 0 5px rgba(0,229,160,0.18), 0 0 0 11px rgba(0,229,160,0.06);
+    }
+
+    /* Финальный узел — 2022 ONTO NOTHING */
+    .tl-node.finale {
+      margin-top: 48px;
+    }
+    .tl-node.finale > .tl-card {
+      grid-column: 1 / -1;
+      justify-self: center;
+      text-align: center;
+      max-width: 640px;
+      padding: 32px 40px;
+      background: linear-gradient(160deg, #5F5FFF 0%, #A78BFA 100%);
+      border: none;
+      color: #fff;
+      box-shadow: 0 24px 60px rgba(95,95,255,0.35);
+    }
+    .tl-node.finale > .tl-date {
+      display: none;
+    }
+    .tl-node.finale .tl-tradition {
+      color: rgba(255,255,255,0.88);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+    .tl-node.finale .tl-concept {
+      color: rgba(255,255,255,0.7);
+    }
+    .tl-node.finale .tl-brand {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: #fff;
+      margin: 8px 0 10px;
+      line-height: 1;
+    }
+    .tl-node.finale .tl-quote {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+    .tl-node.finale-year {
+      display: flex;
+      justify-content: center;
+      margin: 44px 0 12px;
+      position: relative;
+    }
+    .tl-node.finale-year .tl-year-big {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #5F5FFF 0%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      padding: 12px 28px;
+      position: relative;
+      z-index: 2;
+      background-color: #ECEEF2;
+    }
+    .tl-node.finale-year::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #5F5FFF;
+      box-shadow: 0 0 0 7px rgba(95,95,255,0.18), 0 0 0 16px rgba(95,95,255,0.06);
+      z-index: 1;
+    }
+
     /* ══════════════════════════════════
        PATHS (5 cards)
     ══════════════════════════════════ */
@@ -1984,6 +2163,32 @@
       .mnpi-block { padding: 28px 22px; }
       .verdict-wrap { gap: 16px; }
       .ab-table th, .ab-table td { padding: 10px 14px; font-size: 0.78rem; }
+      /* timeline — single column */
+      .timeline-wrap::before { left: 22px; }
+      .tl-node {
+        grid-template-columns: 44px 1fr;
+        gap: 14px;
+        align-items: flex-start;
+        margin: 20px 0;
+      }
+      .tl-node.left > .tl-card,
+      .tl-node.right > .tl-card {
+        grid-column: 2;
+        justify-self: start;
+        text-align: left;
+        max-width: none;
+      }
+      .tl-node.left > .tl-date,
+      .tl-node.right > .tl-date {
+        grid-column: 1;
+        justify-self: flex-start;
+        margin-top: 6px;
+      }
+      .tl-date-inner { font-size: 0.85rem; padding: 3px 8px; }
+      .tl-date::before { width: 10px; height: 10px; }
+      .tl-node.finale > .tl-card { grid-column: 1 / -1; }
+      .tl-node.finale-year { margin: 36px 0 8px; }
+      .tl-node.finale-year .tl-year-big { font-size: 2.4rem; padding: 10px 22px; }
     }
   </style>
 </head>
@@ -2088,31 +2293,121 @@
         <p class="lead">О нём пишут мистики. Его описывают нейрофизиологи. К нему идут спортсмены, предприниматели, художники, монахи. Это состояние, в котором ум перестаёт говорить и впервые становится виден.</p>
       </div>
 
-      <div class="const-grid">
-        <div class="const-card glass5 reveal">
-          <span class="const-tag">Адвайта-веданта</span>
-          <p class="const-text">«Молчание ума — дверь, за которой начинается человек.»</p>
+      <div class="timeline-wrap">
+
+        <div class="tl-node left reveal">
+          <div class="tl-card glass5">
+            <span class="tl-tradition">Упанишады · Адвайта-веданта</span>
+            <span class="tl-concept">Самадхи · Турия</span>
+            <p class="tl-quote">«Молчание ума — дверь, за которой начинается человек.»</p>
+          </div>
+          <div class="tl-date"><span class="tl-date-inner">~800 до н.э.</span></div>
         </div>
-        <div class="const-card meta reveal">
-          <span class="const-tag">Самадхи · Pure awareness</span>
-          <p class="const-text">Санскрит, индо-тибетская йога, современная нейронаука — разные слова об одном состоянии.</p>
+
+        <div class="tl-node right reveal">
+          <div class="tl-date"><span class="tl-date-inner">~500 до н.э.</span></div>
+          <div class="tl-card glass5">
+            <span class="tl-tradition">Даосизм · Лао-цзы</span>
+            <span class="tl-concept">У-вэй · Недеяние</span>
+            <p class="tl-quote">«Знающий не говорит. Говорящий не знает.»</p>
+          </div>
         </div>
-        <div class="const-card glass5 reveal">
-          <span class="const-tag">Дзен</span>
-          <p class="const-text">«Когда мысль замолкает, впервые слышно, кто думал.»</p>
+
+        <div class="tl-node left reveal">
+          <div class="tl-card glass5">
+            <span class="tl-tradition">Ранний буддизм</span>
+            <span class="tl-concept">Шуньята · Пустота</span>
+            <p class="tl-quote">«Пустота — это форма. Форма — это пустота.»</p>
+          </div>
+          <div class="tl-date"><span class="tl-date-inner">~400 до н.э.</span></div>
         </div>
-        <div class="const-card glass5 reveal">
-          <span class="const-tag">Экхарт Толле</span>
-          <p class="const-text">«Внутренняя тишина — это не отсутствие, это присутствие в чистом виде.»</p>
+
+        <div class="tl-node right reveal">
+          <div class="tl-date"><span class="tl-date-inner">~200 до н.э.</span></div>
+          <div class="tl-card glass5">
+            <span class="tl-tradition">Йога-сутры Патанджали</span>
+            <span class="tl-concept">Читта-вритти-ниродха</span>
+            <p class="tl-quote">«Йога — это остановка колебаний ума.»</p>
+          </div>
         </div>
-        <div class="const-card meta reveal">
-          <span class="const-tag">Flow · Non-dual state</span>
-          <p class="const-text">Чиксентмихайи, Рам Дасс, когнитивная наука — разные карты одной территории.</p>
+
+        <div class="tl-node left reveal">
+          <div class="tl-card glass5">
+            <span class="tl-tradition">Исихазм · Восточная церковь</span>
+            <span class="tl-concept">Хэсихия · Священное безмолвие</span>
+            <p class="tl-quote">«Вниди в клеть твою — и затвори дверь твою.»</p>
+          </div>
+          <div class="tl-date"><span class="tl-date-inner">~400 н.э.</span></div>
         </div>
-        <div class="const-card glass5 reveal">
-          <span class="const-tag">Карлос Кастанеда</span>
-          <p class="const-text">«Остановка внутреннего диалога — ключ к восприятию мира, какой он есть.»</p>
+
+        <div class="tl-node right reveal">
+          <div class="tl-date"><span class="tl-date-inner">~1250</span></div>
+          <div class="tl-card glass5">
+            <span class="tl-tradition">Суфизм · Руми</span>
+            <span class="tl-concept">Фана · Растворение</span>
+            <p class="tl-quote">«Растворись. Исчезни. В том исчезновении — ты.»</p>
+          </div>
         </div>
+
+        <div class="tl-node left reveal">
+          <div class="tl-card glass5">
+            <span class="tl-tradition">Дзен · Хакуин</span>
+            <span class="tl-concept">Сатори · Пробуждение</span>
+            <p class="tl-quote">«Когда мысль замолкает, впервые слышно, кто думал.»</p>
+          </div>
+          <div class="tl-date"><span class="tl-date-inner">~1700</span></div>
+        </div>
+
+        <div class="tl-node right reveal">
+          <div class="tl-date"><span class="tl-date-inner">1968</span></div>
+          <div class="tl-card glass5">
+            <span class="tl-tradition">Карлос Кастанеда</span>
+            <span class="tl-concept">Остановка внутреннего диалога</span>
+            <p class="tl-quote">«Остановка внутреннего диалога — ключ к восприятию мира, какой он есть.»</p>
+          </div>
+        </div>
+
+        <div class="tl-node left reveal">
+          <div class="tl-card glass5">
+            <span class="tl-tradition">Михай Чиксентмихайи</span>
+            <span class="tl-concept">Flow · Поток</span>
+            <p class="tl-quote">«Состояние, в котором делание делает само себя.»</p>
+          </div>
+          <div class="tl-date"><span class="tl-date-inner">1975</span></div>
+        </div>
+
+        <div class="tl-node right reveal">
+          <div class="tl-date"><span class="tl-date-inner">1997</span></div>
+          <div class="tl-card glass5">
+            <span class="tl-tradition">Экхарт Толле</span>
+            <span class="tl-concept">Presence · Присутствие</span>
+            <p class="tl-quote">«Внутренняя тишина — это не отсутствие, это присутствие в чистом виде.»</p>
+          </div>
+        </div>
+
+        <div class="tl-node left science reveal">
+          <div class="tl-card">
+            <span class="tl-tradition">Нейронаука · Маркус Рейчл</span>
+            <span class="tl-concept">Default Mode Network</span>
+            <p class="tl-quote">«Мозг говорит с собой в фоне 95% времени бодрствования — и у монахов после 30+ лет практики эта сеть гаснет.»</p>
+          </div>
+          <div class="tl-date"><span class="tl-date-inner">2001</span></div>
+        </div>
+
+        <!-- Финал: 2022 ONTO NOTHING -->
+        <div class="tl-node finale-year reveal">
+          <div class="tl-year-big">2022</div>
+        </div>
+
+        <div class="tl-node finale reveal">
+          <div class="tl-card">
+            <span class="tl-tradition">Константин Шель</span>
+            <div class="tl-brand">ONTO NOTHING</div>
+            <span class="tl-concept">Произвольная остановка ВД · по желанию · за секунды</span>
+            <p class="tl-quote">Впервые — <em>навык</em>, а не случайность. Не десятилетия — один день. Не у единиц — у кого угодно.</p>
+          </div>
+        </div>
+
       </div>
 
       <blockquote class="pull-quote reveal">
