@@ -2644,6 +2644,243 @@
     }
 
     /* ══════════════════════════════════
+       BENTO STACK (Apple-style, тёмная секция)
+    ══════════════════════════════════ */
+    .s-stack-apple {
+      background: linear-gradient(180deg, #0A0A12 0%, #111118 100%);
+      padding: 110px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .s-stack-apple::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(167,139,250,0.10) 0%, transparent 50%),
+        radial-gradient(circle at 82% 78%, rgba(0,229,160,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .s-stack-apple > .s-inner { position: relative; z-index: 2; }
+    .s-stack-apple .eyebrow {
+      color: #A78BFA;
+      background: rgba(167,139,250,0.10);
+      border-color: rgba(167,139,250,0.32);
+    }
+    .s-stack-apple .h2-custom { color: #fff; }
+    .s-stack-apple .h2-custom em {
+      background: linear-gradient(135deg, #A78BFA 0%, #5F5FFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .s-stack-apple .section-header p.lead { color: #a8a8b5; }
+
+    .bento-stack {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 180px;
+      gap: 12px;
+      margin-top: 40px;
+    }
+    .st-tile {
+      background: linear-gradient(160deg, #15151f 0%, #1a1a24 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .st-tile:hover {
+      transform: translateY(-3px);
+      border-color: rgba(167,139,250,0.32);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.4);
+    }
+
+    /* Sizes */
+    .st-tile.size-2x2 { grid-column: span 2; grid-row: span 2; }
+    .st-tile.size-2x1 { grid-column: span 2; grid-row: span 1; }
+    .st-tile.size-3x1 { grid-column: span 3; grid-row: span 1; }
+    .st-tile.size-4x1 { grid-column: span 4; grid-row: span 1; }
+
+    .st-kicker {
+      font-family: "Courier Prime", monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.6px; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: auto;
+    }
+    .st-big {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      margin: 18px 0 10px;
+      color: #fff;
+    }
+    .st-big .st-small {
+      font-family: "Jost", sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 400;
+      margin-left: 8px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .st-big.g-purple {
+      background: linear-gradient(135deg, #A78BFA 0%, #5F5FFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .st-big.g-purple .st-small {
+      -webkit-text-fill-color: rgba(255,255,255,0.5);
+    }
+    .st-big.g-green {
+      background: linear-gradient(135deg, #00E5A0 0%, #5F5FFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .st-big.g-green .st-small {
+      -webkit-text-fill-color: rgba(255,255,255,0.5);
+    }
+    .st-big.g-pink {
+      background: linear-gradient(135deg, #FF6B6B 0%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .st-big.g-pink .st-small {
+      -webkit-text-fill-color: rgba(255,255,255,0.5);
+    }
+    .st-big.g-blue {
+      background: linear-gradient(135deg, #0A84FF 0%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .st-big.g-blue .st-small {
+      -webkit-text-fill-color: rgba(255,255,255,0.5);
+    }
+    .st-title {
+      font-family: "Oswald", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0 0 6px;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+    .st-desc {
+      font-family: "Jost", sans-serif;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .st-desc strong { color: #fff; font-weight: 600; }
+
+    /* HERO — ∅ */
+    .st-tile.st-hero {
+      background:
+        radial-gradient(circle at 50% 40%, rgba(167,139,250,0.30) 0%, transparent 65%),
+        linear-gradient(160deg, #1a1a28 0%, #15151f 100%);
+      border-color: rgba(167,139,250,0.35);
+      align-items: center;
+      text-align: center;
+      padding: 36px 26px;
+      justify-content: space-between;
+    }
+    .st-tile.st-hero .st-kicker {
+      margin-bottom: 0;
+    }
+    .st-tile.st-hero .st-sym {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(7rem, 14vw, 12rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #A78BFA 0%, #5F5FFF 50%, #00E5A0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+      text-shadow: 0 0 60px rgba(167,139,250,0.3);
+    }
+    .st-tile.st-hero .st-title {
+      font-size: 1.3rem;
+      margin: 0 0 8px;
+    }
+
+    /* Mode icons row */
+    .st-modes {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 14px 0 0;
+    }
+    .st-mode {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      color: #fff;
+      line-height: 1;
+    }
+
+    /* Chip badge */
+    .st-chip {
+      display: inline-block;
+      padding: 5px 11px;
+      border-radius: 100px;
+      font-family: "Courier Prime", monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: #A78BFA;
+      background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.28);
+      margin-top: 14px;
+      align-self: flex-start;
+    }
+    .st-chip.green { color: #00E5A0; background: rgba(0,229,160,0.1); border-color: rgba(0,229,160,0.28); }
+    .st-chip.pink { color: #FF6B6B; background: rgba(255,107,107,0.1); border-color: rgba(255,107,107,0.28); }
+
+    /* Dots visualization for integration */
+    .st-dots {
+      display: flex;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .st-dots span {
+      width: 32px; height: 6px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #5F5FFF, #A78BFA);
+      opacity: 0.9;
+    }
+    .st-dots span:nth-child(n+5) { opacity: 0.55; }
+    .st-dots span:nth-child(n+7) { opacity: 0.3; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .bento-stack { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 160px; }
+      .st-tile.size-4x1 { grid-column: span 4; }
+      .st-tile.size-3x1 { grid-column: span 2; }
+      .st-tile.size-2x2 { grid-column: span 2; grid-row: span 2; }
+      .st-tile.size-2x1 { grid-column: span 2; }
+    }
+
+    /* ══════════════════════════════════
        CASES
     ══════════════════════════════════ */
     .cases-grid {
@@ -3270,6 +3507,14 @@
       /* day timeline — mobile */
       .dt-inner { min-width: 760px; }
       .dt-summary { grid-template-columns: 1fr; }
+      /* bento stack — mobile */
+      .bento-stack { grid-template-columns: repeat(2, 1fr); grid-auto-rows: auto; gap: 10px; }
+      .st-tile.size-2x2, .st-tile.size-3x1, .st-tile.size-4x1, .st-tile.size-2x1 {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+      .st-tile { min-height: 170px; padding: 22px 22px; }
+      .st-tile.st-hero { min-height: 280px; }
       /* platform — mobile */
       .pf-zone { padding: 32px 20px 28px; }
       .pf-hero { grid-template-columns: 1fr; gap: 30px; margin-bottom: 30px; }
@@ -4730,8 +4975,8 @@
     </div>
   </section>
 
-  <!-- ═══════════ XII · STACK ═══════════ -->
-  <section id="stack" class="s">
+  <!-- ═══════════ XII · STACK (Apple-style bento) ═══════════ -->
+  <section id="stack" class="s s-stack-apple">
     <div class="s-inner">
       <div class="section-header reveal">
         <span class="eyebrow">Часть XII · Стек</span>
@@ -4739,47 +4984,79 @@
         <p class="lead">Стек того, что уходит с тобой после тренинга.</p>
       </div>
 
-      <div class="stack-grid">
-        <div class="stack-card glass5 reveal">
-          <span class="stack-icon">◈</span>
-          <h3 class="stack-title">Тренинг-день</h3>
-          <p class="stack-desc">4–5 часов глубокой работы с полным сопровождением автора метода.</p>
+      <div class="bento-stack">
+
+        <!-- HERO · ∅ Навык остановки ВД -->
+        <div class="st-tile st-hero size-2x2 reveal">
+          <span class="st-kicker">Главный результат</span>
+          <div class="st-sym">∅</div>
+          <div>
+            <h3 class="st-title">Навык остановки ВД</h3>
+            <p class="st-desc">Полная остановка внутреннего диалога <strong>по желанию. Навсегда.</strong></p>
+          </div>
         </div>
-        <div class="stack-card glass5 reveal">
-          <span class="stack-icon">∅</span>
-          <h3 class="stack-title">Навык остановки ВД</h3>
-          <p class="stack-desc">Полная остановка внутреннего диалога по желанию. Навсегда.</p>
+
+        <!-- Тренинг-день -->
+        <div class="st-tile size-2x1 reveal">
+          <span class="st-kicker">01 · Тренинг-день</span>
+          <div class="st-big g-purple">1 день<span class="st-small">· 4–5 ч</span></div>
+          <p class="st-desc">Глубокая работа с полным сопровождением автора метода. 6 блоков.</p>
         </div>
-        <div class="stack-card glass5 reveal">
-          <span class="stack-icon">🎛</span>
-          <h3 class="stack-title">Доступ к 7 режимам</h3>
-          <p class="stack-desc">Пульт управления состояниями. Переключение между сетями мозга.</p>
+
+        <!-- 7 режимов -->
+        <div class="st-tile size-2x1 reveal">
+          <span class="st-kicker">02 · Пульт состояний</span>
+          <div class="st-big g-green">7<span class="st-small">режимов</span></div>
+          <div class="st-modes">
+            <span class="st-mode">∅</span>
+            <span class="st-mode">👁</span>
+            <span class="st-mode">🫀</span>
+            <span class="st-mode">⚡</span>
+            <span class="st-mode">✨</span>
+            <span class="st-mode">🔮</span>
+          </div>
         </div>
-        <div class="stack-card glass5 reveal">
-          <span class="stack-icon">☀️</span>
-          <h3 class="stack-title">Протокол интеграции</h3>
-          <p class="stack-desc">7 дней утренних сессий с ведением и обратной связью.</p>
+
+        <!-- Интеграция -->
+        <div class="st-tile size-2x1 reveal">
+          <span class="st-kicker">03 · Протокол интеграции</span>
+          <div class="st-big g-blue">7 дней</div>
+          <p class="st-desc">Утренние сессии с ведением и обратной связью.</p>
+          <div class="st-dots">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
         </div>
-        <div class="stack-card glass5 reveal">
-          <span class="stack-icon">◈</span>
-          <h3 class="stack-title">ex NIHILO ai</h3>
-          <p class="stack-desc">Цифровой помощник на базе Claude Opus 4.7. Месяц полного доступа.</p>
+
+        <!-- ex NIHILO ai -->
+        <div class="st-tile size-2x1 reveal">
+          <span class="st-kicker">04 · Цифровой помощник</span>
+          <div class="st-big g-pink">ex NIHILO ai</div>
+          <p class="st-desc">Claude Opus 4.7 · 5 агентов феноменологии.</p>
+          <span class="st-chip pink">1 месяц · полный доступ</span>
         </div>
-        <div class="stack-card glass5 reveal">
-          <span class="stack-icon">🎯</span>
-          <h3 class="stack-title">Референсная точка</h3>
-          <p class="stack-desc">Опыт, к которому можно возвращаться и всегда знать: он возможен.</p>
+
+        <!-- Сообщество -->
+        <div class="st-tile size-2x1 reveal">
+          <span class="st-kicker">05 · Сообщество</span>
+          <div class="st-big g-purple">1000+</div>
+          <p class="st-desc">Верифицированное MNPI-уровнем сообщество практикующих.</p>
         </div>
-        <div class="stack-card glass5 reveal">
-          <span class="stack-icon">◈</span>
-          <h3 class="stack-title">Закрытое сообщество</h3>
-          <p class="stack-desc">Верифицированное MNPI-уровнем сообщество выпускников.</p>
+
+        <!-- Референсная точка -->
+        <div class="st-tile size-2x1 reveal">
+          <span class="st-kicker">06 · Референсная точка</span>
+          <div class="st-big g-pink">∞</div>
+          <p class="st-desc">Опыт, к которому можно возвращаться и всегда знать: <strong>он возможен.</strong></p>
         </div>
-        <div class="stack-card glass5 reveal">
-          <span class="stack-icon">📊</span>
-          <h3 class="stack-title">Объективная верификация</h3>
-          <p class="stack-desc">Сопряжение с MNPI-чекапом на ЭЭГ — сдвиг виден в цифре (опционально).</p>
+
+        <!-- MNPI — широкий футер -->
+        <div class="st-tile size-2x1 reveal">
+          <span class="st-kicker">07 · Объективная верификация</span>
+          <div class="st-big g-green">MNPI</div>
+          <p class="st-desc">Сопряжение с ЭЭГ-чекапом · сдвиг виден в цифре.</p>
+          <span class="st-chip green">опционально</span>
         </div>
+
       </div>
     </div>
   </section>
@@ -4859,33 +5136,12 @@
           <div>
             <h3 class="team-name">Константин Шель</h3>
             <div class="team-role">Автор ONTO NOTHING™ · основатель ex NIHILO</div>
-            <p class="team-bio">В <strong>2022 году</strong> описал и воспроизвёл феномен произвольной остановки внутреннего диалога — то, что до этого считалось либо спонтанным событием, либо результатом десятилетий созерцательной практики. Это открытие запустило направление прикладной нейропсихологии управляемых состояний сознания.</p>
-            <p class="team-bio">Работает на стыке <strong>нейробиологии, нейропсихологии, созерцательных традиций и прикладных нейротехнологий</strong>. Главный принцип: <em>субъективный опыт должен быть верифицирован объективными метриками</em>. Слова — субъективны, ЭЭГ и ВСР — нет.</p>
+            <p class="team-bio">Исследователь и практик. Работает на стыке <strong>нейробиологии, нейропсихологии, созерцательных традиций и прикладных нейротехнологий</strong> мониторинга. Главный принцип: <em>субъективный опыт должен быть верифицирован объективными метриками</em>. Слова — субъективны, ЭЭГ и ВСР — нет.</p>
+            <p class="team-bio">Автор книг <strong>«Большой взрыв сознания»</strong> и <strong>«Мой ментальный вирус»</strong>. Ведёт тренинги лично с 2022 года. Научные партнёрства: <strong>Neiry</strong> (ЭЭГ-нейроинтерфейсы), <strong>Neyrox</strong> (нейротрекеры), <strong>LQ Lab</strong> (валидация метода).</p>
             <div class="team-created">
-              Что создал: <b>ONTO NOTHING™</b> · архитектура 7 режимов сознания · <b>MNPI</b> (со-автор Натали Морозова, 2025) · <b>ex NIHILO ai</b> (Claude Opus 4.7) · научные партнёрства с Neiry, Neyrox, LQ Lab.
+              Что создал: <b>ONTO NOTHING™</b> · архитектура 7 режимов сознания · <b>MNPI</b> (со-автор Натали Морозова, 2025) · <b>ex NIHILO ai</b> (Claude Opus 4.7).
             </div>
           </div>
-        </div>
-
-        <div class="team-card glass5 reveal">
-          <div class="team-avatar avatar-2">НМ</div>
-          <h3 class="team-name">Натали Морозова</h3>
-          <div class="team-role">Со-автор MNPI · «Ритмы жизни»</div>
-          <p class="team-bio">Со-автор первого в мире индекса практической нейропластичности. Автор программы «Ритмы жизни» — 8 сфер + 4 вектора + 7 Миров Познания + 40-дневные циклы. Инструмент, которым ты направляешь навык в жизнь.</p>
-        </div>
-
-        <div class="team-card glass5 reveal">
-          <div class="team-avatar avatar-3">АС</div>
-          <h3 class="team-name">Алексей Смагужевский</h3>
-          <div class="team-role">Мастер-исследователь</div>
-          <p class="team-bio">Трёхкратный рекордсмен России и мира. Специалист по ЭЭГ-трекингу, эксперт полной остановки мышления.</p>
-        </div>
-
-        <div class="team-card glass5 reveal">
-          <div class="team-avatar avatar-4">ЛБ</div>
-          <h3 class="team-name">Лаборатория ONTO</h3>
-          <div class="team-role">Онтонавты · GENESIS · МОРФИУС</div>
-          <p class="team-bio">Независимая команда онтонавтов — ведут международное исследование МОРФИУС, измеряют MNPI, публикуют протокол GENESIS. 1000+ кейсов в базе.</p>
         </div>
       </div>
 
