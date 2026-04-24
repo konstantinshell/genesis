@@ -3015,6 +3015,162 @@
     }
     .tree-desc strong { color: #16161A; font-weight: 600; }
 
+    /* Концентрическая диаграмма «Ты — ядро, всё остальное — слои» */
+    .core-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      margin: 40px 0 20px;
+    }
+    .core-diagram {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      aspect-ratio: 1;
+      margin: 0 auto;
+    }
+    .core-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px dashed rgba(22,22,26,0.14);
+      background: rgba(255,255,255,0.35);
+      transition: all .3s;
+    }
+    .core-ring-tag {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 4px 11px;
+      background: #ECEEF2;
+      border-radius: 100px;
+      border: 1px solid rgba(22,22,26,0.18);
+      font-family: "Courier Prime", monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.3px; text-transform: uppercase;
+      color: #888896;
+      white-space: nowrap;
+      z-index: 3;
+    }
+    .core-ring-4 { inset: 0; opacity: 0.6; }
+    .core-ring-3 { inset: 13%; opacity: 0.75; }
+    .core-ring-2 { inset: 27%; opacity: 0.9; }
+    .core-ring-1 {
+      inset: 41%;
+      border: 2px solid rgba(95,95,255,0.5);
+      background: linear-gradient(135deg, rgba(95,95,255,0.20), rgba(167,139,250,0.10));
+      box-shadow: 0 0 0 4px rgba(95,95,255,0.08);
+    }
+    .core-ring-1 .core-ring-tag {
+      background: #5F5FFF;
+      border-color: #5F5FFF;
+      color: #fff;
+    }
+    .core-center {
+      position: absolute;
+      inset: 44%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35) 0%, transparent 50%),
+        linear-gradient(135deg, #5F5FFF 0%, #A78BFA 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 0 6px rgba(95,95,255,0.12),
+        0 0 0 14px rgba(95,95,255,0.04),
+        0 20px 50px rgba(95,95,255,0.3);
+      z-index: 2;
+    }
+    .core-sym {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+      font-weight: 300;
+      line-height: 1;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .core-label {
+      font-family: "Courier Prime", monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.6px; text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      margin-top: 6px;
+    }
+
+    /* Легенда */
+    .core-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .legend-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 16px;
+      padding: 18px 22px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(22,22,26,0.06);
+      transition: all .25s;
+      opacity: 0.7;
+    }
+    .legend-item:hover { opacity: 1; transform: translateX(3px); }
+    .legend-item.is-onto {
+      background: linear-gradient(135deg, rgba(95,95,255,0.12), rgba(167,139,250,0.06));
+      border: 1px solid rgba(95,95,255,0.4);
+      opacity: 1;
+    }
+    .legend-item.is-core {
+      background: linear-gradient(135deg, #5F5FFF 0%, #A78BFA 100%);
+      color: #fff;
+      border: none;
+      opacity: 1;
+    }
+    .li-num {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #888896;
+      text-align: center;
+      padding-top: 4px;
+    }
+    .legend-item.is-onto .li-num { color: #5F5FFF; }
+    .legend-item.is-core .li-num { color: rgba(255,255,255,0.85); }
+    .li-title {
+      font-family: "Oswald", sans-serif;
+      font-size: 1rem; font-weight: 700;
+      text-transform: uppercase;
+      color: #16161A;
+      margin: 0 0 6px;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+    .legend-item.is-core .li-title { color: #fff; }
+    .li-desc {
+      font-family: "Jost", sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #444450;
+      margin: 0;
+    }
+    .legend-item.is-core .li-desc { color: rgba(255,255,255,0.92); }
+    .li-desc strong { color: #16161A; font-weight: 600; }
+    .legend-item.is-core .li-desc strong { color: #fff; }
+    .li-methods {
+      display: block;
+      margin-top: 8px;
+      font-family: "Courier Prime", monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.3px; text-transform: uppercase;
+      color: #888896;
+    }
+    .legend-item.is-onto .li-methods { color: #5F5FFF; }
+    .legend-item.is-onto .li-methods strong { color: #5F5FFF; font-weight: 700; }
+
     .diff-bridge {
       margin: 36px auto 0; max-width: 680px;
       text-align: center;
@@ -4046,6 +4202,9 @@
       .neuro-bridge { padding: 30px 22px; }
       .nb-methods { grid-template-columns: 1fr; }
       .nb-problem { padding: 18px 22px; }
+      /* core diagram — mobile */
+      .core-wrap { grid-template-columns: 1fr; gap: 32px; }
+      .core-diagram { max-width: 340px; }
       /* sched timeline — mobile */
       .sched-timeline::before { left: 28px; }
       .sched-item { grid-template-columns: 56px 1fr; gap: 18px; align-items: flex-start; }
@@ -4077,6 +4236,7 @@
       .pf-hero { grid-template-columns: 1fr; gap: 30px; }
       .pf-features { grid-template-columns: 1fr 1fr; }
       .nb-methods { grid-template-columns: 1fr 1fr; }
+      .core-wrap { grid-template-columns: 1fr; gap: 36px; }
     }
     @media (min-width: 701px) and (max-width: 1024px) {
       .why-grid { grid-template-columns: 1fr 1fr; }
@@ -5560,31 +5720,77 @@
       <div class="section-header reveal">
         <span class="eyebrow">Часть X · Граница категории</span>
         <h2 class="h2-custom">Чем ONTO NOTHING отличается <em>от всего остального.</em></h2>
-        <p class="lead">Разница подхода — корень против ветвей.</p>
+        <p class="lead">Все остальные методы работают со слоями. ONTO NOTHING работает в ядре.</p>
       </div>
 
-      <div class="trees-grid">
-        <div class="tree-card glass5 reveal">
-          <span class="tree-icon">🌳</span>
-          <span class="tree-sub">Программы развития</span>
-          <h3 class="tree-title">Работа с ветвями</h3>
-          <p class="tree-desc">Цели, стратегии, сферы жизни. Работают с <strong>результатами</strong> работы мозга.</p>
+      <div class="core-wrap reveal">
+
+        <!-- Концентрическая диаграмма -->
+        <div class="core-diagram">
+          <div class="core-ring core-ring-4">
+            <span class="core-ring-tag">04 · Внешняя жизнь</span>
+          </div>
+          <div class="core-ring core-ring-3">
+            <span class="core-ring-tag">03 · Тело · химия</span>
+          </div>
+          <div class="core-ring core-ring-2">
+            <span class="core-ring-tag">02 · Психика</span>
+          </div>
+          <div class="core-ring core-ring-1">
+            <span class="core-ring-tag">01 · ∅ Сознание</span>
+          </div>
+          <div class="core-center">
+            <span class="core-sym">∅</span>
+            <span class="core-label">Ты · онто</span>
+          </div>
         </div>
-        <div class="tree-card glass5 reveal">
-          <span class="tree-icon">🌲</span>
-          <span class="tree-sub">Созерцательные традиции</span>
-          <h3 class="tree-title">Работа с отношением к уму</h3>
-          <p class="tree-desc">Медитативные практики. Учат <strong>наблюдать</strong> мысли, не менять их источник.</p>
+
+        <!-- Легенда -->
+        <div class="core-legend">
+          <div class="legend-item">
+            <div class="li-num">04</div>
+            <div>
+              <h4 class="li-title">Внешняя жизнь</h4>
+              <p class="li-desc">Цели, результаты, поведение, внешние обстоятельства — самый внешний слой.</p>
+              <span class="li-methods">▸ Программы развития, стратегии</span>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="li-num">03</div>
+            <div>
+              <h4 class="li-title">Тело · химия</h4>
+              <p class="li-desc">Физиология, гормоны, биомаркеры, сон, восстановление.</p>
+              <span class="li-methods">▸ БАДы, биохакинг, фармакология</span>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="li-num">02</div>
+            <div>
+              <h4 class="li-title">Психика</h4>
+              <p class="li-desc">Мысли, эмоции, убеждения, ментальные конструкции.</p>
+              <span class="li-methods">▸ Психотерапия, коучинг, NLP</span>
+            </div>
+          </div>
+          <div class="legend-item is-onto">
+            <div class="li-num">01</div>
+            <div>
+              <h4 class="li-title">∅ Сознание</h4>
+              <p class="li-desc">Базовый режим работы мозга — из него рождаются и мысли, и эмоции, и решения. Альфа-доминанта. <strong>Здесь работает только ONTO NOTHING.</strong></p>
+              <span class="li-methods"><strong>▸ ONTO NOTHING</strong> · единственный вход</span>
+            </div>
+          </div>
+          <div class="legend-item is-core">
+            <div class="li-num">∅</div>
+            <div>
+              <h4 class="li-title">Ты. Онто.</h4>
+              <p class="li-desc">То, что есть. Ядро. К нему ведёт один путь — через тишину в слое сознания. ONTO NOTHING — этот путь.</p>
+            </div>
+          </div>
         </div>
-        <div class="tree-card winner reveal">
-          <span class="tree-icon">∅</span>
-          <span class="tree-sub">ONTO NOTHING</span>
-          <h3 class="tree-title">Работа с источником</h3>
-          <p class="tree-desc">С базовым режимом сознания, из которого цели и решения рождаются. <strong>Меняется корень — ветви перестраиваются сами.</strong></p>
-        </div>
+
       </div>
 
-      <p class="diff-bridge reveal">Поэтому сдвиг разворачивается сразу на трёх уровнях: <strong>тело · мозг · событийность.</strong></p>
+      <p class="diff-bridge reveal">Все остальные подходы работают <strong>по слоям</strong> — добавки влияют на тело, психотерапия на мысли, коучинг на поведение. ONTO NOTHING работает <strong>в ядре</strong>. Меняется центр — все слои перестраиваются сами.</p>
 
       <div class="diff-table reveal">
         <table>
