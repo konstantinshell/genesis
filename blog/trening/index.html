@@ -1926,6 +1926,179 @@
     .viktor-verdict strong { color: #fff; }
     .viktor-verdict em { font-style: italic; color: #00E5A0; }
 
+    /* Neuroplasticity bridge — подводка перед MNPI */
+    .neuro-bridge {
+      margin-top: 64px;
+      padding: 44px 40px 40px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .nb-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 36px;
+    }
+    .nb-eye {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px 8px 10px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-family: "Oswald", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: 0.01em;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .nb-eye::before {
+      content: '?';
+      width: 26px; height: 26px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #a8a8b5;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .nb-h {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.5rem, 3.2vw, 2rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.15;
+      margin: 0 0 16px;
+      letter-spacing: 0.01em;
+    }
+    .nb-h em {
+      font-style: italic;
+      color: #a8a8b5;
+      font-weight: 500;
+    }
+    .nb-lead {
+      font-family: "Jost", sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #a8a8b5;
+      margin: 0;
+    }
+    .nb-methods {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .nb-method {
+      padding: 22px 20px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0.82;
+      transition: opacity .25s;
+    }
+    .nb-method:hover { opacity: 1; }
+    .nb-num {
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.6px;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+    }
+    .nb-m-title {
+      font-family: "Oswald", sans-serif;
+      font-size: 1rem; font-weight: 700;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+    .nb-m-desc {
+      font-family: "Jost", sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.6);
+      margin: 0;
+    }
+    .nb-m-desc strong { color: #fff; font-weight: 600; }
+    .nb-limit {
+      display: inline-block;
+      margin-top: 4px;
+      font-family: "Courier Prime", monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.3px; text-transform: uppercase;
+      color: #FF6B6B;
+    }
+
+    .nb-problem {
+      margin-top: 32px;
+      padding: 24px 32px;
+      border-radius: 16px;
+      border-left: 3px solid #FF6B6B;
+      background: rgba(255,107,107,0.06);
+    }
+    .nb-problem p {
+      font-family: "Jost", sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #d0d0da;
+      margin: 0;
+    }
+    .nb-problem strong {
+      display: block;
+      color: #fff;
+      font-weight: 600;
+      margin-top: 8px;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    .nb-turn {
+      margin-top: 28px;
+      text-align: center;
+      padding-top: 28px;
+      border-top: 1px dashed rgba(255,255,255,0.1);
+    }
+    .nb-turn-line {
+      display: inline-block;
+      font-family: "Courier Prime", monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #A78BFA;
+      margin-bottom: 14px;
+    }
+    .nb-turn-h {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.25;
+      margin: 0;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .nb-turn-h em {
+      font-style: italic;
+      background: linear-gradient(135deg, #00E5A0 0%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
     /* MNPI block inside viktor */
     .mnpi-block {
       margin-top: 64px; padding: 40px 36px;
@@ -3749,6 +3922,10 @@
       /* impact decoder — mobile */
       .impact-panel { padding: 30px 22px; }
       .impact-grid { grid-template-columns: 1fr; }
+      /* neuro bridge — mobile */
+      .neuro-bridge { padding: 30px 22px; }
+      .nb-methods { grid-template-columns: 1fr; }
+      .nb-problem { padding: 18px 22px; }
       /* bento stack — mobile */
       .bento-stack { grid-template-columns: repeat(2, 1fr); grid-auto-rows: auto; gap: 10px; }
       .st-tile.size-2x2, .st-tile.size-3x1, .st-tile.size-4x1, .st-tile.size-2x1 {
@@ -3771,6 +3948,7 @@
     @media (min-width: 701px) and (max-width: 1024px) {
       .pf-hero { grid-template-columns: 1fr; gap: 30px; }
       .pf-features { grid-template-columns: 1fr 1fr; }
+      .nb-methods { grid-template-columns: 1fr 1fr; }
     }
     @media (min-width: 701px) and (max-width: 1024px) {
       .why-grid { grid-template-columns: 1fr 1fr; }
@@ -4796,6 +4974,53 @@
 
       <div class="viktor-verdict reveal">
         <em>Вердикт отчёта Neiry:</em> «Виктор не просто научился медитировать. Он <strong>перепрограммировал базовую архитектуру своего сознания</strong>». Виктор достиг уровня мастеров медитации с 1000+ часами — за 11 сессий и ~8 часов. Отношение: <strong>~125× по эффективности обучения.</strong>
+      </div>
+
+      <!-- ═══ Подводка: Как замерить нейропластичность? ═══ -->
+      <div class="neuro-bridge reveal">
+        <div class="nb-head">
+          <span class="nb-eye">Как замерить нейропластичность?</span>
+          <h3 class="nb-h">Самый сложный параметр мозга <em>для измерения.</em></h3>
+          <p class="nb-lead">Нейропластичность — способность мозга перестраиваться — глубоко изучается десятилетиями. Наука нашла четыре основных подхода. Но каждый из них — не про человека в жизни.</p>
+        </div>
+
+        <div class="nb-methods">
+          <div class="nb-method">
+            <span class="nb-num">01 · Классика</span>
+            <h4 class="nb-m-title">Дендриты и синапсы</h4>
+            <p class="nb-m-desc">Гистология мозга. Клеточные изменения видны — но только <strong>посмертно</strong>, на тонком срезе.</p>
+            <span class="nb-limit">→ не для живого человека</span>
+          </div>
+          <div class="nb-method">
+            <span class="nb-num">02 · Биохимия</span>
+            <h4 class="nb-m-title">BDNF · нейротрофины</h4>
+            <p class="nb-m-desc">Анализ крови на ростовой фактор мозга. <strong>Косвенный маркёр</strong> — не то, что реально меняется в поведении сети.</p>
+            <span class="nb-limit">→ косвенно, не в цифре сдвига</span>
+          </div>
+          <div class="nb-method">
+            <span class="nb-num">03 · Нейровизуализация</span>
+            <h4 class="nb-m-title">fMRI · DTI</h4>
+            <p class="nb-m-desc">Структура белого вещества, активация зон. <strong>Дорого, сложно</strong>, интерпретация размытая и не всегда повторяема.</p>
+            <span class="nb-limit">→ сложно, не по запросу</span>
+          </div>
+          <div class="nb-method">
+            <span class="nb-num">04 · Поведение</span>
+            <h4 class="nb-m-title">Когнитивные тесты</h4>
+            <p class="nb-m-desc">Память, реакция, внимание. Меряют <strong>результат работы</strong> мозга, а не способность мозга перестроиться.</p>
+            <span class="nb-limit">→ не про гибкость, а про итог</span>
+          </div>
+        </div>
+
+        <div class="nb-problem">
+          <p>Ни один из этих подходов не отвечает на главный вопрос:
+            <strong>может ли твой мозг переключиться в другой режим по команде и удержать его под нагрузкой?</strong>
+          </p>
+        </div>
+
+        <div class="nb-turn">
+          <span class="nb-turn-line">→ Нужна была новая метрика</span>
+          <h3 class="nb-turn-h">Практическая. <em>В жизни.</em> Измеряемая <em>в цифре.</em></h3>
+        </div>
       </div>
 
       <!-- MNPI -->
