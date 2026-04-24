@@ -1058,6 +1058,191 @@
     .modes-outro strong { color: #5F5FFF; font-weight: 600; }
 
     /* ══════════════════════════════════
+       WHY — Зачем останавливать мысли (мостик к режимам)
+    ══════════════════════════════════ */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+      margin-bottom: 40px;
+    }
+    .why-card {
+      padding: 24px 22px;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(0,0,0,0.05);
+      opacity: 0.85;
+      transition: opacity .25s, transform .25s;
+    }
+    .why-card:hover { opacity: 1; transform: translateY(-2px); }
+    .why-card .why-icon {
+      font-family: "VT323", monospace;
+      font-size: 1.8rem;
+      color: #888896;
+      line-height: 1;
+    }
+    .why-card h4 {
+      font-family: "Oswald", sans-serif;
+      font-size: 1rem; font-weight: 700;
+      text-transform: uppercase;
+      color: #16161A;
+      margin: 0; line-height: 1.2;
+    }
+    .why-card p {
+      font-family: "Jost", sans-serif;
+      font-size: 0.85rem; line-height: 1.55;
+      color: #666670;
+      margin: 0;
+    }
+
+    .why-turn {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 14px;
+      margin: 40px auto 36px;
+      max-width: 680px;
+      text-align: center;
+    }
+    .why-turn-line {
+      font-family: "Courier Prime", monospace;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #888896;
+      position: relative;
+      padding: 0 20px;
+    }
+    .why-turn-line::before, .why-turn-line::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 28px; height: 1px;
+      background: rgba(136,136,150,0.4);
+    }
+    .why-turn-line::before { right: 100%; }
+    .why-turn-line::after { left: 100%; }
+    .why-turn-h {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 500;
+      line-height: 1.25;
+      color: #16161A;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: 0;
+    }
+    .why-turn-h em {
+      font-style: italic;
+      color: #5F5FFF;
+    }
+
+    .why-omt {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 22px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      font-family: "Courier Prime", monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+    .why-omt::before {
+      content: '☝';
+      font-size: 1rem;
+      color: #00E5A0;
+    }
+
+    .why-reveal-card {
+      padding: 56px 48px;
+      border-radius: 26px;
+      background: linear-gradient(160deg, #0A0A12 0%, #1a1a28 100%);
+      color: #fff;
+      border: 1px solid rgba(95,95,255,0.3);
+      box-shadow: 0 24px 60px rgba(95,95,255,0.22);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .why-reveal-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(0,229,160,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(95,95,255,0.16) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .why-reveal-inner {
+      position: relative;
+      z-index: 2;
+      display: flex; flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+    .why-reveal-h {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.9rem, 4.6vw, 3rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin: 0;
+      letter-spacing: 0.01em;
+      max-width: 18ch;
+    }
+    .why-reveal-h em {
+      font-style: italic;
+      background: linear-gradient(135deg, #00E5A0 0%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .why-reveal-body {
+      font-family: "Jost", sans-serif;
+      font-size: clamp(1rem, 1.8vw, 1.12rem);
+      line-height: 1.7;
+      color: #c8c8d2;
+      max-width: 680px;
+      margin: 0;
+    }
+    .why-reveal-body strong {
+      color: #fff;
+      font-weight: 600;
+    }
+    .why-reveal-body em {
+      font-style: normal;
+      color: #00E5A0;
+      font-weight: 600;
+    }
+    .why-bridge {
+      margin-top: 12px;
+      padding: 14px 28px;
+      border-radius: 100px;
+      background: rgba(0,229,160,0.1);
+      border: 1px solid rgba(0,229,160,0.32);
+      font-family: "Courier Prime", monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #00E5A0;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .why-bridge .arr {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    /* ══════════════════════════════════
        BASELINE
     ══════════════════════════════════ */
     .baseline-grid {
@@ -2387,6 +2572,13 @@
       .contrast-metrics { grid-template-columns: 1fr 1fr; gap: 18px 14px; }
       .cm-item:nth-child(3) { border-left: none; padding-left: 0; }
       .cm-item:nth-child(2), .cm-item:nth-child(4) { border-left: 1px solid rgba(0,0,0,0.08); }
+      /* why — stack */
+      .why-grid { grid-template-columns: 1fr; }
+      .why-reveal-card { padding: 36px 24px; }
+      .why-turn-line::before, .why-turn-line::after { display: none; }
+    }
+    @media (min-width: 701px) and (max-width: 1024px) {
+      .why-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -2465,21 +2657,22 @@
       <a href="#contrast">02 · ЭЭГ</a>
       <a href="#paths">03 · Пути</a>
       <a href="#discovery">04 · Открытие</a>
-      <a href="#modes">05 · Режимы</a>
-      <a href="#baseline">06 · Линия</a>
-      <a href="#viktor">07 · Цифры</a>
-      <a href="#ai">08 · ai</a>
-      <a href="#day">09 · Тренинг</a>
-      <a href="#arc">10 · Дуга</a>
-      <a href="#diff">11 · Граница</a>
-      <a href="#who">12 · Кому</a>
-      <a href="#stack">13 · Стек</a>
-      <a href="#cases">14 · Кейсы</a>
-      <a href="#author">15 · Автор</a>
-      <a href="#pricing">16 · Тарифы</a>
-      <a href="#guarantee">17 · Гарантия</a>
-      <a href="#stream">18 · Поток</a>
-      <a href="#faq">19 · FAQ</a>
+      <a href="#why">05 · Зачем</a>
+      <a href="#modes">06 · Режимы</a>
+      <a href="#baseline">07 · Линия</a>
+      <a href="#viktor">08 · Цифры</a>
+      <a href="#ai">09 · ai</a>
+      <a href="#day">10 · Тренинг</a>
+      <a href="#arc">11 · Дуга</a>
+      <a href="#diff">12 · Граница</a>
+      <a href="#who">13 · Кому</a>
+      <a href="#stack">14 · Стек</a>
+      <a href="#cases">15 · Кейсы</a>
+      <a href="#author">16 · Автор</a>
+      <a href="#pricing">17 · Тарифы</a>
+      <a href="#guarantee">18 · Гарантия</a>
+      <a href="#stream">19 · Поток</a>
+      <a href="#faq">20 · FAQ</a>
     </div>
   </nav>
 
@@ -2840,6 +3033,70 @@
         Тишина — это вход. За ней открывается <em>пульт управления.</em>
         <small>ONTO NOTHING — рабочая методология · применяется в независимых научных командах</small>
       </blockquote>
+    </div>
+  </section>
+
+  <!-- ═══════════ WHY · Зачем останавливать мысли ═══════════ -->
+  <section id="why" class="s">
+    <div class="s-inner">
+      <div class="section-header reveal">
+        <span class="eyebrow">Зачем вообще останавливать мысли?</span>
+        <h2 class="h2-custom">Первый ответ <em>очевиден.</em> И он правдив.</h2>
+        <p class="lead">То, что большинство ожидает от тишины ума, — работает. Меньше тревоги, лучше сон, ясность решений. Но это — только верхний слой пользы.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <span class="why-icon">♡</span>
+          <h4>Меньше тревоги</h4>
+          <p>Симпатика успокаивается, кортизол выходит из хронического паттерна.</p>
+        </div>
+        <div class="why-card reveal">
+          <span class="why-icon">☾</span>
+          <h4>Глубокий сон</h4>
+          <p>Засыпание за минуты, пробуждения исчезают, глубокая фаза растёт.</p>
+        </div>
+        <div class="why-card reveal">
+          <span class="why-icon">⟳</span>
+          <h4>Ясные решения</h4>
+          <p>Ответы приходят из паузы, а не из реактивности и внутреннего шума.</p>
+        </div>
+        <div class="why-card reveal">
+          <span class="why-icon">✦</span>
+          <h4>Снижение стресса</h4>
+          <p>Вагальный тонус вверх, воспаление вниз, ВНС в балансе.</p>
+        </div>
+        <div class="why-card reveal">
+          <span class="why-icon">◯</span>
+          <h4>Концентрация</h4>
+          <p>Внимание перестаёт утекать на жевание мыслей — возвращается фокус.</p>
+        </div>
+        <div class="why-card reveal">
+          <span class="why-icon">∞</span>
+          <h4>Эмо-регуляция</h4>
+          <p>Пауза между стимулом и реакцией. Меньше «сорвался», больше «ответил».</p>
+        </div>
+      </div>
+
+      <div class="why-turn reveal">
+        <span class="why-turn-line">Всё это — правда. Всё это — побочный эффект.</span>
+        <h3 class="why-turn-h">Главное начинается <em>за этим.</em></h3>
+      </div>
+
+      <div class="why-reveal-card reveal">
+        <div class="why-reveal-inner">
+          <span class="why-omt">One more thing</span>
+          <h3 class="why-reveal-h">Тишина — это не цель.<br>Это <em>дверь.</em></h3>
+          <p class="why-reveal-body">
+            ONTO NOTHING открывает доступ к <strong>операционной системе сознания</strong>. К пульту, на котором — <strong>управление вниманием</strong> и <em>быстрый вход в функциональные состояния</em> по желанию.
+          </p>
+          <p class="why-reveal-body">
+            Остановка мысли — это не самоцель. Это способ <strong>разблокировать</strong> то, что всё остальное время заблокировано фоновым шумом беты. Спокойствие — побочный продукт. <em>Управляемые режимы сознания</em> — главный.
+          </p>
+          <span class="why-bridge">7 режимов сознания <span class="arr">→</span> пульт управления</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -3923,7 +4180,7 @@
 
     // ── Sub-nav active state ───────────────────────
     const subnavLinks = document.querySelectorAll('.subnav a');
-    const sectionIds = ['tradition','contrast','paths','discovery','modes','baseline','viktor','ai','day','arc','diff','who','stack','cases','author','pricing','guarantee','stream','faq'];
+    const sectionIds = ['tradition','contrast','paths','discovery','why','modes','baseline','viktor','ai','day','arc','diff','who','stack','cases','author','pricing','guarantee','stream','faq'];
     const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
 
     if ('IntersectionObserver' in window && subnavLinks.length && sections.length) {
