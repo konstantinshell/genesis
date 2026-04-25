@@ -69,7 +69,8 @@
     }
 
     .slide {
-      position: relative;
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       display: flex;
@@ -78,6 +79,30 @@
       justify-content: center;
       padding: 80px 60px;
       overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* ========== REVEAL ANIMATION ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: 0s;
+    }
+    .slide.is-active .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: calc(0.15s + var(--i, 0) * 0.18s);
     }
 
     /* ========== COVER ========== */
@@ -179,12 +204,6 @@
       z-index: 2;
       text-align: center;
       max-width: 1500px;
-      animation: fadeUp 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
     }
 
     .cover-eyebrow {
@@ -264,6 +283,147 @@
       font-weight: 400;
     }
 
+    /* ========== TEXT SLIDE ========== */
+    .text-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .text-eyebrow {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(13px, 1vw, 18px);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: clamp(28px, 3vw, 48px);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .text-eyebrow::before,
+    .text-eyebrow::after {
+      content: "";
+      display: block;
+      width: clamp(20px, 2vw, 36px);
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+    }
+
+    .text-title {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(38px, 5.6vw, 96px);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin: 0 auto clamp(36px, 4vw, 64px);
+      max-width: 22ch;
+    }
+
+    .text-body {
+      max-width: 880px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(18px, 2vw, 28px);
+    }
+
+    .text-body p {
+      font-family: var(--fb);
+      font-weight: 400;
+      font-size: clamp(20px, 1.7vw, 30px);
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    .text-body p.text-lead {
+      font-weight: 500;
+      font-size: clamp(22px, 1.9vw, 32px);
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .text-body p.muted {
+      color: var(--muted);
+    }
+
+    .text-punchline {
+      margin-top: clamp(48px, 5vw, 88px);
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(28px, 3.4vw, 60px);
+      letter-spacing: -0.005em;
+      color: var(--accent);
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    /* ========== NAV CONTROLS ========== */
+    .deck-nav {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      z-index: 50;
+      box-shadow: 0 6px 24px rgba(22,22,26,0.06);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .deck:hover .deck-nav,
+    .deck-nav:hover,
+    .deck-nav.is-visible {
+      opacity: 1;
+    }
+
+    .nav-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 18px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, color 0.2s ease;
+      font-family: var(--fb);
+    }
+    .nav-btn:hover {
+      background: rgba(95,95,255,0.12);
+      color: var(--accent);
+    }
+    .nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .nav-counter {
+      font-family: var(--fm);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      padding: 0 10px;
+      min-width: 60px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
     /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
       .slide { padding: 60px 24px; }
@@ -285,7 +445,7 @@
   <!-- SLIDE 01 — COVER                              -->
   <!-- timer: none                                   -->
   <!-- ============================================ -->
-  <section class="slide slide-cover" data-slide="cover" data-index="01">
+  <section class="slide slide-cover is-active" data-slide="cover" data-index="01">
 
     <div class="corner corner-tl">
       <span class="symbol">∅</span>
@@ -296,19 +456,19 @@
     </div>
 
     <div class="cover-content">
-      <div class="cover-eyebrow">Презентация · 5 сессий · ~3 ч 15 мин</div>
+      <div class="cover-eyebrow reveal" style="--i: 0">Презентация · 5 сессий · ~3 ч 15 мин</div>
 
       <h1 class="cover-title">
-        <span class="title-main">MNPI Checkup</span>
-        <span class="title-brand">Neiry</span>
+        <span class="title-main reveal" style="--i: 1">MNPI Checkup</span>
+        <span class="title-brand reveal" style="--i: 2">Neiry</span>
       </h1>
 
-      <p class="cover-sub">
+      <p class="cover-sub reveal" style="--i: 3">
         Первый структурированный тест нейропластичности<br>
         для владельцев нейробанда
       </p>
 
-      <div class="cover-footer">
+      <div class="cover-footer reveal" style="--i: 4">
         ONTO NOTHING <span class="x">×</span> NEIRY <span class="yr">· 2026</span>
       </div>
     </div>
@@ -324,16 +484,134 @@
 
   </section>
 
+
+  <!-- ============================================ -->
+  <!-- SLIDE 02 — INTRO-1                            -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="intro-1" data-index="02">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>MNPI · CHECKUP · NEIRY</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>02 / Вступление</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Вступление · 1 / 5</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Ты знаешь, что происходит<br>
+        у тебя в мозге<br>
+        прямо сейчас?
+      </h2>
+
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">Не в переносном смысле — буквально.</p>
+
+        <p class="reveal" style="--i: 3">
+          Насколько глубоко ты умеешь расслабляться. Можешь ли ты остановить
+          внутренний диалог — и на сколько минут. Есть ли у тебя доступ к
+          состоянию потока. Насколько твой мозг вообще пластичен.
+        </p>
+
+        <p class="muted reveal" style="--i: 4">
+          Большинство людей этого не знают. Не потому что это сложно —
+          просто никто никогда не мерял.
+        </p>
+      </div>
+
+      <div class="text-punchline reveal" style="--i: 5">
+        MNPI Checkup Neiry измеряет.
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>Intro 1</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
 </main>
 
+<!-- Floating navigation pill -->
+<div class="deck-nav" id="deckNav">
+  <button class="nav-btn" id="navPrev" aria-label="Предыдущий слайд">←</button>
+  <span class="nav-counter" id="navCounter">01 / 02</span>
+  <button class="nav-btn" id="navNext" aria-label="Следующий слайд">→</button>
+</div>
+
 <script>
-  // Заглушка навигации — следующие слайды появятся в следующих итерациях
+  // === НАВИГАЦИЯ ПО СЛАЙДАМ ===
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  const counter = document.getElementById('navCounter');
+  const btnPrev = document.getElementById('navPrev');
+  const btnNext = document.getElementById('navNext');
+  const deckNav = document.getElementById('deckNav');
+  let current = 0;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function go(i) {
+    if (i < 0 || i >= total || i === current) return;
+    slides[current].classList.remove('is-active');
+    current = i;
+    slides[current].classList.add('is-active');
+    counter.textContent = `${pad(current + 1)} / ${pad(total)}`;
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === total - 1;
+    history.replaceState(null, '', `#${slides[current].dataset.slide || current + 1}`);
+  }
+
+  // start position from URL hash
+  const initSlug = window.location.hash.replace('#', '');
+  if (initSlug) {
+    const idx = slides.findIndex(s => s.dataset.slide === initSlug);
+    if (idx >= 0) {
+      slides[0].classList.remove('is-active');
+      current = idx;
+      slides[current].classList.add('is-active');
+    }
+  }
+  counter.textContent = `${pad(current + 1)} / ${pad(total)}`;
+  btnPrev.disabled = current === 0;
+  btnNext.disabled = current === total - 1;
+
+  btnPrev.addEventListener('click', () => go(current - 1));
+  btnNext.addEventListener('click', () => go(current + 1));
+
+  // keyboard
   document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input, textarea, select')) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); go(current + 1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'PageUp')   { e.preventDefault(); go(current - 1); }
+    if (e.key === ' ')                                   { e.preventDefault(); go(current + 1); }
+    if (e.key === 'Home')                                { e.preventDefault(); go(0); }
+    if (e.key === 'End')                                 { e.preventDefault(); go(total - 1); }
     if (e.key === 'f' || e.key === 'F') {
       if (!document.fullscreenElement) document.documentElement.requestFullscreen();
       else document.exitFullscreen();
     }
   });
+
+  // показать пилюлю при движении мыши, скрыть после простоя
+  let hideTimer;
+  function showNav() {
+    deckNav.classList.add('is-visible');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => deckNav.classList.remove('is-visible'), 2200);
+  }
+  document.addEventListener('mousemove', showNav);
+  document.addEventListener('keydown', showNav);
+  showNav();
 </script>
 
 </body>
