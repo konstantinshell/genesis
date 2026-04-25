@@ -363,6 +363,171 @@
       line-height: 1.1;
     }
 
+    /* ========== FORMULA SLIDE ========== */
+    .formula-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1480px;
+      text-align: center;
+    }
+
+    .formula-eyebrow {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(13px, 1vw, 18px);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: clamp(20px, 2vw, 36px);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .formula-eyebrow::before,
+    .formula-eyebrow::after {
+      content: "";
+      display: block;
+      width: clamp(20px, 2vw, 36px);
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+    }
+
+    .formula-title {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(28px, 3.6vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin: 0 auto clamp(28px, 3vw, 48px);
+      text-transform: uppercase;
+    }
+
+    .formula-equation {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(22px, 3.4vw, 56px);
+      line-height: 1.1;
+      letter-spacing: -0.005em;
+      margin: 0 auto clamp(36px, 4vw, 64px);
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(8px, 1.2vw, 18px);
+      color: var(--text);
+      padding: clamp(20px, 2.4vw, 36px) clamp(28px, 3vw, 56px);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fe-mnpi {
+      font-family: var(--fh);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .fe-eq, .fe-plus {
+      color: var(--muted-2);
+      font-weight: 400;
+      font-size: 0.85em;
+    }
+    .fe-op {
+      color: var(--muted-2);
+      font-weight: 400;
+      font-size: 0.7em;
+      margin: 0 0.2em;
+    }
+    .fe-comp {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.05em;
+      color: var(--c, var(--accent));
+    }
+    .fe-comp[data-id="si"] { --c: #5F5FFF; }
+    .fe-comp[data-id="di"] { --c: #F59E0B; }
+    .fe-comp[data-id="ri"] { --c: #10B981; }
+    .fe-comp[data-id="pi"] { --c: #EF4444; }
+    .fe-w {
+      font-family: var(--fm);
+      font-size: 0.6em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(14px, 1.4vw, 22px);
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .formula-card {
+      --c: var(--accent);
+      position: relative;
+      padding: clamp(18px, 1.8vw, 28px) clamp(18px, 1.6vw, 26px) clamp(18px, 1.8vw, 28px);
+      background: rgba(255,255,255,0.65);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--c);
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(22,22,26,0.04);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .formula-card[data-id="si"] { --c: #5F5FFF; }
+    .formula-card[data-id="di"] { --c: #F59E0B; }
+    .formula-card[data-id="ri"] { --c: #10B981; }
+    .formula-card[data-id="pi"] { --c: #EF4444; }
+
+    .fc-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .fc-abbr {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(28px, 2.6vw, 44px);
+      line-height: 1;
+      color: var(--c);
+      letter-spacing: 0.01em;
+    }
+    .fc-name {
+      font-family: var(--fm);
+      font-size: clamp(11px, 0.85vw, 14px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      flex: 1;
+      text-align: left;
+      margin-left: 10px;
+    }
+    .fc-pct {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(20px, 1.8vw, 30px);
+      color: var(--c);
+      letter-spacing: 0;
+    }
+    .fc-role {
+      font-family: var(--fm);
+      font-size: clamp(11px, 0.85vw, 14px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: clamp(12px, 1.2vw, 18px);
+    }
+    .fc-desc {
+      font-family: var(--fb);
+      font-size: clamp(13px, 1vw, 17px);
+      line-height: 1.45;
+      color: var(--text);
+    }
+
     /* ========== NAV CONTROLS ========== */
     .deck-nav {
       position: fixed;
@@ -531,6 +696,62 @@
     <div class="corner corner-bl">
       <span class="dot"></span>
       <span>Intro 1</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 03 — INTRO-2                            -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="intro-2" data-index="03">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>MNPI · CHECKUP · NEIRY</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>03 / Вступление</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Вступление · 2 / 5</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Что такое нейропластичность<br>
+        на практике
+      </h2>
+
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Это способность мозга переходить между состояниями.
+        </p>
+
+        <p class="reveal" style="--i: 3">
+          Входить в глубокое расслабление, удерживать его под давлением,
+          быстро переключаться между режимами работы.
+        </p>
+
+        <p class="muted reveal" style="--i: 4">
+          Мозг, который умеет это — восстанавливается быстрее, принимает
+          решения яснее, реже застревает в стрессовых петлях.
+        </p>
+      </div>
+
+      <div class="text-punchline reveal" style="--i: 5">
+        Разница видна на ЭЭГ.<br>
+        Она измерима. И она меняется.
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>Intro 2</span>
     </div>
     <div class="corner corner-br">
       <span>далее</span>
