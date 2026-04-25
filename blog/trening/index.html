@@ -84,15 +84,16 @@
 
     .eyebrow {
       display: inline-block;
-      font-family: "Courier Prime", monospace;
-      font-size: 10px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 2px;
+      font-family: "Oswald", sans-serif;
+      font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.4px;
       color: #5F5FFF;
-      background: rgba(95,95,255,0.08);
-      border: 1px solid rgba(95,95,255,0.22);
-      border-radius: 7px;
-      padding: 5px 12px;
-      margin-bottom: 20px;
+      background: rgba(95,95,255,0.10);
+      border: 1px solid rgba(95,95,255,0.28);
+      border-radius: 999px;
+      padding: 7px 16px;
+      margin-bottom: 22px;
+      line-height: 1.2;
     }
 
     .h2-custom {
@@ -1942,29 +1943,30 @@
     .nb-eye {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 18px 8px 10px;
+      gap: 12px;
+      padding: 10px 22px 10px 12px;
       border-radius: 100px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(167,139,250,0.10);
+      border: 1px solid rgba(167,139,250,0.32);
       font-family: "Oswald", sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
       color: #fff;
-      letter-spacing: 0.01em;
-      margin-bottom: 20px;
-      line-height: 1.2;
+      letter-spacing: 0.04em;
+      margin-bottom: 22px;
+      line-height: 1.15;
     }
     .nb-eye::before {
       content: '?';
-      width: 26px; height: 26px;
+      width: 30px; height: 30px;
       flex-shrink: 0;
       border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: #a8a8b5;
+      background: rgba(167,139,250,0.22);
+      border: 1px solid rgba(167,139,250,0.5);
+      color: #fff;
       font-family: "Oswald", sans-serif;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       font-weight: 700;
       display: inline-flex;
       align-items: center;
@@ -2074,11 +2076,15 @@
     }
     .nb-turn-line {
       display: inline-block;
-      font-family: "Courier Prime", monospace;
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
+      font-family: "Oswald", sans-serif;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase;
       color: #A78BFA;
-      margin-bottom: 14px;
+      padding: 7px 16px;
+      background: rgba(167,139,250,0.12);
+      border: 1px solid rgba(167,139,250,0.32);
+      border-radius: 999px;
+      margin-bottom: 18px;
     }
     .nb-turn-h {
       font-family: "Oswald", sans-serif;
@@ -2507,15 +2513,15 @@
     .pf-intro .pf-eyebrow {
       display: inline-block;
       font-family: "Courier Prime", monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #00E5A0;
-      padding: 6px 14px;
-      border: 1px solid rgba(0,229,160,0.3);
-      background: rgba(0,229,160,0.08);
+      padding: 7px 16px;
+      border: 1px solid rgba(0,229,160,0.36);
+      background: rgba(0,229,160,0.10);
       border-radius: 999px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       font-weight: 700;
     }
     .pf-intro h3 {
@@ -3387,12 +3393,145 @@
       padding-top: 10px;
     }
 
+    /* BOOST — ONTO NOTHING как ускоритель любого подхода */
+    .boost-intro {
+      margin: 88px auto 0;
+      max-width: 880px;
+      text-align: center;
+      padding: 0 16px;
+    }
+    .boost-intro-title {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(2rem, 4.8vw, 3.6rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.04;
+      letter-spacing: -0.01em;
+      color: #16161A;
+      margin: 0 0 22px;
+    }
+    .boost-intro-title em {
+      font-style: normal;
+      color: #5F5FFF;
+    }
+    .boost-intro-sub {
+      font-family: "Jost", sans-serif;
+      font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+      line-height: 1.55;
+      color: #444450;
+      max-width: 640px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+    @media (max-width: 700px) {
+      .boost-intro { margin-top: 64px; }
+      .boost-intro-title br { display: none; }
+    }
+
+    .boost-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px; margin-top: 48px;
+    }
+    .boost-card {
+      padding: 28px 24px 26px; border-radius: 22px;
+      position: relative;
+      display: flex; flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .boost-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 44px rgba(95,95,255,0.10);
+    }
+    .boost-head {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .boost-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: rgba(95,95,255,0.10);
+      border: 1px solid rgba(95,95,255,0.28);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: #5F5FFF; flex-shrink: 0;
+    }
+    .boost-icon svg { width: 20px; height: 20px; }
+    .boost-tag {
+      font-family: "Oswald", sans-serif;
+      font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.4px;
+      color: #5F5FFF;
+      padding: 6px 12px;
+      background: rgba(95,95,255,0.10);
+      border: 1px solid rgba(95,95,255,0.25);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .boost-card h3 {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.18rem; font-weight: 700;
+      text-transform: uppercase; color: #16161A;
+      margin: 0 0 12px; line-height: 1.22;
+    }
+    .boost-card p {
+      font-family: "Jost", sans-serif;
+      font-size: 0.93rem; line-height: 1.62;
+      color: #444450; margin: 0;
+    }
+    .boost-gain {
+      margin-top: 14px; padding-top: 12px;
+      border-top: 1px dashed rgba(95,95,255,0.22);
+      font-family: "Jost", sans-serif;
+      font-size: 0.9rem; line-height: 1.5;
+      color: #16161A; font-weight: 500;
+    }
+    .boost-gain b { color: #5F5FFF; font-weight: 700; }
+
     /* ══════════════════════════════════
        AVATARS
     ══════════════════════════════════ */
     .av-grid {
       display: grid; grid-template-columns: repeat(5, 1fr);
       gap: 14px; margin-top: 20px;
+    }
+    .av-grid.who-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .av-grid.who-grid-5 { grid-template-columns: repeat(5, 1fr); }
+
+    /* Группы аудиторий */
+    .who-group {
+      margin-top: 56px;
+    }
+    .who-group:first-of-type { margin-top: 0; }
+    .who-group-head {
+      max-width: 760px;
+      margin: 0 auto 28px;
+      text-align: center;
+    }
+    .who-group-tag {
+      display: inline-block;
+      font-family: "Oswald", sans-serif;
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.4px;
+      color: #5F5FFF;
+      padding: 6px 14px;
+      background: rgba(95,95,255,0.10);
+      border: 1px solid rgba(95,95,255,0.28);
+      border-radius: 999px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .who-group-h {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.18;
+      color: #16161A;
+      margin: 0;
+      letter-spacing: 0.005em;
+    }
+    .who-group-h em {
+      font-style: normal;
+      color: #5F5FFF;
+      font-weight: 600;
     }
     .av-card {
       padding: 28px 20px; border-radius: 20px;
@@ -4236,6 +4375,8 @@
       .impact-grid { grid-template-columns: repeat(2, 1fr); }
       .stack-grid { grid-template-columns: repeat(2, 1fr); }
       .paths-grid, .av-grid { grid-template-columns: repeat(3, 1fr); }
+      .av-grid.who-grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .av-grid.who-grid-5 { grid-template-columns: repeat(3, 1fr); }
       .day-grid { grid-template-columns: repeat(2, 1fr); }
       .integ-calendar { grid-template-columns: 1fr 1fr; }
       .viktor-grid { grid-template-columns: repeat(2, 1fr); }
@@ -4250,6 +4391,7 @@
       .team-card.featured .team-bio { text-align: left; }
       .integ-results ul { grid-template-columns: 1fr; }
       .not-grid { grid-template-columns: 1fr; }
+      .boost-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     }
     @media (max-width: 700px) {
       .s { padding: 72px 16px; }
@@ -4264,6 +4406,8 @@
       .const-grid, .baseline-grid, .cases-grid, .trees-grid, .voices-strip,
       .stack-grid, .paths-grid, .av-grid, .day-grid, .network-stats,
       .guar-pillars, .mnpi-comp { grid-template-columns: 1fr; }
+      .av-grid.who-grid-4, .av-grid.who-grid-5 { grid-template-columns: 1fr; }
+      .who-group { margin-top: 40px; }
       .integ-calendar { grid-template-columns: 1fr; }
       .modes-grid { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: 1fr; }
@@ -4271,6 +4415,8 @@
       .hero5-cta { padding: 16px 28px; font-size: 0.9rem; }
       .finale-cta { padding: 20px 36px; }
       .pull-quote { padding: 22px 24px; }
+      .boost-grid { grid-template-columns: 1fr; }
+      .boost-card { padding: 24px 20px; }
       .arc-grid { grid-template-columns: 100px repeat(5, 1fr); min-width: 780px; }
       .mnpi-score-value { font-size: 2.4rem; }
       .mnpi-block { padding: 28px 22px; }
@@ -4448,7 +4594,7 @@
       <a href="#ai">09 · ai</a>
       <a href="#day">10 · Тренинг</a>
       <a href="#arc">11 · Дуга</a>
-      <a href="#diff">12 · Граница</a>
+      <a href="#diff">12 · Метод</a>
       <a href="#who">13 · Кому</a>
       <a href="#stack">14 · Стек</a>
       <a href="#cases">15 · Кейсы</a>
@@ -4464,7 +4610,7 @@
   <section id="tradition" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть I · Традиция</span>
+        <span class="eyebrow">01 · Традиция</span>
         <h2 class="h2-custom">Состояние, о котором <em>говорят тысячи лет.</em></h2>
         <p class="lead">О нём пишут мистики. Его описывают нейрофизиологи. К нему идут спортсмены, предприниматели, художники, монахи. Это состояние, в котором ум перестаёт говорить и впервые становится виден.</p>
       </div>
@@ -4597,7 +4743,7 @@
   <section id="contrast" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">60 секунд · что происходит в мозге</span>
+        <span class="eyebrow">02 · ЭЭГ · 60 секунд в мозге</span>
         <h2 class="h2-custom">ДО и ПОСЛЕ входа. <em>Прямо на ЭЭГ.</em></h2>
         <p class="lead">Не метафора. Реальное переключение доминирующего ритма — бета гасится, альфа выходит на первый план. Видно с первой сессии, на приборе.</p>
       </div>
@@ -4696,7 +4842,7 @@
   <section id="paths" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть II · Пути</span>
+        <span class="eyebrow">03 · Пути</span>
         <h2 class="h2-custom">Пути, которыми шли <em>до сих пор.</em></h2>
         <p class="lead">Тысячи лет человечество искало эту тишину. Вот пять главных дорог — и почему у каждой одна и та же проблема.</p>
       </div>
@@ -4759,7 +4905,7 @@
   <section id="discovery" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть III · Открытие</span>
+        <span class="eyebrow">04 · Открытие</span>
         <h2 class="h2-custom">Открытие. <em>ONTO NOTHING.</em></h2>
         <p class="lead">В 2022 году Константин Шель описал и воспроизвёл феномен, который до этого считался либо спонтанным, либо достижимым только через многолетнюю практику.</p>
       </div>
@@ -4824,6 +4970,7 @@
   <section id="why" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
+        <span class="eyebrow">05 · Зачем</span>
         <div class="why-question"><span class="why-q-mark">?</span><span>Зачем вообще останавливать мысли</span></div>
         <h2 class="h2-custom">Первый ответ <em>очевиден.</em> И он правдив.</h2>
         <p class="lead">То, что большинство ожидает от тишины ума, — работает. Меньше тревоги, лучше сон, ясность решений. Но это — только верхний слой пользы.</p>
@@ -4888,7 +5035,7 @@
   <section id="modes" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть IV · Пульт из семи кнопок</span>
+        <span class="eyebrow">06 · Режимы · Пульт из семи кнопок</span>
         <h2 class="h2-custom">7 функциональных режимов сознания. <em>Пульт управления состояниями.</em></h2>
         <p class="lead">ONTO NOTHING — ключ к операционной системе мозга, в которой семь различимых режимов. У каждого — свой нейрофизиологический портрет. Наведите или нажмите — чтобы увидеть профиль.</p>
       </div>
@@ -5065,7 +5212,7 @@
   <section id="baseline" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть V · Базовая линия · Один день</span>
+        <span class="eyebrow">07 · Базовая линия · Один день</span>
         <h2 class="h2-custom">Два человека. <em>Один день.</em></h2>
         <p class="lead">Что происходит с утра до ночи у того, кто залип в DMN — и у того, кто переключается между режимами. Одинаковые 18 часов. Два разных мозга.</p>
       </div>
@@ -5251,7 +5398,7 @@
   <section id="viktor" class="s s-viktor">
     <div class="s-inner">
       <div class="viktor-hero reveal">
-        <span class="eyebrow">Часть VI · Кейс Виктора · ЭЭГ</span>
+        <span class="eyebrow">08 · Цифры · Кейс Виктора</span>
         <h2 class="vh-h2">60+ биомаркеров.<em>Все разом.</em></h2>
         <p class="vh-lead">Не оптимизация одной метрики. Не «улучшение». <strong>Перепрошивка базовой архитектуры сознания</strong> — за 11 сессий и ~8 часов практики. Уровень мастера с 1000+ ч медитации. Подтверждено ЭЭГ Neiry, PPG Whoop и HRV.</p>
         <div class="vh-specs">
@@ -5486,7 +5633,7 @@
   <section id="ai" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть VII · Платформа · Цифровой помощник</span>
+        <span class="eyebrow">09 · Платформа · Цифровой помощник</span>
         <h2 class="h2-custom">ex NIHILO ai — <em>твой цифровой помощник</em> на месяц полного доступа.</h2>
         <p class="lead">Тренинг даёт тебе данные. Платформа — место, где эти данные оживают. Отчёты, графики, обратная связь по каждому замеру, аудиодневник, закрытый контент только для участников. Полный функционал доступен на 1 месяц после старта.</p>
       </div>
@@ -5631,7 +5778,7 @@
   <section id="day" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть VIII · Тренинг-день</span>
+        <span class="eyebrow">10 · Тренинг-день</span>
         <h2 class="h2-custom">Что происходит <em>на тренинге.</em></h2>
         <p class="lead">Один день. Шесть блоков. Структура выверена до минуты.</p>
       </div>
@@ -5796,7 +5943,7 @@
   <section id="arc" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть IX · Дуга трансформации</span>
+        <span class="eyebrow">11 · Дуга трансформации</span>
         <h2 class="h2-custom">День 1 → 12 месяцев. <em>Разворот жизни на трёх уровнях.</em></h2>
         <p class="lead">Метод запускает сдвиг на трёх уровнях одновременно: тело · мозг · событийность. Тренинг — это вход. Год — это разворот.</p>
       </div>
@@ -5841,9 +5988,9 @@
   <section id="diff" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть X · Граница категории</span>
-        <h2 class="h2-custom">Чем ONTO NOTHING отличается <em>от всего остального.</em></h2>
-        <p class="lead">Все остальные методы работают со слоями. ONTO NOTHING работает в ядре.</p>
+        <span class="eyebrow">12 · Метод · Что такое ONTO NOTHING</span>
+        <h2 class="h2-custom">ONTO NOTHING — это <em>доступ к ядру сознания.</em></h2>
+        <p class="lead">Жизнь устроена слоями: внешние обстоятельства, тело, психика. Все они растут из одного центра — сознания. ONTO NOTHING работает не на поверхности слоёв, а в самом ядре — там, откуда они рождаются. Меняется ядро — меняются все слои.</p>
       </div>
 
       <div class="core-wrap reveal">
@@ -5948,84 +6095,213 @@
 
       </div>
 
-      <p class="diff-bridge reveal">Все остальные подходы работают <strong>по слоям</strong> — добавки влияют на тело, психотерапия на мысли, коучинг на поведение. <strong>ONTO NOTHING — это доступ к операционной системе сознания.</strong> Меняется ОС — все слои перестраиваются сами.</p>
+      <div class="boost-intro reveal">
+        <h3 class="boost-intro-title">Усиливает всё.<br><em>Не заменяет ничего.</em></h3>
+        <p class="boost-intro-sub">Девять направлений. Один общий доступ к ядру, из которого все они начинают работать в разы сильнее.</p>
+      </div>
 
-      <p class="diff-outro reveal">ONTO NOTHING не заменяет духовную практику — <em>он её ускоряет.</em> Если ты медитировал годами — метод даёт то, за чем ты шёл, сразу. Если не медитировал — даёт тот же доступ, без подготовки.</p>
+      <!-- BOOST — как ONTO NOTHING усиливает каждый подход -->
+      <div class="boost-grid">
 
-      <!-- NOT-IS -->
-      <div class="not-grid">
-        <div class="not-card glass5 reveal">
-          <div class="not-icon">×</div>
-          <h3>Это не медитация.</h3>
-          <p>Медитация — практика успокоения без гарантии результата.</p>
-          <p>ONTO NOTHING — протокол входа с верификацией на приборах с первой сессии.</p>
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M 12 3 V 6"/><path d="M 12 18 V 21"/><path d="M 3 12 H 6"/><path d="M 18 12 H 21"/><path d="M 5.6 5.6 L 7.7 7.7"/><path d="M 16.3 16.3 L 18.4 18.4"/><path d="M 5.6 18.4 L 7.7 16.3"/><path d="M 16.3 7.7 L 18.4 5.6"/></svg>
+            </span>
+            <span class="boost-tag">Медитация · Йога</span>
+          </div>
+          <h3>Годы практики — за один день.</h3>
+          <p>То состояние, к которому ведут десятилетия садханы, ретриты и тысячи часов сидения, — становится доступным с первой сессии. И — воспроизводимым по запросу.</p>
+          <div class="boost-gain"><b>Выгода:</b> практика перестаёт быть лотереей. У тебя есть мишень, которую видно на ЭЭГ.</div>
         </div>
-        <div class="not-card glass5 reveal">
-          <div class="not-icon">×</div>
-          <h3>Это не психотерапия.</h3>
-          <p>Терапия работает с содержанием мыслей.</p>
-          <p>ONTO NOTHING выключает сам аппарат мышления.</p>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 12 4 C 8 4 5 7 5 11 C 5 14 7 16 7 18 V 20 H 12"/><path d="M 9 11 a 1 1 0 1 0 0.01 0"/><path d="M 14 14 H 19"/><path d="M 16.5 11.5 V 16.5"/></svg>
+            </span>
+            <span class="boost-tag">Психотерапия · Коучинг</span>
+          </div>
+          <h3>Терапия идёт глубже и быстрее.</h3>
+          <p>Терапия работает с содержанием мыслей. ONTO NOTHING выключает сам фон, на котором эти мысли крутятся, — и проработка идёт без сопротивления.</p>
+          <div class="boost-gain"><b>Выгода:</b> то, что в кабинете прорабатывается месяцами, после входа складывается за недели.</div>
         </div>
-        <div class="not-card glass5 reveal">
-          <div class="not-icon">×</div>
-          <h3>Это не биохакинг.</h3>
-          <p>Биохакинг оптимизирует физиологию.</p>
-          <p>ONTO NOTHING меняет уровень сознания, из которого физиология — следствие.</p>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 8 3 H 16"/><path d="M 9 3 V 9 L 5 18 a 2 2 0 0 0 2 2 H 17 a 2 2 0 0 0 2 -2 L 15 9 V 3"/><path d="M 7 14 H 17"/></svg>
+            </span>
+            <span class="boost-tag">Биохакинг · БАДы</span>
+          </div>
+          <h3>Те же протоколы — другой эффект.</h3>
+          <p>На выключенной DMN физиология работает иначе. Сон, добавки, тренировки, голодание — всё усваивается глубже, потому что нервная система перестаёт жить в фоновом стрессе.</p>
+          <div class="boost-gain"><b>Выгода:</b> биомаркеры сдвигаются в 2–3 раза быстрее на тех же протоколах.</div>
         </div>
-        <div class="not-card glass5 reveal">
-          <div class="not-icon">×</div>
-          <h3>Это не эзотерика.</h3>
-          <p>Эзотерика просит верить.</p>
-          <p>ONTO NOTHING показывает графики ЭЭГ, PPG и HRV в реальном времени.</p>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M 2 12 H 5 L 7 6 L 10 18 L 13 9 L 15 14 L 17 11 H 22"/></svg>
+            </span>
+            <span class="boost-tag">Нейрофидбэк · ЭЭГ-тренинг</span>
+          </div>
+          <h3>Калиброванная мишень для мозга.</h3>
+          <p>ONTO NOTHING — это конкретный, описанный паттерн ЭЭГ. Нейрофидбэк перестаёт гонять абстракции «расслабься / сконцентрируйся» и тренирует воспроизводимое состояние.</p>
+          <div class="boost-gain"><b>Выгода:</b> у нейротренинга появляется измеримая цель, а не «попробуем ещё».</div>
         </div>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M 4 18 L 10 12 L 14 16 L 20 6"/><path d="M 14 6 H 20 V 12"/></svg>
+            </span>
+            <span class="boost-tag">Спорт · Перформанс · Flow</span>
+          </div>
+          <h3>Поток — по команде, а не случайно.</h3>
+          <p>Flow в спорте, переговорах, креативе раньше зависел от удачи и формы. ONTO NOTHING — это вход в то же состояние сборки внимания, только воспроизводимый осознанно.</p>
+          <div class="boost-gain"><b>Выгода:</b> доступ к пиковому состоянию становится навыком, а не везением.</div>
+        </div>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M 12 3 V 21"/><path d="M 3 12 H 21"/><path d="M 5 7 C 9 9 15 9 19 7"/><path d="M 5 17 C 9 15 15 15 19 17"/></svg>
+            </span>
+            <span class="boost-tag">Мистика · Эзотерика · Ритуал</span>
+          </div>
+          <h3>То, что описывали мистики, — теперь видно на приборах.</h3>
+          <p>Состояния, о которых писали суфии, дзенцы, исихасты, шаманы — получают ЭЭГ-сигнатуру. Не вера, не метафора — измеримый феномен с воспроизводимым входом.</p>
+          <div class="boost-gain"><b>Выгода:</b> традиция перестаёт быть «или верь, или нет» — она проверяется на приборе.</div>
+        </div>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M 3 12 H 6 L 8 8 L 11 16 L 13 11 L 15 13 H 21"/><path d="M 12 21 a 9 9 0 1 1 0 -18"/></svg>
+            </span>
+            <span class="boost-tag">Здоровье · Долголетие</span>
+          </div>
+          <h3>Биовозраст идёт вниз быстрее.</h3>
+          <p>Хроническая активация DMN — это фоновое воспаление, кортизол, ускоренное старение клеток. Выключение фона разворачивает биологические часы: HRV растёт, маркеры воспаления падают, восстановление ускоряется.</p>
+          <div class="boost-gain"><b>Выгода:</b> протоколы долголетия (сон, питание, спорт, добавки) дают сдвиг биомаркеров в 2–3 раза эффективнее.</div>
+        </div>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 12 3 L 14 9 L 20 10 L 15.5 14 L 17 20 L 12 17 L 7 20 L 8.5 14 L 4 10 L 10 9 Z"/></svg>
+            </span>
+            <span class="boost-tag">Творчество · Идеи</span>
+          </div>
+          <h3>Идеи приходят из тишины, а не из шума.</h3>
+          <p>Все исследования инсайтов показывают одно: прорывная идея рождается в момент паузы DMN и активации SN. ONTO NOTHING — это и есть это переключение. Только не случайное, а по запросу.</p>
+          <div class="boost-gain"><b>Выгода:</b> доступ к нелинейному мышлению становится навыком — для текстов, продуктов, решений, искусства.</div>
+        </div>
+
+        <div class="boost-card glass5 reveal">
+          <div class="boost-head">
+            <span class="boost-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"/><path d="M 6 21 V 18 a 3 3 0 0 1 3 -3 H 15 a 3 3 0 0 1 3 3 V 21"/><path d="M 12 3 L 13 5 L 11 5 Z" fill="currentColor"/></svg>
+            </span>
+            <span class="boost-tag">Лидерство · Решения</span>
+          </div>
+          <h3>Решения из ядра — другого качества.</h3>
+          <p>Когда команда, переговоры, выбор стратегии идут из фона тревоги — решения реактивные. Из тишины — стратегические. ONTO NOTHING переводит лидера из режима «реакции» в режим «видения».</p>
+          <div class="boost-gain"><b>Выгода:</b> меньше выгорания у руководителя, выше качество решений, ниже конфликтность в команде.</div>
+        </div>
+
       </div>
 
       <blockquote class="pull-quote reveal">
-        Это новая категория — <em>онтология выключенного ума с инструментальной верификацией.</em>
+        ONTO NOTHING — не альтернатива практикам. <em>Это операционный доступ к ядру, из которого все практики начинают работать в разы сильнее.</em>
       </blockquote>
     </div>
   </section>
 
-  <!-- ═══════════ XI · WHO (Avatars) ═══════════ -->
+  <!-- ═══════════ XI · WHO (Two audiences) ═══════════ -->
   <section id="who" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть XI · Кому это нужно</span>
-        <h2 class="h2-custom">Это работает для тебя, <em>если ты:</em></h2>
+        <span class="eyebrow">13 · Кому это нужно</span>
+        <h2 class="h2-custom">Двум типам людей.<br><em>Тем, кто работает над собой. И тем, кто работает с другими.</em></h2>
+        <p class="lead">ONTO NOTHING — и личный инструмент, и профессиональный. Для роста перформанса, здоровья и ясности — себе. Для прямого действия на состояние клиента — тем, кто работает с людьми.</p>
       </div>
 
-      <div class="av-grid">
-        <div class="av-card glass5 reveal">
-          <span class="av-num">01 · Уставший</span>
-          <span class="av-icon">🧠</span>
-          <h3 class="av-title">Устал от ума, который не выключается</h3>
-          <p class="av-desc">Нужна настоящая тишина как рабочий инструмент, а не идея о ней.</p>
+      <!-- Группа 1: Для себя -->
+      <div class="who-group reveal">
+        <div class="who-group-head">
+          <span class="who-group-tag">Группа 01</span>
+          <h3 class="who-group-h">Для тебя. <em>Личная эффективность, здоровье, ясность.</em></h3>
         </div>
-        <div class="av-card glass5 reveal">
-          <span class="av-num">02 · Лидер</span>
-          <span class="av-icon">💼</span>
-          <h3 class="av-title">Принимаешь важные решения</h3>
-          <p class="av-desc">Внутренний шум искажает картину. Ясность нужна в работе — каждый день.</p>
-        </div>
-        <div class="av-card glass5 reveal">
-          <span class="av-num">03 · Практик</span>
-          <span class="av-icon">🧘</span>
-          <h3 class="av-title">Медитируешь, но «пробил потолок»</h3>
-          <p class="av-desc">Глубокие проблески бывают, но только как спонтанное событие. ONTO NOTHING снимает потолок.</p>
-        </div>
-        <div class="av-card glass5 reveal">
-          <span class="av-num">04 · Работающий с людьми</span>
-          <span class="av-icon">🌿</span>
-          <h3 class="av-title">Коуч, психолог, терапевт</h3>
-          <p class="av-desc">Хочешь добавить в арсенал инструмент прямого действия — не разговорный.</p>
-        </div>
-        <div class="av-card glass5 reveal">
-          <span class="av-num">05 · Исследователь</span>
-          <span class="av-icon">🔬</span>
-          <h3 class="av-title">Нейро-энтузиаст</h3>
-          <p class="av-desc">Интересуешься нейротехнологиями и оптимизацией сознания. ONTO NOTHING — передний край.</p>
+        <div class="av-grid who-grid-4">
+          <div class="av-card glass5">
+            <span class="av-num">01 · Перформанс</span>
+            <span class="av-icon">🧠</span>
+            <h3 class="av-title">Предприниматель · Руководитель · Эксперт</h3>
+            <p class="av-desc">Решения каждый день — внутренний шум искажает картину. Тебе нужна не идея о тишине, а тишина как рабочий инструмент.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">02 · Здоровье</span>
+            <span class="av-icon">💎</span>
+            <h3 class="av-title">Здоровье и долголетие</h3>
+            <p class="av-desc">Хронический фон активации DMN — это воспаление, кортизол, ускоренное старение. Метод снимает этот фон. Биовозраст идёт вниз быстрее.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">03 · Творчество</span>
+            <span class="av-icon">✨</span>
+            <h3 class="av-title">Творец · Креатор · Автор</h3>
+            <p class="av-desc">Идеи приходят из паузы, а не из шума. Метод даёт доступ к нелинейному мышлению — для текстов, продуктов, музыки, искусства.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">04 · Практик</span>
+            <span class="av-icon">🧘</span>
+            <h3 class="av-title">Опытный практик медитации</h3>
+            <p class="av-desc">Глубокие проблески бывают, но как спонтанное событие. Годы садханы дают доступ — ONTO NOTHING делает его воспроизводимым по команде.</p>
+          </div>
         </div>
       </div>
+
+      <!-- Группа 2: Для работы с другими -->
+      <div class="who-group reveal">
+        <div class="who-group-head">
+          <span class="who-group-tag">Группа 02</span>
+          <h3 class="who-group-h">Для тех, с кем ты работаешь. <em>Психологи, коучи, врачи, тренеры, исследователи.</em></h3>
+        </div>
+        <div class="av-grid who-grid-5">
+          <div class="av-card glass5">
+            <span class="av-num">05 · Психолог · Терапевт</span>
+            <span class="av-icon">🛋</span>
+            <h3 class="av-title">Психолог · Психотерапевт</h3>
+            <p class="av-desc">В арсенал — инструмент прямого действия. Снимает фон сопротивления у клиента, после которого проработка идёт глубже и быстрее.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">06 · Коуч</span>
+            <span class="av-icon">🎤</span>
+            <h3 class="av-title">Коуч · Ментор</h3>
+            <p class="av-desc">Клиент приходит с шумом — сессия буксует на этом фоне. После входа в тишину разговор идёт качественно глубже.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">07 · Врач</span>
+            <span class="av-icon">🩺</span>
+            <h3 class="av-title">Врач · Психиатр · Превентивщик</h3>
+            <p class="av-desc">Состояния сознания получают нейрофизиологическую сигнатуру. Появляется новый инструмент в работе с тревогой, выгоранием, сном.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">08 · Тренер</span>
+            <span class="av-icon">🎓</span>
+            <h3 class="av-title">Тренер · Учитель медитации · Инструктор йоги</h3>
+            <p class="av-desc">У практик появляется калиброванный паттерн ЭЭГ как мишень. Можно учить не «попробуй», а конкретному воспроизводимому состоянию.</p>
+          </div>
+          <div class="av-card glass5">
+            <span class="av-num">09 · Исследователь</span>
+            <span class="av-icon">🔬</span>
+            <h3 class="av-title">Исследователь · Нейро · IT</h3>
+            <p class="av-desc">Наука, нейротехнологии, разработка ИИ-ассистентов под состояния. ONTO NOTHING — передний край прикладной нейрофизиологии сознания.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -6033,7 +6309,7 @@
   <section id="stack" class="s s-stack-apple">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть XII · Стек</span>
+        <span class="eyebrow">14 · Стек</span>
         <h2 class="h2-custom">Что ты <em>получаешь.</em></h2>
         <p class="lead">Стек того, что уходит с тобой после тренинга.</p>
       </div>
@@ -6119,7 +6395,7 @@
   <section id="cases" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть XIII · Кейсы участников</span>
+        <span class="eyebrow">15 · Кейсы участников</span>
         <h2 class="h2-custom">Изменение 60+ биомаркеров — <em>факт.</em><br>Изменение жизни — <em>высшая ценность.</em></h2>
         <p class="lead">Цифры ЭЭГ, HRV, кортизол, сон, биовозраст — это доказательство, что метод работает. Реальный результат — то, что меняется в самой жизни: сон, отношения, ясность, решения. Три истории, по которым это видно.</p>
       </div>
@@ -6180,7 +6456,7 @@
   <section id="author" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть XIV · О ведущем</span>
+        <span class="eyebrow">16 · О ведущем</span>
         <h2 class="h2-custom">Константин Шель. <em>Автор метода.</em></h2>
       </div>
 
@@ -6210,7 +6486,7 @@
   <section id="pricing" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть XV · Тарифы</span>
+        <span class="eyebrow">17 · Тарифы</span>
         <h2 class="h2-custom">Три уровня <em>доступа к методу.</em></h2>
         <p class="lead">Все тарифы включают тренинг-день, 7 дней интеграции, ex NIHILO ai на месяц и 100% гарантию возврата. Разница — в глубине сопровождения.</p>
       </div>
@@ -6271,7 +6547,7 @@
   <section id="guarantee" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть XVI · Гарантия результата</span>
+        <span class="eyebrow">18 · Гарантия результата</span>
         <h2 class="h2-custom">Гарантия <em>результата.</em></h2>
       </div>
 
@@ -6317,7 +6593,7 @@
   <section id="stream" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть XVII · Ближайший поток</span>
+        <span class="eyebrow">19 · Ближайший поток</span>
         <h2 class="h2-custom">Ближайший <em>поток.</em></h2>
       </div>
 
@@ -6344,7 +6620,7 @@
   <section id="faq" class="s">
     <div class="s-inner">
       <div class="section-header reveal">
-        <span class="eyebrow">Часть XVIII · FAQ</span>
+        <span class="eyebrow">20 · FAQ</span>
         <h2 class="h2-custom">Частые <em>вопросы.</em></h2>
       </div>
 
