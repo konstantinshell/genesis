@@ -6786,21 +6786,22 @@
   const globalProgress = document.querySelector('[data-deck-progress]');
   const globalProgressBar = document.getElementById('deckProgressGlobal');
 
-  // === AMBIENT TONE — мягкий drone во время рабочих таймеров ===
-  // Звук меняется при переходе между блоками open ↔ closed (плавный crossfade).
-  // Survey-intro и короткие слайды — без звука (тишина).
-  // Управление: клавиша M = mute/unmute, состояние сохраняется в localStorage.
-  const AMBIENT_PROFILES = {
-    'open':   { freqs: [432, 648],  gain: 0.05 }, // яркий + квинта
-    'closed': { freqs: [216, 324],  gain: 0.05 }, // на октаву ниже — глубже
+  // === TIMER SOUNDS — мягкие звуковые маркеры на рабочих таймерах ===
+  // Логика:
+  //  • marker — короткое 2-нотное «вступление» при нажатии Старт
+  //    (восходящее для open, нисходящее для closed — слышно фазу)
+  //  • tick   — короткий мягкий sine-«пульс» каждые 10 секунд во время
+  //    отсчёта. Не раздражает, но даёт ощущение хода времени
+  //  • playChime — переход между блоками (звучит в Timer.finish())
+  // Управление: клавиша M = mute/unmute, состояние в localStorage.
+  const TICK_PROFILES = {
+    'open':   { tickFreq: 660, markerFreqs: [440, 660] }, // вверх (мажорная)
+    'closed': { tickFreq: 220, markerFreqs: [440, 220] }, // вниз (октава вниз)
   };
 
-  class AmbientTone {
+  class TimerSounds {
     constructor() {
       this.ctx = null;
-      this.oscillators = [];
-      this.masterGain = null;
-      this.activeMode = null;
       this.muted = localStorage.getItem('checkup-ambient-muted') === '1';
     }
     ensureCtx() {
@@ -6811,66 +6812,53 @@
       if (this.ctx.state === 'suspended') { try { this.ctx.resume(); } catch(e){} }
       return true;
     }
-    setMode(mode) {
-      if (this.muted || !mode || !AMBIENT_PROFILES[mode]) {
-        this.fadeOut(false);
-        return;
-      }
-      if (mode === this.activeMode) return; // уже играет нужный
+    // короткий мягкий sine-пульс (вызов каждые 10 сек)
+    tick(mode) {
+      if (this.muted || !TICK_PROFILES[mode]) return;
       if (!this.ensureCtx()) return;
-
-      // crossfade: убираем старый, поднимаем новый
-      this.fadeOut(false);
       const now = this.ctx.currentTime;
-      const profile = AMBIENT_PROFILES[mode];
-
-      this.masterGain = this.ctx.createGain();
-      this.masterGain.gain.setValueAtTime(0, now);
-      this.masterGain.gain.linearRampToValueAtTime(profile.gain, now + 2.2);
-      this.masterGain.connect(this.ctx.destination);
-
-      this.oscillators = profile.freqs.map((freq, i) => {
-        const osc = this.ctx.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.value = freq;
-        if (i > 0) osc.detune.value = 4; // лёгкая расстройка → живость
-        const og = this.ctx.createGain();
-        og.gain.value = i === 0 ? 0.7 : 0.3;
-        osc.connect(og).connect(this.masterGain);
-        osc.start(now);
-        return { osc, gain: og };
-      });
-      this.activeMode = mode;
+      const freq = TICK_PROFILES[mode].tickFreq;
+      const o = this.ctx.createOscillator();
+      const g = this.ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = freq;
+      // очень мягкая огибающая: attack 8ms, peak 0.05, decay 180ms
+      g.gain.setValueAtTime(0, now);
+      g.gain.linearRampToValueAtTime(0.05, now + 0.008);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + 0.20);
+      o.connect(g).connect(this.ctx.destination);
+      o.start(now);
+      o.stop(now + 0.22);
     }
-    fadeOut(immediate) {
-      if (!this.ctx || !this.masterGain) return;
+    // двух-нотный «маркер» — восходящий для open, нисходящий для closed
+    marker(mode) {
+      if (this.muted || !TICK_PROFILES[mode]) return;
+      if (!this.ensureCtx()) return;
       const now = this.ctx.currentTime;
-      const fade = immediate ? 0.05 : 1.5;
-      const oldGain = this.masterGain;
-      const oldOscs = this.oscillators;
-      try {
-        oldGain.gain.cancelScheduledValues(now);
-        oldGain.gain.setValueAtTime(oldGain.gain.value, now);
-        oldGain.gain.linearRampToValueAtTime(0, now + fade);
-      } catch (e) {}
-      oldOscs.forEach(({ osc }) => {
-        try { osc.stop(now + fade + 0.2); } catch (e) {}
+      const [f1, f2] = TICK_PROFILES[mode].markerFreqs;
+      [f1, f2].forEach((freq, i) => {
+        const o = this.ctx.createOscillator();
+        const g = this.ctx.createGain();
+        o.type = 'sine';
+        o.frequency.value = freq;
+        const t0 = now + i * 0.22;
+        g.gain.setValueAtTime(0, t0);
+        g.gain.linearRampToValueAtTime(0.06, t0 + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.55);
+        o.connect(g).connect(this.ctx.destination);
+        o.start(t0);
+        o.stop(t0 + 0.6);
       });
-      this.masterGain = null;
-      this.oscillators = [];
-      this.activeMode = null;
     }
     toggleMute() {
       this.muted = !this.muted;
       localStorage.setItem('checkup-ambient-muted', this.muted ? '1' : '0');
-      if (this.muted) this.fadeOut(false);
-      else if (activeTimer && activeTimer.running) {
-        this.setMode(activeTimer.slide.dataset.eyes || null);
-      }
       return this.muted;
     }
   }
-  const ambientTone = new AmbientTone();
+  const timerSounds = new TimerSounds();
+  // оставляем имя ambientTone для обратной совместимости с обработчиком M
+  const ambientTone = timerSounds;
 
   class Timer {
     constructor(slide) {
@@ -6949,16 +6937,27 @@
     start() {
       if (this.running || this.remaining <= 0) return;
       this.setRunning(true);
-      // ambient tone — только на «больших» рабочих таймерах с data-eyes
-      if (this.isBig) {
-        ambientTone.setMode(this.slide.dataset.eyes || null);
+      // звуковой маркер старта — только на больших таймерах с data-eyes
+      const eyes = this.slide.dataset.eyes;
+      if (this.isBig && eyes) {
+        timerSounds.marker(eyes);
       }
       const startedAt = Date.now();
       const startRemaining = this.remaining;
+      let lastTickSec = 0; // последняя секунда, на которой играл tick
       this.tick = setInterval(() => {
         const elapsed = Math.floor((Date.now() - startedAt) / 1000);
         this.remaining = Math.max(0, startRemaining - elapsed);
         this.render();
+        // мягкий tick каждые 10 секунд (только на больших таймерах с eyes)
+        // не играем на 0 (там finish + chime) и в первые 2 секунды
+        if (this.isBig && eyes
+            && elapsed > 2 && elapsed % 10 === 0
+            && elapsed !== lastTickSec
+            && this.remaining > 2) {
+          timerSounds.tick(eyes);
+          lastTickSec = elapsed;
+        }
         if (this.remaining <= 0) this.finish();
       }, 250);
     }
@@ -6998,9 +6997,8 @@
       }
       if (globalProgressBar) globalProgressBar.classList.add('is-done');
       this.render();
-      // ambient drone уходит за 1.5 сек, чайм играет поверх затихания
+      // soft chime — мягкий 3-нотный аккорд при завершении блока
       if (this.isBig) {
-        ambientTone.fadeOut(false);
         playChime();
       }
       if (this.autoadvance) {
@@ -7028,9 +7026,7 @@
       if (miniTimer) miniTimer.classList.remove('is-visible', 'is-running', 'is-paused', 'is-done');
       if (globalProgress) globalProgress.style.width = '0%';
       if (globalProgressBar) globalProgressBar.classList.remove('is-done');
-      // ambient drone — убираем при уходе со слайда
-      // (если следующий слайд тоже big timer и тех же глаз, он сам поднимет)
-      ambientTone.fadeOut(false);
+      // tick'и сами умирают, потому что setInterval очищен в clearInterval(this.tick)
     }
   }
 
