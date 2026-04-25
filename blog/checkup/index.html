@@ -886,6 +886,250 @@
       .state-term { grid-column: 1 / -1; text-align: left; padding-left: clamp(58px, 11vw, 80px); }
     }
 
+    /* ========== SESSION COVER SLIDE ========== */
+    .slide-session-cover {
+      position: absolute; /* keep behavior of .slide */
+    }
+    .session-bignum {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(400px, 56vw, 1100px);
+      line-height: 0.78;
+      color: rgba(95,95,255,0.05);
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+
+    .session-cover-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 1300px;
+    }
+
+    .session-eyebrow {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(13px, 1vw, 18px);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: clamp(20px, 2vw, 36px);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .session-eyebrow::before,
+    .session-eyebrow::after {
+      content: "";
+      display: block;
+      width: clamp(20px, 2vw, 36px);
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+    }
+
+    .session-name {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(56px, 11vw, 200px);
+      line-height: 0.92;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin: 0 0 clamp(28px, 3vw, 48px);
+    }
+    .session-name em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .session-tagline {
+      font-family: var(--fb);
+      font-weight: 400;
+      font-size: clamp(20px, 2vw, 34px);
+      line-height: 1.35;
+      color: var(--muted);
+      max-width: 1000px;
+      margin: 0 auto clamp(40px, 4.5vw, 72px);
+    }
+
+    .session-blocks-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: clamp(10px, 1vw, 16px);
+      padding: 14px 28px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      font-family: var(--fm);
+      font-size: clamp(13px, 1.1vw, 18px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .session-blocks-mini .arrow {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ========== TIMER SLIDE ========== */
+    .timer-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1280px;
+      text-align: center;
+    }
+
+    .timer-eyebrow {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(14px, 1.2vw, 22px);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: clamp(28px, 3vw, 48px);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .timer-eyebrow::before,
+    .timer-eyebrow::after {
+      content: "";
+      display: block;
+      width: clamp(28px, 2.8vw, 56px);
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.45;
+    }
+
+    .timer-display {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(120px, 19vw, 340px);
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      margin: 0 auto clamp(28px, 3vw, 48px);
+      display: inline-block;
+      transition: color 0.4s ease;
+    }
+    .slide-timer.is-running .timer-display {
+      color: var(--accent);
+      animation: timerPulse 2.4s ease-in-out infinite;
+    }
+    .slide-timer.is-done .timer-display {
+      color: #10B981;
+      animation: timerDone 1.2s ease-out;
+    }
+    @keyframes timerPulse {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.8; }
+    }
+    @keyframes timerDone {
+      0%   { transform: scale(1); }
+      30%  { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+
+    .timer-instruction {
+      font-family: var(--fb);
+      font-weight: 400;
+      font-size: clamp(18px, 1.8vw, 30px);
+      line-height: 1.4;
+      color: var(--muted);
+      max-width: 820px;
+      margin: 0 auto clamp(40px, 4.5vw, 72px);
+    }
+    .timer-instruction strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .timer-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 6px 24px rgba(22,22,26,0.06);
+    }
+
+    .tbtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--fb);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    }
+    .tbtn:hover {
+      background: rgba(95,95,255,0.10);
+      color: var(--accent);
+    }
+    .tbtn:active { transform: scale(0.97); }
+    .tbtn.tbtn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 0 30px;
+    }
+    .tbtn.tbtn-primary:hover {
+      background: #4a4adb;
+      color: #fff;
+    }
+    .tbtn.tbtn-icon {
+      width: 50px;
+      padding: 0;
+    }
+    .tbtn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* progress bar в самом низу слайда */
+    .timer-progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 4px;
+      background: rgba(95,95,255,0.10);
+      z-index: 3;
+    }
+    .timer-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--blue));
+      transition: width 0.4s linear;
+    }
+
     /* ========== NAV CONTROLS ========== */
     .deck-nav {
       position: fixed;
@@ -1453,6 +1697,178 @@
 
   </section>
 
+
+  <!-- ============================================================ -->
+  <!--               СЕССИЯ 1 — БАЗОВЫЙ НЕЙРОСНИМОК                  -->
+  <!-- ============================================================ -->
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 08 — S1 COVER · заставка сессии 1       -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-session-cover" data-slide="s1-cover" data-index="08">
+
+    <!-- огромная цифра «1» в фоне -->
+    <div class="session-bignum" aria-hidden="true">1</div>
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>SESSION 1 / 5</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>08 / Сессия 1</span>
+    </div>
+
+    <div class="session-cover-content">
+      <div class="session-eyebrow reveal" style="--i: 0">Сессия 01 / 05 · ~35 минут</div>
+
+      <h2 class="session-name reveal" style="--i: 1">
+        Базовый <em>нейроснимок</em>
+      </h2>
+
+      <p class="session-tagline reveal" style="--i: 2">
+        Твой мозг в обычном состоянии и первый вход в тишину.<br>
+        Это <strong style="color: var(--text);">Point A</strong> — отправная точка.
+      </p>
+
+      <div class="session-blocks-mini reveal" style="--i: 3">
+        <span>Открытые 10'</span>
+        <span class="arrow">→</span>
+        <span>Закрытые 15'</span>
+        <span class="arrow">→</span>
+        <span>Открытые 10'</span>
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>S1 · Cover</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 09 — S1 INTRO · подготовка               -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="s1-intro" data-index="09">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>SESSION 1 · PREP</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>09 / Подготовка</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Сессия 1 · Подготовка</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Подготовка
+      </h2>
+
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Сядь удобно. Спина прямая или с опорой.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Нейробанд на месте. Запись — пошла.
+        </p>
+      </div>
+
+      <div class="text-punchline reveal" style="--i: 4">
+        Когда готов — старт.
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>S1 · Prep</span>
+    </div>
+    <div class="corner corner-br">
+      <span>пробел</span>
+      <span class="key-hint">space</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 10 — S1 PART 1 · ОТКРЫТЫЕ ГЛАЗА · 10'  -->
+  <!-- timer: 10:00                                  -->
+  <!-- autoadvance: true                             -->
+  <!-- ============================================ -->
+  <section class="slide slide-timer" data-slide="s1-part1" data-index="10"
+           data-timer="10:00" data-autoadvance="true">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>SESSION 1 · PART 1 / 3</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>10 / Часть 1 · Открытые</span>
+    </div>
+
+    <div class="timer-content">
+      <div class="timer-eyebrow reveal" style="--i: 0">
+        Часть 1 · Открытые глаза · 10 минут
+      </div>
+
+      <div class="timer-display reveal" style="--i: 1" data-timer-display>10:00</div>
+
+      <p class="timer-instruction reveal" style="--i: 2">
+        Смотри перед собой. Или вниз. Как комфортно.
+        <strong>Ничего делать не нужно.</strong> Не медитируй,
+        не концентрируйся, не пытайся успокоиться. Просто сиди.
+      </p>
+
+      <div class="timer-controls reveal" style="--i: 3">
+        <button class="tbtn tbtn-primary" data-timer-toggle>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-icon-play>
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-icon-pause style="display:none;">
+            <rect x="6" y="5" width="4" height="14" rx="1"/>
+            <rect x="14" y="5" width="4" height="14" rx="1"/>
+          </svg>
+          <span data-timer-label>Старт</span>
+        </button>
+        <button class="tbtn tbtn-icon" data-timer-reset aria-label="Сбросить">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 3-6.7"/>
+            <polyline points="3 4 3 10 9 10"/>
+          </svg>
+        </button>
+        <button class="tbtn tbtn-icon" data-timer-skip aria-label="Пропустить">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M5 4l10 8-10 8V4zM17 4h2v16h-2z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>S1 · P1 · Открытые</span>
+    </div>
+    <div class="corner corner-br">
+      <span>пробел = пауза</span>
+    </div>
+
+    <!-- progress bar внизу слайда -->
+    <div class="timer-progress" aria-hidden="true">
+      <div class="timer-progress-fill" data-timer-progress></div>
+    </div>
+
+  </section>
+
 </main>
 
 <!-- Floating navigation pill -->
@@ -1476,6 +1892,7 @@
 
   function go(i) {
     if (i < 0 || i >= total || i === current) return;
+    if (activeTimer) activeTimer.dispose();
     slides[current].classList.remove('is-active');
     current = i;
     slides[current].classList.add('is-active');
@@ -1483,6 +1900,161 @@
     btnPrev.disabled = current === 0;
     btnNext.disabled = current === total - 1;
     history.replaceState(null, '', `#${slides[current].dataset.slide || current + 1}`);
+    activateTimer(slides[current]);
+  }
+
+  // === ДВИЖОК ТАЙМЕРА ===
+  let activeTimer = null;
+
+  // soft chime — мягкий звуковой сигнал в конце таймера
+  let audioCtx = null;
+  function playChime() {
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const now = audioCtx.currentTime;
+      // три ноты с decay
+      [523.25, 659.25, 783.99].forEach((freq, i) => {
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.type = 'sine';
+        o.frequency.value = freq;
+        g.gain.setValueAtTime(0, now + i * 0.18);
+        g.gain.linearRampToValueAtTime(0.18, now + i * 0.18 + 0.04);
+        g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.18 + 1.2);
+        o.connect(g).connect(audioCtx.destination);
+        o.start(now + i * 0.18);
+        o.stop(now + i * 0.18 + 1.3);
+      });
+    } catch (e) { /* no-op */ }
+  }
+
+  function parseTime(str) {
+    if (!str) return 0;
+    const [m, s] = str.split(':').map(Number);
+    return (m || 0) * 60 + (s || 0);
+  }
+  function fmtTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${pad(m)}:${pad(s)}`;
+  }
+
+  class Timer {
+    constructor(slide) {
+      this.slide = slide;
+      this.total = parseTime(slide.dataset.timer);
+      this.remaining = this.total;
+      this.running = false;
+      this.tick = null;
+      this.autoadvance = slide.dataset.autoadvance === 'true';
+      this.display = slide.querySelector('[data-timer-display]');
+      this.progress = slide.querySelector('[data-timer-progress]');
+      this.btnToggle = slide.querySelector('[data-timer-toggle]');
+      this.btnReset = slide.querySelector('[data-timer-reset]');
+      this.btnSkip = slide.querySelector('[data-timer-skip]');
+      this.label = slide.querySelector('[data-timer-label]');
+      this.iconPlay = slide.querySelector('[data-icon-play]');
+      this.iconPause = slide.querySelector('[data-icon-pause]');
+
+      this.bound = {
+        toggle: () => this.toggle(),
+        reset: () => this.reset(),
+        skip: () => this.skip(),
+      };
+      this.btnToggle && this.btnToggle.addEventListener('click', this.bound.toggle);
+      this.btnReset && this.btnReset.addEventListener('click', this.bound.reset);
+      this.btnSkip && this.btnSkip.addEventListener('click', this.bound.skip);
+
+      this.render();
+    }
+
+    render() {
+      if (this.display) this.display.textContent = fmtTime(this.remaining);
+      if (this.progress) {
+        const pct = this.total > 0 ? ((this.total - this.remaining) / this.total) * 100 : 0;
+        this.progress.style.width = pct + '%';
+      }
+    }
+
+    setRunning(on) {
+      this.running = on;
+      this.slide.classList.toggle('is-running', on);
+      if (this.label) this.label.textContent = on ? 'Пауза' : (this.remaining < this.total ? 'Продолжить' : 'Старт');
+      if (this.iconPlay && this.iconPause) {
+        this.iconPlay.style.display = on ? 'none' : '';
+        this.iconPause.style.display = on ? '' : 'none';
+      }
+    }
+
+    start() {
+      if (this.running || this.remaining <= 0) return;
+      this.setRunning(true);
+      const startedAt = Date.now();
+      const startRemaining = this.remaining;
+      this.tick = setInterval(() => {
+        const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+        this.remaining = Math.max(0, startRemaining - elapsed);
+        this.render();
+        if (this.remaining <= 0) this.finish();
+      }, 250);
+    }
+
+    pause() {
+      if (!this.running) return;
+      clearInterval(this.tick);
+      this.tick = null;
+      this.setRunning(false);
+    }
+
+    toggle() {
+      if (this.running) this.pause();
+      else this.start();
+    }
+
+    reset() {
+      clearInterval(this.tick);
+      this.tick = null;
+      this.remaining = this.total;
+      this.setRunning(false);
+      this.slide.classList.remove('is-done');
+      this.render();
+    }
+
+    finish() {
+      clearInterval(this.tick);
+      this.tick = null;
+      this.setRunning(false);
+      this.slide.classList.add('is-done');
+      if (this.label) this.label.textContent = 'Готово';
+      this.render();
+      playChime();
+      if (this.autoadvance) {
+        setTimeout(() => { go(current + 1); }, 2800);
+      }
+    }
+
+    skip() {
+      clearInterval(this.tick);
+      this.tick = null;
+      this.setRunning(false);
+      go(current + 1);
+    }
+
+    dispose() {
+      clearInterval(this.tick);
+      this.tick = null;
+      this.slide.classList.remove('is-running', 'is-done');
+      this.btnToggle && this.btnToggle.removeEventListener('click', this.bound.toggle);
+      this.btnReset && this.btnReset.removeEventListener('click', this.bound.reset);
+      this.btnSkip && this.btnSkip.removeEventListener('click', this.bound.skip);
+    }
+  }
+
+  function activateTimer(slide) {
+    activeTimer = null;
+    if (!slide.classList.contains('slide-timer')) return;
+    if (!slide.dataset.timer || slide.dataset.timer === 'none') return;
+    activeTimer = new Timer(slide);
   }
 
   // start position from URL hash
@@ -1498,6 +2070,7 @@
   counter.textContent = `${pad(current + 1)} / ${pad(total)}`;
   btnPrev.disabled = current === 0;
   btnNext.disabled = current === total - 1;
+  activateTimer(slides[current]);
 
   btnPrev.addEventListener('click', () => go(current - 1));
   btnNext.addEventListener('click', () => go(current + 1));
@@ -1507,7 +2080,11 @@
     if (e.target.matches('input, textarea, select')) return;
     if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); go(current + 1); }
     if (e.key === 'ArrowLeft'  || e.key === 'PageUp')   { e.preventDefault(); go(current - 1); }
-    if (e.key === ' ')                                   { e.preventDefault(); go(current + 1); }
+    if (e.key === ' ') {
+      e.preventDefault();
+      if (activeTimer) activeTimer.toggle();
+      else go(current + 1);
+    }
     if (e.key === 'Home')                                { e.preventDefault(); go(0); }
     if (e.key === 'End')                                 { e.preventDefault(); go(total - 1); }
     if (e.key === 'f' || e.key === 'F') {
