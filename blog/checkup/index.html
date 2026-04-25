@@ -1130,6 +1130,122 @@
       transition: width 0.4s linear;
     }
 
+    /* ========== QUESTION SLIDE ========== */
+    .q-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: clamp(12px, 1.4vw, 22px);
+      margin: clamp(28px, 3.5vw, 56px) auto;
+    }
+    .q-opt {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(20px, 2.2vw, 38px);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      padding: clamp(14px, 1.4vw, 22px) clamp(26px, 3vw, 48px);
+      background: rgba(255,255,255,0.65);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .q-list {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(10px, 1vw, 16px);
+      max-width: 760px;
+      margin: clamp(28px, 3vw, 48px) auto;
+      text-align: left;
+    }
+    .q-list-item {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 1.4vw, 22px);
+      padding: clamp(14px, 1.4vw, 22px) clamp(18px, 1.6vw, 28px);
+      background: rgba(255,255,255,0.65);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .q-list-bullet {
+      width: clamp(10px, 1vw, 14px);
+      height: clamp(10px, 1vw, 14px);
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .q-list-text {
+      font-family: var(--fb);
+      font-weight: 500;
+      font-size: clamp(18px, 1.6vw, 28px);
+      color: var(--text);
+    }
+
+    .q-scale {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(20px, 2.4vw, 40px);
+      margin: clamp(28px, 3.5vw, 60px) auto;
+      flex-wrap: wrap;
+      max-width: 1100px;
+    }
+    .qs-end {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(12px, 0.95vw, 16px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      max-width: 240px;
+      text-align: center;
+      flex: 1 1 200px;
+      line-height: 1.4;
+    }
+    .qs-points {
+      display: inline-flex;
+      align-items: center;
+      gap: clamp(8px, 1vw, 16px);
+    }
+    .qs-points span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(48px, 5vw, 80px);
+      height: clamp(48px, 5vw, 80px);
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.7);
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(20px, 2vw, 34px);
+      color: var(--text);
+    }
+    .qs-points span:first-child {
+      color: var(--muted);
+      border-color: rgba(22,22,26,0.15);
+    }
+    .qs-points span:last-child {
+      color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(95,95,255,0.12);
+    }
+
+    .q-hint {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(12px, 1vw, 16px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-top: clamp(20px, 2vw, 32px);
+    }
+
     /* ========== NAV CONTROLS ========== */
     .deck-nav {
       position: fixed;
@@ -2096,6 +2212,301 @@
 
     <div class="timer-progress" aria-hidden="true">
       <div class="timer-progress-fill" data-timer-progress></div>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 15 — S1 SURVEY INTRO · минута тишины    -->
+  <!-- timer: 01:00                                  -->
+  <!-- autoadvance: true                             -->
+  <!-- ============================================ -->
+  <section class="slide slide-timer" data-slide="s1-survey-intro" data-index="15"
+           data-timer="01:00" data-autoadvance="true">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>SESSION 1 · SURVEY</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>15 / Минута тишины</span>
+    </div>
+
+    <div class="timer-content">
+      <div class="timer-eyebrow reveal" style="--i: 0">
+        Сессия 1 · Минута тишины
+      </div>
+
+      <div class="timer-display reveal" style="--i: 1" data-timer-display>01:00</div>
+
+      <p class="timer-instruction reveal" style="--i: 2">
+        Посиди минуту.
+        <strong>Потом — несколько вопросов</strong> о том,
+        как ты себя ощущал изнутри.
+      </p>
+
+      <div class="timer-controls reveal" style="--i: 3">
+        <button class="tbtn tbtn-primary" data-timer-toggle>
+          <svg viewBox="0 0 24 24" fill="currentColor" data-icon-play>
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" data-icon-pause style="display:none;">
+            <rect x="6" y="5" width="4" height="14" rx="1"/>
+            <rect x="14" y="5" width="4" height="14" rx="1"/>
+          </svg>
+          <span data-timer-label>Старт</span>
+        </button>
+        <button class="tbtn tbtn-icon" data-timer-reset aria-label="Сбросить">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 3-6.7"/>
+            <polyline points="3 4 3 10 9 10"/>
+          </svg>
+        </button>
+        <button class="tbtn tbtn-icon" data-timer-skip aria-label="Пропустить">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M5 4l10 8-10 8V4zM17 4h2v16h-2z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>S1 · Survey intro</span>
+    </div>
+    <div class="corner corner-br">
+      <span>пробел = пауза</span>
+    </div>
+
+    <div class="timer-progress" aria-hidden="true">
+      <div class="timer-progress-fill" data-timer-progress></div>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 16 — S1 Q1 · самочувствие                -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="s1-q1" data-index="16">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>SESSION 1 · Q 1 / 4</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>16 / Вопрос 1 / 4</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Сессия 1 · Самооценка · Q 1 / 4</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Как ты себя чувствовал<br>
+        во время сессии?
+      </h2>
+
+      <div class="q-options reveal" style="--i: 2">
+        <div class="q-opt">Комфортно</div>
+        <div class="q-opt">Напряжённо</div>
+        <div class="q-opt">Нейтрально</div>
+      </div>
+
+      <div class="q-hint reveal" style="--i: 3">Голосом или письменно</div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>S1 · Q1</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 17 — S1 Q2 · шкала тишины 1-5            -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="s1-q2" data-index="17">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>SESSION 1 · Q 2 / 4</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>17 / Вопрос 2 / 4</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Сессия 1 · Самооценка · Q 2 / 4</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Насколько удалось<br>
+        войти в тишину?
+      </h2>
+
+      <div class="q-scale reveal" style="--i: 2">
+        <div class="qs-end">мысли не<br>останавливались</div>
+        <div class="qs-points">
+          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+        </div>
+        <div class="qs-end">был в паузе<br>большую часть<br>времени</div>
+      </div>
+
+      <div class="q-hint reveal" style="--i: 3">Оцени от 1 до 5</div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>S1 · Q2</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 18 — S1 Q3 · что было сложнее всего      -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="s1-q3" data-index="18">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>SESSION 1 · Q 3 / 4</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>18 / Вопрос 3 / 4</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Сессия 1 · Самооценка · Q 3 / 4</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Что было сложнее всего?
+      </h2>
+
+      <div class="q-list">
+        <div class="q-list-item reveal" style="--i: 2">
+          <span class="q-list-bullet"></span>
+          <span class="q-list-text">Найти паузу</span>
+        </div>
+        <div class="q-list-item reveal" style="--i: 3">
+          <span class="q-list-bullet"></span>
+          <span class="q-list-text">Удержать её</span>
+        </div>
+        <div class="q-list-item reveal" style="--i: 4">
+          <span class="q-list-bullet"></span>
+          <span class="q-list-text">Вернуться в неё после того, как мысль пришла</span>
+        </div>
+      </div>
+
+      <div class="q-hint reveal" style="--i: 5">Что именно — голосом или письменно</div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>S1 · Q3</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 19 — S1 Q4 · тишина после открытия       -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="s1-q4" data-index="19">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>SESSION 1 · Q 4 / 4</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>19 / Вопрос 4 / 4</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Сессия 1 · Самооценка · Q 4 / 4</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Когда ты открыл глаза<br>
+        в третьей части — тишина<br>
+        осталась или сразу ушла?
+      </h2>
+
+      <div class="q-hint reveal" style="--i: 2">Ответ свободный</div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>S1 · Q4</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 20 — S1 END · сессия 1 завершена         -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-session-cover" data-slide="s1-end" data-index="20">
+
+    <div class="session-bignum" aria-hidden="true">✓</div>
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>SESSION 1 / 5 · DONE</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>20 / Завершена</span>
+    </div>
+
+    <div class="session-cover-content">
+      <div class="session-eyebrow reveal" style="--i: 0">Сессия 01 / 05 · Завершена</div>
+
+      <h2 class="session-name reveal" style="--i: 1">
+        Сессия 1<br>
+        <em>завершена</em>
+      </h2>
+
+      <p class="session-tagline reveal" style="--i: 2">
+        <strong style="color: var(--text);">Запись сохранена.</strong><br>
+        Сессия 2 — Тело. Когда будешь готов — продолжай.
+        Хоть сейчас, хоть завтра.
+      </p>
+
+      <div class="session-blocks-mini reveal" style="--i: 3">
+        <span>Сессия 2</span>
+        <span class="arrow">→</span>
+        <span>Тело</span>
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>S1 · End</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
     </div>
 
   </section>
