@@ -1246,6 +1246,120 @@
       margin-top: clamp(20px, 2vw, 32px);
     }
 
+    /* ========== METHOD GRID (8 методов 4×2) ========== */
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(12px, 1.2vw, 20px);
+      max-width: 1400px;
+      margin: clamp(28px, 3vw, 48px) auto 0;
+    }
+    .method-card {
+      padding: clamp(16px, 1.6vw, 26px) clamp(16px, 1.4vw, 22px);
+      background: rgba(255,255,255,0.65);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      text-align: left;
+      position: relative;
+      border-left: 3px solid var(--accent);
+    }
+    .method-card .mc-abbr {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(20px, 1.8vw, 30px);
+      color: var(--accent);
+      letter-spacing: 0.01em;
+      display: block;
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+    .method-card .mc-name {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(13px, 1.05vw, 17px);
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .method-card .mc-desc {
+      font-family: var(--fb);
+      font-weight: 400;
+      font-size: clamp(12px, 0.95vw, 15px);
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ========== LEVELS STACK (5 уровней с акцентом) ========== */
+    .levels-stack {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 0.9vw, 14px);
+      max-width: 1080px;
+      margin: clamp(28px, 3vw, 48px) auto 0;
+    }
+    .level-row {
+      display: grid;
+      grid-template-columns: clamp(140px, 14vw, 220px) 1fr auto;
+      align-items: center;
+      gap: clamp(18px, 1.8vw, 32px);
+      padding: clamp(14px, 1.4vw, 22px) clamp(20px, 1.8vw, 28px);
+      background: rgba(255,255,255,0.55);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .level-row.is-empty {
+      background: rgba(95,95,255,0.10);
+      border: 2px solid var(--accent);
+      box-shadow: 0 6px 24px rgba(95,95,255,0.16);
+    }
+    .level-name {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(12px, 1vw, 16px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .level-row.is-empty .level-name {
+      color: var(--accent);
+    }
+    .level-examples {
+      font-family: var(--fb);
+      font-weight: 400;
+      font-size: clamp(14px, 1.3vw, 21px);
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .level-row.is-empty .level-examples {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .level-mark {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(11px, 0.9vw, 14px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      white-space: nowrap;
+    }
+    .level-row.is-empty .level-mark {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .method-grid { grid-template-columns: repeat(2, 1fr); }
+      .level-row { grid-template-columns: 1fr; gap: 6px; }
+      .level-mark { text-align: left; }
+    }
+
     /* ========== STEP LIST (нумерованные шаги) ========== */
     .step-list {
       display: flex;
@@ -1580,6 +1694,329 @@
       <span>далее</span>
       <span class="key-hint">→</span>
     </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!--      МОСТИК — МЕТОДЫ ИЗМЕРЕНИЯ НЕЙРОПЛАСТИЧНОСТИ                -->
+  <!-- ============================================================ -->
+
+
+  <!-- ============================================ -->
+  <!--   5 ВИДОВ НЕЙРОПЛАСТИЧНОСТИ                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-states" data-slide="np-types" data-index="04">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>NEUROPLASTICITY · TYPES</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>Виды нейропластичности</span>
+    </div>
+
+    <div class="states-content">
+      <div class="states-eyebrow reveal" style="--i: 0">Зонтичный термин · 5 феноменов</div>
+
+      <h2 class="states-title reveal" style="--i: 1">
+        Нейропластичность —<br>
+        это не одно явление
+      </h2>
+
+      <div class="states-list">
+        <div class="state-row reveal" style="--i: 2">
+          <div class="state-num">01</div>
+          <div class="state-name">Синаптическая</div>
+          <div class="state-term">LTP / LTD</div>
+        </div>
+        <div class="state-row reveal" style="--i: 3">
+          <div class="state-num">02</div>
+          <div class="state-name">Структурная</div>
+          <div class="state-term">Объём · миелин · синапсы</div>
+        </div>
+        <div class="state-row reveal" style="--i: 4">
+          <div class="state-num">03</div>
+          <div class="state-name">Функциональная</div>
+          <div class="state-term">Сети · паттерны</div>
+        </div>
+        <div class="state-row reveal" style="--i: 5; background: rgba(95,95,255,0.06); border-left: 3px solid var(--accent); padding-left: clamp(20px, 2vw, 32px);">
+          <div class="state-num">04</div>
+          <div class="state-name">Метапластичность</div>
+          <div class="state-term" style="color: var(--accent); font-weight: 700;">← MNPI здесь · пластичность пластичности</div>
+        </div>
+        <div class="state-row reveal" style="--i: 6">
+          <div class="state-num">05</div>
+          <div class="state-name">Нейрохимическая</div>
+          <div class="state-term">BDNF · GABA · нейротрофины</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · 5 видов</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!--   ДЕФИЦИТ ПОЛЯ — НЕТ ПРЯМОГО ИЗМЕРЕНИЯ LTP    -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="np-no-gold" data-index="05">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>NEUROPLASTICITY · GAP</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>Дефицит поля</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Главный научный пробел · NPP 2025</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        У человека нет прямого<br>
+        измерения LTP
+      </h2>
+
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Все маркеры — косвенные.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Каждый существующий метод меряет что-то одно: молекулу, клетку,
+          сеть, поведение. Полной картины нет ни у кого.
+        </p>
+        <p class="muted reveal" style="--i: 4">
+          Это поле без золотого стандарта — что и открывает место
+          новым композитным подходам.
+        </p>
+      </div>
+
+      <div class="text-punchline reveal" style="--i: 5">
+        Золотого стандарта не существует.
+      </div>
+    </div>
+
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · No gold</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!--   ТОП-МЕТОДЫ — 8 КАРТОЧЕК 4×2                 -->
+  <!-- ============================================ -->
+  <section class="slide slide-formula" data-slide="np-methods" data-index="06">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>NEUROPLASTICITY · METHODS</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>Топ-методы</span>
+    </div>
+
+    <div class="formula-content">
+      <div class="formula-eyebrow reveal" style="--i: 0">Чем меряют сегодня</div>
+
+      <h2 class="formula-title reveal" style="--i: 1">
+        Восемь основных подходов
+      </h2>
+
+      <div class="method-grid">
+        <div class="method-card reveal" style="--i: 2">
+          <span class="mc-abbr">PAS-TMS</span>
+          <span class="mc-name">Парная стимуляция</span>
+          <span class="mc-desc">LTP-подобная пластичность в моторной коре. Ближайшее к золотому стандарту.</span>
+        </div>
+        <div class="method-card reveal" style="--i: 3">
+          <span class="mc-abbr">TMS-EEG</span>
+          <span class="mc-name">TEPs · DLPFC</span>
+          <span class="mc-desc">Корковая возбудимость вне моторной коры. Прорыв 2015–2025.</span>
+        </div>
+        <div class="method-card reveal" style="--i: 4">
+          <span class="mc-abbr">DMN</span>
+          <span class="mc-name">fMRI · сети покоя</span>
+          <span class="mc-desc">Функциональная связность Default Mode Network — DMN-деактивация.</span>
+        </div>
+        <div class="method-card reveal" style="--i: 5">
+          <span class="mc-abbr">DTI · FA</span>
+          <span class="mc-name">Белое вещество</span>
+          <span class="mc-desc">Микроструктура аксонов и миелина через диффузионную тензорную МРТ.</span>
+        </div>
+        <div class="method-card reveal" style="--i: 6">
+          <span class="mc-abbr">BDNF</span>
+          <span class="mc-name">Нейротрофин</span>
+          <span class="mc-desc">Молекулярный маркер LTP-поддержки. ELISA в плазме / слюне.</span>
+        </div>
+        <div class="method-card reveal" style="--i: 7">
+          <span class="mc-abbr">BAG</span>
+          <span class="mc-name">Brain Age Gap</span>
+          <span class="mc-desc">Возраст мозга через ML на МРТ. Коммерческий фронт 2026–2028.</span>
+        </div>
+        <div class="method-card reveal" style="--i: 8">
+          <span class="mc-abbr">HRV</span>
+          <span class="mc-name">Вагальный тонус</span>
+          <span class="mc-desc">RMSSD, HF-power. Wearable-маркер — Garmin, WHOOP, Polar.</span>
+        </div>
+        <div class="method-card reveal" style="--i: 9">
+          <span class="mc-abbr">1/f slope</span>
+          <span class="mc-name">EEG · E/I balance</span>
+          <span class="mc-desc">Соотношение возбуждение/торможение через апериодическую составляющую.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · Методы</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!--   КАРТА ПОЛЯ — 5 УРОВНЕЙ, ПОСЛЕДНИЙ ПУСТ      -->
+  <!-- ============================================ -->
+  <section class="slide slide-states" data-slide="np-map" data-index="07">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>NEUROPLASTICITY · MAP</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>Карта поля</span>
+    </div>
+
+    <div class="states-content">
+      <div class="states-eyebrow reveal" style="--i: 0">Уровни измерения · от молекулы к субъекту</div>
+
+      <h2 class="states-title reveal" style="--i: 1">
+        Каждый метод —<br>
+        свой уровень
+      </h2>
+
+      <div class="levels-stack">
+        <div class="level-row reveal" style="--i: 2">
+          <div class="level-name">Молекулярный</div>
+          <div class="level-examples">BDNF · GABA-MRS · нейротрофины</div>
+          <div class="level-mark">молекула</div>
+        </div>
+        <div class="level-row reveal" style="--i: 3">
+          <div class="level-name">Клеточный</div>
+          <div class="level-examples">PAS-TMS · SICI / ICF · CSP</div>
+          <div class="level-mark">синапс</div>
+        </div>
+        <div class="level-row reveal" style="--i: 4">
+          <div class="level-name">Сетевой</div>
+          <div class="level-examples">fMRI DMN · 1/f slope · IAF · LZC</div>
+          <div class="level-mark">сеть</div>
+        </div>
+        <div class="level-row reveal" style="--i: 5">
+          <div class="level-name">Поведенческий</div>
+          <div class="level-examples">Motor learning rate · transfer · CRIq</div>
+          <div class="level-mark">задача</div>
+        </div>
+        <div class="level-row is-empty reveal" style="--i: 6">
+          <div class="level-name">Субъектный</div>
+          <div class="level-examples">— здесь пусто —</div>
+          <div class="level-mark">← MNPI</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · Карта</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!--   AGENCY — НИКТО НЕ МЕРЯЕТ УПРАВЛЯЕМОСТЬ      -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="np-agency" data-index="08">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>NEUROPLASTICITY · AGENCY</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>Слепое пятно</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Слепое пятно поля · Agency</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Никто не меряет<br>
+        управляемость
+      </h2>
+
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Все методы смотрят на пластичность извне — как на свойство мозга,
+          которое либо есть, либо нет.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Способность субъекта произвольно её регулировать —
+          через намерение, состояние сознания, практику —
+          остаётся за рамками измерения.
+        </p>
+        <p class="muted reveal" style="--i: 4">
+          Сколько изменилось — считают.
+          Сколько я сам могу изменить — нет.
+        </p>
+      </div>
+
+      <div class="text-punchline reveal" style="--i: 5">
+        Это слепое пятно.
+      </div>
+    </div>
+
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · Agency</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!--   ПОЭТОМУ MNPI — МОСТИК К ФОРМУЛЕ              -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="np-bridge" data-index="09">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>BRIDGE TO MNPI</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>Поэтому MNPI</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Решение · композитный индекс</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Поэтому — MNPI
+      </h2>
+
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Новое измерение пластичности — управляемость.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Композитный индекс из EEG-маркеров, физиологии и феноменологии.
+          Меряет не саму пластичность, а способность субъекта произвольно
+          её модулировать через состояния сознания.
+        </p>
+      </div>
+
+      <div class="text-punchline reveal" style="--i: 4">
+        Сейчас — формула.
+      </div>
+    </div>
+
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · Bridge</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
 
   </section>
 
