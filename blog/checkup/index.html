@@ -1563,51 +1563,51 @@
     }
 
     /* ========== GLOBAL DECK PROGRESS BAR ========== */
-    /* Прогресс по текущему слайду — виден на всех слайдах. Явный, но тонкий. */
+    /* Прогресс по текущему слайду — явный, на всех слайдах. */
     .deck-progress-global {
       position: fixed;
       left: 0;
       right: 0;
       bottom: 0;
-      height: 5px;
-      background: rgba(95,95,255,0.16);
+      height: 8px;
+      background: rgba(95,95,255,0.22);
       z-index: 80;
       pointer-events: none;
-      box-shadow: 0 -1px 0 rgba(95,95,255,0.10);
+      box-shadow: 0 -1px 0 rgba(95,95,255,0.18), 0 -8px 22px rgba(95,95,255,0.08);
     }
     .deck-progress-global-fill {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, var(--accent), var(--blue));
       transition: width 0.4s linear;
-      box-shadow: 0 0 12px rgba(95,95,255,0.45);
+      box-shadow: 0 0 18px rgba(95,95,255,0.65), 0 0 6px rgba(95,95,255,0.85);
     }
     .deck-progress-global.is-done .deck-progress-global-fill {
       background: linear-gradient(90deg, #10B981, #34D399);
-      box-shadow: 0 0 12px rgba(16,185,129,0.45);
+      box-shadow: 0 0 18px rgba(16,185,129,0.55), 0 0 6px rgba(16,185,129,0.75);
     }
 
     /* mini-timer в правом нижнем углу — для слайдов БЕЗ большого таймера */
     .mini-timer {
       position: fixed;
-      right: 22px;
-      bottom: 18px;
+      right: 24px;
+      bottom: 24px;
       z-index: 60;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 12px 6px 10px;
-      background: rgba(255,255,255,0.82);
-      border: 1px solid var(--line);
+      gap: 10px;
+      padding: 10px 18px 10px 14px;
+      background: rgba(255,255,255,0.95);
+      border: 1.5px solid var(--accent);
       border-radius: 999px;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 14px rgba(22,22,26,0.06);
+      box-shadow: 0 8px 24px rgba(95,95,255,0.22), 0 2px 6px rgba(95,95,255,0.12);
       opacity: 0;
       transition: opacity 0.3s ease;
-      font-family: var(--fm);
-      font-size: 12px;
-      letter-spacing: 0.16em;
+      font-family: var(--fh);
+      font-size: 22px;
+      letter-spacing: 0.04em;
       color: var(--text);
       font-variant-numeric: tabular-nums;
       font-weight: 700;
@@ -1615,11 +1615,11 @@
     }
     .mini-timer.is-visible { opacity: 1; }
     .mini-timer .mt-dot {
-      width: 8px;
-      height: 8px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 0 3px rgba(95,95,255,0.18);
+      box-shadow: 0 0 0 4px rgba(95,95,255,0.22);
     }
     .mini-timer.is-running .mt-dot { animation: pulse 1.6s ease-in-out infinite; }
     .mini-timer.is-paused .mt-dot { background: var(--muted-2); box-shadow: none; }
