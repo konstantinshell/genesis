@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MNPI Checkup Neiry — слайдовая презентация для проведения чекапа нейропластичности. ONTO NOTHING × Neiry.">
+  <meta property="og:title" content="MNPI Checkup Neiry — Презентация">
+  <meta property="og:description" content="Первый структурированный тест нейропластичности для владельцев нейробанда. Пять сессий, пять состояний сознания.">
+  <meta property="og:type" content="website">
+  <title>MNPI Checkup Neiry — Презентация</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Jost:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #ECEEF2;
+      --bg-soft:   #F5F6F8;
+      --bg-deep:   #DFE2E8;
+      --text:      #16161A;
+      --muted:     #5F6770;
+      --muted-2:   #888896;
+      --line:      rgba(22,22,26,0.10);
+      --accent:    #5F5FFF;
+      --blue:      #0A84FF;
+      --fh:        "Oswald", sans-serif;
+      --fb:        "Jost", sans-serif;
+      --fm:        "Courier Prime", monospace;
+      --ft:        "VT323", monospace;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--fb);
+      font-size: 18px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Soft film grain — для приятной фактуры на видео */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.05;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    /* ========== DECK ========== */
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 60px;
+      overflow: hidden;
+    }
+
+    /* ========== COVER ========== */
+    /* мягкий радиальный glow с дыхательной анимацией */
+    .slide-cover::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(1500px, 130vw);
+      height: min(1500px, 130vw);
+      transform: translate(-50%, -50%);
+      background:
+        radial-gradient(circle at 50% 50%,
+          rgba(95,95,255,0.20) 0%,
+          rgba(10,132,255,0.10) 28%,
+          rgba(255,255,255,0.45) 55%,
+          transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+      animation: breathe 14s ease-in-out infinite;
+      filter: blur(12px);
+    }
+
+    .slide-cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.55) 0%, transparent 30%, transparent 70%, rgba(223,226,232,0.6) 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: translate(-50%, -50%) scale(1.00); opacity: 0.85; }
+      50%      { transform: translate(-50%, -50%) scale(1.10); opacity: 1.00; }
+    }
+
+    /* ========== CORNERS ========== */
+    .corner {
+      position: absolute;
+      font-family: var(--fm);
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      text-transform: uppercase;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .corner-tl { top: 36px; left: 44px; }
+    .corner-tr { top: 36px; right: 44px; }
+    .corner-bl { bottom: 36px; left: 44px; }
+    .corner-br { bottom: 36px; right: 44px; }
+
+    .corner .symbol {
+      font-family: var(--fb);
+      font-size: 22px;
+      line-height: 1;
+      color: var(--accent);
+      font-weight: 300;
+    }
+
+    .corner .dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(95,95,255,0.18);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(95,95,255,0.18); }
+      50%      { box-shadow: 0 0 0 8px rgba(95,95,255,0.06); }
+    }
+
+    .key-hint {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 24px;
+      padding: 0 8px;
+      border: 1px solid rgba(95,95,255,0.45);
+      border-radius: 5px;
+      background: rgba(95,95,255,0.06);
+      color: var(--accent);
+      font-family: var(--fb);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0;
+    }
+
+    /* ========== COVER CONTENT ========== */
+    .cover-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 1500px;
+      animation: fadeUp 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cover-eyebrow {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(13px, 1vw, 18px);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: clamp(36px, 4vw, 72px);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .cover-eyebrow::before,
+    .cover-eyebrow::after {
+      content: "";
+      display: block;
+      width: clamp(28px, 3vw, 60px);
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+    }
+
+    .cover-title {
+      display: block;
+      margin: 0;
+      font-family: var(--fh);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .title-main {
+      display: block;
+      font-size: clamp(56px, 10vw, 168px);
+      text-transform: uppercase;
+    }
+
+    .title-brand {
+      display: block;
+      margin-top: 0.04em;
+      font-size: clamp(72px, 13vw, 220px);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+
+    .cover-sub {
+      margin: clamp(32px, 4vw, 64px) auto 0;
+      font-family: var(--fb);
+      font-weight: 400;
+      font-size: clamp(20px, 2.2vw, 36px);
+      line-height: 1.32;
+      color: var(--muted);
+      max-width: 1100px;
+    }
+
+    .cover-footer {
+      margin-top: clamp(48px, 6vw, 96px);
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(13px, 1.2vw, 20px);
+      letter-spacing: 0.32em;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+    .cover-footer .x {
+      color: var(--accent);
+      margin: 0 4px;
+      font-weight: 400;
+    }
+    .cover-footer .yr {
+      color: var(--muted);
+      margin-left: 6px;
+      font-weight: 400;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .slide { padding: 60px 24px; }
+      .corner { font-size: 11px; letter-spacing: 0.16em; }
+      .corner-tl, .corner-tr { top: 18px; }
+      .corner-bl, .corner-br { bottom: 18px; }
+      .corner-tl, .corner-bl { left: 20px; }
+      .corner-tr, .corner-br { right: 20px; }
+      .cover-eyebrow::before,
+      .cover-eyebrow::after { width: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<main class="deck">
+
+  <!-- ============================================ -->
+  <!-- SLIDE 01 — COVER                              -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-cover" data-slide="cover" data-index="01">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>ONTO NOTHING × NEIRY</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>01 / Cover</span>
+    </div>
+
+    <div class="cover-content">
+      <div class="cover-eyebrow">Презентация · 5 сессий · ~3 ч 15 мин</div>
+
+      <h1 class="cover-title">
+        <span class="title-main">MNPI Checkup</span>
+        <span class="title-brand">Neiry</span>
+      </h1>
+
+      <p class="cover-sub">
+        Первый структурированный тест нейропластичности<br>
+        для владельцев нейробанда
+      </p>
+
+      <div class="cover-footer">
+        ONTO NOTHING <span class="x">×</span> NEIRY <span class="yr">· 2026</span>
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>Ready</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  // Заглушка навигации — следующие слайды появятся в следующих итерациях
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+</script>
+
+</body>
+</html>
