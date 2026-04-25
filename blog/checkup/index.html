@@ -6683,6 +6683,32 @@
 </div>
 
 <script>
+  // === ФИЛЬТРАЦИЯ ПО СЕССИИ (URL ?session=s0..s5) ===
+  // Если в URL указан параметр session, показываем только cover + warning
+  // о времени + слайды этой сессии + outro. Удобно для прямой ссылки на
+  // конкретную сессию, например, /checkup/?session=s1
+  const SESSION_FILTER = (function () {
+    const param = new URLSearchParams(window.location.search).get('session');
+    return /^s[0-5]$/.test(param || '') ? param : null;
+  })();
+  if (SESSION_FILTER) {
+    const keepPrefixes = [
+      'cover',
+      'intro-warning',           // критическая инструкция о времени
+      SESSION_FILTER + '-',      // все слайды этой сессии
+      'outro-upload',            // загрузка файлов в бот
+      'outro-after',             // что будет дальше
+      'outro-final',             // спасибо
+    ];
+    document.querySelectorAll('.slide').forEach(slide => {
+      const slug = slide.dataset.slide || '';
+      const keep = keepPrefixes.some(p =>
+        p === slug || (p.endsWith('-') && slug.startsWith(p))
+      );
+      if (!keep) slide.remove();
+    });
+  }
+
   // === НАВИГАЦИЯ ПО СЛАЙДАМ ===
   const slides = Array.from(document.querySelectorAll('.slide'));
   const total = slides.length;
@@ -6727,8 +6753,24 @@
     counter.textContent = `${pad(current + 1)} / ${pad(total)}`;
     btnPrev.disabled = current === 0;
     btnNext.disabled = current === total - 1;
-    history.replaceState(null, '', `#${slides[current].dataset.slide || current + 1}`);
+    // в режиме одной сессии: пишем в URL только slug, чтобы перезагрузка не
+    // потеряла фильтр; иначе — стандартный hash для прямой навигации
+    if (SESSION_FILTER) {
+      const slug = slides[current].dataset.slide || (current + 1);
+      history.replaceState(null, '', `?session=${SESSION_FILTER}#${slug}`);
+    } else {
+      history.replaceState(null, '', `#${slides[current].dataset.slide || current + 1}`);
+    }
     activateTimer(slides[current]);
+    // если в режиме одной сессии добрались до финала — отметить прогресс
+    if (SESSION_FILTER && slides[current].dataset.slide === 'outro-final') {
+      try {
+        const key = 'checkup-progress';
+        const p = JSON.parse(localStorage.getItem(key) || '{}');
+        p[SESSION_FILTER] = true;
+        localStorage.setItem(key, JSON.stringify(p));
+      } catch (e) {}
+    }
   }
 
   // === ДВИЖОК ТАЙМЕРА ===
