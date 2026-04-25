@@ -77,7 +77,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 80px 60px;
+      padding: clamp(48px, 5vw, 72px) clamp(32px, 4vw, 60px);
       overflow: hidden;
       opacity: 0;
       visibility: hidden;
@@ -299,7 +299,7 @@
       letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: clamp(28px, 3vw, 48px);
+      margin-bottom: clamp(20px, 2.2vw, 36px);
       display: inline-flex;
       align-items: center;
       gap: 14px;
@@ -317,11 +317,11 @@
     .text-title {
       font-family: var(--fh);
       font-weight: 600;
-      font-size: clamp(38px, 5.6vw, 96px);
+      font-size: clamp(32px, 4.6vw, 76px);
       line-height: 1.05;
       letter-spacing: -0.015em;
       color: var(--text);
-      margin: 0 auto clamp(36px, 4vw, 64px);
+      margin: 0 auto clamp(24px, 2.8vw, 44px);
       max-width: 22ch;
     }
 
@@ -330,20 +330,20 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: clamp(18px, 2vw, 28px);
+      gap: clamp(12px, 1.4vw, 20px);
     }
 
     .text-body p {
       font-family: var(--fb);
       font-weight: 400;
-      font-size: clamp(20px, 1.7vw, 30px);
-      line-height: 1.45;
+      font-size: clamp(17px, 1.4vw, 24px);
+      line-height: 1.42;
       color: var(--text);
     }
 
     .text-body p.text-lead {
       font-weight: 500;
-      font-size: clamp(22px, 1.9vw, 32px);
+      font-size: clamp(19px, 1.55vw, 27px);
       color: var(--accent);
       font-style: italic;
     }
@@ -353,10 +353,10 @@
     }
 
     .text-punchline {
-      margin-top: clamp(48px, 5vw, 88px);
+      margin-top: clamp(28px, 3.2vw, 56px);
       font-family: var(--fh);
       font-weight: 700;
-      font-size: clamp(28px, 3.4vw, 60px);
+      font-size: clamp(22px, 2.8vw, 48px);
       letter-spacing: -0.005em;
       color: var(--accent);
       text-transform: uppercase;
@@ -1415,9 +1415,9 @@
 
     /* ========== CRITICAL BOX (важное предупреждение) ========== */
     .critical-box {
-      margin: clamp(28px, 3vw, 48px) auto 0;
+      margin: clamp(20px, 2.2vw, 36px) auto 0;
       max-width: 920px;
-      padding: clamp(20px, 2vw, 32px) clamp(24px, 2.4vw, 40px);
+      padding: clamp(14px, 1.6vw, 24px) clamp(18px, 2vw, 32px);
       background: rgba(95,95,255,0.08);
       border: 2px solid var(--accent);
       border-radius: 12px;
@@ -1426,43 +1426,43 @@
     }
     .critical-tag {
       display: inline-block;
-      padding: 5px 14px;
+      padding: 4px 12px;
       background: var(--accent);
       color: #fff;
       font-family: var(--fm);
       font-weight: 700;
-      font-size: clamp(11px, 0.9vw, 14px);
+      font-size: clamp(10px, 0.85vw, 13px);
       letter-spacing: 0.3em;
       text-transform: uppercase;
       border-radius: 4px;
-      margin-bottom: clamp(10px, 1vw, 16px);
+      margin-bottom: 8px;
     }
     .critical-title {
       font-family: var(--fh);
       font-weight: 700;
-      font-size: clamp(20px, 1.9vw, 32px);
+      font-size: clamp(17px, 1.55vw, 26px);
       letter-spacing: -0.005em;
       color: var(--text);
-      margin-bottom: clamp(10px, 1vw, 16px);
-      line-height: 1.15;
+      margin-bottom: 6px;
+      line-height: 1.18;
     }
     .critical-text {
       font-family: var(--fb);
-      font-size: clamp(15px, 1.3vw, 22px);
-      line-height: 1.45;
+      font-size: clamp(13px, 1.1vw, 18px);
+      line-height: 1.4;
       color: var(--text);
     }
     .critical-text strong { color: var(--accent); }
     .critical-example {
-      margin-top: clamp(12px, 1.2vw, 18px);
-      padding: clamp(10px, 1vw, 16px) clamp(14px, 1.2vw, 20px);
+      margin-top: clamp(8px, 0.9vw, 14px);
+      padding: clamp(8px, 0.9vw, 12px) clamp(12px, 1.1vw, 16px);
       background: rgba(255,255,255,0.7);
       border-left: 3px solid var(--accent);
       font-family: var(--fm);
-      font-size: clamp(13px, 1vw, 17px);
+      font-size: clamp(11px, 0.9vw, 14px);
       color: var(--text);
       border-radius: 0 6px 6px 0;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     /* ========== COVER START BUTTON & COUNTDOWN ========== */
@@ -1563,48 +1563,51 @@
     }
 
     /* ========== GLOBAL DECK PROGRESS BAR ========== */
-    /* Тонкий прогресс по текущему слайду — виден на всех слайдах */
+    /* Прогресс по текущему слайду — виден на всех слайдах. Явный, но тонкий. */
     .deck-progress-global {
       position: fixed;
       left: 0;
       right: 0;
       bottom: 0;
-      height: 3px;
-      background: rgba(95,95,255,0.08);
+      height: 5px;
+      background: rgba(95,95,255,0.16);
       z-index: 80;
       pointer-events: none;
+      box-shadow: 0 -1px 0 rgba(95,95,255,0.10);
     }
     .deck-progress-global-fill {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, var(--accent), var(--blue));
       transition: width 0.4s linear;
+      box-shadow: 0 0 12px rgba(95,95,255,0.45);
     }
     .deck-progress-global.is-done .deck-progress-global-fill {
       background: linear-gradient(90deg, #10B981, #34D399);
+      box-shadow: 0 0 12px rgba(16,185,129,0.45);
     }
 
     /* mini-timer в правом нижнем углу — для слайдов БЕЗ большого таймера */
     .mini-timer {
       position: fixed;
-      right: 24px;
-      bottom: 22px;
+      right: 22px;
+      bottom: 18px;
       z-index: 60;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 14px 7px 12px;
-      background: rgba(255,255,255,0.78);
+      padding: 6px 12px 6px 10px;
+      background: rgba(255,255,255,0.82);
       border: 1px solid var(--line);
       border-radius: 999px;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 16px rgba(22,22,26,0.06);
+      box-shadow: 0 4px 14px rgba(22,22,26,0.06);
       opacity: 0;
       transition: opacity 0.3s ease;
       font-family: var(--fm);
-      font-size: 13px;
-      letter-spacing: 0.18em;
+      font-size: 12px;
+      letter-spacing: 0.16em;
       color: var(--text);
       font-variant-numeric: tabular-nums;
       font-weight: 700;
@@ -1625,7 +1628,7 @@
     /* ========== NAV CONTROLS ========== */
     .deck-nav {
       position: fixed;
-      bottom: 28px;
+      bottom: 22px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
