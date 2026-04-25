@@ -528,6 +528,364 @@
       color: var(--text);
     }
 
+    /* ========== HOWTO SLIDE ========== */
+    .howto-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1280px;
+      text-align: center;
+    }
+
+    .howto-title {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(36px, 5vw, 84px);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin: 0 auto clamp(48px, 5vw, 80px);
+    }
+    .howto-title em {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ряд из 5 сессий, соединённых линией */
+    .howto-sessions {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 880px;
+      margin: 0 auto clamp(40px, 4vw, 64px);
+      padding: 0 clamp(20px, 2vw, 40px);
+    }
+    .howto-sessions::before {
+      content: "";
+      position: absolute;
+      left: clamp(40px, 4vw, 60px);
+      right: clamp(40px, 4vw, 60px);
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent) 20%, var(--accent) 80%, transparent);
+      opacity: 0.4;
+      z-index: 0;
+    }
+    .howto-session {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg);
+      padding: 0 6px;
+    }
+    .howto-session .hs-num {
+      width: clamp(40px, 4vw, 56px);
+      height: clamp(40px, 4vw, 56px);
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(16px, 1.6vw, 22px);
+      color: var(--accent);
+      box-shadow: 0 4px 14px rgba(95,95,255,0.18);
+    }
+    .howto-session .hs-name {
+      font-family: var(--fm);
+      font-size: clamp(11px, 0.9vw, 14px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ряд из 3 блоков */
+    .howto-blocks {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: clamp(8px, 1vw, 16px);
+      max-width: 920px;
+      margin: 0 auto clamp(40px, 4vw, 64px);
+    }
+    .howto-block {
+      flex: 1;
+      padding: clamp(16px, 1.6vw, 24px) clamp(14px, 1.4vw, 22px);
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .howto-block svg {
+      width: clamp(32px, 3vw, 44px);
+      height: auto;
+    }
+    .howto-block .hb-name {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(15px, 1.3vw, 22px);
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      text-align: center;
+    }
+    .howto-block .hb-arrow {
+      align-self: center;
+      width: 24px;
+      height: 1px;
+      background: var(--muted-2);
+      flex: 0;
+    }
+    .howto-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--muted-2);
+      font-family: var(--fb);
+      font-size: clamp(18px, 1.8vw, 28px);
+      font-weight: 300;
+    }
+
+    /* нижние мета-пункты */
+    .howto-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(20px, 2.4vw, 48px);
+      flex-wrap: wrap;
+      font-family: var(--fm);
+      font-size: clamp(13px, 1.1vw, 18px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .howto-meta .hm-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .howto-meta .hm-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* ========== STATES SLIDE ========== */
+    .states-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1280px;
+    }
+
+    .states-eyebrow {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(13px, 1vw, 18px);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: clamp(20px, 2vw, 32px);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .states-eyebrow::before,
+    .states-eyebrow::after {
+      content: "";
+      display: block;
+      width: clamp(20px, 2vw, 36px);
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+    }
+
+    .states-title {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(36px, 4.6vw, 76px);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin: 0 0 clamp(40px, 4.5vw, 72px);
+    }
+    .states-title em {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .states-list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .state-row {
+      display: grid;
+      grid-template-columns: clamp(56px, 5vw, 92px) 1fr auto;
+      align-items: baseline;
+      gap: clamp(18px, 2vw, 36px);
+      padding: clamp(14px, 1.4vw, 22px) clamp(8px, 0.8vw, 12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .state-row:first-of-type {
+      border-top: 1px solid var(--line);
+    }
+
+    .state-num {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(28px, 3vw, 48px);
+      color: var(--accent);
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    .state-name {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(22px, 2.6vw, 44px);
+      line-height: 1.1;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .state-term {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(11px, 1vw, 15px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ========== PREP SLIDE ========== */
+    .prep-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 980px;
+      text-align: center;
+    }
+
+    .prep-eyebrow {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(13px, 1vw, 18px);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: clamp(20px, 2vw, 32px);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .prep-eyebrow::before,
+    .prep-eyebrow::after {
+      content: "";
+      display: block;
+      width: clamp(20px, 2vw, 36px);
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+    }
+
+    .prep-title {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: clamp(36px, 5vw, 80px);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin: 0 auto clamp(40px, 4vw, 64px);
+    }
+
+    .prep-list {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1.2vw, 18px);
+      max-width: 760px;
+      margin: 0 auto clamp(48px, 5vw, 80px);
+      text-align: left;
+    }
+
+    .prep-item {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(14px, 1.4vw, 22px);
+      padding: clamp(14px, 1.2vw, 20px) clamp(18px, 1.6vw, 28px);
+      background: rgba(255,255,255,0.65);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .prep-marker {
+      flex-shrink: 0;
+      width: clamp(20px, 1.8vw, 28px);
+      height: clamp(20px, 1.8vw, 28px);
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: rgba(95,95,255,0.08);
+      margin-top: 2px;
+    }
+    .prep-text {
+      flex: 1;
+      font-family: var(--fb);
+      font-size: clamp(16px, 1.4vw, 24px);
+      line-height: 1.4;
+      color: var(--text);
+    }
+    .prep-text small {
+      display: block;
+      margin-top: 4px;
+      font-family: var(--fm);
+      font-size: clamp(11px, 0.85vw, 14px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .prep-cta {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(20px, 2.4vw, 36px);
+      letter-spacing: -0.005em;
+      color: var(--accent);
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .prep-cta .arrow {
+      font-weight: 300;
+      font-size: 1.1em;
+    }
+
+    @media (max-width: 768px) {
+      .howto-sessions { flex-wrap: wrap; gap: 14px; justify-content: center; }
+      .howto-sessions::before { display: none; }
+      .howto-blocks { flex-direction: column; }
+      .state-row { grid-template-columns: clamp(40px, 8vw, 60px) 1fr; }
+      .state-term { grid-column: 1 / -1; text-align: left; padding-left: clamp(58px, 11vw, 80px); }
+    }
+
     /* ========== NAV CONTROLS ========== */
     .deck-nav {
       position: fixed;
@@ -872,6 +1230,221 @@
     <div class="corner corner-bl">
       <span class="dot"></span>
       <span>Formula</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 05 — INTRO-3 · КАК ЭТО РАБОТАЕТ        -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-howto" data-slide="intro-3" data-index="05">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>MNPI · CHECKUP · NEIRY</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>05 / Вступление</span>
+    </div>
+
+    <div class="howto-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Вступление · 3 / 5</div>
+
+      <h2 class="howto-title reveal" style="--i: 1">
+        Пять сессий. <em>Три блока.</em><br>
+        От простого к сложному.
+      </h2>
+
+      <!-- 5 сессий, соединённых линией -->
+      <div class="howto-sessions reveal" style="--i: 2">
+        <div class="howto-session"><div class="hs-num">1</div><div class="hs-name">Базовый</div></div>
+        <div class="howto-session"><div class="hs-num">2</div><div class="hs-name">Тело</div></div>
+        <div class="howto-session"><div class="hs-num">3</div><div class="hs-name">Глубина</div></div>
+        <div class="howto-session"><div class="hs-num">4</div><div class="hs-name">Тишина</div></div>
+        <div class="howto-session"><div class="hs-num">5</div><div class="hs-name">Антенна</div></div>
+      </div>
+
+      <!-- 3 блока в каждой сессии -->
+      <div class="howto-blocks reveal" style="--i: 3">
+        <div class="howto-block">
+          <svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color: var(--accent);">
+            <path d="M2 16 C 10 4, 38 4, 46 16 C 38 28, 10 28, 2 16 Z"/>
+            <circle cx="24" cy="16" r="6" fill="currentColor" stroke="none"/>
+          </svg>
+          <div class="hb-name">Открытые</div>
+        </div>
+        <div class="howto-arrow">→</div>
+        <div class="howto-block">
+          <svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color: var(--accent);">
+            <path d="M2 16 C 10 10, 38 10, 46 16"/>
+          </svg>
+          <div class="hb-name">Закрытые</div>
+        </div>
+        <div class="howto-arrow">→</div>
+        <div class="howto-block">
+          <svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color: var(--accent);">
+            <path d="M2 16 C 10 4, 38 4, 46 16 C 38 28, 10 28, 2 16 Z"/>
+            <circle cx="24" cy="16" r="6" fill="currentColor" stroke="none"/>
+          </svg>
+          <div class="hb-name">Открытые</div>
+        </div>
+      </div>
+
+      <!-- мета: что нужно -->
+      <div class="howto-meta reveal" style="--i: 4">
+        <span class="hm-item"><span class="hm-dot"></span>Нейробанд пишет ЭЭГ непрерывно</span>
+        <span class="hm-item"><span class="hm-dot"></span>После сессии — несколько вопросов</span>
+        <span class="hm-item"><span class="hm-dot"></span>35–45 минут на сессию</span>
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>Intro 3 · Структура</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 06 — INTRO-4 · ПЯТЬ СОСТОЯНИЙ           -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-states" data-slide="intro-4" data-index="06">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>MNPI · CHECKUP · NEIRY</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>06 / Вступление</span>
+    </div>
+
+    <div class="states-content">
+      <div class="states-eyebrow reveal" style="--i: 0">Вступление · 4 / 5</div>
+
+      <h2 class="states-title reveal" style="--i: 1">
+        Пять состояний — <em>пять снимков</em>
+      </h2>
+
+      <div class="states-list">
+        <div class="state-row reveal" style="--i: 2">
+          <div class="state-num">01</div>
+          <div class="state-name">Базовый нейроснимок</div>
+          <div class="state-term">Point A</div>
+        </div>
+        <div class="state-row reveal" style="--i: 3">
+          <div class="state-num">02</div>
+          <div class="state-name">Тело</div>
+          <div class="state-term">Интероцепция</div>
+        </div>
+        <div class="state-row reveal" style="--i: 4">
+          <div class="state-num">03</div>
+          <div class="state-name">Глубина</div>
+          <div class="state-term">Окно нейропластичности</div>
+        </div>
+        <div class="state-row reveal" style="--i: 5">
+          <div class="state-num">04</div>
+          <div class="state-name">Тишина с открытыми глазами</div>
+          <div class="state-term">Active Presence</div>
+        </div>
+        <div class="state-row reveal" style="--i: 6">
+          <div class="state-num">05</div>
+          <div class="state-name">Антенна</div>
+          <div class="state-term">Transcendent Download</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>Intro 4 · Состояния</span>
+    </div>
+    <div class="corner corner-br">
+      <span>далее</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 07 — INTRO-5 · ПЕРЕД НАЧАЛОМ            -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-prep" data-slide="intro-5" data-index="07">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>MNPI · CHECKUP · NEIRY</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>07 / Перед началом</span>
+    </div>
+
+    <div class="prep-content">
+      <div class="prep-eyebrow reveal" style="--i: 0">Вступление · 5 / 5 · Чек-лист</div>
+
+      <h2 class="prep-title reveal" style="--i: 1">
+        Что нужно перед началом
+      </h2>
+
+      <div class="prep-list">
+        <div class="prep-item reveal" style="--i: 2">
+          <div class="prep-marker"></div>
+          <div class="prep-text">
+            Neiry MindTracker или Neiry Capsule
+            <small>Надет и подключён</small>
+          </div>
+        </div>
+        <div class="prep-item reveal" style="--i: 3">
+          <div class="prep-marker"></div>
+          <div class="prep-text">
+            Garmin или другой HRV-трекер
+            <small>Желательно</small>
+          </div>
+        </div>
+        <div class="prep-item reveal" style="--i: 4">
+          <div class="prep-marker"></div>
+          <div class="prep-text">
+            Тихое место, где никто не помешает
+            <small>35–45 минут</small>
+          </div>
+        </div>
+        <div class="prep-item reveal" style="--i: 5">
+          <div class="prep-marker"></div>
+          <div class="prep-text">
+            Вода рядом
+            <small>Опционально, но удобно</small>
+          </div>
+        </div>
+        <div class="prep-item reveal" style="--i: 6">
+          <div class="prep-marker"></div>
+          <div class="prep-text">
+            Телефон в режиме «не беспокоить»
+            <small>Никаких уведомлений</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="prep-cta reveal" style="--i: 7">
+        Когда готов — далее <span class="arrow">→</span>
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>Intro 5 · Pre-flight</span>
     </div>
     <div class="corner corner-br">
       <span>далее</span>
