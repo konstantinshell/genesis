@@ -1465,6 +1465,66 @@
       line-height: 1.5;
     }
 
+    /* ========== GLOBAL DECK PROGRESS BAR ========== */
+    /* Тонкий прогресс по текущему слайду — виден на всех слайдах */
+    .deck-progress-global {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: rgba(95,95,255,0.08);
+      z-index: 80;
+      pointer-events: none;
+    }
+    .deck-progress-global-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--blue));
+      transition: width 0.4s linear;
+    }
+    .deck-progress-global.is-done .deck-progress-global-fill {
+      background: linear-gradient(90deg, #10B981, #34D399);
+    }
+
+    /* mini-timer в правом нижнем углу — для слайдов БЕЗ большого таймера */
+    .mini-timer {
+      position: fixed;
+      right: 24px;
+      bottom: 22px;
+      z-index: 60;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px 7px 12px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 16px rgba(22,22,26,0.06);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-family: var(--fm);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      pointer-events: none;
+    }
+    .mini-timer.is-visible { opacity: 1; }
+    .mini-timer .mt-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(95,95,255,0.18);
+    }
+    .mini-timer.is-running .mt-dot { animation: pulse 1.6s ease-in-out infinite; }
+    .mini-timer.is-paused .mt-dot { background: var(--muted-2); box-shadow: none; }
+    .mini-timer.is-done .mt-dot { background: #10B981; box-shadow: 0 0 0 3px rgba(16,185,129,0.20); }
+
     /* ========== NAV CONTROLS ========== */
     .deck-nav {
       position: fixed;
@@ -6041,6 +6101,17 @@
 
 </main>
 
+<!-- Global deck progress bar (виден на всех слайдах) -->
+<div class="deck-progress-global" id="deckProgressGlobal" aria-hidden="true">
+  <div class="deck-progress-global-fill" data-deck-progress></div>
+</div>
+
+<!-- Mini timer для слайдов без большого таймера -->
+<div class="mini-timer" id="miniTimer" data-mini-timer aria-hidden="true">
+  <span class="mt-dot"></span>
+  <span data-mini-timer-text>--:--</span>
+</div>
+
 <!-- Floating navigation pill -->
 <div class="deck-nav" id="deckNav">
   <button class="nav-btn" id="navPrev" aria-label="Предыдущий слайд">←</button>
@@ -6133,14 +6204,46 @@
     return `${pad(m)}:${pad(s)}`;
   }
 
+  // дефолтные длительности для авто-прокрутки по типу слайда (в секундах)
+  const DEFAULT_DURATIONS = {
+    'slide-cover':         15,
+    'slide-session-cover': 25,
+    'slide-text':          30,
+    'slide-states':        40,
+    'slide-formula':       45,
+    'slide-howto':         40,
+    'slide-prep':          40,
+    // slide-timer берёт из data-timer
+  };
+
+  function getSlideDuration(slide) {
+    if (slide.dataset.timer) return parseTime(slide.dataset.timer);
+    for (const [cls, dur] of Object.entries(DEFAULT_DURATIONS)) {
+      if (slide.classList.contains(cls)) return dur;
+    }
+    return 30; // fallback
+  }
+
+  // mini-timer (правый нижний угол, для слайдов без большого таймера)
+  const miniTimer = document.getElementById('miniTimer');
+  const miniTimerText = miniTimer ? miniTimer.querySelector('[data-mini-timer-text]') : null;
+  const globalProgress = document.querySelector('[data-deck-progress]');
+  const globalProgressBar = document.getElementById('deckProgressGlobal');
+
   class Timer {
     constructor(slide) {
       this.slide = slide;
-      this.total = parseTime(slide.dataset.timer);
+      this.total = getSlideDuration(slide);
       this.remaining = this.total;
       this.running = false;
       this.tick = null;
-      this.autoadvance = slide.dataset.autoadvance === 'true';
+      // авто-переход по умолчанию для всех; на slide-timer берётся из data-autoadvance
+      // для остальных слайдов всегда true (это вся суть автопрокрутки)
+      this.autoadvance = slide.classList.contains('slide-timer')
+        ? (slide.dataset.autoadvance === 'true')
+        : true;
+      // флаг — это «большой» рабочий таймер (огромные цифры) или просто авто-прокрутка
+      this.isBig = slide.classList.contains('slide-timer');
       this.display = slide.querySelector('[data-timer-display]');
       this.progress = slide.querySelector('[data-timer-progress]');
       this.btnToggle = slide.querySelector('[data-timer-toggle]');
@@ -6159,15 +6262,30 @@
       this.btnReset && this.btnReset.addEventListener('click', this.bound.reset);
       this.btnSkip && this.btnSkip.addEventListener('click', this.bound.skip);
 
+      // показать mini-timer на не-big слайдах
+      if (miniTimer) {
+        miniTimer.classList.remove('is-running', 'is-done');
+        miniTimer.classList.toggle('is-visible', !this.isBig);
+        miniTimer.classList.add('is-paused');
+      }
+      if (globalProgressBar) globalProgressBar.classList.remove('is-done');
+
       this.render();
+
+      // на «маленьких» слайдах (не-big timer) автоматически стартуем —
+      // вся презентация листается сама. На big timer ждём ручного Start.
+      if (!this.isBig && this.total > 0) this.start();
     }
 
     render() {
-      if (this.display) this.display.textContent = fmtTime(this.remaining);
-      if (this.progress) {
-        const pct = this.total > 0 ? ((this.total - this.remaining) / this.total) * 100 : 0;
-        this.progress.style.width = pct + '%';
-      }
+      const text = fmtTime(this.remaining);
+      if (this.display) this.display.textContent = text;
+      // mini-timer (для слайдов без big display)
+      if (!this.isBig && miniTimerText) miniTimerText.textContent = text;
+      const pct = this.total > 0 ? ((this.total - this.remaining) / this.total) * 100 : 0;
+      if (this.progress) this.progress.style.width = pct + '%';
+      // глобальный прогресс — на всех слайдах
+      if (globalProgress) globalProgress.style.width = pct + '%';
     }
 
     setRunning(on) {
@@ -6177,6 +6295,10 @@
       if (this.iconPlay && this.iconPause) {
         this.iconPlay.style.display = on ? 'none' : '';
         this.iconPause.style.display = on ? '' : 'none';
+      }
+      if (miniTimer && !this.isBig) {
+        miniTimer.classList.toggle('is-running', on);
+        miniTimer.classList.toggle('is-paused', !on);
       }
     }
 
@@ -6211,6 +6333,8 @@
       this.remaining = this.total;
       this.setRunning(false);
       this.slide.classList.remove('is-done');
+      if (globalProgressBar) globalProgressBar.classList.remove('is-done');
+      if (miniTimer) miniTimer.classList.remove('is-done');
       this.render();
     }
 
@@ -6220,10 +6344,20 @@
       this.setRunning(false);
       this.slide.classList.add('is-done');
       if (this.label) this.label.textContent = 'Готово';
+      if (miniTimer && !this.isBig) {
+        miniTimer.classList.remove('is-running', 'is-paused');
+        miniTimer.classList.add('is-done');
+      }
+      if (globalProgressBar) globalProgressBar.classList.add('is-done');
       this.render();
-      playChime();
+      // звук-чайм только на «больших» рабочих таймерах
+      // (на коротких авто-листающих слайдах звук бы раздражал каждые 30 сек)
+      if (this.isBig) playChime();
       if (this.autoadvance) {
-        setTimeout(() => { go(current + 1); }, 2800);
+        // big timer: даём 2.8 сек на «выдох» перед переходом
+        // короткие слайды: переход сразу (300мс)
+        const delay = this.isBig ? 2800 : 300;
+        setTimeout(() => { go(current + 1); }, delay);
       }
     }
 
@@ -6241,13 +6375,17 @@
       this.btnToggle && this.btnToggle.removeEventListener('click', this.bound.toggle);
       this.btnReset && this.btnReset.removeEventListener('click', this.bound.reset);
       this.btnSkip && this.btnSkip.removeEventListener('click', this.bound.skip);
+      if (miniTimer) miniTimer.classList.remove('is-visible', 'is-running', 'is-paused', 'is-done');
+      if (globalProgress) globalProgress.style.width = '0%';
+      if (globalProgressBar) globalProgressBar.classList.remove('is-done');
     }
   }
 
   function activateTimer(slide) {
     activeTimer = null;
-    if (!slide.classList.contains('slide-timer')) return;
-    if (!slide.dataset.timer || slide.dataset.timer === 'none') return;
+    // авто-таймер на любом слайде:
+    // - slide-timer берёт длительность из data-timer (рабочие 10–25 минут)
+    // - остальные берут дефолт по своему классу из DEFAULT_DURATIONS
     activeTimer = new Timer(slide);
   }
 
