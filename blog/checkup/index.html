@@ -1246,6 +1246,111 @@
       margin-top: clamp(20px, 2vw, 32px);
     }
 
+    /* ========== STEP LIST (нумерованные шаги) ========== */
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(10px, 1vw, 16px);
+      max-width: 920px;
+      margin: clamp(28px, 3vw, 48px) auto;
+      text-align: left;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(16px, 1.6vw, 24px);
+      padding: clamp(14px, 1.4vw, 22px) clamp(20px, 1.8vw, 30px);
+      background: rgba(255,255,255,0.65);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: clamp(40px, 3.2vw, 56px);
+      height: clamp(40px, 3.2vw, 56px);
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(18px, 1.6vw, 26px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-text {
+      flex: 1;
+      font-family: var(--fb);
+      font-size: clamp(17px, 1.5vw, 26px);
+      line-height: 1.4;
+      color: var(--text);
+      padding-top: clamp(4px, 0.4vw, 8px);
+    }
+    .step-text strong { font-weight: 600; color: var(--text); }
+    .step-text small {
+      display: block;
+      margin-top: 4px;
+      font-family: var(--fm);
+      font-size: clamp(11px, 0.85vw, 14px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ========== CRITICAL BOX (важное предупреждение) ========== */
+    .critical-box {
+      margin: clamp(28px, 3vw, 48px) auto 0;
+      max-width: 920px;
+      padding: clamp(20px, 2vw, 32px) clamp(24px, 2.4vw, 40px);
+      background: rgba(95,95,255,0.08);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      text-align: left;
+      box-shadow: 0 6px 30px rgba(95,95,255,0.12);
+    }
+    .critical-tag {
+      display: inline-block;
+      padding: 5px 14px;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(11px, 0.9vw, 14px);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      margin-bottom: clamp(10px, 1vw, 16px);
+    }
+    .critical-title {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(20px, 1.9vw, 32px);
+      letter-spacing: -0.005em;
+      color: var(--text);
+      margin-bottom: clamp(10px, 1vw, 16px);
+      line-height: 1.15;
+    }
+    .critical-text {
+      font-family: var(--fb);
+      font-size: clamp(15px, 1.3vw, 22px);
+      line-height: 1.45;
+      color: var(--text);
+    }
+    .critical-text strong { color: var(--accent); }
+    .critical-example {
+      margin-top: clamp(12px, 1.2vw, 18px);
+      padding: clamp(10px, 1vw, 16px) clamp(14px, 1.2vw, 20px);
+      background: rgba(255,255,255,0.7);
+      border-left: 3px solid var(--accent);
+      font-family: var(--fm);
+      font-size: clamp(13px, 1vw, 17px);
+      color: var(--text);
+      border-radius: 0 6px 6px 0;
+      line-height: 1.5;
+    }
+
     /* ========== NAV CONTROLS ========== */
     .deck-nav {
       position: fixed;
@@ -5284,46 +5389,141 @@
   </section>
 
 
-  <!-- SLIDE 88 — OUTRO 2 · Что дальше -->
-  <section class="slide slide-text" data-slide="outro-2" data-index="88">
-    <div class="corner corner-tl"><span class="symbol">∅</span><span>WHAT'S NEXT</span></div>
-    <div class="corner corner-tr"><span>88 / Что дальше</span></div>
+  <!-- ============================================ -->
+  <!-- SLIDE 88 — OUTRO 2 · Загрузить записи           -->
+  <!-- + критическое предупреждение про подпись       -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="outro-upload" data-index="88">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>UPLOAD · ex NIHILO BOT</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>88 / Загрузка</span>
+    </div>
+
     <div class="text-content">
-      <div class="text-eyebrow reveal" style="--i: 0">Следующий шаг</div>
+      <div class="text-eyebrow reveal" style="--i: 0">Шаг 1 / 2 · Что делать сейчас</div>
+
       <h2 class="text-title reveal" style="--i: 1">
-        Что дальше
+        Загрузи записи<br>
+        в чат-бот ex NIHILO
       </h2>
-      <div class="text-body">
-        <p class="text-lead reveal" style="--i: 2">
-          Чекап — нейрофизиологическая база. Первый и необходимый шаг
-          перед чем-либо более глубоким.
-        </p>
-        <p class="reveal" style="--i: 3">
-          На его основе строится полный <strong>MNPI-профиль</strong>:
-          феноменологический анализ голосовых нарративов
-          и данные физиологии за весь период.
-        </p>
-        <p class="muted reveal" style="--i: 4">
-          Но всё это возможно только если есть точка отсчёта.
-        </p>
+
+      <div class="step-list">
+        <div class="step-item reveal" style="--i: 2">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            Открой свой профиль в Telegram-боте <strong>ex NIHILO</strong>
+            <small>Цифровой помощник</small>
+          </div>
+        </div>
+        <div class="step-item reveal" style="--i: 3">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            Нажми кнопку <strong>«загрузить чекап»</strong>
+            <small>В разделе профиля</small>
+          </div>
+        </div>
+        <div class="step-item reveal" style="--i: 4">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            Скинь все файлы записей <strong>пяти сессий</strong>
+            <small>ЭЭГ + HRV (если есть Garmin)</small>
+          </div>
+        </div>
       </div>
-      <div class="text-punchline reveal" style="--i: 5">
-        Чекап — эта точка.
+
+      <div class="critical-box reveal" style="--i: 5">
+        <div class="critical-tag">Важно</div>
+        <div class="critical-title">
+          Подпиши каждый файл — час и минута старта и конца сессии
+        </div>
+        <p class="critical-text">
+          ИИ совмещает записи нейробанда с этапами чекапа по времени.
+          <strong>Без точной подписи анализ будет неточным</strong> —
+          невозможно сопоставить ЭЭГ-паттерны с конкретными блоками сессий.
+        </p>
+        <div class="critical-example">
+          Пример: <strong>Сессия 1 — 10:32 → 11:08</strong> ·
+          <strong>Сессия 2 — 14:15 → 14:51</strong>
+        </div>
       </div>
     </div>
-    <div class="corner corner-bl"><span class="dot"></span><span>Outro 2</span></div>
+
+    <div class="corner corner-bl"><span class="dot"></span><span>Outro · Загрузка</span></div>
     <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+
   </section>
 
 
-  <!-- SLIDE 89 — OUTRO 3 · Спасибо -->
-  <section class="slide slide-cover" data-slide="outro-3" data-index="89">
+  <!-- ============================================ -->
+  <!-- SLIDE 89 — OUTRO 3 · Что будет дальше          -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="outro-after" data-index="89">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>AFTER UPLOAD</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>89 / После загрузки</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Шаг 2 / 2 · После загрузки</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Что будет дальше
+      </h2>
+
+      <div class="step-list">
+        <div class="step-item reveal" style="--i: 2">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            Анализ занимает <strong>несколько дней</strong>
+            <small>Совмещение ЭЭГ, HRV и феноменологии</small>
+          </div>
+        </div>
+        <div class="step-item reveal" style="--i: 3">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            Ты получишь <strong>отчёт по чекапу</strong>
+            <small>SI · DI · RI · PI и Point A</small>
+          </div>
+        </div>
+        <div class="step-item reveal" style="--i: 4">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            Динамика появится в <strong>профиле в чат-боте</strong>
+            <small>Личное пространство ex NIHILO</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-punchline reveal" style="--i: 5">
+        Профиль обновляется. Point A зафиксирован.
+      </div>
+    </div>
+
+    <div class="corner corner-bl"><span class="dot"></span><span>Outro · После</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 90 — OUTRO 4 · Спасибо · финальный кадр  -->
+  <!-- ============================================ -->
+  <section class="slide slide-cover" data-slide="outro-final" data-index="90">
+
     <div class="corner corner-tl">
       <span class="symbol">∅</span>
       <span>ONTO NOTHING × NEIRY</span>
     </div>
     <div class="corner corner-tr">
-      <span>89 / 89</span>
+      <span>90 / 90</span>
     </div>
 
     <div class="cover-content">
@@ -5344,6 +5544,7 @@
 
     <div class="corner corner-bl"><span class="dot"></span><span>End</span></div>
     <div class="corner corner-br"><span>конец</span></div>
+
   </section>
 
 </main>
