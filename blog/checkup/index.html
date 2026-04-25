@@ -1587,39 +1587,44 @@
       box-shadow: 0 0 18px rgba(16,185,129,0.55), 0 0 6px rgba(16,185,129,0.75);
     }
 
-    /* mini-timer в правом нижнем углу — для слайдов БЕЗ большого таймера */
+    /* mini-timer ПО ЦЕНТРУ СНИЗУ — для слайдов БЕЗ большого таймера */
     .mini-timer {
       position: fixed;
-      right: 24px;
-      bottom: 24px;
+      left: 50%;
+      bottom: 36px;
+      transform: translateX(-50%);
       z-index: 60;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 18px 10px 14px;
-      background: rgba(255,255,255,0.95);
-      border: 1.5px solid var(--accent);
+      gap: 14px;
+      padding: 14px 28px 14px 24px;
+      background: rgba(255,255,255,0.92);
+      border: 2px solid var(--accent);
       border-radius: 999px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 8px 24px rgba(95,95,255,0.22), 0 2px 6px rgba(95,95,255,0.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow:
+        0 12px 40px rgba(95,95,255,0.30),
+        0 4px 12px rgba(95,95,255,0.18),
+        0 0 0 6px rgba(95,95,255,0.06);
       opacity: 0;
       transition: opacity 0.3s ease;
       font-family: var(--fh);
-      font-size: 22px;
-      letter-spacing: 0.04em;
-      color: var(--text);
+      font-size: clamp(40px, 4vw, 56px);
+      letter-spacing: 0.02em;
+      color: var(--accent);
       font-variant-numeric: tabular-nums;
       font-weight: 700;
+      line-height: 1;
       pointer-events: none;
     }
     .mini-timer.is-visible { opacity: 1; }
     .mini-timer .mt-dot {
-      width: 11px;
-      height: 11px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(95,95,255,0.22);
+      box-shadow: 0 0 0 5px rgba(95,95,255,0.20), 0 0 16px rgba(95,95,255,0.45);
     }
     .mini-timer.is-running .mt-dot { animation: pulse 1.6s ease-in-out infinite; }
     .mini-timer.is-paused .mt-dot { background: var(--muted-2); box-shadow: none; }
@@ -1629,13 +1634,12 @@
     .deck-nav {
       position: fixed;
       bottom: 22px;
-      left: 50%;
-      transform: translateX(-50%);
+      right: 22px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      background: rgba(255,255,255,0.7);
+      gap: 8px;
+      padding: 6px 10px;
+      background: rgba(255,255,255,0.78);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--line);
