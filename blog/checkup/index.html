@@ -1465,6 +1465,76 @@
       line-height: 1.5;
     }
 
+    /* ========== COVER START BUTTON & COUNTDOWN ========== */
+    .cover-start-block {
+      margin-top: clamp(36px, 4vw, 64px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(16px, 1.6vw, 24px);
+      min-height: clamp(80px, 8vw, 120px);
+    }
+    .cover-start-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      height: clamp(56px, 5vw, 76px);
+      padding: 0 clamp(28px, 3vw, 48px);
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(16px, 1.6vw, 22px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.1s ease, box-shadow 0.25s ease;
+      box-shadow: 0 8px 32px rgba(95,95,255,0.35), 0 2px 8px rgba(95,95,255,0.20);
+    }
+    .cover-start-btn:hover {
+      background: #4a4adb;
+      box-shadow: 0 12px 40px rgba(95,95,255,0.45), 0 4px 12px rgba(95,95,255,0.30);
+    }
+    .cover-start-btn:active { transform: scale(0.97); }
+    .cover-start-btn svg { width: 22px; height: 22px; }
+
+    .cover-countdown {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      animation: countdownAppear 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .cover-countdown.is-visible { display: flex; }
+    @keyframes countdownAppear {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .cover-countdown-num {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(80px, 10vw, 160px);
+      line-height: 0.95;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      animation: countdownPulse 1s ease-in-out infinite;
+    }
+    @keyframes countdownPulse {
+      0%, 100% { transform: scale(1);    opacity: 1; }
+      50%      { transform: scale(1.08); opacity: 0.85; }
+    }
+    .cover-countdown-label {
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: clamp(13px, 1.1vw, 18px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
     /* ========== AUDIO TOAST (mute/unmute уведомление) ========== */
     .audio-toast {
       position: fixed;
@@ -1634,7 +1704,8 @@
   <!-- SLIDE 01 — COVER                              -->
   <!-- timer: none                                   -->
   <!-- ============================================ -->
-  <section class="slide slide-cover is-active" data-slide="cover" data-index="01">
+  <section class="slide slide-cover is-active" data-slide="cover" data-index="01"
+           data-no-autostart="true">
 
     <div class="corner corner-tl">
       <span class="symbol">∅</span>
@@ -1645,7 +1716,7 @@
     </div>
 
     <div class="cover-content">
-      <div class="cover-eyebrow reveal" style="--i: 0">Презентация · 5 сессий · ~3 ч 15 мин</div>
+      <div class="cover-eyebrow reveal" style="--i: 0">Презентация · 6 сессий · ~5 ч 06 мин</div>
 
       <h1 class="cover-title">
         <span class="title-main reveal" style="--i: 1">MNPI Checkup</span>
@@ -1660,6 +1731,20 @@
       <div class="cover-footer reveal" style="--i: 4">
         ONTO NOTHING <span class="x">×</span> NEIRY <span class="yr">· 2026</span>
       </div>
+
+      <!-- кнопка Старт → 10-секундный обратный отсчёт → переход -->
+      <div class="cover-start-block reveal" style="--i: 5">
+        <button class="cover-start-btn" id="coverStartBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <span>Начать презентацию</span>
+        </button>
+        <div class="cover-countdown" id="coverCountdown" aria-live="polite">
+          <div class="cover-countdown-label">Старт через</div>
+          <div class="cover-countdown-num" id="coverCountdownNum">10</div>
+        </div>
+      </div>
     </div>
 
     <div class="corner corner-bl">
@@ -1667,7 +1752,7 @@
       <span>Ready</span>
     </div>
     <div class="corner corner-br">
-      <span>далее</span>
+      <span>или жми</span>
       <span class="key-hint">→</span>
     </div>
 
@@ -1791,102 +1876,94 @@
 
 
   <!-- ============================================ -->
-  <!--   5 ВИДОВ НЕЙРОПЛАСТИЧНОСТИ                   -->
+  <!--   ЧТО ТАКОЕ НЕЙРОПЛАСТИЧНОСТЬ — НА ПАЛЬЦАХ    -->
   <!-- ============================================ -->
-  <section class="slide slide-states" data-slide="np-types" data-index="04">
+  <section class="slide slide-text" data-slide="np-types" data-index="04">
 
     <div class="corner corner-tl">
       <span class="symbol">∅</span>
-      <span>NEUROPLASTICITY · TYPES</span>
+      <span>NEUROPLASTICITY · WHAT</span>
     </div>
     <div class="corner corner-tr">
-      <span>Виды нейропластичности</span>
+      <span>Что это</span>
     </div>
 
-    <div class="states-content">
-      <div class="states-eyebrow reveal" style="--i: 0">Зонтичный термин · 5 феноменов</div>
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">На простом языке · 1 / 6</div>
 
-      <h2 class="states-title reveal" style="--i: 1">
-        Нейропластичность —<br>
-        это не одно явление
+      <h2 class="text-title reveal" style="--i: 1">
+        Мозг — не камень.<br>
+        Он постоянно меняется.
       </h2>
 
-      <div class="states-list">
-        <div class="state-row reveal" style="--i: 2">
-          <div class="state-num">01</div>
-          <div class="state-name">Синаптическая</div>
-          <div class="state-term">LTP / LTD</div>
-        </div>
-        <div class="state-row reveal" style="--i: 3">
-          <div class="state-num">02</div>
-          <div class="state-name">Структурная</div>
-          <div class="state-term">Объём · миелин · синапсы</div>
-        </div>
-        <div class="state-row reveal" style="--i: 4">
-          <div class="state-num">03</div>
-          <div class="state-name">Функциональная</div>
-          <div class="state-term">Сети · паттерны</div>
-        </div>
-        <div class="state-row reveal" style="--i: 5; background: rgba(95,95,255,0.06); border-left: 3px solid var(--accent); padding-left: clamp(20px, 2vw, 32px);">
-          <div class="state-num">04</div>
-          <div class="state-name">Метапластичность</div>
-          <div class="state-term" style="color: var(--accent); font-weight: 700;">← MNPI здесь · пластичность пластичности</div>
-        </div>
-        <div class="state-row reveal" style="--i: 6">
-          <div class="state-num">05</div>
-          <div class="state-name">Нейрохимическая</div>
-          <div class="state-term">BDNF · GABA · нейротрофины</div>
-        </div>
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Каждый раз, когда ты учишься новому, привыкаешь, забываешь
+          или восстанавливаешься — в голове что-то перестраивается.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Это и есть <strong>нейропластичность</strong> — способность мозга
+          менять свои связи, реакции и паттерны в ответ на опыт.
+        </p>
+        <p class="muted reveal" style="--i: 4">
+          У одних мозг гибкий и быстро адаптируется.
+          У других застревает в одних и тех же режимах годами.
+          Разница между этими людьми — не характер. Это измеримо.
+        </p>
+      </div>
+
+      <div class="text-punchline reveal" style="--i: 5">
+        Мозг живой. Просто никто его не показывает.
       </div>
     </div>
 
-    <div class="corner corner-bl"><span class="dot"></span><span>NP · 5 видов</span></div>
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · Что это</span></div>
     <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
 
   </section>
 
 
   <!-- ============================================ -->
-  <!--   ДЕФИЦИТ ПОЛЯ — НЕТ ПРЯМОГО ИЗМЕРЕНИЯ LTP    -->
+  <!--   ПОЧЕМУ ЭТО СЛОЖНО ИЗМЕРИТЬ                  -->
   <!-- ============================================ -->
   <section class="slide slide-text" data-slide="np-no-gold" data-index="05">
 
     <div class="corner corner-tl">
       <span class="symbol">∅</span>
-      <span>NEUROPLASTICITY · GAP</span>
+      <span>NEUROPLASTICITY · HARD TO MEASURE</span>
     </div>
     <div class="corner corner-tr">
-      <span>Дефицит поля</span>
+      <span>Почему сложно</span>
     </div>
 
     <div class="text-content">
-      <div class="text-eyebrow reveal" style="--i: 0">Главный научный пробел · NPP 2025</div>
+      <div class="text-eyebrow reveal" style="--i: 0">На простом языке · 2 / 6</div>
 
       <h2 class="text-title reveal" style="--i: 1">
-        У человека нет прямого<br>
-        измерения LTP
+        Но как её измерить?
       </h2>
 
       <div class="text-body">
         <p class="text-lead reveal" style="--i: 2">
-          Все маркеры — косвенные.
+          Нельзя просто открыть голову и заглянуть в нейроны.
         </p>
         <p class="reveal" style="--i: 3">
-          Каждый существующий метод меряет что-то одно: молекулу, клетку,
-          сеть, поведение. Полной картины нет ни у кого.
+          Все приборы смотрят со стороны. Кто-то меряет молекулы в крови.
+          Кто-то — структуру мозга по МРТ. Кто-то — ритмы коры через ЭЭГ.
+          Каждый видит свою часть слона.
         </p>
         <p class="muted reveal" style="--i: 4">
-          Это поле без золотого стандарта — что и открывает место
-          новым композитным подходам.
+          Поэтому нет одной волшебной цифры, которая бы сказала:
+          «вот тебе твой уровень нейропластичности».
         </p>
       </div>
 
       <div class="text-punchline reveal" style="--i: 5">
-        Золотого стандарта не существует.
+        Золотого стандарта пока нет.
       </div>
     </div>
 
-    <div class="corner corner-bl"><span class="dot"></span><span>NP · No gold</span></div>
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · Сложно измерить</span></div>
     <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
 
   </section>
@@ -1906,52 +1983,52 @@
     </div>
 
     <div class="formula-content">
-      <div class="formula-eyebrow reveal" style="--i: 0">Чем меряют сегодня</div>
+      <div class="formula-eyebrow reveal" style="--i: 0">На простом языке · 3 / 6</div>
 
       <h2 class="formula-title reveal" style="--i: 1">
-        Восемь основных подходов
+        Чем меряют сегодня
       </h2>
 
       <div class="method-grid">
         <div class="method-card reveal" style="--i: 2">
-          <span class="mc-abbr">PAS-TMS</span>
-          <span class="mc-name">Парная стимуляция</span>
-          <span class="mc-desc">LTP-подобная пластичность в моторной коре. Ближайшее к золотому стандарту.</span>
+          <span class="mc-abbr">Кровь</span>
+          <span class="mc-name">BDNF · Нейротрофины</span>
+          <span class="mc-desc">«Удобрение» для нейронов. Чем больше — тем активнее перестройка связей.</span>
         </div>
         <div class="method-card reveal" style="--i: 3">
-          <span class="mc-abbr">TMS-EEG</span>
-          <span class="mc-name">TEPs · DLPFC</span>
-          <span class="mc-desc">Корковая возбудимость вне моторной коры. Прорыв 2015–2025.</span>
+          <span class="mc-abbr">МРТ</span>
+          <span class="mc-name">Структура мозга</span>
+          <span class="mc-desc">Объём, толщина коры, белое вещество. Видны изменения от практик за месяцы.</span>
         </div>
         <div class="method-card reveal" style="--i: 4">
-          <span class="mc-abbr">DMN</span>
-          <span class="mc-name">fMRI · сети покоя</span>
-          <span class="mc-desc">Функциональная связность Default Mode Network — DMN-деактивация.</span>
+          <span class="mc-abbr">ЭЭГ</span>
+          <span class="mc-name">Ритмы коры</span>
+          <span class="mc-desc">Альфа, тета, гамма. Отражают режимы работы мозга в реальном времени.</span>
         </div>
         <div class="method-card reveal" style="--i: 5">
-          <span class="mc-abbr">DTI · FA</span>
-          <span class="mc-name">Белое вещество</span>
-          <span class="mc-desc">Микроструктура аксонов и миелина через диффузионную тензорную МРТ.</span>
+          <span class="mc-abbr">HRV</span>
+          <span class="mc-name">Сердце ↔ мозг</span>
+          <span class="mc-desc">Вариабельность пульса. Показывает связь автономной нервной системы и коры.</span>
         </div>
         <div class="method-card reveal" style="--i: 6">
-          <span class="mc-abbr">BDNF</span>
-          <span class="mc-name">Нейротрофин</span>
-          <span class="mc-desc">Молекулярный маркер LTP-поддержки. ELISA в плазме / слюне.</span>
+          <span class="mc-abbr">TMS</span>
+          <span class="mc-name">Магнитный «толчок»</span>
+          <span class="mc-desc">Стимулируют участок коры и смотрят, как он откликается. Лабораторно.</span>
         </div>
         <div class="method-card reveal" style="--i: 7">
-          <span class="mc-abbr">BAG</span>
-          <span class="mc-name">Brain Age Gap</span>
-          <span class="mc-desc">Возраст мозга через ML на МРТ. Коммерческий фронт 2026–2028.</span>
+          <span class="mc-abbr">фМРТ</span>
+          <span class="mc-name">Сети мозга</span>
+          <span class="mc-desc">Какие зоны мозга разговаривают между собой. DMN — «режим внутреннего диалога».</span>
         </div>
         <div class="method-card reveal" style="--i: 8">
-          <span class="mc-abbr">HRV</span>
-          <span class="mc-name">Вагальный тонус</span>
-          <span class="mc-desc">RMSSD, HF-power. Wearable-маркер — Garmin, WHOOP, Polar.</span>
+          <span class="mc-abbr">BAG</span>
+          <span class="mc-name">Возраст мозга</span>
+          <span class="mc-desc">ML по МРТ предсказывает «биологический возраст» мозга vs паспортный.</span>
         </div>
         <div class="method-card reveal" style="--i: 9">
-          <span class="mc-abbr">1/f slope</span>
-          <span class="mc-name">EEG · E/I balance</span>
-          <span class="mc-desc">Соотношение возбуждение/торможение через апериодическую составляющую.</span>
+          <span class="mc-abbr">Тесты</span>
+          <span class="mc-name">Скорость обучения</span>
+          <span class="mc-desc">Поведенческий маркер. Как быстро человек осваивает новый навык.</span>
         </div>
       </div>
     </div>
@@ -1963,146 +2040,150 @@
 
 
   <!-- ============================================ -->
-  <!--   КАРТА ПОЛЯ — 5 УРОВНЕЙ, ПОСЛЕДНИЙ ПУСТ      -->
+  <!--   СНИМОК ≠ УПРАВЛЕНИЕ                         -->
   <!-- ============================================ -->
-  <section class="slide slide-states" data-slide="np-map" data-index="07">
+  <section class="slide slide-text" data-slide="np-map" data-index="07">
 
     <div class="corner corner-tl">
       <span class="symbol">∅</span>
-      <span>NEUROPLASTICITY · MAP</span>
+      <span>NEUROPLASTICITY · SNAPSHOT VS DRIVING</span>
     </div>
     <div class="corner corner-tr">
-      <span>Карта поля</span>
+      <span>Снимок ≠ управление</span>
     </div>
 
-    <div class="states-content">
-      <div class="states-eyebrow reveal" style="--i: 0">Уровни измерения · от молекулы к субъекту</div>
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">На простом языке · 4 / 6</div>
 
-      <h2 class="states-title reveal" style="--i: 1">
-        Каждый метод —<br>
-        свой уровень
+      <h2 class="text-title reveal" style="--i: 1">
+        Все эти методы —<br>
+        фотоаппараты
       </h2>
 
-      <div class="levels-stack">
-        <div class="level-row reveal" style="--i: 2">
-          <div class="level-name">Молекулярный</div>
-          <div class="level-examples">BDNF · GABA-MRS · нейротрофины</div>
-          <div class="level-mark">молекула</div>
-        </div>
-        <div class="level-row reveal" style="--i: 3">
-          <div class="level-name">Клеточный</div>
-          <div class="level-examples">PAS-TMS · SICI / ICF · CSP</div>
-          <div class="level-mark">синапс</div>
-        </div>
-        <div class="level-row reveal" style="--i: 4">
-          <div class="level-name">Сетевой</div>
-          <div class="level-examples">fMRI DMN · 1/f slope · IAF · LZC</div>
-          <div class="level-mark">сеть</div>
-        </div>
-        <div class="level-row reveal" style="--i: 5">
-          <div class="level-name">Поведенческий</div>
-          <div class="level-examples">Motor learning rate · transfer · CRIq</div>
-          <div class="level-mark">задача</div>
-        </div>
-        <div class="level-row is-empty reveal" style="--i: 6">
-          <div class="level-name">Субъектный</div>
-          <div class="level-examples">— здесь пусто —</div>
-          <div class="level-mark">← MNPI</div>
-        </div>
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Они показывают, как мозг устроен прямо сейчас.
+          Какие связи есть. Что было до и после.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Но они не отвечают на главный вопрос:
+          <strong>насколько ты сам можешь управлять своим состоянием?</strong>
+          Войти в концентрацию по щелчку. Успокоиться, когда нужно.
+          Удержать ясность под нагрузкой.
+        </p>
+        <p class="muted reveal" style="--i: 4">
+          Это разница между фотографией машины — и человеком за рулём.
+          Снимок не показывает, умеешь ли ты ездить.
+        </p>
+      </div>
+
+      <div class="text-punchline reveal" style="--i: 5">
+        Снимок ≠ управление.
       </div>
     </div>
 
-    <div class="corner corner-bl"><span class="dot"></span><span>NP · Карта</span></div>
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · Снимок vs управление</span></div>
     <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
 
   </section>
 
 
   <!-- ============================================ -->
-  <!--   AGENCY — НИКТО НЕ МЕРЯЕТ УПРАВЛЯЕМОСТЬ      -->
+  <!--   ПОД ДАВЛЕНИЕМ — ВОТ ГДЕ ИНТЕРЕСНО            -->
   <!-- ============================================ -->
   <section class="slide slide-text" data-slide="np-agency" data-index="08">
 
     <div class="corner corner-tl">
       <span class="symbol">∅</span>
-      <span>NEUROPLASTICITY · AGENCY</span>
+      <span>NEUROPLASTICITY · UNDER PRESSURE</span>
     </div>
     <div class="corner corner-tr">
-      <span>Слепое пятно</span>
+      <span>Под давлением</span>
     </div>
 
     <div class="text-content">
-      <div class="text-eyebrow reveal" style="--i: 0">Слепое пятно поля · Agency</div>
+      <div class="text-eyebrow reveal" style="--i: 0">На простом языке · 5 / 6</div>
 
       <h2 class="text-title reveal" style="--i: 1">
-        Никто не меряет<br>
-        управляемость
+        Расслабиться в тишине —<br>
+        может почти каждый
       </h2>
 
       <div class="text-body">
         <p class="text-lead reveal" style="--i: 2">
-          Все методы смотрят на пластичность извне — как на свойство мозга,
-          которое либо есть, либо нет.
+          Удержать спокойствие, когда кричит ребёнок — это уже навык.
         </p>
         <p class="reveal" style="--i: 3">
-          Способность субъекта произвольно её регулировать —
-          через намерение, состояние сознания, практику —
-          остаётся за рамками измерения.
+          Войти в фокус, когда хочется в телефон. Сохранить ясность,
+          когда злишься. Восстановиться за 5 минут после стресса —
+          а не за 5 часов. <strong>Это и есть управление состоянием
+          под давлением.</strong>
         </p>
         <p class="muted reveal" style="--i: 4">
-          Сколько изменилось — считают.
-          Сколько я сам могу изменить — нет.
+          Высшая форма нейропластичности — не как сильно мозг изменился
+          за полгода практики. А как быстро он переключается между
+          режимами, когда от этого зависит твоя жизнь и решения.
         </p>
       </div>
 
       <div class="text-punchline reveal" style="--i: 5">
-        Это слепое пятно.
+        Тишина в шторме — это не отдых.<br>
+        Это способность.
       </div>
     </div>
 
-    <div class="corner corner-bl"><span class="dot"></span><span>NP · Agency</span></div>
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · Под давлением</span></div>
     <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
 
   </section>
 
 
   <!-- ============================================ -->
-  <!--   ПОЭТОМУ MNPI — МОСТИК К ФОРМУЛЕ              -->
+  <!--   ЧТО ДЕЛАЕМ МЫ — УНИКАЛЬНОСТЬ MNPI            -->
   <!-- ============================================ -->
   <section class="slide slide-text" data-slide="np-bridge" data-index="09">
 
     <div class="corner corner-tl">
       <span class="symbol">∅</span>
-      <span>BRIDGE TO MNPI</span>
+      <span>WHAT WE DO · MNPI</span>
     </div>
     <div class="corner corner-tr">
-      <span>Поэтому MNPI</span>
+      <span>Что делаем мы</span>
     </div>
 
     <div class="text-content">
-      <div class="text-eyebrow reveal" style="--i: 0">Решение · композитный индекс</div>
+      <div class="text-eyebrow reveal" style="--i: 0">На простом языке · 6 / 6</div>
 
       <h2 class="text-title reveal" style="--i: 1">
-        Поэтому — MNPI
+        Мы меряем управление,<br>
+        а не снимок
       </h2>
 
       <div class="text-body">
         <p class="text-lead reveal" style="--i: 2">
-          Новое измерение пластичности — управляемость.
+          MNPI — первый индекс, который меряет, насколько ты сам
+          можешь менять своё состояние.
         </p>
         <p class="reveal" style="--i: 3">
-          Композитный индекс из EEG-маркеров, физиологии и феноменологии.
-          Меряет не саму пластичность, а способность субъекта произвольно
-          её модулировать через состояния сознания.
+          Не «как мозг устроен». А <strong>«как ты им управляешь»</strong>.
+          Шесть разных задач — от «просто сиди» до «удержи внутреннюю
+          тишину при открытых глазах». Каждая нагружает мозг по-своему
+          и показывает, как ты переключаешься между режимами.
+        </p>
+        <p class="muted reveal" style="--i: 4">
+          ЭЭГ + сердце + твоё описание изнутри. Объективные данные
+          сравниваются с тем, что ты чувствовал. Получается карта —
+          где ты владеешь собой свободно, а где мозг работает по инерции.
         </p>
       </div>
 
-      <div class="text-punchline reveal" style="--i: 4">
-        Сейчас — формула.
+      <div class="text-punchline reveal" style="--i: 5">
+        Управление состоянием —<br>
+        теперь измеримо.
       </div>
     </div>
 
-    <div class="corner corner-bl"><span class="dot"></span><span>NP · Bridge</span></div>
+    <div class="corner corner-bl"><span class="dot"></span><span>NP · Что делаем мы</span></div>
     <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
 
   </section>
@@ -6835,7 +6916,9 @@
 
       // на «маленьких» слайдах (не-big timer) автоматически стартуем —
       // вся презентация листается сама. На big timer ждём ручного Start.
-      if (!this.isBig && this.total > 0) this.start();
+      // Исключение: data-no-autostart="true" → ждём явного нажатия (cover слайд).
+      const noAutoStart = slide.dataset.noAutostart === 'true';
+      if (!this.isBig && this.total > 0 && !noAutoStart) this.start();
     }
 
     render() {
@@ -7006,6 +7089,51 @@
       }
     }
   });
+
+  // === COVER START BUTTON · 10-секундный обратный отсчёт ===
+  const coverStartBtn = document.getElementById('coverStartBtn');
+  const coverCountdown = document.getElementById('coverCountdown');
+  const coverCountdownNum = document.getElementById('coverCountdownNum');
+  if (coverStartBtn && coverCountdown && coverCountdownNum) {
+    let coverTickInterval = null;
+    coverStartBtn.addEventListener('click', () => {
+      // только если мы реально на cover (если уже ушли — игнорируем)
+      const coverSlide = document.querySelector('[data-slide="cover"]');
+      if (!coverSlide || !coverSlide.classList.contains('is-active')) return;
+      // спрятать кнопку, показать countdown
+      coverStartBtn.style.display = 'none';
+      coverCountdown.classList.add('is-visible');
+      // также инициализируем audio context, чтобы chime/ambient работали
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (ctx.state === 'suspended') ctx.resume();
+      } catch (e) {}
+      let n = 10;
+      coverCountdownNum.textContent = n;
+      coverTickInterval = setInterval(() => {
+        n -= 1;
+        if (n > 0) {
+          coverCountdownNum.textContent = n;
+        } else {
+          clearInterval(coverTickInterval);
+          coverTickInterval = null;
+          // soft chime в момент запуска для маркера в записи
+          playChime();
+          // переход на следующий слайд (intro-1)
+          go(current + 1);
+        }
+      }, 1000);
+    });
+    // если пользователь уйдёт со cover вручную → сбросить состояние
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === ' ') {
+        if (coverTickInterval) {
+          clearInterval(coverTickInterval);
+          coverTickInterval = null;
+        }
+      }
+    });
+  }
 
   // показать пилюлю при движении мыши, скрыть после простоя
   let hideTimer;
