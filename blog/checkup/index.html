@@ -1919,6 +1919,73 @@
   </section>
 
 
+  <!-- ============================================ -->
+  <!-- SLIDE 08 — INTRO WARNING · подпись файлов     -->
+  <!-- timer: none                                   -->
+  <!-- ============================================ -->
+  <section class="slide slide-text" data-slide="intro-warning" data-index="08">
+
+    <div class="corner corner-tl">
+      <span class="symbol">∅</span>
+      <span>BEFORE YOU START · CRITICAL</span>
+    </div>
+    <div class="corner corner-tr">
+      <span>Важно — до старта</span>
+    </div>
+
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">До того, как нажмёшь старт</div>
+
+      <h2 class="text-title reveal" style="--i: 1">
+        Фиксируй время<br>
+        каждой сессии
+      </h2>
+
+      <div class="text-body" style="margin-bottom: clamp(28px, 3vw, 48px);">
+        <p class="text-lead reveal" style="--i: 2">
+          Запиши час и минуту, когда стартовала каждая сессия —
+          и когда она закончилась.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Файлы записей нейробанда нужно будет загрузить в чат-бот
+          <strong>ex NIHILO</strong>. Каждый файл — с подписью времени.
+        </p>
+      </div>
+
+      <div class="critical-box reveal" style="--i: 4">
+        <div class="critical-tag">Критично</div>
+        <div class="critical-title">
+          Без точной подписи времени — анализ будет неточным
+        </div>
+        <p class="critical-text">
+          ИИ совмещает данные ЭЭГ с этапами чекапа по времени.
+          Если не зафиксировать <strong>час и минуту</strong> старта
+          каждой сессии — невозможно сопоставить ЭЭГ-паттерны
+          с конкретными блоками. Ответ будет приблизительным.
+        </p>
+        <div class="critical-example">
+          Пример подписи файла: <strong>Сессия&nbsp;1 — 10:32 → 11:08</strong>
+          &nbsp;·&nbsp; <strong>Сессия&nbsp;2 — следующий день, 14:15 → 14:51</strong>
+        </div>
+      </div>
+
+      <div class="text-punchline reveal" style="--i: 5; margin-top: clamp(28px, 3vw, 48px);">
+        Готов фиксировать время? Поехали.
+      </div>
+    </div>
+
+    <div class="corner corner-bl">
+      <span class="dot"></span>
+      <span>Intro · Warning</span>
+    </div>
+    <div class="corner corner-br">
+      <span>к Сессии 1</span>
+      <span class="key-hint">→</span>
+    </div>
+
+  </section>
+
+
   <!-- ============================================================ -->
   <!--               СЕССИЯ 1 — БАЗОВЫЙ НЕЙРОСНИМОК                  -->
   <!-- ============================================================ -->
@@ -5435,20 +5502,8 @@
         </div>
       </div>
 
-      <div class="critical-box reveal" style="--i: 5">
-        <div class="critical-tag">Важно</div>
-        <div class="critical-title">
-          Подпиши каждый файл — час и минута старта и конца сессии
-        </div>
-        <p class="critical-text">
-          ИИ совмещает записи нейробанда с этапами чекапа по времени.
-          <strong>Без точной подписи анализ будет неточным</strong> —
-          невозможно сопоставить ЭЭГ-паттерны с конкретными блоками сессий.
-        </p>
-        <div class="critical-example">
-          Пример: <strong>Сессия 1 — 10:32 → 11:08</strong> ·
-          <strong>Сессия 2 — 14:15 → 14:51</strong>
-        </div>
+      <div class="text-punchline reveal" style="--i: 5; margin-top: clamp(28px, 3vw, 48px);">
+        Подписывал каждую сессию по ходу? Тогда — загружай.
       </div>
     </div>
 
@@ -5560,6 +5615,30 @@
   // === НАВИГАЦИЯ ПО СЛАЙДАМ ===
   const slides = Array.from(document.querySelectorAll('.slide'));
   const total = slides.length;
+
+  // авто-перенумерация corner-tr: меняет первое число перед "/" на актуальный индекс
+  // чтобы слайды в правом верхнем углу всегда показывали правильный номер
+  // даже когда мы вставляем новые слайды посередине
+  function pad2(n) { return String(n).padStart(2, '0'); }
+  slides.forEach((slide, idx) => {
+    const cornerTRSpan = slide.querySelector('.corner-tr > span:first-child');
+    if (!cornerTRSpan) return;
+    const text = cornerTRSpan.textContent.trim();
+    const num = pad2(idx + 1);
+    // паттерн: "08 / Что-то" или "89 / 89" — заменим число до /
+    const m = text.match(/^(\d+)\s*\/\s*(.+)$/);
+    if (m) {
+      // если правая часть тоже число (типа "89 / 89") — меняем на total
+      if (/^\d+$/.test(m[2])) {
+        cornerTRSpan.textContent = `${num} / ${pad2(total)}`;
+      } else {
+        cornerTRSpan.textContent = `${num} / ${m[2]}`;
+      }
+    }
+    // обновим data-index на актуальный
+    slide.dataset.index = num;
+  });
+
   const counter = document.getElementById('navCounter');
   const btnPrev = document.getElementById('navPrev');
   const btnNext = document.getElementById('navNext');
