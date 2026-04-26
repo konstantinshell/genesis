@@ -1236,6 +1236,16 @@
       box-shadow: 0 0 0 4px rgba(95,95,255,0.12);
     }
 
+    /* шкала 1–10 — точки компактнее, чтобы поместились */
+    .q-scale.q-scale-10 .qs-points {
+      gap: clamp(4px, 0.5vw, 8px);
+    }
+    .q-scale.q-scale-10 .qs-points span {
+      width: clamp(34px, 3.6vw, 56px);
+      height: clamp(34px, 3.6vw, 56px);
+      font-size: clamp(15px, 1.4vw, 22px);
+    }
+
     .q-hint {
       font-family: var(--fm);
       font-weight: 700;
@@ -2965,37 +2975,34 @@
   </section>
 
 
+
   <!-- ============================================================ -->
-  <!--                     СЕССИЯ 2 — ТЕЛО                            -->
+  <!--          СЕССИЯ 2 — ПЕРВОЕ ПЕРЕКЛЮЧЕНИЕ · DMN ↔ PURE NOTHING   -->
   <!-- ============================================================ -->
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 21 — S2 COVER · заставка сессии 2       -->
-  <!-- timer: none                                   -->
-  <!-- ============================================ -->
-  <section class="slide slide-session-cover" data-slide="s2-cover" data-index="21">
+  <!-- 01 — S2 COVER -->
+  <section class="slide slide-session-cover" data-slide="s2-cover" data-index="27"
+           data-timer="00:30">
 
     <div class="session-bignum" aria-hidden="true">2</div>
 
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 / 5</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>21 / Сессия 2</span>
-    </div>
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 / 6 · FIRST SWITCHING · PURE NOTHING</span></div>
+    <div class="corner corner-tr"><span>Сессия 2</span></div>
 
     <div class="session-cover-content">
-      <div class="session-eyebrow reveal" style="--i: 0">Сессия 02 / 05 · ~35 минут</div>
+      <div class="session-eyebrow reveal" style="--i: 0">Сессия 02 / 06 · ~47 минут · SI замер</div>
 
       <h2 class="session-name reveal" style="--i: 1">
-        <em>Тело</em>
+        Первое<br>
+        <em>переключение</em>
       </h2>
 
       <p class="session-tagline reveal" style="--i: 2">
-        В первой сессии — уровень <strong style="color: var(--text);">головы</strong>.<br>
-        Сейчас — уровень <strong style="color: var(--text);">тела</strong>.
+        В первой сессии — твоё обычное состояние.<br>
+        Сейчас — <strong style="color: var(--text);">первая попытка переключиться</strong>
+        в другое.<br>
+        Из шума — в тишину.
       </p>
 
       <div class="session-blocks-mini reveal" style="--i: 3">
@@ -3007,93 +3014,201 @@
       </div>
     </div>
 
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · Cover</span>
-    </div>
-    <div class="corner corner-br">
-      <span>далее</span>
-      <span class="key-hint">→</span>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Cover</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 22 — S2 INTRO · подготовка               -->
-  <!-- ============================================ -->
-  <section class="slide slide-text" data-slide="s2-intro" data-index="22">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · PREP</span>
+  <!-- 02 — S2 THEORY 1 / 5 · Pure Nothing -->
+  <section class="slide slide-text" data-slide="s2-theory-1" data-index="28"
+           data-timer="00:50">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · THEORY 1 / 5</span></div>
+    <div class="corner corner-tr"><span>Pure Nothing</span></div>
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Теория · 1 / 5</div>
+      <h2 class="text-title reveal" style="--i: 1">
+        <em>Pure Nothing</em><br>— чистая пустота
+      </h2>
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Между двумя любыми мыслями есть пауза. Маленькая, иногда меньше
+          секунды. Но она есть.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Pure Nothing — это <strong>расширить эту паузу</strong>.
+          Остановить внутренний диалог. Не пытаться о чём-то думать.
+          Не пытаться не думать.
+        </p>
+      </div>
+      <div class="text-punchline reveal" style="--i: 4">
+        Просто — тишина. Без содержания.
+      </div>
     </div>
-    <div class="corner corner-tr">
-      <span>22 / Подготовка</span>
-    </div>
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Theory 1/5</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+  </section>
 
+
+  <!-- 03 — S2 THEORY 2 / 5 · Парадокс белого медведя -->
+  <section class="slide slide-text" data-slide="s2-theory-2" data-index="29"
+           data-timer="01:00">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · THEORY 2 / 5</span></div>
+    <div class="corner corner-tr"><span>Парадокс белого медведя</span></div>
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Теория · 2 / 5</div>
+      <h2 class="text-title reveal" style="--i: 1">
+        Парадокс<br>
+        белого медведя
+      </h2>
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          DMN — не вредная привычка. Это эволюционное преимущество.
+          Когда-то прокручивание прошлого спасало жизнь.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Поэтому простая команда «не думай» <strong>не работает</strong>.
+          Чем сильнее ты пытаешься остановить мысли, тем больше их становится.
+        </p>
+      </div>
+      <div class="text-punchline reveal" style="--i: 4">
+        Не «остановить» — а перестать поддерживать.
+      </div>
+    </div>
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Theory 2/5</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+  </section>
+
+
+  <!-- 04 — S2 THEORY 3 / 5 · На ЭЭГ -->
+  <section class="slide slide-text" data-slide="s2-theory-3" data-index="30"
+           data-timer="00:50">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · THEORY 3 / 5</span></div>
+    <div class="corner corner-tr"><span>На ЭЭГ</span></div>
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Теория · 3 / 5</div>
+      <h2 class="text-title reveal" style="--i: 1">
+        На ЭЭГ это<br>
+        выглядит так
+      </h2>
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Когда DMN ослабевает — усиливается альфа-ритм (8–13 Гц).
+        </p>
+        <p class="reveal" style="--i: 3">
+          Срединные структуры мозга снижают активность.
+          Внутренний монолог буквально <strong>«гаснет»</strong>
+          на электрической карте.
+        </p>
+      </div>
+      <div class="text-punchline reveal" style="--i: 4">
+        Измеримое событие. Не вера. Не самовнушение.
+      </div>
+    </div>
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Theory 3/5</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+  </section>
+
+
+  <!-- 05 — S2 THEORY 4 / 5 · Бытовой пример -->
+  <section class="slide slide-text" data-slide="s2-theory-4" data-index="31"
+           data-timer="00:40">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · THEORY 4 / 5</span></div>
+    <div class="corner corner-tr"><span>Бытовой пример</span></div>
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Теория · 4 / 5</div>
+      <h2 class="text-title reveal" style="--i: 1">
+        Помнишь, когда…
+      </h2>
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Стоишь под душем. Смотришь в окно поезда. Только проснулся,
+          ещё не открыл телефон.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Несколько секунд — <strong>ни о чём</strong>. Ни мысли, ни слова,
+          ни картинки. Просто чистое присутствие. Потом DMN включается,
+          и ты не помнишь, как это было.
+        </p>
+      </div>
+      <div class="text-punchline reveal" style="--i: 4">
+        Эта пауза была. Найди её намеренно.
+      </div>
+    </div>
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Theory 4/5</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+  </section>
+
+
+  <!-- 06 — S2 THEORY 5 / 5 · Что меряет ИИ -->
+  <section class="slide slide-text" data-slide="s2-theory-5" data-index="32"
+           data-timer="01:00">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · THEORY 5 / 5</span></div>
+    <div class="corner corner-tr"><span>Что меряем</span></div>
+    <div class="text-content">
+      <div class="text-eyebrow reveal" style="--i: 0">Теория · 5 / 5</div>
+      <h2 class="text-title reveal" style="--i: 1">
+        Что мы увидим<br>на твоём ЭЭГ
+      </h2>
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          Часть 1 (10 мин откр.) — DMN baseline. Часть 2 (15 мин закр.) —
+          Pure Nothing. ИИ посчитает, <strong>за сколько секунд</strong>
+          ты переключился.
+        </p>
+        <p class="reveal" style="--i: 3">
+          Часть 3 (10 мин откр.) — след. Тишина пропала сразу или осталась?
+        </p>
+      </div>
+      <div class="text-punchline reveal" style="--i: 4">
+        Скорость переключения — фундамент SI.
+      </div>
+    </div>
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Theory 5/5</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
+  </section>
+
+
+  <!-- 07 — S2 PREP -->
+  <section class="slide slide-text" data-slide="s2-prep" data-index="33"
+           data-timer="00:30">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · PREP</span></div>
+    <div class="corner corner-tr"><span>Подготовка</span></div>
     <div class="text-content">
       <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Подготовка</div>
-
-      <h2 class="text-title reveal" style="--i: 1">
-        Подготовка
-      </h2>
-
+      <h2 class="text-title reveal" style="--i: 1">Подготовка</h2>
       <div class="text-body">
         <p class="text-lead reveal" style="--i: 2">
           Сядь удобно. Спина прямая или с опорой.
         </p>
         <p class="reveal" style="--i: 3">
-          Нейробанд на месте.
+          Нейробанд на месте. <strong>Зафиксируй час и минуту старта.</strong>
         </p>
       </div>
-
       <div class="text-punchline reveal" style="--i: 4">
         Когда готов — старт.
       </div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · Prep</span>
-    </div>
-    <div class="corner corner-br">
-      <span>далее</span>
-      <span class="key-hint">→</span>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Prep</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 23 — S2 PART 1 · ОТКРЫТЫЕ · 10'         -->
-  <!-- timer: 10:00                                  -->
-  <!-- autoadvance: true                             -->
-  <!-- ============================================ -->
-  <section class="slide slide-timer" data-slide="s2-part1" data-eyes="open" data-index="23"
+  <!-- 08 — S2 PART 1 · ОТКРЫТЫЕ 10' -->
+  <section class="slide slide-timer" data-slide="s2-part1" data-eyes="open" data-index="34"
            data-timer="10:00" data-autoadvance="true">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · PART 1 / 3</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>23 / Часть 1 · Открытые</span>
-    </div>
-
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · PART 1 / 3</span></div>
+    <div class="corner corner-tr"><span>Часть 1 · Открытые · 10'</span></div>
     <div class="timer-content">
       <div class="timer-eyebrow reveal" style="--i: 0">
         Часть 1 · Открытые глаза · 10 минут
       </div>
-
       <div class="timer-display reveal" style="--i: 1" data-timer-display>10:00</div>
-
       <p class="timer-instruction reveal" style="--i: 2">
-        Просто сиди. Смотри перед собой.
-        Нервная система выравнивается, запись идёт.
+        Смотри перед собой. Или вниз. Как комфортно.
         <strong>Ничего делать не нужно.</strong>
+        Не медитируй. Не пытайся успокоиться. Просто сиди.
+        Это разогрев перед главным блоком.
       </p>
-
       <div class="timer-controls reveal" style="--i: 3">
         <button class="tbtn tbtn-primary" data-timer-toggle>
           <svg viewBox="0 0 24 24" fill="currentColor" data-icon-play><path d="M8 5v14l11-7z"/></svg>
@@ -3112,98 +3227,55 @@
         </button>
       </div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · P1 · Открытые</span>
-    </div>
-    <div class="corner corner-br">
-      <span>пробел = пауза</span>
-    </div>
-
-    <div class="timer-progress" aria-hidden="true">
-      <div class="timer-progress-fill" data-timer-progress></div>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · P1 · Открытые</span></div>
+    <div class="corner corner-br"><span>пробел = пауза</span></div>
+    <div class="timer-progress" aria-hidden="true"><div class="timer-progress-fill" data-timer-progress></div></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 24 — S2 BRIDGE 1                         -->
-  <!-- ============================================ -->
-  <section class="slide slide-text" data-slide="s2-bridge-1" data-index="24">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · BRIDGE</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>24 / Мостик</span>
-    </div>
-
+  <!-- 09 — S2 BRIDGE 1 · Закрой глаза -->
+  <section class="slide slide-text" data-slide="s2-bridge-1" data-index="35"
+           data-timer="00:30">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · BRIDGE</span></div>
+    <div class="corner corner-tr"><span>В тишину</span></div>
     <div class="text-content">
       <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Между блоками</div>
-
       <h2 class="text-title reveal" style="--i: 1">
         Сейчас<br>
         закроешь глаза
       </h2>
-
       <div class="text-body">
         <p class="text-lead reveal" style="--i: 2">
-          В следующей части — 15 минут.
+          15 минут с закрытыми. Найди <strong>промежуток между мыслями</strong> —
+          и останься там.
         </p>
         <p class="reveal" style="--i: 3">
-          Внимание полностью переходит в тело.
+          Если мысль приходит — нормально. Возвращайся в паузу.
+          Не борись с мыслями. Они придут и уйдут сами.
         </p>
       </div>
-
-      <div class="text-punchline reveal" style="--i: 4">
-        Закрой глаза и нажми <span class="key-hint" style="font-size: 0.7em; vertical-align: middle;">→</span>
-      </div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · Bridge 1</span>
-    </div>
-    <div class="corner corner-br">
-      <span>далее</span>
-      <span class="key-hint">→</span>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Bridge 1</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 25 — S2 PART 2 · ЗАКРЫТЫЕ · 15'         -->
-  <!-- timer: 15:00                                  -->
-  <!-- autoadvance: true                             -->
-  <!-- ============================================ -->
-  <section class="slide slide-timer" data-slide="s2-part2" data-eyes="closed" data-index="25"
+  <!-- 10 — S2 PART 2 · ЗАКРЫТЫЕ 15' · PURE NOTHING -->
+  <section class="slide slide-timer" data-slide="s2-part2" data-eyes="closed" data-index="36"
            data-timer="15:00" data-autoadvance="true">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · PART 2 / 3</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>25 / Часть 2 · Закрытые</span>
-    </div>
-
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · PART 2 / 3 · PURE NOTHING</span></div>
+    <div class="corner corner-tr"><span>Часть 2 · Закрытые · 15'</span></div>
     <div class="timer-content">
       <div class="timer-eyebrow reveal" style="--i: 0">
-        Часть 2 · Закрытые глаза · 15 минут
+        Часть 2 · Закрытые глаза · 15 минут · Pure Nothing
       </div>
-
       <div class="timer-display reveal" style="--i: 1" data-timer-display>15:00</div>
-
       <p class="timer-instruction reveal" style="--i: 2">
-        <strong>Направь внимание в тело. Полностью.</strong>
-        Не анализируй, не называй словами. Просто будь там,
-        где ощущения уже есть. Если мысль пришла — возвращай внимание в тело.
+        Между каждой мыслью есть пауза.
+        <strong>Найди её. И останься там.</strong>
+        Не пытайся остановить мысли — это не работает.
+        Просто перестань их поддерживать.
       </p>
-
       <div class="timer-controls reveal" style="--i: 3">
         <button class="tbtn tbtn-primary" data-timer-toggle>
           <svg viewBox="0 0 24 24" fill="currentColor" data-icon-play><path d="M8 5v14l11-7z"/></svg>
@@ -3222,98 +3294,53 @@
         </button>
       </div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · P2 · Закрытые</span>
-    </div>
-    <div class="corner corner-br">
-      <span>пробел = пауза</span>
-    </div>
-
-    <div class="timer-progress" aria-hidden="true">
-      <div class="timer-progress-fill" data-timer-progress></div>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · P2 · Pure Nothing</span></div>
+    <div class="corner corner-br"><span>пробел = пауза</span></div>
+    <div class="timer-progress" aria-hidden="true"><div class="timer-progress-fill" data-timer-progress></div></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 26 — S2 BRIDGE 2                         -->
-  <!-- ============================================ -->
-  <section class="slide slide-text" data-slide="s2-bridge-2" data-index="26">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · BRIDGE</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>26 / Мостик</span>
-    </div>
-
+  <!-- 11 — S2 BRIDGE 2 · Открой глаза -->
+  <section class="slide slide-text" data-slide="s2-bridge-2" data-index="37"
+           data-timer="00:30">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · BRIDGE · MAIN</span></div>
+    <div class="corner corner-tr"><span>След</span></div>
     <div class="text-content">
       <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Между блоками</div>
-
       <h2 class="text-title reveal" style="--i: 1">
         Открой глаза<br>
         медленно
       </h2>
-
       <div class="text-body">
         <p class="text-lead reveal" style="--i: 2">
-          Ощущение тела — попробуй его не потерять.
+          Тишина, которая появилась — попробуй её <strong>не потерять</strong>.
         </p>
-        <p class="reveal" style="--i: 3">
-          Не уходи обратно в голову.
+        <p class="muted reveal" style="--i: 3">
+          Это и есть основной замер: сохраняется ли Ничто при открытых
+          глазах, или схлопывается мгновенно.
         </p>
       </div>
-
-      <div class="text-punchline reveal" style="--i: 4">
-        Когда откроешь — нажми <span class="key-hint" style="font-size: 0.7em; vertical-align: middle;">→</span>
-      </div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · Bridge 2</span>
-    </div>
-    <div class="corner corner-br">
-      <span>далее</span>
-      <span class="key-hint">→</span>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Bridge 2 · след</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 27 — S2 PART 3 · ОТКРЫТЫЕ · 10'         -->
-  <!-- timer: 10:00                                  -->
-  <!-- autoadvance: true                             -->
-  <!-- ============================================ -->
-  <section class="slide slide-timer" data-slide="s2-part3" data-eyes="open" data-index="27"
+  <!-- 12 — S2 PART 3 · ОТКРЫТЫЕ 10' -->
+  <section class="slide slide-timer" data-slide="s2-part3" data-eyes="open" data-index="38"
            data-timer="10:00" data-autoadvance="true">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · PART 3 / 3</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>27 / Часть 3 · Открытые</span>
-    </div>
-
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · PART 3 / 3 · TRACE</span></div>
+    <div class="corner corner-tr"><span>Часть 3 · Открытые · 10'</span></div>
     <div class="timer-content">
       <div class="timer-eyebrow reveal" style="--i: 0">
-        Часть 3 · Открытые глаза · 10 минут
+        Часть 3 · Открытые глаза · 10 минут · След
       </div>
-
       <div class="timer-display reveal" style="--i: 1" data-timer-display>10:00</div>
-
       <p class="timer-instruction reveal" style="--i: 2">
-        Просто смотри перед собой — и
-        <strong>оставайся внутри</strong>.
-        Тело никуда не делось. Оно здесь. Просто теперь глаза открыты.
+        Просто смотри перед собой.
+        <strong>Без комментария. Без анализа.</strong>
+        Если внутренний голос вернулся — заметь это. Тоже данные.
       </p>
-
       <div class="timer-controls reveal" style="--i: 3">
         <button class="tbtn tbtn-primary" data-timer-toggle>
           <svg viewBox="0 0 24 24" fill="currentColor" data-icon-play><path d="M8 5v14l11-7z"/></svg>
@@ -3332,49 +3359,25 @@
         </button>
       </div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · P3 · Открытые</span>
-    </div>
-    <div class="corner corner-br">
-      <span>пробел = пауза</span>
-    </div>
-
-    <div class="timer-progress" aria-hidden="true">
-      <div class="timer-progress-fill" data-timer-progress></div>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · P3 · След</span></div>
+    <div class="corner corner-br"><span>пробел = пауза</span></div>
+    <div class="timer-progress" aria-hidden="true"><div class="timer-progress-fill" data-timer-progress></div></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 28 — S2 SURVEY INTRO · минута            -->
-  <!-- timer: 01:00                                  -->
-  <!-- autoadvance: true                             -->
-  <!-- ============================================ -->
-  <section class="slide slide-timer" data-slide="s2-survey-intro" data-index="28"
+  <!-- 13 — S2 SURVEY INTRO -->
+  <section class="slide slide-timer" data-slide="s2-survey-intro" data-index="39"
            data-timer="01:00" data-autoadvance="true">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · SURVEY</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>28 / Минута тишины</span>
-    </div>
-
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · SURVEY</span></div>
+    <div class="corner corner-tr"><span>Минута тишины</span></div>
     <div class="timer-content">
       <div class="timer-eyebrow reveal" style="--i: 0">
         Сессия 2 · Минута тишины
       </div>
-
       <div class="timer-display reveal" style="--i: 1" data-timer-display>01:00</div>
-
       <p class="timer-instruction reveal" style="--i: 2">
-        Посиди минуту. Потом — <strong>пять вопросов</strong>.
+        Посиди минуту. Потом — <strong>четыре вопроса</strong>.
       </p>
-
       <div class="timer-controls reveal" style="--i: 3">
         <button class="tbtn tbtn-primary" data-timer-toggle>
           <svg viewBox="0 0 24 24" fill="currentColor" data-icon-play><path d="M8 5v14l11-7z"/></svg>
@@ -3393,279 +3396,137 @@
         </button>
       </div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · Survey intro</span>
-    </div>
-    <div class="corner corner-br">
-      <span>пробел = пауза</span>
-    </div>
-
-    <div class="timer-progress" aria-hidden="true">
-      <div class="timer-progress-fill" data-timer-progress></div>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Survey intro</span></div>
+    <div class="corner corner-br"><span>пробел = пауза</span></div>
+    <div class="timer-progress" aria-hidden="true"><div class="timer-progress-fill" data-timer-progress></div></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 29 — S2 Q1 · самочувствие                -->
-  <!-- ============================================ -->
-  <section class="slide slide-text" data-slide="s2-q1" data-index="29">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · Q 1 / 5</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>29 / Вопрос 1 / 5</span>
-    </div>
-
+  <!-- 14 — S2 Q 1 / 4 · скорость переключения · шкала 1-10 -->
+  <section class="slide slide-text" data-slide="s2-q1" data-index="40"
+           data-timer="01:00">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · Q 1 / 4</span></div>
+    <div class="corner corner-tr"><span>Вопрос 1 / 4</span></div>
     <div class="text-content">
-      <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Самооценка · Q 1 / 5</div>
-
+      <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Самооценка · Q 1 / 4 · SI</div>
       <h2 class="text-title reveal" style="--i: 1">
-        Как ты себя чувствовал<br>
-        во время сессии?
+        Как быстро удалось<br>
+        войти в тишину?
       </h2>
-
-      <div class="q-options reveal" style="--i: 2">
-        <div class="q-opt">Комфортно</div>
-        <div class="q-opt">Напряжённо</div>
-        <div class="q-opt">Нейтрально</div>
-      </div>
-
-      <div class="q-hint reveal" style="--i: 3">Голосом или письменно</div>
-    </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · Q1</span>
-    </div>
-    <div class="corner corner-br">
-      <span>далее</span>
-      <span class="key-hint">→</span>
-    </div>
-
-  </section>
-
-
-  <!-- ============================================ -->
-  <!-- SLIDE 30 — S2 Q2 · шкала внимания в тело       -->
-  <!-- ============================================ -->
-  <section class="slide slide-text" data-slide="s2-q2" data-index="30">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · Q 2 / 5</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>30 / Вопрос 2 / 5</span>
-    </div>
-
-    <div class="text-content">
-      <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Самооценка · Q 2 / 5</div>
-
-      <h2 class="text-title reveal" style="--i: 1">
-        Насколько удалось перевести<br>
-        внимание в тело и удержать?
-      </h2>
-
-      <div class="q-scale reveal" style="--i: 2">
-        <div class="qs-end">внимание сразу<br>уходило в голову</div>
+      <div class="q-scale q-scale-10 reveal" style="--i: 2">
+        <div class="qs-end">не вошёл вообще</div>
         <div class="qs-points">
           <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+          <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
         </div>
-        <div class="qs-end">был в теле<br>большую часть<br>времени</div>
+        <div class="qs-end">вошёл за секунды</div>
       </div>
-
-      <div class="q-hint reveal" style="--i: 3">Оцени от 1 до 5</div>
+      <div class="q-hint reveal" style="--i: 3">Скорость переключения · фундамент SI · 1–10</div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · Q2</span>
-    </div>
-    <div class="corner corner-br">
-      <span>далее</span>
-      <span class="key-hint">→</span>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Q1 · SI</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 31 — S2 Q3 · ощущения в теле             -->
-  <!-- ============================================ -->
-  <section class="slide slide-text" data-slide="s2-q3" data-index="31">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · Q 3 / 5</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>31 / Вопрос 3 / 5</span>
-    </div>
-
+  <!-- 15 — S2 Q 2 / 4 · сколько удерживался -->
+  <section class="slide slide-text" data-slide="s2-q2" data-index="41"
+           data-timer="01:00">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · Q 2 / 4</span></div>
+    <div class="corner corner-tr"><span>Вопрос 2 / 4</span></div>
     <div class="text-content">
-      <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Самооценка · Q 3 / 5</div>
-
+      <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Самооценка · Q 2 / 4</div>
       <h2 class="text-title reveal" style="--i: 1">
-        Что именно ты<br>
-        чувствовал в теле?
+        Сколько примерно минут<br>
+        удерживался в Ничто?
       </h2>
-
       <div class="q-options reveal" style="--i: 2">
-        <div class="q-opt">Тепло</div>
-        <div class="q-opt">Тяжесть</div>
-        <div class="q-opt">Пульс</div>
-        <div class="q-opt">Что-то ещё</div>
-        <div class="q-opt">Почти ничего</div>
+        <div class="q-opt">Меньше минуты</div>
+        <div class="q-opt">1–3 минуты</div>
+        <div class="q-opt">3–7 минут</div>
+        <div class="q-opt">Больше 7 минут</div>
+        <div class="q-opt">Большую часть блока</div>
+        <div class="q-opt">Не уверен</div>
       </div>
-
-      <div class="q-hint reveal" style="--i: 3">Голосом — что именно</div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · Q3</span>
-    </div>
-    <div class="corner corner-br">
-      <span>далее</span>
-      <span class="key-hint">→</span>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Q2</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 32 — S2 Q4 · резкие изменения            -->
-  <!-- ============================================ -->
-  <section class="slide slide-text" data-slide="s2-q4" data-index="32">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · Q 4 / 5</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>32 / Вопрос 4 / 5</span>
-    </div>
-
+  <!-- 16 — S2 Q 3 / 4 · что прерывало -->
+  <section class="slide slide-text" data-slide="s2-q3" data-index="42"
+           data-timer="01:00">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · Q 3 / 4</span></div>
+    <div class="corner corner-tr"><span>Вопрос 3 / 4</span></div>
     <div class="text-content">
-      <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Самооценка · Q 4 / 5</div>
-
+      <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Самооценка · Q 3 / 4</div>
       <h2 class="text-title reveal" style="--i: 1">
-        Были ли моменты,<br>
-        когда что-то резко<br>
-        изменилось?
+        Что чаще всего<br>
+        прерывало?
       </h2>
-
-      <div class="text-body">
-        <p class="text-lead reveal" style="--i: 2">
-          Напряжение, всплеск, неожиданное ощущение?
-        </p>
+      <div class="q-options reveal" style="--i: 2">
+        <div class="q-opt">Мысли</div>
+        <div class="q-opt">Тело (зуд, дискомфорт)</div>
+        <div class="q-opt">Звуки снаружи</div>
+        <div class="q-opt">Эмоции (тревога, скука, нетерпение)</div>
+        <div class="q-opt">Ничего, держалось</div>
       </div>
-
-      <div class="q-hint reveal" style="--i: 3">Ответ свободный</div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · Q4</span>
-    </div>
-    <div class="corner corner-br">
-      <span>далее</span>
-      <span class="key-hint">→</span>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Q3</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 33 — S2 Q5 · контакт с телом             -->
-  <!-- ============================================ -->
-  <section class="slide slide-text" data-slide="s2-q5" data-index="33">
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 · Q 5 / 5</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>33 / Вопрос 5 / 5</span>
-    </div>
-
+  <!-- 17 — S2 Q 4 / 4 · след при открытии -->
+  <section class="slide slide-text" data-slide="s2-q4" data-index="43"
+           data-timer="01:00">
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · Q 4 / 4</span></div>
+    <div class="corner corner-tr"><span>Вопрос 4 / 4</span></div>
     <div class="text-content">
-      <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Самооценка · Q 5 / 5</div>
-
+      <div class="text-eyebrow reveal" style="--i: 0">Сессия 2 · Самооценка · Q 4 / 4 · след</div>
       <h2 class="text-title reveal" style="--i: 1">
         Когда открыл глаза —<br>
-        контакт с телом сохранился<br>
-        или сразу пропал?
+        тишина осталась<br>
+        или сразу ушла?
       </h2>
-
-      <div class="q-hint reveal" style="--i: 2">Ответ свободный</div>
+      <div class="text-body">
+        <p class="text-lead reveal" style="--i: 2">
+          В третьей части — что происходило с состоянием.
+        </p>
+      </div>
+      <div class="q-hint reveal" style="--i: 3">Свободный ответ — голосом или текстом</div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · Q5</span>
-    </div>
-    <div class="corner corner-br">
-      <span>далее</span>
-      <span class="key-hint">→</span>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · Q4 · след</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
   </section>
 
 
-  <!-- ============================================ -->
-  <!-- SLIDE 34 — S2 END · сессия 2 завершена         -->
-  <!-- ============================================ -->
-  <section class="slide slide-session-cover" data-slide="s2-end" data-index="34">
-
+  <!-- 18 — S2 DONE -->
+  <section class="slide slide-session-cover" data-slide="s2-end" data-index="44"
+           data-timer="00:30">
     <div class="session-bignum" aria-hidden="true">✓</div>
-
-    <div class="corner corner-tl">
-      <span class="symbol">∅</span>
-      <span>SESSION 2 / 5 · DONE</span>
-    </div>
-    <div class="corner corner-tr">
-      <span>34 / Завершена</span>
-    </div>
-
+    <div class="corner corner-tl"><span class="symbol">∅</span><span>SESSION 2 · DONE</span></div>
+    <div class="corner corner-tr"><span>Завершена</span></div>
     <div class="session-cover-content">
-      <div class="session-eyebrow reveal" style="--i: 0">Сессия 02 / 05 · Завершена</div>
-
+      <div class="session-eyebrow reveal" style="--i: 0">Сессия 02 · Первое переключение · Завершена</div>
       <h2 class="session-name reveal" style="--i: 1">
         Сессия 2<br>
         <em>завершена</em>
       </h2>
-
       <p class="session-tagline reveal" style="--i: 2">
         <strong style="color: var(--text);">Запись сохранена.</strong><br>
-        Сессия 3 — Глубина.
-        Самая длинная и самая необычная.
+        Первое переключение зафиксировано.<br>
+        Сессия 3 — Глубина. Самая длинная и необычная.
       </p>
-
       <div class="session-blocks-mini reveal" style="--i: 3">
         <span>Сессия 3</span>
         <span class="arrow">→</span>
         <span>Глубина</span>
       </div>
     </div>
-
-    <div class="corner corner-bl">
-      <span class="dot"></span>
-      <span>S2 · End</span>
-    </div>
-    <div class="corner corner-br">
-      <span>далее</span>
-      <span class="key-hint">→</span>
-    </div>
-
+    <div class="corner corner-bl"><span class="dot"></span><span>S2 · End</span></div>
+    <div class="corner corner-br"><span>далее</span><span class="key-hint">→</span></div>
   </section>
-
 
 
   <!-- ============================================================ -->
