@@ -1955,7 +1955,14 @@ function loadTasks() {
     }
     h += '<div style="font-size:11px;color:#555;text-align:center;margin-top:6px;font-style:italic;">Минимум 5 часов отдыха между сессиями</div>';
     wrap.innerHTML = h;
-    roadmapLink.parentElement.insertBefore(wrap, roadmapLink);
+    // Сессии MNPI теперь живут в самом низу вкладки NEIRY (tab-neuro), после дашбордов
+    var neuroTab = document.getElementById('tab-neuro');
+    if (neuroTab) {
+      neuroTab.appendChild(wrap);
+    } else {
+      // Fallback — если вкладки нет, оставляем старое поведение (вставка перед роадмэпом)
+      roadmapLink.parentElement.insertBefore(wrap, roadmapLink);
+    }
 
     // ── Блок: физиология с браслета ──────────────────────────────────────────
     var fitnessDone = true;
